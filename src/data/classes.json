@@ -1,0 +1,2178 @@
+[
+  {
+    "name": "Alchemist",
+    "hd": 8,
+    "bab": "3/4",
+    "goodSaves": [
+      "Fort",
+      "Ref"
+    ],
+    "skills": 4,
+    "castingAbility": "INT",
+    "castingType": "arcane",
+    "description": "Masters of alchemy who craft bombs and potent elixirs. Alchemists use explosives and transmutation to devastate foes and enhance allies.",
+    "classSkills": [
+      "Acrobatics",
+      "Appraise",
+      "Craft",
+      "Disable Device",
+      "Fly",
+      "Heal",
+      "Knowledge (arcana)",
+      "Knowledge (nature)",
+      "Perception",
+      "Profession",
+      "Sleight of Hand",
+      "Spellcraft",
+      "Use Magic Device"
+    ],
+    "alignment": "Any",
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons"
+      ],
+      "armor": [
+        "Light armor"
+      ]
+    },
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Alchemy",
+        "description": "Create alchemical items and mutagens."
+      },
+      {
+        "level": 1,
+        "name": "Bomb",
+        "description": "Create ranged weapons using alchemical force."
+      },
+      {
+        "level": 2,
+        "name": "Poison Use",
+        "description": "Trained in use of poisons without poisoning yourself."
+      },
+      {
+        "level": 3,
+        "name": "Mutagen",
+        "description": "Create potions that grant supernatural enhancements."
+      }
+    ]
+  },
+  {
+    "name": "Arcanist",
+    "hd": 6,
+    "bab": "1/2",
+    "goodSaves": [
+      "Will"
+    ],
+    "skills": 2,
+    "castingAbility": "INT",
+    "castingType": "arcane",
+    "description": "Skilled arcane casters who blend wizardry and sorcery. Arcanists gain exploits and can spontaneously cast known spells.",
+    "classSkills": [
+      "Appraise",
+      "Craft",
+      "Fly",
+      "Knowledge (arcana)",
+      "Knowledge (engineering)",
+      "Knowledge (nature)",
+      "Knowledge (planes)",
+      "Knowledge (religion)",
+      "Perception",
+      "Profession",
+      "Spellcraft",
+      "Use Magic Device"
+    ],
+    "alignment": "Any",
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons"
+      ],
+      "armor": []
+    },
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Arcane Reservoir",
+        "description": "Store arcane power in a reservoir for special abilities."
+      },
+      {
+        "level": 1,
+        "name": "Arcane Exploits",
+        "description": "Gain powerful exploits to modify spellcasting."
+      },
+      {
+        "level": 1,
+        "name": "Spellcasting",
+        "description": "Cast both prepared and spontaneous arcane spells."
+      }
+    ]
+  },
+  {
+    "name": "Barbarian",
+    "hd": 12,
+    "bab": "full",
+    "saves": {
+      "fort": "good",
+      "ref": "poor",
+      "will": "poor"
+    },
+    "skills": 4,
+    "features": [
+      "Fast Movement (+10ft)",
+      "Rage (4+CON rounds/day)",
+      "Rage Powers",
+      "Uncanny Dodge",
+      "Trap Sense"
+    ],
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Fast Movement",
+        "description": "Barbarian's base speed is 10 feet faster than normal."
+      },
+      {
+        "level": 1,
+        "name": "Rage",
+        "description": "Gain bonuses to Str/Con and Will saves while raging."
+      },
+      {
+        "level": 2,
+        "name": "Rage Power",
+        "description": "Gain a rage power to use while raging."
+      },
+      {
+        "level": 2,
+        "name": "Uncanny Dodge",
+        "description": "Cannot be caught flat-footed and retains Dex bonus when invisible enemy attacks."
+      },
+      {
+        "level": 3,
+        "name": "Trap Sense",
+        "description": "Gain bonus on Reflex saves against traps and AC vs trap attacks."
+      },
+      {
+        "level": 5,
+        "name": "Improved Uncanny Dodge",
+        "description": "Cannot be flanked unless attacker has 4+ more rogue levels."
+      },
+      {
+        "level": 7,
+        "name": "Damage Reduction",
+        "description": "Reduce all weapon damage taken by 1."
+      },
+      {
+        "level": 11,
+        "name": "Greater Rage",
+        "description": "Rage bonuses increase to +6 Str/Con and +3 Will."
+      },
+      {
+        "level": 14,
+        "name": "Indomitable Will",
+        "description": "Gain +4 bonus on Will saves against enchantment while raging."
+      },
+      {
+        "level": 17,
+        "name": "Tireless Rage",
+        "description": "No longer become fatigued at the end of rage."
+      },
+      {
+        "level": 20,
+        "name": "Mighty Rage",
+        "description": "Rage bonuses increase to +8 Str/Con and +4 Will."
+      }
+    ],
+    "alignment": "Any nonlawful",
+    "classSkills": [
+      "Acrobatics",
+      "Climb",
+      "Craft",
+      "Handle Animal",
+      "Intimidate",
+      "Knowledge (nature)",
+      "Perception",
+      "Ride",
+      "Survival",
+      "Swim"
+    ],
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons",
+        "Martial weapons"
+      ],
+      "armor": [
+        "Light armor",
+        "Medium armor",
+        "Shields"
+      ]
+    }
+  },
+  {
+    "name": "Bard",
+    "hd": 8,
+    "bab": "3/4",
+    "saves": {
+      "fort": "poor",
+      "ref": "good",
+      "will": "good"
+    },
+    "skills": 6,
+    "features": [
+      "Bardic Knowledge",
+      "Bardic Performance",
+      "Cantrips",
+      "Inspire Courage"
+    ],
+    "spellcasting": "arcane",
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Spells",
+        "description": "Bard can cast arcane spells from the bard spell list."
+      },
+      {
+        "level": 1,
+        "name": "Bardic Knowledge",
+        "description": "Add half class level to all Knowledge checks and make them untrained."
+      },
+      {
+        "level": 1,
+        "name": "Bardic Performance",
+        "description": "Use Perform skill to create magical effects for 4 + Cha mod rounds per day."
+      },
+      {
+        "level": 1,
+        "name": "Countersong",
+        "description": "Counter magic effects that depend on sound."
+      },
+      {
+        "level": 1,
+        "name": "Distraction",
+        "description": "Counter magic effects that depend on sight."
+      },
+      {
+        "level": 1,
+        "name": "Fascinate",
+        "description": "Fascinate one or more creatures with performance."
+      },
+      {
+        "level": 1,
+        "name": "Inspire Courage",
+        "description": "Inspire allies with +1 bonus vs fear and damage."
+      },
+      {
+        "level": 2,
+        "name": "Versatile Performance",
+        "description": "Use Perform bonus in place of related skill bonus."
+      },
+      {
+        "level": 2,
+        "name": "Well-Versed",
+        "description": "+4 bonus on saves against bardic performance and sonic effects."
+      },
+      {
+        "level": 3,
+        "name": "Inspire Competence",
+        "description": "Help an ally succeed at a skill check."
+      },
+      {
+        "level": 5,
+        "name": "Lore Master",
+        "description": "Can take 10 on any Knowledge check once per day."
+      },
+      {
+        "level": 6,
+        "name": "Suggestion",
+        "description": "Make a reasonable suggestion that targets will follow."
+      },
+      {
+        "level": 7,
+        "name": "Fast Performance",
+        "description": "Start bardic performance as move action."
+      },
+      {
+        "level": 9,
+        "name": "Inspire Greatness",
+        "description": "Inspire allies with extra hit dice and bonuses."
+      },
+      {
+        "level": 12,
+        "name": "Peerless Performer",
+        "description": "Bardic performance bonuses double."
+      },
+      {
+        "level": 13,
+        "name": "Swift Performance",
+        "description": "Start bardic performance as swift action."
+      },
+      {
+        "level": 15,
+        "name": "Inspire Heroics",
+        "description": "Inspire allies with heroic abilities."
+      },
+      {
+        "level": 20,
+        "name": "Master Performer",
+        "description": "Can maintain multiple bardic performances simultaneously."
+      }
+    ],
+    "alignment": "Any",
+    "classSkills": [
+      "Acrobatics",
+      "Appraise",
+      "Bluff",
+      "Climb",
+      "Craft",
+      "Diplomacy",
+      "Disguise",
+      "Escape Artist",
+      "Intimidate",
+      "Knowledge (all)",
+      "Linguistics",
+      "Perception",
+      "Perform",
+      "Profession",
+      "Sense Motive",
+      "Sleight of Hand",
+      "Spellcraft",
+      "Stealth",
+      "Use Magic Device"
+    ],
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons",
+        "Longsword",
+        "Rapier",
+        "Sap",
+        "Short sword",
+        "Shortbow",
+        "Whip"
+      ],
+      "armor": [
+        "Light armor",
+        "Shields"
+      ]
+    }
+  },
+  {
+    "name": "Bloodrager",
+    "hd": 10,
+    "bab": "full",
+    "goodSaves": [
+      "Fort",
+      "Will"
+    ],
+    "skills": 2,
+    "castingAbility": "CHA",
+    "castingType": "arcane",
+    "description": "Fighters touched by bloodline magic who rage like barbarians. Bloodragers gain spell casting and bloodline powers while raging.",
+    "classSkills": [
+      "Acrobatics",
+      "Climb",
+      "Craft",
+      "Handle Animal",
+      "Intimidate",
+      "Knowledge (nature)",
+      "Perception",
+      "Ride",
+      "Survival",
+      "Swim"
+    ],
+    "alignment": "Any nonlawful",
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons",
+        "Martial weapons"
+      ],
+      "armor": [
+        "Light armor",
+        "Medium armor",
+        "Shields"
+      ]
+    },
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Bloodrager Bloodline",
+        "description": "Gain power from a magical bloodline."
+      },
+      {
+        "level": 1,
+        "name": "Bloodrage",
+        "description": "Enter rage fueled by bloodline magic."
+      },
+      {
+        "level": 1,
+        "name": "Bonus Bloodline Feat",
+        "description": "Gain a feat based on your bloodline."
+      }
+    ]
+  },
+  {
+    "name": "Brawler",
+    "hd": 10,
+    "bab": "full",
+    "goodSaves": [
+      "Fort",
+      "Ref"
+    ],
+    "skills": 4,
+    "castingAbility": null,
+    "castingType": null,
+    "description": "Martial experts trained in unarmed combat and improvised weapons. Brawlers gain martial flexibility to switch styles mid-combat.",
+    "classSkills": [
+      "Acrobatics",
+      "Climb",
+      "Craft",
+      "Handle Animal",
+      "Intimidate",
+      "Perception",
+      "Profession",
+      "Ride",
+      "Sense Motive",
+      "Survival"
+    ],
+    "alignment": "Any",
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons",
+        "Martial weapons"
+      ],
+      "armor": [
+        "Light armor"
+      ]
+    },
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Martial Flexibility",
+        "description": "Change combat feats as swift actions."
+      },
+      {
+        "level": 1,
+        "name": "Unarmed Strike",
+        "description": "Increased damage with unarmed strikes."
+      }
+    ]
+  },
+  {
+    "name": "Cavalier",
+    "hd": 10,
+    "bab": "full",
+    "goodSaves": [
+      "Fort",
+      "Will"
+    ],
+    "skills": 4,
+    "castingAbility": null,
+    "castingType": null,
+    "description": "Noble mounted warriors bound by oath to their order. Cavaliers gain powerful charge abilities and teamwork feats with allies.",
+    "classSkills": [
+      "Acrobatics",
+      "Climb",
+      "Craft",
+      "Diplomacy",
+      "Handle Animal",
+      "Intimidate",
+      "Perception",
+      "Perform",
+      "Profession",
+      "Ride",
+      "Sense Motive"
+    ],
+    "alignment": "Any",
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons",
+        "Martial weapons"
+      ],
+      "armor": [
+        "Light armor",
+        "Medium armor",
+        "Heavy armor",
+        "Shields"
+      ]
+    },
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Order",
+        "description": "Swear oath to an order."
+      },
+      {
+        "level": 1,
+        "name": "Mounted Bond",
+        "description": "Form special bond with a mount."
+      },
+      {
+        "level": 1,
+        "name": "Cavalier's Charge",
+        "description": "Gain bonuses when charging from horseback."
+      }
+    ]
+  },
+  {
+    "name": "Cleric",
+    "hd": 8,
+    "bab": "3/4",
+    "saves": {
+      "fort": "good",
+      "ref": "poor",
+      "will": "good"
+    },
+    "skills": 2,
+    "features": [
+      "Aura",
+      "Channel Energy",
+      "Domains (2)",
+      "Orisons",
+      "Spontaneous Casting"
+    ],
+    "spellcasting": "divine",
+    "classSkills": [
+      "Appraise",
+      "Craft",
+      "Diplomacy",
+      "Heal",
+      "Knowledge (arcana)",
+      "Knowledge (history)",
+      "Knowledge (planes)",
+      "Knowledge (religion)",
+      "Linguistics",
+      "Perception",
+      "Profession",
+      "Sense Motive",
+      "Spellcraft"
+    ],
+    "alignment": "Must match deity's alignment",
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons"
+      ],
+      "armor": [
+        "Light armor",
+        "Medium armor",
+        "Heavy armor",
+        "Shields"
+      ]
+    },
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Aura",
+        "description": "Emit an aura of power around the Cleric."
+      },
+      {
+        "level": 1,
+        "name": "Spellcasting",
+        "description": "Cast divine spells prepared from cleric spell list."
+      },
+      {
+        "level": 1,
+        "name": "Channel Energy",
+        "description": "Channel positive/negative energy to heal or harm."
+      },
+      {
+        "level": 1,
+        "name": "Domains",
+        "description": "Choose two domains granting additional powers and bonus spells."
+      },
+      {
+        "level": 1,
+        "name": "Orisons",
+        "description": "Can prepare unlimited 0-level spells."
+      },
+      {
+        "level": 2,
+        "name": "Bonus Feat",
+        "description": "Gain a bonus combat feat."
+      },
+      {
+        "level": 6,
+        "name": "Channel Energy (improved)",
+        "description": "Channel energy increases in power."
+      },
+      {
+        "level": 20,
+        "name": "Divine Presence",
+        "description": "Powerful aura grants bonuses to allies near cleric."
+      }
+    ]
+  },
+  {
+    "name": "Druid",
+    "hd": 8,
+    "bab": "3/4",
+    "saves": {
+      "fort": "good",
+      "ref": "poor",
+      "will": "good"
+    },
+    "skills": 4,
+    "features": [
+      "Nature Bond",
+      "Nature Sense",
+      "Orisons",
+      "Wild Empathy",
+      "Wild Shape"
+    ],
+    "spellcasting": "divine",
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Spellcasting",
+        "description": "Cast divine spells from druid spell list."
+      },
+      {
+        "level": 1,
+        "name": "Druidic",
+        "description": "Can read, write, and speak Druidic."
+      },
+      {
+        "level": 1,
+        "name": "Orisons",
+        "description": "Can prepare unlimited 0-level spells."
+      },
+      {
+        "level": 1,
+        "name": "Nature Bond",
+        "description": "Form a bond with nature (animal companion or domain)."
+      },
+      {
+        "level": 1,
+        "name": "Nature Sense",
+        "description": "Know direction and determine pure water by smell."
+      },
+      {
+        "level": 1,
+        "name": "Wild Empathy",
+        "description": "Improve attitude of animals with Charisma check."
+      },
+      {
+        "level": 2,
+        "name": "Woodland Stride",
+        "description": "Move through natural difficult terrain normally."
+      },
+      {
+        "level": 3,
+        "name": "Trackless Step",
+        "description": "Leave no track when moving through natural terrain."
+      },
+      {
+        "level": 4,
+        "name": "Resist Nature's Lure",
+        "description": "Save bonuses against effects from fey and plants."
+      },
+      {
+        "level": 5,
+        "name": "Wild Shape",
+        "description": "Assume the form of an animal."
+      },
+      {
+        "level": 7,
+        "name": "Wild Shape (elemental)",
+        "description": "Can wild shape into elementals."
+      },
+      {
+        "level": 9,
+        "name": "Venom Immunity",
+        "description": "Immune to poison and disease."
+      },
+      {
+        "level": 13,
+        "name": "A Thousand Faces",
+        "description": "Assume the appearance of any humanoid."
+      },
+      {
+        "level": 20,
+        "name": "Master Shapeshift",
+        "description": "Gain the ability to shapeshift at will."
+      }
+    ],
+    "classSkills": [
+      "Craft",
+      "Fly",
+      "Handle Animal",
+      "Heal",
+      "Knowledge (geography)",
+      "Knowledge (nature)",
+      "Knowledge (planes)",
+      "Perception",
+      "Profession",
+      "Ride",
+      "Spellcraft",
+      "Survival",
+      "Swim"
+    ],
+    "alignment": "Must be neutral",
+    "proficiencies": {
+      "weapons": [
+        "Club",
+        "Dagger",
+        "Dart",
+        "Quarterstaff",
+        "Scimitar",
+        "Sickle",
+        "Shortspear",
+        "Sling",
+        "Spear"
+      ],
+      "armor": [
+        "Light armor",
+        "Medium armor",
+        "Shields"
+      ]
+    }
+  },
+  {
+    "name": "Fighter",
+    "hd": 10,
+    "bab": "full",
+    "saves": {
+      "fort": "good",
+      "ref": "poor",
+      "will": "poor"
+    },
+    "skills": 2,
+    "features": [
+      "Bonus Combat Feat (1st, every even level)",
+      "Bravery (+1 vs fear per 4 levels)",
+      "Armor Training",
+      "Weapon Training"
+    ],
+    "classSkills": [
+      "Acrobatics",
+      "Climb",
+      "Craft",
+      "Handle Animal",
+      "Intimidate",
+      "Knowledge (dungeoneering)",
+      "Knowledge (engineering)",
+      "Perception",
+      "Profession",
+      "Ride",
+      "Survival",
+      "Swim"
+    ],
+    "alignment": "Any",
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons",
+        "Martial weapons"
+      ],
+      "armor": [
+        "All armor",
+        "All shields"
+      ]
+    },
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Bonus Combat Feat",
+        "description": "Gain bonus combat feats at 1st level and every even level."
+      },
+      {
+        "level": 1,
+        "name": "Weapon Training",
+        "description": "Gain bonus with certain weapon groups."
+      },
+      {
+        "level": 2,
+        "name": "Bravery",
+        "description": "Gain save bonus vs fear effects."
+      },
+      {
+        "level": 3,
+        "name": "Armor Training",
+        "description": "Reduce armor check penalty and increase speed."
+      },
+      {
+        "level": 5,
+        "name": "Weapon Mastery",
+        "description": "Increased critical threat range with certain weapons."
+      },
+      {
+        "level": 9,
+        "name": "Indomitable",
+        "description": "Reroll a saving throw once per day."
+      },
+      {
+        "level": 13,
+        "name": "Fighter's Resolve",
+        "description": "Fight at full strength even when badly wounded."
+      },
+      {
+        "level": 17,
+        "name": "Armor Mastery",
+        "description": "Armor provides additional benefits."
+      },
+      {
+        "level": 20,
+        "name": "Weapon Legend",
+        "description": "Weapons function as if they are lawful, neutral, and good."
+      }
+    ]
+  },
+  {
+    "name": "Hunter",
+    "hd": 10,
+    "bab": "full",
+    "goodSaves": [
+      "Fort",
+      "Ref"
+    ],
+    "skills": 6,
+    "castingAbility": "WIS",
+    "castingType": "divine",
+    "description": "Wilderness warriors with animal companion and spellcasting. Hunters combine ranger versatility with druid animal bond abilities.",
+    "classSkills": [
+      "Acrobatics",
+      "Climb",
+      "Craft",
+      "Handle Animal",
+      "Heal",
+      "Knowledge (nature)",
+      "Perception",
+      "Profession",
+      "Ride",
+      "Sense Motive",
+      "Stealth",
+      "Survival",
+      "Swim"
+    ],
+    "alignment": "Any",
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons",
+        "Martial weapons"
+      ],
+      "armor": [
+        "Light armor",
+        "Medium armor",
+        "Shields"
+      ]
+    },
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Animal Companion",
+        "description": "Form bond with animal companion."
+      },
+      {
+        "level": 1,
+        "name": "Wild Empathy",
+        "description": "Communicate and influence animals."
+      },
+      {
+        "level": 1,
+        "name": "Spellcasting",
+        "description": "Cast divine spells."
+      }
+    ]
+  },
+  {
+    "name": "Inquisitor",
+    "hd": 8,
+    "bab": "3/4",
+    "goodSaves": [
+      "Will",
+      "Fort"
+    ],
+    "skills": 6,
+    "castingAbility": "WIS",
+    "castingType": "divine",
+    "description": "Holy agents of faith who hunt heresy and punish the wicked. Inquisitors gain judgments and specialized combat abilities.",
+    "classSkills": [
+      "Appraise",
+      "Bluff",
+      "Climb",
+      "Craft",
+      "Diplomacy",
+      "Disguise",
+      "Handle Animal",
+      "Heal",
+      "Intimidate",
+      "Knowledge (arcana)",
+      "Knowledge (dungeoneering)",
+      "Knowledge (nature)",
+      "Knowledge (planes)",
+      "Knowledge (religion)",
+      "Perception",
+      "Profession",
+      "Ride",
+      "Sense Motive",
+      "Spellcraft",
+      "Stealth",
+      "Survival",
+      "Swim"
+    ],
+    "alignment": "Any",
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons"
+      ],
+      "armor": [
+        "Light armor",
+        "Medium armor",
+        "Shields"
+      ]
+    },
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Monster Lore",
+        "description": "Bonus to knowledge checks about creatures."
+      },
+      {
+        "level": 1,
+        "name": "Judgment",
+        "description": "Grant yourself divine bonuses for 1 minute."
+      },
+      {
+        "level": 1,
+        "name": "Spellcasting",
+        "description": "Cast divine spells."
+      }
+    ]
+  },
+  {
+    "name": "Investigator",
+    "hd": 8,
+    "bab": "3/4",
+    "goodSaves": [
+      "Ref",
+      "Will"
+    ],
+    "skills": 6,
+    "castingAbility": null,
+    "castingType": null,
+    "description": "Brilliant detectives and scholars with investigative talents. Investigators gain alchemy talents and deduction bonus.",
+    "classSkills": [
+      "Acrobatics",
+      "Appraise",
+      "Bluff",
+      "Climb",
+      "Craft",
+      "Diplomacy",
+      "Disable Device",
+      "Disguise",
+      "Escape Artist",
+      "Heal",
+      "Intimidate",
+      "Knowledge (arcana)",
+      "Knowledge (dungeoneering)",
+      "Knowledge (local)",
+      "Knowledge (nature)",
+      "Knowledge (planes)",
+      "Knowledge (religion)",
+      "Linguistics",
+      "Perception",
+      "Perform",
+      "Profession",
+      "Sense Motive",
+      "Sleight of Hand",
+      "Spellcraft",
+      "Stealth",
+      "Survival",
+      "Use Magic Device"
+    ],
+    "alignment": "Any",
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons"
+      ],
+      "armor": [
+        "Light armor"
+      ]
+    },
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Keen Recollection",
+        "description": "Make knowledge checks untrained."
+      },
+      {
+        "level": 1,
+        "name": "Investigator Talents",
+        "description": "Gain special investigative abilities."
+      },
+      {
+        "level": 1,
+        "name": "Alchemy",
+        "description": "Create alchemical items."
+      }
+    ]
+  },
+  {
+    "name": "Monk",
+    "hd": 8,
+    "bab": "3/4",
+    "saves": {
+      "fort": "good",
+      "ref": "good",
+      "will": "good"
+    },
+    "skills": 4,
+    "features": [
+      "Flurry of Blows",
+      "Stunning Fist",
+      "Unarmed Strike",
+      "AC Bonus (WIS)",
+      "Evasion",
+      "Ki Pool"
+    ],
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Bonus Feat",
+        "description": "Gain bonus feats at 1st level and every 4 levels."
+      },
+      {
+        "level": 1,
+        "name": "Flurry of Blows",
+        "description": "Make additional attacks with unarmed strikes or special weapons."
+      },
+      {
+        "level": 1,
+        "name": "Unarmed Strike",
+        "description": "Unarmed attacks deal increased damage."
+      },
+      {
+        "level": 1,
+        "name": "AC Bonus",
+        "description": "Add Wisdom modifier to AC while unarmored."
+      },
+      {
+        "level": 1,
+        "name": "Evasion",
+        "description": "Avoid damage from area effects with successful Reflex save."
+      },
+      {
+        "level": 1,
+        "name": "Ki Pool",
+        "description": "Pool of ki points to power special abilities."
+      },
+      {
+        "level": 2,
+        "name": "Bonus Feat",
+        "description": "Gain additional bonus feat."
+      },
+      {
+        "level": 3,
+        "name": "Still Mind",
+        "description": "Gain save bonus against enchantment spells."
+      },
+      {
+        "level": 4,
+        "name": "Ki Power",
+        "description": "Spend ki to use special abilities."
+      },
+      {
+        "level": 5,
+        "name": "Purity of Body",
+        "description": "Immunity to disease."
+      },
+      {
+        "level": 7,
+        "name": "Wholeness of Body",
+        "description": "Heal damage by spending ki."
+      },
+      {
+        "level": 9,
+        "name": "Improved Evasion",
+        "description": "Take only half damage on failed Reflex saves."
+      },
+      {
+        "level": 11,
+        "name": "Diamond Body",
+        "description": "Immunity to poisons."
+      },
+      {
+        "level": 13,
+        "name": "Diamond Soul",
+        "description": "Spell resistance equal to 10 + monk level."
+      },
+      {
+        "level": 15,
+        "name": "Quivering Palm",
+        "description": "Strike a fatal pressure point on a creature."
+      },
+      {
+        "level": 17,
+        "name": "Timeless Body",
+        "description": "Cease aging and gain immunity to aging effects."
+      },
+      {
+        "level": 19,
+        "name": "Empty Body",
+        "description": "Gain the benefits of invisibility and gaseous form."
+      },
+      {
+        "level": 20,
+        "name": "Perfect Self",
+        "description": "Become immune to all diseases and poisons."
+      }
+    ],
+    "alignment": "Any lawful",
+    "classSkills": [
+      "Acrobatics",
+      "Climb",
+      "Craft",
+      "Escape Artist",
+      "Intimidate",
+      "Knowledge (history)",
+      "Knowledge (religion)",
+      "Perception",
+      "Profession",
+      "Ride",
+      "Sense Motive",
+      "Stealth",
+      "Swim"
+    ],
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons",
+        "Shortsword"
+      ],
+      "armor": []
+    }
+  },
+  {
+    "name": "Oracle",
+    "hd": 8,
+    "bab": "3/4",
+    "goodSaves": [
+      "Will"
+    ],
+    "skills": 4,
+    "castingAbility": "CHA",
+    "castingType": "divine",
+    "description": "Mysterious divine casters touched by otherworldly power. Oracles gain mysteria revelations and spontaneous casting.",
+    "classSkills": [
+      "Acrobatics",
+      "Appraise",
+      "Bluff",
+      "Climb",
+      "Craft",
+      "Diplomacy",
+      "Disguise",
+      "Escape Artist",
+      "Fly",
+      "Handle Animal",
+      "Heal",
+      "Intimidate",
+      "Knowledge (arcana)",
+      "Knowledge (history)",
+      "Knowledge (planes)",
+      "Knowledge (religion)",
+      "Linguistics",
+      "Perception",
+      "Perform",
+      "Profession",
+      "Ride",
+      "Sense Motive",
+      "Sleight of Hand",
+      "Spellcraft",
+      "Stealth",
+      "Survival",
+      "Use Magic Device"
+    ],
+    "alignment": "Any",
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons"
+      ],
+      "armor": [
+        "Light armor",
+        "Shields"
+      ]
+    },
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Oracle Curse",
+        "description": "Cursed with power, gaining curse and abilities."
+      },
+      {
+        "level": 1,
+        "name": "Oracle Mystery",
+        "description": "Gain divine power from a mystery."
+      },
+      {
+        "level": 1,
+        "name": "Oracle Spellcasting",
+        "description": "Cast divine spells spontaneously."
+      }
+    ]
+  },
+  {
+    "name": "Paladin",
+    "hd": 10,
+    "bab": "full",
+    "saves": {
+      "fort": "good",
+      "ref": "poor",
+      "will": "good"
+    },
+    "skills": 2,
+    "features": [
+      "Aura of Good",
+      "Detect Evil",
+      "Smite Evil",
+      "Divine Grace",
+      "Lay on Hands",
+      "Aura of Courage"
+    ],
+    "spellcasting": "divine",
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Aura of Good",
+        "description": "Emit an aura of good power."
+      },
+      {
+        "level": 1,
+        "name": "Detect Evil",
+        "description": "At-will ability to detect evil auras."
+      },
+      {
+        "level": 1,
+        "name": "Smite Evil",
+        "description": "Strike evil creatures with added bonuses."
+      },
+      {
+        "level": 1,
+        "name": "Divine Grace",
+        "description": "Add Charisma modifier to all saving throws."
+      },
+      {
+        "level": 1,
+        "name": "Lay on Hands",
+        "description": "Heal allies or deal damage to undead by touch."
+      },
+      {
+        "level": 2,
+        "name": "Divine Health",
+        "description": "Immunity to disease."
+      },
+      {
+        "level": 2,
+        "name": "Mercy",
+        "description": "Remove negative conditions when using Lay on Hands."
+      },
+      {
+        "level": 3,
+        "name": "Aura of Courage",
+        "description": "Grant immunity to fear to self and allies nearby."
+      },
+      {
+        "level": 4,
+        "name": "Channel Positive Energy",
+        "description": "Heal with channels of positive energy."
+      },
+      {
+        "level": 5,
+        "name": "Holy Weapon",
+        "description": "Weapons become good aligned."
+      },
+      {
+        "level": 6,
+        "name": "Aura of Justice",
+        "description": "Share smite evil benefits with allies."
+      },
+      {
+        "level": 11,
+        "name": "Aura of Righteousness",
+        "description": "Grant damage reduction to allies nearby."
+      },
+      {
+        "level": 14,
+        "name": "Aura of Faith",
+        "description": "Grant saving throw bonus to allies."
+      },
+      {
+        "level": 17,
+        "name": "Aura of Despair",
+        "description": "Enemies nearby take penalties to attacks and saves."
+      },
+      {
+        "level": 20,
+        "name": "Holy Champion",
+        "description": "Become a true holy warrior."
+      }
+    ],
+    "classSkills": [
+      "Craft",
+      "Diplomacy",
+      "Handle Animal",
+      "Heal",
+      "Knowledge (religion)",
+      "Perception",
+      "Profession",
+      "Ride",
+      "Sense Motive"
+    ],
+    "alignment": "Lawful good",
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons",
+        "Martial weapons"
+      ],
+      "armor": [
+        "All armor",
+        "All shields"
+      ]
+    }
+  },
+  {
+    "name": "Ranger",
+    "hd": 10,
+    "bab": "full",
+    "saves": {
+      "fort": "good",
+      "ref": "good",
+      "will": "poor"
+    },
+    "skills": 6,
+    "features": [
+      "Favored Enemy",
+      "Track",
+      "Wild Empathy",
+      "Combat Style",
+      "Endurance",
+      "Favored Terrain"
+    ],
+    "spellcasting": "divine",
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Favored Enemy",
+        "description": "Choose enemy types to gain bonuses against."
+      },
+      {
+        "level": 1,
+        "name": "Track",
+        "description": "Add class level to Survival checks to track."
+      },
+      {
+        "level": 1,
+        "name": "Wild Empathy",
+        "description": "Improve attitude of animals."
+      },
+      {
+        "level": 1,
+        "name": "Combat Style",
+        "description": "Choose a fighting style specialization."
+      },
+      {
+        "level": 2,
+        "name": "Spellcasting",
+        "description": "Cast divine spells after 4th level."
+      },
+      {
+        "level": 3,
+        "name": "Endurance",
+        "description": "Gain a bonus combat feat."
+      },
+      {
+        "level": 4,
+        "name": "Animal Companion",
+        "description": "Gain an animal companion."
+      },
+      {
+        "level": 5,
+        "name": "Favored Terrain",
+        "description": "Gain bonuses in specific terrain."
+      },
+      {
+        "level": 7,
+        "name": "Woodland Stride",
+        "description": "Move through natural difficult terrain normally."
+      },
+      {
+        "level": 8,
+        "name": "Swift Tracker",
+        "description": "Track enemies while moving at full speed."
+      },
+      {
+        "level": 10,
+        "name": "Camouflage",
+        "description": "Hide in natural terrain even without cover."
+      },
+      {
+        "level": 13,
+        "name": "Improved Combat Style",
+        "description": "Combat style becomes more powerful."
+      },
+      {
+        "level": 15,
+        "name": "Evasion",
+        "description": "Avoid damage from area effects."
+      },
+      {
+        "level": 17,
+        "name": "Hide in Plain Sight",
+        "description": "Remain hidden even when observed."
+      },
+      {
+        "level": 19,
+        "name": "Improved Evasion",
+        "description": "Take only half damage on failed Reflex saves."
+      },
+      {
+        "level": 20,
+        "name": "Master Hunter",
+        "description": "Master of hunting and combat in the wild."
+      }
+    ],
+    "alignment": "Any",
+    "classSkills": [
+      "Climb",
+      "Craft",
+      "Handle Animal",
+      "Heal",
+      "Intimidate",
+      "Knowledge (dungeoneering)",
+      "Knowledge (geography)",
+      "Knowledge (nature)",
+      "Perception",
+      "Profession",
+      "Ride",
+      "Spellcraft",
+      "Stealth",
+      "Survival",
+      "Swim"
+    ],
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons",
+        "Martial weapons"
+      ],
+      "armor": [
+        "Light armor",
+        "Medium armor",
+        "Shields"
+      ]
+    }
+  },
+  {
+    "name": "Rogue",
+    "hd": 8,
+    "bab": "3/4",
+    "saves": {
+      "fort": "poor",
+      "ref": "good",
+      "will": "poor"
+    },
+    "skills": 8,
+    "features": [
+      "Sneak Attack (+1d6 per 2 levels)",
+      "Trapfinding",
+      "Evasion (2nd)",
+      "Rogue Talents",
+      "Trap Sense",
+      "Uncanny Dodge"
+    ],
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Sneak Attack",
+        "description": "Deal extra damage when flanking or from hiding."
+      },
+      {
+        "level": 1,
+        "name": "Trapfinding",
+        "description": "Gain bonus to find and disable traps."
+      },
+      {
+        "level": 1,
+        "name": "Evasion",
+        "description": "Avoid damage from area effects with successful Reflex save."
+      },
+      {
+        "level": 1,
+        "name": "Rogue Talent",
+        "description": "Choose rogue talents to customize abilities."
+      },
+      {
+        "level": 2,
+        "name": "Cunning Action",
+        "description": "Dodge opportunity attacks."
+      },
+      {
+        "level": 3,
+        "name": "Trap Sense",
+        "description": "Gain bonuses against traps."
+      },
+      {
+        "level": 5,
+        "name": "Uncanny Dodge",
+        "description": "Cannot be caught flat-footed and retain Dex bonus when invisible."
+      },
+      {
+        "level": 6,
+        "name": "Rogue Talent",
+        "description": "Choose another rogue talent."
+      },
+      {
+        "level": 9,
+        "name": "Improved Uncanny Dodge",
+        "description": "Cannot be flanked unless attacker has 4+ rogue levels."
+      },
+      {
+        "level": 12,
+        "name": "Rogue Talent",
+        "description": "Choose another rogue talent."
+      },
+      {
+        "level": 15,
+        "name": "Rogue Talent",
+        "description": "Choose another rogue talent."
+      },
+      {
+        "level": 18,
+        "name": "Rogue Talent",
+        "description": "Choose another rogue talent."
+      },
+      {
+        "level": 20,
+        "name": "Master Stroke",
+        "description": "Devastating sneak attack with maximum precision."
+      }
+    ],
+    "alignment": "Any",
+    "classSkills": [
+      "Acrobatics",
+      "Appraise",
+      "Bluff",
+      "Climb",
+      "Craft",
+      "Diplomacy",
+      "Disable Device",
+      "Disguise",
+      "Escape Artist",
+      "Heal",
+      "Intimidate",
+      "Knowledge (local)",
+      "Knowledge (dungeoneering)",
+      "Linguistics",
+      "Perception",
+      "Perform",
+      "Profession",
+      "Sense Motive",
+      "Sleight of Hand",
+      "Spellcraft",
+      "Stealth",
+      "Survival",
+      "Swim",
+      "Use Magic Device"
+    ],
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons",
+        "Hand crossbow",
+        "Rapier",
+        "Sap",
+        "Short sword",
+        "Shortbow"
+      ],
+      "armor": [
+        "Light armor"
+      ]
+    }
+  },
+  {
+    "name": "Shaman",
+    "hd": 8,
+    "bab": "3/4",
+    "goodSaves": [
+      "Will"
+    ],
+    "skills": 4,
+    "castingAbility": "WIS",
+    "castingType": "divine",
+    "description": "Spiritual healers communing with nature spirits. Shamans gain spirits and can spontaneously cast healing spells.",
+    "classSkills": [
+      "Acrobatics",
+      "Climb",
+      "Craft",
+      "Fly",
+      "Handle Animal",
+      "Heal",
+      "Intimidate",
+      "Knowledge (nature)",
+      "Knowledge (religion)",
+      "Perception",
+      "Profession",
+      "Ride",
+      "Sense Motive",
+      "Stealth",
+      "Survival",
+      "Swim"
+    ],
+    "alignment": "Any",
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons"
+      ],
+      "armor": [
+        "Light armor",
+        "Medium armor",
+        "Shields"
+      ]
+    },
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Spirit",
+        "description": "Bonded with a spirit."
+      },
+      {
+        "level": 1,
+        "name": "Shamanic Spellcasting",
+        "description": "Cast divine spells spontaneously."
+      },
+      {
+        "level": 1,
+        "name": "Spirit Animal Companion",
+        "description": "Gain animal companion."
+      }
+    ]
+  },
+  {
+    "name": "Skald",
+    "hd": 10,
+    "bab": "full",
+    "goodSaves": [
+      "Fort",
+      "Ref"
+    ],
+    "skills": 6,
+    "castingAbility": "CHA",
+    "castingType": "arcane",
+    "description": "Battle-hardened bards who inspire allies in combat. Skalds gain rage powers and can share performance bonuses with party.",
+    "classSkills": [
+      "Acrobatics",
+      "Climb",
+      "Craft",
+      "Diplomacy",
+      "Handle Animal",
+      "Intimidate",
+      "Knowledge (arcana)",
+      "Knowledge (history)",
+      "Knowledge (nature)",
+      "Knowledge (religion)",
+      "Linguistics",
+      "Perception",
+      "Perform",
+      "Profession",
+      "Ride",
+      "Sense Motive",
+      "Spellcraft",
+      "Stealth",
+      "Survival"
+    ],
+    "alignment": "Any nonlawful",
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons",
+        "Martial weapons"
+      ],
+      "armor": [
+        "Light armor",
+        "Medium armor",
+        "Shields"
+      ]
+    },
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Weapon and Armor Proficiency",
+        "description": "Proficient with common weapons and armor."
+      },
+      {
+        "level": 1,
+        "name": "Bardic Performance",
+        "description": "Inspire allies through performance."
+      },
+      {
+        "level": 1,
+        "name": "Rage Power",
+        "description": "Gain rage powers like a barbarian."
+      }
+    ]
+  },
+  {
+    "name": "Slayer",
+    "hd": 10,
+    "bab": "full",
+    "goodSaves": [
+      "Fort",
+      "Ref"
+    ],
+    "skills": 6,
+    "castingAbility": null,
+    "castingType": null,
+    "description": "Deadly assassins and monster hunters with studied targets. Slayers gain sneak attack and specialization against chosen foes.",
+    "classSkills": [
+      "Acrobatics",
+      "Bluff",
+      "Climb",
+      "Craft",
+      "Diplomacy",
+      "Disable Device",
+      "Disguise",
+      "Escape Artist",
+      "Intimidate",
+      "Knowledge (dungeoneering)",
+      "Knowledge (local)",
+      "Perception",
+      "Perform",
+      "Profession",
+      "Sense Motive",
+      "Sleight of Hand",
+      "Stealth",
+      "Survival",
+      "Swim"
+    ],
+    "alignment": "Any",
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons",
+        "Martial weapons"
+      ],
+      "armor": [
+        "Light armor",
+        "Shields"
+      ]
+    },
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Studied Target",
+        "description": "Study chosen target, gaining bonuses against it."
+      },
+      {
+        "level": 1,
+        "name": "Sneak Attack",
+        "description": "Gain sneak attack damage."
+      },
+      {
+        "level": 1,
+        "name": "Slayer Talents",
+        "description": "Gain special assassination and combat abilities."
+      }
+    ]
+  },
+  {
+    "name": "Sorcerer",
+    "hd": 6,
+    "bab": "1/2",
+    "saves": {
+      "fort": "poor",
+      "ref": "poor",
+      "will": "good"
+    },
+    "skills": 2,
+    "features": [
+      "Bloodline",
+      "Bloodline Arcana",
+      "Bloodline Powers",
+      "Cantrips",
+      "Eschew Materials"
+    ],
+    "spellcasting": "arcane",
+    "classSkills": [
+      "Appraise",
+      "Bluff",
+      "Craft",
+      "Fly",
+      "Intimidate",
+      "Knowledge (arcana)",
+      "Perception",
+      "Profession",
+      "Spellcraft",
+      "Use Magic Device"
+    ],
+    "alignment": "Any",
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons"
+      ],
+      "armor": []
+    },
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Spellcasting",
+        "description": "Cast arcane spells spontaneously from sorcerer spell list."
+      },
+      {
+        "level": 1,
+        "name": "Bloodline",
+        "description": "Choose a bloodline granting powers and spells."
+      },
+      {
+        "level": 1,
+        "name": "Bloodline Arcana",
+        "description": "Special arcana from your bloodline."
+      },
+      {
+        "level": 1,
+        "name": "Cantrips",
+        "description": "Cast unlimited 0-level spells."
+      },
+      {
+        "level": 1,
+        "name": "Eschew Materials",
+        "description": "Can cast spells without material components."
+      },
+      {
+        "level": 3,
+        "name": "Bloodline Power",
+        "description": "Gain a power from your bloodline."
+      },
+      {
+        "level": 7,
+        "name": "Bloodline Power",
+        "description": "Gain another bloodline power."
+      },
+      {
+        "level": 11,
+        "name": "Bloodline Power",
+        "description": "Gain another bloodline power."
+      },
+      {
+        "level": 15,
+        "name": "Bloodline Power",
+        "description": "Gain another bloodline power."
+      },
+      {
+        "level": 20,
+        "name": "Bloodline Ascendance",
+        "description": "Bloodline powers reach ultimate form."
+      }
+    ]
+  },
+  {
+    "name": "Summoner",
+    "hd": 8,
+    "bab": "3/4",
+    "goodSaves": [
+      "Will"
+    ],
+    "skills": 2,
+    "castingAbility": "CHA",
+    "castingType": "arcane",
+    "description": "Mages who forge bonds with eidolons. Summoners command powerful elemental companions in battle.",
+    "classSkills": [
+      "Acrobatics",
+      "Appraise",
+      "Climb",
+      "Craft",
+      "Fly",
+      "Handle Animal",
+      "Knowledge (arcana)",
+      "Knowledge (planes)",
+      "Perception",
+      "Profession",
+      "Ride",
+      "Sense Motive",
+      "Spellcraft",
+      "Use Magic Device"
+    ],
+    "alignment": "Any",
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons"
+      ],
+      "armor": [
+        "Light armor"
+      ]
+    },
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Eidolon",
+        "description": "Bond with an eidolon."
+      },
+      {
+        "level": 1,
+        "name": "Summoner Spellcasting",
+        "description": "Cast arcane spells."
+      },
+      {
+        "level": 1,
+        "name": "Summoning",
+        "description": "Summon allies to aid you."
+      }
+    ]
+  },
+  {
+    "name": "Swashbuckler",
+    "hd": 10,
+    "bab": "full",
+    "goodSaves": [
+      "Ref",
+      "Will"
+    ],
+    "skills": 4,
+    "castingAbility": null,
+    "castingType": null,
+    "description": "Dashing swordmasters focused on precise strikes and panache. Swashbucklers gain deeds and panache pool mechanics.",
+    "classSkills": [
+      "Acrobatics",
+      "Bluff",
+      "Climb",
+      "Craft",
+      "Diplomacy",
+      "Disable Device",
+      "Escape Artist",
+      "Handle Animal",
+      "Intimidate",
+      "Perception",
+      "Perform",
+      "Profession",
+      "Ride",
+      "Sense Motive",
+      "Sleight of Hand",
+      "Stealth"
+    ],
+    "alignment": "Any",
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons",
+        "Martial weapons"
+      ],
+      "armor": [
+        "Light armor"
+      ]
+    },
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Panache",
+        "description": "Pool of panache points for deeds."
+      },
+      {
+        "level": 1,
+        "name": "Deeds",
+        "description": "Perform swashbuckling deeds."
+      },
+      {
+        "level": 1,
+        "name": "Weapon Training",
+        "description": "Bonus with light melee weapons."
+      }
+    ]
+  },
+  {
+    "name": "Warpriest",
+    "hd": 10,
+    "bab": "full",
+    "goodSaves": [
+      "Fort",
+      "Will"
+    ],
+    "skills": 2,
+    "castingAbility": "WIS",
+    "castingType": "divine",
+    "description": "Holy warriors who blend martial prowess with divine magic. Warpriests gain sacred weapon enhancements and channel energy.",
+    "classSkills": [
+      "Acrobatics",
+      "Climb",
+      "Craft",
+      "Diplomacy",
+      "Handle Animal",
+      "Heal",
+      "Intimidate",
+      "Knowledge (arcana)",
+      "Knowledge (history)",
+      "Knowledge (planes)",
+      "Knowledge (religion)",
+      "Perception",
+      "Profession",
+      "Ride",
+      "Sense Motive",
+      "Survival"
+    ],
+    "alignment": "Any",
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons",
+        "Martial weapons"
+      ],
+      "armor": [
+        "Light armor",
+        "Medium armor",
+        "Heavy armor",
+        "Shields"
+      ]
+    },
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Sacred Weapon",
+        "description": "Bond with a sacred weapon."
+      },
+      {
+        "level": 1,
+        "name": "Blessings",
+        "description": "Gain divine blessings from deity."
+      },
+      {
+        "level": 1,
+        "name": "Warpriest Spellcasting",
+        "description": "Cast divine spells."
+      }
+    ]
+  },
+  {
+    "name": "Witch",
+    "hd": 6,
+    "bab": "1/2",
+    "goodSaves": [
+      "Will"
+    ],
+    "skills": 2,
+    "castingAbility": "INT",
+    "castingType": "arcane",
+    "description": "Enigmatic spellcasters bonded to mystical familiars. Witches gain hexes and curse abilities to weaken enemies.",
+    "classSkills": [
+      "Acrobatics",
+      "Appraise",
+      "Bluff",
+      "Climb",
+      "Craft",
+      "Fly",
+      "Handle Animal",
+      "Heal",
+      "Intimidate",
+      "Knowledge (arcana)",
+      "Knowledge (local)",
+      "Knowledge (nature)",
+      "Knowledge (planes)",
+      "Linguistics",
+      "Perception",
+      "Profession",
+      "Sense Motive",
+      "Sleight of Hand",
+      "Spellcraft",
+      "Stealth",
+      "Survival",
+      "Use Magic Device"
+    ],
+    "alignment": "Any",
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons"
+      ],
+      "armor": []
+    },
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Familiar",
+        "description": "Gain a familiar to enhance abilities."
+      },
+      {
+        "level": 1,
+        "name": "Hexes",
+        "description": "Cast magical hexes."
+      },
+      {
+        "level": 1,
+        "name": "Witch Spellcasting",
+        "description": "Cast arcane spells."
+      }
+    ]
+  },
+  {
+    "name": "Wizard",
+    "hd": 6,
+    "bab": "1/2",
+    "saves": {
+      "fort": "poor",
+      "ref": "poor",
+      "will": "good"
+    },
+    "skills": 2,
+    "features": [
+      "Arcane Bond",
+      "Arcane School",
+      "Cantrips",
+      "Scribe Scroll"
+    ],
+    "spellcasting": "arcane",
+    "classSkills": [
+      "Appraise",
+      "Craft",
+      "Fly",
+      "Knowledge (all)",
+      "Linguistics",
+      "Perception",
+      "Profession",
+      "Spellcraft"
+    ],
+    "alignment": "Any",
+    "proficiencies": {
+      "weapons": [
+        "Dagger",
+        "Quarterstaff"
+      ],
+      "armor": []
+    },
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Spellcasting",
+        "description": "Cast prepared arcane spells from wizard spell list."
+      },
+      {
+        "level": 1,
+        "name": "Spellbook",
+        "description": "Record spells in spellbook for later study."
+      },
+      {
+        "level": 1,
+        "name": "Arcane Bond",
+        "description": "Bond with object or familiar to enhance casting."
+      },
+      {
+        "level": 1,
+        "name": "Arcane School",
+        "description": "Specialize in school of magic for bonus spells and abilities."
+      },
+      {
+        "level": 1,
+        "name": "Cantrips",
+        "description": "Cast unlimited 0-level spells."
+      },
+      {
+        "level": 1,
+        "name": "Scribe Scroll",
+        "description": "Write arcane scrolls containing spells."
+      },
+      {
+        "level": 5,
+        "name": "Bonus Feat",
+        "description": "Gain a bonus feat every 5 levels."
+      },
+      {
+        "level": 10,
+        "name": "Bonus Feat",
+        "description": "Gain another bonus feat."
+      },
+      {
+        "level": 15,
+        "name": "Bonus Feat",
+        "description": "Gain another bonus feat."
+      },
+      {
+        "level": 20,
+        "name": "Bonus Feat",
+        "description": "Gain another bonus feat."
+      }
+    ]
+  }
+]

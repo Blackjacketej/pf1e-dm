@@ -1,0 +1,1812 @@
+[
+  {
+    "name": "+1 weapon",
+    "price": "2000 gp",
+    "aura": "faint varies",
+    "cl": 3,
+    "slot": "none",
+    "description": "A +1 enhancement bonus on attack and damage rolls.",
+    "type": "wondrous"
+  },
+  {
+    "name": "+2 weapon",
+    "price": "8000 gp",
+    "aura": "moderate varies",
+    "cl": 6,
+    "slot": "none",
+    "description": "A +2 enhancement bonus on attack and damage rolls.",
+    "type": "wondrous"
+  },
+  {
+    "name": "+3 weapon",
+    "price": "18000 gp",
+    "aura": "moderate varies",
+    "cl": 9,
+    "slot": "none",
+    "description": "A +3 enhancement bonus on attack and damage rolls.",
+    "type": "wondrous"
+  },
+  {
+    "name": "+4 weapon",
+    "price": "32000 gp",
+    "aura": "strong varies",
+    "cl": 12,
+    "slot": "none",
+    "description": "A +4 enhancement bonus on attack and damage rolls.",
+    "type": "wondrous"
+  },
+  {
+    "name": "+5 weapon",
+    "price": "50000 gp",
+    "aura": "strong varies",
+    "cl": 15,
+    "slot": "none",
+    "description": "A +5 enhancement bonus on attack and damage rolls.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Flaming weapon",
+    "price": "+1 bonus",
+    "aura": "moderate evocation",
+    "cl": 10,
+    "description": "+1d6 fire damage on each hit.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Frost weapon",
+    "price": "+1 bonus",
+    "aura": "moderate evocation",
+    "cl": 8,
+    "description": "+1d6 cold damage on each hit.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Shock weapon",
+    "price": "+1 bonus",
+    "aura": "moderate evocation",
+    "cl": 8,
+    "description": "+1d6 electricity damage on each hit.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Corrosive weapon",
+    "price": "+1 bonus",
+    "aura": "moderate evocation",
+    "cl": 10,
+    "description": "+1d6 acid damage on each hit.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ghost touch weapon",
+    "price": "+1 bonus",
+    "aura": "moderate conjuration",
+    "cl": 9,
+    "description": "Can strike incorporeal creatures as if they were corporeal.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Keen weapon",
+    "price": "+1 bonus",
+    "aura": "moderate transmutation",
+    "cl": 10,
+    "description": "Doubles the threat range of a slashing or piercing weapon.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Merciful weapon",
+    "price": "+1 bonus",
+    "aura": "faint conjuration",
+    "cl": 5,
+    "description": "+1d6 damage, all damage is nonlethal.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Bane weapon",
+    "price": "+1 bonus",
+    "aura": "moderate conjuration",
+    "cl": 8,
+    "description": "+2 enhancement and +2d6 damage vs designated creature type.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Disruption weapon",
+    "price": "+2 bonus",
+    "aura": "strong conjuration",
+    "cl": 14,
+    "description": "Undead struck must make DC 14 Will save or be destroyed. Bludgeoning only.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Flaming burst weapon",
+    "price": "+2 bonus",
+    "aura": "strong evocation",
+    "cl": 12,
+    "description": "+1d6 fire; on critical +1d10 fire (or +2d10/+3d10 for x3/x4 crit).",
+    "type": "wondrous"
+  },
+  {
+    "name": "Icy burst weapon",
+    "price": "+2 bonus",
+    "aura": "moderate evocation",
+    "cl": 10,
+    "description": "+1d6 cold; on critical +1d10 cold (or more for higher multipliers).",
+    "type": "wondrous"
+  },
+  {
+    "name": "Shocking burst weapon",
+    "price": "+2 bonus",
+    "aura": "moderate evocation",
+    "cl": 10,
+    "description": "+1d6 electricity; on critical +1d10 electricity.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Holy weapon",
+    "price": "+2 bonus",
+    "aura": "moderate evocation",
+    "cl": 7,
+    "description": "+2d6 damage against evil creatures. Bestows one negative level on evil wielders.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Unholy weapon",
+    "price": "+2 bonus",
+    "aura": "moderate evocation",
+    "cl": 7,
+    "description": "+2d6 damage against good creatures. Bestows one negative level on good wielders.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Axiomatic weapon",
+    "price": "+2 bonus",
+    "aura": "moderate evocation",
+    "cl": 7,
+    "description": "+2d6 damage against chaotic creatures.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Anarchic weapon",
+    "price": "+2 bonus",
+    "aura": "moderate evocation",
+    "cl": 7,
+    "description": "+2d6 damage against lawful creatures.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Wounding weapon",
+    "price": "+2 bonus",
+    "aura": "moderate evocation",
+    "cl": 10,
+    "description": "Each hit deals 1 point of bleed damage.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Speed weapon",
+    "price": "+3 bonus",
+    "aura": "moderate transmutation",
+    "cl": 7,
+    "description": "One extra attack per round at full BAB when making a full attack.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Brilliant energy weapon",
+    "price": "+4 bonus",
+    "aura": "strong transmutation",
+    "cl": 16,
+    "description": "Ignores nonliving matter. Cannot harm undead or constructs.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Dancing weapon",
+    "price": "+4 bonus",
+    "aura": "strong transmutation",
+    "cl": 15,
+    "description": "Can be released to fight on its own for 4 rounds.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Vorpal weapon",
+    "price": "+5 bonus",
+    "aura": "strong necromancy/transmutation",
+    "cl": 18,
+    "description": "Severs head on a natural 20 (and confirmed critical). Slashing only.",
+    "type": "wondrous"
+  },
+  {
+    "name": "+1 armor/shield",
+    "price": "1000 gp",
+    "aura": "faint abjuration",
+    "cl": 3,
+    "slot": "armor",
+    "description": "+1 enhancement bonus to AC.",
+    "type": "wondrous"
+  },
+  {
+    "name": "+2 armor/shield",
+    "price": "4000 gp",
+    "aura": "moderate abjuration",
+    "cl": 6,
+    "slot": "armor",
+    "description": "+2 enhancement bonus to AC.",
+    "type": "wondrous"
+  },
+  {
+    "name": "+3 armor/shield",
+    "price": "9000 gp",
+    "aura": "moderate abjuration",
+    "cl": 9,
+    "slot": "armor",
+    "description": "+3 enhancement bonus to AC.",
+    "type": "wondrous"
+  },
+  {
+    "name": "+4 armor/shield",
+    "price": "16000 gp",
+    "aura": "strong abjuration",
+    "cl": 12,
+    "slot": "armor",
+    "description": "+4 enhancement bonus to AC.",
+    "type": "wondrous"
+  },
+  {
+    "name": "+5 armor/shield",
+    "price": "25000 gp",
+    "aura": "strong abjuration",
+    "cl": 15,
+    "slot": "armor",
+    "description": "+5 enhancement bonus to AC.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Glamered armor",
+    "price": "+2700 gp",
+    "aura": "moderate illusion",
+    "cl": 10,
+    "description": "Can appear as normal clothing on command.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Fortification, light",
+    "price": "+1 bonus",
+    "aura": "strong abjuration",
+    "cl": 13,
+    "description": "25% chance to negate critical hits and sneak attacks.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Fortification, moderate",
+    "price": "+3 bonus",
+    "aura": "strong abjuration",
+    "cl": 13,
+    "description": "50% chance to negate critical hits and sneak attacks.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Fortification, heavy",
+    "price": "+5 bonus",
+    "aura": "strong abjuration",
+    "cl": 13,
+    "description": "75% chance to negate critical hits and sneak attacks.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Shadow armor",
+    "price": "+3750 gp",
+    "aura": "faint illusion",
+    "cl": 5,
+    "description": "+5 competence bonus on Stealth checks.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Slick armor",
+    "price": "+3750 gp",
+    "aura": "faint conjuration",
+    "cl": 4,
+    "description": "+5 competence bonus on Escape Artist checks.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Spell resistance (13) armor",
+    "price": "+2 bonus",
+    "aura": "strong abjuration",
+    "cl": 15,
+    "description": "Grants spell resistance 13.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Spell resistance (15) armor",
+    "price": "+3 bonus",
+    "aura": "strong abjuration",
+    "cl": 15,
+    "description": "Grants spell resistance 15.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Spell resistance (17) armor",
+    "price": "+4 bonus",
+    "aura": "strong abjuration",
+    "cl": 15,
+    "description": "Grants spell resistance 17.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Spell resistance (19) armor",
+    "price": "+5 bonus",
+    "aura": "strong abjuration",
+    "cl": 15,
+    "description": "Grants spell resistance 19.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ghost touch armor",
+    "price": "+3 bonus",
+    "aura": "strong transmutation",
+    "cl": 15,
+    "description": "AC bonus applies against incorporeal touch attacks.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Invulnerability armor",
+    "price": "+3 bonus",
+    "aura": "strong abjuration",
+    "cl": 18,
+    "description": "DR 5/magic.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Wild armor",
+    "price": "+3 bonus",
+    "aura": "moderate transmutation",
+    "cl": 9,
+    "description": "Armor continues to provide AC while in wild shape.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Etherealness armor",
+    "price": "+5 bonus",
+    "aura": "strong transmutation",
+    "cl": 13,
+    "description": "Become ethereal once per day.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ring of Protection +1",
+    "price": "2000 gp",
+    "slot": "ring",
+    "aura": "faint abjuration",
+    "cl": 5,
+    "description": "+1 deflection bonus to AC.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ring of Protection +2",
+    "price": "8000 gp",
+    "slot": "ring",
+    "aura": "moderate abjuration",
+    "cl": 8,
+    "description": "+2 deflection bonus to AC.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ring of Protection +3",
+    "price": "18000 gp",
+    "slot": "ring",
+    "aura": "moderate abjuration",
+    "cl": 11,
+    "description": "+3 deflection bonus to AC.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ring of Protection +4",
+    "price": "32000 gp",
+    "slot": "ring",
+    "aura": "strong abjuration",
+    "cl": 14,
+    "description": "+4 deflection bonus to AC.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ring of Protection +5",
+    "price": "50000 gp",
+    "slot": "ring",
+    "aura": "strong abjuration",
+    "cl": 17,
+    "description": "+5 deflection bonus to AC.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ring of Feather Falling",
+    "price": "2200 gp",
+    "slot": "ring",
+    "aura": "faint transmutation",
+    "cl": 1,
+    "description": "Activates automatically, acting as feather fall.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ring of Sustenance",
+    "price": "2500 gp",
+    "slot": "ring",
+    "aura": "faint conjuration",
+    "cl": 5,
+    "description": "Provides nourishment, need only sleep 2 hours.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ring of Swimming",
+    "price": "2500 gp",
+    "slot": "ring",
+    "aura": "faint transmutation",
+    "cl": 2,
+    "description": "+5 competence bonus on Swim checks.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ring of Climbing",
+    "price": "2500 gp",
+    "slot": "ring",
+    "aura": "faint transmutation",
+    "cl": 5,
+    "description": "+5 competence bonus on Climb checks.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ring of Jumping",
+    "price": "2500 gp",
+    "slot": "ring",
+    "aura": "faint transmutation",
+    "cl": 2,
+    "description": "+5 competence bonus on Acrobatics checks to jump.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ring of Counterspells",
+    "price": "4000 gp",
+    "slot": "ring",
+    "aura": "moderate evocation",
+    "cl": 11,
+    "description": "Store a spell; automatically counterspells that same spell once.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ring of Force Shield",
+    "price": "8500 gp",
+    "slot": "ring",
+    "aura": "moderate evocation",
+    "cl": 9,
+    "description": "Creates a wall of force as a heavy shield (+2 AC).",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ring of Invisibility",
+    "price": "20000 gp",
+    "slot": "ring",
+    "aura": "moderate illusion",
+    "cl": 3,
+    "description": "Become invisible at will.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ring of Evasion",
+    "price": "25000 gp",
+    "slot": "ring",
+    "aura": "moderate transmutation",
+    "cl": 7,
+    "description": "Grants the evasion ability.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ring of Freedom of Movement",
+    "price": "40000 gp",
+    "slot": "ring",
+    "aura": "moderate abjuration",
+    "cl": 7,
+    "description": "Continuous freedom of movement.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ring of Spell Storing, Minor",
+    "price": "18000 gp",
+    "slot": "ring",
+    "aura": "faint evocation",
+    "cl": 5,
+    "description": "Stores up to 3 levels of spells.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ring of Spell Storing",
+    "price": "50000 gp",
+    "slot": "ring",
+    "aura": "moderate evocation",
+    "cl": 9,
+    "description": "Stores up to 5 levels of spells.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ring of Spell Storing, Major",
+    "price": "200000 gp",
+    "slot": "ring",
+    "aura": "strong evocation",
+    "cl": 17,
+    "description": "Stores up to 10 levels of spells.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ring of Spell Turning",
+    "price": "100000 gp",
+    "slot": "ring",
+    "aura": "strong abjuration",
+    "cl": 13,
+    "description": "Reflects 1d4+6 spell levels back at casters.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ring of Regeneration",
+    "price": "90000 gp",
+    "slot": "ring",
+    "aura": "strong conjuration",
+    "cl": 15,
+    "description": "Regenerate 1 HP per round, regrow lost limbs.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ring of Three Wishes",
+    "price": "120000 gp",
+    "slot": "ring",
+    "aura": "strong universal",
+    "cl": 20,
+    "description": "Contains 3 wish spells.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ring of Telekinesis",
+    "price": "75000 gp",
+    "slot": "ring",
+    "aura": "moderate transmutation",
+    "cl": 9,
+    "description": "Use telekinesis at will.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Belt of Giant Strength +2",
+    "price": "4000 gp",
+    "slot": "belt",
+    "aura": "moderate transmutation",
+    "cl": 8,
+    "description": "+2 enhancement bonus to Strength.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Belt of Giant Strength +4",
+    "price": "16000 gp",
+    "slot": "belt",
+    "aura": "moderate transmutation",
+    "cl": 8,
+    "description": "+4 enhancement bonus to Strength.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Belt of Giant Strength +6",
+    "price": "36000 gp",
+    "slot": "belt",
+    "aura": "strong transmutation",
+    "cl": 8,
+    "description": "+6 enhancement bonus to Strength.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Belt of Incredible Dexterity +2",
+    "price": "4000 gp",
+    "slot": "belt",
+    "aura": "moderate transmutation",
+    "cl": 8,
+    "description": "+2 enhancement bonus to Dexterity.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Belt of Incredible Dexterity +4",
+    "price": "16000 gp",
+    "slot": "belt",
+    "aura": "moderate transmutation",
+    "cl": 8,
+    "description": "+4 enhancement bonus to Dexterity.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Belt of Incredible Dexterity +6",
+    "price": "36000 gp",
+    "slot": "belt",
+    "aura": "strong transmutation",
+    "cl": 8,
+    "description": "+6 enhancement bonus to Dexterity.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Belt of Mighty Constitution +2",
+    "price": "4000 gp",
+    "slot": "belt",
+    "aura": "moderate transmutation",
+    "cl": 8,
+    "description": "+2 enhancement bonus to Constitution.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Belt of Mighty Constitution +4",
+    "price": "16000 gp",
+    "slot": "belt",
+    "aura": "moderate transmutation",
+    "cl": 8,
+    "description": "+4 enhancement bonus to Constitution.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Belt of Mighty Constitution +6",
+    "price": "36000 gp",
+    "slot": "belt",
+    "aura": "strong transmutation",
+    "cl": 8,
+    "description": "+6 enhancement bonus to Constitution.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Belt of Physical Perfection +2",
+    "price": "16000 gp",
+    "slot": "belt",
+    "aura": "strong transmutation",
+    "cl": 16,
+    "description": "+2 to Str, Dex, and Con.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Belt of Physical Perfection +4",
+    "price": "64000 gp",
+    "slot": "belt",
+    "aura": "strong transmutation",
+    "cl": 16,
+    "description": "+4 to Str, Dex, and Con.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Belt of Physical Perfection +6",
+    "price": "144000 gp",
+    "slot": "belt",
+    "aura": "strong transmutation",
+    "cl": 16,
+    "description": "+6 to Str, Dex, and Con.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Belt of Dwarvenkind",
+    "price": "14900 gp",
+    "slot": "belt",
+    "aura": "strong divination",
+    "cl": 12,
+    "description": "+2 Con, +2 Cha when dealing with dwarves, darkvision, dwarven traits.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Headband of Vast Intelligence +2",
+    "price": "4000 gp",
+    "slot": "headband",
+    "aura": "moderate transmutation",
+    "cl": 8,
+    "description": "+2 enhancement bonus to Intelligence, grants ranks in one skill.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Headband of Vast Intelligence +4",
+    "price": "16000 gp",
+    "slot": "headband",
+    "aura": "moderate transmutation",
+    "cl": 8,
+    "description": "+4 enhancement bonus to Intelligence, grants ranks in two skills.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Headband of Vast Intelligence +6",
+    "price": "36000 gp",
+    "slot": "headband",
+    "aura": "strong transmutation",
+    "cl": 8,
+    "description": "+6 enhancement bonus to Intelligence, grants ranks in three skills.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Headband of Alluring Charisma +2",
+    "price": "4000 gp",
+    "slot": "headband",
+    "aura": "moderate transmutation",
+    "cl": 8,
+    "description": "+2 enhancement bonus to Charisma.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Headband of Alluring Charisma +4",
+    "price": "16000 gp",
+    "slot": "headband",
+    "aura": "moderate transmutation",
+    "cl": 8,
+    "description": "+4 enhancement bonus to Charisma.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Headband of Alluring Charisma +6",
+    "price": "36000 gp",
+    "slot": "headband",
+    "aura": "strong transmutation",
+    "cl": 8,
+    "description": "+6 enhancement bonus to Charisma.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Headband of Inspired Wisdom +2",
+    "price": "4000 gp",
+    "slot": "headband",
+    "aura": "moderate transmutation",
+    "cl": 8,
+    "description": "+2 enhancement bonus to Wisdom.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Headband of Inspired Wisdom +4",
+    "price": "16000 gp",
+    "slot": "headband",
+    "aura": "moderate transmutation",
+    "cl": 8,
+    "description": "+4 enhancement bonus to Wisdom.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Headband of Inspired Wisdom +6",
+    "price": "36000 gp",
+    "slot": "headband",
+    "aura": "strong transmutation",
+    "cl": 8,
+    "description": "+6 enhancement bonus to Wisdom.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Headband of Mental Superiority +2",
+    "price": "16000 gp",
+    "slot": "headband",
+    "aura": "strong transmutation",
+    "cl": 16,
+    "description": "+2 to Int, Wis, and Cha.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Cloak of Resistance +1",
+    "price": "1000 gp",
+    "slot": "shoulders",
+    "aura": "faint abjuration",
+    "cl": 5,
+    "description": "+1 resistance bonus on all saving throws.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Cloak of Resistance +2",
+    "price": "4000 gp",
+    "slot": "shoulders",
+    "aura": "moderate abjuration",
+    "cl": 8,
+    "description": "+2 resistance bonus on all saving throws.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Cloak of Resistance +3",
+    "price": "9000 gp",
+    "slot": "shoulders",
+    "aura": "moderate abjuration",
+    "cl": 11,
+    "description": "+3 resistance bonus on all saving throws.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Cloak of Resistance +4",
+    "price": "16000 gp",
+    "slot": "shoulders",
+    "aura": "strong abjuration",
+    "cl": 14,
+    "description": "+4 resistance bonus on all saving throws.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Cloak of Resistance +5",
+    "price": "25000 gp",
+    "slot": "shoulders",
+    "aura": "strong abjuration",
+    "cl": 17,
+    "description": "+5 resistance bonus on all saving throws.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Cloak of Elvenkind",
+    "price": "2500 gp",
+    "slot": "shoulders",
+    "aura": "faint illusion",
+    "cl": 3,
+    "description": "+5 competence bonus on Stealth checks.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Cloak of the Bat",
+    "price": "26000 gp",
+    "slot": "shoulders",
+    "aura": "moderate transmutation",
+    "cl": 7,
+    "description": "+5 Stealth, hang from ceiling, fly 40 ft. in darkness.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Cloak of Displacement, Minor",
+    "price": "24000 gp",
+    "slot": "shoulders",
+    "aura": "faint illusion",
+    "cl": 3,
+    "description": "20% miss chance.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Cloak of Displacement, Major",
+    "price": "50000 gp",
+    "slot": "shoulders",
+    "aura": "moderate illusion",
+    "cl": 7,
+    "description": "50% miss chance.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Cloak of Etherealness",
+    "price": "55000 gp",
+    "slot": "shoulders",
+    "aura": "strong transmutation",
+    "cl": 15,
+    "description": "Become ethereal for up to 10 minutes/day.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Cape of the Mountebank",
+    "price": "10800 gp",
+    "slot": "shoulders",
+    "aura": "moderate conjuration",
+    "cl": 9,
+    "description": "Dimension door once per day.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Cloak of Arachnida",
+    "price": "14000 gp",
+    "slot": "shoulders",
+    "aura": "moderate conjuration",
+    "cl": 6,
+    "description": "Spider climb at will, +2 vs poison, web 1/day.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Boots of Elvenkind",
+    "price": "2500 gp",
+    "slot": "feet",
+    "aura": "faint transmutation",
+    "cl": 5,
+    "description": "+5 competence bonus on Acrobatics checks.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Boots of Speed",
+    "price": "12000 gp",
+    "slot": "feet",
+    "aura": "moderate transmutation",
+    "cl": 10,
+    "description": "Haste for up to 10 rounds/day (activated as free action).",
+    "type": "wondrous"
+  },
+  {
+    "name": "Boots of Levitation",
+    "price": "7500 gp",
+    "slot": "feet",
+    "aura": "faint transmutation",
+    "cl": 3,
+    "description": "Levitate at will.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Boots of Striding and Springing",
+    "price": "5500 gp",
+    "slot": "feet",
+    "aura": "faint transmutation",
+    "cl": 3,
+    "description": "+10 ft. base speed, +5 Acrobatics for jumping.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Boots of the Winterlands",
+    "price": "2500 gp",
+    "slot": "feet",
+    "aura": "faint abjuration/transmutation",
+    "cl": 5,
+    "description": "Walk on snow/ice, endure cold, +5 vs. cold damage.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Winged Boots",
+    "price": "16000 gp",
+    "slot": "feet",
+    "aura": "moderate transmutation",
+    "cl": 8,
+    "description": "Fly 3 times per day for up to 5 minutes each.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Slippers of Spider Climbing",
+    "price": "4800 gp",
+    "slot": "feet",
+    "aura": "faint transmutation",
+    "cl": 4,
+    "description": "Spider climb at will.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Eyes of the Eagle",
+    "price": "2500 gp",
+    "slot": "eyes",
+    "aura": "faint divination",
+    "cl": 3,
+    "description": "+5 competence bonus on Perception checks.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Goggles of Night",
+    "price": "12000 gp",
+    "slot": "eyes",
+    "aura": "moderate transmutation",
+    "cl": 3,
+    "description": "Grants darkvision 60 ft.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Goggles of Minute Seeing",
+    "price": "1250 gp",
+    "slot": "eyes",
+    "aura": "faint divination",
+    "cl": 3,
+    "description": "+5 competence bonus on Disable Device checks.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Lenses of Detection",
+    "price": "3500 gp",
+    "slot": "eyes",
+    "aura": "moderate divination",
+    "cl": 9,
+    "description": "+5 competence bonus on Perception checks to find traps.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Eyes of Charming",
+    "price": "56000 gp",
+    "slot": "eyes",
+    "aura": "moderate enchantment",
+    "cl": 7,
+    "description": "Charm person 3/day (DC 16).",
+    "type": "wondrous"
+  },
+  {
+    "name": "Eyes of Doom",
+    "price": "25000 gp",
+    "slot": "eyes",
+    "aura": "moderate necromancy",
+    "cl": 11,
+    "description": "Doom at will, fear 1/day.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Gem of Seeing",
+    "price": "75000 gp",
+    "slot": "eyes",
+    "aura": "moderate divination",
+    "cl": 10,
+    "description": "True seeing for 30 minutes/day.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Hat of Disguise",
+    "price": "1800 gp",
+    "slot": "head",
+    "aura": "faint illusion",
+    "cl": 1,
+    "description": "Disguise self at will.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Helm of Comprehend Languages and Read Magic",
+    "price": "5200 gp",
+    "slot": "head",
+    "aura": "faint divination",
+    "cl": 4,
+    "description": "Comprehend languages and read magic at will.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Helm of Telepathy",
+    "price": "27000 gp",
+    "slot": "head",
+    "aura": "faint divination/enchantment",
+    "cl": 5,
+    "description": "Detect thoughts at will, suggestion 1/day.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Helm of Teleportation",
+    "price": "73500 gp",
+    "slot": "head",
+    "aura": "moderate conjuration",
+    "cl": 9,
+    "description": "Teleport 3/day.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Helm of Brilliance",
+    "price": "125000 gp",
+    "slot": "head",
+    "aura": "strong varies",
+    "cl": 13,
+    "description": "Contains gems that cast wall of fire, fireball, daylight, prismatic spray.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Circlet of Persuasion",
+    "price": "4500 gp",
+    "slot": "head",
+    "aura": "faint transmutation",
+    "cl": 5,
+    "description": "+3 competence bonus on Charisma-based checks.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Crown of Blasting, Minor",
+    "price": "6480 gp",
+    "slot": "head",
+    "aura": "moderate evocation",
+    "cl": 6,
+    "description": "Searing light 1/day.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Gloves of Arrow Snaring",
+    "price": "4000 gp",
+    "slot": "hands",
+    "aura": "faint abjuration",
+    "cl": 3,
+    "description": "Snatch one ranged attack per round (Reflex DC 20).",
+    "type": "wondrous"
+  },
+  {
+    "name": "Gauntlets of Ogre Power",
+    "price": "4000 gp",
+    "slot": "hands",
+    "aura": "faint transmutation",
+    "cl": 6,
+    "description": "+2 enhancement bonus to Strength.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Gloves of Dexterity +2",
+    "price": "4000 gp",
+    "slot": "hands",
+    "aura": "moderate transmutation",
+    "cl": 8,
+    "description": "+2 enhancement bonus to Dexterity.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Gloves of Swimming and Climbing",
+    "price": "6250 gp",
+    "slot": "hands",
+    "aura": "faint transmutation",
+    "cl": 5,
+    "description": "+5 competence bonus on Swim and Climb checks.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Gloves of Storing",
+    "price": "10000 gp",
+    "slot": "hands",
+    "aura": "moderate transmutation",
+    "cl": 6,
+    "description": "Store one item, retrieve as a free action.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Amulet of Natural Armor +1",
+    "price": "2000 gp",
+    "slot": "neck",
+    "aura": "faint transmutation",
+    "cl": 5,
+    "description": "+1 enhancement bonus to natural armor.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Amulet of Natural Armor +2",
+    "price": "8000 gp",
+    "slot": "neck",
+    "aura": "moderate transmutation",
+    "cl": 8,
+    "description": "+2 enhancement bonus to natural armor.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Amulet of Natural Armor +3",
+    "price": "18000 gp",
+    "slot": "neck",
+    "aura": "moderate transmutation",
+    "cl": 11,
+    "description": "+3 enhancement bonus to natural armor.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Amulet of Natural Armor +4",
+    "price": "32000 gp",
+    "slot": "neck",
+    "aura": "strong transmutation",
+    "cl": 14,
+    "description": "+4 enhancement bonus to natural armor.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Amulet of Natural Armor +5",
+    "price": "50000 gp",
+    "slot": "neck",
+    "aura": "strong transmutation",
+    "cl": 17,
+    "description": "+5 enhancement bonus to natural armor.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Amulet of Proof Against Detection and Location",
+    "price": "35000 gp",
+    "slot": "neck",
+    "aura": "moderate abjuration",
+    "cl": 8,
+    "description": "Nondetection, immune to divination/scrying.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Periapt of Health",
+    "price": "7400 gp",
+    "slot": "neck",
+    "aura": "faint conjuration",
+    "cl": 5,
+    "description": "Immune to disease.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Periapt of Proof Against Poison",
+    "price": "27000 gp",
+    "slot": "neck",
+    "aura": "faint conjuration",
+    "cl": 5,
+    "description": "Immune to poison.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Periapt of Wound Closure",
+    "price": "15000 gp",
+    "slot": "neck",
+    "aura": "moderate conjuration",
+    "cl": 10,
+    "description": "Automatically stabilize, heal double from rest.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Necklace of Fireballs Type I",
+    "price": "1650 gp",
+    "slot": "neck",
+    "aura": "moderate evocation",
+    "cl": 10,
+    "description": "1 bead: 5d6 fireball.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Necklace of Fireballs Type II",
+    "price": "2700 gp",
+    "slot": "neck",
+    "aura": "moderate evocation",
+    "cl": 10,
+    "description": "1 bead: 5d6, 2 beads: 3d6 fireball.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Necklace of Adaptation",
+    "price": "9000 gp",
+    "slot": "neck",
+    "aura": "moderate transmutation",
+    "cl": 7,
+    "description": "Breathe normally in any environment.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Scarab of Protection",
+    "price": "38000 gp",
+    "slot": "neck",
+    "aura": "strong abjuration/necromancy",
+    "cl": 18,
+    "description": "+3 resistance to saves, absorbs 12 negative energy attacks.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Hand of Glory",
+    "price": "8000 gp",
+    "slot": "neck",
+    "aura": "faint varies",
+    "cl": 5,
+    "description": "Wear an extra ring, daylight and see invisibility 1/day each.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Robe of the Archmagi",
+    "price": "75000 gp",
+    "slot": "body",
+    "aura": "strong varies",
+    "cl": 14,
+    "description": "+5 armor AC, +4 resistance saves, SR 18.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Robe of Eyes",
+    "price": "120000 gp",
+    "slot": "body",
+    "aura": "moderate divination",
+    "cl": 11,
+    "description": "All-around vision, +10 Perception, see invisible/ethereal.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Robe of Useful Items",
+    "price": "7000 gp",
+    "slot": "body",
+    "aura": "moderate transmutation",
+    "cl": 9,
+    "description": "Patches that transform into useful items when torn off.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Robe of Stars",
+    "price": "58000 gp",
+    "slot": "body",
+    "aura": "strong varies",
+    "cl": 15,
+    "description": "+1 saves, 6 throwing stars (ranged touch 3d6), travel to Astral Plane.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Robe of Blending",
+    "price": "8400 gp",
+    "slot": "body",
+    "aura": "moderate transmutation",
+    "cl": 10,
+    "description": "Alter self at will.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Monk's Robe",
+    "price": "13000 gp",
+    "slot": "body",
+    "aura": "moderate transmutation",
+    "cl": 10,
+    "description": "+5 effective monk levels for AC bonus and unarmed damage.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Bracers of Armor +1",
+    "price": "1000 gp",
+    "slot": "wrists",
+    "aura": "faint conjuration",
+    "cl": 7,
+    "description": "+1 armor bonus to AC (no armor needed).",
+    "type": "wondrous"
+  },
+  {
+    "name": "Bracers of Armor +2",
+    "price": "4000 gp",
+    "slot": "wrists",
+    "aura": "moderate conjuration",
+    "cl": 7,
+    "description": "+2 armor bonus to AC.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Bracers of Armor +3",
+    "price": "9000 gp",
+    "slot": "wrists",
+    "aura": "moderate conjuration",
+    "cl": 7,
+    "description": "+3 armor bonus to AC.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Bracers of Armor +4",
+    "price": "16000 gp",
+    "slot": "wrists",
+    "aura": "strong conjuration",
+    "cl": 7,
+    "description": "+4 armor bonus to AC.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Bracers of Armor +5",
+    "price": "25000 gp",
+    "slot": "wrists",
+    "aura": "strong conjuration",
+    "cl": 7,
+    "description": "+5 armor bonus to AC.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Bracers of Archery, Lesser",
+    "price": "5000 gp",
+    "slot": "wrists",
+    "aura": "faint transmutation",
+    "cl": 4,
+    "description": "+1 competence bonus on attack rolls with bows.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Bracers of Archery, Greater",
+    "price": "25000 gp",
+    "slot": "wrists",
+    "aura": "moderate transmutation",
+    "cl": 8,
+    "description": "+2 competence bonus on attack rolls with bows, proficiency.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Vambraces of Defense",
+    "price": "6000 gp",
+    "slot": "wrists",
+    "aura": "moderate abjuration",
+    "cl": 7,
+    "description": "+1 deflection bonus to AC, 3/day +5 to confirm a critical hit.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Bag of Holding Type I",
+    "price": "2500 gp",
+    "slot": "none",
+    "aura": "moderate conjuration",
+    "cl": 9,
+    "description": "Holds 250 lbs/30 cubic ft., weighs 15 lbs.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Bag of Holding Type II",
+    "price": "5000 gp",
+    "slot": "none",
+    "aura": "moderate conjuration",
+    "cl": 9,
+    "description": "Holds 500 lbs/70 cubic ft., weighs 25 lbs.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Bag of Holding Type III",
+    "price": "7400 gp",
+    "slot": "none",
+    "aura": "moderate conjuration",
+    "cl": 9,
+    "description": "Holds 1000 lbs/150 cubic ft., weighs 35 lbs.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Bag of Holding Type IV",
+    "price": "10000 gp",
+    "slot": "none",
+    "aura": "moderate conjuration",
+    "cl": 9,
+    "description": "Holds 1500 lbs/250 cubic ft., weighs 60 lbs.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Handy Haversack",
+    "price": "2000 gp",
+    "slot": "none",
+    "aura": "moderate conjuration",
+    "cl": 9,
+    "description": "Always produces desired item as a move action. 80 lbs capacity.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Portable Hole",
+    "price": "20000 gp",
+    "slot": "none",
+    "aura": "moderate conjuration",
+    "cl": 12,
+    "description": "6-ft. diameter, 10-ft. deep extradimensional space.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Decanter of Endless Water",
+    "price": "9000 gp",
+    "slot": "none",
+    "aura": "moderate transmutation",
+    "cl": 9,
+    "description": "Produces 1-30 gallons of water on command, or a geyser.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Dust of Appearance",
+    "price": "1800 gp",
+    "slot": "none",
+    "aura": "faint conjuration",
+    "cl": 5,
+    "description": "Reveals invisible, ethereal, and astral creatures.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Dust of Disappearance",
+    "price": "3500 gp",
+    "slot": "none",
+    "aura": "moderate illusion",
+    "cl": 7,
+    "description": "Greater invisibility for 2d6 rounds.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Efficient Quiver",
+    "price": "1800 gp",
+    "slot": "none",
+    "aura": "moderate conjuration",
+    "cl": 9,
+    "description": "Holds 60 arrows, 18 javelins, 6 bows without bulk.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Figurine of Wondrous Power (Silver Raven)",
+    "price": "3800 gp",
+    "slot": "none",
+    "aura": "moderate transmutation",
+    "cl": 6,
+    "description": "Transforms into a raven, can deliver messages.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Figurine of Wondrous Power (Bronze Griffon)",
+    "price": "10000 gp",
+    "slot": "none",
+    "aura": "moderate transmutation",
+    "cl": 11,
+    "description": "Transforms into a griffon mount for up to 6 hours/week.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Figurine of Wondrous Power (Onyx Dog)",
+    "price": "15500 gp",
+    "slot": "none",
+    "aura": "moderate transmutation",
+    "cl": 11,
+    "description": "Transforms into a dog with +10 Perception, can detect hidden creatures.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Immovable Rod",
+    "price": "5000 gp",
+    "slot": "none",
+    "aura": "moderate transmutation",
+    "cl": 10,
+    "description": "Stays fixed in place when button pressed, holds 8000 lbs.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ioun Stone (Clear Spindle)",
+    "price": "4000 gp",
+    "slot": "none",
+    "aura": "moderate transmutation",
+    "cl": 12,
+    "description": "Sustains without food or water.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ioun Stone (Dusty Rose Prism)",
+    "price": "5000 gp",
+    "slot": "none",
+    "aura": "moderate transmutation",
+    "cl": 12,
+    "description": "+1 insight bonus to AC.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ioun Stone (Deep Red Sphere)",
+    "price": "8000 gp",
+    "slot": "none",
+    "aura": "moderate transmutation",
+    "cl": 12,
+    "description": "+2 enhancement bonus to Dexterity.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ioun Stone (Incandescent Blue Sphere)",
+    "price": "8000 gp",
+    "slot": "none",
+    "aura": "moderate transmutation",
+    "cl": 12,
+    "description": "+2 enhancement bonus to Wisdom.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ioun Stone (Pale Blue Rhomboid)",
+    "price": "8000 gp",
+    "slot": "none",
+    "aura": "moderate transmutation",
+    "cl": 12,
+    "description": "+2 enhancement bonus to Strength.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ioun Stone (Pink Rhomboid)",
+    "price": "8000 gp",
+    "slot": "none",
+    "aura": "moderate transmutation",
+    "cl": 12,
+    "description": "+2 enhancement bonus to Constitution.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ioun Stone (Pink and Green Sphere)",
+    "price": "8000 gp",
+    "slot": "none",
+    "aura": "moderate transmutation",
+    "cl": 12,
+    "description": "+2 enhancement bonus to Charisma.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ioun Stone (Scarlet and Blue Sphere)",
+    "price": "8000 gp",
+    "slot": "none",
+    "aura": "moderate transmutation",
+    "cl": 12,
+    "description": "+2 enhancement bonus to Intelligence.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ioun Stone (Dark Blue Rhomboid)",
+    "price": "10000 gp",
+    "slot": "none",
+    "aura": "moderate transmutation",
+    "cl": 12,
+    "description": "Alertness (+2 Perception and Sense Motive).",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ioun Stone (Vibrant Purple Prism)",
+    "price": "36000 gp",
+    "slot": "none",
+    "aura": "strong transmutation",
+    "cl": 12,
+    "description": "Stores 3 spell levels.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Ioun Stone (Lavender and Green Ellipsoid)",
+    "price": "40000 gp",
+    "slot": "none",
+    "aura": "strong abjuration",
+    "cl": 12,
+    "description": "Absorbs spells up to 8th level (50 levels total).",
+    "type": "wondrous"
+  },
+  {
+    "name": "Pearl of Power (1st level)",
+    "price": "1000 gp",
+    "slot": "none",
+    "aura": "strong transmutation",
+    "cl": 17,
+    "description": "Recall one 1st-level spell per day.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Pearl of Power (2nd level)",
+    "price": "4000 gp",
+    "slot": "none",
+    "aura": "strong transmutation",
+    "cl": 17,
+    "description": "Recall one 2nd-level spell per day.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Pearl of Power (3rd level)",
+    "price": "9000 gp",
+    "slot": "none",
+    "aura": "strong transmutation",
+    "cl": 17,
+    "description": "Recall one 3rd-level spell per day.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Sovereign Glue",
+    "price": "2400 gp",
+    "slot": "none",
+    "aura": "strong transmutation",
+    "cl": 20,
+    "description": "Permanently bonds any two surfaces together.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Stone of Good Luck (Luckstone)",
+    "price": "20000 gp",
+    "slot": "none",
+    "aura": "faint evocation",
+    "cl": 5,
+    "description": "+1 luck bonus on saves, ability checks, and skill checks.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Universal Solvent",
+    "price": "50 gp",
+    "slot": "none",
+    "aura": "faint transmutation",
+    "cl": 3,
+    "description": "Dissolves sovereign glue and similar adhesives.",
+    "type": "wondrous"
+  },
+  {
+    "name": "Metamagic Rod, Extend (lesser)",
+    "price": "3000 gp",
+    "slot": "none",
+    "type": "rod",
+    "aura": "strong (no school)",
+    "cl": 17,
+    "description": "Extend Spell on spells of 3rd level or lower, 3/day."
+  },
+  {
+    "name": "Metamagic Rod, Extend",
+    "price": "11000 gp",
+    "slot": "none",
+    "type": "rod",
+    "aura": "strong (no school)",
+    "cl": 17,
+    "description": "Extend Spell on spells of 6th level or lower, 3/day."
+  },
+  {
+    "name": "Metamagic Rod, Empower (lesser)",
+    "price": "9000 gp",
+    "slot": "none",
+    "type": "rod",
+    "aura": "strong (no school)",
+    "cl": 17,
+    "description": "Empower Spell on spells of 3rd level or lower, 3/day."
+  },
+  {
+    "name": "Metamagic Rod, Maximize (lesser)",
+    "price": "14000 gp",
+    "slot": "none",
+    "type": "rod",
+    "aura": "strong (no school)",
+    "cl": 17,
+    "description": "Maximize Spell on spells of 3rd level or lower, 3/day."
+  },
+  {
+    "name": "Metamagic Rod, Quicken (lesser)",
+    "price": "35000 gp",
+    "slot": "none",
+    "type": "rod",
+    "aura": "strong (no school)",
+    "cl": 17,
+    "description": "Quicken Spell on spells of 3rd level or lower, 3/day."
+  },
+  {
+    "name": "Metamagic Rod, Silent (lesser)",
+    "price": "3000 gp",
+    "slot": "none",
+    "type": "rod",
+    "aura": "strong (no school)",
+    "cl": 17,
+    "description": "Silent Spell on spells of 3rd level or lower, 3/day."
+  },
+  {
+    "name": "Rod of Absorption",
+    "price": "50000 gp",
+    "slot": "none",
+    "type": "rod",
+    "aura": "strong abjuration",
+    "cl": 15,
+    "description": "Absorbs spells targeted at wielder, stores energy for own spells."
+  },
+  {
+    "name": "Rod of Lordly Might",
+    "price": "70000 gp",
+    "slot": "none",
+    "type": "rod",
+    "aura": "strong varies",
+    "cl": 19,
+    "description": "Transforms into various weapons, flame blade, ladder, battering ram."
+  },
+  {
+    "name": "Rod of Wonder",
+    "price": "12000 gp",
+    "slot": "none",
+    "type": "rod",
+    "aura": "moderate enchantment",
+    "cl": 10,
+    "description": "Random magical effects when activated."
+  },
+  {
+    "name": "Staff of Fire",
+    "price": "18950 gp",
+    "slot": "none",
+    "type": "staff",
+    "aura": "moderate evocation",
+    "cl": 8,
+    "description": "Burning hands (1 charge), fireball (1 charge), wall of fire (2 charges)."
+  },
+  {
+    "name": "Staff of Frost",
+    "price": "41400 gp",
+    "slot": "none",
+    "type": "staff",
+    "aura": "moderate evocation",
+    "cl": 10,
+    "description": "Ice storm (1 charge), wall of ice (1 charge), cone of cold (2 charges)."
+  },
+  {
+    "name": "Staff of Healing",
+    "price": "29600 gp",
+    "slot": "none",
+    "type": "staff",
+    "aura": "moderate conjuration",
+    "cl": 8,
+    "description": "Cure serious wounds, lesser restoration, remove disease (1 charge each)."
+  },
+  {
+    "name": "Staff of Illumination",
+    "price": "8500 gp",
+    "slot": "none",
+    "type": "staff",
+    "aura": "moderate evocation",
+    "cl": 8,
+    "description": "Dancing lights, flare (1 charge each), daylight (2 charges)."
+  },
+  {
+    "name": "Staff of Necromancy",
+    "price": "82000 gp",
+    "slot": "none",
+    "type": "staff",
+    "aura": "strong necromancy",
+    "cl": 13,
+    "description": "Cause fear, ghoul touch, halt undead, enervation, waves of fatigue, circle of death."
+  },
+  {
+    "name": "Staff of Power",
+    "price": "235000 gp",
+    "slot": "none",
+    "type": "staff",
+    "aura": "strong varies",
+    "cl": 15,
+    "description": "+2 luck to AC and saves, various offensive spells, retributive strike."
+  },
+  {
+    "name": "Staff of the Magi",
+    "price": "340000 gp",
+    "slot": "none",
+    "type": "staff",
+    "aura": "strong varies",
+    "cl": 20,
+    "description": "Absorb spells, many powerful spells, retributive strike."
+  },
+  {
+    "name": "Staff of Swarming Insects",
+    "price": "22800 gp",
+    "slot": "none",
+    "type": "staff",
+    "aura": "moderate conjuration",
+    "cl": 9,
+    "description": "Summon swarm (1 charge), insect plague (3 charges)."
+  },
+  {
+    "name": "Staff of Enchantment",
+    "price": "82000 gp",
+    "slot": "none",
+    "type": "staff",
+    "aura": "strong enchantment",
+    "cl": 13,
+    "description": "Hideous laughter, sleep, suggestion, crushing despair, mind fog, mass suggestion."
+  }
+]

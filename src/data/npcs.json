@@ -1,0 +1,332 @@
+[
+  {
+    "name": "Barbarian 1",
+    "cr": 1,
+    "class": "Barbarian 1",
+    "race": "Human",
+    "alignment": "CN",
+    "hp": 17,
+    "ac": 15,
+    "base_atk": 1
+  },
+  {
+    "name": "Barbarian 2",
+    "cr": 2,
+    "class": "Barbarian 2",
+    "race": "Half-Orc",
+    "alignment": "CN",
+    "hp": 28,
+    "ac": 18,
+    "base_atk": 2
+  },
+  {
+    "name": "Barbarian 3",
+    "cr": 3,
+    "class": "Barbarian 3",
+    "race": "Human",
+    "alignment": "CN",
+    "hp": 40,
+    "ac": 15,
+    "base_atk": 3
+  },
+  {
+    "name": "Bard 1",
+    "cr": 1,
+    "class": "Bard 1",
+    "race": "Human",
+    "alignment": "CN",
+    "hp": 8,
+    "ac": 15,
+    "base_atk": 1
+  },
+  {
+    "name": "Bard 2",
+    "cr": 2,
+    "class": "Bard 2",
+    "race": "Half-Elf",
+    "alignment": "NG",
+    "hp": 15,
+    "ac": 15,
+    "base_atk": 2
+  },
+  {
+    "name": "Bard 3",
+    "cr": 3,
+    "class": "Bard 3",
+    "race": "Elf",
+    "alignment": "CG",
+    "hp": 21,
+    "ac": 15,
+    "base_atk": 2
+  },
+  {
+    "name": "Cleric 1",
+    "cr": 1,
+    "class": "Cleric 1",
+    "race": "Human",
+    "alignment": "LN",
+    "hp": 10,
+    "ac": 16,
+    "base_atk": 1
+  },
+  {
+    "name": "Cleric 2",
+    "cr": 2,
+    "class": "Cleric 2",
+    "race": "Dwarf",
+    "alignment": "LG",
+    "hp": 18,
+    "ac": 18,
+    "base_atk": 2
+  },
+  {
+    "name": "Cleric 3",
+    "cr": 3,
+    "class": "Cleric 3",
+    "race": "Human",
+    "alignment": "LE",
+    "hp": 26,
+    "ac": 17,
+    "base_atk": 2
+  },
+  {
+    "name": "Druid 1",
+    "cr": 1,
+    "class": "Druid 1",
+    "race": "Elf",
+    "alignment": "NG",
+    "hp": 10,
+    "ac": 14,
+    "base_atk": 1
+  },
+  {
+    "name": "Druid 2",
+    "cr": 2,
+    "class": "Druid 2",
+    "race": "Human",
+    "alignment": "N",
+    "hp": 18,
+    "ac": 14,
+    "base_atk": 2
+  },
+  {
+    "name": "Druid 3",
+    "cr": 3,
+    "class": "Druid 3",
+    "race": "Half-Elf",
+    "alignment": "N",
+    "hp": 26,
+    "ac": 15,
+    "base_atk": 2
+  },
+  {
+    "name": "Fighter 1",
+    "cr": 1,
+    "class": "Fighter 1",
+    "race": "Human",
+    "alignment": "LN",
+    "hp": 12,
+    "ac": 16,
+    "base_atk": 1
+  },
+  {
+    "name": "Fighter 2",
+    "cr": 2,
+    "class": "Fighter 2",
+    "race": "Dwarf",
+    "alignment": "LN",
+    "hp": 21,
+    "ac": 18,
+    "base_atk": 2
+  },
+  {
+    "name": "Fighter 3",
+    "cr": 3,
+    "class": "Fighter 3",
+    "race": "Human",
+    "alignment": "LG",
+    "hp": 30,
+    "ac": 17,
+    "base_atk": 3
+  },
+  {
+    "name": "Monk 1",
+    "cr": 1,
+    "class": "Monk 1",
+    "race": "Human",
+    "alignment": "LG",
+    "hp": 10,
+    "ac": 15,
+    "base_atk": 1
+  },
+  {
+    "name": "Monk 2",
+    "cr": 2,
+    "class": "Monk 2",
+    "race": "Half-Elf",
+    "alignment": "LN",
+    "hp": 18,
+    "ac": 15,
+    "base_atk": 2
+  },
+  {
+    "name": "Monk 3",
+    "cr": 3,
+    "class": "Monk 3",
+    "race": "Human",
+    "alignment": "LG",
+    "hp": 26,
+    "ac": 16,
+    "base_atk": 2
+  },
+  {
+    "name": "Paladin 1",
+    "cr": 1,
+    "class": "Paladin 1",
+    "race": "Human",
+    "alignment": "LG",
+    "hp": 12,
+    "ac": 16,
+    "base_atk": 1
+  },
+  {
+    "name": "Paladin 2",
+    "cr": 2,
+    "class": "Paladin 2",
+    "race": "Dwarf",
+    "alignment": "LG",
+    "hp": 21,
+    "ac": 18,
+    "base_atk": 2
+  },
+  {
+    "name": "Paladin 3",
+    "cr": 3,
+    "class": "Paladin 3",
+    "race": "Human",
+    "alignment": "LG",
+    "hp": 30,
+    "ac": 17,
+    "base_atk": 3
+  },
+  {
+    "name": "Ranger 1",
+    "cr": 1,
+    "class": "Ranger 1",
+    "race": "Human",
+    "alignment": "NG",
+    "hp": 12,
+    "ac": 14,
+    "base_atk": 1
+  },
+  {
+    "name": "Ranger 2",
+    "cr": 2,
+    "class": "Ranger 2",
+    "race": "Elf",
+    "alignment": "N",
+    "hp": 21,
+    "ac": 14,
+    "base_atk": 2
+  },
+  {
+    "name": "Ranger 3",
+    "cr": 3,
+    "class": "Ranger 3",
+    "race": "Half-Elf",
+    "alignment": "NG",
+    "hp": 30,
+    "ac": 15,
+    "base_atk": 3
+  },
+  {
+    "name": "Rogue 1",
+    "cr": 1,
+    "class": "Rogue 1",
+    "race": "Human",
+    "alignment": "CN",
+    "hp": 8,
+    "ac": 14,
+    "base_atk": 1
+  },
+  {
+    "name": "Rogue 2",
+    "cr": 2,
+    "class": "Rogue 2",
+    "race": "Halfling",
+    "alignment": "NG",
+    "hp": 14,
+    "ac": 15,
+    "base_atk": 2
+  },
+  {
+    "name": "Rogue 3",
+    "cr": 3,
+    "class": "Rogue 3",
+    "race": "Half-Elf",
+    "alignment": "CN",
+    "hp": 21,
+    "ac": 15,
+    "base_atk": 2
+  },
+  {
+    "name": "Sorcerer 1",
+    "cr": 1,
+    "class": "Sorcerer 1",
+    "race": "Human",
+    "alignment": "CN",
+    "hp": 7,
+    "ac": 13,
+    "base_atk": 1
+  },
+  {
+    "name": "Sorcerer 2",
+    "cr": 2,
+    "class": "Sorcerer 2",
+    "race": "Half-Elf",
+    "alignment": "NG",
+    "hp": 13,
+    "ac": 13,
+    "base_atk": 1
+  },
+  {
+    "name": "Sorcerer 3",
+    "cr": 3,
+    "class": "Sorcerer 3",
+    "race": "Tiefling",
+    "alignment": "CE",
+    "hp": 19,
+    "ac": 13,
+    "base_atk": 2
+  },
+  {
+    "name": "Wizard 1",
+    "cr": 1,
+    "class": "Wizard 1",
+    "race": "Human",
+    "alignment": "LN",
+    "hp": 6,
+    "ac": 13,
+    "base_atk": 1
+  },
+  {
+    "name": "Wizard 2",
+    "cr": 2,
+    "class": "Wizard 2",
+    "race": "Elf",
+    "alignment": "N",
+    "hp": 12,
+    "ac": 13,
+    "base_atk": 1
+  },
+  {
+    "name": "Wizard 3",
+    "cr": 3,
+    "class": "Wizard 3",
+    "race": "Human",
+    "alignment": "LG",
+    "hp": 18,
+    "ac": 13,
+    "base_atk": 1
+  }
+]

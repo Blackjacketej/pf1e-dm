@@ -1,0 +1,790 @@
+{
+  "id": "rise-of-the-runelords",
+  "name": "Rise of the Runelords",
+  "subtitle": "Anniversary Edition",
+  "description": "In the sleepy coastal town of Sandpoint, evil is brewing. An attack by crazed goblins reveals the shadows of a forgotten past returning to threaten the town—and perhaps all of Varisia.",
+  "levelRange": "1-18",
+  "chapters": [
+    {
+      "id": "ch1-burnt-offerings",
+      "number": 1,
+      "name": "Burnt Offerings",
+      "levelRange": "1-4",
+      "synopsis": "The PCs attend the Swallowtail Festival and defend Sandpoint from a goblin raid. They uncover treachery at the Sandpoint Glassworks, explore ancient catacombs below the town, and assault Thistletop to confront the woman whose madness threatens all of Varisia.",
+      "advancementTrack": {
+        "start": 1,
+        "milestones": [
+          { "level": 2, "trigger": "After clearing the Glassworks, before entering Catacombs of Wrath" },
+          { "level": 3, "trigger": "Early in exploration of Thistletop, or at climax of Catacombs" },
+          { "level": 4, "trigger": "By conclusion of chapter" }
+        ]
+      },
+      "parts": [
+        {
+          "id": "ch1-p1",
+          "name": "Festival and Fire",
+          "description": "The Swallowtail Festival at Sandpoint's new cathedral turns deadly when goblins attack the town.",
+          "location": "Sandpoint - Cathedral Square",
+          "encounters": [
+            {
+              "id": "ch1-e1",
+              "name": "Initial Assault",
+              "type": "combat",
+              "cr": 1,
+              "description": "As Father Zantus begins the consecration speech, a thunderstone crack signals the goblin attack. Three goblins emerge from hiding to attack the festival-goers.",
+              "readAloud": "A sharp retort, like the crack of distant thunder, slices through the excited crowd. A woman's scream slices through the air, then another. Beyond them, a sudden surge of strange new voices rises—high-pitched, tittering shrieks that sound not quite human. The crowd parts and something low to the ground races by, giggling with disturbing glee.",
+              "enemies": [
+                { "name": "Goblin Warrior", "count": 3, "cr": 0.33, "hp": 6, "ac": 16, "attack": { "name": "dogslicer", "bonus": 3, "damage": "1d4+1", "crit": "19-20" }, "xp": 135 }
+              ],
+              "tactics": "Goblins fight erratically—one climbs a table for higher ground, another gets distracted by food, a third grabs a carving knife.",
+              "rewards": { "xp": 405 }
+            },
+            {
+              "id": "ch1-e2",
+              "name": "Goblin Pyros",
+              "type": "combat",
+              "cr": 2,
+              "description": "Goblins have found a cart with fuel for the bonfire and are lighting everything on fire. A goblin warchanter leads the group.",
+              "readAloud": "A terrified scream comes from the north, where a cart laden with fuel for the evening bonfire has been set ablaze by a group of goblins. They dance and cackle around the blazing cart as townspeople flee in terror.",
+              "enemies": [
+                { "name": "Goblin Warrior", "count": 3, "cr": 0.33, "hp": 6, "ac": 16, "attack": { "name": "dogslicer", "bonus": 3, "damage": "1d4+1", "crit": "19-20" }, "xp": 135 },
+                { "name": "Goblin Warchanter", "count": 1, "cr": 1, "hp": 11, "ac": 15, "attack": { "name": "shortspear", "bonus": 1, "damage": "1d4-1" }, "xp": 400, "special": "Inspire Courage +1" }
+              ],
+              "tactics": "The warchanter sings to inspire her allies while the warriors throw torches and attack. If the warchanter falls, goblins make morale checks.",
+              "rewards": { "xp": 805 }
+            },
+            {
+              "id": "ch1-e3",
+              "name": "Die, Dog, Die!",
+              "type": "combat",
+              "cr": 3,
+              "description": "Near the White Deer tavern, a noble is cornered by a goblin commando mounted on a goblin dog. His hunting dog lies dead nearby.",
+              "readAloud": "A man cries out from near the White Deer—a well-dressed nobleman is pinned against the wall, a whimpering dog at his feet. A goblin mounted on a snarling, mangy canine-like beast raises its horsechopper high for the killing blow.",
+              "enemies": [
+                { "name": "Goblin Warrior", "count": 3, "cr": 0.33, "hp": 6, "ac": 16, "attack": { "name": "dogslicer", "bonus": 3, "damage": "1d4+1", "crit": "19-20" }, "xp": 135 },
+                { "name": "Goblin Commando", "count": 1, "cr": 1, "hp": 17, "ac": 18, "attack": { "name": "horsechopper", "bonus": 5, "damage": "1d8+2", "crit": "x3" }, "xp": 400, "special": "Mounted on goblin dog" },
+                { "name": "Goblin Dog", "count": 1, "cr": 1, "hp": 9, "ac": 13, "attack": { "name": "bite", "bonus": 2, "damage": "1d6+3" }, "xp": 400, "special": "Allergic Reaction DC 12" }
+              ],
+              "tactics": "The commando rides his goblin dog and charges with his horsechopper. Warriors protect their leader.",
+              "rewards": { "xp": 1340 },
+              "npcs": ["Aldern Foxglove"],
+              "storyNote": "Saving Aldern Foxglove earns the PCs a grateful noble ally who becomes important later in the campaign."
+            }
+          ],
+          "events": [
+            {
+              "id": "ch1-ev1",
+              "name": "The Swallowtail Festival",
+              "type": "roleplay",
+              "description": "Festival games, welcoming speeches by Mayor Deverin and Sheriff Hemlock, a butterfly release at noon, free lunch from local taverns, and the consecration ceremony at sunset."
+            }
+          ]
+        },
+        {
+          "id": "ch1-p2",
+          "name": "Local Heroes",
+          "description": "In the aftermath of the goblin raid, the PCs become local celebrities. Several events and investigations unfold over the following days.",
+          "location": "Sandpoint",
+          "encounters": [
+            {
+              "id": "ch1-e4",
+              "name": "The Desecrated Vault",
+              "type": "combat",
+              "cr": 0.5,
+              "description": "Sheriff Hemlock asks the PCs to investigate the town cemetery, where Father Tobyn's tomb has been broken into and his remains stolen.",
+              "enemies": [
+                { "name": "Skeleton", "count": 2, "cr": 0.33, "hp": 4, "ac": 16, "attack": { "name": "claw", "bonus": 0, "damage": "1d4+1" }, "xp": 135 }
+              ],
+              "rewards": { "xp": 270 },
+              "storyNote": "A robe of bones found nearby reveals someone animated the skeletons as a distraction while stealing Father Tobyn's remains."
+            },
+            {
+              "id": "ch1-e5",
+              "name": "The Shopkeep's Daughter",
+              "type": "roleplay",
+              "cr": 2,
+              "description": "Shayliss Vinder lures a PC to the basement of the General Store on a pretense, but her father Ven Vinder arrives in a rage.",
+              "storyNote": "A social encounter that can turn violent if handled poorly. Diplomacy or quick thinking can defuse the situation."
+            },
+            {
+              "id": "ch1-e6",
+              "name": "The Boar Hunt",
+              "type": "combat",
+              "cr": 2,
+              "description": "Aldern Foxglove invites the PCs on a boar hunt in the Tickwood forest. They encounter a dangerous wild boar.",
+              "enemies": [
+                { "name": "Wild Boar", "count": 1, "cr": 2, "hp": 18, "ac": 14, "attack": { "name": "gore", "bonus": 4, "damage": "1d8+4" }, "xp": 600, "special": "Ferocity (fights below 0 HP)" }
+              ],
+              "rewards": { "xp": 600 },
+              "npcs": ["Aldern Foxglove"],
+              "storyNote": "During the hunt, Aldern asks many personal questions, showing an unusual obsession with one of the PCs."
+            },
+            {
+              "id": "ch1-e7",
+              "name": "Monster in the Closet",
+              "type": "combat",
+              "cr": 0.5,
+              "description": "A local boy named Aeren Barett claims there's a goblin hiding in his closet. His father thinks the boy is making it up, but the goblin is very real.",
+              "enemies": [
+                { "name": "Goblin Commando", "count": 1, "cr": 1, "hp": 10, "ac": 17, "attack": { "name": "dogslicer", "bonus": 4, "damage": "1d4+2" }, "xp": 400, "special": "Starving and desperate" }
+              ],
+              "rewards": { "xp": 400 },
+              "storyNote": "This goblin survived the raid and has been hiding in the walls. Finding it reveals that goblins may have entered through the northern gate."
+            }
+          ],
+          "events": [
+            {
+              "id": "ch1-ev2",
+              "name": "Local Fame",
+              "type": "roleplay",
+              "description": "The PCs gain hero status in Sandpoint. Free rooms at the Rusty Dragon, discounts at shops, and admiring townsfolk follow them everywhere."
+            },
+            {
+              "id": "ch1-ev3",
+              "name": "Ameiko's Request",
+              "type": "story",
+              "description": "Ameiko Kaijitsu, tavern owner and friend, goes missing after receiving a letter from her brother Tsuto asking her to meet at the Glassworks at midnight."
+            }
+          ]
+        },
+        {
+          "id": "ch1-p3",
+          "name": "Glass and Wrath",
+          "description": "Ameiko's disappearance leads the PCs to the Sandpoint Glassworks, where her brother Tsuto has murdered their father. Below lies an ancient catacomb.",
+          "location": "Sandpoint Glassworks & Catacombs of Wrath",
+          "encounters": [
+            {
+              "id": "ch1-e8",
+              "name": "Against the Goblins (Glassworks)",
+              "type": "combat",
+              "cr": 3,
+              "description": "The Glassworks has been taken over by goblins loyal to Tsuto. Inside, they find the murdered body of Lonjiku Kaijitsu encased in molten glass.",
+              "readAloud": "The furnaces burn bright in the Glassworks, but it's not glass being worked. The goblins have overrun the building, and amid the wreckage you can see a horrifying sight—a man's body, seated in a chair, his entire form covered in hardened sheets of glass.",
+              "enemies": [
+                { "name": "Goblin Warrior", "count": 8, "cr": 0.33, "hp": 6, "ac": 16, "attack": { "name": "dogslicer", "bonus": 3, "damage": "1d4+1", "crit": "19-20" }, "xp": 135 }
+              ],
+              "rewards": { "xp": 1080 }
+            },
+            {
+              "id": "ch1-e9",
+              "name": "Tsuto Kaijitsu",
+              "type": "combat",
+              "cr": 3,
+              "description": "Tsuto, a half-elf monk, fights to escape. His journal reveals plans for a larger goblin assault and his obsession with Nualia.",
+              "enemies": [
+                { "name": "Tsuto Kaijitsu", "count": 1, "cr": 3, "hp": 26, "ac": 16, "attack": { "name": "unarmed strike", "bonus": 5, "damage": "1d6+1" }, "xp": 800, "special": "Monk abilities, flurry of blows, stunning fist DC 14" }
+              ],
+              "rewards": { "xp": 800, "items": ["Tsuto's Journal", "Composite shortbow", "Ring of Protection +1", "Potion of Cure Light Wounds x3"] },
+              "storyNote": "Tsuto's journal reveals Nualia's plans: she intends to burn Sandpoint as an offering to Lamashtu and free a barghest named Malfeshnekor from beneath Thistletop."
+            },
+            {
+              "id": "ch1-e10",
+              "name": "B1: Guard Cave",
+              "type": "combat",
+              "cr": 2,
+              "description": "The entrance to the Catacombs of Wrath is guarded by a sinspawn—a twisted creature born of ancient Thassilonian magic.",
+              "enemies": [
+                { "name": "Sinspawn", "count": 1, "cr": 2, "hp": 19, "ac": 14, "attack": { "name": "bite/claws", "bonus": 3, "damage": "1d6+1" }, "xp": 600, "special": "Sin-linked, wrathful bite causes rage" }
+              ],
+              "rewards": { "xp": 600 }
+            },
+            {
+              "id": "ch1-e11",
+              "name": "B6: Ancient Prison",
+              "type": "combat",
+              "cr": 4,
+              "description": "Wooden platforms over a deep pit. Sinspawn lurk in the cells of this ancient prison.",
+              "enemies": [
+                { "name": "Sinspawn", "count": 2, "cr": 2, "hp": 19, "ac": 14, "attack": { "name": "bite/claws", "bonus": 3, "damage": "1d6+1" }, "xp": 600, "special": "Sin-linked" }
+              ],
+              "rewards": { "xp": 1200 }
+            },
+            {
+              "id": "ch1-e12",
+              "name": "B4: Washing Pool",
+              "type": "combat",
+              "cr": 2,
+              "description": "A vargouille lurks in this room near a pool of murky water.",
+              "enemies": [
+                { "name": "Vargouille", "count": 1, "cr": 2, "hp": 19, "ac": 15, "attack": { "name": "bite", "bonus": 4, "damage": "1d4+1" }, "xp": 600, "special": "Shriek (DC 12 Fort), Kiss (transforms victim)" }
+              ],
+              "rewards": { "xp": 600 }
+            },
+            {
+              "id": "ch1-e13",
+              "name": "B9: Prisoner Pits",
+              "type": "combat",
+              "cr": 4,
+              "description": "Zombies trapped in pits, left over from ancient Thassilonian experiments.",
+              "enemies": [
+                { "name": "Zombie", "count": 11, "cr": 0.5, "hp": 12, "ac": 12, "attack": { "name": "slam", "bonus": 4, "damage": "1d6+4" }, "xp": 200, "special": "Staggered (single action per round)" }
+              ],
+              "rewards": { "xp": 2200 },
+              "storyNote": "These zombies are harmless as long as no one enters the pits."
+            },
+            {
+              "id": "ch1-e14",
+              "name": "B13: Cathedral of Wrath",
+              "type": "combat",
+              "cr": 4,
+              "description": "The heart of the catacombs—a cathedral to Lamashtu. The quasit Erylium guards the minor runewell of wrath, which can spawn sinspawn.",
+              "readAloud": "An immense cathedral opens before you. Walls are covered in carvings depicting monstrous births and terrible acts of wrath. A glowing pool of orange liquid shimmers at the room's center, and hovering above it is a tiny, bat-winged female figure.",
+              "enemies": [
+                { "name": "Erylium", "count": 1, "cr": 4, "hp": 22, "ac": 20, "attack": { "name": "dagger", "bonus": 8, "damage": "1d3-4 plus poison" }, "xp": 1200, "special": "Quasit demon, DR 5/cold iron, fly, invisibility, cause fear, summon sinspawn from runewell" }
+              ],
+              "rewards": { "xp": 1200, "items": ["Tiara (50gp)", "Tiny cold iron returning dagger +1"] },
+              "storyNote": "Destroying the runewell requires pouring holy water into it. Erylium can summon sinspawn (7 charges remain) from the pool."
+            }
+          ]
+        },
+        {
+          "id": "ch1-p4",
+          "name": "Thistletop",
+          "description": "The PCs assault Thistletop, the island fortress of the Thistletop goblin tribe, to stop Nualia and her allies before they can launch a second, devastating attack on Sandpoint.",
+          "location": "Thistletop Island",
+          "encounters": [
+            {
+              "id": "ch1-e15",
+              "name": "Thistle Tunnels - Goblin Dogs",
+              "type": "combat",
+              "cr": 3,
+              "description": "Dense thistle tunnels form a maze before the bridge to Thistletop. Goblin dogs patrol the tunnels.",
+              "enemies": [
+                { "name": "Goblin Dog", "count": 4, "cr": 1, "hp": 9, "ac": 13, "attack": { "name": "bite", "bonus": 2, "damage": "1d6+3" }, "xp": 400, "special": "Allergic Reaction DC 12" }
+              ],
+              "rewards": { "xp": 1600 }
+            },
+            {
+              "id": "ch1-e16",
+              "name": "Gogmurt the Druid",
+              "type": "combat",
+              "cr": 3,
+              "description": "Gogmurt, the Thistletop goblin druid, lurks in the thistle maze with his fire pelt cougar companion.",
+              "enemies": [
+                { "name": "Gogmurt", "count": 1, "cr": 3, "hp": 26, "ac": 16, "attack": { "name": "flame blade", "bonus": 3, "damage": "1d8+2" }, "xp": 800, "special": "Druid 4, animal companion, spells: flame blade, produce flame, entangle" },
+                { "name": "Tangletooth (Fire Pelt Cougar)", "count": 1, "cr": 2, "hp": 16, "ac": 14, "attack": { "name": "bite/claws", "bonus": 4, "damage": "1d4+2" }, "xp": 600 }
+              ],
+              "rewards": { "xp": 1400, "items": ["Cloak of Resistance +1", "Wand of Produce Flame"] },
+              "storyNote": "Gogmurt can be persuaded to help the PCs (DC 25 Diplomacy). He resents Nualia's takeover of the tribe."
+            },
+            {
+              "id": "ch1-e17",
+              "name": "Thistletop Ground Floor",
+              "type": "combat",
+              "cr": 4,
+              "description": "The wooden fortress atop the island head is crawling with goblins. Warchief Ripnugget sits on his throne with his giant gecko mount Stickfoot.",
+              "enemies": [
+                { "name": "Warchief Ripnugget", "count": 1, "cr": 3, "hp": 35, "ac": 20, "attack": { "name": "short sword +1", "bonus": 8, "damage": "1d4+3" }, "xp": 800, "special": "Fighter 3, mounted on giant gecko, Power Attack" },
+                { "name": "Stickfoot (Giant Gecko)", "count": 1, "cr": 1, "hp": 11, "ac": 14, "attack": { "name": "bite", "bonus": 2, "damage": "1d8+3" }, "xp": 400, "special": "Wall climbing" },
+                { "name": "Goblin Warrior", "count": 6, "cr": 0.33, "hp": 6, "ac": 16, "attack": { "name": "dogslicer", "bonus": 3, "damage": "1d4+1" }, "xp": 135 },
+                { "name": "Goblin Warchanter", "count": 2, "cr": 1, "hp": 11, "ac": 15, "attack": { "name": "shortspear", "bonus": 1, "damage": "1d4-1" }, "xp": 400, "special": "Inspire Courage +1" }
+              ],
+              "rewards": { "xp": 2810, "items": ["Short sword +1", "Breastplate", "Crown of Thistletop"] }
+            },
+            {
+              "id": "ch1-e18",
+              "name": "Nualia's Chambers",
+              "type": "combat",
+              "cr": 5,
+              "description": "The dungeon level beneath Thistletop. Nualia, the fallen aasimar cleric, makes her stand here with her yeth hound guardians.",
+              "readAloud": "The chamber is lit by guttering candles arranged around a dark altar to Lamashtu. A beautiful woman stands before it—yet her left hand ends not in fingers but in a demonic claw of red, twisted flesh. She turns, eyes blazing with unholy fury.",
+              "enemies": [
+                { "name": "Nualia", "count": 1, "cr": 4, "hp": 42, "ac": 20, "attack": { "name": "bastard sword +1", "bonus": 8, "damage": "1d10+4" }, "xp": 1200, "special": "Cleric 5, channel negative energy, spells, demonic left hand grants +2 STR" },
+                { "name": "Yeth Hound", "count": 2, "cr": 3, "hp": 26, "ac": 15, "attack": { "name": "bite", "bonus": 7, "damage": "1d8+4" }, "xp": 800, "special": "Bay (DC 12 Will or panicked), DR 5/silver, fly" }
+              ],
+              "rewards": { "xp": 2800, "items": ["Bastard sword +1", "Breastplate +1", "Sihedron Medallion", "Gold holy symbol of Lamashtu (100gp)"] },
+              "storyNote": "Nualia's journal and the Sihedron Medallion connect to the larger Runelords conspiracy."
+            },
+            {
+              "id": "ch1-e19",
+              "name": "Malfeshnekor",
+              "type": "combat",
+              "cr": 7,
+              "description": "Deep below Thistletop, the barghest Malfeshnekor has been imprisoned for thousands of years. This is an optional but very dangerous encounter.",
+              "enemies": [
+                { "name": "Malfeshnekor", "count": 1, "cr": 7, "hp": 85, "ac": 20, "attack": { "name": "bite/claws", "bonus": 12, "damage": "1d8+5" }, "xp": 3200, "special": "Greater barghest, DR 10/magic, feed ability, blink, levitate, dimension door" }
+              ],
+              "rewards": { "xp": 3200 },
+              "storyNote": "Optional boss. Extremely dangerous for level 3-4 PCs. Defeating Malfeshnekor prevents Nualia's larger plan."
+            }
+          ]
+        }
+      ],
+      "npcs": [
+        { "name": "Ameiko Kaijitsu", "role": "Ally - Tavern Owner", "description": "Half-elf owner of the Rusty Dragon tavern. Former adventurer, provides the PCs with free room and board." },
+        { "name": "Sheriff Belor Hemlock", "role": "Ally - Sheriff", "description": "Shoanti man, grim and dutiful. Sandpoint's sheriff who coordinates with the PCs after the goblin attack." },
+        { "name": "Father Abstalar Zantus", "role": "Ally - Priest", "description": "Sandpoint's religious leader. Kind and wise, provides healing and guidance." },
+        { "name": "Mayor Kendra Deverin", "role": "Ally - Mayor", "description": "Friendly and approachable mayor of Sandpoint." },
+        { "name": "Shalelu Andosana", "role": "Ally - Ranger", "description": "Elf ranger who patrols the hinterlands. Expert on goblin tribes and their recent unusual cooperation." },
+        { "name": "Aldern Foxglove", "role": "Ally/Villain", "description": "Charismatic Magnimarian noble saved during the goblin attack. Becomes obsessed with a PC." },
+        { "name": "Nualia Tobyn", "role": "Villain", "description": "Fallen aasimar, daughter of the late Father Tobyn. Serves Lamashtu and orchestrated the goblin attacks." },
+        { "name": "Tsuto Kaijitsu", "role": "Villain", "description": "Half-elf monk, Ameiko's brother. In love with Nualia, betrayed his family and Sandpoint." },
+        { "name": "Erylium", "role": "Villain", "description": "Ancient quasit demon guarding the Catacombs of Wrath beneath Sandpoint." }
+      ],
+      "locations": [
+        { "name": "Sandpoint", "type": "town", "description": "Sleepy coastal town in Varisia. Population ~1,200. Known for its cathedral, Glassworks, and friendly residents." },
+        { "name": "Sandpoint Cathedral", "type": "building", "description": "Newly rebuilt multi-faith cathedral. Site of the Swallowtail Festival." },
+        { "name": "Rusty Dragon Tavern", "type": "building", "description": "Best tavern in Sandpoint, run by Ameiko Kaijitsu. PCs' home base." },
+        { "name": "Sandpoint Glassworks", "type": "dungeon", "description": "Glass factory owned by the Kaijitsu family. Tsuto used it as his base for the goblin raids." },
+        { "name": "Catacombs of Wrath", "type": "dungeon", "description": "Ancient Thassilonian ruins beneath Sandpoint. Contains the minor runewell of wrath." },
+        { "name": "Thistletop", "type": "dungeon", "description": "Island fortress of the Thistletop goblin tribe. Built on a stone head-shaped island." }
+      ]
+    },
+    {
+      "id": "ch2-skinsaw-murders",
+      "number": 2,
+      "name": "The Skinsaw Murders",
+      "levelRange": "4-7",
+      "synopsis": "A series of gruesome murders terrorizes Sandpoint and Magnimar. The PCs must track a ghoulish serial killer through a haunted manor house and into the secret lair of a murderous cult.",
+      "advancementTrack": {
+        "start": 4,
+        "milestones": [
+          { "level": 5, "trigger": "After investigating the Hambley Farm murders" },
+          { "level": 6, "trigger": "After exploring Foxglove Manor" },
+          { "level": 7, "trigger": "By conclusion of chapter" }
+        ]
+      },
+      "parts": [
+        {
+          "id": "ch2-p1",
+          "name": "Murder Most Foul",
+          "description": "Grisly murders at the Sandpoint lumber mill draw the PCs into an investigation. A Sihedron star has been carved into each victim.",
+          "location": "Sandpoint",
+          "encounters": [
+            {
+              "id": "ch2-e1",
+              "name": "Habe's Sanitorium",
+              "type": "combat",
+              "cr": 4,
+              "description": "The PCs investigate the sanitorium where a suspect is being held, discovering the doctor has dark secrets.",
+              "enemies": [
+                { "name": "Caizarlu Zerren", "count": 1, "cr": 4, "hp": 30, "ac": 15, "attack": { "name": "dagger", "bonus": 3, "damage": "1d4+1" }, "xp": 1200, "special": "Necromancer 4, spells: vampiric touch, ray of enfeeblement, command undead" }
+              ],
+              "rewards": { "xp": 1200 }
+            }
+          ]
+        },
+        {
+          "id": "ch2-p2",
+          "name": "The Thing in the Attic",
+          "description": "The murders escalate as undead scarecrows terrorize the Hambley farmlands south of Sandpoint.",
+          "location": "Hambley Farm",
+          "encounters": [
+            {
+              "id": "ch2-e2",
+              "name": "The Hambley Farm",
+              "type": "combat",
+              "cr": 7,
+              "description": "The farmlands are infested with ghouls disguised as scarecrows. The Skinsaw Man has turned the farmers into undead.",
+              "enemies": [
+                { "name": "Ghoul Scarecrow", "count": 6, "cr": 1, "hp": 13, "ac": 14, "attack": { "name": "bite/claws", "bonus": 3, "damage": "1d6+1" }, "xp": 400, "special": "Paralysis (DC 13 Fort)" }
+              ],
+              "rewards": { "xp": 2400 }
+            }
+          ]
+        },
+        {
+          "id": "ch2-p3",
+          "name": "Foxglove Manor - The Misgivings",
+          "description": "The PCs explore the haunted Foxglove Manor, confronting ghostly visions and undead horrors to face the Skinsaw Man himself—Aldern Foxglove, now a ghast.",
+          "location": "Foxglove Manor",
+          "encounters": [
+            {
+              "id": "ch2-e3",
+              "name": "The Haunted Manor",
+              "type": "exploration",
+              "cr": 5,
+              "description": "Foxglove Manor is filled with haunts—ghostly manifestations that affect the PCs with visions of the Foxglove family's tragic history. Each haunt targets a different save.",
+              "enemies": [
+                { "name": "Haunt (Various)", "count": 12, "cr": 1, "hp": 0, "ac": 0, "attack": { "name": "haunt effect", "bonus": 0, "damage": "varies" }, "xp": 400, "special": "Will/Fort saves DC 12-16. Destroyed by channeling positive energy or specific actions." }
+              ],
+              "rewards": { "xp": 4800 },
+              "storyNote": "Haunts reveal the Foxglove family history: Vorel's lichdom attempt, Kasanda's murder, Traver's suicide, Cyralie's immolation."
+            },
+            {
+              "id": "ch2-e4",
+              "name": "Iesha's Prison",
+              "type": "combat",
+              "cr": 6,
+              "description": "Iesha Foxglove, Aldern's murdered wife, has risen as a revenant. If released, she will lead the PCs to her killer.",
+              "enemies": [
+                { "name": "Iesha Foxglove (Revenant)", "count": 1, "cr": 6, "hp": 76, "ac": 19, "attack": { "name": "slam", "bonus": 13, "damage": "2d6+9" }, "xp": 2400, "special": "DR 5/slashing, focused on killing Aldern. Will not attack PCs unless provoked." }
+              ],
+              "rewards": { "xp": 2400 },
+              "storyNote": "Iesha can be an ally—she leads directly to Aldern if the PCs don't attack her."
+            },
+            {
+              "id": "ch2-e5",
+              "name": "The Skinsaw Man",
+              "type": "combat",
+              "cr": 7,
+              "description": "In the caverns beneath the manor, Aldern Foxglove—now the ghast known as the Skinsaw Man—awaits, surrounded by his ghoul minions.",
+              "enemies": [
+                { "name": "The Skinsaw Man (Aldern Foxglove)", "count": 1, "cr": 7, "hp": 72, "ac": 21, "attack": { "name": "war razor +1", "bonus": 11, "damage": "1d4+6" }, "xp": 3200, "special": "Ghast lord, sneak attack +2d6, obsession with a PC, stalker abilities" },
+                { "name": "Ghoul", "count": 3, "cr": 1, "hp": 13, "ac": 14, "attack": { "name": "bite/claws", "bonus": 3, "damage": "1d6+1" }, "xp": 400, "special": "Paralysis DC 13" }
+              ],
+              "rewards": { "xp": 4400, "items": ["War razor +1 keen", "Stalker's Mask", "Cameo of Iesha", "Key to Foxglove Townhouse"] },
+              "storyNote": "Aldern's obsession with one PC makes this deeply personal. His journal and effects lead to the Skinsaw Cult in Magnimar."
+            }
+          ]
+        },
+        {
+          "id": "ch2-p4",
+          "name": "Shadows of Time",
+          "description": "The trail leads to Magnimar, where the PCs uncover the Skinsaw Cult operating beneath the city's clock tower.",
+          "location": "Magnimar",
+          "encounters": [
+            {
+              "id": "ch2-e6",
+              "name": "The Shadow Clock",
+              "type": "combat",
+              "cr": 8,
+              "description": "The PCs must climb the ancient Shadow Clock tower in Magnimar's Underbridge district to confront the cult leader, Justice Ironbriar.",
+              "enemies": [
+                { "name": "Justice Ironbriar", "count": 1, "cr": 7, "hp": 52, "ac": 20, "attack": { "name": "short sword +1", "bonus": 10, "damage": "1d6+3" }, "xp": 3200, "special": "Elf rogue 3/cleric 4, sneak attack, spells, Skinsaw Cult leader" },
+                { "name": "Skinsaw Cultist", "count": 4, "cr": 2, "hp": 16, "ac": 16, "attack": { "name": "war razor", "bonus": 5, "damage": "1d4+2" }, "xp": 600, "special": "Skinsaw masks, sneak attack +1d6" },
+                { "name": "Xanesha", "count": 1, "cr": 10, "hp": 102, "ac": 24, "attack": { "name": "Impaler of Thorns", "bonus": 15, "damage": "1d8+8" }, "xp": 9600, "special": "Lamia matriarch, spells, Impaler of Thorns spear, mask of giants. Final boss of chapter." }
+              ],
+              "rewards": { "xp": 16000, "items": ["Impaler of Thorns", "Medusa Mask", "Reaper's Mask", "Skinsaw Cult funds (3000gp)"] },
+              "storyNote": "Xanesha is the true mastermind. Her defeat reveals connections to her sister Lucrecia at Fort Rannick."
+            }
+          ]
+        }
+      ],
+      "npcs": [
+        { "name": "Aldern Foxglove / The Skinsaw Man", "role": "Villain", "description": "The noble saved in Chapter 1 has become a ghast serial killer, obsessed with one of the PCs." },
+        { "name": "Xanesha", "role": "Villain", "description": "Lamia matriarch manipulating the Skinsaw Cult to harvest greedy souls for Karzoug." },
+        { "name": "Justice Ironbriar", "role": "Villain", "description": "Corrupt elf judge who leads the Skinsaw Cult in Magnimar." }
+      ],
+      "locations": [
+        { "name": "Foxglove Manor (The Misgivings)", "type": "dungeon", "description": "Haunted manor south of Sandpoint. Three generations of Foxglove tragedy haunt its halls." },
+        { "name": "Magnimar", "type": "city", "description": "Major city in Varisia. Home to the Skinsaw Cult's operations." },
+        { "name": "The Shadow Clock", "type": "dungeon", "description": "Crumbling clock tower in Magnimar's Underbridge district. Skinsaw Cult headquarters." }
+      ]
+    },
+    {
+      "id": "ch3-hook-mountain",
+      "number": 3,
+      "name": "The Hook Mountain Massacre",
+      "levelRange": "7-10",
+      "synopsis": "The PCs travel to Fort Rannick to investigate the disappearance of the Black Arrows rangers, discovering an ogre invasion and a sinister plot involving Lucrecia, Xanesha's sister.",
+      "advancementTrack": {
+        "start": 7,
+        "milestones": [
+          { "level": 8, "trigger": "After retaking Fort Rannick" },
+          { "level": 9, "trigger": "After the dam at Skull's Crossing" },
+          { "level": 10, "trigger": "By conclusion of chapter" }
+        ]
+      },
+      "parts": [
+        {
+          "id": "ch3-p1",
+          "name": "In the Hook's Shadow",
+          "description": "The PCs discover Fort Rannick has fallen to the Kreeg ogre clan. Surviving Black Arrows need help retaking their fortress.",
+          "location": "Fort Rannick",
+          "encounters": [
+            {
+              "id": "ch3-e1",
+              "name": "Retaking Fort Rannick",
+              "type": "combat",
+              "cr": 9,
+              "description": "The PCs assault Fort Rannick to drive out the ogres. Multiple approaches possible—frontal assault, secret tunnels, or stealth.",
+              "enemies": [
+                { "name": "Ogre", "count": 8, "cr": 3, "hp": 30, "ac": 17, "attack": { "name": "ogre hook", "bonus": 7, "damage": "1d10+7" }, "xp": 800 },
+                { "name": "Jaagrath Kreeg", "count": 1, "cr": 7, "hp": 82, "ac": 21, "attack": { "name": "ogre hook +1", "bonus": 14, "damage": "1d10+11" }, "xp": 3200, "special": "Ogre fighter 4, leader of the Kreeg clan forces at the fort" }
+              ],
+              "rewards": { "xp": 9600, "items": ["Ogre hook +1", "Belt of Giant Strength +2"] }
+            }
+          ]
+        },
+        {
+          "id": "ch3-p2",
+          "name": "Skull's Crossing",
+          "description": "The ancient Thassilonian dam at Skull's Crossing is failing. If it breaks, Turtleback Ferry will be flooded.",
+          "location": "Skull's Crossing Dam",
+          "encounters": [
+            {
+              "id": "ch3-e2",
+              "name": "Skull's Crossing",
+              "type": "combat",
+              "cr": 8,
+              "description": "The dam is infested with ogres and a giant ettin. Deep within, ancient Thassilonian magic powers the floodgates.",
+              "enemies": [
+                { "name": "Ogre", "count": 4, "cr": 3, "hp": 30, "ac": 17, "attack": { "name": "ogre hook", "bonus": 7, "damage": "1d10+7" }, "xp": 800 },
+                { "name": "Skull Ripper (Ettin)", "count": 1, "cr": 6, "hp": 65, "ac": 18, "attack": { "name": "flails", "bonus": 9, "damage": "2d6+6" }, "xp": 2400, "special": "Two heads, superior two-weapon fighting" }
+              ],
+              "rewards": { "xp": 5600 }
+            }
+          ]
+        },
+        {
+          "id": "ch3-p3",
+          "name": "Harrowing the Hook",
+          "description": "The PCs ascend Hook Mountain to confront Barl Breakbones, the stone giant necromancer leading the Kreeg ogres, and Lucrecia the lamia.",
+          "location": "Hook Mountain Clanhold",
+          "encounters": [
+            {
+              "id": "ch3-e3",
+              "name": "The Kreeg Clanhold",
+              "type": "combat",
+              "cr": 11,
+              "description": "The ogre clanhold atop Hook Mountain. Mama Kreeg rules here with her monstrous brood, and Barl Breakbones lurks in the depths.",
+              "enemies": [
+                { "name": "Barl Breakbones", "count": 1, "cr": 10, "hp": 123, "ac": 23, "attack": { "name": "earth breaker +1", "bonus": 16, "damage": "2d6+11" }, "xp": 9600, "special": "Stone giant necromancer, spells, animate dead, stone giant abilities" },
+                { "name": "Lucrecia", "count": 1, "cr": 8, "hp": 81, "ac": 21, "attack": { "name": "dagger +1", "bonus": 12, "damage": "1d4+4" }, "xp": 4800, "special": "Lamia matriarch, Xanesha's sister, wisdom drain, spells" }
+              ],
+              "rewards": { "xp": 14400, "items": ["Earth breaker +1", "Robe of Useful Items", "Sihedron Medallion"] },
+              "storyNote": "Barl's orders come from Mokmurian, a stone giant warlord amassing an army in the east."
+            }
+          ]
+        }
+      ],
+      "npcs": [
+        { "name": "Lucrecia", "role": "Villain", "description": "Lamia matriarch, sister of Xanesha. Manipulated the Kreegs and corrupted Fort Rannick." },
+        { "name": "Barl Breakbones", "role": "Villain", "description": "Stone giant necromancer serving Mokmurian." },
+        { "name": "Jakardros Sovark", "role": "Ally", "description": "Surviving Black Arrow ranger, helps retake Fort Rannick." }
+      ],
+      "locations": [
+        { "name": "Fort Rannick", "type": "dungeon", "description": "Border fortress of the Black Arrows, now occupied by ogres." },
+        { "name": "Turtleback Ferry", "type": "town", "description": "Small lakeside town threatened by the failing dam." },
+        { "name": "Skull's Crossing", "type": "dungeon", "description": "Ancient Thassilonian dam holding back the Storval Deep." },
+        { "name": "Hook Mountain Clanhold", "type": "dungeon", "description": "Ogre fortress high on Hook Mountain." }
+      ]
+    },
+    {
+      "id": "ch4-fortress-stone-giants",
+      "number": 4,
+      "name": "Fortress of the Stone Giants",
+      "levelRange": "10-13",
+      "synopsis": "Stone giants attack Sandpoint under orders from the warlord Mokmurian. The PCs must defend the town, then travel to the ancient fortress of Jorgenfist to end the threat at its source.",
+      "advancementTrack": {
+        "start": 10,
+        "milestones": [
+          { "level": 11, "trigger": "After defending Sandpoint from the giant raid" },
+          { "level": 12, "trigger": "After exploring Jorgenfist" },
+          { "level": 13, "trigger": "By conclusion of chapter" }
+        ]
+      },
+      "parts": [
+        {
+          "id": "ch4-p1",
+          "name": "Stones Over Sandpoint",
+          "description": "A massive stone giant raid on Sandpoint. The PCs must defend the town and its citizens from the assault.",
+          "location": "Sandpoint",
+          "encounters": [
+            {
+              "id": "ch4-e1",
+              "name": "Giant Raid on Sandpoint",
+              "type": "combat",
+              "cr": 12,
+              "description": "Stone giants and a dragon attack Sandpoint. The PCs must split up to defend multiple locations.",
+              "enemies": [
+                { "name": "Stone Giant", "count": 6, "cr": 8, "hp": 102, "ac": 22, "attack": { "name": "greatclub", "bonus": 16, "damage": "2d8+12" }, "xp": 4800 },
+                { "name": "Young Red Dragon (Longtooth)", "count": 1, "cr": 10, "hp": 115, "ac": 23, "attack": { "name": "bite/claws", "bonus": 15, "damage": "2d6+7" }, "xp": 9600, "special": "Breath weapon (40ft cone, 6d10 fire, DC 20 Ref)" }
+              ],
+              "rewards": { "xp": 38400 },
+              "storyNote": "The real goal of the raid is a diversion—while the PCs fight giants, another team raids an underground library beneath Sandpoint."
+            }
+          ]
+        },
+        {
+          "id": "ch4-p2",
+          "name": "Journey to Jorgenfist",
+          "description": "The PCs travel east across Varisia to the ancient stone giant fortress of Jorgenfist in the Iron Peaks.",
+          "location": "Jorgenfist",
+          "encounters": [
+            {
+              "id": "ch4-e2",
+              "name": "Jorgenfist - The Pit",
+              "type": "combat",
+              "cr": 12,
+              "description": "The fortress is massive, guarded by stone giant sentries, dire bears, and enslaved hill giants.",
+              "enemies": [
+                { "name": "Stone Giant", "count": 4, "cr": 8, "hp": 102, "ac": 22, "attack": { "name": "greatclub", "bonus": 16, "damage": "2d8+12" }, "xp": 4800 },
+                { "name": "Hill Giant", "count": 3, "cr": 7, "hp": 85, "ac": 21, "attack": { "name": "greatclub", "bonus": 14, "damage": "2d8+10" }, "xp": 3200 }
+              ],
+              "rewards": { "xp": 28800 }
+            },
+            {
+              "id": "ch4-e3",
+              "name": "Mokmurian",
+              "type": "combat",
+              "cr": 14,
+              "description": "Deep in the library beneath Jorgenfist, Mokmurian—a stone giant wizard empowered by Karzoug's magic—makes his stand.",
+              "enemies": [
+                { "name": "Mokmurian", "count": 1, "cr": 14, "hp": 168, "ac": 26, "attack": { "name": "club +2", "bonus": 18, "damage": "1d8+14" }, "xp": 38400, "special": "Stone giant wizard 7, spells: cloudkill, wall of force, dimension door, fog cloud. Commands armies." }
+              ],
+              "rewards": { "xp": 38400, "items": ["Club +2", "Robe of Runes", "Runeforged weapons research"] },
+              "storyNote": "Mokmurian's death triggers a message from Karzoug himself, who speaks through the corpse. The Runelord is awakening."
+            }
+          ]
+        }
+      ],
+      "npcs": [
+        { "name": "Mokmurian", "role": "Villain", "description": "Runty but brilliant stone giant wizard, empowered by Karzoug's magic. Commands the giant army." },
+        { "name": "Conna the Wise", "role": "Ally", "description": "Stone giant elder who opposes Mokmurian. Can help the PCs infiltrate Jorgenfist." }
+      ],
+      "locations": [
+        { "name": "Jorgenfist", "type": "dungeon", "description": "Ancient stone giant fortress in the Iron Peaks. Mokmurian's seat of power." }
+      ]
+    },
+    {
+      "id": "ch5-sins-of-saviors",
+      "number": 5,
+      "name": "Sins of the Saviors",
+      "levelRange": "13-15",
+      "synopsis": "The PCs seek the legendary Runeforge, a pocket dimension where ancient Thassilonian wizards once created weapons of incredible power. They must forge weapons capable of defeating a Runelord.",
+      "advancementTrack": {
+        "start": 13,
+        "milestones": [
+          { "level": 14, "trigger": "After exploring half of Runeforge's wings" },
+          { "level": 15, "trigger": "By conclusion of chapter" }
+        ]
+      },
+      "parts": [
+        {
+          "id": "ch5-p1",
+          "name": "Into Runeforge",
+          "description": "The PCs travel to Rimeskull and unlock the entrance to Runeforge—a demiplane where the Runelords' servants still scheme after ten thousand years.",
+          "location": "Runeforge",
+          "encounters": [
+            {
+              "id": "ch5-e1",
+              "name": "Halls of Wrath",
+              "type": "combat",
+              "cr": 13,
+              "description": "The domain of Alaznist's followers, filled with evocation warriors and conjured fiends.",
+              "enemies": [
+                { "name": "Warriors of Wrath", "count": 6, "cr": 8, "hp": 72, "ac": 22, "attack": { "name": "ranseur +2", "bonus": 14, "damage": "2d4+8" }, "xp": 4800, "special": "Fighter/wizard, fireball, shocking grasp" },
+                { "name": "Highlady Athroxis", "count": 1, "cr": 13, "hp": 95, "ac": 24, "attack": { "name": "ranseur +3", "bonus": 16, "damage": "2d4+9" }, "xp": 25600, "special": "Wizard 13, evocation specialist, chain lightning, disintegrate, delayed blast fireball" }
+              ],
+              "rewards": { "xp": 54400, "items": ["Ranseur +3", "Headband of Vast Intelligence +4"] }
+            },
+            {
+              "id": "ch5-e2",
+              "name": "Shimmering Veils of Pride",
+              "type": "combat",
+              "cr": 12,
+              "description": "A mirror-filled domain of illusions, ruled by a mithral mage who traps visitors in reflections.",
+              "enemies": [
+                { "name": "Delvahine", "count": 1, "cr": 12, "hp": 84, "ac": 25, "attack": { "name": "shortspear +2", "bonus": 12, "damage": "1d4+3" }, "xp": 19200, "special": "Succubus enchantress. Charm, dominate, energy drain" }
+              ],
+              "rewards": { "xp": 19200 }
+            },
+            {
+              "id": "ch5-e3",
+              "name": "Forging Runeforged Weapons",
+              "type": "story",
+              "cr": 0,
+              "description": "The PCs must combine essences from at least two opposing Runeforge wings to create dominant weapons that can harm Karzoug.",
+              "storyNote": "The pool at Runeforge's center can enchant weapons with Runeforged power. A weapon infused with opposing sin components (e.g., Wrath + Sloth) gains special abilities against Runelords."
+            }
+          ]
+        }
+      ],
+      "npcs": [
+        { "name": "Highlady Athroxis", "role": "Villain", "description": "Wizard of Wrath, still serving Alaznist after millennia in Runeforge." },
+        { "name": "Delvahine", "role": "Villain/Neutral", "description": "Succubus ruler of the Shimmering Veils. May negotiate rather than fight." }
+      ],
+      "locations": [
+        { "name": "Runeforge", "type": "dungeon", "description": "Demiplane containing seven wings, each devoted to a school of Thassilonian sin magic." },
+        { "name": "Rimeskull", "type": "landmark", "description": "Frozen mountain peak where seven stone heads guard the entrance to Runeforge." }
+      ]
+    },
+    {
+      "id": "ch6-spires-xin-shalast",
+      "number": 6,
+      "name": "Spires of Xin-Shalast",
+      "levelRange": "15-18",
+      "synopsis": "The PCs journey to the legendary lost city of Xin-Shalast, high in the Kodar Mountains, to confront the awakening Runelord Karzoug before he can return to full power.",
+      "advancementTrack": {
+        "start": 15,
+        "milestones": [
+          { "level": 16, "trigger": "After exploring lower Xin-Shalast" },
+          { "level": 17, "trigger": "After reaching the Pinnacle of Avarice" },
+          { "level": 18, "trigger": "By conclusion of the campaign" }
+        ]
+      },
+      "parts": [
+        {
+          "id": "ch6-p1",
+          "name": "Seeking Xin-Shalast",
+          "description": "The PCs must find the lost city of Xin-Shalast, hidden high in the Kodar Mountains. Ancient texts and ghostly guides lead the way.",
+          "location": "Kodar Mountains",
+          "encounters": [
+            {
+              "id": "ch6-e1",
+              "name": "Approach to Xin-Shalast",
+              "type": "combat",
+              "cr": 13,
+              "description": "The mountain approaches are guarded by abominable snowmen and worse.",
+              "enemies": [
+                { "name": "Abominable Snowman", "count": 2, "cr": 9, "hp": 115, "ac": 22, "attack": { "name": "slam", "bonus": 18, "damage": "2d6+10" }, "xp": 6400, "special": "Cold subtype, frightful gaze" }
+              ],
+              "rewards": { "xp": 12800 }
+            }
+          ]
+        },
+        {
+          "id": "ch6-p2",
+          "name": "Xin-Shalast",
+          "description": "The ancient Thassilonian capital city, partially phased between dimensions. Lamia, giants, and worse patrol the crumbling streets.",
+          "location": "Xin-Shalast",
+          "encounters": [
+            {
+              "id": "ch6-e2",
+              "name": "Streets of Xin-Shalast",
+              "type": "combat",
+              "cr": 14,
+              "description": "The city streets are patrolled by Karzoug's forces—stone giants, lamia, and wardens of rune.",
+              "enemies": [
+                { "name": "Rune Giant", "count": 1, "cr": 17, "hp": 270, "ac": 30, "attack": { "name": "longsword +2", "bonus": 27, "damage": "3d6+18" }, "xp": 102400, "special": "Rune-inscribed, command giants, spark shower, spell-like abilities" }
+              ],
+              "rewards": { "xp": 102400 }
+            }
+          ]
+        },
+        {
+          "id": "ch6-p3",
+          "name": "The Pinnacle of Avarice",
+          "description": "The PCs ascend Karzoug's fortress—the Pinnacle of Avarice—to confront the Runelord himself before he can fully manifest.",
+          "location": "Pinnacle of Avarice",
+          "encounters": [
+            {
+              "id": "ch6-e3",
+              "name": "Most High Ceoptra",
+              "type": "combat",
+              "cr": 15,
+              "description": "The lamia priestess guarding the lower levels of the Pinnacle.",
+              "enemies": [
+                { "name": "Most High Ceoptra", "count": 1, "cr": 15, "hp": 137, "ac": 28, "attack": { "name": "falchion +2", "bonus": 20, "damage": "2d4+10" }, "xp": 51200, "special": "Lamia harridan, cleric spells, wisdom drain, unholy aura" }
+              ],
+              "rewards": { "xp": 51200 }
+            },
+            {
+              "id": "ch6-e4",
+              "name": "Runelord Karzoug",
+              "type": "combat",
+              "cr": 18,
+              "description": "The final battle. Karzoug the Claimer, Runelord of Greed, manifests in his runewell chamber, ready to unleash ten thousand years of accumulated power upon the world.",
+              "readAloud": "The chamber blazes with golden light. Floating above a pool of molten gold, a towering figure materializes—robed in shimmering cloth of gold, bearing a burning glaive, his eyes alight with terrible intelligence and bottomless greed. Karzoug the Claimer has returned.",
+              "enemies": [
+                { "name": "Karzoug the Claimer", "count": 1, "cr": 18, "hp": 228, "ac": 33, "attack": { "name": "Karzoug's Burning Glaive", "bonus": 22, "damage": "2d8+10 plus 1d6 fire" }, "xp": 153600, "special": "Wizard 20, Runelord of Greed, time stop, meteor swarm, wish, prismatic wall, quickened spells. Vulnerable to Runeforged dominant weapons." }
+              ],
+              "rewards": { "xp": 153600, "items": ["Karzoug's Burning Glaive", "Robes of Xin-Shalast", "Sihedron Ring", "Runewell treasures (200,000+ gp)"] },
+              "storyNote": "Karzoug can only be permanently killed by Runeforged dominant weapons in his Runewell chamber. Without them, he regenerates. This is the climax of the entire campaign."
+            }
+          ]
+        }
+      ],
+      "npcs": [
+        { "name": "Karzoug the Claimer", "role": "Final Villain", "description": "Runelord of Greed, an ancient Thassilonian wizard-king awakening after 10,000 years. The ultimate antagonist of the campaign." },
+        { "name": "Most High Ceoptra", "role": "Villain", "description": "Lamia harridan high priestess serving Karzoug in the Pinnacle of Avarice." }
+      ],
+      "locations": [
+        { "name": "Xin-Shalast", "type": "city", "description": "Ancient Thassilonian capital, hidden in the Kodar Mountains. Partially phased between dimensions." },
+        { "name": "Pinnacle of Avarice", "type": "dungeon", "description": "Karzoug's fortress-temple atop Mhar Massif. The final dungeon of the campaign." }
+      ]
+    }
+  ]
+}

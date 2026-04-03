@@ -1,0 +1,404 @@
+{
+  "name": "Sandpoint",
+  "title": "Light of the Lost Coast",
+  "population": 1240,
+  "government": "Mayor",
+  "alignment": "NG",
+  "description": "Sandpoint is a small coastal town in Varisia, known as the 'Light of the Lost Coast.' It sits on the edge of the Varisian Gulf, built among the ruins of an ancient Thassilonian colony. The town is friendly and welcoming, though it has recently endured several tragedies known as the 'Late Unpleasantness.'",
+  "notable_features": [
+    "The Old Light - ancient Thassilonian lighthouse ruin on the coast",
+    "Sandpoint Cathedral - newly rebuilt after the chapel fire",
+    "The Glassworks - Kaijitsu family glass factory",
+    "Chopper's Isle - haunted island in the harbor",
+    "Thistletop - goblin stronghold to the north",
+    "The Catacombs of Wrath - ancient tunnels beneath the town"
+  ],
+  "locations": [
+    {
+      "id": 1,
+      "name": "Sandpoint Cathedral",
+      "type": "temple",
+      "description": "A grand new cathedral dedicated to six deities: Desna, Erastil, Abadar, Shelyn, Gozreh, and Sarenrae. It was recently rebuilt after the previous chapel burned down during the Late Unpleasantness.",
+      "npcs": ["Father Abstalar Zantus", "Naffer Vosk"],
+      "services": ["Healing", "Remove Curse", "Restoration"],
+      "quests": ["Investigate the catacombs beneath the cathedral"]
+    },
+    {
+      "id": 2,
+      "name": "The Rusty Dragon",
+      "type": "inn",
+      "description": "The most popular tavern in Sandpoint, run by the exotic Ameiko Kaijitsu. It's a favorite of adventurers and travelers, known for excellent food and a welcoming atmosphere.",
+      "npcs": ["Ameiko Kaijitsu", "Bethana Corwin"],
+      "services": ["Lodging (5 sp/night)", "Food", "Rumors", "Entertainment"],
+      "items": ["Ale (4 cp)", "Wine (2 sp)", "Meal (3 sp)", "Room (5 sp)"]
+    },
+    {
+      "id": 3,
+      "name": "The White Deer",
+      "type": "inn",
+      "description": "A refined inn and tavern run by Garridan Viskalai, a Shoanti man. It caters to a more upscale clientele than the Rusty Dragon.",
+      "npcs": ["Garridan Viskalai"],
+      "services": ["Lodging (6 sp/night)", "Fine Dining"]
+    },
+    {
+      "id": 4,
+      "name": "Savah's Armory",
+      "type": "shop",
+      "description": "The best place in Sandpoint to buy weapons and armor. Savah Bevaniky stocks a wide variety of martial equipment.",
+      "npcs": ["Savah Bevaniky"],
+      "services": ["Buy/sell weapons", "Buy/sell armor"],
+      "stock_level": "Standard martial weapons and armor, occasional masterwork items"
+    },
+    {
+      "id": 5,
+      "name": "Vernah's Fine Clothing",
+      "type": "shop",
+      "description": "A clothing shop run by Rynshinn Povalli, known for exquisite designs.",
+      "npcs": ["Rynshinn Povalli"],
+      "services": ["Clothing", "Noble outfits"]
+    },
+    {
+      "id": 6,
+      "name": "The Feathered Serpent",
+      "type": "shop",
+      "description": "An exotic shop selling magical curiosities, potions, scrolls, and unusual items. Run by the eccentric Vorvashali Voon.",
+      "npcs": ["Vorvashali Voon"],
+      "services": ["Buy/sell magic items", "Identify magic items", "Potions", "Scrolls"],
+      "stock_level": "Minor wondrous items, potions up to 3rd level, scrolls up to 4th level"
+    },
+    {
+      "id": 7,
+      "name": "Bottled Solutions",
+      "type": "shop",
+      "description": "An alchemist's shop run by Niska Mvashti's apprentice. Sells alchemical supplies and potions.",
+      "npcs": ["Aliver 'Pillbug' Podiker"],
+      "services": ["Alchemical items", "Potions", "Poisons (secret)"],
+      "stock_level": "Alchemist's fire, antitoxin, thunderstones, tanglefoot bags"
+    },
+    {
+      "id": 8,
+      "name": "The Hagfish",
+      "type": "tavern",
+      "description": "A waterfront tavern known for Norah, a large hagfish kept in a tank. Patrons who drink the water from Norah's tank and keep it down have their names inscribed on the ceiling. The current prize is 28 gold pieces.",
+      "npcs": ["Jargie Quinn"],
+      "services": ["Drinks", "Gambling", "The Hagfish Challenge (DC 12 Fort save)"]
+    },
+    {
+      "id": 9,
+      "name": "Sandpoint Garrison",
+      "type": "garrison",
+      "description": "The town's military headquarters, home to the town guard and sheriff. A sturdy stone building with a small jail.",
+      "npcs": ["Sheriff Belor Hemlock", "Town Guards"],
+      "services": ["Report crimes", "Request protection"]
+    },
+    {
+      "id": 10,
+      "name": "Town Hall",
+      "type": "government",
+      "description": "The seat of Sandpoint's government, where Mayor Kendra Deverin holds court and the town council meets.",
+      "npcs": ["Mayor Kendra Deverin", "Titus Scarnetti"],
+      "services": ["Government services", "Town records"]
+    },
+    {
+      "id": 11,
+      "name": "The Old Light",
+      "type": "ruin",
+      "description": "The ruins of an ancient Thassilonian lighthouse on the western cliff edge of town. Brodert Quink believes it was once a war machine, not just a lighthouse.",
+      "npcs": ["Brodert Quink"],
+      "quests": ["Investigate Thassilonian ruins", "Research the Old Light's true purpose"]
+    },
+    {
+      "id": 12,
+      "name": "Kaijitsu Glassworks",
+      "type": "factory",
+      "description": "The town's famous glassworks, owned by the Kaijitsu family. Produces exquisite glassware known throughout Varisia. Currently run by Lonjiku Kaijitsu.",
+      "npcs": ["Lonjiku Kaijitsu", "Tsuto Kaijitsu"],
+      "quests": ["Investigate disturbances at the Glassworks"]
+    },
+    {
+      "id": 13,
+      "name": "Sandpoint Lumber Mill",
+      "type": "business",
+      "description": "One of Sandpoint's oldest industries, the lumber mill processes timber from the surrounding forests.",
+      "npcs": ["Ibor Thorn", "Banny Harker"],
+      "quests": ["Investigate murders at the lumber mill"]
+    },
+    {
+      "id": 14,
+      "name": "General Store",
+      "type": "shop",
+      "description": "Ven Vinder's general store stocks everything an adventurer might need for daily living.",
+      "npcs": ["Ven Vinder", "Shayliss Vinder"],
+      "services": ["Adventuring gear", "General supplies"],
+      "stock_level": "All standard adventuring gear, rations, rope, tools"
+    },
+    {
+      "id": 15,
+      "name": "Sandpoint Savories",
+      "type": "shop",
+      "description": "A beloved bakery run by Alma Avertin, sister of the murdered Father Ezakien Tobyn's assistant.",
+      "npcs": ["Alma Avertin"],
+      "services": ["Baked goods", "Rations"]
+    },
+    {
+      "id": 16,
+      "name": "The Pixie's Kitten",
+      "type": "tavern",
+      "description": "Sandpoint's brothel, run by the beautiful and shrewd Kaye Tesarani. A well-kept establishment with a good reputation.",
+      "npcs": ["Kaye Tesarani"],
+      "services": ["Entertainment", "Drinks", "Lodging"]
+    },
+    {
+      "id": 17,
+      "name": "Sandpoint Theater",
+      "type": "entertainment",
+      "description": "The largest theater in Sandpoint, run by the flamboyant Cyrdak Drokkus. Regular performances draw crowds from across the region.",
+      "npcs": ["Cyrdak Drokkus"],
+      "services": ["Performances", "Entertainment"]
+    },
+    {
+      "id": 18,
+      "name": "Fatman's Feedbag",
+      "type": "tavern",
+      "description": "A rough and tumble tavern near the waterfront, popular with dock workers and sailors. Known for cheap drinks and bar fights.",
+      "npcs": ["Gressel Tenniwar"],
+      "services": ["Cheap drinks", "Rumor mill", "Fights"]
+    },
+    {
+      "id": 19,
+      "name": "Turandarok Academy",
+      "type": "school",
+      "description": "Sandpoint's school and orphanage, run by the patient and dedicated Ilsoari Gandethus. Also serves as the town's de facto library and sage.",
+      "npcs": ["Ilsoari Gandethus"],
+      "services": ["Education", "Library", "Knowledge checks (+2 circumstance bonus)"]
+    },
+    {
+      "id": 20,
+      "name": "Sandpoint Boneyard",
+      "type": "cemetery",
+      "description": "The town's cemetery, maintained by the sexton Naffer Vosk. Recently disturbed by unknown forces.",
+      "npcs": ["Naffer Vosk"],
+      "quests": ["Investigate grave robberies"]
+    },
+    {
+      "id": 21,
+      "name": "The Curious Goblin",
+      "type": "shop",
+      "description": "A small bookshop run by Chask Haladan, specializing in maps, books, and rare texts.",
+      "npcs": ["Chask Haladan"],
+      "services": ["Books", "Maps", "Rare texts", "Knowledge (history/geography) resources"]
+    },
+    {
+      "id": 22,
+      "name": "Goblin Squash Stables",
+      "type": "stable",
+      "description": "The town stables, run by Daviren Hosk, a retired ranger with a deep hatred of goblins. Goblin ears decorate the walls.",
+      "npcs": ["Daviren Hosk"],
+      "services": ["Horse boarding (5 sp/day)", "Horse purchase", "Riding lessons"]
+    },
+    {
+      "id": 23,
+      "name": "Sandpoint Shipyard",
+      "type": "business",
+      "description": "A small but functional shipyard that services the fishing fleet and occasional merchant vessels.",
+      "npcs": [],
+      "services": ["Ship repair", "Boat rental"]
+    },
+    {
+      "id": 24,
+      "name": "Risa's Place",
+      "type": "tavern",
+      "description": "A quiet tavern run by the nearly blind Risa Magravi. Known for its calm atmosphere and home-cooked meals.",
+      "npcs": ["Risa Magravi"],
+      "services": ["Drinks", "Home-cooked meals"]
+    }
+  ],
+  "key_npcs": [
+    {
+      "name": "Mayor Kendra Deverin",
+      "race": "Human",
+      "class": "Aristocrat",
+      "level": 4,
+      "alignment": "NG",
+      "description": "The charismatic and capable mayor of Sandpoint. A skilled politician who genuinely cares about her town.",
+      "personality": "Diplomatic, warm, pragmatic",
+      "location": "Town Hall"
+    },
+    {
+      "name": "Sheriff Belor Hemlock",
+      "race": "Human (Shoanti)",
+      "class": "Fighter",
+      "level": 4,
+      "alignment": "LG",
+      "description": "Sandpoint's serious and dedicated sheriff. A former Shoanti warrior who left his tribe to protect the town.",
+      "personality": "Stoic, dutiful, protective",
+      "location": "Sandpoint Garrison"
+    },
+    {
+      "name": "Ameiko Kaijitsu",
+      "race": "Human (Tian)",
+      "class": "Bard/Rogue",
+      "level": 4,
+      "alignment": "CG",
+      "description": "The beautiful and spirited owner of the Rusty Dragon. A former adventurer from the noble Kaijitsu family, she rejected her family's expectations to run a tavern.",
+      "personality": "Spirited, independent, charismatic, secretive about her past",
+      "location": "The Rusty Dragon",
+      "plot_role": "Major NPC, kidnapped in Chapter 2"
+    },
+    {
+      "name": "Father Abstalar Zantus",
+      "race": "Human",
+      "class": "Cleric of Desna",
+      "level": 4,
+      "alignment": "CG",
+      "description": "The head priest of Sandpoint Cathedral. A kind and gentle man who tends to the spiritual needs of the community.",
+      "personality": "Kind, gentle, devout, humble",
+      "location": "Sandpoint Cathedral"
+    },
+    {
+      "name": "Shalelu Andosana",
+      "race": "Elf",
+      "class": "Ranger",
+      "level": 5,
+      "alignment": "CG",
+      "description": "An elven ranger who serves as Sandpoint's unofficial guardian against goblin tribes in the surrounding wilderness. She spends most of her time in the wild.",
+      "personality": "Aloof, dedicated, fierce, solitary",
+      "location": "Wilderness / Sandpoint (occasional visits)"
+    },
+    {
+      "name": "Brodert Quink",
+      "race": "Human",
+      "class": "Expert",
+      "level": 7,
+      "alignment": "NG",
+      "description": "Sandpoint's resident sage and expert on Thassilonian history. He's obsessed with the Old Light and ancient Thassilonian ruins.",
+      "personality": "Eccentric, scholarly, enthusiastic, absent-minded",
+      "location": "Home near the Old Light"
+    },
+    {
+      "name": "Lonjiku Kaijitsu",
+      "race": "Human (Tian)",
+      "class": "Aristocrat",
+      "level": 3,
+      "alignment": "LN",
+      "description": "The stern and cold head of the Kaijitsu family. Owner of the Sandpoint Glassworks. Father to Ameiko and Tsuto.",
+      "personality": "Stern, cold, traditional, quick-tempered",
+      "location": "Kaijitsu Manor / Glassworks"
+    },
+    {
+      "name": "Aldern Foxglove",
+      "race": "Human",
+      "class": "Aristocrat",
+      "level": 4,
+      "alignment": "CE (secretly)",
+      "description": "A charming Magnimarian noble who visits Sandpoint frequently. He develops an unhealthy obsession with the PCs after they save him during the goblin attack.",
+      "personality": "Charming, generous, secretly obsessive and unstable",
+      "location": "Foxglove Manor / Sandpoint",
+      "plot_role": "Major villain in Chapter 2 (The Skinsaw Man)"
+    },
+    {
+      "name": "Nualia Tobyn",
+      "race": "Aasimar",
+      "class": "Cleric/Fighter",
+      "level": 5,
+      "alignment": "CE",
+      "description": "The supposedly dead adopted daughter of the late Father Tobyn. She was driven mad by her celestial heritage and the cruelty of the townsfolk, and now seeks to become a demon by offering Sandpoint to Lamashtu.",
+      "personality": "Vengeful, fanatical, bitter, charismatic among her followers",
+      "location": "Thistletop",
+      "plot_role": "Primary antagonist of Chapter 1"
+    },
+    {
+      "name": "Tsuto Kaijitsu",
+      "race": "Half-Elf",
+      "class": "Monk/Rogue",
+      "level": 4,
+      "alignment": "LE",
+      "description": "Ameiko's half-brother, born from an affair. Rejected by the Kaijitsu family, he fell in with Nualia and now helps coordinate goblin attacks on Sandpoint.",
+      "personality": "Bitter, cunning, manipulative, obsessed with Nualia",
+      "location": "Kaijitsu Glassworks (initially)",
+      "plot_role": "Antagonist in Chapter 1"
+    },
+    {
+      "name": "Daviren Hosk",
+      "race": "Human",
+      "class": "Ranger",
+      "level": 4,
+      "alignment": "NG",
+      "description": "Retired ranger who runs the Goblin Squash Stables. Hates goblins with a burning passion and decorates his stables with their ears.",
+      "personality": "Gruff, goblin-hating, reliable, good with horses",
+      "location": "Goblin Squash Stables"
+    },
+    {
+      "name": "Niska Mvashti",
+      "race": "Human (Varisian)",
+      "class": "Druid/Seer",
+      "level": 5,
+      "alignment": "N",
+      "description": "The oldest person in Sandpoint, a Varisian fortune teller and druid. She has prophetic visions and deep knowledge of the region.",
+      "personality": "Mysterious, wise, cryptic, deeply spiritual",
+      "location": "Mvashti Home"
+    }
+  ],
+  "goblin_tribes": [
+    {
+      "name": "Birdcruncher Goblins",
+      "location": "Devil's Platter, west of Sandpoint",
+      "leader": "Chief Ripnugget (at Thistletop)",
+      "strength": "~20 members",
+      "notes": "The closest tribe to Sandpoint, relatively small"
+    },
+    {
+      "name": "Licktoad Goblins",
+      "location": "Brinestump Marsh, south of Sandpoint",
+      "leader": "Chief Gutwad",
+      "strength": "~30 members",
+      "notes": "Known for their love of fire and fireworks"
+    },
+    {
+      "name": "Seven Tooth Goblins",
+      "location": "Shank's Wood, east of Sandpoint",
+      "leader": "Chief Koruvus (missing)",
+      "strength": "~25 members",
+      "notes": "Named for their habit of collecting teeth"
+    },
+    {
+      "name": "Mosswood Goblins",
+      "location": "Mosswood, south-east of Sandpoint",
+      "leader": "Chief Big Gugmut",
+      "strength": "~40 members",
+      "notes": "The largest local tribe, led by a hobgoblin"
+    },
+    {
+      "name": "Thistletop Goblins",
+      "location": "Thistletop Island",
+      "leader": "Chief Ripnugget",
+      "strength": "~35 members",
+      "notes": "The most organized tribe, occupying an ancient Thassilonian fortress. Allied with Nualia."
+    }
+  ],
+  "the_late_unpleasantness": {
+    "description": "A series of tragic events that struck Sandpoint five years ago.",
+    "events": [
+      {
+        "name": "Chopper's Murders",
+        "description": "A serial killer known as 'Chopper' (actually Jervis Stoot, a local artist) murdered 25 people over a month, carving away their eyes and tongues. He was eventually discovered and killed in his lair on Stoot's Rock (now called Chopper's Isle)."
+      },
+      {
+        "name": "The Chapel Fire",
+        "description": "A month after Chopper's rampage ended, the Sandpoint Chapel burned to the ground. Father Ezakien Tobyn and his adopted daughter Nualia perished in the fire (or so everyone believes). The fire was actually set by Nualia herself as part of her descent into evil."
+      }
+    ]
+  },
+  "surrounding_area": [
+    {"name": "Nettlewood", "type": "forest", "description": "Dense, thorny forest between Sandpoint and Thistletop. Home to goblins and other dangers."},
+    {"name": "Devil's Platter", "type": "plateau", "description": "A large mesa west of Sandpoint, home to the Birdcruncher goblins."},
+    {"name": "Brinestump Marsh", "type": "swamp", "description": "A boggy marshland south of Sandpoint. The Licktoad goblins live here."},
+    {"name": "Mosswood", "type": "forest", "description": "A vast forest southeast of Sandpoint. Home to the largest goblin tribe."},
+    {"name": "Shank's Wood", "type": "forest", "description": "A smaller forest east of Sandpoint, home to the Seven Tooth goblins."},
+    {"name": "Tickwood", "type": "forest", "description": "A forest known for its large tick population. A good source of timber."},
+    {"name": "The Tors", "type": "hills", "description": "Rocky, hilly terrain north of Sandpoint. Rumored to contain ancient ruins."},
+    {"name": "Foxglove Manor", "type": "estate", "description": "A haunted mansion south of Sandpoint along the Lost Coast Road. Known locally as 'The Misgivings.'"},
+    {"name": "Magnimar", "type": "city", "description": "The nearest large city, about 50 miles south. A major trading hub and the political center of the region."},
+    {"name": "Thistletop", "type": "fortress", "description": "An island fortress connected to the mainland by a rope bridge. Ancient Thassilonian ruins beneath goblin-occupied surface structures."}
+  ]
+}

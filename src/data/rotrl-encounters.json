@@ -1,0 +1,1493 @@
+{
+  "encounters": [
+    {
+      "id": "ch1-e1",
+      "chapter": 1,
+      "part": 1,
+      "name": "Initial Assault",
+      "location": "Sandpoint Cathedral Square - Swallowtail Festival",
+      "cr": 1,
+      "enemies": [
+        {
+          "name": "Goblin Warrior",
+          "count": 3,
+          "cr": 0.33,
+          "hp": 6,
+          "ac": 16,
+          "attacks": [
+            {
+              "name": "Dogslicer",
+              "bonus": 3,
+              "damage": "1d4+1",
+              "type": "melee",
+              "crit": "19-20"
+            }
+          ],
+          "specialAbilities": []
+        }
+      ],
+      "treasure": "None",
+      "tactics": "Goblins fight erratically. One climbs a table for higher ground, another gets distracted by food, a third grabs a carving knife.",
+      "description": "As Father Zantus begins the consecration speech, a thunderstone crack signals the goblin attack. Three goblins emerge from hiding to attack the festival-goers.",
+      "mapNotes": "Takes place in the main cathedral square with tables and audience members providing cover and obstacles."
+    },
+    {
+      "id": "ch1-e2",
+      "chapter": 1,
+      "part": 1,
+      "name": "Goblin Pyros",
+      "location": "Sandpoint Cathedral Square - North Bonfire",
+      "cr": 2,
+      "enemies": [
+        {
+          "name": "Goblin Warrior",
+          "count": 3,
+          "cr": 0.33,
+          "hp": 6,
+          "ac": 16,
+          "attacks": [
+            {
+              "name": "Dogslicer",
+              "bonus": 3,
+              "damage": "1d4+1",
+              "type": "melee",
+              "crit": "19-20"
+            }
+          ],
+          "specialAbilities": []
+        },
+        {
+          "name": "Goblin Warchanter",
+          "count": 1,
+          "cr": 0.5,
+          "hp": 7,
+          "ac": 16,
+          "attacks": [
+            {
+              "name": "Dogslicer",
+              "bonus": 3,
+              "damage": "1d4+1",
+              "type": "melee",
+              "crit": "19-20"
+            }
+          ],
+          "specialAbilities": ["Goblin Chant (inspire courage)"]
+        }
+      ],
+      "treasure": "None",
+      "tactics": "Goblins are dancing and cackle around the blazing bonfire cart. They attempt to set additional fires and will fight to protect the flames.",
+      "description": "A cart laden with fuel for the evening bonfire has been set ablaze by a group of goblins. They dance and cackle around the blazing cart as townspeople flee in terror.",
+      "mapNotes": "Burning cart provides 20-foot radius difficult terrain due to heat. The cart itself is a moveable obstacle."
+    },
+    {
+      "id": "ch1-e3",
+      "chapter": 1,
+      "part": 1,
+      "name": "The Goblin Raider",
+      "location": "Sandpoint - White Deer Tavern area",
+      "cr": 2,
+      "enemies": [
+        {
+          "name": "Aldern Foxglove",
+          "count": 1,
+          "cr": 3,
+          "hp": 24,
+          "ac": 16,
+          "attacks": [
+            {
+              "name": "Longsword",
+              "bonus": 4,
+              "damage": "1d8+2",
+              "type": "melee"
+            },
+            {
+              "name": "Dagger",
+              "bonus": 4,
+              "damage": "1d4+2",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Combat reflexes", "Mounted combat"]
+        },
+        {
+          "name": "Goblin Warrior",
+          "count": 2,
+          "cr": 0.33,
+          "hp": 6,
+          "ac": 16,
+          "attacks": [
+            {
+              "name": "Dogslicer",
+              "bonus": 3,
+              "damage": "1d4+1",
+              "type": "melee",
+              "crit": "19-20"
+            }
+          ],
+          "specialAbilities": []
+        }
+      ],
+      "treasure": "Longsword, 2 daggers, riding horse",
+      "tactics": "Aldern plays at being a hero, trying to impress the townspeople while his goblin allies harass civilians.",
+      "description": "A mounted human noble charges about the streets on horseback, accompanied by goblin warriors. He seems to be acting heroically, but his companions are causing chaos.",
+      "mapNotes": "Takes place in town streets. Horse provides 10-foot reach advantage."
+    },
+    {
+      "id": "ch1-e4",
+      "chapter": 1,
+      "part": 2,
+      "name": "The Desecrated Vault",
+      "location": "Sandpoint Boneyard - Vault",
+      "cr": 0.5,
+      "enemies": [
+        {
+          "name": "Skeleton",
+          "count": 2,
+          "cr": 0.33,
+          "hp": 4,
+          "ac": 14,
+          "attacks": [
+            {
+              "name": "Claw",
+              "bonus": 1,
+              "damage": "1d4-1",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Undead traits"]
+        }
+      ],
+      "treasure": "None",
+      "tactics": "Skeletons attack immediately when vault is opened.",
+      "description": "Father Tobyn's vault has been desecrated. Two skeletal remains guard the chamber, recently animated.",
+      "mapNotes": "Small underground chamber, 10x10 feet. Tombstones and caskets provide minor cover."
+    },
+    {
+      "id": "ch1-e5",
+      "chapter": 1,
+      "part": 2,
+      "name": "The Boar Hunt",
+      "location": "Tickwood Forest",
+      "cr": 2,
+      "enemies": [
+        {
+          "name": "Wild Boar",
+          "count": 2,
+          "cr": 1,
+          "hp": 18,
+          "ac": 13,
+          "attacks": [
+            {
+              "name": "Gore",
+              "bonus": 3,
+              "damage": "1d8+3",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Ferocity (continue fighting when reduced to 0 hp)"]
+        }
+      ],
+      "treasure": "None",
+      "tactics": "Boars charge PCs and gore repeatedly. They target single opponents.",
+      "description": "A hunting party discovers two wild boars in the forest. The creatures are territorial and immediately aggressive.",
+      "mapNotes": "Dense forest terrain provides 20% concealment and 3/4 cover from trees."
+    },
+    {
+      "id": "ch1-e6",
+      "chapter": 1,
+      "part": 2,
+      "name": "Monster in the Closet",
+      "location": "Sandpoint - Barrett House",
+      "cr": 0.5,
+      "enemies": [
+        {
+          "name": "Goblin Warrior",
+          "count": 1,
+          "cr": 0.33,
+          "hp": 6,
+          "ac": 16,
+          "attacks": [
+            {
+              "name": "Dogslicer",
+              "bonus": 3,
+              "damage": "1d4+1",
+              "type": "melee",
+              "crit": "19-20"
+            }
+          ],
+          "specialAbilities": []
+        }
+      ],
+      "treasure": "None",
+      "tactics": "Goblin bursts from hiding and attacks with surprise. Attempts to flee if outnumbered.",
+      "description": "A single goblin has hidden in a closet, traumatizing the Barrett family.",
+      "mapNotes": "Confined house interior. Goblin gains +2 on surprise round."
+    },
+    {
+      "id": "ch1-e7",
+      "chapter": 1,
+      "part": 3,
+      "name": "Against the Goblins - Glassworks Invasion",
+      "location": "Sandpoint Glassworks",
+      "cr": 3,
+      "enemies": [
+        {
+          "name": "Goblin Warrior",
+          "count": 4,
+          "cr": 0.33,
+          "hp": 6,
+          "ac": 16,
+          "attacks": [
+            {
+              "name": "Dogslicer",
+              "bonus": 3,
+              "damage": "1d4+1",
+              "type": "melee",
+              "crit": "19-20"
+            }
+          ],
+          "specialAbilities": []
+        },
+        {
+          "name": "Tsuto Kaijitsu",
+          "count": 1,
+          "cr": 2,
+          "hp": 18,
+          "ac": 17,
+          "attacks": [
+            {
+              "name": "Katana",
+              "bonus": 4,
+              "damage": "1d8+1",
+              "type": "melee",
+              "crit": "18-20"
+            },
+            {
+              "name": "Sai",
+              "bonus": 4,
+              "damage": "1d6+1",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Flurry of blows +4/+4 (1d6+1)", "Evasion", "Ninja training"]
+        }
+      ],
+      "treasure": "Katana, 2 sai, 60 gp",
+      "tactics": "Tsuto coordinates goblin attacks and uses superior mobility. He attempts to flank and trip enemies. Goblins stay in groups of 2-3.",
+      "description": "Lonjiku Kaijitsu's workers have been killed and replaced with goblins under Tsuto's command. The glassworks is now a goblin stronghold.",
+      "mapNotes": "Large workshop with furnaces (treat as damaging terrain), glass vats, and work tables providing cover."
+    },
+    {
+      "id": "ch1-e8",
+      "chapter": 1,
+      "part": 3,
+      "name": "B1 - Guard Cave",
+      "location": "Catacombs of Wrath - Guard Cave",
+      "cr": 2,
+      "enemies": [
+        {
+          "name": "Sinspawn",
+          "count": 1,
+          "cr": 2,
+          "hp": 22,
+          "ac": 14,
+          "attacks": [
+            {
+              "name": "Claw",
+              "bonus": 4,
+              "damage": "1d4+2",
+              "type": "melee"
+            },
+            {
+              "name": "Bite",
+              "bonus": 4,
+              "damage": "1d6+2",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Rend (2d4+3 if both claws hit)", "Scent"]
+        }
+      ],
+      "treasure": "None",
+      "tactics": "Sinspawn attacks in melee and attempts to grab and tear opponents.",
+      "description": "A twisted creature, bound by ancient magic, guards the entrance to the deeper catacombs.",
+      "mapNotes": "Cave entrance, 20x20 feet. Stone formations provide partial cover."
+    },
+    {
+      "id": "ch1-e9",
+      "chapter": 1,
+      "part": 3,
+      "name": "B4 - Washing Pool",
+      "location": "Catacombs of Wrath - Washing Pool",
+      "cr": 2,
+      "enemies": [
+        {
+          "name": "Vargouille",
+          "count": 1,
+          "cr": 2,
+          "hp": 13,
+          "ac": 14,
+          "attacks": [
+            {
+              "name": "Bite",
+              "bonus": 3,
+              "damage": "1d6+1",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Kiss curse", "Poison bite (DC 13)", "Fly 40 ft."]
+        }
+      ],
+      "treasure": "None",
+      "tactics": "Vargouille uses hit-and-run tactics, flying above ground level and swooping for bites.",
+      "description": "An ancient guardian creature still lurks in these forgotten halls, commanded by the Scribbler centuries ago.",
+      "mapNotes": "Underground pool chamber with 20-foot ceiling. Water provides concealment."
+    },
+    {
+      "id": "ch1-e10",
+      "chapter": 1,
+      "part": 3,
+      "name": "B6 - Ancient Prison",
+      "location": "Catacombs of Wrath - Ancient Prison",
+      "cr": 4,
+      "enemies": [
+        {
+          "name": "Sinspawn",
+          "count": 2,
+          "cr": 2,
+          "hp": 22,
+          "ac": 14,
+          "attacks": [
+            {
+              "name": "Claw",
+              "bonus": 4,
+              "damage": "1d4+2",
+              "type": "melee"
+            },
+            {
+              "name": "Bite",
+              "bonus": 4,
+              "damage": "1d6+2",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Rend (2d4+3 if both claws hit)", "Scent"]
+        }
+      ],
+      "treasure": "None",
+      "tactics": "Both sinspawn attack simultaneously from different angles, attempting to flank and rend.",
+      "description": "Two sinspawn guard the inner sanctum of the catacombs, protecting the runewell.",
+      "mapNotes": "Large prison chamber, 30x40 feet. Ancient bars provide cover. Runewell in center."
+    },
+    {
+      "id": "ch1-e11",
+      "chapter": 1,
+      "part": 3,
+      "name": "B9 - Prisoner Pits",
+      "location": "Catacombs of Wrath - Prisoner Pits",
+      "cr": 4,
+      "enemies": [
+        {
+          "name": "Human Zombie",
+          "count": 3,
+          "cr": 0.5,
+          "hp": 12,
+          "ac": 10,
+          "attacks": [
+            {
+              "name": "Slam",
+              "bonus": 1,
+              "damage": "1d6+1",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Undead traits", "Shambling gait"]
+        }
+      ],
+      "treasure": "None",
+      "tactics": "Zombies shuffle toward PCs and attempt to grab and drag them into the pits. One zombie has a symbiont worm.",
+      "description": "Three zombie prisoners shuffle about in deep pits, ancient creatures left over from Thassilonian times.",
+      "mapNotes": "Pit chambers, 20x15 feet each. Pits are 20 feet deep. Zombies take -4 on ability checks to climb."
+    },
+    {
+      "id": "ch1-e12",
+      "chapter": 1,
+      "part": 3,
+      "name": "B13 - Cathedral of Wrath",
+      "location": "Catacombs of Wrath - Cathedral of Wrath",
+      "cr": 5,
+      "enemies": [
+        {
+          "name": "Erylium the Quasit",
+          "count": 1,
+          "cr": 3,
+          "hp": 26,
+          "ac": 16,
+          "attacks": [
+            {
+              "name": "Bite",
+              "bonus": 3,
+              "damage": "1d4+1",
+              "type": "melee"
+            },
+            {
+              "name": "Claw",
+              "bonus": 3,
+              "damage": "1d3+1",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Dimension door (at will)", "Detect good (constant)", "Poison (DC 13)", "Summon demon", "Spell-like abilities", "Damage reduction 5/cold iron"]
+        }
+      ],
+      "treasure": "Unholy symbol, potion of cure serious wounds",
+      "tactics": "Erylium uses dimension door for mobility and spellcasting from range. She summons allies and uses area effects.",
+      "description": "Erylium, a quasit demon, has corrupted this ancient cathedral and bound herself to the Wrath runewell.",
+      "mapNotes": "Cathedral, 40x50 feet with 30-foot ceiling. Runewell at center. Pillars provide cover."
+    },
+    {
+      "id": "ch1-e13",
+      "chapter": 1,
+      "part": 4,
+      "name": "C5 - Goblin Dog Kennel",
+      "location": "Thistletop - Goblin Dog Kennel",
+      "cr": 5,
+      "enemies": [
+        {
+          "name": "Goblin Dog",
+          "count": 4,
+          "cr": 1,
+          "hp": 13,
+          "ac": 14,
+          "attacks": [
+            {
+              "name": "Bite",
+              "bonus": 3,
+              "damage": "1d6+2",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Trip", "Ferocity"]
+        }
+      ],
+      "treasure": "None",
+      "tactics": "Goblin dogs attack in a pack, attempting to trip and flank opponents.",
+      "description": "Four trained goblin dogs guard the kennel area, vicious beasts that serve Ripnugget.",
+      "mapNotes": "Kennel, 30x30 feet. Cages and posts provide cover."
+    },
+    {
+      "id": "ch1-e14",
+      "chapter": 1,
+      "part": 4,
+      "name": "C6 - Tangletooth's Den",
+      "location": "Thistletop - Tangletooth's Den",
+      "cr": 3,
+      "enemies": [
+        {
+          "name": "Tangletooth the Firepelt Cougar",
+          "count": 1,
+          "cr": 3,
+          "hp": 30,
+          "ac": 15,
+          "attacks": [
+            {
+              "name": "Bite",
+              "bonus": 5,
+              "damage": "1d8+3",
+              "type": "melee"
+            },
+            {
+              "name": "Claw",
+              "bonus": 5,
+              "damage": "1d6+3",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Pounce", "Rake (2 claws +5 for 1d4+3)", "Sprint (120 ft. run)"]
+        }
+      ],
+      "treasure": "None",
+      "tactics": "Tangletooth pounces on the first opponent, raking and attempting to pin. Uses furniture as jumping points.",
+      "description": "Gogmurt's animal companion, a firepelt cougar, guards his master's den.",
+      "mapNotes": "Den, 25x25 feet. Vegetation and rough terrain provide concealment."
+    },
+    {
+      "id": "ch1-e15",
+      "chapter": 1,
+      "part": 4,
+      "name": "C9 - Rope Bridge",
+      "location": "Thistletop - Rope Bridge",
+      "cr": 4,
+      "enemies": [
+        {
+          "name": "Goblin Warrior",
+          "count": 4,
+          "cr": 0.33,
+          "hp": 6,
+          "ac": 16,
+          "attacks": [
+            {
+              "name": "Dogslicer",
+              "bonus": 3,
+              "damage": "1d4+1",
+              "type": "melee",
+              "crit": "19-20"
+            }
+          ],
+          "specialAbilities": []
+        },
+        {
+          "name": "Goblin Commando",
+          "count": 2,
+          "cr": 0.5,
+          "hp": 8,
+          "ac": 15,
+          "attacks": [
+            {
+              "name": "Dogslicer",
+              "bonus": 3,
+              "damage": "1d4+1",
+              "type": "melee",
+              "crit": "19-20"
+            },
+            {
+              "name": "Composite Longbow",
+              "bonus": 3,
+              "damage": "1d8+1",
+              "type": "ranged"
+            }
+          ],
+          "specialAbilities": ["Spring Attack"]
+        }
+      ],
+      "treasure": "4 dogslicer, 2 composites longbow, 30 gp",
+      "tactics": "Goblins fight from the bridge and attempt to push opponents over the 40-foot drop.",
+      "description": "The rope bridge to Thistletop is defended by a contingent of goblin warriors and commandos.",
+      "mapNotes": "Rope bridge, 60 feet long, 5 feet wide. 40-foot fall to water below. Bridge sways and provides concealment."
+    },
+    {
+      "id": "ch1-e16",
+      "chapter": 1,
+      "part": 4,
+      "name": "C10 - Thistletop",
+      "location": "Thistletop - Main Fortress",
+      "cr": 5,
+      "enemies": [
+        {
+          "name": "Ripnugget the Warchief",
+          "count": 1,
+          "cr": 2,
+          "hp": 16,
+          "ac": 16,
+          "attacks": [
+            {
+              "name": "Dogslicer",
+              "bonus": 4,
+              "damage": "1d4+3",
+              "type": "melee",
+              "crit": "19-20"
+            }
+          ],
+          "specialAbilities": ["Leadership (followers)", "Tactics"]
+        },
+        {
+          "name": "Goblin Warrior",
+          "count": 6,
+          "cr": 0.33,
+          "hp": 6,
+          "ac": 16,
+          "attacks": [
+            {
+              "name": "Dogslicer",
+              "bonus": 3,
+              "damage": "1d4+1",
+              "type": "melee",
+              "crit": "19-20"
+            }
+          ],
+          "specialAbilities": []
+        }
+      ],
+      "treasure": "Dogslicer, Warchief's treasure (150 gp)",
+      "tactics": "Ripnugget fights alongside his warriors, using hit-and-run tactics. Warriors form defensive lines.",
+      "description": "Ripnugget and his elite goblin guard hold the main fortress of Thistletop.",
+      "mapNotes": "Fortified structure, 40x50 feet. Multiple levels with stairs. Balconies provide firing platforms."
+    },
+    {
+      "id": "ch1-e17",
+      "chapter": 1,
+      "part": 4,
+      "name": "C19 - Throne Room",
+      "location": "Thistletop - Throne Room",
+      "cr": 6,
+      "enemies": [
+        {
+          "name": "Nualia Tornesch",
+          "count": 1,
+          "cr": 5,
+          "hp": 59,
+          "ac": 16,
+          "attacks": [
+            {
+              "name": "Unholy Scimitar +1",
+              "bonus": 7,
+              "damage": "1d6+4",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Command undead", "Unholy aura", "Demon touch", "Eldritch heritage"]
+        },
+        {
+          "name": "Orik Tander",
+          "count": 1,
+          "cr": 2,
+          "hp": 18,
+          "ac": 16,
+          "attacks": [
+            {
+              "name": "Greatsword",
+              "bonus": 4,
+              "damage": "2d6+2",
+              "type": "melee"
+            },
+            {
+              "name": "Longbow",
+              "bonus": 3,
+              "damage": "1d8",
+              "type": "ranged"
+            }
+          ],
+          "specialAbilities": ["Two-weapon fighting (planned)"]
+        }
+      ],
+      "treasure": "Unholy Scimitar +1, Amulet of natural armor +1, jewelry (200 gp)",
+      "tactics": "Nualia fights to the death, using Orik as a distraction. She calls upon dark powers. Orik attempts to flank and uses ranged attacks.",
+      "description": "Nualia sits upon her makeshift throne, her half-demon heritage becoming apparent. Orik Tander, her war-scarred lieutenant, stands at her side.",
+      "mapNotes": "Throne room, 30x40 feet. Nualia's throne at north end. Orik positions himself at the door."
+    },
+    {
+      "id": "ch1-e18",
+      "chapter": 1,
+      "part": 4,
+      "name": "E10 - Malfeshnekor's Prison",
+      "location": "Catacombs/Thistletop - Malfeshnekor's Prison",
+      "cr": 7,
+      "enemies": [
+        {
+          "name": "Malfeshnekor the Barghest",
+          "count": 1,
+          "cr": 7,
+          "hp": 105,
+          "ac": 18,
+          "attacks": [
+            {
+              "name": "Bite",
+              "bonus": 11,
+              "damage": "2d8+5",
+              "type": "melee"
+            },
+            {
+              "name": "Claw",
+              "bonus": 11,
+              "damage": "1d8+5",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Detect magic (constant)", "Spell-like abilities", "Damage reduction 10/good", "Fire immunity", "Summon hounds", "Regeneration 5"]
+        }
+      ],
+      "treasure": "Demonic treasure (500 gp), magical items",
+      "tactics": "Malfeshnekor uses his regeneration and fire immunity to his advantage. He summons lesser barghests and uses spell-like abilities.",
+      "description": "An imprisoned barghest of terrible power, bound here by ancient Thassilonian magic. Its hunger threatens to consume all of Sandpoint.",
+      "mapNotes": "Prison chamber, 50x50 feet. Magical chains bind the creature. Runes cover the walls."
+    },
+    {
+      "id": "ch2-e1",
+      "chapter": 2,
+      "part": 1,
+      "name": "Meeting the Patient",
+      "location": "Sandpoint - Foxglove Manor Exterior",
+      "cr": 2,
+      "enemies": [
+        {
+          "name": "Aldern Foxglove (Diseased)",
+          "count": 1,
+          "cr": 2,
+          "hp": 24,
+          "ac": 16,
+          "attacks": [
+            {
+              "name": "Longsword",
+              "bonus": 4,
+              "damage": "1d8+2",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Vorel's Phage (disease)", "Enhanced strength from corruption"]
+        }
+      ],
+      "treasure": "None",
+      "tactics": "Aldern is torn between his affection for the party and his sickness. He may attempt to infect them before fleeing.",
+      "description": "Aldern Foxglove, scarred and sick, confronts the party outside his family manor.",
+      "mapNotes": "Manor grounds, open area with 100+ feet of space."
+    },
+    {
+      "id": "ch2-e2",
+      "chapter": 2,
+      "part": 1,
+      "name": "The Necromancer",
+      "location": "Sandpoint - Foxglove Manor Cellar",
+      "cr": 4,
+      "enemies": [
+        {
+          "name": "Caizarlu the Ghast",
+          "count": 1,
+          "cr": 3,
+          "hp": 27,
+          "ac": 15,
+          "attacks": [
+            {
+              "name": "Claw",
+              "bonus": 4,
+              "damage": "1d6+2",
+              "type": "melee"
+            },
+            {
+              "name": "Bite",
+              "bonus": 4,
+              "damage": "1d8+2",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Paralysis touch (DC 15)", "Stench aura", "Damage reduction 5/cold iron", "Undead immunities"]
+        },
+        {
+          "name": "Human Zombie",
+          "count": 4,
+          "cr": 0.5,
+          "hp": 12,
+          "ac": 10,
+          "attacks": [
+            {
+              "name": "Slam",
+              "bonus": 1,
+              "damage": "1d6+1",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Undead traits"]
+        }
+      ],
+      "treasure": "Undead robes, spell components, 50 gp",
+      "tactics": "Caizarlu uses paralysis touch to disable threats while zombies shamble forward. Ghast attempts to flank.",
+      "description": "One-eared Caizarlu, an undead ghast and servant of the Skinsaw Murders, has animated corpses in the manor's depths.",
+      "mapNotes": "Manor cellar, 30x40 feet. Rotting furniture provides cover. Stench fills the area."
+    },
+    {
+      "id": "ch2-e3",
+      "chapter": 2,
+      "part": 1,
+      "name": "B15 - Master Bedroom",
+      "location": "Foxglove Manor - Master Bedroom",
+      "cr": 5,
+      "enemies": [
+        {
+          "name": "Iesha's Ghost",
+          "count": 1,
+          "cr": 4,
+          "hp": 0,
+          "ac": 14,
+          "attacks": [
+            {
+              "name": "Spectral Touch",
+              "bonus": 3,
+              "damage": "1d4 cold",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Manifestation", "Rejuvenation", "Telekinesis", "Wail (DC 15 Will)", "Haunting presence"]
+        }
+      ],
+      "treasure": "None (ghost)",
+      "tactics": "Iesha's ghost attempts to communicate but her anguish makes her dangerous. She may attack blindly.",
+      "description": "The tortured spirit of Iesha Foxglove manifests in the master bedroom, driven to madness by betrayal and murder.",
+      "mapNotes": "Bedroom, 25x30 feet. Bed, furniture, and mold-covered walls. Temperature drops when ghost manifests."
+    },
+    {
+      "id": "ch2-e4",
+      "chapter": 2,
+      "part": 2,
+      "name": "D3 - The Undermill",
+      "location": "Sandpoint - Sandpoint Sawmill",
+      "cr": 5,
+      "enemies": [
+        {
+          "name": "Skinsaw Cultist",
+          "count": 3,
+          "cr": 1,
+          "hp": 7,
+          "ac": 15,
+          "attacks": [
+            {
+              "name": "Dagger",
+              "bonus": 2,
+              "damage": "1d4+1",
+              "type": "melee"
+            },
+            {
+              "name": "Light Crossbow",
+              "bonus": 2,
+              "damage": "1d8",
+              "type": "ranged"
+            }
+          ],
+          "specialAbilities": ["Fanaticism", "Shield of faith (spell)"]
+        },
+        {
+          "name": "Cultist Leader",
+          "count": 1,
+          "cr": 2,
+          "hp": 16,
+          "ac": 16,
+          "attacks": [
+            {
+              "name": "Masterwork Dagger",
+              "bonus": 3,
+              "damage": "1d4+2",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Sneak attack +1d6", "Command cultists", "Healing spells"]
+        }
+      ],
+      "treasure": "Masterwork dagger, scrolls, 80 gp",
+      "tactics": "Cultists form a group and cast defensive spells before engaging. Leader uses ranged support and healing.",
+      "description": "The Skinsaw Cult has established a cult headquarters in the Sandpoint Sawmill's lower levels.",
+      "mapNotes": "Mill, 40x50 feet. Sawblades provide hazardous terrain. Logs and machinery create obstacles."
+    },
+    {
+      "id": "ch2-e5",
+      "chapter": 2,
+      "part": 2,
+      "name": "E4 - Clock Tower Rookery",
+      "location": "Sandpoint - Clock Tower",
+      "cr": 6,
+      "enemies": [
+        {
+          "name": "Xanesha, The Skinsaw Master",
+          "count": 1,
+          "cr": 6,
+          "hp": 52,
+          "ac": 19,
+          "attacks": [
+            {
+              "name": "Rapier +1",
+              "bonus": 7,
+              "damage": "1d6+2",
+              "type": "melee",
+              "crit": "15-20"
+            }
+          ],
+          "specialAbilities": ["Lamia abilities (claws, spells)", "Detect thoughts", "Invisibility", "Magic weapons", "Combat expertise"]
+        }
+      ],
+      "treasure": "Rapier +1, Cloak of elvenkind, magical amulet, 300 gp",
+      "tactics": "Xanesha uses invisibility and ranged spells from distance. She attempts to dominate opponents using her supernatural abilities.",
+      "description": "Xanesha, a lamia and orchestrator of the Skinsaw Murders, commands the cult from her tower lair.",
+      "mapNotes": "Clock tower, 20x20 feet with 40-foot ceiling. Bells provide cover. Windows overlook the town."
+    },
+    {
+      "id": "ch3-e1",
+      "chapter": 3,
+      "part": 1,
+      "name": "Graul Farm Combat",
+      "location": "Hook Mountain Region - Graul Farm",
+      "cr": 7,
+      "enemies": [
+        {
+          "name": "Mammy Graul",
+          "count": 1,
+          "cr": 6,
+          "hp": 85,
+          "ac": 17,
+          "attacks": [
+            {
+              "name": "Ogre Hook",
+              "bonus": 10,
+              "damage": "3d8+7",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Rage", "Reach", "Uncanny dodge"]
+        },
+        {
+          "name": "Graul Ogre",
+          "count": 4,
+          "cr": 3,
+          "hp": 42,
+          "ac": 15,
+          "attacks": [
+            {
+              "name": "Greatclub",
+              "bonus": 7,
+              "damage": "2d8+4",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Power attack", "Ferocity"]
+        }
+      ],
+      "treasure": "Ogre hook, greatclubs, 600 gp, treasure hoard (1200 gp)",
+      "tactics": "Mammy Graul wades into combat with her hook, attempting to knock down opponents. Ogres coordinate attacks.",
+      "description": "Mammy Graul and her monstrous sons defend their farm stronghold against intruders.",
+      "mapNotes": "Farm compound, 60x80 feet. Farmhouse, barn, and fenced areas provide cover and obstacles."
+    },
+    {
+      "id": "ch3-e2",
+      "chapter": 3,
+      "part": 2,
+      "name": "Fort Rannick - Old Guard Post",
+      "location": "Fort Rannick - Old Guard Post",
+      "cr": 9,
+      "enemies": [
+        {
+          "name": "Stone Giant Overseer",
+          "count": 1,
+          "cr": 8,
+          "hp": 95,
+          "ac": 16,
+          "attacks": [
+            {
+              "name": "Greatclub",
+              "bonus": 13,
+              "damage": "2d10+8",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Crush (2d8+8)", "Rock throwing (120 ft.)", "Rock catching"]
+        },
+        {
+          "name": "Stone Giant Fighter",
+          "count": 2,
+          "cr": 7,
+          "hp": 85,
+          "ac": 15,
+          "attacks": [
+            {
+              "name": "Greatclub",
+              "bonus": 12,
+              "damage": "2d10+7",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Rock throwing", "Stomp"]
+        }
+      ],
+      "treasure": "Greatclubs, stone jewelry, 800 gp",
+      "tactics": "Stone giants fight in formation, using rock throws to damage at range. Overseer attempts to crush smaller foes.",
+      "description": "Stone giants have taken control of Fort Rannick's upper levels, establishing a military position.",
+      "mapNotes": "Fort structure, 50x50 feet per chamber. 15-foot ceilings accommodate giants. Fortifications provide cover."
+    },
+    {
+      "id": "ch3-e3",
+      "chapter": 3,
+      "part": 2,
+      "name": "Black Magga Rising",
+      "location": "Storval Deep/Fort Rannick",
+      "cr": 15,
+      "enemies": [
+        {
+          "name": "Black Magga the Hydra",
+          "count": 1,
+          "cr": 14,
+          "hp": 140,
+          "ac": 17,
+          "attacks": [
+            {
+              "name": "Bite",
+              "bonus": 16,
+              "damage": "2d8+8",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Multiple heads (regenerate if not burned)", "Coordinated attacks", "Tail sweep", "Frightful roar"]
+        }
+      ],
+      "treasure": "Treasure hoard in lair, 2000+ gp worth",
+      "tactics": "Black Magga uses her multiple heads to make coordinated attacks, regenerating bitten heads. She attempts to engulf smaller foes.",
+      "description": "An ancient, massive hydra emerges from the Storval Deep, a truly catastrophic threat.",
+      "mapNotes": "Deep water environment. Hydra fills much of the space. Cliffs and rock formations provide minimal cover."
+    },
+    {
+      "id": "ch3-e4",
+      "chapter": 3,
+      "part": 3,
+      "name": "Fort Rannick - Commander's Quarters",
+      "location": "Fort Rannick - Commander's Quarters",
+      "cr": 11,
+      "enemies": [
+        {
+          "name": "Jaagrath Kreeg",
+          "count": 1,
+          "cr": 9,
+          "hp": 104,
+          "ac": 17,
+          "attacks": [
+            {
+              "name": "Ogre Hook",
+              "bonus": 13,
+              "damage": "3d8+9",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Rage", "Uncanny dodge", "Damage reduction 2/-", "Command giants"]
+        },
+        {
+          "name": "Giant Thrall",
+          "count": 2,
+          "cr": 5,
+          "hp": 60,
+          "ac": 15,
+          "attacks": [
+            {
+              "name": "Greatclub",
+              "bonus": 10,
+              "damage": "2d10+6",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Rock throwing"]
+        }
+      ],
+      "treasure": "Ogre hook, giant treasure, 1000 gp",
+      "tactics": "Jaagrath commands from the center, using strategic positioning. Giants attempt to control the fight with ranged attacks.",
+      "description": "Jaagrath Kreeg, a powerful ogre warlord, commands the stone giant forces from Fort Rannick.",
+      "mapNotes": "Commander's quarters, 30x40 feet. War table, maps, and equipment provide cover."
+    },
+    {
+      "id": "ch4-e1",
+      "chapter": 4,
+      "part": 1,
+      "name": "Jorgenfist Approach",
+      "location": "Storval Plateau - Jorgenfist Approach",
+      "cr": 11,
+      "enemies": [
+        {
+          "name": "Stone Giant Patrol",
+          "count": 3,
+          "cr": 8,
+          "hp": 95,
+          "ac": 16,
+          "attacks": [
+            {
+              "name": "Greatclub",
+              "bonus": 13,
+              "damage": "2d10+8",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Rock throwing", "Rock catching", "Stomp"]
+        }
+      ],
+      "treasure": "None",
+      "tactics": "Giants form a patrol line and use rocks as primary weapon before closing to melee.",
+      "description": "Stone giant patrols guard the approaches to Jorgenfist.",
+      "mapNotes": "Open plateau terrain. Rocky outcroppings provide cover."
+    },
+    {
+      "id": "ch4-e2",
+      "chapter": 4,
+      "part": 2,
+      "name": "A6 - The Stone Gate",
+      "location": "Jorgenfist - Stone Gate",
+      "cr": 10,
+      "enemies": [
+        {
+          "name": "Greater Earth Elemental",
+          "count": 1,
+          "cr": 9,
+          "hp": 110,
+          "ac": 17,
+          "attacks": [
+            {
+              "name": "Slam",
+              "bonus": 15,
+              "damage": "2d8+10",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Earth mastery", "Tremorsense 60 ft.", "Stone gliding"]
+        }
+      ],
+      "treasure": "None",
+      "tactics": "Elemental attempts to engulf and grapple. It uses terrain to its advantage.",
+      "description": "A massive earth elemental guards the main gate to Jorgenfist.",
+      "mapNotes": "Gate chamber, 40x50 feet. Solid stone walls. Elemental can merge with stone."
+    },
+    {
+      "id": "ch4-e3",
+      "chapter": 4,
+      "part": 2,
+      "name": "B4 - The Great Cave of Jorgenfist",
+      "location": "Jorgenfist - Great Cave",
+      "cr": 12,
+      "enemies": [
+        {
+          "name": "Galenmir the Remorhaz",
+          "count": 1,
+          "cr": 11,
+          "hp": 115,
+          "ac": 17,
+          "attacks": [
+            {
+              "name": "Bite",
+              "bonus": 15,
+              "damage": "2d8+8",
+              "type": "melee"
+            },
+            {
+              "name": "Tail",
+              "bonus": 10,
+              "damage": "1d8+4",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Tremorsense 60 ft.", "Heat (2d6 fire damage to anything nearby)", "Tunnel", "Swallow whole"]
+        }
+      ],
+      "treasure": "Swallowed magical items (500+ gp)",
+      "tactics": "Remorhaz burrows beneath combatants and erupts to attack. Uses heat to damage nearby enemies.",
+      "description": "A massive, fire-breathing remorhaz dwells in the great cave of Jorgenfist.",
+      "mapNotes": "Great cave, 60x80 feet. Sandy/rocky floor allows burrowing. Stalactites provide minor cover."
+    },
+    {
+      "id": "ch4-e4",
+      "chapter": 4,
+      "part": 2,
+      "name": "B11 - Chamber of the Sihedron",
+      "location": "Jorgenfist - Chamber of the Sihedron",
+      "cr": 11,
+      "enemies": [
+        {
+          "name": "Enga the Ogre Mage",
+          "count": 1,
+          "cr": 9,
+          "hp": 90,
+          "ac": 18,
+          "attacks": [
+            {
+              "name": "Greatsword +1",
+              "bonus": 11,
+              "damage": "2d8+6",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Magic resistance 20%", "Spell-like abilities", "Invisibility", "Polymorph", "Regeneration 3"]
+        }
+      ],
+      "treasure": "Greatsword +1, magical amulet, 400 gp",
+      "tactics": "Enga uses magic resistance and spell-like abilities from range. She polymorphs or turns invisible to avoid damage.",
+      "description": "Enga, an ogre mage of considerable power, commands the Sihedron chamber.",
+      "mapNotes": "Chamber, 40x50 feet. Ancient altar at center. Magical runes cover walls."
+    },
+    {
+      "id": "ch4-e5",
+      "chapter": 4,
+      "part": 2,
+      "name": "B14 - Tyrant Trolls",
+      "location": "Jorgenfist - Troll Cavern",
+      "cr": 12,
+      "enemies": [
+        {
+          "name": "Troll",
+          "count": 2,
+          "cr": 5,
+          "hp": 63,
+          "ac": 15,
+          "attacks": [
+            {
+              "name": "Claw",
+              "bonus": 9,
+              "damage": "1d6+5",
+              "type": "melee"
+            },
+            {
+              "name": "Bite",
+              "bonus": 9,
+              "damage": "1d8+5",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Regeneration 5", "Rend (2d6+7 if both claws hit)", "Fast healing"]
+        }
+      ],
+      "treasure": "Troll treasure hoard (600 gp)",
+      "tactics": "Trolls attack with vicious rending attacks and regenerate damage. They attempt to isolate and tear apart opponents.",
+      "description": "Two ancient trolls, scarred from ages of battle, guard the inner vaults.",
+      "mapNotes": "Cavern, 50x60 feet. Bloodstained rock, bones scattered about."
+    },
+    {
+      "id": "ch4-e6",
+      "chapter": 4,
+      "part": 3,
+      "name": "Mokmurian Confrontation",
+      "location": "Jorgenfist - Mokmurian's Sanctum",
+      "cr": 14,
+      "enemies": [
+        {
+          "name": "Mokmurian the Giant Sorcerer",
+          "count": 1,
+          "cr": 13,
+          "hp": 150,
+          "ac": 19,
+          "attacks": [
+            {
+              "name": "Greatclub +1",
+              "bonus": 15,
+              "damage": "2d10+9",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Sorcerer spells (up to 6th level)", "Spell resistance 26", "Draconic bloodline", "Power attack", "Spell-like abilities"]
+        }
+      ],
+      "treasure": "Greatclub +1, Dragon armor +2, Ring of protection, 1000 gp",
+      "tactics": "Mokmurian uses ranged spells and area effects while maintaining distance. He casts defensive spells before melee.",
+      "description": "Mokmurian, a stone giant sorcerer of terrible power, directs the entire assault on Varisia.",
+      "mapNotes": "Sanctum, 40x50 feet. Pillars for cover. Magical focus items at cardinal points."
+    },
+    {
+      "id": "ch5-e1",
+      "chapter": 5,
+      "part": 1,
+      "name": "The Scribbler's Guardians",
+      "location": "Hook Mountain - Scribbler's Realm",
+      "cr": 13,
+      "enemies": [
+        {
+          "name": "The Scribbler",
+          "count": 1,
+          "cr": 14,
+          "hp": 150,
+          "ac": 18,
+          "attacks": [
+            {
+              "name": "Tentacle",
+              "bonus": 14,
+              "damage": "1d6+6",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Madness aura", "Summon demonic servants", "Reality-warping powers", "Spell-like abilities"]
+        }
+      ],
+      "treasure": "Demonic artifacts (1500+ gp)",
+      "tactics": "The Scribbler uses reality-warping and madness effects. It summons servants and uses area effects.",
+      "description": "The Scribbler, an ancient entity of madness and chaos, still lingers in Hook Mountain.",
+      "mapNotes": "Reality is twisted here. Terrain and laws of physics are unreliable."
+    },
+    {
+      "id": "ch5-e2",
+      "chapter": 5,
+      "part": 2,
+      "name": "Azaven's Resurrection",
+      "location": "Ravenous Crypts - Azaven's Chamber",
+      "cr": 13,
+      "enemies": [
+        {
+          "name": "Xyoddin the Lich",
+          "count": 1,
+          "cr": 12,
+          "hp": 130,
+          "ac": 26,
+          "attacks": [
+            {
+              "name": "Touch attack",
+              "bonus": 12,
+              "damage": "1d4+5 cold",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Paralyzing touch", "Spells (up to 7th level)", "Undead immunities", "Damage reduction 15/bludgeoning and magic", "Phylactery"]
+        }
+      ],
+      "treasure": "Phylactery, magical robes, ring of protection +2, 800 gp",
+      "tactics": "Xyoddin uses ranged spells and paralyzing touch while maintaining distance. Phylactery is hidden.",
+      "description": "Xyoddin, an ancient lich, has preserved his master Azaven's remains.",
+      "mapNotes": "Crypt chamber, 50x60 feet. Tombs and sarcophagi provide cover. Phylactery hidden in chamber."
+    },
+    {
+      "id": "ch5-e3",
+      "chapter": 5,
+      "part": 3,
+      "name": "Mustard Jelly Swarm",
+      "location": "Ravenous Crypts - Befouled Chamber",
+      "cr": 14,
+      "enemies": [
+        {
+          "name": "Mustard Jelly",
+          "count": 1,
+          "cr": 14,
+          "hp": 160,
+          "ac": 20,
+          "attacks": [
+            {
+              "name": "Pseudopod",
+              "bonus": 16,
+              "damage": "2d6+8",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Energy absorption (immune to electricity, heals from it)", "Constriction (2d6+8)", "Engulfing", "Acidic secretions"]
+        }
+      ],
+      "treasure": "Absorbed magical items (800+ gp value)",
+      "tactics": "Mustard jelly uses constriction and engulfing attacks. It moves toward electrical sources.",
+      "description": "A massive, acidic ooze creature guards the befouled chamber deep underground.",
+      "mapNotes": "Underground chamber, 40x50 feet. Moisture-laden walls. Pools of acidic fluid."
+    },
+    {
+      "id": "ch6-e1",
+      "chapter": 6,
+      "part": 1,
+      "name": "Xin's Stairway",
+      "location": "Xin-Shalast - Stairway to the city",
+      "cr": 13,
+      "enemies": [
+        {
+          "name": "Greater Cliffside Wyvern",
+          "count": 1,
+          "cr": 12,
+          "hp": 150,
+          "ac": 19,
+          "attacks": [
+            {
+              "name": "Bite",
+              "bonus": 15,
+              "damage": "2d6+8",
+              "type": "melee"
+            },
+            {
+              "name": "Tail",
+              "bonus": 15,
+              "damage": "1d8+8 + poison",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Poison tail (DC 20 Fort, 2d6 damage)", "Improved grab", "Fly 150 ft."]
+        }
+      ],
+      "treasure": "None",
+      "tactics": "Wyvern uses aerial advantage, diving and striking with stinging tail.",
+      "description": "A massive wyvern guards the stairway to the lost city of Xin-Shalast.",
+      "mapNotes": "Mountainside stairway, 200+ feet elevation change. Cliff terrain provides hazards."
+    },
+    {
+      "id": "ch6-e2",
+      "chapter": 6,
+      "part": 2,
+      "name": "Shrine of Monsters and Madness",
+      "location": "Xin-Shalast - Shrine",
+      "cr": 13,
+      "enemies": [
+        {
+          "name": "Lamia Cultist Queen",
+          "count": 1,
+          "cr": 10,
+          "hp": 95,
+          "ac": 20,
+          "attacks": [
+            {
+              "name": "Dagger +2",
+              "bonus": 11,
+              "damage": "1d4+3",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Spell-like abilities", "Spellcasting (up to 5th level)", "Charm spells", "Invisibility"]
+        },
+        {
+          "name": "Lamia Cultist",
+          "count": 3,
+          "cr": 4,
+          "hp": 40,
+          "ac": 17,
+          "attacks": [
+            {
+              "name": "Claw",
+              "bonus": 6,
+              "damage": "1d4+2",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Spellcasting (up to 3rd level)"]
+        }
+      ],
+      "treasure": "Dagger +2, magical robes, 500 gp",
+      "tactics": "Queen uses domination and charm spells. Cultists coordinate attacks from range.",
+      "description": "The Shrine contains a cult dedicated to monsters and madness, protecting Karzoug's inner sanctum.",
+      "mapNotes": "Shrine chamber, 50x60 feet. Altars and ritual circles provide cover and magical hazards."
+    },
+    {
+      "id": "ch6-e3",
+      "chapter": 6,
+      "part": 3,
+      "name": "Crypts of the Builders",
+      "location": "Xin-Shalast - Crypts",
+      "cr": 12,
+      "enemies": [
+        {
+          "name": "Guardian Golems",
+          "count": 2,
+          "cr": 9,
+          "hp": 110,
+          "ac": 24,
+          "attacks": [
+            {
+              "name": "Slam",
+              "bonus": 16,
+              "damage": "2d10+8",
+              "type": "melee"
+            }
+          ],
+          "specialAbilities": ["Damage reduction 10/adamantine", "Magic immunity", "Stone form", "Regeneration from magic"]
+        }
+      ],
+      "treasure": "None",
+      "tactics": "Golems attack methodically and coordinate movements.",
+      "description": "Ancient stone golems guard the crypts of the ancient builders of Xin-Shalast.",
+      "mapNotes": "Crypt chamber, 60x70 feet. Sarcophagi and pillars provide cover."
+    },
+    {
+      "id": "ch6-e4",
+      "chapter": 6,
+      "part": 4,
+      "name": "Karzoug's Ascension",
+      "location": "Xin-Shalast - The Pinnacle",
+      "cr": 18,
+      "enemies": [
+        {
+          "name": "Karzoug the Claimer",
+          "count": 1,
+          "cr": 17,
+          "hp": 250,
+          "ac": 30,
+          "attacks": [
+            {
+              "name": "Scourge of Shalast (magical whip)",
+              "bonus": 18,
+              "damage": "2d6+10",
+              "type": "melee",
+              "crit": "17-20"
+            }
+          ],
+          "specialAbilities": ["Wizard spells (up to 9th level)", "Mythic abilities", "Spell resistance 30", "Damage reduction 15/-, regeneration 10", "Shapechange", "Time stop", "Wish-like powers"]
+        }
+      ],
+      "treasure": "Scourge of Shalast, Robes of Thassilonian power, Ring of wizardry, Cloak of resistance +5, 5000+ gp",
+      "tactics": "Karzoug uses mythic spellcasting, combat maneuvers, and reality-bending magic. Uses minions and summons.",
+      "description": "Karzoug, the ancient Thassilonian war-mage and god of the age, has finally returned to claim dominion over Varisia.",
+      "mapNotes": "The Pinnacle of Xin-Shalast, 80x80 feet with 100-foot ceilings. Magical wards and hazards fill the chamber. Ancient magic permeates everything."
+    }
+  ]
+}

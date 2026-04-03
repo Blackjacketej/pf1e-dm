@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Map POI Calibrator</title>
+<style>
+  body { margin: 0; background: #111; color: #fff; font-family: monospace; }
+  #container { position: relative; display: inline-block; }
+  #container img { display: block; max-width: 100vw; max-height: 90vh; }
+  .pin { position: absolute; transform: translate(-50%, -50%); font-size: 18px; cursor: pointer; z-index: 10; }
+  .pin:hover .label { display: block; }
+  .label { display: none; position: absolute; top: -22px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.9); color: #ffd700; padding: 2px 6px; border-radius: 3px; font-size: 11px; white-space: nowrap; border: 1px solid #ffd700; }
+  #coords { position: fixed; top: 0; left: 0; background: rgba(0,0,0,0.9); color: #0f0; padding: 8px 16px; font-size: 14px; z-index: 100; }
+  #output { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.95); color: #0f0; padding: 8px; font-size: 12px; max-height: 200px; overflow-y: auto; z-index: 100; border-top: 1px solid #333; }
+  #controls { position: fixed; top: 0; right: 0; background: rgba(0,0,0,0.9); padding: 8px; z-index: 100; }
+  #controls select, #controls button { margin: 2px; padding: 4px 8px; font-size: 12px; }
+</style>
+</head>
+<body>
+<div id="coords">Move mouse over map</div>
+<div id="controls">
+  <select id="mapSelect">
+    <option value="maps/sandpoint_hinterlands.webp">Sandpoint Hinterlands</option>
+    <option value="maps/varisia-small-sandbox-campaign-v0-7ngfta16ppz91.webp">Varisia</option>
+  </select>
+  <button onclick="copyOutput()">Copy JSON</button>
+  <button onclick="clearPins()">Clear</button>
+</div>
+<div id="container">
+  <img id="mapImg" src="maps/sandpoint_hinterlands.webp" />
+</div>
+<div id="output">Click on map to place pins. Output will appear here.</div>
+
+<script>
+const img = document.getElementById('mapImg');
+const container = document.getElementById('container');
+const coordsEl = document.getElementById('coords');
+const outputEl = document.getElementById('output');
+const mapSelect = document.getElementById('mapSelect');
+let pins = [];
+
+mapSelect.addEventListener('change', () => {
+  img.src = mapSelect.value;
+  clearPins();
+});
+
+container.addEventListener('mousemove', (e) => {
+  const rect = img.getBoundingClientRect();
+  const xPct = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
+  const yPct = ((e.clientY - rect.top) / rect.height * 100).toFixed(1);
+  coordsEl.textContent = `x: ${xPct}%  y: ${yPct}%  (${Math.round(e.clientX - rect.left)}px, ${Math.round(e.clientY - rect.top)}px)`;
+});
+
+container.addEventListener('click', (e) => {
+  if (e.target.classList.contains('pin')) return;
+  const rect = img.getBoundingClientRect();
+  const xPct = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
+  const yPct = ((e.clientY - rect.top) / rect.height * 100).toFixed(1);
+  const label = prompt('Location name:');
+  if (!label) return;
+  const type = prompt('Type (town/city/dungeon/ruin/wilderness/temple/tavern):', 'town');
+  const id = label.toLowerCase().replace(/[^a-z0-9]+/g, '_');
+
+  pins.push({ id, label, xPct: parseFloat(xPct), yPct: parseFloat(yPct), type: type || 'town' });
+
+  const pinEl = document.createElement('div');
+  pinEl.className = 'pin';
+  pinEl.style.left = xPct + '%';
+  pinEl.style.top = yPct + '%';
+  pinEl.textContent = type === 'city' ? '\u{1F3DB}' : type === 'dungeon' ? '\u{1F480}' : type === 'ruin' ? '\u{1F5FC}' : type === 'wilderness' ? '\u{1F332}' : type === 'temple' ? '\u2720' : '\u{1F3F0}';
+  pinEl.innerHTML += `<span class="label">${label} (${xPct}%, ${yPct}%)</span>`;
+  container.appendChild(pinEl);
+
+  updateOutput();
+});
+
+function updateOutput() {
+  const json = pins.map(p =>
+    `      { id: '${p.id}', label: '${p.label}', xPct: ${p.xPct}, yPct: ${p.yPct}, type: '${p.type}' },`
+  ).join('\n');
+  outputEl.textContent = `poi: [\n${json}\n    ],`;
+}
+
+function copyOutput() {
+  navigator.clipboard.writeText(outputEl.textContent);
+  alert('Copied!');
+}
+
+function clearPins() {
+  pins = [];
+  container.querySelectorAll('.pin').forEach(p => p.remove());
+  outputEl.textContent = 'Click on map to place pins.';
+}
+</script>
+</body>
+</html>

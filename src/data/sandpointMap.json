@@ -1,0 +1,286 @@
+{
+  "mapSettings": {
+    "name": "Sandpoint & Hinterlands",
+    "bounds": { "width": 1200, "height": 900 },
+    "scale": "1 unit = ~100 feet in town, ~0.25 miles in hinterlands",
+    "hexSize": 12,
+    "hexUnit": "miles"
+  },
+  "regions": [
+    { "id": "sandpoint_town", "name": "Sandpoint", "type": "settlement", "bounds": { "x": 450, "y": 350, "w": 200, "h": 180 }, "terrain": "urban", "climate": "temperate", "description": "A quaint coastal town of ~1,240 souls on the Lost Coast of Varisia" },
+    { "id": "sandpoint_harbor", "name": "Sandpoint Harbor", "type": "water", "bounds": { "x": 400, "y": 530, "w": 250, "h": 120 }, "terrain": "coastal", "climate": "temperate" },
+    { "id": "nettlewood", "name": "Nettlewood", "type": "wilderness", "bounds": { "x": 700, "y": 200, "w": 250, "h": 200 }, "terrain": "forest", "climate": "temperate", "description": "Tangled thorny forest east of town, infested with goblins" },
+    { "id": "tickwood", "name": "Tickwood", "type": "wilderness", "bounds": { "x": 500, "y": 100, "w": 200, "h": 150 }, "terrain": "forest", "climate": "temperate", "description": "Small hunting forest north of the Turandarok, known for wild boar" },
+    { "id": "mosswood", "name": "Mosswood", "type": "wilderness", "bounds": { "x": 100, "y": 100, "w": 300, "h": 250 }, "terrain": "forest", "climate": "temperate", "description": "Vast redwood forest, home to the largest goblin tribe in the area" },
+    { "id": "devils_platter", "name": "Devil's Platter", "type": "wilderness", "bounds": { "x": 350, "y": 200, "w": 130, "h": 120 }, "terrain": "hills", "climate": "temperate", "description": "Limestone escarpment southeast of town; Birdcruncher goblin territory" },
+    { "id": "brinestump", "name": "Brinestump Marsh", "type": "wilderness", "bounds": { "x": 200, "y": 500, "w": 200, "h": 150 }, "terrain": "swamp", "climate": "temperate", "description": "Boggy marshland along the Soggy River delta; Licktoad goblin territory" },
+    { "id": "shanks_wood", "name": "Shank's Wood", "type": "wilderness", "bounds": { "x": 50, "y": 400, "w": 130, "h": 130 }, "terrain": "forest", "climate": "temperate", "description": "Dense forest near Brinestump; Seven Tooth goblin territory" },
+    { "id": "the_tors", "name": "The Tors", "type": "wilderness", "bounds": { "x": 900, "y": 400, "w": 200, "h": 200 }, "terrain": "hills", "climate": "temperate", "description": "Rocky coastal hills along the Lost Coast east of Sandpoint" },
+    { "id": "farmlands", "name": "Sandpoint Farmlands", "type": "wilderness", "bounds": { "x": 250, "y": 300, "w": 180, "h": 150 }, "terrain": "plains", "climate": "temperate", "description": "Cultivated fields and pastures supplying Sandpoint" },
+    { "id": "varisian_gulf", "name": "Varisian Gulf", "type": "water", "bounds": { "x": 300, "y": 650, "w": 600, "h": 250 }, "terrain": "water", "climate": "temperate", "description": "Cold waters of the gulf stretching to the horizon" },
+    { "id": "lost_coast_south", "name": "Lost Coast Road (South)", "type": "road", "bounds": { "x": 100, "y": 550, "w": 100, "h": 200 }, "terrain": "road", "climate": "temperate", "description": "Coast road heading south toward Magnimar (~50 miles)" }
+  ],
+  "locations": [
+    { "id": 1, "name": "Sandpoint Cathedral", "category": "temple", "x": 500, "y": 370, "region": "sandpoint_town", "description": "Grand cathedral dedicated to Desna, Sarenrae, Abadar, Shelyn, Gozreh, and Erastil", "npc": "Father Abstalar Zantus", "services": ["healing", "cure disease", "remove curse"] },
+    { "id": 2, "name": "Sandpoint Boneyard", "category": "landmark", "x": 520, "y": 360, "region": "sandpoint_town", "description": "Town cemetery behind the cathedral" },
+    { "id": 3, "name": "The White Deer", "category": "tavern", "x": 490, "y": 365, "region": "sandpoint_town", "description": "Upscale inn with views of the Varisian Gulf", "npc": "Garridan Viskalai", "services": ["lodging", "food"] },
+    { "id": 4, "name": "The Way North", "category": "shop", "x": 480, "y": 375, "region": "sandpoint_town", "description": "Maphouse and library of sea charts", "services": ["maps"] },
+    { "id": 5, "name": "Jeweler", "category": "shop", "x": 475, "y": 380, "region": "sandpoint_town", "description": "Dwarven jeweler renowned for fine craft" },
+    { "id": 6, "name": "Junker's Edge", "category": "landmark", "x": 460, "y": 390, "region": "sandpoint_town", "description": "Cliff-side dump where junk is thrown into the sea" },
+    { "id": 7, "name": "Gorvi's Shack", "category": "residence", "x": 455, "y": 395, "region": "sandpoint_town", "description": "Home of the half-orc street cleaner" },
+    { "id": 8, "name": "Brodert Quink's Home", "category": "residence", "x": 465, "y": 370, "region": "sandpoint_town", "description": "Home of the Thassilonian sage", "npc": "Brodert Quink" },
+    { "id": 9, "name": "Locksmith", "category": "shop", "x": 470, "y": 385, "region": "sandpoint_town", "description": "Locksmithing services and key duplication" },
+    { "id": 10, "name": "Sandpoint Garrison", "category": "government", "x": 510, "y": 380, "region": "sandpoint_town", "description": "Headquarters of the town guard and militia", "npc": "Sheriff Belor Hemlock" },
+    { "id": 11, "name": "Sandpoint Town Hall", "category": "government", "x": 515, "y": 375, "region": "sandpoint_town", "description": "Seat of town government and courts", "npc": "Mayor Kendra Deverin" },
+    { "id": 12, "name": "Savah's Armory", "category": "shop", "x": 505, "y": 385, "region": "sandpoint_town", "description": "The town's primary weapons and armor dealer", "services": ["weapons", "armor"] },
+    { "id": 13, "name": "Risa's Place", "category": "tavern", "x": 530, "y": 390, "region": "sandpoint_town", "description": "Quiet tavern run by an ancient Varisian sorceress" },
+    { "id": 14, "name": "Rovanky Tannery", "category": "craft", "x": 540, "y": 395, "region": "sandpoint_town", "description": "Leather tanning operation on the eastern edge of town" },
+    { "id": 15, "name": "Red Dog Smithy", "category": "craft", "x": 535, "y": 400, "region": "sandpoint_town", "description": "Foul-tempered but skilled blacksmith" },
+    { "id": 16, "name": "The Pillbug's Pantry", "category": "shop", "x": 525, "y": 395, "region": "sandpoint_town", "description": "Herbalist and apothecary", "services": ["potions", "herbs"] },
+    { "id": 17, "name": "Bottled Solutions", "category": "shop", "x": 520, "y": 400, "region": "sandpoint_town", "description": "Alchemist shop with unpredictable wares", "services": ["alchemical items"] },
+    { "id": 18, "name": "Cracktooth's Tavern", "category": "tavern", "x": 530, "y": 405, "region": "sandpoint_town", "description": "Bar with a large performance stage" },
+    { "id": 19, "name": "House of Blue Stones", "category": "temple", "x": 545, "y": 390, "region": "sandpoint_town", "description": "Small monastery dedicated to Irori" },
+    { "id": 20, "name": "Sandpoint Glassworks", "category": "craft", "x": 550, "y": 410, "region": "sandpoint_town", "description": "Glass factory owned by the Kaijitsu family — key Chapter 1 location", "npc": "Lonjiku Kaijitsu" },
+    { "id": 21, "name": "Sandpoint Savories", "category": "shop", "x": 515, "y": 410, "region": "sandpoint_town", "description": "The town's beloved bakery" },
+    { "id": 22, "name": "The Curious Goblin", "category": "shop", "x": 510, "y": 415, "region": "sandpoint_town", "description": "Surprisingly well-stocked bookshop", "services": ["books", "scrolls"] },
+    { "id": 23, "name": "Sandpoint Theater", "category": "entertainment", "x": 520, "y": 420, "region": "sandpoint_town", "description": "The town's cultural center for plays and performances" },
+    { "id": 24, "name": "Carpenter's Guild", "category": "craft", "x": 500, "y": 420, "region": "sandpoint_town", "description": "Headquarters of the local carpenter's association" },
+    { "id": 25, "name": "Sandpoint Lumber Mill", "category": "industry", "x": 490, "y": 430, "region": "sandpoint_town", "description": "Timber processing facility on the river", "npc": "Ibor Thorn" },
+    { "id": 26, "name": "General Store", "category": "shop", "x": 510, "y": 430, "region": "sandpoint_town", "description": "The oldest and best-stocked general store in town", "npc": "Ven Vinder", "services": ["general goods"] },
+    { "id": 27, "name": "Turandarok Academy", "category": "school", "x": 530, "y": 430, "region": "sandpoint_town", "description": "Orphanage and school for Sandpoint's children" },
+    { "id": 28, "name": "Madame Mvashti's House", "category": "residence", "x": 540, "y": 425, "region": "sandpoint_town", "description": "Home of Sandpoint's oldest resident, a Varisian seer", "npc": "Niska Mvashti" },
+    { "id": 29, "name": "Grocer's Hall", "category": "shop", "x": 505, "y": 440, "region": "sandpoint_town", "description": "Guild hall selling local farm produce" },
+    { "id": 30, "name": "Vernah's Fine Clothing", "category": "shop", "x": 515, "y": 445, "region": "sandpoint_town", "description": "Fine clothing for nobles and wealthy visitors", "services": ["clothing"] },
+    { "id": 31, "name": "Wheen's Wagons", "category": "shop", "x": 495, "y": 445, "region": "sandpoint_town", "description": "Wagon and transport services" },
+    { "id": 32, "name": "Scarnetti Mill", "category": "industry", "x": 480, "y": 435, "region": "sandpoint_town", "description": "Lumber mill owned by the Scarnetti family" },
+    { "id": 33, "name": "The Hagfish", "category": "tavern", "x": 500, "y": 460, "region": "sandpoint_town", "description": "Popular tavern with fishermen, gamblers, and the famous hagfish challenge" },
+    { "id": 34, "name": "Valdemar Fishmarket", "category": "shop", "x": 510, "y": 465, "region": "sandpoint_town", "description": "Fresh seafood from the Gulf" },
+    { "id": 35, "name": "Sandpoint Market", "category": "shop", "x": 520, "y": 460, "region": "sandpoint_town", "description": "Open-air market with vendors from Magnimar twice weekly", "services": ["general goods", "trade"] },
+    { "id": 36, "name": "Sandpoint Meat Market", "category": "shop", "x": 530, "y": 455, "region": "sandpoint_town", "description": "The town butcher" },
+    { "id": 37, "name": "The Rusty Dragon", "category": "tavern", "x": 540, "y": 450, "region": "sandpoint_town", "description": "Sandpoint's most popular tavern and inn, beloved by adventurers", "npc": "Ameiko Kaijitsu", "services": ["lodging", "food", "rumors"] },
+    { "id": 38, "name": "Goblin Squash Stables", "category": "shop", "x": 550, "y": 445, "region": "sandpoint_town", "description": "Stables run by a retired goblin hunter", "npc": "Daviren Hosk", "services": ["mounts", "stabling"] },
+    { "id": 39, "name": "Two Knight Brewery", "category": "craft", "x": 545, "y": 440, "region": "sandpoint_town", "description": "Local brewery producing fine ales" },
+    { "id": 40, "name": "Sandpoint Mercantile League", "category": "government", "x": 535, "y": 435, "region": "sandpoint_town", "description": "Merchant guild overseeing trade" },
+    { "id": 41, "name": "Sandpoint Boutique", "category": "shop", "x": 525, "y": 440, "region": "sandpoint_town", "description": "Eclectic shop: clothing, artwork, toys, tools" },
+    { "id": 42, "name": "Fatman's Feedbag", "category": "tavern", "x": 555, "y": 455, "region": "sandpoint_town", "description": "Rough tavern known for brawls" },
+    { "id": 43, "name": "The Pixie's Kitten", "category": "entertainment", "x": 560, "y": 450, "region": "sandpoint_town", "description": "Sandpoint's establishment of ill repute" },
+    { "id": 44, "name": "The Feathered Serpent", "category": "shop", "x": 555, "y": 430, "region": "sandpoint_town", "description": "Dealer in oddities, curiosities, and magic items", "services": ["magic items", "potions", "scrolls"] },
+    { "id": 45, "name": "Hannah's", "category": "shop", "x": 565, "y": 425, "region": "sandpoint_town", "description": "Midwife and healer", "npc": "Hannah Velerin", "services": ["healing"] },
+    { "id": 46, "name": "Sandpoint Shipyard", "category": "industry", "x": 520, "y": 490, "region": "sandpoint_town", "description": "Dry docks on the harbor", "npc": "Belven Valdemar" },
+    { "id": 47, "name": "Valdemar Manor", "category": "noble", "x": 560, "y": 370, "region": "sandpoint_town", "description": "Estate of the Valdemar family — shipbuilders and carpenters" },
+    { "id": 48, "name": "Scarnetti Manor", "category": "noble", "x": 470, "y": 360, "region": "sandpoint_town", "description": "Estate of the Scarnetti family — loggers and millers" },
+    { "id": 49, "name": "Kaijitsu Manor", "category": "noble", "x": 565, "y": 380, "region": "sandpoint_town", "description": "Estate of the Kaijitsu family — glassmakers and jewelers" },
+    { "id": 50, "name": "Deverin Manor", "category": "noble", "x": 575, "y": 365, "region": "sandpoint_town", "description": "Estate of the Deverin family — farmers and brewers" },
+
+    { "id": 100, "name": "The Old Light", "category": "ruin", "x": 430, "y": 350, "region": "sandpoint_town", "description": "Ancient Thassilonian lighthouse ruin on the northwestern cliff, ~170 ft above sea level" },
+    { "id": 101, "name": "Chopper's Isle", "category": "landmark", "x": 415, "y": 340, "region": "sandpoint_town", "description": "Tidal island where the serial killer Jervis Stoot once lived" },
+    { "id": 102, "name": "Sandpoint Bridge", "category": "landmark", "x": 470, "y": 340, "region": "sandpoint_town", "description": "Stone bridge over the Turandarok River entering town from the north" },
+
+    { "id": 200, "name": "Thistletop", "category": "dungeon", "x": 800, "y": 180, "region": "nettlewood", "description": "Island fortress of the Thistletop goblins — built atop a Thassilonian sentinel's stone head", "dangerLevel": "high" },
+    { "id": 201, "name": "Thistle River Ford", "category": "landmark", "x": 720, "y": 250, "region": "nettlewood", "description": "River crossing through the goblin-infested Nettlewood" },
+    { "id": 202, "name": "Gogmurt's Lair", "category": "encounter", "x": 760, "y": 220, "region": "nettlewood", "description": "The goblin druid's hidden grove in the thorny woods" },
+
+    { "id": 210, "name": "Mosswood Goblin Camp", "category": "encounter", "x": 200, "y": 200, "region": "mosswood", "description": "Main camp of the Mosswood tribe (~40 goblins), the largest in the region" },
+    { "id": 211, "name": "Ancient Redwood Grove", "category": "landmark", "x": 250, "y": 170, "region": "mosswood", "description": "Sacred grove of enormous redwood trees, rumored to be druid-protected" },
+
+    { "id": 220, "name": "Devil's Platter Summit", "category": "landmark", "x": 400, "y": 240, "region": "devils_platter", "description": "Top of the limestone escarpment with views of the surrounding area" },
+    { "id": 221, "name": "Birdcruncher Cave", "category": "encounter", "x": 380, "y": 260, "region": "devils_platter", "description": "Cave hideout of the Birdcruncher goblin tribe (~20 goblins)" },
+
+    { "id": 230, "name": "Brinestump Swamp Center", "category": "encounter", "x": 280, "y": 560, "region": "brinestump", "description": "Heart of the marsh where the Licktoad goblins dwell" },
+    { "id": 231, "name": "Soggy River Delta", "category": "landmark", "x": 250, "y": 590, "region": "brinestump", "description": "Muddy river delta where the Soggy River meets the gulf" },
+    { "id": 232, "name": "Licktoad Village", "category": "encounter", "x": 300, "y": 550, "region": "brinestump", "description": "Stilted goblin village in the marshes" },
+
+    { "id": 240, "name": "Seven Tooth Camp", "category": "encounter", "x": 80, "y": 450, "region": "shanks_wood", "description": "Hideout of the Seven Tooth goblin tribe" },
+
+    { "id": 250, "name": "Tickwood Hunting Camp", "category": "camp", "x": 570, "y": 150, "region": "tickwood", "description": "Frequented by Sandpoint hunters tracking boar" },
+
+    { "id": 260, "name": "Foxglove Manor", "category": "dungeon", "x": 950, "y": 450, "region": "the_tors", "description": "Haunted clifftop estate known as 'The Misgivings' — key Chapter 2 location", "dangerLevel": "high" },
+    { "id": 261, "name": "Foxglove Farm", "category": "landmark", "x": 920, "y": 430, "region": "the_tors", "description": "Overgrown farmland once belonging to the Foxglove family" },
+
+    { "id": 300, "name": "Lost Coast Road Junction", "category": "landmark", "x": 150, "y": 600, "region": "lost_coast_south", "description": "Where the road begins its 50-mile journey south to Magnimar" },
+    { "id": 301, "name": "Magnimar (distant)", "category": "city", "x": 50, "y": 850, "region": "lost_coast_south", "description": "Major city 50 miles south — population 16,428", "dangerLevel": "low" }
+  ],
+  "roads": [
+    { "id": "lost_coast_road", "name": "Lost Coast Road", "type": "road", "quality": "maintained", "speedMultiplier": 1.0, "path": [[50, 850], [100, 700], [150, 600], [250, 500], [400, 470], [500, 450], [550, 430], [600, 400], [700, 380], [850, 400], [950, 450]] },
+    { "id": "sandpoint_north_road", "name": "North Road", "type": "trail", "quality": "dirt", "speedMultiplier": 0.75, "path": [[470, 340], [480, 280], [500, 200], [520, 140]] },
+    { "id": "thistletop_trail", "name": "Thistletop Trail", "type": "trail", "quality": "rough", "speedMultiplier": 0.5, "path": [[600, 400], [650, 350], [700, 280], [760, 220], [800, 180]] },
+    { "id": "nettlewood_path", "name": "Nettlewood Path", "type": "trackless", "quality": "overgrown", "speedMultiplier": 0.5, "path": [[600, 400], [650, 320], [720, 250]] }
+  ],
+  "rivers": [
+    { "id": "turandarok", "name": "Turandarok River", "path": [[150, 200], [250, 250], [350, 280], [430, 310], [470, 340], [490, 430], [500, 500], [510, 560]] },
+    { "id": "thistle_river", "name": "Thistle River", "path": [[720, 250], [760, 280], [800, 310], [830, 370]] },
+    { "id": "soggy_river", "name": "Soggy River", "path": [[200, 450], [230, 500], [250, 550], [250, 590]] }
+  ],
+  "overland": {
+    "movementRates": {
+      "15": { "hourly": 1.5, "daily": 12 },
+      "20": { "hourly": 2, "daily": 16 },
+      "25": { "hourly": 2.5, "daily": 20 },
+      "30": { "hourly": 3, "daily": 24 },
+      "40": { "hourly": 4, "daily": 32 },
+      "50": { "hourly": 5, "daily": 40 },
+      "60": { "hourly": 6, "daily": 48 }
+    },
+    "terrainMultipliers": {
+      "highway":   { "plains": 1.25, "forest": 1.25, "hills": 1.25, "mountain": 1.25, "desert": 1.25, "swamp": 1.25 },
+      "road":      { "plains": 1.0,  "forest": 1.0,  "hills": 1.0,  "mountain": 0.75, "desert": 1.0,  "swamp": 1.0 },
+      "trail":     { "plains": 1.0,  "forest": 0.75, "hills": 0.75, "mountain": 0.5,  "desert": 0.75, "swamp": 0.75 },
+      "trackless": { "plains": 0.75, "forest": 0.5,  "hills": 0.5,  "mountain": 0.33, "desert": 0.5,  "swamp": 0.33 }
+    },
+    "terrainSurvivalDC": {
+      "plains": 12, "forest": 15, "hills": 14, "mountain": 16,
+      "desert": 16, "swamp": 16, "urban": 5, "road": 5, "coastal": 12, "water": 18
+    },
+    "gettingLostDC": {
+      "road": 0, "trail": 10, "plains": 12, "forest": 15, "hills": 14,
+      "mountain": 16, "desert": 16, "swamp": 18, "moor": 14
+    },
+    "gettingLostModifiers": {
+      "fog": 4, "night": 4, "overcast": 2, "rain": 2, "snow": 4,
+      "blizzard": 8, "sandstorm": 8
+    },
+    "forcedMarch": {
+      "normalHours": 8,
+      "baseFortDC": 10,
+      "dcIncrementPerHour": 2,
+      "nonlethalPerFail": "1d6",
+      "description": "After 8 hours, Fort save each hour (DC 10 + 2 per extra hour). Failure = 1d6 nonlethal + fatigued. If already fatigued, become exhausted."
+    },
+    "mountSpeeds": {
+      "light_horse": { "speed": 60, "daily": 48, "name": "Light Horse" },
+      "heavy_horse": { "speed": 50, "daily": 40, "name": "Heavy Horse" },
+      "pony": { "speed": 40, "daily": 32, "name": "Pony" },
+      "war_horse": { "speed": 60, "daily": 48, "name": "Warhorse" },
+      "wagon": { "speed": 30, "daily": 24, "name": "Wagon (2 horses)" },
+      "cart": { "speed": 30, "daily": 24, "name": "Cart (1 horse)" }
+    },
+    "visibility": {
+      "clear_day": { "range": "unlimited", "penalty": 0 },
+      "overcast": { "range": "2 miles", "penalty": -2 },
+      "fog_light": { "range": "300 ft", "penalty": -4 },
+      "fog_heavy": { "range": "60 ft", "penalty": -8 },
+      "rain": { "range": "1 mile", "penalty": -4 },
+      "heavy_rain": { "range": "300 ft", "penalty": -6 },
+      "snow": { "range": "300 ft", "penalty": -4 },
+      "blizzard": { "range": "20 ft", "penalty": -10 },
+      "night_moonlit": { "range": "60 ft", "penalty": -4 },
+      "night_dark": { "range": "0 ft (darkvision only)", "penalty": -8 },
+      "torch": { "range": "20 ft normal, 40 ft dim", "penalty": -4 },
+      "lantern": { "range": "30 ft normal, 60 ft dim", "penalty": -2 }
+    },
+    "starvation": {
+      "daysWithoutFood": 3,
+      "afterLimitDC": 10,
+      "dcIncrementPerDay": 1,
+      "damagePerFail": "1d6 nonlethal"
+    },
+    "thirst": {
+      "hoursWithoutWater": "1 day + CON score hours",
+      "afterLimitDC": 10,
+      "dcIncrementPerHour": 1,
+      "damagePerFail": "1d6 nonlethal"
+    },
+    "coldExposure": {
+      "cold": { "threshold": 40, "saveInterval": "1 hour", "fortDC": 15, "damage": "1d6 nonlethal" },
+      "severe": { "threshold": 0, "saveInterval": "10 min", "fortDC": 15, "damage": "1d6 nonlethal" },
+      "extreme": { "threshold": -20, "saveInterval": "1 min", "fortDC": 0, "damage": "1d6 lethal (no save)" }
+    },
+    "heatExposure": {
+      "hot": { "threshold": 90, "saveInterval": "1 hour", "fortDC": 15, "damage": "1d4 nonlethal" },
+      "severe": { "threshold": 110, "saveInterval": "10 min", "fortDC": 15, "damage": "1d4 nonlethal" },
+      "extreme": { "threshold": 140, "saveInterval": "1 min", "fortDC": 0, "damage": "1d6 lethal (no save)" }
+    },
+    "altitudeSickness": {
+      "highPeak": { "altitude": 15000, "saveInterval": "6 hours", "fortDC": 15, "damage": "1 to all ability scores" }
+    },
+    "encounterFrequency": {
+      "plains": 15, "forest": 20, "hills": 20, "mountain": 25,
+      "desert": 15, "swamp": 25, "road": 10, "urban": 5, "coastal": 10
+    },
+    "timeOfDay": [
+      { "id": "dawn", "name": "Dawn", "hours": [5, 8], "lightLevel": "dim/bright", "encounterMod": 0.8 },
+      { "id": "morning", "name": "Morning", "hours": [8, 12], "lightLevel": "bright", "encounterMod": 0.7 },
+      { "id": "afternoon", "name": "Afternoon", "hours": [12, 17], "lightLevel": "bright", "encounterMod": 0.8 },
+      { "id": "dusk", "name": "Dusk", "hours": [17, 20], "lightLevel": "dim", "encounterMod": 1.0 },
+      { "id": "evening", "name": "Evening", "hours": [20, 23], "lightLevel": "dark", "encounterMod": 1.2 },
+      { "id": "midnight", "name": "Midnight", "hours": [23, 5], "lightLevel": "dark", "encounterMod": 1.5 }
+    ]
+  },
+  "encounterTables": {
+    "road": [
+      { "range": [1, 20], "encounter": "Merchant caravan (friendly)", "cr": 0 },
+      { "range": [21, 35], "encounter": "Varisian travelers", "cr": 0 },
+      { "range": [36, 50], "encounter": "Patrol (Sandpoint militia)", "cr": 0 },
+      { "range": [51, 65], "encounter": "Wild animals (deer, foxes)", "cr": 0 },
+      { "range": [66, 75], "encounter": "1d4 Goblin scouts", "cr": 2 },
+      { "range": [76, 85], "encounter": "1d3 Bandits", "cr": 3 },
+      { "range": [86, 92], "encounter": "Wild boar", "cr": 2 },
+      { "range": [93, 97], "encounter": "Dire wolf", "cr": 3 },
+      { "range": [98, 100], "encounter": "Ogre (Lost Coast wanderer)", "cr": 3 }
+    ],
+    "forest": [
+      { "range": [1, 15], "encounter": "1d6 Goblin warriors", "cr": 3 },
+      { "range": [16, 25], "encounter": "Giant spider", "cr": 1 },
+      { "range": [26, 35], "encounter": "1d4 Wolves", "cr": 2 },
+      { "range": [36, 45], "encounter": "Wild boar", "cr": 2 },
+      { "range": [46, 55], "encounter": "Stirge swarm (1d6)", "cr": 3 },
+      { "range": [56, 65], "encounter": "Goblin patrol (2d4)", "cr": 4 },
+      { "range": [66, 75], "encounter": "Dire bat", "cr": 2 },
+      { "range": [76, 83], "encounter": "Ettercap", "cr": 3 },
+      { "range": [84, 90], "encounter": "Bugbear", "cr": 2 },
+      { "range": [91, 95], "encounter": "Will-o'-wisp", "cr": 6 },
+      { "range": [96, 100], "encounter": "Green hag", "cr": 5 }
+    ],
+    "hills": [
+      { "range": [1, 20], "encounter": "Wild goats", "cr": 0 },
+      { "range": [21, 35], "encounter": "Giant centipede", "cr": 1 },
+      { "range": [36, 50], "encounter": "1d4 Goblin warriors", "cr": 2 },
+      { "range": [51, 65], "encounter": "Dire wolf", "cr": 3 },
+      { "range": [66, 75], "encounter": "1d3 Hobgoblins", "cr": 3 },
+      { "range": [76, 85], "encounter": "Harpy", "cr": 4 },
+      { "range": [86, 92], "encounter": "Manticore", "cr": 5 },
+      { "range": [93, 97], "encounter": "Griffon", "cr": 4 },
+      { "range": [98, 100], "encounter": "Hill giant", "cr": 7 }
+    ],
+    "swamp": [
+      { "range": [1, 15], "encounter": "Giant frog (1d4)", "cr": 2 },
+      { "range": [16, 30], "encounter": "Goblin patrol (1d6)", "cr": 3 },
+      { "range": [31, 40], "encounter": "Giant leech (1d3)", "cr": 2 },
+      { "range": [41, 50], "encounter": "Crocodile", "cr": 2 },
+      { "range": [51, 60], "encounter": "Stirge swarm (2d4)", "cr": 4 },
+      { "range": [61, 70], "encounter": "Giant snake", "cr": 2 },
+      { "range": [71, 80], "encounter": "Boggard patrol (1d4)", "cr": 4 },
+      { "range": [81, 90], "encounter": "Will-o'-wisp", "cr": 6 },
+      { "range": [91, 95], "encounter": "Black dragon (young)", "cr": 7 },
+      { "range": [96, 100], "encounter": "Hydra", "cr": 8 }
+    ],
+    "coastal": [
+      { "range": [1, 25], "encounter": "Seabirds and crabs (no threat)", "cr": 0 },
+      { "range": [26, 40], "encounter": "1d4 Goblin beach scouts", "cr": 2 },
+      { "range": [41, 55], "encounter": "Giant crab", "cr": 2 },
+      { "range": [56, 70], "encounter": "Reefclaw (1d3)", "cr": 3 },
+      { "range": [71, 80], "encounter": "Bunyip", "cr": 3 },
+      { "range": [81, 90], "encounter": "Sahuagin patrol (1d4)", "cr": 4 },
+      { "range": [91, 95], "encounter": "Sea hag", "cr": 4 },
+      { "range": [96, 100], "encounter": "Giant octopus", "cr": 8 }
+    ]
+  },
+  "locationCategories": {
+    "temple": { "icon": "cross", "color": "#c0a0ff" },
+    "tavern": { "icon": "beer", "color": "#ffa040" },
+    "shop": { "icon": "bag", "color": "#40c0ff" },
+    "government": { "icon": "shield", "color": "#ff4040" },
+    "craft": { "icon": "hammer", "color": "#a0a0a0" },
+    "industry": { "icon": "gear", "color": "#808060" },
+    "noble": { "icon": "crown", "color": "#ffd700" },
+    "residence": { "icon": "house", "color": "#60a060" },
+    "entertainment": { "icon": "star", "color": "#ff60ff" },
+    "school": { "icon": "book", "color": "#60c0c0" },
+    "landmark": { "icon": "flag", "color": "#c0c0c0" },
+    "ruin": { "icon": "tower", "color": "#8060a0" },
+    "dungeon": { "icon": "skull", "color": "#ff2020" },
+    "encounter": { "icon": "swords", "color": "#ff6040" },
+    "camp": { "icon": "fire", "color": "#ffa060" },
+    "city": { "icon": "castle", "color": "#ffffff" }
+  }
+}

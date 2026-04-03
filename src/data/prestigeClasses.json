@@ -1,0 +1,725 @@
+[
+  {
+    "name": "Arcane Archer",
+    "hd": 10,
+    "bab": "full",
+    "goodSaves": [
+      "Fort",
+      "Ref"
+    ],
+    "skills": 4,
+    "alignment": "Any",
+    "castingType": null,
+    "castingAbility": null,
+    "prestige": true,
+    "levels": 10,
+    "description": "An arcane spellcaster who draws upon ancient elven traditions to infuse arrows with potent magical power.",
+    "requirements": "BAB +6, Point Blank Shot, Precise Shot, Weapon Focus (longbow or shortbow), ability to cast 1st-level arcane spells",
+    "classSkills": [
+      "Perception",
+      "Ride",
+      "Stealth",
+      "Survival"
+    ],
+    "proficiencies": {
+      "weapons": [
+        "All simple and martial weapons"
+      ],
+      "armor": [
+        "Light armor",
+        "Medium armor",
+        "Shields"
+      ]
+    },
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Enhance Arrows",
+        "description": "Enhance arrows with +1 enhancement bonus; increases at higher levels."
+      },
+      {
+        "level": 2,
+        "name": "Imbue Arrow",
+        "description": "Place an area spell upon an arrow, delivering it to the target location."
+      },
+      {
+        "level": 3,
+        "name": "Enhance Arrows (Elemental)",
+        "description": "Add flaming, frost, or shock to arrows."
+      },
+      {
+        "level": 4,
+        "name": "Seeker Arrow",
+        "description": "Once per day, fire an arrow that ignores concealment and cover (except total cover)."
+      },
+      {
+        "level": 5,
+        "name": "Enhance Arrows (Distance)",
+        "description": "Arrows gain the distance weapon property."
+      },
+      {
+        "level": 6,
+        "name": "Phase Arrow",
+        "description": "Once per day, launch an arrow that passes through solid objects."
+      },
+      {
+        "level": 7,
+        "name": "Enhance Arrows (Elemental Burst)",
+        "description": "Add flaming burst, icy burst, or shocking burst."
+      },
+      {
+        "level": 8,
+        "name": "Hail of Arrows",
+        "description": "Once per day, fire one arrow at each target within range (up to one per level)."
+      },
+      {
+        "level": 9,
+        "name": "Enhance Arrows (Aligned)",
+        "description": "Add holy, unholy, anarchic, or axiomatic property."
+      },
+      {
+        "level": 10,
+        "name": "Arrow of Death",
+        "description": "Once per day, create a special arrow that forces a Fort save or die."
+      }
+    ]
+  },
+  {
+    "name": "Arcane Trickster",
+    "hd": 6,
+    "bab": "1/2",
+    "goodSaves": [
+      "Ref",
+      "Will"
+    ],
+    "skills": 4,
+    "alignment": "Any non-lawful",
+    "prestige": true,
+    "levels": 10,
+    "description": "A troublemaker and arcane spellcaster who uses magic to enhance sneaky tactics.",
+    "requirements": "Sneak Attack +2d6, misdirection, any 3 ranks in Disable Device, Escape Artist, Knowledge (arcana)",
+    "classSkills": [
+      "Acrobatics",
+      "Appraise",
+      "Bluff",
+      "Climb",
+      "Diplomacy",
+      "Disable Device",
+      "Disguise",
+      "Escape Artist",
+      "Knowledge (all)",
+      "Perception",
+      "Sense Motive",
+      "Sleight of Hand",
+      "Spellcraft",
+      "Stealth",
+      "Swim"
+    ],
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Ranged Legerdemain",
+        "description": "Perform Disable Device and Sleight of Hand at range using magic."
+      },
+      {
+        "level": 2,
+        "name": "Sneak Attack +1d6",
+        "description": "Additional sneak attack damage increases every 2 levels."
+      },
+      {
+        "level": 3,
+        "name": "Impromptu Sneak Attack (1/day)",
+        "description": "Declare one melee or ranged attack as a sneak attack."
+      },
+      {
+        "level": 5,
+        "name": "Tricky Spells (3/day)",
+        "description": "Cast spells without being noticed using Stealth."
+      },
+      {
+        "level": 7,
+        "name": "Impromptu Sneak Attack (2/day)",
+        "description": "Use impromptu sneak attack twice per day."
+      },
+      {
+        "level": 9,
+        "name": "Invisible Thief",
+        "description": "Can become invisible as a free action for rounds/level per day."
+      },
+      {
+        "level": 10,
+        "name": "Surprise Spells",
+        "description": "Add sneak attack damage to spells against flat-footed opponents."
+      }
+    ]
+  },
+  {
+    "name": "Assassin",
+    "hd": 8,
+    "bab": "3/4",
+    "goodSaves": [
+      "Ref"
+    ],
+    "skills": 4,
+    "alignment": "Any evil",
+    "prestige": true,
+    "levels": 10,
+    "description": "A master of dealing quick, lethal blows, trained in the use of poison and skilled at catching foes unaware.",
+    "requirements": "Alignment evil, Disguise 2 ranks, Stealth 5 ranks, must kill someone for no other reason than to become an assassin",
+    "classSkills": [
+      "Acrobatics",
+      "Bluff",
+      "Climb",
+      "Diplomacy",
+      "Disable Device",
+      "Disguise",
+      "Escape Artist",
+      "Intimidate",
+      "Linguistics",
+      "Perception",
+      "Sense Motive",
+      "Sleight of Hand",
+      "Stealth",
+      "Swim",
+      "Use Magic Device"
+    ],
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Sneak Attack +1d6",
+        "description": "Extra damage on sneak attacks; increases every 2 levels."
+      },
+      {
+        "level": 1,
+        "name": "Death Attack",
+        "description": "Study a target for 3 rounds, then attack to paralyze or kill (Fort negates)."
+      },
+      {
+        "level": 1,
+        "name": "Poison Use",
+        "description": "Trained in the use of poison and cannot accidentally poison yourself."
+      },
+      {
+        "level": 2,
+        "name": "Uncanny Dodge",
+        "description": "Cannot be caught flat-footed."
+      },
+      {
+        "level": 2,
+        "name": "Save Bonus vs. Poison",
+        "description": "+1 bonus vs poison, increases every 2 levels."
+      },
+      {
+        "level": 4,
+        "name": "Hidden Weapons",
+        "description": "+½ class level to Sleight of Hand to hide weapons."
+      },
+      {
+        "level": 4,
+        "name": "True Death",
+        "description": "Victims of death attack are harder to raise (raise dead DC 15 + assassin level)."
+      },
+      {
+        "level": 5,
+        "name": "Improved Uncanny Dodge",
+        "description": "Cannot be flanked."
+      },
+      {
+        "level": 8,
+        "name": "Hide in Plain Sight",
+        "description": "Use Stealth even while being observed within 10 ft of a shadow."
+      },
+      {
+        "level": 9,
+        "name": "Swift Death",
+        "description": "Apply death attack after 1 round of study (instead of 3)."
+      },
+      {
+        "level": 10,
+        "name": "Angel of Death",
+        "description": "Death attack kill effect becomes a death effect; kill is silent."
+      }
+    ]
+  },
+  {
+    "name": "Dragon Disciple",
+    "hd": 12,
+    "bab": "3/4",
+    "goodSaves": [
+      "Fort",
+      "Will"
+    ],
+    "skills": 2,
+    "alignment": "Any",
+    "prestige": true,
+    "levels": 10,
+    "description": "Those who embrace the power of dragons and undergo a transformation to become more draconic.",
+    "requirements": "Race non-dragon, Knowledge (arcana) 5 ranks, ability to cast 1st-level arcane spells without preparation (spontaneous caster)",
+    "classSkills": [
+      "Diplomacy",
+      "Escape Artist",
+      "Fly",
+      "Knowledge (all)",
+      "Perception",
+      "Spellcraft"
+    ],
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Blood of Dragons",
+        "description": "Choose dragon type; gain natural armor +1, claws, bite attack."
+      },
+      {
+        "level": 1,
+        "name": "Natural Armor Increase",
+        "description": "+1 natural armor; increases at 4th, 7th, 10th."
+      },
+      {
+        "level": 2,
+        "name": "Ability Boost (STR +2)",
+        "description": "Gain +2 Strength."
+      },
+      {
+        "level": 2,
+        "name": "Dragon Bite",
+        "description": "Gain bite attack dealing 1d6 + 1.5x STR."
+      },
+      {
+        "level": 3,
+        "name": "Breath Weapon",
+        "description": "Use breath weapon once/day matching dragon type (Xd6 damage, Ref half)."
+      },
+      {
+        "level": 4,
+        "name": "Ability Boost (STR +2)",
+        "description": "Gain additional +2 Strength."
+      },
+      {
+        "level": 5,
+        "name": "Blindsense 30 ft.",
+        "description": "Gain blindsense out to 30 feet."
+      },
+      {
+        "level": 7,
+        "name": "Dragon Form (1/day)",
+        "description": "Transform into a dragon using form of the dragon I."
+      },
+      {
+        "level": 8,
+        "name": "Ability Boost (CON +2)",
+        "description": "Gain +2 Constitution."
+      },
+      {
+        "level": 9,
+        "name": "Wings",
+        "description": "Grow wings, gaining a fly speed of 60 ft. (average)."
+      },
+      {
+        "level": 10,
+        "name": "Dragon Form (2/day)",
+        "description": "Use form of the dragon II twice per day; blindsense increases to 60 ft."
+      }
+    ]
+  },
+  {
+    "name": "Duelist",
+    "hd": 10,
+    "bab": "full",
+    "goodSaves": [
+      "Ref"
+    ],
+    "skills": 4,
+    "alignment": "Any",
+    "prestige": true,
+    "levels": 10,
+    "description": "A nimble, intelligent fighter trained in making precise attacks with light weapons.",
+    "requirements": "BAB +6, Dodge, Mobility, Weapon Finesse, Perform (dance) or Tumble 2 ranks",
+    "classSkills": [
+      "Acrobatics",
+      "Bluff",
+      "Escape Artist",
+      "Knowledge (nobility)",
+      "Perception",
+      "Perform",
+      "Sense Motive"
+    ],
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Canny Defense",
+        "description": "Add INT bonus to AC when wearing light or no armor and wielding a melee weapon in one hand."
+      },
+      {
+        "level": 1,
+        "name": "Precise Strike",
+        "description": "Add class level to damage with light or one-handed piercing melee weapon."
+      },
+      {
+        "level": 2,
+        "name": "Improved Reaction +2",
+        "description": "+2 bonus on initiative checks."
+      },
+      {
+        "level": 2,
+        "name": "Parry",
+        "description": "Spend AoO to attempt to parry a melee attack."
+      },
+      {
+        "level": 3,
+        "name": "Enhanced Mobility",
+        "description": "+4 dodge bonus to AC against attacks of opportunity from movement."
+      },
+      {
+        "level": 4,
+        "name": "Combat Reflexes",
+        "description": "Gain Combat Reflexes as a bonus feat."
+      },
+      {
+        "level": 4,
+        "name": "Grace",
+        "description": "+2 on Reflex saves."
+      },
+      {
+        "level": 5,
+        "name": "Riposte",
+        "description": "Make an AoO against a foe whose attack you successfully parry."
+      },
+      {
+        "level": 7,
+        "name": "Elaborate Defense",
+        "description": "+1 dodge AC per round of fighting defensively or total defense (replaces normal bonus)."
+      },
+      {
+        "level": 9,
+        "name": "Deflect Arrows",
+        "description": "Deflect one ranged attack per round; gain Deflect Arrows as a bonus feat."
+      },
+      {
+        "level": 10,
+        "name": "Crippling Critical",
+        "description": "When you confirm a critical hit, apply a penalty chosen from a list of debilitating effects."
+      }
+    ]
+  },
+  {
+    "name": "Eldritch Knight",
+    "hd": 10,
+    "bab": "full",
+    "goodSaves": [
+      "Fort"
+    ],
+    "skills": 2,
+    "alignment": "Any",
+    "prestige": true,
+    "levels": 10,
+    "description": "Warriors who blend martial prowess with arcane power, casting spells while wearing heavy armor.",
+    "requirements": "Able to cast 3rd-level arcane spells, Martial Weapon Proficiency",
+    "classSkills": [
+      "Climb",
+      "Knowledge (arcana)",
+      "Knowledge (nobility)",
+      "Linguistics",
+      "Ride",
+      "Sense Motive",
+      "Spellcraft",
+      "Swim"
+    ],
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Diverse Training",
+        "description": "Class levels count as both fighter and wizard levels for feat prerequisites."
+      },
+      {
+        "level": 2,
+        "name": "Spellcasting Progression",
+        "description": "+1 level of existing arcane spellcasting class (levels 2-10)."
+      },
+      {
+        "level": 5,
+        "name": "Bonus Combat Feat",
+        "description": "Gain a bonus combat feat; additional at 9th and 10th level."
+      },
+      {
+        "level": 10,
+        "name": "Spell Critical",
+        "description": "When you confirm a critical hit, you can cast a spell on that target as a swift action."
+      }
+    ]
+  },
+  {
+    "name": "Loremaster",
+    "hd": 6,
+    "bab": "1/2",
+    "goodSaves": [
+      "Will"
+    ],
+    "skills": 4,
+    "alignment": "Any",
+    "prestige": true,
+    "levels": 10,
+    "description": "Spellcasters who concentrate on knowledge, gathering lore and uncovering ancient secrets.",
+    "requirements": "Any 3 metamagic or item creation feats, Knowledge (any two) 7 ranks, ability to cast 7 different divination spells",
+    "classSkills": [
+      "Appraise",
+      "Diplomacy",
+      "Handle Animal",
+      "Heal",
+      "Knowledge (all)",
+      "Linguistics",
+      "Perform",
+      "Spellcraft",
+      "Use Magic Device"
+    ],
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Secret",
+        "description": "Choose a loremaster secret from the list; gain additional secrets at 3rd, 5th, 7th, 9th."
+      },
+      {
+        "level": 1,
+        "name": "Lore",
+        "description": "Add class level + INT to Knowledge checks; can make Knowledge checks untrained."
+      },
+      {
+        "level": 2,
+        "name": "Spellcasting Progression",
+        "description": "+1 level of existing spellcasting class (levels 2-10 except 4th, 8th)."
+      },
+      {
+        "level": 4,
+        "name": "Bonus Language",
+        "description": "Learn any new language."
+      },
+      {
+        "level": 6,
+        "name": "Greater Lore",
+        "description": "Identify magic items as if using identify."
+      },
+      {
+        "level": 10,
+        "name": "True Lore",
+        "description": "Use legend lore or analyze dweomer once per day as spell-like abilities."
+      }
+    ]
+  },
+  {
+    "name": "Mystic Theurge",
+    "hd": 6,
+    "bab": "1/2",
+    "goodSaves": [
+      "Will"
+    ],
+    "skills": 2,
+    "alignment": "Any",
+    "prestige": true,
+    "levels": 10,
+    "description": "Blending divine and arcane magic, mystic theurges draw power from both sources.",
+    "requirements": "Ability to cast 2nd-level divine spells and 2nd-level arcane spells, Knowledge (arcana) 3 ranks, Knowledge (religion) 3 ranks",
+    "classSkills": [
+      "Knowledge (arcana)",
+      "Knowledge (religion)",
+      "Sense Motive",
+      "Spellcraft"
+    ],
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Combined Spells",
+        "description": "Can prepare arcane spells in divine slots and vice versa (1st level spells)."
+      },
+      {
+        "level": 1,
+        "name": "Dual Spellcasting Progression",
+        "description": "+1 level in both an arcane and divine spellcasting class each level."
+      },
+      {
+        "level": 3,
+        "name": "Combined Spells (2nd)",
+        "description": "Can prepare 2nd-level spells from either tradition in either slot."
+      },
+      {
+        "level": 5,
+        "name": "Combined Spells (3rd)",
+        "description": "Can prepare 3rd-level spells from either tradition."
+      },
+      {
+        "level": 7,
+        "name": "Combined Spells (4th)",
+        "description": "Can prepare 4th-level spells from either tradition."
+      },
+      {
+        "level": 10,
+        "name": "Spell Synthesis",
+        "description": "Cast one arcane and one divine spell simultaneously as a full-round action."
+      }
+    ]
+  },
+  {
+    "name": "Pathfinder Chronicler",
+    "hd": 8,
+    "bab": "3/4",
+    "goodSaves": [
+      "Ref",
+      "Will"
+    ],
+    "skills": 8,
+    "alignment": "Any",
+    "prestige": true,
+    "levels": 10,
+    "description": "Adventurous scholars who record their exploits and the wonders they witness.",
+    "requirements": "Linguistics 3 ranks, Perform (oratory) 5 ranks, Profession (scribe) 5 ranks, 1 pointed published work",
+    "classSkills": [
+      "Appraise",
+      "Bluff",
+      "Diplomacy",
+      "Disguise",
+      "Escape Artist",
+      "Intimidate",
+      "Knowledge (all)",
+      "Linguistics",
+      "Perception",
+      "Perform",
+      "Ride",
+      "Sense Motive",
+      "Sleight of Hand",
+      "Survival",
+      "Use Magic Device"
+    ],
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Bardic Knowledge",
+        "description": "Add half class level on Knowledge checks; can make Knowledge checks untrained."
+      },
+      {
+        "level": 1,
+        "name": "Deep Pockets",
+        "description": "Can retrieve small items from pockets as if having a portable hole for small objects."
+      },
+      {
+        "level": 2,
+        "name": "Live to Tell the Tale",
+        "description": "Gain a bonus equal to ½ class level on saves vs. death effects."
+      },
+      {
+        "level": 2,
+        "name": "Pathfinding",
+        "description": "Cannot become lost and +5 on Survival checks in wilderness."
+      },
+      {
+        "level": 3,
+        "name": "Master Scribe",
+        "description": "Create and use scrolls as if having Scribe Scroll; +1 caster level with scrolls."
+      },
+      {
+        "level": 4,
+        "name": "Inspire Action (move)",
+        "description": "Spend a standard action to grant an ally an extra move action."
+      },
+      {
+        "level": 5,
+        "name": "Epic Tales",
+        "description": "Inspire courage as a bard of your chronicler level."
+      },
+      {
+        "level": 7,
+        "name": "Call Down the Legends",
+        "description": "Summon phantasmal allies from your chronicles."
+      },
+      {
+        "level": 10,
+        "name": "Lay of the Exalted Dead",
+        "description": "Once per week, inspire allies so profoundly they gain temporary benefits as if under heroes' feast."
+      }
+    ]
+  },
+  {
+    "name": "Shadowdancer",
+    "hd": 8,
+    "bab": "3/4",
+    "goodSaves": [
+      "Ref"
+    ],
+    "skills": 6,
+    "alignment": "Any",
+    "prestige": true,
+    "levels": 10,
+    "description": "Artists of stealth and deception who manipulate shadows and darkness.",
+    "requirements": "Dodge, Mobility, Combat Reflexes, Stealth 5 ranks, Perform (dance) 2 ranks",
+    "classSkills": [
+      "Acrobatics",
+      "Bluff",
+      "Diplomacy",
+      "Disguise",
+      "Escape Artist",
+      "Perception",
+      "Perform",
+      "Sleight of Hand",
+      "Stealth"
+    ],
+    "classFeatures": [
+      {
+        "level": 1,
+        "name": "Hide in Plain Sight",
+        "description": "Use Stealth even while being observed as long as within 10 ft of dim light."
+      },
+      {
+        "level": 2,
+        "name": "Evasion",
+        "description": "No damage on successful Reflex save."
+      },
+      {
+        "level": 2,
+        "name": "Darkvision",
+        "description": "Gain darkvision 60 ft or extend existing by 30 ft."
+      },
+      {
+        "level": 2,
+        "name": "Uncanny Dodge",
+        "description": "Cannot be caught flat-footed."
+      },
+      {
+        "level": 3,
+        "name": "Shadow Illusion",
+        "description": "Cast silent image 1/day using shadows as spell-like ability."
+      },
+      {
+        "level": 3,
+        "name": "Summon Shadow",
+        "description": "Summon an undead shadow companion."
+      },
+      {
+        "level": 4,
+        "name": "Shadow Call",
+        "description": "Cast shadow conjuration 1/day as spell-like ability."
+      },
+      {
+        "level": 4,
+        "name": "Shadow Jump (40 ft/day)",
+        "description": "Travel between shadows as dimension door; distance increases."
+      },
+      {
+        "level": 5,
+        "name": "Defensive Roll",
+        "description": "Once per day, avoid lethal damage with a Reflex save."
+      },
+      {
+        "level": 5,
+        "name": "Improved Uncanny Dodge",
+        "description": "Cannot be flanked."
+      },
+      {
+        "level": 7,
+        "name": "Slippery Mind",
+        "description": "Second save against enchantment effects."
+      },
+      {
+        "level": 10,
+        "name": "Shadow Master",
+        "description": "In dim light, gain DR 10/—, +2 luck bonus on saves. Can see in magical darkness."
+      }
+    ]
+  }
+]

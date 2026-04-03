@@ -1,0 +1,1973 @@
+{
+  "xpAwards": {
+    "crXPTable": {
+      "1/8": 50,
+      "1/6": 65,
+      "1/4": 100,
+      "1/3": 135,
+      "1/2": 200,
+      "1": 400,
+      "2": 600,
+      "3": 800,
+      "4": 1200,
+      "5": 1600,
+      "6": 2400,
+      "7": 3200,
+      "8": 4800,
+      "9": 6400,
+      "10": 9600,
+      "11": 12800,
+      "12": 19200,
+      "13": 25600,
+      "14": 38400,
+      "15": 51200,
+      "16": 76800,
+      "17": 102400,
+      "18": 153600,
+      "19": 204800,
+      "20": 307200,
+      "21": 409600,
+      "22": 614400,
+      "23": 819200,
+      "24": 1228800,
+      "25": 1638400
+    },
+    "xpProgressionTracks": {
+      "slow": [
+        0, 3000, 7500, 14000, 23000, 35000, 53000, 77000, 115000, 160000, 235000, 330000, 475000, 665000, 955000, 1350000, 1900000, 2700000, 3850000, 5350000
+      ],
+      "medium": [
+        0, 2000, 5000, 9000, 15000, 23000, 35000, 51000, 75000, 105000, 155000, 220000, 315000, 445000, 635000, 890000, 1300000, 1800000, 2550000, 3600000
+      ],
+      "fast": [
+        0, 1300, 3300, 6000, 10000, 15000, 23000, 34000, 50000, 71000, 105000, 145000, 210000, 295000, 425000, 600000, 850000, 1200000, 1700000, 2400000
+      ]
+    },
+    "storyAwards": [
+      {
+        "type": "Minor Quest Complete",
+        "xpMultiplier": 0.5,
+        "description": "Side objective or minor NPC favor completed"
+      },
+      {
+        "type": "Major Quest Complete",
+        "xpMultiplier": 1.0,
+        "description": "Primary story objective achieved"
+      },
+      {
+        "type": "Campaign Milestone",
+        "xpMultiplier": 2.0,
+        "description": "Major campaign turning point (defeat BBEG phase, save city, etc.)"
+      },
+      {
+        "type": "Clever Solution",
+        "xpMultiplier": 0.25,
+        "description": "Solved encounter through creative thinking instead of combat"
+      },
+      {
+        "type": "Roleplaying Award",
+        "xpMultiplier": 0.1,
+        "description": "Exceptional roleplaying or character development"
+      },
+      {
+        "type": "Discovery",
+        "xpMultiplier": 0.15,
+        "description": "Important lore discovery, map completion, or secret found"
+      },
+      {
+        "type": "Skill Challenge Overcome",
+        "xpMultiplier": 0.5,
+        "description": "Successfully completed a multi-skill challenge"
+      },
+      {
+        "type": "Diplomacy Victory",
+        "xpMultiplier": 0.75,
+        "description": "Resolved potentially violent encounter through negotiation"
+      },
+      {
+        "type": "Trap Bypassed",
+        "xpMultiplier": 0.5,
+        "description": "XP for bypassing/disabling trap (same as defeating)"
+      },
+      {
+        "type": "Hazard Survived",
+        "xpMultiplier": 0.5,
+        "description": "XP for surviving environmental hazard"
+      }
+    ],
+    "adHocAwards": {
+      "perCharacterPerSession": {
+        "lowLevel": {
+          "levels": "1-5",
+          "small": 50,
+          "medium": 100,
+          "large": 200
+        },
+        "midLevel": {
+          "levels": "6-10",
+          "small": 200,
+          "medium": 500,
+          "large": 1000
+        },
+        "highLevel": {
+          "levels": "11-15",
+          "small": 1000,
+          "medium": 2500,
+          "large": 5000
+        },
+        "epicLevel": {
+          "levels": "16-20",
+          "small": 5000,
+          "medium": 10000,
+          "large": 25000
+        }
+      }
+    }
+  },
+  "encounterBuilding": {
+    "difficultyCategories": [
+      {
+        "name": "Easy",
+        "crAdjust": -1,
+        "description": "APL - 1. Straightforward, low risk.",
+        "xpBudgetPct": 75
+      },
+      {
+        "name": "Average",
+        "crAdjust": 0,
+        "description": "APL + 0. Standard challenge.",
+        "xpBudgetPct": 100
+      },
+      {
+        "name": "Challenging",
+        "crAdjust": 1,
+        "description": "APL + 1. Tough but fair.",
+        "xpBudgetPct": 150
+      },
+      {
+        "name": "Hard",
+        "crAdjust": 2,
+        "description": "APL + 2. Significant danger.",
+        "xpBudgetPct": 200
+      },
+      {
+        "name": "Epic",
+        "crAdjust": 3,
+        "description": "APL + 3. Life-threatening.",
+        "xpBudgetPct": 300
+      }
+    ],
+    "crCombineTable": {
+      "1": 0,
+      "2": 2,
+      "3": 3,
+      "4": 4,
+      "6": 5,
+      "8": 6,
+      "12": 7,
+      "16": 8
+    },
+    "encounterBudgetByAPL": {
+      "1": 400,
+      "2": 600,
+      "3": 800,
+      "4": 1200,
+      "5": 1600,
+      "6": 2400,
+      "7": 3200,
+      "8": 4800,
+      "9": 6400,
+      "10": 9600,
+      "11": 12800,
+      "12": 19200,
+      "13": 25600,
+      "14": 38400,
+      "15": 51200,
+      "16": 76800,
+      "17": 102400,
+      "18": 153600,
+      "19": 204800,
+      "20": 307200
+    },
+    "partySizeAdjustment": {
+      "1-2": -1,
+      "3": 0,
+      "4": 0,
+      "5": 1,
+      "6+": 1
+    },
+    "encountersPerDay": {
+      "recommended": 4,
+      "minimum": 2,
+      "maximum": 7,
+      "notes": "Standard adventuring day assumes 4-5 medium encounters with short rests between, one long rest per day"
+    },
+    "encounterPacing": [
+      {
+        "encounterNum": 1,
+        "type": "Easy/Average",
+        "purpose": "Warm-up, resource expenditure begins"
+      },
+      {
+        "encounterNum": 2,
+        "type": "Average",
+        "purpose": "Standard challenge, party finds rhythm"
+      },
+      {
+        "encounterNum": 3,
+        "type": "Challenging",
+        "purpose": "Mid-day climax or turning point"
+      },
+      {
+        "encounterNum": 4,
+        "type": "Average/Hard",
+        "purpose": "Final push, resource management critical"
+      },
+      {
+        "encounterNum": 5,
+        "type": "Easy/RP",
+        "purpose": "Optional denouement or roleplaying encounter"
+      }
+    ],
+    "terrainModifiers": [
+      {
+        "terrain": "Open field",
+        "crMod": 0,
+        "notes": "No special advantage"
+      },
+      {
+        "terrain": "Forest/jungle",
+        "crMod": 0,
+        "notes": "Cover available, ranged penalties"
+      },
+      {
+        "terrain": "Underground",
+        "crMod": 1,
+        "notes": "Limited movement, darkness favors darkvision"
+      },
+      {
+        "terrain": "Narrow corridors",
+        "crMod": 1,
+        "notes": "Chokepoints favor defenders, large creatures penalized"
+      },
+      {
+        "terrain": "Elevated (cliffs, towers)",
+        "crMod": 1,
+        "notes": "High ground advantage, falling hazard"
+      },
+      {
+        "terrain": "Water (waist deep)",
+        "crMod": 1,
+        "notes": "Difficult terrain, swim checks possible"
+      },
+      {
+        "terrain": "Underwater",
+        "crMod": 2,
+        "notes": "Breathing required, weapons penalized, freedom of movement valuable"
+      },
+      {
+        "terrain": "Aerial",
+        "crMod": 1,
+        "notes": "Flight required, falling danger, 3D positioning"
+      },
+      {
+        "terrain": "Urban rooftops",
+        "crMod": 1,
+        "notes": "Acrobatics checks, falling, cover from chimneys/walls"
+      },
+      {
+        "terrain": "Planar (hostile)",
+        "crMod": 2,
+        "notes": "Environmental effects, alien physics"
+      }
+    ]
+  },
+  "npcAttitudes": {
+    "attitudes": [
+      {
+        "id": "hostile",
+        "name": "Hostile",
+        "startingDC": 25,
+        "shiftDC": 25,
+        "description": "Will actively hinder, attack, or betray the party",
+        "socialPenalty": -10,
+        "aidChance": 0,
+        "betrayChance": 50,
+        "priceModifier": 200
+      },
+      {
+        "id": "unfriendly",
+        "name": "Unfriendly",
+        "startingDC": 20,
+        "shiftDC": 20,
+        "description": "Dislikes the party, unhelpful but not violent",
+        "socialPenalty": -5,
+        "aidChance": 5,
+        "betrayChance": 25,
+        "priceModifier": 150
+      },
+      {
+        "id": "indifferent",
+        "name": "Indifferent",
+        "startingDC": 15,
+        "shiftDC": 15,
+        "description": "Neutral, will help for fair price",
+        "socialPenalty": 0,
+        "aidChance": 25,
+        "betrayChance": 10,
+        "priceModifier": 100
+      },
+      {
+        "id": "friendly",
+        "name": "Friendly",
+        "startingDC": 10,
+        "shiftDC": 10,
+        "description": "Likes the party, helpful when convenient",
+        "socialPenalty": 0,
+        "aidChance": 75,
+        "betrayChance": 2,
+        "priceModifier": 90
+      },
+      {
+        "id": "helpful",
+        "name": "Helpful",
+        "startingDC": 0,
+        "shiftDC": 0,
+        "description": "Goes out of their way to assist",
+        "socialPenalty": 0,
+        "aidChance": 95,
+        "betrayChance": 0,
+        "priceModifier": 75
+      }
+    ],
+    "diplomacyShiftDC": {
+      "hostile": 25,
+      "unfriendly": 20,
+      "indifferent": 15,
+      "friendly": 10
+    },
+    "intimidateRules": {
+      "baseDC": "10 + HD + WIS modifier",
+      "effect": "Shifts attitude to friendly for 1d6x10 minutes, then hostile",
+      "sizeMod": {
+        "smaller": 4,
+        "same": 0,
+        "larger": -4
+      },
+      "duration": "1d6 x 10 minutes"
+    },
+    "bluffRules": {
+      "baseDC": "Sense Motive check or 10 + WIS modifier + ranks",
+      "modifiers": [
+        {
+          "circumstance": "Believable lie",
+          "mod": 0
+        },
+        {
+          "circumstance": "Unlikely lie",
+          "mod": 5
+        },
+        {
+          "circumstance": "Far-fetched lie",
+          "mod": 10
+        },
+        {
+          "circumstance": "Impossible lie",
+          "mod": 20
+        },
+        {
+          "circumstance": "Target wants to believe",
+          "mod": -5
+        }
+      ]
+    },
+    "requestDCs": [
+      {
+        "request": "Simple (directions, common knowledge)",
+        "dc": 0,
+        "attitudeRequired": "indifferent"
+      },
+      {
+        "request": "Minor favor (borrow tool, brief aid)",
+        "dc": 5,
+        "attitudeRequired": "indifferent"
+      },
+      {
+        "request": "Moderate favor (discount, safe passage, info)",
+        "dc": 10,
+        "attitudeRequired": "friendly"
+      },
+      {
+        "request": "Major favor (loan money, take personal risk)",
+        "dc": 15,
+        "attitudeRequired": "friendly"
+      },
+      {
+        "request": "Dangerous favor (fight alongside, endanger self)",
+        "dc": 20,
+        "attitudeRequired": "helpful"
+      },
+      {
+        "request": "Impossible favor (betray allies, sacrifice self)",
+        "dc": 25,
+        "attitudeRequired": "helpful"
+      }
+    ]
+  },
+  "settlements": {
+    "sizeCategories": [
+      {
+        "type": "Thorp",
+        "population": "1-20",
+        "gpLimit": 50,
+        "baseValue": 50,
+        "spellcasting": 1,
+        "government": "council",
+        "qualities": 1,
+        "modifiers": {
+          "corruption": -4,
+          "crime": -4,
+          "economy": -4,
+          "law": -4,
+          "lore": -4,
+          "society": -4
+        }
+      },
+      {
+        "type": "Hamlet",
+        "population": "21-60",
+        "gpLimit": 200,
+        "baseValue": 200,
+        "spellcasting": 2,
+        "government": "council",
+        "qualities": 1,
+        "modifiers": {
+          "corruption": -2,
+          "crime": -2,
+          "economy": -2,
+          "law": -2,
+          "lore": -2,
+          "society": -2
+        }
+      },
+      {
+        "type": "Village",
+        "population": "61-200",
+        "gpLimit": 500,
+        "baseValue": 500,
+        "spellcasting": 3,
+        "government": "council",
+        "qualities": 2,
+        "modifiers": {
+          "corruption": -1,
+          "crime": -1,
+          "economy": -1,
+          "law": -1,
+          "lore": -1,
+          "society": -1
+        }
+      },
+      {
+        "type": "Small Town",
+        "population": "201-2000",
+        "gpLimit": 1000,
+        "baseValue": 1000,
+        "spellcasting": 4,
+        "government": "council",
+        "qualities": 2,
+        "modifiers": {
+          "corruption": 0,
+          "crime": 0,
+          "economy": 0,
+          "law": 0,
+          "lore": 0,
+          "society": 0
+        }
+      },
+      {
+        "type": "Large Town",
+        "population": "2001-5000",
+        "gpLimit": 2000,
+        "baseValue": 2000,
+        "spellcasting": 5,
+        "government": "council",
+        "qualities": 3,
+        "modifiers": {
+          "corruption": 0,
+          "crime": 0,
+          "economy": 0,
+          "law": 0,
+          "lore": 0,
+          "society": 0
+        }
+      },
+      {
+        "type": "Small City",
+        "population": "5001-10000",
+        "gpLimit": 4000,
+        "baseValue": 4000,
+        "spellcasting": 6,
+        "government": "council",
+        "qualities": 4,
+        "modifiers": {
+          "corruption": 1,
+          "crime": 1,
+          "economy": 1,
+          "law": 1,
+          "lore": 1,
+          "society": 1
+        }
+      },
+      {
+        "type": "Large City",
+        "population": "10001-25000",
+        "gpLimit": 8000,
+        "baseValue": 8000,
+        "spellcasting": 7,
+        "government": "council",
+        "qualities": 5,
+        "modifiers": {
+          "corruption": 2,
+          "crime": 2,
+          "economy": 2,
+          "law": 2,
+          "lore": 2,
+          "society": 2
+        }
+      },
+      {
+        "type": "Metropolis",
+        "population": "25001+",
+        "gpLimit": 16000,
+        "baseValue": 16000,
+        "spellcasting": 8,
+        "government": "council",
+        "qualities": 6,
+        "modifiers": {
+          "corruption": 4,
+          "crime": 4,
+          "economy": 4,
+          "law": 4,
+          "lore": 4,
+          "society": 4
+        }
+      }
+    ],
+    "governmentTypes": [
+      {
+        "id": "autocracy",
+        "name": "Autocracy",
+        "modifiers": {
+          "corruption": 0,
+          "law": 2,
+          "society": -2
+        },
+        "description": "Single ruler with absolute authority"
+      },
+      {
+        "id": "council",
+        "name": "Council",
+        "modifiers": {
+          "corruption": 0,
+          "society": 2,
+          "law": -2
+        },
+        "description": "Group of leaders ruling by consensus"
+      },
+      {
+        "id": "magical",
+        "name": "Magical",
+        "modifiers": {
+          "lore": 2,
+          "corruption": -2,
+          "society": -2
+        },
+        "description": "Spellcaster or magical creature rules"
+      },
+      {
+        "id": "military",
+        "name": "Military",
+        "modifiers": {
+          "law": 3,
+          "corruption": -1,
+          "society": -3
+        },
+        "description": "Military commander or junta"
+      },
+      {
+        "id": "overlord",
+        "name": "Overlord",
+        "modifiers": {
+          "corruption": 2,
+          "law": 2,
+          "crime": -2,
+          "society": -2
+        },
+        "description": "Appointed or conquered ruler"
+      },
+      {
+        "id": "theocracy",
+        "name": "Theocracy",
+        "modifiers": {
+          "lore": 1,
+          "corruption": -2,
+          "society": 1
+        },
+        "description": "Religious leader or organization"
+      },
+      {
+        "id": "secret_syndicate",
+        "name": "Secret Syndicate",
+        "modifiers": {
+          "corruption": 2,
+          "crime": 2,
+          "economy": 2,
+          "law": -6
+        },
+        "description": "Criminal organization secretly controls"
+      }
+    ],
+    "qualities": [
+      {
+        "id": "academic",
+        "name": "Academic",
+        "modifiers": {
+          "lore": 1
+        },
+        "description": "Known for learning and scholarship"
+      },
+      {
+        "id": "holy_site",
+        "name": "Holy Site",
+        "modifiers": {
+          "corruption": -2
+        },
+        "description": "Major temple or religious site"
+      },
+      {
+        "id": "insular",
+        "name": "Insular",
+        "modifiers": {
+          "society": -1,
+          "crime": -1
+        },
+        "description": "Suspicious of outsiders"
+      },
+      {
+        "id": "magically_attuned",
+        "name": "Magically Attuned",
+        "modifiers": {
+          "spellcastingBonus": 2
+        },
+        "description": "Unusually high magic activity"
+      },
+      {
+        "id": "notorious",
+        "name": "Notorious",
+        "modifiers": {
+          "crime": 1,
+          "law": -1
+        },
+        "description": "Known for criminal activity"
+      },
+      {
+        "id": "pious",
+        "name": "Pious",
+        "modifiers": {
+          "corruption": -1,
+          "law": 1
+        },
+        "description": "Deeply religious population"
+      },
+      {
+        "id": "prosperous",
+        "name": "Prosperous",
+        "modifiers": {
+          "economy": 1
+        },
+        "description": "Thriving economy"
+      },
+      {
+        "id": "racially_intolerant",
+        "name": "Racially Intolerant",
+        "modifiers": {
+          "society": -2,
+          "law": 1
+        },
+        "description": "Hostile to specific races"
+      },
+      {
+        "id": "rumormongering",
+        "name": "Rumormongering Citizens",
+        "modifiers": {
+          "lore": 1,
+          "society": -1
+        },
+        "description": "Gossip flows freely"
+      },
+      {
+        "id": "strategic_location",
+        "name": "Strategic Location",
+        "modifiers": {
+          "economy": 1
+        },
+        "description": "Key trade route or military position"
+      },
+      {
+        "id": "superstitious",
+        "name": "Superstitious",
+        "modifiers": {
+          "lore": -2,
+          "corruption": -2
+        },
+        "description": "Fearful of magic and outsiders"
+      },
+      {
+        "id": "tourist_attraction",
+        "name": "Tourist Attraction",
+        "modifiers": {
+          "economy": 1
+        },
+        "description": "Draws visitors for events/sites"
+      }
+    ],
+    "dangerLevels": [
+      {
+        "level": -10,
+        "description": "Utopia - virtually no danger"
+      },
+      {
+        "level": -5,
+        "description": "Peaceful - minor petty crime only"
+      },
+      {
+        "level": 0,
+        "description": "Normal - typical settlement"
+      },
+      {
+        "level": 5,
+        "description": "Dangerous - muggings common"
+      },
+      {
+        "level": 10,
+        "description": "Extremely Dangerous - open violence"
+      },
+      {
+        "level": 20,
+        "description": "Lawless - no protection whatsoever"
+      }
+    ]
+  },
+  "campaignFrameworks": {
+    "archetypes": [
+      {
+        "id": "dungeon_crawl",
+        "name": "Dungeon Crawl",
+        "description": "Classic exploration of dangerous underground complexes",
+        "encounterRatio": {
+          "combat": 60,
+          "exploration": 25,
+          "social": 15
+        },
+        "keyElements": [
+          "Mapped dungeon levels",
+          "Trap-heavy corridors",
+          "Boss encounters",
+          "Treasure hoards",
+          "Environmental hazards"
+        ],
+        "pacingNotes": "2-3 combat encounters per dungeon level, rest opportunities between levels",
+        "recommendedLevelRange": "1-10"
+      },
+      {
+        "id": "wilderness_exploration",
+        "name": "Wilderness Exploration",
+        "description": "Hex-crawl style exploration of untamed lands",
+        "encounterRatio": {
+          "combat": 40,
+          "exploration": 40,
+          "social": 20
+        },
+        "keyElements": [
+          "Hex map",
+          "Random encounters by terrain",
+          "Resource management",
+          "Weather effects",
+          "Discovery locations"
+        ],
+        "pacingNotes": "1-2 encounters per day of travel, discoveries every 2-3 hexes"
+      },
+      {
+        "id": "political_intrigue",
+        "name": "Political Intrigue",
+        "description": "Court politics, espionage, and power struggles",
+        "encounterRatio": {
+          "combat": 20,
+          "exploration": 10,
+          "social": 70
+        },
+        "keyElements": [
+          "NPC relationship web",
+          "Faction loyalty tracking",
+          "Verbal duels",
+          "Espionage missions",
+          "Reputation consequences"
+        ],
+        "pacingNotes": "Social encounters are the primary challenge, combat is rare but impactful"
+      },
+      {
+        "id": "war_campaign",
+        "name": "War Campaign",
+        "description": "Large-scale military conflict with strategic decisions",
+        "encounterRatio": {
+          "combat": 50,
+          "exploration": 15,
+          "social": 35
+        },
+        "keyElements": [
+          "Mass combat",
+          "Supply lines",
+          "Siege warfare",
+          "Diplomacy with factions",
+          "Kingdom management"
+        ],
+        "pacingNotes": "Alternate between strategic decisions and personal-scale missions behind enemy lines"
+      },
+      {
+        "id": "horror",
+        "name": "Gothic Horror",
+        "description": "Dark, atmospheric campaign with sanity-testing threats",
+        "encounterRatio": {
+          "combat": 35,
+          "exploration": 30,
+          "social": 35
+        },
+        "keyElements": [
+          "Sanity system",
+          "Investigation clues",
+          "Haunts",
+          "Curses",
+          "Atmospheric descriptions",
+          "Limited resources"
+        ],
+        "pacingNotes": "Build tension slowly, use haunts and environmental storytelling, limit magical healing"
+      },
+      {
+        "id": "pirate",
+        "name": "Pirate/Naval",
+        "description": "Seafaring adventures with ship combat and island exploration",
+        "encounterRatio": {
+          "combat": 45,
+          "exploration": 35,
+          "social": 20
+        },
+        "keyElements": [
+          "Ship management",
+          "Naval combat",
+          "Island discovery",
+          "Treasure maps",
+          "Port cities",
+          "Crew morale"
+        ],
+        "pacingNotes": "Alternate between sea voyages (random encounters) and port/island exploration"
+      },
+      {
+        "id": "urban",
+        "name": "Urban Campaign",
+        "description": "City-based adventures with crime, mystery, and social climbing",
+        "encounterRatio": {
+          "combat": 30,
+          "exploration": 20,
+          "social": 50
+        },
+        "keyElements": [
+          "District maps",
+          "Faction relationships",
+          "Contact networks",
+          "Investigation",
+          "Black market",
+          "Guild politics"
+        ],
+        "pacingNotes": "Investigations drive the plot, combat erupts at key moments"
+      },
+      {
+        "id": "planar",
+        "name": "Planar Adventures",
+        "description": "Travels across the multiverse",
+        "encounterRatio": {
+          "combat": 45,
+          "exploration": 35,
+          "social": 20
+        },
+        "keyElements": [
+          "Plane-specific rules",
+          "Exotic environments",
+          "Outsider politics",
+          "Reality-warping hazards"
+        ],
+        "pacingNotes": "Each plane should feel distinct with unique mechanics and challenges"
+      }
+    ],
+    "storyArcStructure": [
+      {
+        "phase": "Hook",
+        "description": "Inciting incident that draws party in",
+        "encounterPct": 10,
+        "suggestedEncounters": 1
+      },
+      {
+        "phase": "Investigation",
+        "description": "Gathering clues, meeting NPCs, exploring",
+        "encounterPct": 20,
+        "suggestedEncounters": 3
+      },
+      {
+        "phase": "Rising Action",
+        "description": "Escalating threats, complications, betrayals",
+        "encounterPct": 30,
+        "suggestedEncounters": 5
+      },
+      {
+        "phase": "Climax",
+        "description": "Final confrontation or major turning point",
+        "encounterPct": 25,
+        "suggestedEncounters": 3
+      },
+      {
+        "phase": "Resolution",
+        "description": "Aftermath, rewards, setup for next arc",
+        "encounterPct": 15,
+        "suggestedEncounters": 2
+      }
+    ],
+    "plotTwists": [
+      "Trusted ally is secretly the villain",
+      "The quest item is cursed or has unexpected powers",
+      "The villain was being manipulated by a greater threat",
+      "A party member has a hidden connection to the antagonist",
+      "The dungeon is actually a living creature",
+      "The rescued NPC is actually a doppelganger",
+      "The map leads to a completely different location",
+      "Two opposing factions were once the same organization",
+      "The prophecy was mistranslated — it refers to the villain, not the hero",
+      "The treasure is actually a prison for something terrible",
+      "An ally from a previous adventure returns as an enemy",
+      "The party's base/home is attacked while they are away",
+      "A natural disaster changes the landscape and politics",
+      "A previously defeated enemy returns stronger",
+      "The party's true threat is something they caused inadvertently",
+      "The quest-giver had their own hidden agenda all along",
+      "An important NPC is a ghost or undead the whole time",
+      "The magical artifact is sentient and manipulating events",
+      "The enemy has time-traveled from the future",
+      "The party is in an illusory or alternate reality"
+    ],
+    "adventureHooks": [
+      {
+        "type": "Patron",
+        "hooks": [
+          "Noble hires party for a job",
+          "Temple requests aid against evil",
+          "Guild assigns a contract",
+          "Mysterious stranger offers a quest with vague rewards"
+        ]
+      },
+      {
+        "type": "Discovery",
+        "hooks": [
+          "Ancient map found in old book",
+          "Dying adventurer delivers a message",
+          "Strange phenomenon appears near town",
+          "Ruins emerge after earthquake"
+        ]
+      },
+      {
+        "type": "Threat",
+        "hooks": [
+          "Monster attacks begin escalating",
+          "Plague spreads through region",
+          "Army marches on the kingdom",
+          "Cult activity increases"
+        ]
+      },
+      {
+        "type": "Personal",
+        "hooks": [
+          "Family member goes missing",
+          "Old debt comes calling",
+          "Prophetic dream reveals danger",
+          "Inheritance leads to adventure"
+        ]
+      },
+      {
+        "type": "Coincidence",
+        "hooks": [
+          "Party stumbles into crime scene",
+          "Shipwrecked on strange island",
+          "Teleportation mishap lands them somewhere unexpected",
+          "Witness to a significant event"
+        ]
+      }
+    ]
+  },
+  "verbalDuels": {
+    "tactics": [
+      {
+        "id": "allegory",
+        "name": "Allegory",
+        "skill": "Knowledge",
+        "counters": ["mockery", "logic"],
+        "description": "Use a story/comparison to make a point"
+      },
+      {
+        "id": "baiting",
+        "name": "Baiting",
+        "skill": "Bluff",
+        "counters": ["logic", "presence"],
+        "description": "Provoke opponent into emotional response"
+      },
+      {
+        "id": "emotional_appeal",
+        "name": "Emotional Appeal",
+        "skill": "Perform (oratory)",
+        "counters": ["logic", "mockery"],
+        "description": "Appeal to audience/opponent emotions"
+      },
+      {
+        "id": "flattery",
+        "name": "Flattery",
+        "skill": "Diplomacy",
+        "counters": ["baiting", "presence"],
+        "description": "Compliment opponent to lower guard"
+      },
+      {
+        "id": "logic",
+        "name": "Logic",
+        "skill": "Knowledge",
+        "counters": ["emotional_appeal", "red_herring"],
+        "description": "Present rational arguments with evidence"
+      },
+      {
+        "id": "mockery",
+        "name": "Mockery",
+        "skill": "Intimidate",
+        "counters": ["flattery", "allegory"],
+        "description": "Ridicule opponent's position"
+      },
+      {
+        "id": "presence",
+        "name": "Presence",
+        "skill": "Intimidate",
+        "counters": ["baiting", "emotional_appeal"],
+        "description": "Dominate with force of personality"
+      },
+      {
+        "id": "red_herring",
+        "name": "Red Herring",
+        "skill": "Bluff",
+        "counters": ["allegory", "flattery"],
+        "description": "Divert attention from the real issue"
+      }
+    ],
+    "rules": {
+      "determination": "CHA modifier + class level (max 5)",
+      "edgeCount": 5,
+      "winCondition": "Reduce opponent to 0 determination",
+      "counterBonus": "+2 to skill check when using a counter tactic"
+    }
+  },
+  "skillChallenges": {
+    "framework": {
+      "description": "Multi-skill encounters requiring group cooperation",
+      "complexities": [
+        {
+          "name": "Simple",
+          "successesNeeded": 4,
+          "failuresAllowed": 2,
+          "xpMultiplier": 0.5
+        },
+        {
+          "name": "Moderate",
+          "successesNeeded": 6,
+          "failuresAllowed": 3,
+          "xpMultiplier": 1.0
+        },
+        {
+          "name": "Complex",
+          "successesNeeded": 8,
+          "failuresAllowed": 3,
+          "xpMultiplier": 1.5
+        },
+        {
+          "name": "Epic",
+          "successesNeeded": 12,
+          "failuresAllowed": 3,
+          "xpMultiplier": 2.0
+        }
+      ],
+      "primarySkillDC": "15 + APL/2",
+      "secondarySkillDC": "10 + APL/2",
+      "aidAnotherDC": 10,
+      "aidBonus": 2
+    },
+    "templates": [
+      {
+        "name": "Chase Through City",
+        "primary": ["Acrobatics", "Athletics"],
+        "secondary": ["Perception", "Knowledge (local)"],
+        "special": "Fail by 5+: take 1d6 falling damage"
+      },
+      {
+        "name": "Infiltrate Fortress",
+        "primary": ["Stealth", "Disable Device"],
+        "secondary": ["Bluff", "Disguise"],
+        "special": "3 failures: alarm raised, combat begins"
+      },
+      {
+        "name": "Navigate Wilderness",
+        "primary": ["Survival", "Knowledge (nature)"],
+        "secondary": ["Perception", "Climb"],
+        "special": "Each failure adds 1 day to journey"
+      },
+      {
+        "name": "Political Negotiation",
+        "primary": ["Diplomacy", "Sense Motive"],
+        "secondary": ["Knowledge (nobility)", "Bluff"],
+        "special": "Success: favorable treaty. Failure: war"
+      },
+      {
+        "name": "Research Ancient Mystery",
+        "primary": ["Knowledge (arcana)", "Knowledge (history)"],
+        "secondary": ["Linguistics", "Spellcraft"],
+        "special": "Each success reveals one clue"
+      },
+      {
+        "name": "Survive Natural Disaster",
+        "primary": ["Survival", "Swim/Climb"],
+        "secondary": ["Perception", "Knowledge (nature)"],
+        "special": "Failure: 2d6 damage per failed check"
+      },
+      {
+        "name": "Persuade Crowd",
+        "primary": ["Diplomacy", "Perform (oratory)"],
+        "secondary": ["Bluff", "Intimidate"],
+        "special": "Success shifts crowd attitude one step"
+      },
+      {
+        "name": "Heist",
+        "primary": ["Stealth", "Disable Device", "Sleight of Hand"],
+        "secondary": ["Bluff", "Disguise", "Knowledge (engineering)"],
+        "special": "3 failures: caught, combat or arrest"
+      }
+    ]
+  },
+  "npcGearByLevel": {
+    "1": 260,
+    "2": 390,
+    "3": 780,
+    "4": 1650,
+    "5": 2400,
+    "6": 3450,
+    "7": 4650,
+    "8": 6000,
+    "9": 7800,
+    "10": 10050,
+    "11": 12750,
+    "12": 16350,
+    "13": 21000,
+    "14": 27000,
+    "15": 34800,
+    "16": 45000,
+    "17": 58500,
+    "18": 75000,
+    "19": 96000,
+    "20": 123000
+  },
+  "planes": [
+    {
+      "name": "Material Plane",
+      "gravity": "Normal",
+      "time": "Normal",
+      "magic": "Normal",
+      "alignment": "Mildly Neutral",
+      "hazards": "None",
+      "description": "The mortal world where most campaigns take place"
+    },
+    {
+      "name": "Ethereal Plane",
+      "gravity": "None",
+      "time": "Normal",
+      "magic": "Impeded (force)",
+      "alignment": "Mildly Neutral",
+      "hazards": "Ether cyclones",
+      "description": "Misty plane overlapping the Material, accessible via etheric projection"
+    },
+    {
+      "name": "Astral Plane",
+      "gravity": "Subjective directional",
+      "time": "Timeless",
+      "magic": "Enhanced (all)",
+      "alignment": "Mildly Neutral",
+      "hazards": "Psychic storms, color pools, thought-reactive terrain",
+      "description": "Silvery void connecting outer planes, access via astral projection"
+    },
+    {
+      "name": "Shadow Plane",
+      "gravity": "Normal",
+      "time": "Flowing (1 day = 1 week Material)",
+      "magic": "Enhanced (shadow)",
+      "alignment": "Mildly Evil",
+      "hazards": "Shadow creatures, energy drain",
+      "description": "Dark mirror of the Material Plane, home to shadow creatures and evil fey"
+    },
+    {
+      "name": "Positive Energy Plane",
+      "gravity": "Subjective",
+      "time": "Normal",
+      "magic": "Enhanced (positive)",
+      "alignment": "Mildly Good",
+      "hazards": "Overhealing (explode if HP exceeds max x2)",
+      "description": "Blinding plane of pure life force, can heal or burn"
+    },
+    {
+      "name": "Negative Energy Plane",
+      "gravity": "Subjective",
+      "time": "Normal",
+      "magic": "Enhanced (negative)",
+      "alignment": "Mildly Evil",
+      "hazards": "Energy drain (1 level/round without protection)",
+      "description": "Void of death and entropy, spawning ground for undead"
+    },
+    {
+      "name": "Plane of Fire",
+      "gravity": "Normal",
+      "time": "Normal",
+      "magic": "Enhanced (fire)",
+      "alignment": "Mildly Neutral",
+      "hazards": "2d10 fire/round without protection, spontaneous combustion",
+      "description": "Endless sea of flame with rare islands of solid matter"
+    },
+    {
+      "name": "Plane of Water",
+      "gravity": "Subjective",
+      "time": "Normal",
+      "magic": "Enhanced (water)",
+      "alignment": "Mildly Neutral",
+      "hazards": "Drowning, pressure at depth, whirlpools",
+      "description": "Infinite ocean with pockets of air, home to aquatic outsiders"
+    },
+    {
+      "name": "Plane of Air",
+      "gravity": "Subjective directional",
+      "time": "Normal",
+      "magic": "Enhanced (air)",
+      "alignment": "Mildly Neutral",
+      "hazards": "Falling (infinite), wind storms up to 200 mph",
+      "description": "Endless sky with floating islands, djinn strongholds, air elemental cities"
+    },
+    {
+      "name": "Plane of Earth",
+      "gravity": "Normal",
+      "time": "Normal",
+      "magic": "Enhanced (earth)",
+      "alignment": "Mildly Neutral",
+      "hazards": "Suffocation, cave-in, pressure",
+      "description": "Solid rock with rare cavern pockets, home to xorn and earth elementals"
+    },
+    {
+      "name": "Heaven (Celestia)",
+      "gravity": "Normal",
+      "time": "Normal",
+      "magic": "Enhanced (good)",
+      "alignment": "Strongly Good",
+      "hazards": "Evil creatures take -2 on attacks/saves, painful exposure to goodness",
+      "description": "Lawful Good paradise of seven heavens, celestial kingdoms"
+    },
+    {
+      "name": "Abyss",
+      "gravity": "Variable",
+      "time": "Flowing",
+      "magic": "Enhanced (evil, chaos)",
+      "alignment": "Strongly Chaotic Evil",
+      "hazards": "Random mutation, demonic encounters, madness, despair aura",
+      "description": "Infinite layers of demonic horror, home to demons and chaos"
+    },
+    {
+      "name": "Hell (Baator)",
+      "gravity": "Normal",
+      "time": "Normal",
+      "magic": "Enhanced (evil, law)",
+      "alignment": "Strongly Lawful Evil",
+      "hazards": "Soul contracts, devil encounters, binding by infernal law",
+      "description": "Nine layers of diabolic order, ruled by archdevils with iron contracts"
+    },
+    {
+      "name": "Axis",
+      "gravity": "Normal",
+      "time": "Normal",
+      "magic": "Enhanced (law)",
+      "alignment": "Strongly Lawful Neutral",
+      "hazards": "Rigid physics, time enforcement, law sensitivity",
+      "description": "Plane of absolute order and law, home to inevitable constructs"
+    },
+    {
+      "name": "Limbo",
+      "gravity": "Subjective",
+      "time": "Flowing and variable",
+      "magic": "Enhanced (chaos)",
+      "alignment": "Strongly Chaotic Neutral",
+      "hazards": "Thought-reactive terrain, mutation, chaos storms",
+      "description": "Realm of pure chaos where will shapes reality, protean domain"
+    }
+  ],
+  "calendarAndTimekeeping": {
+    "golarionMonths": [
+      {
+        "name": "Abadius",
+        "number": 1,
+        "season": "Winter",
+        "daysInMonth": 31,
+        "description": "Month of beginnings, cold and harsh"
+      },
+      {
+        "name": "Calistril",
+        "number": 2,
+        "season": "Winter",
+        "daysInMonth": 28,
+        "description": "Month of faith, winter continues"
+      },
+      {
+        "name": "Pharast",
+        "number": 3,
+        "season": "Spring",
+        "daysInMonth": 31,
+        "description": "Month of healing, thaw begins"
+      },
+      {
+        "name": "Gozran",
+        "number": 4,
+        "season": "Spring",
+        "daysInMonth": 30,
+        "description": "Month of passion, new growth"
+      },
+      {
+        "name": "Desnus",
+        "number": 5,
+        "season": "Spring",
+        "daysInMonth": 31,
+        "description": "Month of dreams, mild days"
+      },
+      {
+        "name": "Sarenith",
+        "number": 6,
+        "season": "Summer",
+        "daysInMonth": 30,
+        "description": "Month of sun, long days"
+      },
+      {
+        "name": "Erastus",
+        "number": 7,
+        "season": "Summer",
+        "daysInMonth": 31,
+        "description": "Month of luck, hot and bright"
+      },
+      {
+        "name": "Arodus",
+        "number": 8,
+        "season": "Summer",
+        "daysInMonth": 31,
+        "description": "Month of wealth, prosperity season"
+      },
+      {
+        "name": "Rova",
+        "number": 9,
+        "season": "Autumn",
+        "daysInMonth": 30,
+        "description": "Month of wrath, harvest time"
+      },
+      {
+        "name": "Lamashan",
+        "number": 10,
+        "season": "Autumn",
+        "daysInMonth": 31,
+        "description": "Month of ghosts, nights grow long"
+      },
+      {
+        "name": "Neth",
+        "number": 11,
+        "season": "Autumn",
+        "daysInMonth": 30,
+        "description": "Month of visions, cold winds"
+      },
+      {
+        "name": "Kuthona",
+        "number": 12,
+        "season": "Winter",
+        "daysInMonth": 31,
+        "description": "Month of loss, winter's grip"
+      }
+    ],
+    "majorHolidays": [
+      {
+        "name": "New Year Festival",
+        "date": "Abadius 1",
+        "description": "Celebration of new beginnings and resolutions"
+      },
+      {
+        "name": "Founding Day",
+        "date": "Desnus 1",
+        "description": "Commemorates the founding of the nation (varies by region)"
+      },
+      {
+        "name": "Summer Solstice Festival",
+        "date": "Sarenith 15 (approximate)",
+        "description": "Peak of summer, celebration of sun and growth"
+      },
+      {
+        "name": "Harvestide",
+        "date": "Rova 15-17",
+        "description": "Multi-day celebration of harvest, thanksgiving, and gratitude"
+      },
+      {
+        "name": "Night of the Gray Moon",
+        "date": "Lamashan 15",
+        "description": "Spooky night when veil between worlds is thin"
+      },
+      {
+        "name": "Winter Solstice Festival",
+        "date": "Kuthona 21 (approximate)",
+        "description": "Longest night, festivals of light and hope"
+      }
+    ],
+    "seasonalEvents": [
+      {
+        "season": "Winter",
+        "events": [
+          "Snow storms and avalanche danger in mountains",
+          "Reduced travel due to weather",
+          "Festivals and indoor activities common",
+          "Monster hibernation (fewer encounters)"
+        ]
+      },
+      {
+        "season": "Spring",
+        "events": [
+          "Thaw and flooding in low areas",
+          "Roads become passable again",
+          "Bandits return to roads",
+          "Monster mating season (aggressive creatures)"
+        ]
+      },
+      {
+        "season": "Summer",
+        "events": [
+          "Peak trading and travel season",
+          "Drought in some regions",
+          "Festivals and outdoor markets",
+          "Planar incursions more likely (thin boundaries)"
+        ]
+      },
+      {
+        "season": "Autumn",
+        "events": [
+          "Harvest activities dominate",
+          "Preparation for winter (stockpiling)",
+          "Shorter days, undead and spirits more active",
+          "Cold fronts and early snows in north"
+        ]
+      }
+    ],
+    "daysOfWeek": [
+      {
+        "day": "Moonday",
+        "association": "Moon, magic, tides"
+      },
+      {
+        "day": "Toilday",
+        "association": "Labor, crafting, building"
+      },
+      {
+        "day": "Wealday",
+        "association": "Commerce, wealth, trade"
+      },
+      {
+        "day": "Oathday",
+        "association": "Contracts, bonds, promises"
+      },
+      {
+        "day": "Fireday",
+        "association": "Passion, creativity, ambition"
+      },
+      {
+        "day": "Starday",
+        "association": "Astronomy, fate, long journeys"
+      },
+      {
+        "day": "Sunday",
+        "association": "Sun, strength, power, rest for some"
+      }
+    ],
+    "timePassageRules": {
+      "combatRound": "6 seconds",
+      "combatTurn": "Variable (initiative order)",
+      "explorationTurn": "10 minutes",
+      "restDay": "8 hours sleep minimum",
+      "travelPace": {
+        "slow": "2 miles/hour (18 miles/8-hour day)",
+        "normal": "3 miles/hour (24 miles/8-hour day)",
+        "fast": "4 miles/hour (32 miles/8-hour day)"
+      },
+      "shortRest": "1 hour (PF1e: ability to recover spells for some classes)",
+      "longRest": "8 hours (full recovery for hit points and abilities)"
+    },
+    "moonPhases": [
+      {
+        "phase": "New Moon",
+        "illumination": 0,
+        "effects": "Darkness at night, undead slightly stronger (-1 save bonus)"
+      },
+      {
+        "phase": "Waxing Crescent",
+        "illumination": 25,
+        "effects": "Growing light, good time for new ventures"
+      },
+      {
+        "phase": "First Quarter",
+        "illumination": 50,
+        "effects": "Half moon, neutral magical effects"
+      },
+      {
+        "phase": "Waxing Gibbous",
+        "illumination": 75,
+        "effects": "Bright night, shapeshifters stronger"
+      },
+      {
+        "phase": "Full Moon",
+        "illumination": 100,
+        "effects": "Brightest night, werewolves transformed, undead at peak power"
+      },
+      {
+        "phase": "Waning Gibbous",
+        "illumination": 75,
+        "effects": "Fading light, wisdom and reflection common"
+      },
+      {
+        "phase": "Last Quarter",
+        "illumination": 50,
+        "effects": "Half moon declining, good for endings and banishing"
+      },
+      {
+        "phase": "Waning Crescent",
+        "illumination": 25,
+        "effects": "Faint light, dark magic more potent"
+      }
+    ]
+  },
+  "trapDesignTemplates": {
+    "trapDifficulty": [
+      {
+        "level": "CR 1",
+        "disarmDC": 15,
+        "spotDC": 15,
+        "description": "Novice-level trap, simple but dangerous"
+      },
+      {
+        "level": "CR 2",
+        "disarmDC": 18,
+        "spotDC": 18,
+        "description": "Intermediate trap with mechanical complexity"
+      },
+      {
+        "level": "CR 3",
+        "disarmDC": 20,
+        "spotDC": 20,
+        "description": "Advanced trap with multiple triggers"
+      },
+      {
+        "level": "CR 4",
+        "disarmDC": 22,
+        "spotDC": 22,
+        "description": "Expert-level trap with clever design"
+      },
+      {
+        "level": "CR 5+",
+        "disarmDC": 25,
+        "spotDC": 25,
+        "description": "Master-crafted trap, deadly and intricate"
+      }
+    ],
+    "trapTypes": [
+      {
+        "type": "Mechanical",
+        "examples": ["Pit trap", "Swinging blades", "Falling block", "Pressure plate"],
+        "detectDC": "Normal",
+        "disarmDC": "Normal",
+        "resistanceMethod": "Reflex save"
+      },
+      {
+        "type": "Magical",
+        "examples": ["Magic missile trap", "Glyph of warding", "Symbol spell", "Elemental burst"],
+        "detectDC": "Moderate",
+        "disarmDC": "High",
+        "resistanceMethod": "Spell saves or magic resistance"
+      },
+      {
+        "type": "Hybrid",
+        "examples": ["Rune-triggered blade", "Glyph releasing gas", "Magical wall with pressure plate"],
+        "detectDC": "High",
+        "disarmDC": "High",
+        "resistanceMethod": "Combination of saves and Disable Device"
+      },
+      {
+        "type": "Environmental",
+        "examples": ["Poison gas room", "Lava flow", "Earthquake chamber", "Collapsing ceiling"],
+        "detectDC": "Low to Moderate",
+        "disarmDC": "Very High",
+        "resistanceMethod": "Survival or Athletics checks"
+      }
+    ],
+    "trapRewards": [
+      {
+        "trigger": "Simple pressure plate",
+        "trapCR": 1,
+        "treasureValue": 400,
+        "description": "Basic trap, easy to find and disable"
+      },
+      {
+        "trigger": "Delayed magical trigger",
+        "trapCR": 3,
+        "treasureValue": 800,
+        "description": "Requires magic knowledge to defeat"
+      },
+      {
+        "trigger": "Combination puzzle lock",
+        "trapCR": 4,
+        "treasureValue": 1200,
+        "description": "Requires solving puzzle before disarming"
+      },
+      {
+        "trigger": "Sentient golem guardian",
+        "trapCR": 5,
+        "treasureValue": 1600,
+        "description": "Combat encounter tied to trap mechanism"
+      }
+    ]
+  },
+  "lootAndTreasure": {
+    "treasureByEncounter": [
+      {
+        "encounterDifficulty": "Easy",
+        "partyLevel": "1-4",
+        "gpValue": "50-150",
+        "items": "1 minor magic item or consumable"
+      },
+      {
+        "encounterDifficulty": "Average",
+        "partyLevel": "1-4",
+        "gpValue": "100-300",
+        "items": "1-2 minor magic items or 1 moderate item"
+      },
+      {
+        "encounterDifficulty": "Challenging",
+        "partyLevel": "1-4",
+        "gpValue": "200-500",
+        "items": "1 moderate magic item + consumables"
+      },
+      {
+        "encounterDifficulty": "Hard",
+        "partyLevel": "5-8",
+        "gpValue": "500-1500",
+        "items": "1-2 moderate items + 1 permanent magic item"
+      },
+      {
+        "encounterDifficulty": "Epic",
+        "partyLevel": "9-12",
+        "gpValue": "2000-5000",
+        "items": "2-3 permanent magic items or 1 major item"
+      }
+    ],
+    "gemstones": [
+      {
+        "quality": "Minor",
+        "value": "10-100 gp",
+        "examples": "Agate, tourmaline, obsidian"
+      },
+      {
+        "quality": "Moderate",
+        "value": "100-500 gp",
+        "examples": "Garnet, jasper, jade"
+      },
+      {
+        "quality": "Major",
+        "value": "500-2000 gp",
+        "examples": "Sapphire, ruby, diamond"
+      },
+      {
+        "quality": "Exceptional",
+        "value": "2000+ gp",
+        "examples": "Perfect diamond, black opal, alexandrite"
+      }
+    ],
+    "commonMagicItems": [
+      {
+        "item": "Potion of Cure Light Wounds",
+        "casterLevel": 1,
+        "basePrice": 50
+      },
+      {
+        "item": "Potion of Enlarge Person",
+        "casterLevel": 1,
+        "basePrice": 50
+      },
+      {
+        "item": "Scroll of Fireball",
+        "casterLevel": 5,
+        "basePrice": 375
+      },
+      {
+        "item": "Wand of Magic Missile",
+        "casterLevel": 1,
+        "basePrice": 750
+      },
+      {
+        "item": "Ring of Protection +1",
+        "casterLevel": 3,
+        "basePrice": 2000
+      },
+      {
+        "item": "Cloak of Resistance +1",
+        "casterLevel": 3,
+        "basePrice": 1000
+      }
+    ]
+  },
+  "resting": {
+    "shortRest": {
+      "duration": "1 hour",
+      "hitPointsRecovered": "None (unless magical healing used)",
+      "spellsRecovered": "Variable by class",
+      "abilities": "Limited ability recovery for some classes"
+    },
+    "longRest": {
+      "duration": "8 hours",
+      "hitPointsRecovered": "Full (via hit dice)",
+      "spellsRecovered": "All daily spells for spellcasters",
+      "abilities": "All standard class abilities fully restored",
+      "requirements": "Adequate shelter, food, water"
+    },
+    "improvisedRest": {
+      "nightInOpenArea": {
+        "hitPointsRecovered": "50%",
+        "spellsRecovered": "None",
+        "notes": "No shelter or comfort"
+      },
+      "nightInDungeon": {
+        "hitPointsRecovered": "None",
+        "spellsRecovered": "None",
+        "notes": "Danger of encounters likely"
+      },
+      "nightInTown": {
+        "hitPointsRecovered": "Full",
+        "spellsRecovered": "Full",
+        "notes": "Safe and comfortable accommodations"
+      }
+    }
+  },
+  "combatAdjustments": {
+    "lighteningConditions": [
+      {
+        "condition": "Dim light/shadows",
+        "penalty": "Ranged -2, Melee -1, Perception -1"
+      },
+      {
+        "condition": "Darkness (no light)",
+        "penalty": "Ranged impossible, Melee -4, Perception impossible without darkvision"
+      },
+      {
+        "condition": "Magical darkness",
+        "penalty": "Darkvision negated, all penalties double"
+      }
+    ],
+    "coverBonuses": [
+      {
+        "coverType": "1/4 cover",
+        "ac": "+1",
+        "reflex": "None",
+        "examples": "Thin fence, sparse bushes"
+      },
+      {
+        "coverType": "1/2 cover",
+        "ac": "+2",
+        "reflex": "+1",
+        "examples": "Stone wall, thick door, solid furniture"
+      },
+      {
+        "coverType": "3/4 cover",
+        "ac": "+4",
+        "reflex": "+2",
+        "examples": "Bunker, castle wall, dense forest"
+      },
+      {
+        "coverType": "Total cover",
+        "ac": "Cannot be targeted",
+        "reflex": "Impossible to harm",
+        "examples": "Behind solid wall, underground, different plane"
+      }
+    ]
+  },
+  "racesByRegion": {
+    "innerSea": {
+      "common": ["Human", "Elf", "Dwarf", "Halfling", "Gnome"],
+      "uncommon": ["Half-elf", "Half-orc", "Tiefling"],
+      "rare": ["Kobold", "Goblin", "Orc", "Drow"]
+    },
+    "northernLands": {
+      "common": ["Human", "Dwarf", "Halfling"],
+      "uncommon": ["Elf", "Gnome", "Half-orc"],
+      "rare": ["Tiefling", "Orc"]
+    },
+    "magicalAcademy": {
+      "common": ["Elf", "Human", "Gnome", "Half-elf"],
+      "uncommon": ["Dwarf", "Halfling", "Tiefling"],
+      "rare": ["Aasimar", "Drow", "Kobold"]
+    }
+  },
+  "dungeonFeatures": {
+    "wallMaterials": [
+      {
+        "material": "Stone",
+        "hardness": 8,
+        "hp": 450,
+        "breakDC": 35,
+        "notes": "Most common dungeon material"
+      },
+      {
+        "material": "Wood",
+        "hardness": 5,
+        "hp": 60,
+        "breakDC": 23,
+        "notes": "Flammable, susceptible to rot"
+      },
+      {
+        "material": "Iron",
+        "hardness": 10,
+        "hp": 30,
+        "breakDC": 40,
+        "notes": "Very strong but can rust"
+      },
+      {
+        "material": "Adamantine",
+        "hardness": 15,
+        "hp": 60,
+        "breakDC": 50,
+        "notes": "Virtually indestructible, extremely valuable"
+      }
+    ],
+    "doorTypes": [
+      {
+        "type": "Simple wooden door",
+        "ac": 15,
+        "hp": 18,
+        "breakDC": 15,
+        "pickDC": 20
+      },
+      {
+        "type": "Reinforced wooden door",
+        "ac": 15,
+        "hp": 30,
+        "breakDC": 20,
+        "pickDC": 25
+      },
+      {
+        "type": "Iron banded door",
+        "ac": 18,
+        "hp": 60,
+        "breakDC": 25,
+        "pickDC": 30
+      },
+      {
+        "type": "Portcullis (iron)",
+        "ac": 18,
+        "hp": 100,
+        "breakDC": 30,
+        "pickDC": 35
+      }
+    ],
+    "dungeonHazards": [
+      {
+        "hazard": "Pit trap (10 feet)",
+        "damage": "1d6",
+        "saveDC": 15,
+        "description": "Basic pit, falling damage"
+      },
+      {
+        "hazard": "Spiked pit (20 feet)",
+        "damage": "2d6 + 4d6 spikes",
+        "saveDC": 18,
+        "description": "Difficult and painful"
+      },
+      {
+        "hazard": "Poisoned needle (contact)",
+        "damage": "1d3 Str",
+        "saveDC": 12,
+        "description": "Found on locks, hinges, mechanisms"
+      },
+      {
+        "hazard": "Collapsing ceiling",
+        "damage": "4d6",
+        "saveDC": 20,
+        "description": "Usually occurs after trigger mechanism"
+      }
+    ]
+  },
+  "monsterEncounterTools": {
+    "advancedMonsterAdjustments": {
+      "fast": {
+        "hpMultiplier": 1.1,
+        "acBonus": 1,
+        "description": "Quicker, harder to hit"
+      },
+      "tough": {
+        "hpMultiplier": 1.5,
+        "acBonus": 0,
+        "description": "Significantly increased durability"
+      },
+      "young": {
+        "hpMultiplier": 0.7,
+        "acBonus": -1,
+        "description": "Less experienced, weaker"
+      },
+      "old": {
+        "hpMultiplier": 1.3,
+        "acBonus": 1,
+        "description": "Wily and experienced"
+      }
+    },
+    "encounterScaling": {
+      "lessThanApl": {
+        "scale": -1,
+        "threat": "Minimal danger"
+      },
+      "aplMinus1": {
+        "scale": -1,
+        "threat": "Easy encounter"
+      },
+      "apl": {
+        "scale": 0,
+        "threat": "Average encounter"
+      },
+      "aplPlus1": {
+        "scale": 1,
+        "threat": "Challenging encounter"
+      },
+      "aplPlus2": {
+        "scale": 2,
+        "threat": "Hard encounter"
+      },
+      "aplPlus3": {
+        "scale": 3,
+        "threat": "Deadly encounter"
+      }
+    }
+  }
+}

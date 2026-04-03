@@ -1,0 +1,736 @@
+{
+  "weather": {
+    "climateZones": {
+      "cold": {
+        "name": "Cold (Arctic/Subarctic)",
+        "baseTemp": { "winter": -10, "spring": 25, "summer": 40, "fall": 25 },
+        "tempVariance": 20,
+        "precipChance": { "winter": 40, "spring": 25, "summer": 15, "fall": 30 },
+        "stormChance": { "winter": 15, "spring": 10, "summer": 5, "fall": 10 },
+        "precipType": { "winter": "snow", "spring": "rain", "summer": "rain", "fall": "snow" }
+      },
+      "temperate": {
+        "name": "Temperate",
+        "baseTemp": { "winter": 30, "spring": 55, "summer": 80, "fall": 55 },
+        "tempVariance": 15,
+        "precipChance": { "winter": 30, "spring": 35, "summer": 20, "fall": 30 },
+        "stormChance": { "winter": 10, "spring": 15, "summer": 10, "fall": 10 },
+        "precipType": { "winter": "snow", "spring": "rain", "summer": "rain", "fall": "rain" }
+      },
+      "tropical": {
+        "name": "Tropical/Subtropical",
+        "baseTemp": { "winter": 75, "spring": 85, "summer": 95, "fall": 85 },
+        "tempVariance": 10,
+        "precipChance": { "winter": 10, "spring": 30, "summer": 50, "fall": 40 },
+        "stormChance": { "winter": 5, "spring": 10, "summer": 20, "fall": 15 },
+        "precipType": { "winter": "rain", "spring": "rain", "summer": "rain", "fall": "rain" }
+      },
+      "desert": {
+        "name": "Desert/Arid",
+        "baseTemp": { "winter": 50, "spring": 80, "summer": 110, "fall": 80 },
+        "tempVariance": 25,
+        "precipChance": { "winter": 5, "spring": 5, "summer": 2, "fall": 5 },
+        "stormChance": { "winter": 2, "spring": 5, "summer": 10, "fall": 5 },
+        "precipType": { "winter": "rain", "spring": "rain", "summer": "sandstorm", "fall": "rain" }
+      }
+    },
+    "temperatureEffects": [
+      { "range": "extreme_cold", "threshold": -20, "compare": "below", "effect": "1d6 lethal cold damage per minute, no save", "fortDC": null, "frequency": "1 minute", "damageType": "lethal", "damage": "1d6" },
+      { "range": "severe_cold", "threshold": 0, "compare": "below", "effect": "Fort save or 1d6 nonlethal cold damage", "fortDC": 15, "dcIncrement": 1, "frequency": "10 minutes", "damageType": "nonlethal", "damage": "1d6" },
+      { "range": "cold", "threshold": 40, "compare": "below", "effect": "Fort save or 1d6 nonlethal cold damage", "fortDC": 15, "dcIncrement": 1, "frequency": "1 hour", "damageType": "nonlethal", "damage": "1d6" },
+      { "range": "comfortable", "threshold": 90, "compare": "below", "effect": "No adverse effects", "fortDC": null },
+      { "range": "hot", "threshold": 110, "compare": "below", "effect": "Fort save or 1d4 nonlethal heat damage", "fortDC": 15, "dcIncrement": 1, "frequency": "1 hour", "damageType": "nonlethal", "damage": "1d4" },
+      { "range": "severe_heat", "threshold": 140, "compare": "below", "effect": "Fort save or 1d4 nonlethal heat damage", "fortDC": 15, "dcIncrement": 1, "frequency": "10 minutes", "damageType": "nonlethal", "damage": "1d4" },
+      { "range": "extreme_heat", "threshold": 999, "compare": "below", "effect": "1d6 lethal fire damage per minute + Fort save vs 1d4 nonlethal", "fortDC": 15, "frequency": "1 minute", "damageType": "lethal", "damage": "1d6" }
+    ],
+    "windStrengths": [
+      { "name": "Calm", "mph": 0, "flyPenalty": 0, "rangedPenalty": 0, "perceptionPenalty": 0, "sizeCheck": null },
+      { "name": "Light", "mph": 10, "flyPenalty": 0, "rangedPenalty": 0, "perceptionPenalty": 0, "sizeCheck": null },
+      { "name": "Moderate", "mph": 20, "flyPenalty": 0, "rangedPenalty": 0, "perceptionPenalty": -2, "sizeCheck": null },
+      { "name": "Strong", "mph": 30, "flyPenalty": -2, "rangedPenalty": -2, "perceptionPenalty": -4, "sizeCheck": "Tiny" },
+      { "name": "Severe", "mph": 50, "flyPenalty": -4, "rangedPenalty": -4, "perceptionPenalty": -8, "sizeCheck": "Small", "note": "Ranged attacks impossible for siege weapons only at -4" },
+      { "name": "Windstorm", "mph": 74, "flyPenalty": -8, "rangedPenalty": -8, "perceptionPenalty": -12, "sizeCheck": "Medium", "note": "Ranged attacks impossible, blown away if Small" },
+      { "name": "Hurricane", "mph": 120, "flyPenalty": -12, "rangedPenalty": -99, "perceptionPenalty": -99, "sizeCheck": "Large", "note": "All ranged impossible, blown away if Medium or smaller" },
+      { "name": "Tornado", "mph": 200, "flyPenalty": -99, "rangedPenalty": -99, "perceptionPenalty": -99, "sizeCheck": "Huge", "note": "Devastating destruction" }
+    ],
+    "precipitationTypes": {
+      "fog": { "visionRange": 30, "perceptionPenalty": -4, "concealmentBeyond": 5, "speedPenalty": 0 },
+      "rain": { "visionRange": "half", "perceptionPenalty": -4, "concealmentBeyond": null, "speedPenalty": 0, "fireExtinguishChance": 20 },
+      "heavy_rain": { "visionRange": "quarter", "perceptionPenalty": -8, "concealmentBeyond": null, "speedPenalty": 0, "fireExtinguishChance": 50 },
+      "snow": { "visionRange": "half", "perceptionPenalty": -4, "speedPenalty": "half", "accumulationPerHour": 1, "survivalTrackBonus": 4 },
+      "blizzard": { "visionRange": 20, "perceptionPenalty": -8, "speedPenalty": "quarter", "windChill": -20, "accumulationPerHour": 4 },
+      "hail": { "visionRange": "three_quarter", "perceptionPenalty": -4, "damage": "1d4 per 10 minutes outdoors" },
+      "sleet": { "visionRange": "half", "perceptionPenalty": -4, "acrobaticsCheckDC": 10, "speedPenalty": "half" },
+      "sandstorm": { "visionRange": 25, "perceptionPenalty": -8, "damage": "1d3 per round unprotected", "blindRisk": true }
+    }
+  },
+  "traps": {
+    "rules": {
+      "baseMechanicalCR": 0,
+      "baseMagicCR": 1,
+      "crCalculation": "Base CR + perception DC mod + disable DC mod + trigger mod + reset mod",
+      "damageByDC": [
+        { "dc": 1, "avgDamage": 1 },
+        { "dc": 14, "avgDamage": 2 },
+        { "dc": 19, "avgDamage": 3 },
+        { "dc": 24, "avgDamage": 4 },
+        { "dc": 29, "avgDamage": 6 },
+        { "dc": 34, "avgDamage": 8 },
+        { "dc": 39, "avgDamage": 10 }
+      ]
+    },
+    "triggerTypes": ["location", "proximity", "touch", "sound", "visual", "timed", "spell"],
+    "resetTypes": ["none", "manual", "automatic", "repair"],
+    "allTraps": [
+      { "name": "Pit Trap", "cr": 1, "type": "mechanical", "perceptionDC": 20, "disableDC": 20, "trigger": "location", "reset": "manual", "effect": "20-ft pit (2d6 falling damage); DC 20 Reflex avoids; multiple targets (all in 10-ft square)" },
+      { "name": "Arrow Trap", "cr": 1, "type": "mechanical", "perceptionDC": 20, "disableDC": 20, "trigger": "touch", "reset": "none", "effect": "+10 ranged (1d8/x3); 1d4 arrows fire" },
+      { "name": "Spiked Pit Trap", "cr": 2, "type": "mechanical", "perceptionDC": 20, "disableDC": 20, "trigger": "location", "reset": "manual", "effect": "20-ft pit (2d6 falling + 1d4 spikes for 1d4+2 each); DC 20 Reflex avoids" },
+      { "name": "Rolling Boulder Trap", "cr": 2, "type": "mechanical", "perceptionDC": 20, "disableDC": 20, "trigger": "location", "reset": "automatic", "effect": "10-ft diameter boulder (2d6 bludgeoning); 40 ft/round speed; multiple targets" },
+      { "name": "Spring-Loaded Spikes", "cr": 2, "type": "mechanical", "perceptionDC": 22, "disableDC": 20, "trigger": "touch", "reset": "automatic", "effect": "+15 ranged (1d4 spikes, 1d4 damage each)" },
+      { "name": "Pendulum Blade Trap", "cr": 3, "type": "mechanical", "perceptionDC": 23, "disableDC": 23, "trigger": "location", "reset": "automatic", "effect": "+15 melee (2d6 slashing); swings every round, affects 10-ft width" },
+      { "name": "Crushing Wall Trap", "cr": 3, "type": "mechanical", "perceptionDC": 20, "disableDC": 25, "trigger": "location", "reset": "automatic", "effect": "3d6 bludgeoning; walls close in 1 round; DC 20 Reflex for half and avoid trap, DC 25 Str to hold back" },
+      { "name": "Swinging Log Trap", "cr": 2, "type": "mechanical", "perceptionDC": 21, "disableDC": 18, "trigger": "location", "reset": "automatic", "effect": "+18 melee (2d8 bludgeoning); swings from ceiling" },
+      { "name": "Flooding Room Trap", "cr": 3, "type": "mechanical", "perceptionDC": 25, "disableDC": 25, "trigger": "location", "reset": "repair", "effect": "Water fills sealed room in 4 rounds; DC 25 Swim to stay afloat; drowning after that" },
+      { "name": "Collapsing Ceiling Trap", "cr": 4, "type": "mechanical", "perceptionDC": 24, "disableDC": 24, "trigger": "location", "reset": "repair", "effect": "4d6 bludgeoning (DC 20 Reflex half); buries target under 5 ft of debris" },
+      { "name": "Bear Trap", "cr": 1, "type": "mechanical", "perceptionDC": 19, "disableDC": 20, "trigger": "location", "reset": "manual", "effect": "Leg caught: 1d6 damage + grappled; DC 17 Escape Artist or 20 Str to break free" },
+      { "name": "Net Trap", "cr": 1, "type": "mechanical", "perceptionDC": 20, "disableDC": 15, "trigger": "location", "reset": "manual", "effect": "Entangled: -2 Dex, -4 ranged, 50% melee miss; DC 20 Escape Artist or 22 Str to escape" },
+      { "name": "Tar Pit Trap", "cr": 2, "type": "mechanical", "perceptionDC": 15, "disableDC": 12, "trigger": "location", "reset": "none", "effect": "Speed reduced to 5 ft (DC 18 Reflex avoids); 1d3 rounds to escape with Escape Artist DC 15" },
+      { "name": "Poisoned Needle Trap", "cr": 2, "type": "mechanical", "perceptionDC": 22, "disableDC": 20, "trigger": "touch", "reset": "automatic", "effect": "+12 ranged (1d2 plus poison: greenblood oil, Fort DC 13)" },
+      { "name": "Electricity Arc Trap", "cr": 4, "type": "mechanical", "perceptionDC": 25, "disableDC": 25, "trigger": "touch", "reset": "none", "effect": "4d6 electricity in 30-ft line; DC 16 Reflex half" },
+      { "name": "Wall Scythe Trap", "cr": 4, "type": "mechanical", "perceptionDC": 21, "disableDC": 18, "trigger": "location", "reset": "automatic", "effect": "+20 melee (2d4+6/x4); swings automatically" },
+      { "name": "Glyph of Warding Trap", "cr": 2, "type": "magic", "perceptionDC": 26, "disableDC": 26, "trigger": "proximity", "reset": "none", "effect": "Spell effect: glyph (2d4 sonic or 1d8 per CL fire); DC 16 Reflex half" },
+      { "name": "Fire Trap", "cr": 3, "type": "magic", "perceptionDC": 26, "disableDC": 26, "trigger": "touch", "reset": "automatic", "effect": "Spell effect: fire trap (2d4 fire, DC 13 Reflex half); only when object opened" },
+      { "name": "Symbol of Pain Trap", "cr": 4, "type": "magic", "perceptionDC": 27, "disableDC": 27, "trigger": "visual", "reset": "none", "effect": "Spell effect: symbol of pain (1d6 Wisdom damage + pain, -4 on attacks/checks; Will DC 17 negates)" },
+      { "name": "Hold Person Trap", "cr": 4, "type": "magic", "perceptionDC": 27, "disableDC": 27, "trigger": "proximity", "reset": "none", "effect": "Spell effect: hold person (humanoid only; Will DC 17 negates)" },
+      { "name": "Bestow Curse Trap", "cr": 5, "type": "magic", "perceptionDC": 28, "disableDC": 28, "trigger": "touch", "reset": "none", "effect": "Spell effect: bestow curse (Will DC 18 negates); -6 to ability, -4 to rolls, 50% action loss, or other" },
+      { "name": "Polymorph Trap", "cr": 5, "type": "magic", "perceptionDC": 28, "disableDC": 28, "trigger": "proximity", "reset": "none", "effect": "Spell effect: polymorph other into small animal (Will DC 18 negates); mental abilities lost on second fail" },
+      { "name": "Maze Trap", "cr": 6, "type": "magic", "perceptionDC": 29, "disableDC": 29, "trigger": "visual", "reset": "none", "effect": "Spell effect: maze (creature trapped 1 minute/round spent lost; Will DC 19 disbelief)" },
+      { "name": "Phantasmal Killer Trap", "cr": 6, "type": "magic", "perceptionDC": 29, "disableDC": 29, "trigger": "proximity", "reset": "none", "effect": "Spell effect: phantasmal killer (DC 16 Will disbelief, then DC 16 Fort or die)" },
+      { "name": "Lightning Bolt Trap", "cr": 5, "type": "magic", "perceptionDC": 28, "disableDC": 28, "trigger": "proximity", "reset": "none", "effect": "Spell effect: lightning bolt (5d6, DC 14 Reflex half)" },
+      { "name": "Flame Strike Trap", "cr": 8, "type": "magic", "perceptionDC": 30, "disableDC": 30, "trigger": "proximity", "reset": "none", "effect": "Spell effect: flame strike (8d6, half divine; DC 17 Reflex half)" },
+      { "name": "Meteor Storm Trap", "cr": 10, "type": "magic", "perceptionDC": 32, "disableDC": 32, "trigger": "proximity", "reset": "none", "effect": "Spell effect: meteor storm (40-ft radius, 6d6 fire per meteors; DC 19 Reflex half)" },
+      { "name": "Finger of Death Trap", "cr": 12, "type": "magic", "perceptionDC": 34, "disableDC": 34, "trigger": "proximity", "reset": "none", "effect": "Spell effect: finger of death (10d6 damage; Fort DC 20 half)" },
+      { "name": "Disintegration Trap", "cr": 11, "type": "magic", "perceptionDC": 33, "disableDC": 33, "trigger": "touch", "reset": "none", "effect": "Spell effect: disintegrate (2d6 x 10 damage; Reflex DC 19 negates)" },
+      { "name": "Falling Objects Trap", "cr": 3, "type": "mechanical", "perceptionDC": 20, "disableDC": 20, "trigger": "location", "reset": "manual", "effect": "1d6 objects (1d6 damage each); DC 15 Reflex half for each" }
+    ]
+  },
+  "haunts": {
+    "rules": {
+      "hpFormula": "CR * 2",
+      "persistentHpFormula": "CR * 4.5",
+      "areaFormula": "5-ft radius per CR",
+      "initiativeRank": 10,
+      "manifestsInSurpriseRound": true,
+      "positiveEnergyDamage": true,
+      "channelEnergyDamage": true,
+      "detectUndead": "Notice check at -4 penalty",
+      "desperation": "Persistent haunt may increase manifestation range at death"
+    },
+    "allHaunts": [
+      { "name": "Cold Spot", "cr": 1, "hp": 2, "persistent": false, "noticeDC": 15, "area": "5 ft", "trigger": "proximity", "effect": "1d6 cold damage (Fort DC 11 negates); creatures shiver and shaken 1 round", "destruction": "Casting bless on the area; heating room above 65 degrees" },
+      { "name": "Phantom Bleeding", "cr": 2, "hp": 4, "persistent": false, "noticeDC": 16, "area": "10 ft", "trigger": "proximity", "effect": "Bleed 1d6, creatures within area see phantom blood seeping from walls and floor", "destruction": "Finding and blessing the hidden corpse; casting consecrate on burial site" },
+      { "name": "Spectral Touch", "cr": 3, "hp": 6, "persistent": false, "noticeDC": 18, "area": "15 ft", "trigger": "proximity", "effect": "1d6 negative energy damage + shaken 1d4 rounds (Will DC 14 negates fear)", "destruction": "Discovering the ghost's identity and speaking their true name aloud" },
+      { "name": "Haunted Portrait", "cr": 4, "hp": 8, "persistent": false, "noticeDC": 20, "area": "20 ft", "trigger": "visual (looking at portrait)", "effect": "Confusion for 1d4 rounds (Will DC 16 negates); subject sees disturbing visions", "destruction": "Destroying the portrait with holy water and fire; destroying painted subject's remains" },
+      { "name": "Choking Hands", "cr": 5, "hp": 10, "persistent": false, "noticeDC": 22, "area": "5 ft", "trigger": "proximity", "effect": "Grapple check +10 vs CMD, 1d6+4 damage per round if grappled; asphyxiation risk", "destruction": "Sanctifying the room with hallow; speaking words of forgiveness for the haunted's killer" },
+      { "name": "Burning Phantasm", "cr": 6, "hp": 12, "persistent": false, "noticeDC": 24, "area": "30 ft", "trigger": "proximity", "effect": "Phantom flames deal 4d6 fire damage (Will DC 18 halves, disbelief negates); spreads to objects", "destruction": "Extinguishing the actual fire that killed the spirit; blessing the burned remains" },
+      { "name": "Poltergeist", "cr": 4, "hp": 8, "persistent": false, "noticeDC": 19, "area": "25 ft", "trigger": "proximity", "effect": "Objects fly about dealing 1d6 damage; DC 16 Reflex to avoid; may disarm or trip", "destruction": "Performing a ritual of remembrance; discovering and resolving the spirit's grievance" },
+      { "name": "Ghostly Music", "cr": 3, "hp": 6, "persistent": false, "noticeDC": 17, "area": "50 ft", "trigger": "proximity", "effect": "Unsettling melody causes daze 1 round (Will DC 14 negates); creatures find location eerie", "destruction": "Playing the actual melody on the instrument the ghost played in life; reciting the song" },
+      { "name": "Malevolent Laughter", "cr": 3, "hp": 6, "persistent": false, "noticeDC": 16, "area": "40 ft", "trigger": "proximity", "effect": "Creature frightened 1 round (Will DC 14 negates); 1d4 Wis damage if failed save", "destruction": "Discovering what the spirit found amusing; making genuine peace with its memory" },
+      { "name": "Phantom Attack", "cr": 7, "hp": 14, "persistent": false, "noticeDC": 25, "area": "30 ft", "trigger": "proximity", "effect": "Phantom melee +15 (2d6+5 damage); incorporeal touch; appears as translucent attacker", "destruction": "Finding the location where the spirit died and blessing it; defeating the creature that killed it" },
+      { "name": "Spectral Fire", "cr": 6, "hp": 12, "persistent": false, "noticeDC": 23, "area": "40 ft", "trigger": "proximity", "effect": "Ghost fire spreads 10 ft per round dealing 2d6 fire; contained within building; no real damage but psychic", "destruction": "Uncovering why the fire occurred; proving it was accident or justice, not murder" },
+      { "name": "Weeping Portrait", "cr": 5, "hp": 10, "persistent": false, "noticeDC": 21, "area": "25 ft", "trigger": "visual (looking at portrait for 1 round)", "effect": "2d4 Wis damage (Will DC 17 negates); creature affected becomes melancholy for 1d4 hours", "destruction": "Locating the subject of the portrait and laying them to proper rest; destroying the portrait with grief-touched hands" },
+      { "name": "Whispering Winds", "cr": 4, "hp": 8, "persistent": false, "noticeDC": 18, "area": "60 ft", "trigger": "proximity", "effect": "Indistinct whispers suggest 1 action per round (Will DC 16 resists); not compulsion but temptation", "destruction": "Speaking truths the spirit needed to hear; writing a letter the spirit could never send and burning it" },
+      { "name": "Possessing Presence", "cr": 8, "hp": 16, "persistent": true, "noticeDC": 27, "area": "30 ft", "trigger": "proximity", "effect": "Haunt attempts possession of 1 creature (Will DC 19 negates); possessed creature acts on haunt's impulses", "destruction": "Laying the spirit to rest through exorcism; ending the injustice that bound the spirit" },
+      { "name": "Terrifying Vision", "cr": 7, "hp": 14, "persistent": false, "noticeDC": 26, "area": "50 ft", "trigger": "proximity", "effect": "Creature sees personal nightmare (Will DC 20 to disbelieve); 6d6 psychic damage on failure; frightened 2d4 rounds", "destruction": "Confronting the fear the spirit represents; proving the danger is no longer real" },
+      { "name": "Death Reenactment", "cr": 8, "hp": 16, "persistent": true, "noticeDC": 26, "area": "40 ft", "trigger": "proximity", "effect": "All in area witness violent death; 6d6 psychic damage + frightened 1d4 rounds (Will DC 20 halves damage, negates fear)", "destruction": "Laying the victims to rest with proper funerary rites; catching and punishing the killer" },
+      { "name": "Withering Despair", "cr": 10, "hp": 20, "persistent": true, "noticeDC": 28, "area": "50 ft", "trigger": "proximity", "effect": "2d4 Wisdom damage + crushing despair (Will DC 22 halves Wis damage, negates despair); suicidal ideation risk", "destruction": "Resolving the great injustice that created the haunt; saving innocents the spirit died protecting" },
+      { "name": "Phantom Touch", "cr": 2, "hp": 4, "persistent": false, "noticeDC": 14, "area": "10 ft", "trigger": "proximity", "effect": "Ghostly fingers chill and grapple; 1d4 cold damage per round; opposed grapple check", "destruction": "Warming the room with magical fire; blessing the place where the spirit froze to death" }
+    ]
+  },
+  "hazards": {
+    "environmental": [
+      { "name": "Cave-In/Collapse", "cr": 8, "buryZoneRadius": 15, "buryDamage": "8d6", "reflexDC": 15, "slideZoneWidth": 10, "slideDamage": "3d6", "buriedSuffocation": "1d6 nonlethal per minute, DC 15 Con check if unconscious or 1d6 lethal", "note": "Multiple collapse zones possible; rubble may trap equipment" },
+      { "name": "Lava", "cr": "varies", "contactDamage": "2d6 fire per round", "immersionDamage": "20d6 fire per round", "afterDamageRounds": "1d3", "afterDamage": "half initial", "coolingSurface": "Obsidian or lava rock forming" },
+      { "name": "Quicksand", "cr": 2, "spotDC": 8, "swimDCTread": 10, "swimDCMove": 15, "sinkThreshold": "fail by 5+", "depthVariance": "10-30 ft typical", "note": "Struggling increases sinking rate; buoyant items help" },
+      { "name": "Avalanche", "cr": 7, "buryDamage": "6d6", "reflexDC": 15, "buryArea": "30-ft wide path", "duration": "1d4 minutes", "note": "Can bury entire parties; climbing difficult for survivors" },
+      { "name": "Flood/Flash Flood", "cr": 4, "swimDC": 20, "damage": "2d6 bludgeoning per round", "note": "Objects in floodwater deal additional 1d6; carries away 20 ft per round", "flow": "Force = water mass and speed" },
+      { "name": "Green Slime", "cr": 4, "damage": "1d6 Con damage per round", "destruction": "Fire, cold, cure disease, sunlight", "note": "Turns flesh to green slime on death; spreads to adjacent organic matter" },
+      { "name": "Yellow Mold", "cr": 6, "damage": "2d6 Con damage", "fortDC": 15, "triggerRadius": 10, "note": "Releases spores when disturbed; DC 15 Fort negates; grows on damp wood" },
+      { "name": "Brown Mold", "cr": 2, "damage": "3d6 nonlethal cold within 5 ft", "note": "Grows when exposed to fire; destroyed by cold; doesn't consume food" },
+      { "name": "Acid Pool", "cr": 5, "damage": "2d6 acid per round immersion", "splashDamage": "1d6", "reflexDC": 15, "note": "Eats through organic and some metals; steam clouds form nearby" },
+      { "name": "Smoke and Fumes", "cr": 3, "visionRange": "5 ft", "perceptionPenalty": -8, "damage": "1d6 Con damage per minute", "fortDC": 15, "note": "Non-magical smoke; spreads 10 ft per round; heat damage possible from source fire" },
+      { "name": "Extreme Altitude", "cr": 4, "damageTrigger": "above 15000 ft", "damage": "1d6 Con damage per 10 min", "fortDC": 15, "note": "Climbing speed reduced; exhaustion risk; thin air" },
+      { "name": "Starvation and Thirst", "cr": "varies", "thirstDuration": "3 days", "starvationDuration": "3 weeks", "damageRate": "1d6 nonlethal Con per day after threshold", "note": "Dehydration happens 4x faster in hot environments" },
+      { "name": "Suffocation/Drowning", "cr": "varies", "holdBreathRounds": "CON modifier + 1", "suffocationDamage": "1d6 nonlethal + 1d6 lethal next round", "note": "Exhaustion/fatigue extends breath duration" },
+      { "name": "Catching on Fire", "cr": 2, "refuseDC": 15, "damagePerRound": "1d6 fire", "dcExtringuish": 15, "note": "Dropped/prone character adds +2 to extinguish DC; water or smothering extinguishes" },
+      { "name": "Extreme Cold Exposure", "cr": 5, "damageFrequency": "1d6 nonlethal per 10 min", "fortDC": 15, "dcIncrement": 1, "threshold": "below 0 degrees", "note": "Hypothermia sets in; frostbite after 1 hour; lethal damage at -20" }
+    ],
+    "diseases": [
+      { "name": "Blinding Sickness", "type": "ingested", "fortDC": 16, "onset": "1d3 days", "frequency": "1/day", "effect": "1d4 Str damage; if Str reaches 0 creature is permanently blind", "cure": "2 consecutive saves", "treatmentCost": 50 },
+      { "name": "Bubonic Plague", "type": "injury/inhaled", "fortDC": 17, "onset": "1 day", "frequency": "1/day", "effect": "1d4 Str damage, 1d4 Cha damage, fatigued", "cure": "2 consecutive saves", "treatmentCost": 100, "contagious": true },
+      { "name": "Cackle Fever", "type": "inhaled", "fortDC": 16, "onset": "1 day", "frequency": "1/day", "effect": "1d6 Wis damage; subject laughs uncontrollably", "cure": "2 consecutive saves", "treatmentCost": 75, "contagious": true },
+      { "name": "Demon Fever", "type": "injury", "fortDC": 18, "onset": "1 day", "frequency": "1/day", "effect": "1d6 Con damage; if dies, rise as demon in 24 hours", "cure": "2 consecutive saves", "treatmentCost": 150, "special": "Become demon spawn on death" },
+      { "name": "Devil Chills", "type": "injury", "fortDC": 14, "onset": "1d4 days", "frequency": "1/day", "effect": "1d4 Str damage; extreme fever and shaking", "cure": "3 consecutive saves", "treatmentCost": 60 },
+      { "name": "Filth Fever", "type": "injury", "fortDC": 12, "onset": "1d3 days", "frequency": "1/day", "effect": "1d3 Dex damage, 1d3 Con damage", "cure": "2 consecutive saves", "treatmentCost": 40 },
+      { "name": "Leprosy", "type": "contact/injury", "fortDC": 12, "onset": "2d4 weeks", "frequency": "1/week", "effect": "1d2 Cha damage; progressive deformity", "cure": "2 consecutive saves", "treatmentCost": 200, "contagious": true, "duration": "years" },
+      { "name": "Mindfire", "type": "inhaled", "fortDC": 12, "onset": "1 day", "frequency": "1/day", "effect": "1d4 Int damage; fever and confusion", "cure": "2 consecutive saves", "treatmentCost": 70 },
+      { "name": "Mummy Rot", "type": "supernatural", "fortDC": 16, "onset": "1 day", "frequency": "1/day", "effect": "1d6 Con damage; cannot be healed magically while diseased", "cure": "remove curse then remove disease", "treatmentCost": 200, "special": "Requires break enchantment first" },
+      { "name": "Red Ache", "type": "injury", "fortDC": 15, "onset": "1d3 days", "frequency": "1/day", "effect": "1d6 Str damage; swelling and pain", "cure": "2 consecutive saves", "treatmentCost": 60 },
+      { "name": "Shakes", "type": "contact", "fortDC": 13, "onset": "1 day", "frequency": "1/day", "effect": "1d8 Dex damage; tremors", "cure": "2 consecutive saves", "treatmentCost": 50 },
+      { "name": "Slimy Doom", "type": "contact", "fortDC": 14, "onset": "1 day", "frequency": "1/day", "effect": "1d4 Con damage; if Con reaches 0, body dissolves into sludge", "cure": "2 consecutive saves", "treatmentCost": 80 },
+      { "name": "Ghoul Fever", "type": "injury", "fortDC": 16, "onset": "1 day", "frequency": "1/day", "effect": "1d3 Con damage, 1d3 Dex damage; if dies, rise as ghoul", "cure": "2 consecutive saves", "treatmentCost": 120, "special": "Become ghoul on death" },
+      { "name": "Zombie Plague", "type": "injury", "fortDC": 14, "onset": "2d12 hours", "frequency": "1/day", "effect": "1d2 Con damage; if dies, rise as zombie in 1 hour", "cure": "remove disease before death or become undead", "treatmentCost": 100 },
+      { "name": "Lycanthropy", "type": "injury", "fortDC": 15, "onset": "1d4 days", "frequency": "1/day", "effect": "1d2 Wis damage; transformation on full moon; alignment shift", "cure": "remove curse + remove disease within 3 days", "treatmentCost": 150, "special": "Involuntary transformation; animal instincts" }
+    ],
+    "poisons": [
+      { "name": "Arsenic", "type": "ingested", "fortDC": 13, "onset": "10 minutes", "frequency": "1/minute for 4 minutes", "effect": "1d2 Con damage", "cure": "1 save", "price": 120 },
+      { "name": "Belladonna", "type": "ingested", "fortDC": 14, "onset": "10 minutes", "frequency": "1/minute for 6 minutes", "effect": "1d2 Str damage + 1d4 rounds staggered", "cure": "1 save", "price": 100 },
+      { "name": "Black Adder Venom", "type": "injury", "fortDC": 11, "frequency": "1/round for 6 rounds", "effect": "1d2 Con damage", "cure": "1 save", "price": 120 },
+      { "name": "Bloodroot", "type": "injury", "fortDC": 12, "onset": "1 round", "frequency": "1/round for 4 rounds", "effect": "1 Con damage + 1 Wis damage", "cure": "1 save", "price": 100 },
+      { "name": "Blue Whinnis", "type": "injury", "fortDC": 14, "frequency": "1/round for 2 rounds", "initial": "1 Con damage", "secondary": "unconsciousness 2d4 hours", "cure": "1 save", "price": 120 },
+      { "name": "Burnt Othur Fumes", "type": "inhaled", "fortDC": 18, "onset": "immediate", "frequency": "1/round for 6 rounds", "effect": "1d6 Con damage; constitution drain", "cure": "2 consecutive saves", "price": 2100 },
+      { "name": "Dark Reaver Powder", "type": "ingested", "fortDC": 18, "onset": "1 minute", "frequency": "1/minute for 4 minutes", "effect": "1d3 Str damage; paralysis risk", "cure": "2 consecutive saves", "price": 300 },
+      { "name": "Deathblade", "type": "injury", "fortDC": 20, "frequency": "1/round for 6 rounds", "effect": "1d3 Con damage; constitution drain", "cure": "2 consecutive saves", "price": 1800 },
+      { "name": "Dragon Bile", "type": "contact", "fortDC": 26, "onset": "1d6 rounds", "frequency": "1/round for 6 rounds", "effect": "3d6 acid damage per round", "cure": "2 consecutive saves", "price": 1500 },
+      { "name": "Giant Wasp Poison", "type": "injury", "fortDC": 18, "frequency": "1/round for 6 rounds", "effect": "1d2 Dex damage; dexterity drain", "cure": "1 save", "price": 210 },
+      { "name": "Greenblood Oil", "type": "injury", "fortDC": 13, "frequency": "1/round for 4 rounds", "effect": "1 Con damage", "cure": "1 save", "price": 100 },
+      { "name": "Large Scorpion Venom", "type": "injury", "fortDC": 17, "frequency": "1/round for 6 rounds", "effect": "1d2 Str damage; paralysis if Str reduced to 0", "cure": "1 save", "price": 200 },
+      { "name": "Malyass Root Paste", "type": "contact", "fortDC": 16, "onset": "1 minute", "frequency": "1/minute for 6 minutes", "effect": "1d2 Dex damage", "cure": "1 save", "price": 250 },
+      { "name": "Medium Spider Venom", "type": "injury", "fortDC": 14, "frequency": "1/round for 4 rounds", "effect": "1d2 Str damage", "cure": "1 save", "price": 150 },
+      { "name": "Oil of Taggit", "type": "ingested", "fortDC": 15, "onset": "1 minute", "effect": "Unconsciousness for 1d3 hours", "cure": "1 save", "price": 90 },
+      { "name": "Purple Worm Poison", "type": "injury", "fortDC": 24, "frequency": "1/round for 6 rounds", "effect": "1d3 Str damage; strength drain", "cure": "2 consecutive saves", "price": 700 },
+      { "name": "Sassone Leaf Residue", "type": "contact", "fortDC": 16, "onset": "1 minute", "frequency": "1/round for 6 rounds", "effect": "2d12 hp damage + 1 Con damage", "cure": "1 save", "price": 300 },
+      { "name": "Shadow Essence", "type": "injury", "fortDC": 17, "frequency": "1/round for 6 rounds", "effect": "1 Str drain (permanent until heal)", "cure": "2 consecutive saves", "price": 250 },
+      { "name": "Striped Toadstool", "type": "ingested", "fortDC": 11, "onset": "10 minutes", "frequency": "1/minute for 4 minutes", "effect": "1d3 Wis damage + 1 Int damage", "cure": "1 save", "price": 180 },
+      { "name": "Tears of Death", "type": "contact", "fortDC": 22, "onset": "1 minute", "frequency": "1/minute for 6 minutes", "effect": "1d6 Con damage", "cure": "2 consecutive saves", "price": 6500 },
+      { "name": "Ungol Dust", "type": "inhaled", "fortDC": 15, "frequency": "1/round for 4 rounds", "effect": "1 Cha drain (permanent until heal)", "cure": "1 save", "price": 1000 },
+      { "name": "Wyvern Poison", "type": "injury", "fortDC": 17, "frequency": "1/round for 6 rounds", "effect": "1d4 Con damage", "cure": "2 consecutive saves", "price": 3000 }
+    ],
+    "curses": [
+      { "name": "Bestow Curse (Standard)", "cr": 4, "removeDC": 14, "saveType": "Will", "saveDC": 14, "effects": ["-6 to one ability score", "-4 on attacks, saves, ability checks, skill checks", "50% chance each turn of doing nothing"], "removal": "remove curse, break enchantment, wish, or miracle" },
+      { "name": "Bestow Curse (Weakness)", "cr": 4, "removeDC": 14, "saveType": "Will", "saveDC": 14, "effects": ["Weakness to all damage types"], "removal": "remove curse" },
+      { "name": "Baleful Polymorph", "cr": 5, "removeDC": 17, "saveType": "Will", "saveDC": 15, "effects": ["Transformed into small animal", "If fails second Will save, loses mental abilities"], "special": "Break enchantment or remove curse before polymorph to reverse", "removal": "remove curse + break enchantment" },
+      { "name": "Feeblemind", "cr": 5, "removeDC": 17, "saveType": "Will", "saveDC": 14, "effects": ["Int and Wis become 1", "Cannot think or act; acts on animal instinct"], "removal": "break enchantment, wish, miracle, or heal spell" },
+      { "name": "Lycanthropy (Curse)", "cr": 6, "removeDC": 20, "saveType": "Will", "saveDC": 15, "effects": ["Involuntary transformation on full moons", "Alignment shift toward animal nature"], "special": "Remove curse within 3 days of infection; belladonna within 1 hour", "removal": "remove curse + atonement for alignment shift" },
+      { "name": "Mummy Rot (Curse)", "cr": 7, "removeDC": 17, "saveType": "Will", "saveDC": 16, "effects": ["1d6 Con damage and 1d6 Cha damage per day", "Cannot be magically healed while cursed", "Mummified skin spreads"], "special": "Remove curse then remove disease", "removal": "remove curse + break enchantment then remove disease" },
+      { "name": "Permanent Blindness", "cr": 4, "removeDC": 14, "saveType": "Will", "saveDC": 14, "effects": ["Permanent blindness; -2 AC, -4 ranged, no vision-dependent abilities"], "removal": "remove curse + restoration" },
+      { "name": "Permanent Deafness", "cr": 3, "removeDC": 12, "saveType": "Will", "saveDC": 12, "effects": ["Permanent deafness; -4 Perception, cannot hear spells"], "removal": "remove curse + restoration" },
+      { "name": "Petrification (Reversed)", "cr": 6, "removeDC": 18, "saveType": "Will", "saveDC": 16, "effects": ["Body becomes stone while conscious; aware but paralyzed", "Cannot be detected as alive; hardened skin gives damage reduction"], "removal": "stone to flesh + remove curse" },
+      { "name": "Unluck Curse", "cr": 3, "removeDC": 12, "saveType": "Will", "saveDC": 12, "effects": ["Rolls d6 instead of d20 for all d20 rolls", "Failed saves and checks by 10+ instead of normal margins"], "removal": "remove curse or break enchantment" },
+      { "name": "Vulnerability Curse", "cr": 4, "removeDC": 14, "saveType": "Will", "saveDC": 14, "effects": ["Takes double damage from chosen damage type or weapon type", "Cannot gain immunity to chosen damage type"], "removal": "remove curse + break enchantment" },
+      { "name": "Possession (Curse)", "cr": 7, "removeDC": 20, "saveType": "Will", "saveDC": 16, "effects": ["Spirit possesses body; victim consciousness pushed back", "Possessor controls body but victim may attempt to regain control"], "removal": "remove curse + exorcism or wish" }
+    ]
+  },
+  "randomEncounters": {
+    "checkFrequency": { "perDay": 4, "times": ["dawn", "noon", "dusk", "midnight"] },
+    "baseChance": 20,
+    "terrainTypes": {
+      "forest": {
+        "name": "Forest",
+        "encounterChance": { "day": 20, "night": 25 },
+        "tables": {
+          "low": [
+            { "roll": [1,15], "creature": "Wolf", "count": "1d4+1", "cr": 1 },
+            { "roll": [16,30], "creature": "Goblin", "count": "1d6", "cr": "1/3" },
+            { "roll": [31,40], "creature": "Giant Spider", "count": "1d3", "cr": 1 },
+            { "roll": [41,50], "creature": "Boar", "count": "1d2", "cr": 2 },
+            { "roll": [51,60], "creature": "Dire Rat", "count": "2d6", "cr": "1/3" },
+            { "roll": [61,70], "creature": "Owlbear", "count": "1", "cr": 4 },
+            { "roll": [71,80], "creature": "Ettercap", "count": "1d2", "cr": 3 },
+            { "roll": [81,88], "creature": "Bugbear", "count": "1d3", "cr": 2 },
+            { "roll": [89,95], "creature": "Treant", "count": "1", "cr": 8 },
+            { "roll": [96,100], "creature": "Green Dragon (young)", "count": "1", "cr": 8 }
+          ],
+          "medium": [
+            { "roll": [1,15], "creature": "Dire Wolf", "count": "1d4", "cr": 3 },
+            { "roll": [16,30], "creature": "Troll", "count": "1d2", "cr": 5 },
+            { "roll": [31,40], "creature": "Phase Spider", "count": "1d3", "cr": 5 },
+            { "roll": [41,50], "creature": "Ogre", "count": "1d3+1", "cr": 3 },
+            { "roll": [51,60], "creature": "Centaur", "count": "1d4", "cr": 3 },
+            { "roll": [61,70], "creature": "Shambling Mound", "count": "1", "cr": 6 },
+            { "roll": [71,80], "creature": "Will-o'-Wisp", "count": "1d2", "cr": 6 },
+            { "roll": [81,88], "creature": "Hill Giant", "count": "1d2", "cr": 7 },
+            { "roll": [89,95], "creature": "Unicorn", "count": "1", "cr": 3 },
+            { "roll": [96,100], "creature": "Green Dragon (adult)", "count": "1", "cr": 12 }
+          ],
+          "high": [
+            { "roll": [1,12], "creature": "Hydra (5-headed)", "count": "1", "cr": 4 },
+            { "roll": [13,25], "creature": "Troll", "count": "1d2", "cr": 5 },
+            { "roll": [26,38], "creature": "Black Dragon (young)", "count": "1", "cr": 7 },
+            { "roll": [39,50], "creature": "Eladrin", "count": "1d3", "cr": 5 },
+            { "roll": [51,62], "creature": "Ancient Treant", "count": "1", "cr": 10 },
+            { "roll": [63,75], "creature": "Giant Remorhaz", "count": "1", "cr": 11 },
+            { "roll": [76,87], "creature": "Green Dragon (ancient)", "count": "1", "cr": 16 },
+            { "roll": [88,100], "creature": "Demon or Devil", "count": "1", "cr": "12-15" }
+          ]
+        }
+      },
+      "plains": {
+        "name": "Plains/Grasslands",
+        "encounterChance": { "day": 15, "night": 20 },
+        "tables": {
+          "low": [
+            { "roll": [1,20], "creature": "Wolf", "count": "1d6", "cr": 1 },
+            { "roll": [21,35], "creature": "Goblin Rider", "count": "1d4", "cr": 1 },
+            { "roll": [36,50], "creature": "Gnoll", "count": "1d6", "cr": 1 },
+            { "roll": [51,65], "creature": "Bandit", "count": "1d6+2", "cr": "1/2" },
+            { "roll": [66,75], "creature": "Lion", "count": "1d2", "cr": 3 },
+            { "roll": [76,85], "creature": "Centaur", "count": "1d4", "cr": 3 },
+            { "roll": [86,95], "creature": "Ankheg", "count": "1d3", "cr": 3 },
+            { "roll": [96,100], "creature": "Bulette", "count": "1", "cr": 7 }
+          ],
+          "medium": [
+            { "roll": [1,15], "creature": "Ogre Rider", "count": "1d3", "cr": 4 },
+            { "roll": [16,30], "creature": "Dire Lion", "count": "1d2", "cr": 5 },
+            { "roll": [31,45], "creature": "Griffon", "count": "1d2", "cr": 6 },
+            { "roll": [46,60], "creature": "Cloud Giant", "count": "1", "cr": 13 },
+            { "roll": [61,75], "creature": "Crusader (mounted)", "count": "1", "cr": 6 },
+            { "roll": [76,90], "creature": "Manticore", "count": "1d2", "cr": 3 },
+            { "roll": [91,100], "creature": "Wyvern", "count": "1", "cr": 6 }
+          ],
+          "high": [
+            { "roll": [1,20], "creature": "Cloud Giant", "count": "1", "cr": 13 },
+            { "roll": [21,40], "creature": "Red Dragon (young)", "count": "1", "cr": 10 },
+            { "roll": [41,60], "creature": "Storm Giant", "count": "1", "cr": 18 },
+            { "roll": [61,80], "creature": "Elemental Lord", "count": "1", "cr": "15-17" },
+            { "roll": [81,100], "creature": "Celestial or Demon", "count": "1", "cr": "14-16" }
+          ]
+        }
+      },
+      "hills": {
+        "name": "Hills/Highlands",
+        "encounterChance": { "day": 15, "night": 20 },
+        "tables": {
+          "low": [
+            { "roll": [1,15], "creature": "Goblin", "count": "2d4", "cr": "1/3" },
+            { "roll": [16,30], "creature": "Hobgoblin", "count": "1d6", "cr": "1/2" },
+            { "roll": [31,45], "creature": "Orc", "count": "1d6+2", "cr": "1/3" },
+            { "roll": [46,55], "creature": "Ogre", "count": "1d2", "cr": 3 },
+            { "roll": [56,65], "creature": "Worg", "count": "1d4", "cr": 2 },
+            { "roll": [66,75], "creature": "Hippogriff", "count": "1d3", "cr": 2 },
+            { "roll": [76,90], "creature": "Harpy", "count": "1d4", "cr": 3 },
+            { "roll": [91,100], "creature": "Giant Eagle", "count": "1", "cr": 4 }
+          ],
+          "medium": [
+            { "roll": [1,12], "creature": "Fire Giant", "count": "1", "cr": 11 },
+            { "roll": [13,25], "creature": "Red Dragon (young)", "count": "1", "cr": 10 },
+            { "roll": [26,38], "creature": "Giant Remorhaz", "count": "1", "cr": 11 },
+            { "roll": [39,50], "creature": "Roc", "count": "1", "cr": 9 },
+            { "roll": [51,62], "creature": "Stone Giant", "count": "1d2", "cr": 8 },
+            { "roll": [63,75], "creature": "Cyclops", "count": "1", "cr": 7 },
+            { "roll": [76,87], "creature": "Medusa", "count": "1d2", "cr": 6 },
+            { "roll": [88,100], "creature": "Demon", "count": "1", "cr": "10-13" }
+          ],
+          "high": [
+            { "roll": [1,25], "creature": "Red Dragon (adult)", "count": "1", "cr": 15 },
+            { "roll": [26,50], "creature": "Stone Giant Chieftain", "count": "1", "cr": 10 },
+            { "roll": [51,75], "creature": "Demon Lord", "count": "1", "cr": "18-20" },
+            { "roll": [76,100], "creature": "Ancient Dragon", "count": "1", "cr": "20-22" }
+          ]
+        }
+      },
+      "swamp": {
+        "name": "Swamp/Marsh",
+        "encounterChance": { "day": 20, "night": 25 },
+        "tables": {
+          "low": [
+            { "roll": [1,15], "creature": "Giant Frog", "count": "1d4", "cr": "1/4" },
+            { "roll": [16,30], "creature": "Giant Spider", "count": "1d3", "cr": 1 },
+            { "roll": [31,40], "creature": "Lizardfolk", "count": "1d8", "cr": 1 },
+            { "roll": [41,50], "creature": "Dire Rat", "count": "2d6", "cr": "1/3" },
+            { "roll": [51,60], "creature": "Crocodile", "count": "1d2", "cr": 2 },
+            { "roll": [61,75], "creature": "Giant Constrictor Snake", "count": "1", "cr": 3 },
+            { "roll": [76,88], "creature": "Will-o'-Wisp", "count": "1d2", "cr": 6 },
+            { "roll": [89,100], "creature": "Hydra (5-headed)", "count": "1", "cr": 4 }
+          ],
+          "medium": [
+            { "roll": [1,15], "creature": "Giant Hydra (8-headed)", "count": "1", "cr": 8 },
+            { "roll": [16,30], "creature": "Black Dragon (young)", "count": "1", "cr": 7 },
+            { "roll": [31,45], "creature": "Giant Crocodile", "count": "1", "cr": 7 },
+            { "roll": [46,60], "creature": "Shambling Mound", "count": "1d3", "cr": 6 },
+            { "roll": [61,75], "creature": "Troll", "count": "1d3", "cr": 5 },
+            { "roll": [76,90], "creature": "Giant Constrictor (ancient)", "count": "1", "cr": 6 },
+            { "roll": [91,100], "creature": "Demon", "count": "1", "cr": "8-12" }
+          ],
+          "high": [
+            { "roll": [1,25], "creature": "Black Dragon (adult)", "count": "1", "cr": 12 },
+            { "roll": [26,50], "creature": "Black Dragon (ancient)", "count": "1", "cr": 18 },
+            { "roll": [51,75], "creature": "Hydra (multiple heads)", "count": "1", "cr": "10-14" },
+            { "roll": [76,100], "creature": "Abomination", "count": "1", "cr": "15-18" }
+          ]
+        }
+      },
+      "coastal": {
+        "name": "Coastal/Beach",
+        "encounterChance": { "day": 20, "night": 15 },
+        "tables": {
+          "low": [
+            { "roll": [1,20], "creature": "Sahuagin", "count": "1d6", "cr": 2 },
+            { "roll": [21,35], "creature": "Shark", "count": "1d3", "cr": 2 },
+            { "roll": [36,50], "creature": "Merfolk", "count": "1d6", "cr": "1/3" },
+            { "roll": [51,65], "creature": "Giant Crab", "count": "1d4", "cr": 2 },
+            { "roll": [66,80], "creature": "Sea Hag", "count": "1", "cr": 4 },
+            { "roll": [81,90], "creature": "Water Elemental", "count": "1", "cr": 5 },
+            { "roll": [91,95], "creature": "Giant Octopus", "count": "1", "cr": 8 },
+            { "roll": [96,100], "creature": "Sea Serpent", "count": "1", "cr": 12 }
+          ],
+          "medium": [
+            { "roll": [1,15], "creature": "Dragon Turtle", "count": "1", "cr": 17 },
+            { "roll": [16,30], "creature": "Marid", "count": "1d2", "cr": 8 },
+            { "roll": [31,45], "creature": "Giant Tentacle Creature", "count": "1", "cr": "10-12" },
+            { "roll": [46,60], "creature": "Hydra (aquatic)", "count": "1", "cr": "8-10" },
+            { "roll": [61,75], "creature": "Demon (aquatic)", "count": "1", "cr": "10-12" },
+            { "roll": [76,90], "creature": "Aboleth", "count": "1", "cr": 8 },
+            { "roll": [91,100], "creature": "Ancient Sea Serpent", "count": "1", "cr": "15-16" }
+          ],
+          "high": [
+            { "roll": [1,30], "creature": "Ancient Dragon Turtle", "count": "1", "cr": 20 },
+            { "roll": [31,60], "creature": "Demon Prince", "count": "1", "cr": "18-20" },
+            { "roll": [61,100], "creature": "God-like Creature", "count": "1", "cr": "20-25" }
+          ]
+        }
+      },
+      "desert": {
+        "name": "Desert",
+        "encounterChance": { "day": 10, "night": 15 },
+        "tables": {
+          "low": [
+            { "roll": [1,20], "creature": "Giant Scorpion", "count": "1d3", "cr": 3 },
+            { "roll": [21,35], "creature": "Gnoll", "count": "1d6+2", "cr": 1 },
+            { "roll": [36,50], "creature": "Giant Ant", "count": "2d4", "cr": 2 },
+            { "roll": [51,60], "creature": "Mummy", "count": "1", "cr": 5 },
+            { "roll": [61,75], "creature": "Hyena", "count": "1d6", "cr": 1 },
+            { "roll": [76,85], "creature": "Lamia", "count": "1", "cr": 6 },
+            { "roll": [86,93], "creature": "Sphinx", "count": "1", "cr": 8 },
+            { "roll": [94,100], "creature": "Blue Dragon (young)", "count": "1", "cr": 9 }
+          ],
+          "medium": [
+            { "roll": [1,15], "creature": "Blue Dragon (young adult)", "count": "1", "cr": 12 },
+            { "roll": [16,30], "creature": "Efreeti Lord", "count": "1", "cr": 14 },
+            { "roll": [31,45], "creature": "Mummy Lord", "count": "1", "cr": 10 },
+            { "roll": [46,60], "creature": "Giant Remorhaz", "count": "1", "cr": 11 },
+            { "roll": [61,75], "creature": "Sphinx (Androsphinx)", "count": "1", "cr": 9 },
+            { "roll": [76,90], "creature": "Demon (fire-themed)", "count": "1", "cr": "10-12" },
+            { "roll": [91,100], "creature": "Ancient Blue Dragon", "count": "1", "cr": "18-19" }
+          ],
+          "high": [
+            { "roll": [1,25], "creature": "Ancient Blue Dragon", "count": "1", "cr": 19 },
+            { "roll": [26,50], "creature": "Efreeti Sultana", "count": "1", "cr": "16-17" },
+            { "roll": [51,75], "creature": "Demon Lord", "count": "1", "cr": "18-20" },
+            { "roll": [76,100], "creature": "Forgotten God", "count": "1", "cr": "20-25" }
+          ]
+        }
+      },
+      "mountain": {
+        "name": "Mountain",
+        "encounterChance": { "day": 10, "night": 15 },
+        "tables": {
+          "low": [
+            { "roll": [1,20], "creature": "Giant Eagle", "count": "1d2", "cr": 4 },
+            { "roll": [21,35], "creature": "Hippogriff", "count": "1d4", "cr": 2 },
+            { "roll": [36,50], "creature": "Griffon", "count": "1d2", "cr": 6 },
+            { "roll": [51,65], "creature": "Harpy", "count": "1d4", "cr": 3 },
+            { "roll": [66,75], "creature": "Stone Giant", "count": "1", "cr": 8 },
+            { "roll": [76,85], "creature": "Cloud Giant", "count": "1", "cr": 13 },
+            { "roll": [86,93], "creature": "Red Dragon (young)", "count": "1", "cr": 10 },
+            { "roll": [94,100], "creature": "Roc", "count": "1", "cr": 9 }
+          ],
+          "medium": [
+            { "roll": [1,15], "creature": "Red Dragon (adult)", "count": "1", "cr": 15 },
+            { "roll": [16,30], "creature": "Storm Giant", "count": "1", "cr": 18 },
+            { "roll": [31,45], "creature": "Fire Giant War Band", "count": "1d3", "cr": 11 },
+            { "roll": [46,60], "creature": "Demon (air/wind-themed)", "count": "1d2", "cr": "12-14" },
+            { "roll": [61,75], "creature": "Giant Remorhaz", "count": "1", "cr": 11 },
+            { "roll": [76,90], "creature": "Ancient Red Dragon", "count": "1", "cr": "20-21" },
+            { "roll": [91,100], "creature": "Celestial Warlord", "count": "1", "cr": "17-19" }
+          ],
+          "high": [
+            { "roll": [1,25], "creature": "Ancient Red Dragon", "count": "1", "cr": 21 },
+            { "roll": [26,50], "creature": "Greater Demon", "count": "1d2", "cr": "18-20" },
+            { "roll": [51,75], "creature": "Storm Giant Chieftain", "count": "1", "cr": "20-21" },
+            { "roll": [76,100], "creature": "Aspect of Deity", "count": "1", "cr": "22-25" }
+          ]
+        }
+      },
+      "underounder": {
+        "name": "Underground/Dungeon",
+        "encounterChance": { "day": 30, "night": 30 },
+        "tables": {
+          "low": [
+            { "roll": [1,15], "creature": "Dire Rat", "count": "2d6", "cr": "1/3" },
+            { "roll": [16,25], "creature": "Giant Spider", "count": "1d4", "cr": 1 },
+            { "roll": [26,35], "creature": "Skeleton", "count": "1d8", "cr": "1/3" },
+            { "roll": [36,45], "creature": "Zombie", "count": "1d6", "cr": "1/2" },
+            { "roll": [46,55], "creature": "Troglodyte", "count": "1d6", "cr": 1 },
+            { "roll": [56,65], "creature": "Darkmantle", "count": "1d3", "cr": 1 },
+            { "roll": [66,75], "creature": "Choker", "count": "1d2", "cr": 2 },
+            { "roll": [76,83], "creature": "Mimic", "count": "1", "cr": 4 },
+            { "roll": [84,91], "creature": "Gelatinous Cube", "count": "1", "cr": 3 },
+            { "roll": [92,97], "creature": "Umber Hulk", "count": "1", "cr": 7 },
+            { "roll": [98,100], "creature": "Mind Flayer", "count": "1", "cr": 8 }
+          ],
+          "medium": [
+            { "roll": [1,12], "creature": "Beholder", "count": "1", "cr": 13 },
+            { "roll": [13,25], "creature": "Mind Flayer Hive", "count": "1d3", "cr": 8 },
+            { "roll": [26,38], "creature": "Duergar Stronghold", "count": "2d6", "cr": 1 },
+            { "roll": [39,50], "creature": "Black Dragon (young)", "count": "1", "cr": 7 },
+            { "roll": [51,62], "creature": "Xorn", "count": "1d2", "cr": 8 },
+            { "roll": [63,75], "creature": "Demon", "count": "1", "cr": "10-13" },
+            { "roll": [76,87], "creature": "Roper", "count": "1d3", "cr": 12 },
+            { "roll": [88,100], "creature": "Dragon", "count": "1", "cr": "12-15" }
+          ],
+          "high": [
+            { "roll": [1,20], "creature": "Elder Brain", "count": "1", "cr": 18 },
+            { "roll": [21,40], "creature": "Ancient Black Dragon", "count": "1", "cr": 18 },
+            { "roll": [41,60], "creature": "Demonic Horde", "count": "1d4", "cr": "15-18" },
+            { "roll": [61,80], "creature": "Balor or Greater Demon", "count": "1", "cr": "20-22" },
+            { "roll": [81,100], "creature": "Undead Godling", "count": "1", "cr": "20-25" }
+          ]
+        }
+      },
+      "urban": {
+        "name": "Urban/City",
+        "encounterChance": { "day": 10, "night": 20 },
+        "tables": {
+          "low": [
+            { "roll": [1,20], "creature": "Pickpocket", "count": "1d2", "cr": "1/2" },
+            { "roll": [21,35], "creature": "Drunk", "count": "1d4", "cr": "1/3" },
+            { "roll": [36,50], "creature": "City Guard Patrol", "count": "1d4+2", "cr": "1/2" },
+            { "roll": [51,65], "creature": "Mugger", "count": "1d3", "cr": 1 },
+            { "roll": [66,75], "creature": "Rat Swarm", "count": "1d2", "cr": 2 },
+            { "roll": [76,85], "creature": "Wererat", "count": "1", "cr": 2 },
+            { "roll": [86,93], "creature": "Assassin", "count": "1", "cr": 5 },
+            { "roll": [94,100], "creature": "Vampire Spawn", "count": "1d2", "cr": 4 }
+          ],
+          "medium": [
+            { "roll": [1,15], "creature": "Vampire", "count": "1", "cr": 9 },
+            { "roll": [16,30], "creature": "Lamia Matriarch", "count": "1", "cr": 9 },
+            { "roll": [31,45], "creature": "Beholder Cult", "count": "1d6", "cr": 13 },
+            { "roll": [46,60], "creature": "Devil (cultist master)", "count": "1", "cr": "10-13" },
+            { "roll": [61,75], "creature": "Lich", "count": "1", "cr": 18 },
+            { "roll": [76,90], "creature": "Ancient Dragon", "count": "1", "cr": "18-20" },
+            { "roll": [91,100], "creature": "Demon", "count": "1", "cr": "15-18" }
+          ],
+          "high": [
+            { "roll": [1,25], "creature": "Ancient Vampire Lord", "count": "1", "cr": 20 },
+            { "roll": [26,50], "creature": "Demon Prince (disguised)", "count": "1", "cr": "20-22" },
+            { "roll": [51,75], "creature": "God Incarnate", "count": "1", "cr": "22-25" },
+            { "roll": [76,100], "creature": "Apocalypse Entity", "count": "1", "cr": "25+" }
+          ]
+        }
+      },
+      "arctic": {
+        "name": "Arctic",
+        "encounterChance": { "day": 10, "night": 20 },
+        "tables": {
+          "low": [
+            { "roll": [1,20], "creature": "Winter Wolf", "count": "1d2", "cr": 6 },
+            { "roll": [21,35], "creature": "Giant Owl", "count": "1d2", "cr": 3 },
+            { "roll": [36,50], "creature": "Frost Giant", "count": "1", "cr": 12 },
+            { "roll": [51,65], "creature": "Ice Elemental", "count": "1d2", "cr": 5 },
+            { "roll": [66,75], "creature": "White Dragon (young)", "count": "1", "cr": 8 },
+            { "roll": [76,85], "creature": "Remorhaz", "count": "1", "cr": 11 },
+            { "roll": [86,93], "creature": "White Dragon (adult)", "count": "1", "cr": 13 },
+            { "roll": [94,100], "creature": "Demon (cold-themed)", "count": "1", "cr": "12-15" }
+          ],
+          "medium": [
+            { "roll": [1,20], "creature": "Frost Giant Jarl", "count": "1d2", "cr": 14 },
+            { "roll": [21,40], "creature": "White Dragon (ancient)", "count": "1", "cr": 19 },
+            { "roll": [41,60], "creature": "Elder Fire Elemental", "count": "1", "cr": 11 },
+            { "roll": [61,80], "creature": "Demon", "count": "1d2", "cr": "14-16" },
+            { "roll": [81,100], "creature": "Aspect of Winter God", "count": "1", "cr": "20-23" }
+          ],
+          "high": [
+            { "roll": [1,33], "creature": "Ancient White Dragon", "count": "1", "cr": 21 },
+            { "roll": [34,66], "creature": "Demon Overlord", "count": "1", "cr": "22-24" },
+            { "roll": [67,100], "creature": "Winter God Avatar", "count": "1", "cr": "24-27" }
+          ]
+        }
+      }
+    }
+  },
+  "treasure": {
+    "valueByEncounterCR": {
+      "1": 260, "2": 550, "3": 800, "4": 1150, "5": 1550,
+      "6": 2000, "7": 2600, "8": 3350, "9": 4350, "10": 5800,
+      "11": 7500, "12": 10000, "13": 13000, "14": 17000, "15": 22000,
+      "16": 28000, "17": 36000, "18": 47000, "19": 61000, "20": 80000
+    },
+    "wealthByLevel": {
+      "1": 0, "2": 1000, "3": 3000, "4": 6000, "5": 10500,
+      "6": 16000, "7": 23500, "8": 33000, "9": 46000, "10": 62000,
+      "11": 82000, "12": 108000, "13": 140000, "14": 185000, "15": 240000,
+      "16": 315000, "17": 410000, "18": 530000, "19": 685000, "20": 880000
+    },
+    "spendingGuidelines": {
+      "weapons": 0.25,
+      "protection": 0.25,
+      "otherMagic": 0.25,
+      "disposable": 0.15,
+      "mundane": 0.10
+    },
+    "gems": [
+      { "value": 10, "examples": ["Agate", "Azurite", "Blue Quartz", "Hematite", "Lapis Lazuli", "Malachite", "Obsidian", "Rhodochrosite", "Tiger Eye", "Turquoise"] },
+      { "value": 50, "examples": ["Bloodstone", "Carnelian", "Chalcedony", "Chrysoprase", "Citrine", "Jasper", "Moonstone", "Onyx", "Peridot", "Rock Crystal", "Sard", "Sardonyx", "Rose Quartz", "Smoky Quartz", "Star Rose Quartz", "Zircon"] },
+      { "value": 100, "examples": ["Amber", "Amethyst", "Chrysoberyl", "Coral", "Garnet", "Jade", "Jet", "Pearl", "Spinel", "Tourmaline"] },
+      { "value": 500, "examples": ["Alexandrite", "Aquamarine", "Black Pearl", "Blue Spinel", "Golden Yellow Topaz", "Peridot (large)", "Violet Garnet"] },
+      { "value": 1000, "examples": ["Black Opal", "Blue Sapphire", "Emerald", "Fire Opal", "Opal", "Star Ruby", "Star Sapphire"] },
+      { "value": 5000, "examples": ["Black Sapphire", "Diamond", "Jacinth", "Ruby"] }
+    ],
+    "artObjects": [
+      { "value": 10, "examples": ["Bone dice", "Carved wooden idol", "Cloth banner", "Copper bracelet", "Dried herbs in pouch"] },
+      { "value": 25, "examples": ["Brass mug with jade inlay", "Carved bone statuette", "Silver ewer", "Gold locket", "Painted silk fan"] },
+      { "value": 50, "examples": ["Carved ivory statuette", "Gold bracelet", "Silver necklace with gems", "Silk robe with gold thread", "Bronze crown"] },
+      { "value": 100, "examples": ["Ivory drinking horn with silver filigree", "Gold music box", "Silver chalice with moonstones", "Tapestry of historical battle", "Gilded shortbow"] },
+      { "value": 250, "examples": ["Gold comb with moonstones", "Electrum ring with rubies", "Gold idol of a deity", "Platinum bracelet", "Jeweled anklet"] },
+      { "value": 500, "examples": ["Silver scepter", "Gold chess set", "Platinum ring with sapphires", "Golden circlet with four aquamarines", "Embroidered silk & velvet mantle with moonstones"] },
+      { "value": 1000, "examples": ["Emerald pendant on gold chain", "Platinum tiara with opals", "Gold dragon figurine with ruby eyes", "Golden chalice with griffon motif"] },
+      { "value": 5000, "examples": ["Diamond-studded platinum crown", "Bejeweled gold music box", "Carved jade dragon", "Royal scepter with rubies"] }
+    ],
+    "randomTreasureType": {
+      "A": { "name": "Coins Only", "coinChance": 100, "gemChance": 0, "artChance": 0, "itemChance": 0 },
+      "B": { "name": "Coins and Gems", "coinChance": 80, "gemChance": 60, "artChance": 10, "itemChance": 0 },
+      "C": { "name": "Art Objects", "coinChance": 30, "gemChance": 30, "artChance": 70, "itemChance": 0 },
+      "D": { "name": "Minor Magic", "coinChance": 60, "gemChance": 20, "artChance": 20, "itemChance": 40, "itemTier": "minor" },
+      "E": { "name": "Weapons & Armor", "coinChance": 30, "gemChance": 10, "artChance": 10, "itemChance": 50, "itemTier": "medium" },
+      "F": { "name": "Major Treasure", "coinChance": 40, "gemChance": 30, "artChance": 30, "itemChance": 70, "itemTier": "major" }
+    }
+  },
+  "chaseScenes": {
+    "rules": {
+      "initiativeRolls": true,
+      "roundsPerMinute": 10,
+      "baseDistance": "4 segments",
+      "escapeDistance": "8 segments",
+      "captureDistance": "0 segments",
+      "obsPerRound": "1d3 + 1",
+      "failureDistance": "lose 1 segment or take damage"
+    },
+    "obstacleDCs": {
+      "trivial": 10,
+      "simple": 15,
+      "standard": 20,
+      "difficult": 25,
+      "extreme": 30
+    },
+    "failureConsequences": {
+      "fail": "Drop back one position on chase track",
+      "failBy5": "Drop back one position AND take 1d6 nonlethal damage",
+      "failBy10": "Drop back two positions AND take 2d6 nonlethal damage"
+    },
+    "chaseObstacles": [
+      { "terrain": "urban", "name": "Crowded Market", "difficulty": "standard", "dc": 20, "skills": ["Acrobatics", "Diplomacy"], "failEffect": "Knocked prone, lose 1 round", "area": "crowded street" },
+      { "terrain": "urban", "name": "Narrow Alley", "difficulty": "simple", "dc": 15, "skills": ["Acrobatics", "Climb"], "failEffect": "Wedged in, lose 1 round", "area": "alley wall" },
+      { "terrain": "urban", "name": "Rooftop Gap", "difficulty": "difficult", "dc": 25, "skills": ["Acrobatics", "Athletics"], "failEffect": "Fall 10 ft (1d6 damage)", "area": "building gap" },
+      { "terrain": "urban", "name": "Locked Gate", "difficulty": "standard", "dc": 20, "skills": ["Climb", "Disable Device"], "failEffect": "Blocked, lose 1 round", "area": "gate wall" },
+      { "terrain": "urban", "name": "Cart Overturned", "difficulty": "simple", "dc": 15, "skills": ["Acrobatics", "Strength"], "failEffect": "Tripped, prone", "area": "street cart" },
+      { "terrain": "urban", "name": "Guard Barricade", "difficulty": "standard", "dc": 20, "skills": ["Acrobatics", "Climb"], "failEffect": "Blocked, guards engage", "area": "street barricade" },
+      { "terrain": "urban", "name": "Stairwell Collapse", "difficulty": "difficult", "dc": 25, "skills": ["Acrobatics", "Reflex"], "failEffect": "Fall 20 ft (2d6 damage), injured", "area": "building stairs" },
+      { "terrain": "urban", "name": "Water Canal", "difficulty": "difficult", "dc": 25, "skills": ["Swim", "Acrobatics"], "failEffect": "Fall in water, lose 2 rounds", "area": "canal water" },
+      { "terrain": "forest", "name": "Thick Undergrowth", "difficulty": "simple", "dc": 15, "skills": ["Survival", "Acrobatics"], "failEffect": "Entangled 1 round", "area": "dense brush" },
+      { "terrain": "forest", "name": "Fallen Tree", "difficulty": "standard", "dc": 20, "skills": ["Acrobatics", "Climb"], "failEffect": "Fall prone", "area": "log barrier" },
+      { "terrain": "forest", "name": "River Crossing", "difficulty": "difficult", "dc": 25, "skills": ["Swim", "Acrobatics"], "failEffect": "Swept downstream, lose 2 rounds", "area": "river ford" },
+      { "terrain": "forest", "name": "Thornbush", "difficulty": "simple", "dc": 15, "skills": ["Acrobatics", "Survival"], "failEffect": "1d4 damage, entangled 1 round", "area": "thorny plants" },
+      { "terrain": "forest", "name": "Ravine Jump", "difficulty": "difficult", "dc": 25, "skills": ["Acrobatics", "Athletics"], "failEffect": "Fall 30 ft (3d6 damage)", "area": "ravine gap" },
+      { "terrain": "forest", "name": "Quicksand Patch", "difficulty": "standard", "dc": 20, "skills": ["Survival", "Acrobatics"], "failEffect": "Stuck, move at half speed for 2 rounds", "area": "marsh terrain" },
+      { "terrain": "dungeon", "name": "Collapsing Corridor", "difficulty": "difficult", "dc": 25, "skills": ["Reflex", "Acrobatics"], "failEffect": "2d6 damage, buried under rubble", "area": "corridor ceiling" },
+      { "terrain": "dungeon", "name": "Pit Trap", "difficulty": "standard", "dc": 20, "skills": ["Acrobatics", "Perception"], "failEffect": "Fall 20 ft (2d6 damage)", "area": "floor pit" },
+      { "terrain": "dungeon", "name": "Flooded Passage", "difficulty": "standard", "dc": 20, "skills": ["Swim", "Constitution"], "failEffect": "Lose 1 round gasping", "area": "water-filled corridor" },
+      { "terrain": "dungeon", "name": "Arrow Trap Corridor", "difficulty": "difficult", "dc": 25, "skills": ["Acrobatics", "Perception"], "failEffect": "Take 2d6 arrow damage", "area": "trapped hallway" },
+      { "terrain": "dungeon", "name": "Rolling Boulder", "difficulty": "difficult", "dc": 25, "skills": ["Acrobatics", "Reflex"], "failEffect": "2d6 bludgeoning damage, knocked prone", "area": "corridor floor" },
+      { "terrain": "mountain", "name": "Rockslide", "difficulty": "difficult", "dc": 25, "skills": ["Reflex", "Climb"], "failEffect": "3d6 damage, knocked down", "area": "mountain slope" },
+      { "terrain": "mountain", "name": "Narrow Ledge", "difficulty": "standard", "dc": 20, "skills": ["Acrobatics", "Climb"], "failEffect": "Fall 30 ft (3d6 damage)", "area": "cliff edge" },
+      { "terrain": "mountain", "name": "Avalanche", "difficulty": "extreme", "dc": 30, "skills": ["Reflex", "Survival"], "failEffect": "4d6 damage, buried", "area": "mountain peak" },
+      { "terrain": "mountain", "name": "Scree Field", "difficulty": "simple", "dc": 15, "skills": ["Acrobatics", "Balance"], "failEffect": "Slip, lose 1 round", "area": "loose rocks" },
+      { "terrain": "swamp", "name": "Quicksand Patch", "difficulty": "difficult", "dc": 25, "skills": ["Swim", "Survival"], "failEffect": "Stuck, lose 2 rounds to escape", "area": "bog terrain" },
+      { "terrain": "swamp", "name": "Deep Mud", "difficulty": "simple", "dc": 15, "skills": ["Strength", "Acrobatics"], "failEffect": "Speed halved for 1 round", "area": "muddy ground" },
+      { "terrain": "swamp", "name": "Floating Islands", "difficulty": "standard", "dc": 20, "skills": ["Acrobatics", "Balance"], "failEffect": "Fall in water, 2 rounds to get back out", "area": "wetland water" },
+      { "terrain": "swamp", "name": "Creature Ambush", "difficulty": "difficult", "dc": 25, "skills": ["Perception", "Reflex"], "failEffect": "Grappled by creature, lose position", "area": "murky water" },
+      { "terrain": "aquatic", "name": "Coral Reef", "difficulty": "standard", "dc": 20, "skills": ["Swim", "Acrobatics"], "failEffect": "1d4 damage from coral, entangled", "area": "reef area" },
+      { "terrain": "aquatic", "name": "Whirlpool", "difficulty": "difficult", "dc": 25, "skills": ["Swim", "Reflex"], "failEffect": "Dragged down, lose 2 rounds", "area": "water vortex" },
+      { "terrain": "aquatic", "name": "Monster Encounter", "difficulty": "difficult", "dc": 25, "skills": ["Swim", "Combat"], "failEffect": "Grappled, lose position advantage", "area": "open water" },
+      { "terrain": "aquatic", "name": "Underwater Cavern", "difficulty": "standard", "dc": 20, "skills": ["Swim", "Survival"], "failEffect": "Lost in darkness, 2 rounds to navigate", "area": "cave system" }
+    ],
+    "chaseRules": {
+      "startingDistance": 4,
+      "escapeDistance": 8,
+      "captureDistance": 0,
+      "roundsBeforeObstacle": 1,
+      "maxRounds": 20,
+      "obsPerRound": "1d3"
+    }
+  },
+  "npcGeneration": {
+    "occupations": [
+      "Farmer", "Blacksmith", "Baker", "Merchant", "Fisherman", "Woodcutter",
+      "Healer", "Scholar", "Priest", "Guard", "Hunter", "Tanner", "Brewer",
+      "Miller", "Carpenter", "Weaver", "Sailor", "Miner", "Herbalist",
+      "Scribe", "Innkeeper", "Stablehand", "Courier", "Tax Collector",
+      "Alchemist", "Armorer", "Barber", "Butcher", "Chandler", "Cobbler",
+      "Cook", "Druid", "Entertainer", "Gambler", "Glassblower", "Goldsmith"
+    ],
+    "motivations": [
+      "Greed", "Revenge", "Love", "Power", "Fear", "Duty", "Faith", "Curiosity",
+      "Survival", "Glory", "Redemption", "Loyalty", "Madness", "Justice", "Freedom",
+      "Ambition", "Compassion", "Vanity", "Pride", "Envy", "Desperation", "Hope"
+    ],
+    "quirks": [
+      "Speaks in rhymes", "Never makes eye contact", "Constantly fidgets with a coin",
+      "Whistles tunelessly", "Touches nose when lying", "Laughs at inappropriate times",
+      "Always chewing something", "Obsessively clean", "Tells long rambling stories",
+      "Speaks very slowly", "Interrupts frequently", "Scratches behind ear when thinking",
+      "Has a noticeable limp", "Carries a lucky charm", "Refers to self in third person",
+      "Always suspicious of strangers", "Overly friendly", "Gives unsolicited advice",
+      "Collects unusual items", "Hums while working", "Superstitious about cats",
+      "Pauses mid-sentence", "Fond of dramatic gestures", "Whispers secrets to no one",
+      "Picks teeth with fingernail", "Cracks knuckles obsessively", "Stares off into distance",
+      "Twirls hair constantly", "Taps fingers rhythmically", "Squints at people suspiciously"
+    ],
+    "appearances": {
+      "hair": [
+        "bald", "close-cropped gray", "wild red curls", "long black braids", "thin white wisps",
+        "unkempt brown", "styled auburn", "silver streaked", "honey blonde", "jet black ponytail",
+        "salt-and-pepper", "bright orange", "mousy brown", "copper locks", "prematurely gray",
+        "curly blonde", "straight black", "stringy white", "thick brown", "shaved head"
+      ],
+      "build": [
+        "thin and wiry", "heavyset", "average build", "muscular", "stooped",
+        "tall and lanky", "short and stout", "broad-shouldered", "pear-shaped",
+        "barrel-chested", "angular", "soft and round", "athletic", "skeletal"
+      ],
+      "distinguishing": [
+        "scar across left cheek", "missing right ear", "burn marks on hands", "elaborate tattoo on neck",
+        "one milky white eye", "crooked nose", "gap-toothed grin", "weathered deep-lined face",
+        "surprisingly youthful", "covered in freckles", "prominent birthmark", "calloused hands",
+        "long scar down jaw", "missing fingers on left hand", "port-wine stain", "glass eye",
+        "prominent mole on cheek", "broken nose", "severe acne scars", "dueling scar"
+      ]
+    },
+    "npcClasses": {
+      "warrior": { "primary": "Str", "secondary": ["Con", "Wis"], "skills": ["Intimidate", "Perception", "Climb"] },
+      "expert": { "primary": "Dex", "secondary": ["Int", "Wis"], "skills": ["Perception", "Sense Motive", "Profession"] },
+      "adept": { "primary": "Wis", "secondary": ["Con", "Cha"], "skills": ["Heal", "Perception", "Knowledge (nature)"] },
+      "aristocrat": { "primary": "Cha", "secondary": ["Dex", "Int"], "skills": ["Bluff", "Diplomacy", "Sense Motive"] },
+      "commoner": { "primary": "Con", "secondary": ["Str", "Wis"], "skills": ["Profession", "Craft", "Perception"] }
+    },
+    "personalityTraits": [
+      "Honest and direct", "Sarcastic and witty", "Meek and apologetic", "Loud and boisterous",
+      "Cold and distant", "Warm and welcoming", "Paranoid and suspicious", "Naive and trusting",
+      "Arrogant and condescending", "Humble and modest", "Cheerful and optimistic", "Gloomy and pessimistic",
+      "Nervous and anxious", "Calm and collected", "Crude and vulgar", "Refined and cultured",
+      "Greedy and conniving", "Generous and giving", "Cowardly", "Brave and fearless",
+      "Intellectual", "Practical and pragmatic", "Spiritual and mystical", "Cynical and world-weary"
+    ],
+    "npcWealthByLevel": {
+      "1": 260, "2": 390, "3": 780, "4": 1650, "5": 2400,
+      "6": 3450, "7": 4650, "8": 6000, "9": 7800, "10": 10050,
+      "11": 12750, "12": 16350, "13": 21000, "14": 27000, "15": 34800,
+      "16": 45000, "17": 58500, "18": 75000, "19": 96000, "20": 123000
+    },
+    "npcStatArrays": {
+      "heroic": [15, 14, 13, 12, 10, 8],
+      "standard": [13, 12, 11, 10, 9, 8],
+      "basic": [11, 11, 10, 10, 10, 8]
+    }
+  }
+}

@@ -1,0 +1,596 @@
+{
+  "campaign": {
+    "title": "Rise of the Runelords Anniversary Edition",
+    "description": "In the sleepy coastal town of Sandpoint, evil is brewing. An attack by crazed goblins reveals the shadows of a forgotten past returning to threaten the town—and perhaps all of Varisia. The campaign takes players on an epic journey through Varisia as they track a cult of serial killers, fight backwoods ogres, stop an advancing army of stone giants, delve into ancient dungeons, and finally face off against a wizard-king in his ancient mountaintop city.",
+    "levelRange": "1-18",
+    "pacing": "Rise of the Runelords is designed for four PCs on fast advancement track with approximately three levels gained per chapter. GMs should give players time between chapters for characters to craft items, rest, and interact with the world. Karzoug's rise timetable is deliberately vague, allowing flexible pacing."
+  },
+  "sandpoint": {
+    "description": "A sleepy coastal frontier town on the Lost Coast of Varisia. Recently rebuilt after a devastating cathedral fire five years ago (the Late Unpleasantness). The town is preparing to consecrate its new cathedral at the Swallowtail Festival, a celebration meant to put the tragic past behind them. The town is a beacon of civilization in the rough frontier, but harbors dark secrets and ancient threats beneath its surface.",
+    "population": "1,500+",
+    "government": "Mayor Kendra Deverin (leads council)",
+    "atmosphere": "Welcoming frontier town with strong community bonds, but tinged with memories of recent tragedy. Mix of hopeful rebuilding and underlying unease.",
+    "keyLocations": [
+      {
+        "name": "The Rusty Dragon",
+        "type": "Tavern/Inn",
+        "description": "The primary tavern and inn of Sandpoint. Lively establishment where adventurers and locals mix. Known for excellent food, especially Ameiko's curry-spiced salmon and winterdrop mead. Friendly to adventurers and becoming a popular gathering place.",
+        "owner": "Ameiko Kaijitsu",
+        "atmosphere": "Welcoming, adventurer-friendly, lively with locals sharing stories"
+      },
+      {
+        "name": "The Sandpoint Cathedral",
+        "type": "Religious Site",
+        "description": "Brand new cathedral, recently completed after five years of reconstruction following the Sandpoint Fire. The Swallowtail Festival is held here to consecrate the new cathedral and honor the gods. Beautiful symbolic replacement for the old church.",
+        "leader": "Father Zantus",
+        "significance": "Heart of town spirituality, site of major festival and kickoff to campaign"
+      },
+      {
+        "name": "Sandpoint Glassworks",
+        "type": "Manufactory",
+        "description": "Glass production facility owned by Lonjiku Kaijitsu. Located on the eastern edge of town. Becomes a crucial location in Chapter 1 investigations.",
+        "owner": "Lonjiku Kaijitsu",
+        "secrets": "Conceals entrance to the Catacombs of Wrath below"
+      },
+      {
+        "name": "Sandpoint Boneyard",
+        "type": "Cemetery",
+        "description": "Town cemetery where the dead are buried. Contains vault where Father Tobyn's remains were stored. Site of grave desecration as part of larger conspiracy.",
+        "significance": "Location of early investigation, reveals connection to Nualia"
+      },
+      {
+        "name": "The White Deer",
+        "type": "Tavern/Inn",
+        "description": "Secondary tavern in Sandpoint. Known for peppercorn venison. Less adventurer-focused than the Rusty Dragon.",
+        "food": "Peppercorn venison"
+      },
+      {
+        "name": "The Hagfish",
+        "type": "Tavern",
+        "description": "Another local tavern in Sandpoint. Known for lobster chowder.",
+        "food": "Lobster chowder"
+      },
+      {
+        "name": "Sandpoint Theater",
+        "type": "Entertainment",
+        "description": "Theater operated by Cyrdak Drokkus. Premier entertainment venue in town.",
+        "owner": "Cyrdak Drokkus",
+        "upcoming": "Hosts production of 'The Harpy's Curse' with famous Magnimarian diva Allishanda"
+      },
+      {
+        "name": "Garrison/Town Guard",
+        "type": "Government",
+        "description": "Center of law enforcement for Sandpoint, operated by Sheriff Belor Hemlock.",
+        "leader": "Sheriff Belor Hemlock"
+      },
+      {
+        "name": "General Store",
+        "type": "Merchant",
+        "description": "Primary general goods store. Owner Ven Vinder is known for being difficult and strict with his daughters.",
+        "owner": "Ven Vinder",
+        "significance": "Location of Shayliss Vinder encounter"
+      },
+      {
+        "name": "Tickwood Forest",
+        "type": "Wilderness",
+        "description": "Forest near Sandpoint known for wild boars. Location of boar hunt encounter with Aldern Foxglove.",
+        "dangers": "Wild boars, territorial predators"
+      },
+      {
+        "name": "Catacombs of Wrath",
+        "type": "Ancient Dungeon",
+        "description": "Underground cavern complex beneath Sandpoint, built by the ancient Thassilonian civilization. Contains a minor runewell devoted to wrath, magical artifact that awakened in recent years and influenced events. Hidden beneath the Glassworks.",
+        "dangers": "Monsters, religious artifacts, magical hazards",
+        "significance": "Contains quasit Erylium, site of Malfeshnekor imprisonment, source of wrath corruption"
+      },
+      {
+        "name": "Thistletop",
+        "type": "Monster Lair",
+        "description": "Fortified lair of the most powerful goblin tribe in the region. Located on an island accessible by rickety bridge. Multi-level complex with underground connections to catacombs.",
+        "ruler": "Nualia (hidden leader)",
+        "significance": "Final destination of Chapter 1, where Nualia is defeated"
+      }
+    ],
+    "keyNpcs": [
+      {
+        "name": "Ameiko Kaijitsu",
+        "role": "Tavern owner, friend to PCs",
+        "personality": "Warm, skilled cook, brave, with hidden family troubles. Spirited and witty, defiant against her father's control. Becomes close ally of PCs.",
+        "location": "The Rusty Dragon",
+        "background": "Half-Tian, estranged from her noble father Lonjiku. Her brother Tsuto is involved in the goblin conspiracy. Mother was thrown from cliffside by Lonjiku during Late Unpleasantness.",
+        "importance": "Recurring NPC throughout campaign, source of information and emotional stakes"
+      },
+      {
+        "name": "Sheriff Belor Hemlock",
+        "role": "Law enforcement, town leader",
+        "personality": "Dour, serious, professional. Grim expression hides good heart. Values the PCs and recognizes their heroism.",
+        "location": "Town Garrison",
+        "speech": "Direct, matter-of-fact",
+        "background": "Relatively new to Sandpoint. Professional lawman dealing with town threats.",
+        "importance": "Primary quest-giver, contact for town problems"
+      },
+      {
+        "name": "Mayor Kendra Deverin",
+        "role": "Town leader",
+        "personality": "Friendly, enthusiastic, good-natured. Genuinely cares for Sandpoint's citizens.",
+        "location": "Town government",
+        "speech": "Warm, approachable, good humor"
+      },
+      {
+        "name": "Father Zantus",
+        "role": "Religious leader of new cathedral",
+        "personality": "Kind, wise, helpful religious figure. Healing-focused.",
+        "location": "The Sandpoint Cathedral",
+        "abilities": "Can cast cure light wounds, channel energy",
+        "background": "Newer religious leader after previous priest Father Tobyn died in the Sandpoint Fire"
+      },
+      {
+        "name": "Cyrdak Drokkus",
+        "role": "Theater owner, showman",
+        "personality": "Flamboyant, theatrical, self-promoting. Entertainment-focused personality.",
+        "location": "Sandpoint Theater",
+        "speech": "Dramatic, extroverted, full of anecdotes"
+      },
+      {
+        "name": "Lonjiku Kaijitsu",
+        "role": "Local nobleman, glass factory owner (antagonist)",
+        "personality": "Arrogant, insulting, bitter, wrathful. Dislikes adventurers and common folk. Paranoid and shameful about his Sczarni connections.",
+        "location": "Glassworks, private manor on bluff",
+        "appearance": "Middle-aged Tian man looking much older than his years due to stress",
+        "background": "Bitter over being cuckolded years ago. Blackmailed by his own son Tsuto into helping goblin raid. Inadvertently affected by runewell wrath magic.",
+        "fate": "Murders his wife (Ameiko's mother) by throwing her from cliff during Late Unpleasantness, consumed by magical wrath"
+      },
+      {
+        "name": "Nualia Tobyn",
+        "role": "Primary villain of Chapter 1",
+        "personality": "Complex, tragic, consumed by rage and madness. Charismatic leader to goblins and monsters. Believes herself cursed by her angelic heritage.",
+        "location": "Thistletop (hidden leader)",
+        "background": "Foundling aasimar raised by Father Tobyn. Isolated childhood due to her unearthly beauty. Fell in love with Varisian youth Delek Viskanta in secret. Became pregnant, abandoned by Delek, shamed by father. Lost deformed child in miscarriage near hidden Lamashtu shrine. Fell into coma, dreamed unhealthy dreams fueled by wrath magic and Lamashtu influence. Woke as new person dedicated to chaos and cruelty. Set cathedral fire that killed her father. Fled to Magnimar.",
+        "motivation": "Revenge against Sandpoint, purge her 'celestial taint' and become monster of Lamashtu. Freed from Magnimar Skinsaw Cult who gave her Sihedron medallion.",
+        "powers": "Aasimar abilities, skills, magical medallion connection",
+        "allies": "Tsuto (brother, helped arrange goblin raid), Erylium (quasit mentor), Malfeshnekor (imprisoned barghest), goblin tribes",
+        "fate": "Defeated and presumably slain by PCs at Thistletop"
+      },
+      {
+        "name": "Tsuto Kaijitsu",
+        "role": "Conspiracy instigator, brother of Ameiko",
+        "personality": "Ambitious, cunning, bitter. Harbors resentment at being overlooked by family.",
+        "background": "Half-brother to Ameiko. Bastard son of Lonjiku and a Varisian woman. Blackmailers his own father into helping goblin raid.",
+        "motivation": "Alliance with Nualia and goblin leaders. Part of larger conspiracy.",
+        "location": "Sandpoint Glassworks"
+      },
+      {
+        "name": "Aldern Foxglove",
+        "role": "Recurring NPC, becomes obsessed with a PC",
+        "personality": "Initially friendly and helpful. Genuine heroic aspirations. Develops concerning obsession with one PC over time.",
+        "location": "Sandpoint",
+        "background": "Noble merchant. Encounters PCs at Swallowtail Festival. Invites them on boar hunt.",
+        "behavior": "His attentions toward one PC should seem like friendly flirting at first, then grow into disturbing obsession. If attraction is to good fighter, seems like attempt to 'learn how to be a hero.'",
+        "significance": "Becomes major antagonist later in campaign (Chapter 2: The Skinsaw Murders)"
+      },
+      {
+        "name": "Shayliss Vinder",
+        "role": "NPC daughter, source of social encounter",
+        "personality": "Bold, flirtatious",
+        "location": "General Store",
+        "background": "Daughter of Ven Vinder. Lures a PC to basement on pretense, creating awkward social encounter"
+      },
+      {
+        "name": "Shalelu Andosana",
+        "role": "Local ranger, information gatherer",
+        "personality": "Professional, valuable ally",
+        "background": "Ranger who provides valuable intelligence about hinterlands to Sheriff and Mayor",
+        "significance": "Source of information about goblin tribes and regional threats"
+      },
+      {
+        "name": "Aeren Barett",
+        "role": "Child NPC",
+        "background": "Local boy who discovers goblin hiding in his closet, catalyst for 'Monster in the Closet' encounter"
+      }
+    ],
+    "history": {
+      "late_unpleasantness": {
+        "description": "Series of murders and tragedies 5 years before campaign start. Three individuals fell under influence of runewell wrath magic awakening.",
+        "events": [
+          "Lonjiku Kaijitsu murdered his wife (Ameiko's mother) in wrathful rage",
+          "Jervas Stoot (eccentric artist) began plotting murders of those he felt wronged him",
+          "Nualia Tobyn set cathedral fire that killed Father Tobyn and destroyed town's main church"
+        ],
+        "impact": "Town traumatized, cathedral rebuilt, Nualia presumed dead but actually fled to Magnimar"
+      }
+    }
+  },
+  "chapters": [
+    {
+      "id": 1,
+      "name": "Burnt Offerings",
+      "levelRange": "1-4",
+      "synopsis": "The PCs attend the Swallowtail Festival and defend Sandpoint from a goblin raid. They uncover treachery at the Sandpoint Glassworks, explore ancient catacombs below the town, and assault Thistletop to confront Nualia, whose madness threatens all of Varisia.",
+      "advancementMilestones": [
+        "Level 2: After clearing the Glassworks, before entering Catacombs",
+        "Level 3: Early in Thistletop exploration or at Catacombs climax",
+        "Level 4: By chapter conclusion"
+      ],
+      "parts": [
+        {
+          "id": "ch1-part1",
+          "name": "Festival and Fire",
+          "description": "The Swallowtail Festival celebrating the new cathedral is interrupted by coordinated goblin raids throughout Sandpoint.",
+          "keyEvents": [
+            "Festival welcomes visitors with games, contests, butterfly release ceremony",
+            "Mayor Deverin and Sheriff Hemlock give speeches",
+            "Cyrdak Drokkus promotes his theater production",
+            "Father Zantus prepares to consecrate cathedral with thunderstone signal",
+            "Thunderstone triggers three coordinated goblin attacks across town",
+            "One goblin group emerges from hiding near festival grounds",
+            "Second group invades through open northern gate (arranged by Tsuto)",
+            "Third group infiltrates cemetery to steal Father Tobyn's remains"
+          ],
+          "encounters": [
+            {
+              "name": "Initial Assault",
+              "cr": 1,
+              "description": "Three goblin warriors attack PCs during festival chaos",
+              "tactics": "Goblins fight erratically - one climbs tables for high ground, another gets distracted by food, third grabs carving knife. One goblin kills a dog with its dogslicer.",
+              "enemies": "3 Goblin Warriors (1/3 CR each)",
+              "treasure": "Standard goblin loot",
+              "atmosphere": "Festival turned to panic, screaming crowds, chaos and blood"
+            },
+            {
+              "name": "Goblin Pyros",
+              "cr": 2,
+              "description": "Goblins have found wagon of bonfire fuel and lit it aflame. A goblin warchanter leads the group.",
+              "tactics": "Warchanter uses bardic performance to inspire allies. Warriors throw torches and attack. If warchanter falls, remaining goblins make morale checks.",
+              "enemies": "3 Goblin Warriors, 1 Goblin Warchanter (provides +1 bonus on saves and attack/damage rolls)",
+              "treasure": "Standard loot plus warchanter items"
+            },
+            {
+              "name": "Die, Dog, Die!",
+              "cr": 3,
+              "description": "A well-dressed noble (Aldern Foxglove) is cornered by goblin commando mounted on snarling goblin dog. A hunting dog lies dead nearby.",
+              "tactics": "Mounted commando charges with horsechopper. Warriors protect leader. Goblin dog uses bite attack.",
+              "enemies": "3 Goblin Warriors, 1 Goblin Commando (mounted), 1 Goblin Dog",
+              "treasure": "Commando's equipment, potential reward from Foxglove",
+              "npcs": ["Aldern Foxglove"],
+              "storyNote": "Saving Foxglove creates grateful noble ally important later in campaign. During hunt after festival, Foxglove shows unhealthy obsession with one PC."
+            }
+          ]
+        },
+        {
+          "id": "ch1-part2",
+          "name": "Local Heroes",
+          "description": "In aftermath of raid, PCs become local celebrities. Several events and investigations unfold over following days.",
+          "keyEvents": [
+            "PCs gain hero status in Sandpoint",
+            "Free rooms at Rusty Dragon for a week",
+            "Discounts at shops, admiring townsfolk follow them",
+            "Cathedral consecrated next day in subdued ceremony",
+            "Sheriff Hemlock investigates cemetery desecration",
+            "Investigation reveals Father Tobyn's remains stolen as distraction",
+            "Ameiko Kaijitsu goes missing after receiving letter from brother Tsuto",
+            "Aldern Foxglove invites PCs on boar hunt, shows growing obsession",
+            "Local boy Aeren Barett reports goblin hiding in closet",
+            "Finding closet goblin reveals goblins may have infiltrated via northern gate"
+          ],
+          "encounters": [
+            {
+              "name": "The Desecrated Vault",
+              "type": "Investigation/Combat",
+              "cr": 0.5,
+              "description": "Sheriff asks PCs to investigate cemetery where Father Tobyn's tomb broken into and remains stolen.",
+              "enemies": "2 Skeletons (animated as distraction)",
+              "storyNote": "Robe of bones found nearby reveals someone animated skeletons while others stole remains. Connects to Nualia's plot."
+            },
+            {
+              "name": "The Shopkeep's Daughter",
+              "type": "Social",
+              "cr": 2,
+              "description": "Shayliss Vinder lures a PC to General Store basement on pretense. Father Ven Vinder arrives in rage.",
+              "storyNote": "Can turn violent if handled poorly. Diplomacy or quick thinking defuses situation. PC gains useful ally or makes enemy of shopkeeper."
+            },
+            {
+              "name": "The Boar Hunt",
+              "type": "Combat/Social",
+              "cr": 2,
+              "description": "Aldern Foxglove invites PCs on boar hunt in Tickwood forest. Encounter dangerous wild boar.",
+              "enemies": "1 Wild Boar (Ferocity special ability)",
+              "tactics": "Boar charges and gores with tusks. Fights below 0 HP.",
+              "npcs": ["Aldern Foxglove"],
+              "storyNote": "During hunt, Aldern asks many personal questions showing unhealthy obsession with one PC. Play as friendly flirting at first, growing into disturbing behavior."
+            },
+            {
+              "name": "Monster in the Closet",
+              "type": "Combat",
+              "cr": 0.5,
+              "description": "Boy Aeren Barett claims goblin in his closet. Father thinks boy is lying. Goblin is very real.",
+              "enemies": "1 Starving Goblin Commando",
+              "storyNote": "This goblin survived raid and hid in walls. Finding it reveals goblins may have entered through northern gate, connecting to Tsuto's betrayal."
+            }
+          ]
+        },
+        {
+          "id": "ch1-part3",
+          "name": "Glass and Wrath",
+          "description": "Ameiko goes missing, leading PCs to investigate the Glassworks where they uncover conspiracy and underground dangers.",
+          "keyEvents": [
+            "Ameiko receives letter from estranged brother Tsuto requesting secret midnight meeting at Glassworks",
+            "PCs investigate Glassworks and find it locked down and suspicious",
+            "Discover Tsuto and goblins operating inside as base of operations",
+            "Find Ameiko imprisoned/threatened by Tsuto",
+            "Uncover connection between Tsuto, Nualia, and larger goblin conspiracy",
+            "Discover passage down to Catacombs of Wrath below Glassworks",
+            "Explore catacombs and find quasit Erylium and demonic shrine",
+            "Learn of imprisoned barghest Malfeshnekor and Nualia's plans"
+          ],
+          "locations": [
+            "Sandpoint Glassworks - industrial facility, multi-level, connects to catacombs",
+            "Catacombs of Wrath - ancient Thassilonian tunnels, shrine to Lamashtu, minor runewell"
+          ],
+          "keyNpcs": ["Tsuto Kaijitsu", "Ameiko Kaijitsu", "Nualia Tobyn (revealed)"],
+          "storyConnections": "Reveals Nualia has been orchestrating events since return from Magnimar, connection to Lamashtu worship, larger conspiracy beyond simple goblin raid"
+        },
+        {
+          "id": "ch1-part4",
+          "name": "Thistletop",
+          "description": "PCs assault goblin lair to stop Nualia and her conspiracy. Multi-level dungeon complex with variety of enemies.",
+          "keyEvents": [
+            "PCs travel to Thistletop, fortified island lair of goblin tribe",
+            "Navigate rickety bridge and defensive positions",
+            "Encounter goblin warriors, warchanters, mounted troops",
+            "Discover Nualia hidden in lair planning next moves",
+            "Face Nualia and her allies in climactic battle",
+            "Recover Sihedron medallion from Nualia",
+            "Rescue captives if any",
+            "Connect goblin conspiracy to larger Thassilonian plot"
+          ],
+          "climax": {
+            "enemy": "Nualia Tobyn",
+            "location": "Thistletop lair",
+            "significance": "Defeating Nualia removes most immediate threat to Sandpoint but reveals larger Thassilonian conspiracy through Sihedron medallion discovery"
+          }
+        }
+      ],
+      "themeticElements": [
+        "Goblins are chaotic, impulsive, easily distracted but capable",
+        "Madness and corruption from runewell wrath magic",
+        "Family betrayal and trauma (Tsuto, Lonjiku, Nualia, Ameiko)",
+        "Transition from isolated frontier town to gateway to larger world"
+      ],
+      "foreshadowing": [
+        "Sihedron medallion hints at larger Thassilonian plot",
+        "Skinsaw Cult connection to Magnimar and Aldern Foxglove",
+        "References to seven deadly sins and runelords",
+        "Lamashtu's influence on Nualia ties to broader demon cult plot"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "The Skinsaw Murders",
+      "levelRange": "4-7",
+      "synopsis": "A murderer terrorizes Sandpoint and Magnimar, leaving victims mutilated with Sihedron runes carved into their chests. The PCs must investigate murders and discover the connection to Aldern Foxglove, the Skinsaw Cult, and a haunted mansion.",
+      "parts": [
+        {
+          "name": "Murder Most Foul",
+          "description": "Serial murders begin at the Sandpoint lumber mill. Victims are found with the Sihedron rune carved in their chests and a note addressed to one PC. Sheriff Hemlock asks the PCs to investigate discretely."
+        },
+        {
+          "name": "The Thing in the Attic",
+          "description": "Investigation leads to Habe's Sanatorium where a ghoul farmer named Grayst Sevilla delivers a cryptic message from 'the Skinsaw Man.' Evidence points to Foxglove Manor."
+        },
+        {
+          "name": "Walking Scarecrows",
+          "description": "The farmlands south of Sandpoint are plagued by ghouls. Fields of scarecrows conceal undead horrors. The source traces to Foxglove Manor."
+        },
+        {
+          "name": "Misgivings (Foxglove Manor)",
+          "description": "The PCs explore the haunted Foxglove Manor. Each room triggers haunts showing the manor's dark history. In the basement, they confront Aldern Foxglove, now a ghast called the Skinsaw Man, driven mad by his obsession."
+        },
+        {
+          "name": "Shadows of Time (Magnimar)",
+          "description": "Clues from Foxglove Manor lead to Magnimar and a townhouse used by the Brothers of the Seven, a front for the Skinsaw Cult. The PCs investigate the cult's activities at the Shadow Clock tower and confront Justice Ironbriar and the lamia matriarch Xanesha."
+        }
+      ],
+      "key_enemies": ["Aldern Foxglove (The Skinsaw Man - ghast)", "Justice Ironbriar (cult leader)", "Xanesha (lamia matriarch)"],
+      "key_locations": ["Sandpoint Lumber Mill", "Habe's Sanatorium", "Foxglove Manor (The Misgivings)", "Magnimar", "The Shadow Clock"],
+      "themes": ["Horror and mystery", "Obsession and madness", "Corruption of the upper class", "Haunting and tragic pasts"]
+    },
+    {
+      "id": 3,
+      "name": "The Hook Mountain Massacre",
+      "levelRange": "7-10",
+      "synopsis": "Fort Rannick has fallen to an ogre clan led by the Kreeg ogres. The PCs must retake the fort, investigate Hook Mountain, and stop the ogre threat before it overflows into the lowlands.",
+      "parts": [
+        {
+          "name": "In the Hook's Shadow",
+          "description": "The PCs are sent to investigate why Fort Rannick has gone silent. They encounter survivors of the Black Arrows ranger company hiding in the Kreegwood."
+        },
+        {
+          "name": "Retaking Rannick",
+          "description": "With the Black Arrows' help, the PCs assault Fort Rannick to drive out the Kreeg ogres. The ogres have turned the fort into a charnel house."
+        },
+        {
+          "name": "Down Comes the Rain",
+          "description": "The ancient dam at Skull's Crossing is failing due to sabotage. If it breaks, Turtleback Ferry will be destroyed by flooding. The PCs must repair or destroy the dam."
+        },
+        {
+          "name": "The Haunted Heart",
+          "description": "The PCs climb Hook Mountain to confront Barl Breakbones, a stone giant working for Mokmurian who orchestrated the ogre attacks."
+        }
+      ],
+      "key_enemies": ["Kreeg Ogres", "Lucrecia (lamia matriarch)", "Barl Breakbones (stone giant necromancer)"],
+      "key_locations": ["Fort Rannick", "Kreegwood", "Turtleback Ferry", "Skull's Crossing Dam", "Hook Mountain"],
+      "themes": ["Military tactics and siege", "Corruption and degeneracy", "Nature's wrath", "Rising giant threat"]
+    },
+    {
+      "id": 4,
+      "name": "Fortress of the Stone Giants",
+      "levelRange": "10-13",
+      "synopsis": "Stone giants march on Sandpoint as part of Mokmurian's plan to recover Thassilonian artifacts. The PCs must defend the town and then assault the stone giant fortress of Jorgenfist.",
+      "parts": [
+        {
+          "name": "Stones Over Sandpoint",
+          "description": "A force of stone giants, led by the fearsome Teraktinus, attacks Sandpoint. The PCs must coordinate the town's defense, protecting key locations and civilians."
+        },
+        {
+          "name": "Journey to Jorgenfist",
+          "description": "After defeating the raiders, the PCs follow the stone giants back to their fortress in the Iron Peaks. The journey is perilous."
+        },
+        {
+          "name": "Into the Fortress",
+          "description": "The PCs infiltrate or assault Jorgenfist, fighting through stone giant warriors, trolls, ogres, and other minions. The fortress is built around ancient Thassilonian ruins."
+        },
+        {
+          "name": "Under Jorgenfist",
+          "description": "Beneath the fortress, Mokmurian has uncovered an ancient Thassilonian library. The PCs confront him and learn crucial information about Karzoug's return."
+        }
+      ],
+      "key_enemies": ["Mokmurian (stone giant wizard)", "Teraktinus (stone giant general)", "Longtooth (red dragon)", "Various stone giant warriors"],
+      "key_locations": ["Sandpoint (under siege)", "Storval Plateau", "Jorgenfist", "Ancient Thassilonian Library"],
+      "themes": ["Defending home", "Giant warfare", "Ancient knowledge", "Escalating cosmic threat"]
+    },
+    {
+      "id": 5,
+      "name": "Sins of the Saviors",
+      "levelRange": "13-16",
+      "synopsis": "Information from Mokmurian's library leads the PCs to the Runeforge, an ancient Thassilonian dungeon where the Runelords created weapons. The PCs must forge a weapon capable of defeating Karzoug.",
+      "parts": [
+        {
+          "name": "Seeking the Runeforge",
+          "description": "Using clues from Jorgenfist, the PCs must locate the entrance to the Runeforge in the Rimeskull peaks."
+        },
+        {
+          "name": "The Runeforge",
+          "description": "An extradimensional complex with seven wings, each representing a sin/Runelord. The PCs must navigate the wings, defeat their guardians, and gather components to forge a weapon against Karzoug."
+        },
+        {
+          "name": "Forging the Weapon",
+          "description": "Using the Runeforge pool and materials gathered from the wings, the PCs create a runeforged weapon capable of harming Karzoug."
+        }
+      ],
+      "key_enemies": ["Highlady Athroxis (wing of wrath)", "Delvahine (wing of lust)", "Jordimandus (wing of sloth)", "Various sin-themed guardians"],
+      "key_locations": ["Rimeskull", "The Runeforge (7 wings)", "The Central Runeforge Pool"],
+      "themes": ["Ancient magic", "Sin and temptation", "Forging destiny", "The seven schools of sin magic"]
+    },
+    {
+      "id": 6,
+      "name": "Spires of Xin-Shalast",
+      "levelRange": "16-18",
+      "synopsis": "The final chapter. The PCs must find the lost city of Xin-Shalast high in the Kodar Mountains and confront Runelord Karzoug before he fully awakens.",
+      "parts": [
+        {
+          "name": "Seeking Xin-Shalast",
+          "description": "The lost city is hidden in the Kodar Mountains. The PCs must follow clues and brave deadly mountain terrain to find it."
+        },
+        {
+          "name": "Xin-Shalast",
+          "description": "The ancient city is partially inhabited by lamia, giants, and other monsters serving Karzoug. The PCs must fight through the city's districts."
+        },
+        {
+          "name": "Pinnacle of Avarice",
+          "description": "The ultimate dungeon atop Mhar Massif. Karzoug's personal sanctum, guarded by his most powerful servants. The PCs face the Runelord himself in a climactic battle."
+        }
+      ],
+      "key_enemies": ["Runelord Karzoug (wizard 20+)", "Most Warden of Runes", "Lamia harridan", "Rune giants"],
+      "key_locations": ["Kodar Mountains", "Xin-Shalast city", "Pinnacle of Avarice", "The Eye of Avarice"],
+      "themes": ["Epic confrontation", "Greed and avarice", "Ancient power", "Saving the world"],
+      "climax": {
+        "enemy": "Runelord Karzoug",
+        "description": "The Runelord of Greed, a transmuter of immense power, fights from within the Eye of Avarice. Only runeforged weapons can truly harm him. He summons reinforcements and uses devastating magic.",
+        "significance": "Defeating Karzoug saves Varisia from ancient tyranny and ends the threat of the Runelords' return."
+      }
+    }
+  ],
+  "lore": {
+    "thassilon": {
+      "description": "An ancient empire that existed thousands of years before the current age. Ruled by ancient wizard-kings known as Runelords. Advanced magical civilization that created powerful artifacts and facilities throughout Varisia.",
+      "fall": "Destroyed in ancient times but artifacts and structures remain hidden throughout Varisia, containing secrets and dangers. Runewell locations scatter across the region."
+    },
+    "runelords": {
+      "description": "Ancient wizard-kings who ruled Thassilon, each representing one of seven deadly sins. Karzoug ruled the eastern kingdom and represents greed.",
+      "nature": "Extremely powerful ancient wizards with access to sinister magic. Each held a domain based on one of the sins.",
+      "current_threat": "Runelord Karzoug is reawakening due to magical work by his followers. Lamia queen seduced by his agents to aid in awakening."
+    },
+    "karzoug": {
+      "title": "Runelord of Greed",
+      "description": "Primary antagonist of the entire campaign. Ancient wizard-king of Thassilon who ruled the eastern kingdom.",
+      "goals": "Reawaken in his ancient city of Xin-Shalast and reclaim his power in modern Varisia.",
+      "methods": "Uses agents and cults to gather power. Sihedron Rune is key symbol used throughout his plot.",
+      "significance": "Ultimate threat throughout all six chapters. Campaign culminates in confrontation with Karzoug in Xin-Shalast."
+    },
+    "sihedron_rune": {
+      "description": "Seven-pointed star symbol associated with Thassilon and the sins. Key to Karzoug's awakening plot.",
+      "significance": "Appears throughout campaign on victims, medallions, artifacts. Represents seven sins and connection to runelords.",
+      "usage": "Skinsaw Cult uses rune to mark victims. Nualia carries Sihedron medallion. Multiple artifacts bear the rune.",
+      "power": "Carved in chest of Skinsaw murder victims. Magical symbol tied to awakening of Karzoug and testing of worthy agents."
+    },
+    "seven_sins": {
+      "description": "Seven deadly sins each represented by a Runelord and their domain in Thassilon.",
+      "associations": [
+        "Greed - Runelord Karzoug (eastern kingdom, primary antagonist)",
+        "Lust - Runelord Shalelu",
+        "Wrath - Runelord (Catacombs of Wrath beneath Sandpoint contains minor runewell)",
+        "Envy - Runelord",
+        "Pride - Runelord",
+        "Gluttony - Runelord",
+        "Sloth - Runelord"
+      ],
+      "mechanics": "Sin points can be tracked in campaign as Karzoug rises. Each sin domain has associated artifacts and magic."
+    },
+    "lamashtu": {
+      "title": "Goddess of Monsters and Madness",
+      "domains": "Monstrous births, madness, nightmares",
+      "connection_to_campaign": "Nualia worships Lamashtu after abandoning Desna. Lamashtu shrine hidden in smuggler's tunnels where Nualia conceived. Quasit Erylium serves Lamashtu in Catacombs. Barghest Malfeshnekor also Lamashtu's chosen.",
+      "symbols": "Monsters, deformity, corruption",
+      "influence": "Fuels some of the wrath magic affecting Sandpoint characters. Nualia's descent into madness driven partly by Lamashtu influence during coma."
+    },
+    "desna": {
+      "title": "Goddess of Dreams and Stars",
+      "connection": "Nualia's childhood patron before abandoning her faith. Swallowtail butterflies sacred to Desna. Cathedral dedicated to multiple gods including Desna."
+    },
+    "runewell_system": {
+      "description": "Ancient Thassilonian magical sites scattered throughout Varisia. Each aligned with one of the seven sins. Minor runewells exist in various locations including below Sandpoint.",
+      "mechanics": "Runewells awaken/flare at specific times, radiating magical influence that affects nearby people. Wrath runewell beneath Sandpoint influenced Nualia, Lonjiku, and Jervas Stoot during Late Unpleasantness.",
+      "significance": "Key to understanding magical phenomena in campaign. Multiple runewells throughout Varisia play roles in chapters 3-6."
+    },
+    "skinsaw_cult": {
+      "description": "Norgorber-worshiping murderer cult based in Magnimar. Uses Sihedron rune to mark victims.",
+      "goals": "Part of larger plot to serve Karzoug and test worthy agents.",
+      "connection_chapter1": "Cult leader gives Nualia her Sihedron medallion and helps her track down Delek. Provides connection from local goblin conspiracy to larger Thassilonian plot.",
+      "significance": "Aldern Foxglove becomes involved with cult in Chapter 2."
+    },
+    "norgorber": {
+      "title": "God of Thieves, Secrets, and Shadows",
+      "connection": "Skinsaw Cult worships Norgorber, god of secrets and thieves"
+    },
+    "xin_shalast": {
+      "name": "City of Greed",
+      "description": "Ancient Thassilonian city high in the Kodar Mountains. Capital of Karzoug's eastern kingdom. Built to showcase wealth and greed. Filled with magical defenses and powerful artifacts.",
+      "location": "High in mountains, difficult to reach, hidden by magic and geography",
+      "significance": "Final destination of Chapter 6. Where Karzoug makes his stand. Ancient city containing secrets to his defeat."
+    }
+  },
+  "gmGuidance": {
+    "narrativeStyle": "Rise of the Runelords blends personal tragedy (Nualia's story, Ameiko's family troubles) with escalating world-threatening peril. Early chapters feel local and personal, later chapters expand to continental scope.",
+    "goblinManagement": "Goblins are chaotic, impulsive, and easily distracted. They should feel dangerous but also comedic. Let them interact with environment erratically - climbing tables, stealing food, getting distracted by shiny objects. Their tactics are insane by humanoid standards. Make combat encounters about tone as much as mechanics.",
+    "pacing": "Give players downtime between chapters to rest, craft, recover. The pacing of Karzoug's rise is flexible - don't rush through chapters. Let the world breathe. PCs should feel invested in Sandpoint and its people.",
+    "npcUsage": "Key NPCs like Ameiko, Sheriff Hemlock, Father Zantus should be recurring touchstones. Their problems and relationships give the world weight. Nualia's tragic backstory should feel sympathetic even as she becomes villainous - this makes her a memorable antagonist.",
+    "foreshadowing": "Drop hints about larger Thassilonian plot from Chapter 1. The Sihedron medallion, references to ancient civilization, strange magic. Let players theorize about connections. Mysteries should feel organic rather than forced.",
+    "tone_transitions": "Chapter 1 is celebration and local defense. Chapter 2 adds serial killer horror and betrayal. Later chapters escalate to war, ancient dungeons, and gods-like power. Let tone shift gradually with campaign.",
+    "managing_consequences": "PC choices have weight. Saving Aldern creates future consequences. NPCs' fates feel meaningful because players know them. The campaign should feel like it has momentum based on PC decisions."
+  },
+  "campaignMechanics": {
+    "sinPoints": {
+      "description": "Optional mechanic for tracking connection to Karzoug and his sins. Can award sin points when PCs engage with greed, wrath, or other sins. At high sin point totals, can trigger visions or special encounters.",
+      "usage": "Track throughout campaign. Can create moral complexity - PCs inadvertently helping Karzoug while trying to stop him."
+    },
+    "treasureThemes": "Thassilonian artifacts throughout campaign. Many mundane items have cultural significance. Magic items often tied to specific runelords or sins.",
+    "experienceProgression": "Fast track advancement means PCs level roughly every chapter. Gives sense of steady power growth matching escalating threats.",
+    "magicalItems": "Campaign features many ancient Thassilonian items. These can drive plot hooks and create player agency in how they acquire and use them."
+  },
+  "vignettes": {
+    "swallowtail_festival": "Festival day is pure celebration before everything goes wrong. Use festival games and interactions to introduce NPCs and establish normal town life before horror strikes.",
+    "ameiko_connection": "Ameiko's missing-person crisis creates emotional stakes. Her family troubles (absent father, estranged brother) give depth. Her cooking and hospitality make her sympathetic.",
+    "nualia_tragedy": "Nualia is tragic villain whose backstory of isolation, loss, and corruption makes her sympathetic even as her actions are monstrous. Her transformation from angelic to demonic parallels campaign's shift from local to cosmic horror.",
+    "aldern_foxglove": "Introduction as grateful hero creates positive first impression. His growing obsession over time (subtly unsettling) sets up shocking betrayal in Chapter 2."
+  }
+}

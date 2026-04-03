@@ -1,0 +1,567 @@
+{
+  "gameSystem": "Pathfinder RPG 1st Edition",
+  "combatRules": {
+    "initiative": {
+      "description": "At the start of combat, each participant makes an initiative check. Roll 1d20 and add your initiative bonus (Dex modifier + Improved Initiative feat if you have it).",
+      "dc": "Highest roll acts first, ties act simultaneously",
+      "order": "Combat proceeds in order from highest to lowest initiative",
+      "round": "Each round represents 6 seconds of action"
+    },
+    "attackRolls": {
+      "baseFormula": "1d20 + attack bonus",
+      "attackBonus": "Base attack bonus (from class/level) + ability modifier (Str for melee/Dex for ranged) + special bonuses (enchantment, feats, etc.)",
+      "targetDC": "Target AC",
+      "criticalHit": {
+        "description": "When an attack roll equals or exceeds the critical threat range, roll again",
+        "confirmation": "Roll another attack. If it hits, multiply damage by critical multiplier",
+        "multipliers": {
+          "x2": "Double damage dice",
+          "x3": "Triple damage dice",
+          "x4": "Quadruple damage dice"
+        },
+        "ranges": {
+          "20": "1 in 20 (most common)",
+          "19-20": "1 in 10",
+          "18-20": "1 in 6"
+        }
+      },
+      "meleeBonuses": {
+        "strengthBonus": "Add full Str modifier to damage",
+        "dexterityBonus": "Dex modifier does NOT apply to melee damage",
+        "size": "Larger weapons may have damage die steps based on creature size"
+      },
+      "rangedBonuses": {
+        "strengthBonus": "Add half Str modifier to damage (if using Composite bow)",
+        "dexterityBonus": "Dex modifier does NOT apply to ranged damage normally",
+        "pointBlank": "+1 to hit and damage if within 30 feet (Pointblank Shot feat)"
+      }
+    },
+    "damageRolls": {
+      "baseFormula": "Weapon damage die + ability modifier",
+      "minimumDamage": "Minimum of 1 damage per weapon, even if modifiers reduce it below 1",
+      "multipleAttacks": "If making multiple attacks (iterative attacks or two-weapon fighting), each attack rolls damage separately",
+      "sneakAttack": "Add sneak attack damage (+1d6 per 2 rogue levels, starting at 1d6 at level 1) when target is denied its Dexterity bonus to AC or when flanked",
+      "conditionsForEffect": "Target must be denied DEX bonus to AC (flat-footed, blinded, stunned, etc.) or flanked by the rogue and an ally. Ranged sneak attacks only work within 30 feet. Creatures immune to critical hits are immune to sneak attack."
+    },
+    "savingThrows": {
+      "types": [
+        {
+          "name": "Fortitude",
+          "ability": "Constitution",
+          "resistsAgainst": ["Poison", "disease", "starvation", "exhaustion", "petrification"]
+        },
+        {
+          "name": "Reflex",
+          "ability": "Dexterity",
+          "resistsAgainst": ["Fireballs", "traps", "explosions", "area effects"]
+        },
+        {
+          "name": "Will",
+          "ability": "Wisdom",
+          "resistsAgainst": ["Charm", "domination", "fear", "enchantment", "curse"]
+        }
+      ],
+      "formula": "1d20 + save bonus (half ability modifier, rounded down) + Wisdom modifier + special bonuses",
+      "dcExamples": {
+        "simple": 10,
+        "moderate": 15,
+        "challenging": 20,
+        "spellSave": "10 + spell level + spellcaster's ability modifier"
+      },
+      "success": "You resist the full effect",
+      "failure": "You suffer the full effect",
+      "halfDamage": "Many effects allow half damage on successful save"
+    },
+    "concentration": {
+      "description": "Required to maintain spell focus or activate spell-like abilities while threatened",
+      "check": "1d20 + spell level + caster's ability modifier (usually Int for wizards, Wis for clerics)",
+      "baseDC": "10 + damage taken or 10 + spell level of interfering spell (whichever is higher)",
+      "failure": "Spell is lost and action is wasted"
+    },
+    "combatManeuvers": [
+      {
+        "name": "Attack Roll",
+        "description": "Make a melee touch attack",
+        "formula": "1d20 + BAB + Str modifier + size modifier"
+      },
+      {
+        "name": "Aid Another",
+        "description": "Help an ally with a check or attack",
+        "formula": "Make skill check or attack roll of DC 10",
+        "effect": "+2 bonus to target's next roll"
+      },
+      {
+        "name": "Bull Rush",
+        "description": "Push an opponent back",
+        "formula": "1d20 + BAB + Str modifier vs. 1d20 + BAB + Str modifier (opponent's CMB)",
+        "effect": "Opponent is pushed back 5 feet per margin of success"
+      },
+      {
+        "name": "Disarm",
+        "description": "Knock weapon from opponent's hand",
+        "formula": "1d20 + BAB + Str modifier vs. opponent's CMB",
+        "effect": "Opponent's weapon falls to the ground nearby"
+      },
+      {
+        "name": "Feint",
+        "description": "Fake out opponent to deny Dex bonus",
+        "formula": "Bluff check vs. opponent's Sense Motive",
+        "effect": "Opponent is flat-footed against your next attack this round"
+      },
+      {
+        "name": "Grapple",
+        "description": "Grab and hold opponent",
+        "formula": "1d20 + BAB + Str modifier vs. opponent's CMD",
+        "effect": "Both grappler and target are grappled. Maintain grapple as move action each round."
+      },
+      {
+        "name": "Overrun",
+        "description": "Run through opponent's space",
+        "formula": "1d20 + BAB + Str modifier vs. opponent's CMD",
+        "effect": "You move through opponent's space and they are knocked prone"
+      },
+      {
+        "name": "Sunder",
+        "description": "Attack an opponent's weapon or item",
+        "formula": "1d20 + BAB + Str modifier vs. target's hardness/AC",
+        "effect": "Weapon takes damage; at 0 hp, it breaks"
+      },
+      {
+        "name": "Throw",
+        "description": "Throw a grappled opponent",
+        "formula": "Opposed CMB check (attacker's CMB vs. target's CMD)",
+        "effect": "Target lands prone and takes falling damage"
+      },
+      {
+        "name": "Trip",
+        "description": "Knock opponent prone",
+        "formula": "1d20 + BAB + Str modifier vs. opponent's CMD",
+        "effect": "Opponent is knocked prone and can stand as a move action"
+      }
+    ],
+    "specialActions": [
+      {
+        "name": "Full-Round Action",
+        "description": "Use your entire turn for one action",
+        "examples": ["Attack with multiple weapons", "Charge (double move + single melee attack)", "Full attack with multiple attacks"]
+      },
+      {
+        "name": "Ready Action",
+        "description": "Prepare an action for a trigger",
+        "mechanics": "You specify a trigger and an action. When the trigger occurs, you act before the triggering opponent"
+      },
+      {
+        "name": "Charge",
+        "description": "Move up to twice your speed and make a single melee attack at -2 AC",
+        "limitations": "Must move in a straight line, can only make one melee attack"
+      },
+      {
+        "name": "Total Defense",
+        "description": "Gain +4 dodge bonus to AC this round",
+        "tradeoff": "Cannot attack or move more than 5 feet"
+      },
+      {
+        "name": "Withdraw",
+        "description": "Move up to twice your speed away from opponents",
+        "restriction": "Squares you vacate are not threatened; you can move away without provoking AoOs"
+      }
+    ]
+  },
+  "environmentalHazards": [
+    {
+      "name": "Falling",
+      "type": "Damage",
+      "effect": "1d6 damage per 10 feet fallen (minimum 1d6)",
+      "save": "Reflex DC 15 to take half damage (only if there's something to grab)",
+      "description": "Taking falling damage requires safe movement checks. Unconscious creatures take full damage.",
+      "specialCases": {
+        "featherFall": "Spell negates fall damage and reduces falling speed",
+        "acrobatics": "DC equal to fall distance - 10, makes you only take damage as if falling 10 feet less"
+      }
+    },
+    {
+      "name": "Drowning",
+      "type": "Asphyxiation",
+      "effect": "Can hold breath for 1 minute (Con score x 10 rounds). After that, takes 1 damage per round",
+      "save": "Fortitude DC 10 to continue holding breath (when panicking)",
+      "description": "Unconscious creatures begin drowning immediately. Water-breathing spells provide protection.",
+      "drowningRounds": "At -1 hp, you're unconscious. At -10 hp, you're dead"
+    },
+    {
+      "name": "Extreme Heat",
+      "type": "Exposure",
+      "effect": "Fortitude save DC 15 each hour",
+      "save": "Fail: 1d4 non-lethal damage + 1d4 for each previous hour",
+      "description": "Extreme heat (120+ F) requires water and shade. Creatures without proper gear suffer penalties.",
+      "protection": "Light clothing, shade, water, or cooling spells negate damage"
+    },
+    {
+      "name": "Extreme Cold",
+      "type": "Exposure",
+      "effect": "Fortitude save DC 15 each hour",
+      "save": "Fail: 1d4 non-lethal damage + 1d4 for each previous hour",
+      "description": "Extreme cold (0 F or below) requires shelter and warm clothing. Creatures take cumulative damage.",
+      "protection": "Heavy clothing, shelter, fire, or warming spells negate damage"
+    },
+    {
+      "name": "Starvation",
+      "type": "Deprivation",
+      "effect": "After 3 days without food, begins to starve. Takes 1d6 damage per day",
+      "save": "Fortitude DC 10 each day to avoid damage progression",
+      "description": "Creatures can go without food for 3 + Con modifier days. Endure Elements spells provide protection.",
+      "death": "Creatures at 0 hp from starvation die if not fed immediately"
+    },
+    {
+      "name": "Dehydration",
+      "type": "Deprivation",
+      "effect": "Without water, Constitution damage of 1d6 per day (harsh climate) or 1d4 per day (mild)",
+      "save": "Fortitude DC 10 + 1 per previous check to avoid Constitution damage",
+      "description": "Creatures need 1 gallon of water per day in normal conditions. Desert or extreme heat increases requirement.",
+      "progression": "At Con 0, creature is unconscious and dying"
+    },
+    {
+      "name": "Darkness",
+      "type": "Concealment",
+      "effect": "Total concealment (50% miss chance, Dex-based creatures get +4 to hide checks)",
+      "save": "None",
+      "description": "Darkness is absolute without light sources or darkvision. Creatures with darkvision are unaffected.",
+      "lightSources": {
+        "candlelight": "5-foot radius",
+        "torch": "20-foot radius",
+        "lantern": "30-foot radius",
+        "continual_flame": "Up to 30-foot radius"
+      }
+    },
+    {
+      "name": "Dense Fog/Mist",
+      "type": "Concealment",
+      "effect": "Heavy concealment (20% miss chance beyond 5 feet, 50% beyond 30 feet)",
+      "save": "None",
+      "description": "Vision and ranged attacks are hampered. Creatures must move slowly to avoid getting lost.",
+      "navigation": "Survival check to navigate without getting lost"
+    },
+    {
+      "name": "Strong Wind",
+      "type": "Environmental",
+      "effect": "Depends on wind strength (light breeze to hurricane force)",
+      "save": "Fortitude to avoid being knocked prone or pushed back",
+      "description": "Light wind: No effect. Moderate (31+ mph): -2 ranged, -2 Perception. Strong (51+ mph): Medium creatures prone, Large creatures -2, ranged impossible. Severe (75+ mph): All creatures prone, ranged impossible."
+    },
+    {
+      "name": "Poisonous Gas",
+      "type": "Poison/Inhalation",
+      "effect": "Varies by poison (usually Fortitude save DC varies)",
+      "save": "Initial Fortitude save to resist initial effect, secondary save after 1 minute if exposed",
+      "description": "Inhaled poisons require Fortitude saves each round in the poisoned area. Creatures can hold breath to resist.",
+      "progression": "Depends on poison potency (1d2 damage per round to death in 1d4 rounds)"
+    },
+    {
+      "name": "Acid Pool",
+      "type": "Damage",
+      "effect": "Immersion in acid deals 2d6 damage per round",
+      "save": "Reflex to avoid falling in (DC 15), but still takes damage each round in it",
+      "description": "Acid corrodes flesh, equipment, and even stone. Acid splash spell deals 1d3 damage.",
+      "equipment": "Nonmagical equipment dissolves after 1d6 rounds in acid"
+    }
+  ],
+  "weatherEffects": [
+    {
+      "name": "Light Rain",
+      "effect": "-2 to ranged attacks beyond 30 feet, visibility reduced",
+      "penalties": "No mechanical penalties beyond -2 ranged attack penalty"
+    },
+    {
+      "name": "Heavy Rain",
+      "effect": "-4 to ranged attacks, visibility severely reduced to 60 feet",
+      "penalties": "-4 ranged attacks, -2 Perception checks, movement costs 2x normal"
+    },
+    {
+      "name": "Thunderstorm",
+      "effect": "Severe visibility reduction, lightning strikes, extreme wind",
+      "penalties": "-4 ranged attacks, -4 Perception checks, movement costs 3x normal, risk of lightning strikes (treat as AOE spell 3d6 damage, DC 15 Ref for half)"
+    },
+    {
+      "name": "Snow",
+      "effect": "Visibility reduced, movement hampered, cold exposure",
+      "penalties": "Movement costs 2x normal (or 3x if heavy snow), -4 Perception checks, exposure to cold damage"
+    },
+    {
+      "name": "Blizzard",
+      "effect": "Extreme cold, near-zero visibility, dangerous wind",
+      "penalties": "Movement costs 4x normal, -8 Perception checks, 1d6 cold damage per minute, risk of getting lost"
+    },
+    {
+      "name": "Fog",
+      "effect": "Visibility reduced to 30 feet or less",
+      "penalties": "20-50% concealment beyond 5-30 feet, -2 Perception checks"
+    },
+    {
+      "name": "Dust Storm",
+      "effect": "Extreme concealment, wind hazard, visibility near zero",
+      "penalties": "-8 ranged attacks, -8 Perception checks, risk of being blown away (Fortitude DC 18 to stay in place)"
+    }
+  ],
+  "terrainRules": [
+    {
+      "terrain": "Road/Plain",
+      "movementCost": "Normal (30 feet for medium creature)",
+      "coverBonus": "None",
+      "specialRules": "No special movement penalties"
+    },
+    {
+      "terrain": "Light Forest",
+      "movementCost": "1.5x normal",
+      "coverBonus": "+1 natural cover (trees)",
+      "specialRules": "-2 Perception beyond 30 feet"
+    },
+    {
+      "terrain": "Dense Forest",
+      "movementCost": "2x normal",
+      "coverBonus": "+2 to +4 natural cover",
+      "specialRules": "-4 Perception beyond 15 feet, movement must be careful"
+    },
+    {
+      "terrain": "Mountain",
+      "movementCost": "2x normal (or 3x on steep slopes)",
+      "coverBonus": "+1 to +4 depending on rocks",
+      "specialRules": "Climbing required, risk of falling, altitude effects"
+    },
+    {
+      "terrain": "Hill",
+      "movementCost": "1.5x normal uphill, normal downhill",
+      "coverBonus": "+1 cover from crest",
+      "specialRules": "-2 ranged attacks uphill, +2 ranged attacks downhill"
+    },
+    {
+      "terrain": "Desert",
+      "movementCost": "Normal",
+      "coverBonus": "None (minimal)",
+      "specialRules": "Heat exposure, limited water sources, mirages possible"
+    },
+    {
+      "terrain": "Swamp/Marsh",
+      "movementCost": "2x normal",
+      "coverBonus": "+1 natural cover",
+      "specialRules": "Risk of sinking (Strength check DC 12), disease exposure, blood in water attracts creatures"
+    },
+    {
+      "terrain": "Water (Shallow)",
+      "movementCost": "2x normal",
+      "coverBonus": "+1 cover",
+      "specialRules": "Movement hampered, swimming required beyond waist depth, risk of drowning"
+    },
+    {
+      "terrain": "Water (Deep)",
+      "movementCost": "Swim speed or 5 feet/round",
+      "coverBonus": "+4 cover to vision",
+      "specialRules": "Swimming required, oxygen/breathing requirements, pressure at extreme depth"
+    },
+    {
+      "terrain": "Ice/Snow",
+      "movementCost": "2x normal or require Acrobatics check",
+      "coverBonus": "None",
+      "specialRules": "Acrobatics DC 10 to move at normal speed, slipping risk, cold exposure"
+    },
+    {
+      "terrain": "Rubble",
+      "movementCost": "2x normal",
+      "coverBonus": "+2 cover from broken stones",
+      "specialRules": "Climbing required in places, risk of unstable rubble collapsing"
+    },
+    {
+      "terrain": "Lava",
+      "movementCost": "N/A (impassable without flight/levitation)",
+      "coverBonus": "N/A",
+      "specialRules": "2d6 damage per round of contact, 1d6 at 5-foot distance (heat), spell-like protection required"
+    }
+  ],
+  "lightingRules": [
+    {
+      "level": "Bright Light",
+      "concealment": "No concealment",
+      "penalties": "None (normal vision)",
+      "visionRange": "60 feet for normal vision, further for darkvision creatures",
+      "examples": ["Daylight", "Continual Flame", "Daylight spell"]
+    },
+    {
+      "level": "Dim Light",
+      "concealment": "20% concealment (creatures are mostly hidden)",
+      "penalties": "-2 on Perception checks and ranged attacks beyond 30 feet",
+      "visionRange": "Darkvision creatures see as if in bright light, others see 30 feet",
+      "examples": ["Dusk/dawn", "Torch at distance", "Moonlight"]
+    },
+    {
+      "level": "Darkness",
+      "concealment": "50% concealment (creatures are essentially hidden)",
+      "penalties": "-4 on Perception checks beyond 5 feet, ranged attacks at -4 beyond 5 feet",
+      "visionRange": "Darkvision creatures see up to 60 feet, others are blind",
+      "examples": ["Night without moon", "Unlit dungeon", "Interior of building without windows"]
+    },
+    {
+      "level": "Magical Darkness",
+      "concealment": "100% concealment (creatures cannot be seen even with light spells)",
+      "penalties": "-8 on all checks, ranged attacks impossible, movement at -4 speed",
+      "visionRange": "Even darkvision cannot pierce magical darkness",
+      "examples": ["Darkness spell (20-foot radius)", "Shadow conjured in light"]
+    }
+  ],
+  "experienceTable": [
+    { "level": 1, "xpNeeded": 0, "slowXP": 0, "mediumXP": 0, "fastXP": 0 },
+    { "level": 2, "xpNeeded": 1000, "slowXP": 1300, "mediumXP": 1000, "fastXP": 800 },
+    { "level": 3, "xpNeeded": 3000, "slowXP": 3300, "mediumXP": 2500, "fastXP": 2000 },
+    { "level": 4, "xpNeeded": 6000, "slowXP": 6600, "mediumXP": 5000, "fastXP": 4000 },
+    { "level": 5, "xpNeeded": 10000, "slowXP": 13000, "mediumXP": 10000, "fastXP": 8000 },
+    { "level": 6, "xpNeeded": 15000, "slowXP": 19500, "mediumXP": 15000, "fastXP": 12000 },
+    { "level": 7, "xpNeeded": 21000, "slowXP": 26000, "mediumXP": 21000, "fastXP": 16800 },
+    { "level": 8, "xpNeeded": 28000, "slowXP": 33000, "mediumXP": 28000, "fastXP": 22400 },
+    { "level": 9, "xpNeeded": 36000, "slowXP": 39000, "mediumXP": 34000, "fastXP": 27200 },
+    { "level": 10, "xpNeeded": 45000, "slowXP": 45000, "mediumXP": 40000, "fastXP": 32000 },
+    { "level": 11, "xpNeeded": 55000, "slowXP": 55000, "mediumXP": 50000, "fastXP": 40000 },
+    { "level": 12, "xpNeeded": 66000, "slowXP": 66000, "mediumXP": 60000, "fastXP": 48000 },
+    { "level": 13, "xpNeeded": 78000, "slowXP": 78000, "mediumXP": 70000, "fastXP": 56000 },
+    { "level": 14, "xpNeeded": 91000, "slowXP": 91000, "mediumXP": 80000, "fastXP": 64000 },
+    { "level": 15, "xpNeeded": 105000, "slowXP": 105000, "mediumXP": 90000, "fastXP": 72000 },
+    { "level": 16, "xpNeeded": 120000, "slowXP": 120000, "mediumXP": 100000, "fastXP": 80000 },
+    { "level": 17, "xpNeeded": 136000, "slowXP": 136000, "mediumXP": 110000, "fastXP": 88000 },
+    { "level": 18, "xpNeeded": 153000, "slowXP": 153000, "mediumXP": 120000, "fastXP": 96000 },
+    { "level": 19, "xpNeeded": 171000, "slowXP": 171000, "mediumXP": 130000, "fastXP": 104000 },
+    { "level": 20, "xpNeeded": 190000, "slowXP": 190000, "mediumXP": 140000, "fastXP": 112000 }
+  ],
+  "wealthByLevel": [
+    { "level": 1, "expectedWealth": 300 },
+    { "level": 2, "expectedWealth": 900 },
+    { "level": 3, "expectedWealth": 2400 },
+    { "level": 4, "expectedWealth": 4800 },
+    { "level": 5, "expectedWealth": 8000 },
+    { "level": 6, "expectedWealth": 12000 },
+    { "level": 7, "expectedWealth": 17000 },
+    { "level": 8, "expectedWealth": 23000 },
+    { "level": 9, "expectedWealth": 30000 },
+    { "level": 10, "expectedWealth": 40000 },
+    { "level": 11, "expectedWealth": 53000 },
+    { "level": 12, "expectedWealth": 70000 },
+    { "level": 13, "expectedWealth": 92000 },
+    { "level": 14, "expectedWealth": 120000 },
+    { "level": 15, "expectedWealth": 160000 },
+    { "level": 16, "expectedWealth": 210000 },
+    { "level": 17, "expectedWealth": 270000 },
+    { "level": 18, "expectedWealth": 350000 },
+    { "level": 19, "expectedWealth": 450000 },
+    { "level": 20, "expectedWealth": 600000 }
+  ],
+  "crToXP": [
+    { "cr": 0.125, "xp": 50 },
+    { "cr": 0.25, "xp": 100 },
+    { "cr": 0.5, "xp": 200 },
+    { "cr": 1, "xp": 400 },
+    { "cr": 2, "xp": 600 },
+    { "cr": 3, "xp": 800 },
+    { "cr": 4, "xp": 1200 },
+    { "cr": 5, "xp": 1600 },
+    { "cr": 6, "xp": 2400 },
+    { "cr": 7, "xp": 3200 },
+    { "cr": 8, "xp": 4800 },
+    { "cr": 9, "xp": 6400 },
+    { "cr": 10, "xp": 9600 },
+    { "cr": 11, "xp": 12800 },
+    { "cr": 12, "xp": 19200 },
+    { "cr": 13, "xp": 25600 },
+    { "cr": 14, "xp": 38400 },
+    { "cr": 15, "xp": 51200 },
+    { "cr": 16, "xp": 76800 },
+    { "cr": 17, "xp": 102400 },
+    { "cr": 18, "xp": 153600 },
+    { "cr": 19, "xp": 204800 },
+    { "cr": 20, "xp": 307200 }
+  ],
+  "carryingCapacity": {
+    "description": "Carrying capacity is based on Strength score and is divided into load categories: light load, medium load, and heavy load.",
+    "baseFormula": "Light load = Str score x 10 lbs. Medium load = Str score x 20 lbs. Heavy load = Str score x 30 lbs.",
+    "encumbranceEffects": {
+      "lightLoad": "No penalties",
+      "mediumLoad": "-3 penalty to Str and Dex skills",
+      "heavyLoad": "-6 penalty to Str and Dex skills, speed reduced by half, can only take move action or standard action, not both"
+    },
+    "helpfulRules": {
+      "carryingUnusualItems": "Use DM judgment for non-standard items",
+      "totalWeightCarried": "Add all equipped items, armor, weapons, and carried items together",
+      "dragOrPull": "Can drag/pull up to 1.5x heavy load at half speed"
+    }
+  },
+  "actionEconomy": {
+    "standard": {
+      "name": "Standard Action",
+      "examples": ["Make one melee or ranged attack", "Cast a spell", "Use an activated magic item", "Activate a class ability", "Drink a potion"]
+    },
+    "move": {
+      "name": "Move Action",
+      "examples": ["Move up to your speed", "Draw/holster a weapon", "Open a door", "Pick up an item", "Stand from prone"]
+    },
+    "swift": {
+      "name": "Swift Action",
+      "examples": ["Quickened spell (if Quicken Spell metamagic)", "Immediate defense bonus (some feats)", "Drop prone", "Activate immediate action ability"]
+    },
+    "immediate": {
+      "name": "Immediate Action",
+      "examples": ["Readied action trigger", "Some class abilities (e.g., Counterspell)", "Some defensive abilities", "Reaction to opponent's action"],
+      "note": "Can use immediate action even when not your turn, but only once per round"
+    },
+    "fullRound": {
+      "name": "Full-Round Action",
+      "examples": ["Attack with multiple attacks (BAB)", "Charge", "Full attack with two-weapon fighting or multiple weapons", "Activate two standard actions worth of ability"],
+      "costOfMoving": "Only 5 feet of movement allowed with full-round action"
+    },
+    "freeAction": {
+      "name": "Free Action",
+      "examples": ["Speak briefly", "Drop an item", "Use an ability that takes no action", "Take 5 feet step"],
+      "note": "DM determines if action is truly free; typically 1-2 free actions per round"
+    }
+  },
+  "defensiveRules": {
+    "armorClass": {
+      "formula": "10 + armor bonus + shield bonus + Dex modifier + deflection bonuses + natural armor + dodge bonuses + size modifier",
+      "touchAC": "Armor Class against touch attacks (no armor or natural armor bonuses). Used for ranged touch attacks.",
+      "flatFootedAC": "Armor Class when you're surprised or cannot use Dex modifier. No Dex bonus."
+    },
+    "damageReduction": {
+      "description": "Subtract a fixed amount from all damage taken",
+      "format": "DR X/type (e.g., DR 5/magic means 5 points reduction unless damage is from magic)",
+      "types": ["Magic", "adamantine", "cold iron", "silver", "good", "evil", "lawful", "chaotic", "bludgeoning", "piercing", "slashing"],
+      "stackingRules": "DR does not stack; use the highest applicable DR"
+    },
+    "immunities": {
+      "description": "Completely immune to certain damage types or effects",
+      "commonImmunities": ["Fire", "cold", "electricity", "poison", "disease", "critical hits", "precision damage"]
+    },
+    "resistances": {
+      "description": "Reduce damage of a specific type by a set amount",
+      "format": "Resistance 10 (fire) means reduce fire damage by 10 points per attack",
+      "commonResistances": ["Fire", "cold", "electricity", "acid"]
+    }
+  },
+  "spellcasting": {
+    "spellSaveDC": {
+      "formula": "10 + spell level + spellcaster's ability modifier (Int for wizards, Wis for clerics, Cha for sorcerers/paladins)",
+      "increaseFromMetamagic": "Add +1 to DC per spell level adjustment from metamagic feats"
+    },
+    "spellResistance": {
+      "description": "Chance to resist spell effects entirely",
+      "check": "1d20 + caster level vs. target's spell resistance (10 + character level)",
+      "failure": "Spell effect doesn't apply to that target"
+    },
+    "arcaneSpellFailure": {
+      "description": "Spellcasters in heavy armor take a chance their spell fails",
+      "formula": "Roll 1d100. If result is within the armor's arcane spell failure percentage, spell is wasted",
+      "armorFailureRates": {
+        "light": "10%",
+        "medium": "25%",
+        "heavy": "35%"
+      }
+    },
+    "concentrationChecks": {
+      "formula": "1d20 + spell level + relevant ability modifier",
+      "dc": "10 + spell level of interfering spell or 10 + damage taken (whichever is higher)",
+      "failure": "Spell fails and is wasted"
+    }
+  }
+}

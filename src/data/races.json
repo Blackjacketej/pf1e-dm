@@ -1,0 +1,554 @@
+[
+  {
+    "name": "Aasimar",
+    "bonuses": {
+      "WIS": 2,
+      "CHA": 2,
+      "CON": -2
+    },
+    "speed": 30,
+    "size": "Medium",
+    "traits": [
+      "Darkvision 60ft",
+      "Celestial Resistance (fire +5, cold +5, acid +5)",
+      "Spell-Like Ability (daylight 1/day)",
+      "Skilled (Perception +2)",
+      "Celestial Blood"
+    ],
+    "languages": [
+      "Common",
+      "Celestial"
+    ]
+  },
+  {
+    "name": "Catfolk",
+    "bonuses": {
+      "DEX": 2,
+      "WIS": 2,
+      "INT": -2
+    },
+    "speed": 30,
+    "size": "Medium",
+    "traits": [
+      "Darkvision 60ft",
+      "Natural Claw Attack (1d4/1d4)",
+      "Feline Movement (+4 Acrobatics/Balance)",
+      "Keen Senses (+2 Perception)",
+      "Retractable Claws"
+    ],
+    "languages": [
+      "Common",
+      "Felidae"
+    ]
+  },
+  {
+    "name": "Changeling",
+    "bonuses": {
+      "WIS": 2,
+      "CHA": 2,
+      "CON": -2
+    },
+    "speed": 30,
+    "size": "Medium",
+    "traits": [
+      "Low-Light Vision",
+      "Change Shape (humanoid form 1/day)",
+      "Fey Heritage",
+      "Spell-Like Ability (disguise self 1/day)",
+      "Resilient (bonus on saves vs enchantment)"
+    ],
+    "languages": [
+      "Common"
+    ]
+  },
+  {
+    "name": "Dhampir",
+    "bonuses": {
+      "STR": 2,
+      "CHA": 2,
+      "CON": -2
+    },
+    "speed": 30,
+    "size": "Medium",
+    "traits": [
+      "Darkvision 60ft",
+      "Negative Energy Resistance",
+      "Light Sensitivity (-1 in bright light)",
+      "Fangs (1d3 bite attack)",
+      "Undead Resistance (undead ignore some attacks)"
+    ],
+    "languages": [
+      "Common"
+    ]
+  },
+  {
+    "name": "Duergar",
+    "bonuses": {
+      "STR": 2,
+      "WIS": 2,
+      "CHA": -4
+    },
+    "speed": 20,
+    "size": "Medium",
+    "traits": [
+      "Darkvision 120ft",
+      "Stability (+4 CMD vs bull rush/trip)",
+      "Hardy (+2 vs poison/spells)",
+      "Defensive Training (+4 AC vs Giants)",
+      "Magic Resistance (spell resistance 5 + level)"
+    ],
+    "languages": [
+      "Common",
+      "Dwarven",
+      "Undercommon"
+    ]
+  },
+  {
+    "name": "Dwarf",
+    "bonuses": {
+      "CON": 2,
+      "WIS": 2,
+      "CHA": -2
+    },
+    "speed": 20,
+    "size": "Medium",
+    "traits": [
+      "Darkvision 60ft",
+      "Defensive Training (+4 AC vs Giants)",
+      "Hardy (+2 vs poison/spells)",
+      "Stability (+4 CMD vs bull rush/trip)"
+    ],
+    "languages": [
+      "Common",
+      "Dwarven"
+    ]
+  },
+  {
+    "name": "Elf",
+    "bonuses": {
+      "DEX": 2,
+      "INT": 2,
+      "CON": -2
+    },
+    "speed": 30,
+    "size": "Medium",
+    "traits": [
+      "Elven Immunities",
+      "Keen Senses (+2 Perception)",
+      "Low-Light Vision"
+    ],
+    "languages": [
+      "Common",
+      "Elven"
+    ]
+  },
+  {
+    "name": "Fetchling",
+    "bonuses": {
+      "DEX": 2,
+      "INT": 2,
+      "WIS": -2
+    },
+    "speed": 30,
+    "size": "Medium",
+    "traits": [
+      "Darkvision 60ft",
+      "Shadow Resistance (cold 5, electricity 5)",
+      "Shadowy Instability (light/dark sensitivity)",
+      "Shadow Blending (miss chance in shadows)",
+      "Skillful (+2 Sleight of Hand)"
+    ],
+    "languages": [
+      "Common",
+      "Shadow"
+    ]
+  },
+  {
+    "name": "Gnome",
+    "bonuses": {
+      "CON": 2,
+      "CHA": 2,
+      "STR": -2
+    },
+    "speed": 20,
+    "size": "Small",
+    "traits": [
+      "Defensive Training (+4 AC vs Giants)",
+      "Gnome Magic",
+      "Keen Senses (+2 Perception)",
+      "Low-Light Vision",
+      "Obsessive (+2 to one Craft/Profession)"
+    ],
+    "languages": [
+      "Common",
+      "Gnome",
+      "Sylvan"
+    ]
+  },
+  {
+    "name": "Goblin",
+    "bonuses": {
+      "DEX": 2,
+      "STR": -2
+    },
+    "speed": 30,
+    "size": "Small",
+    "traits": [
+      "Darkvision 60ft",
+      "Defensive Training (+4 AC vs Giants)",
+      "Goblin Combat Tactics (Ambidexterity)",
+      "Nimble (+2 Acrobatics)",
+      "Scavenger (+2 Appraise)"
+    ],
+    "languages": [
+      "Common",
+      "Goblin"
+    ]
+  },
+  {
+    "name": "Half-Elf",
+    "bonuses": {
+      "choice": 2
+    },
+    "speed": 30,
+    "size": "Medium",
+    "traits": [
+      "Adaptability (Skill Focus)",
+      "Elf Blood",
+      "Elven Immunities",
+      "Keen Senses (+2 Perception)",
+      "Low-Light Vision",
+      "Multitalented (2 favored classes)"
+    ],
+    "languages": [
+      "Common",
+      "Elven"
+    ]
+  },
+  {
+    "name": "Half-Orc",
+    "bonuses": {
+      "choice": 2
+    },
+    "speed": 30,
+    "size": "Medium",
+    "traits": [
+      "Darkvision 60ft",
+      "Intimidating (+2 Intimidate)",
+      "Orc Blood",
+      "Orc Ferocity (1/day fight at 0 HP)"
+    ],
+    "languages": [
+      "Common",
+      "Orc"
+    ]
+  },
+  {
+    "name": "Halfling",
+    "bonuses": {
+      "DEX": 2,
+      "CHA": 2,
+      "STR": -2
+    },
+    "speed": 20,
+    "size": "Small",
+    "traits": [
+      "Fearless (+2 vs fear)",
+      "Halfling Luck (+1 all saves)",
+      "Keen Senses (+2 Perception)",
+      "Sure-Footed (+2 Acrobatics/Climb)"
+    ],
+    "languages": [
+      "Common",
+      "Halfling"
+    ]
+  },
+  {
+    "name": "Human",
+    "bonuses": {
+      "choice": 2
+    },
+    "speed": 30,
+    "size": "Medium",
+    "traits": [
+      "Bonus Feat",
+      "Skilled (+1 skill rank/level)"
+    ],
+    "languages": [
+      "Common"
+    ]
+  },
+  {
+    "name": "Ifrit",
+    "bonuses": {
+      "DEX": 2,
+      "WIS": -2
+    },
+    "speed": 30,
+    "size": "Medium",
+    "traits": [
+      "Darkvision 60ft",
+      "Fire Resistance 5",
+      "Spell-Like Ability (burning hands 1/day)",
+      "Elemental Affinity (fire)",
+      "Natural Claw Attack (1d4)"
+    ],
+    "languages": [
+      "Common",
+      "Ignan"
+    ]
+  },
+  {
+    "name": "Kitsune",
+    "bonuses": {
+      "DEX": 2,
+      "CHA": 2,
+      "STR": -2
+    },
+    "speed": 30,
+    "size": "Medium",
+    "traits": [
+      "Low-Light Vision",
+      "Change Shape (animal form 1/day)",
+      "Spell-Like Ability (disguise self 1/day)",
+      "Fox Fire (ranged touch attack)",
+      "Kitsune Magic (bonus feat)"
+    ],
+    "languages": [
+      "Common",
+      "Kitsune"
+    ]
+  },
+  {
+    "name": "Kobold",
+    "bonuses": {
+      "STR": -2,
+      "CON": -2,
+      "CHA": 2
+    },
+    "speed": 30,
+    "size": "Small",
+    "traits": [
+      "Darkvision 60ft",
+      "Defensive Training (+4 AC vs Giants)",
+      "Kobold Combat Tactics (trapmaking)",
+      "Weakness (light sensitivity)",
+      "Crafty (+2 Craft/Profession)"
+    ],
+    "languages": [
+      "Common",
+      "Draconic"
+    ]
+  },
+  {
+    "name": "Nagaji",
+    "bonuses": {
+      "STR": 2,
+      "CHA": -2
+    },
+    "speed": 30,
+    "size": "Medium",
+    "traits": [
+      "Low-Light Vision",
+      "Poison Resistance (racial bonus)",
+      "Serpentine Cunning (+2 Initiative)",
+      "Naga Blood (bonus feat)",
+      "Nagaji Spellbomb (supernatural ability)"
+    ],
+    "languages": [
+      "Common",
+      "Draconic"
+    ]
+  },
+  {
+    "name": "Orc",
+    "bonuses": {
+      "STR": 2,
+      "INT": -2,
+      "WIS": -2,
+      "CHA": -2
+    },
+    "speed": 30,
+    "size": "Medium",
+    "traits": [
+      "Darkvision 60ft",
+      "Intimidating (+2 Intimidate)",
+      "Orc Ferocity (fight at 0 HP 1/day)",
+      "Weapon Familiarity (greataxe)",
+      "Light Sensitivity"
+    ],
+    "languages": [
+      "Common",
+      "Orc"
+    ]
+  },
+  {
+    "name": "Oread",
+    "bonuses": {
+      "STR": 2,
+      "WIS": 2,
+      "CHA": -2
+    },
+    "speed": 30,
+    "size": "Medium",
+    "traits": [
+      "Darkvision 60ft",
+      "Stone Cunning (+2 Perception stone/earth)",
+      "Spell-Like Ability (magic stone 1/day)",
+      "Elemental Affinity (earth)",
+      "Stability (+2 CMD vs trip/bull rush)"
+    ],
+    "languages": [
+      "Common",
+      "Terran"
+    ]
+  },
+  {
+    "name": "Ratfolk",
+    "bonuses": {
+      "DEX": 2,
+      "CON": 2,
+      "STR": -2
+    },
+    "speed": 20,
+    "size": "Small",
+    "traits": [
+      "Darkvision 60ft",
+      "Swarming Ability (flanking bonus)",
+      "Plague Carrier Resistance",
+      "Pack Tactics (+1 attack when flanking)",
+      "Rodent Empathy (vermin handling)"
+    ],
+    "languages": [
+      "Common",
+      "Ratfolk"
+    ]
+  },
+  {
+    "name": "Svirfneblin",
+    "bonuses": {
+      "DEX": 2,
+      "WIS": 2,
+      "CHA": -4
+    },
+    "speed": 20,
+    "size": "Small",
+    "traits": [
+      "Darkvision 120ft",
+      "Defensive Training (+4 AC vs Giants)",
+      "Magic Resistance (spell resistance 5 + level)",
+      "Spell-Like Ability (nondetection 1/day)",
+      "Underground Craftsman (+2 Craft/Profession)"
+    ],
+    "languages": [
+      "Common",
+      "Gnome",
+      "Undercommon"
+    ]
+  },
+  {
+    "name": "Sylph",
+    "bonuses": {
+      "DEX": 2,
+      "INT": 2,
+      "CON": -2
+    },
+    "speed": 30,
+    "size": "Medium",
+    "traits": [
+      "Darkvision 60ft",
+      "Air Affinity (feather fall 1/day)",
+      "Spell-Like Ability (feather fall 1/day)",
+      "Elemental Affinity (air)",
+      "Natural Glide"
+    ],
+    "languages": [
+      "Common",
+      "Auran"
+    ]
+  },
+  {
+    "name": "Tengu",
+    "bonuses": {
+      "DEX": 2,
+      "WIS": 2,
+      "CON": -2
+    },
+    "speed": 30,
+    "size": "Medium",
+    "traits": [
+      "Darkvision 60ft",
+      "Natural Claw Attack (1d3/1d3)",
+      "Talons (2d4 damage)",
+      "Sneaky (+2 Stealth)",
+      "Swordtraining (weapon proficiency bonus)"
+    ],
+    "languages": [
+      "Common",
+      "Tengu"
+    ]
+  },
+  {
+    "name": "Tiefling",
+    "bonuses": {
+      "DEX": 2,
+      "INT": 2,
+      "CHA": -2
+    },
+    "speed": 30,
+    "size": "Medium",
+    "traits": [
+      "Darkvision 60ft",
+      "Resistance to cold 5, electricity 5, fire 5",
+      "Spell-Like Ability (darkness 1/day)",
+      "Fiendish Resistance",
+      "Prehensile Tail"
+    ],
+    "languages": [
+      "Common",
+      "Infernal"
+    ]
+  },
+  {
+    "name": "Undine",
+    "bonuses": {
+      "WIS": 2,
+      "CHA": 2,
+      "STR": -2
+    },
+    "speed": 30,
+    "size": "Medium",
+    "traits": [
+      "Darkvision 60ft",
+      "Water Affinity (hydraulic push 1/day)",
+      "Spell-Like Ability (hydraulic push 1/day)",
+      "Elemental Affinity (water)",
+      "Natural Swimmer (swim speed 30ft)"
+    ],
+    "languages": [
+      "Common",
+      "Aquan"
+    ]
+  },
+  {
+    "name": "Wayang",
+    "bonuses": {
+      "DEX": 2,
+      "INT": 2,
+      "CON": -2
+    },
+    "speed": 20,
+    "size": "Small",
+    "traits": [
+      "Darkvision 60ft",
+      "Shadow Resistance (race bonus to saves)",
+      "Light Sensitivity",
+      "Spell-Like Ability (shadow puppet 1/day)",
+      "Weapon Familiarity"
+    ],
+    "languages": [
+      "Common",
+      "Wayang"
+    ]
+  }
+]

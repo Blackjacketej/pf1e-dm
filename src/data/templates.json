@@ -1,0 +1,269 @@
+[
+  {
+    "name": "Thorn Ironfist",
+    "race": "Dwarf",
+    "class": "Fighter",
+    "alignment": "Lawful Good",
+    "abilities": { "STR": 17, "DEX": 13, "CON": 16, "INT": 10, "WIS": 14, "CHA": 8 },
+    "feats": ["Power Attack", "Weapon Focus"],
+    "weaponNames": ["Battleaxe", "Light Crossbow"],
+    "armorName": "Scale Mail",
+    "shieldName": "Heavy Shield",
+    "portrait": "axes",
+    "desc": "A grizzled dwarven veteran. Stoic, dependable, and lethal with an axe.",
+    "roleTip": "Front-line tank. High AC and HP. Use Power Attack for big damage.",
+    "skillRanks": {
+      "Perception": 1,
+      "Intimidate": 1,
+      "Climb": 1
+    },
+    "spellsKnown": [],
+    "spellsPrepared": [],
+    "inventory": ["Backpack", "Bedroll", "Flint and steel", "Torch", "Trail rations (5)", "Waterskin", "Rope (50 ft.)"]
+  },
+  {
+    "name": "Lyria Shadowstep",
+    "race": "Elf",
+    "class": "Rogue",
+    "alignment": "Chaotic Good",
+    "abilities": { "STR": 10, "DEX": 18, "CON": 10, "INT": 14, "WIS": 12, "CHA": 14 },
+    "feats": ["Weapon Finesse", "Improved Initiative"],
+    "weaponNames": ["Rapier", "Dagger", "Shortbow"],
+    "armorName": "Leather",
+    "shieldName": "None",
+    "portrait": "dagger",
+    "desc": "A quick-witted elven rogue. Picks locks, disarms traps, strikes from shadows.",
+    "roleTip": "Scout & skill monkey. Flank enemies for Sneak Attack damage.",
+    "skillRanks": {
+      "Acrobatics": 1,
+      "Disable Device": 1,
+      "Perception": 1,
+      "Stealth": 1,
+      "Bluff": 1,
+      "Diplomacy": 1,
+      "Sense Motive": 1,
+      "Sleight of Hand": 1,
+      "Climb": 1,
+      "Knowledge (local)": 1
+    },
+    "spellsKnown": [],
+    "spellsPrepared": [],
+    "inventory": ["Backpack", "Thieves' tools", "Rope (50 ft.)", "Grappling hook", "Torch", "Trail rations (5)", "Waterskin", "Caltrops"]
+  },
+  {
+    "name": "Aldric the Wise",
+    "race": "Human",
+    "class": "Wizard",
+    "alignment": "Neutral Good",
+    "abilities": { "STR": 8, "DEX": 14, "CON": 12, "INT": 18, "WIS": 13, "CHA": 10 },
+    "feats": ["Scribe Scroll", "Spell Focus", "Improved Initiative"],
+    "weaponNames": ["Quarterstaff", "Light Crossbow"],
+    "armorName": "None",
+    "shieldName": "None",
+    "portrait": "staff",
+    "desc": "A scholarly human wizard devoted to the arcane arts.",
+    "roleTip": "Arcane blaster & utility. Sleep, Grease, Color Spray, Magic Missile.",
+    "skillRanks": {
+      "Spellcraft": 1,
+      "Knowledge (arcana)": 1,
+      "Knowledge (dungeoneering)": 1,
+      "Perception": 1,
+      "Linguistics": 1,
+      "Appraise": 1
+    },
+    "spellsKnown": [
+      "Detect Magic", "Read Magic", "Light", "Mage Hand", "Prestidigitation",
+      "Magic Missile", "Sleep", "Grease", "Color Spray", "Mage Armor", "Shield", "Burning Hands", "Identify"
+    ],
+    "spellsPrepared": ["Mage Armor", "Sleep", "Color Spray"],
+    "inventory": ["Backpack", "Spellbook", "Spell component pouch", "Ink and quill", "Parchment (10)", "Bedroll", "Trail rations (5)", "Waterskin"]
+  },
+  {
+    "name": "Sister Maren",
+    "race": "Human",
+    "class": "Cleric",
+    "alignment": "Neutral Good",
+    "abilities": { "STR": 14, "DEX": 10, "CON": 14, "INT": 10, "WIS": 17, "CHA": 13 },
+    "feats": ["Toughness", "Combat Casting"],
+    "weaponNames": ["Mace, Heavy", "Light Crossbow"],
+    "armorName": "Chain Shirt",
+    "shieldName": "Heavy Shield",
+    "portrait": "cross",
+    "desc": "A compassionate healer who wields divine magic to mend wounds and smite undead.",
+    "roleTip": "Healer & support. Channel Energy for group heals. Cast Bless for buffs.",
+    "skillRanks": {
+      "Heal": 1,
+      "Knowledge (religion)": 1,
+      "Spellcraft": 1,
+      "Diplomacy": 1,
+      "Perception": 1
+    },
+    "spellsKnown": [
+      "Detect Magic", "Guidance", "Light", "Create Water", "Resistance", "Stabilize",
+      "Bless", "Cure Light Wounds", "Shield of Faith", "Command", "Protection from Evil", "Detect Evil"
+    ],
+    "spellsPrepared": ["Bless", "Cure Light Wounds", "Shield of Faith"],
+    "domains": ["Good", "Healing"],
+    "inventory": ["Backpack", "Holy symbol (silver)", "Healer's kit", "Bedroll", "Trail rations (5)", "Waterskin", "Torch"]
+  },
+  {
+    "name": "Kaelen Stormblade",
+    "race": "Half-Elf",
+    "class": "Ranger",
+    "alignment": "Chaotic Good",
+    "abilities": { "STR": 15, "DEX": 16, "CON": 13, "INT": 10, "WIS": 14, "CHA": 10 },
+    "feats": ["Point-Blank Shot", "Precise Shot"],
+    "weaponNames": ["Longbow", "Longsword"],
+    "armorName": "Studded Leather",
+    "shieldName": "None",
+    "portrait": "bow",
+    "desc": "A half-elf ranger who patrols the wild borderlands. Expert tracker and archer.",
+    "roleTip": "Ranged DPS & tracker. Favored Enemy gives combat bonuses.",
+    "skillRanks": {
+      "Perception": 1,
+      "Survival": 1,
+      "Stealth": 1,
+      "Knowledge (nature)": 1,
+      "Handle Animal": 1,
+      "Climb": 1,
+      "Swim": 1
+    },
+    "favoredEnemy": "Goblinoid",
+    "spellsKnown": [],
+    "spellsPrepared": [],
+    "inventory": ["Backpack", "Bedroll", "Flint and steel", "Trail rations (5)", "Waterskin", "Rope (50 ft.)", "Arrows (40)"]
+  },
+  {
+    "name": "Grakthar the Unbroken",
+    "race": "Half-Orc",
+    "class": "Barbarian",
+    "alignment": "Chaotic Neutral",
+    "abilities": { "STR": 18, "DEX": 14, "CON": 16, "INT": 8, "WIS": 10, "CHA": 8 },
+    "feats": ["Power Attack", "Cleave"],
+    "weaponNames": ["Greatsword", "Javelin"],
+    "armorName": "Hide",
+    "shieldName": "None",
+    "portrait": "sword",
+    "desc": "A towering half-orc barbarian scarred by countless battles.",
+    "roleTip": "Melee powerhouse. Rage for +4 STR/CON. Greatsword + Power Attack.",
+    "skillRanks": {
+      "Perception": 1,
+      "Intimidate": 1,
+      "Survival": 1,
+      "Climb": 1
+    },
+    "spellsKnown": [],
+    "spellsPrepared": [],
+    "inventory": ["Backpack", "Bedroll", "Flint and steel", "Trail rations (5)", "Waterskin", "Javelin (3)"]
+  },
+  {
+    "name": "Seraphine Dawnlight",
+    "race": "Human",
+    "class": "Paladin",
+    "alignment": "Lawful Good",
+    "abilities": { "STR": 16, "DEX": 10, "CON": 13, "INT": 10, "WIS": 12, "CHA": 16 },
+    "feats": ["Power Attack", "Toughness"],
+    "weaponNames": ["Longsword", "Javelin"],
+    "armorName": "Chainmail",
+    "shieldName": "Heavy Shield",
+    "portrait": "shield",
+    "desc": "A radiant paladin sworn to vanquish evil and protect the innocent.",
+    "roleTip": "Tank & off-healer. Smite Evil for huge damage. Lay on Hands for heals.",
+    "skillRanks": {
+      "Diplomacy": 1,
+      "Perception": 1,
+      "Knowledge (religion)": 1,
+      "Sense Motive": 1
+    },
+    "spellsKnown": [],
+    "spellsPrepared": [],
+    "inventory": ["Backpack", "Holy symbol (silver)", "Bedroll", "Flint and steel", "Trail rations (5)", "Waterskin", "Rope (50 ft.)"]
+  },
+  {
+    "name": "Bramble Thornwick",
+    "race": "Gnome",
+    "class": "Bard",
+    "alignment": "Chaotic Good",
+    "abilities": { "STR": 8, "DEX": 14, "CON": 14, "INT": 13, "WIS": 10, "CHA": 18 },
+    "feats": ["Spell Focus", "Dodge"],
+    "weaponNames": ["Rapier", "Shortbow"],
+    "armorName": "Chain Shirt",
+    "shieldName": "None",
+    "portrait": "lute",
+    "desc": "A flamboyant gnome bard whose songs inspire courage and dread.",
+    "roleTip": "Buffer & face. Inspire Courage boosts the whole party.",
+    "skillRanks": {
+      "Perform (sing)": 1,
+      "Diplomacy": 1,
+      "Bluff": 1,
+      "Perception": 1,
+      "Spellcraft": 1,
+      "Knowledge (local)": 1,
+      "Use Magic Device": 1,
+      "Stealth": 1
+    },
+    "spellsKnown": [
+      "Detect Magic", "Ghost Sound", "Light", "Message", "Prestidigitation", "Mage Hand",
+      "Charm Person", "Cure Light Wounds", "Grease", "Silent Image"
+    ],
+    "spellsPrepared": [],
+    "inventory": ["Backpack", "Musical instrument (lute)", "Spell component pouch", "Bedroll", "Trail rations (5)", "Waterskin", "Sunrod (2)"]
+  },
+  {
+    "name": "Whisper",
+    "race": "Halfling",
+    "class": "Sorcerer",
+    "alignment": "True Neutral",
+    "abilities": { "STR": 6, "DEX": 16, "CON": 12, "INT": 12, "WIS": 10, "CHA": 18 },
+    "feats": ["Eschew Materials", "Dodge"],
+    "weaponNames": ["Dagger", "Light Crossbow"],
+    "armorName": "None",
+    "shieldName": "None",
+    "portrait": "sparkle",
+    "desc": "A mysterious halfling sorcerer with draconic blood in her veins.",
+    "roleTip": "Spontaneous caster. No spellbook needed. Draconic bloodline powers.",
+    "skillRanks": {
+      "Spellcraft": 1,
+      "Bluff": 1,
+      "Perception": 1,
+      "Use Magic Device": 1,
+      "Knowledge (arcana)": 1
+    },
+    "bloodline": "Draconic",
+    "spellsKnown": [
+      "Detect Magic", "Read Magic", "Acid Splash", "Prestidigitation", "Daze",
+      "Mage Armor", "Magic Missile", "Grease"
+    ],
+    "spellsPrepared": [],
+    "inventory": ["Backpack", "Bedroll", "Trail rations (5)", "Waterskin", "Bolts (20)", "Scroll case"]
+  },
+  {
+    "name": "Oakenheart",
+    "race": "Human",
+    "class": "Druid",
+    "alignment": "True Neutral",
+    "abilities": { "STR": 13, "DEX": 12, "CON": 14, "INT": 10, "WIS": 17, "CHA": 10 },
+    "feats": ["Toughness", "Augment Summoning"],
+    "weaponNames": ["Scimitar", "Quarterstaff"],
+    "armorName": "Hide",
+    "shieldName": "Light Shield",
+    "portrait": "leaf",
+    "desc": "A weathered druid who communes with the ancient spirits of the wild.",
+    "roleTip": "Versatile caster & summoner. Wild Shape into beasts at level 4.",
+    "skillRanks": {
+      "Perception": 1,
+      "Survival": 1,
+      "Knowledge (nature)": 1,
+      "Spellcraft": 1,
+      "Heal": 1,
+      "Handle Animal": 1
+    },
+    "animalCompanion": "Wolf",
+    "spellsKnown": [
+      "Detect Magic", "Guidance", "Create Water", "Know Direction", "Resistance", "Stabilize",
+      "Entangle", "Cure Light Wounds", "Produce Flame", "Faerie Fire", "Obscuring Mist", "Shillelagh"
+    ],
+    "spellsPrepared": ["Entangle", "Cure Light Wounds", "Produce Flame"],
+    "inventory": ["Backpack", "Holly and mistletoe", "Bedroll", "Trail rations (5)", "Waterskin", "Torch"]
+  }
+]

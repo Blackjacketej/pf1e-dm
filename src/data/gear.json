@@ -1,0 +1,6105 @@
+[
+  {
+    "name": "Abacus",
+    "type": "gear",
+    "price": "2 gp",
+    "weight": "2 lbs."
+  },
+  {
+    "name": "Acid Flask",
+    "category": "alchemical",
+    "price": 10,
+    "weight": 1,
+    "description": "Flask of acid dealing 1d6 damage on direct hit, splashes nearby.",
+    "slot": "none"
+  },
+  {
+    "name": "Agile breastplate",
+    "type": "armor",
+    "price": "400 gp",
+    "acBonus": 6,
+    "maxDex": "+3",
+    "checkPenalty": "\u20134",
+    "spellFailure": "25%",
+    "speed": "20 ft."
+  },
+  {
+    "name": "Agile half-plate",
+    "type": "armor",
+    "price": "850 gp",
+    "acBonus": 8,
+    "maxDex": "+0",
+    "checkPenalty": "\u20137",
+    "spellFailure": "40%",
+    "speed": "20 ft."
+  },
+  {
+    "name": "Air Bladder",
+    "category": "gear",
+    "price": 0.1,
+    "weight": 0.5,
+    "description": "Airtight bladder for longer dives, sustains one medium creature for 1 round.",
+    "slot": "none"
+  },
+  {
+    "name": "Aklys",
+    "type": "weapon",
+    "price": "5 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "x2",
+    "range": "20 ft.",
+    "weight": "2 lbs.",
+    "damageType": "B",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special",
+    "special": "Performance, trip"
+  },
+  {
+    "name": "Alchemical cement",
+    "type": "gear",
+    "price": "5 gp",
+    "weight": "2 lbs."
+  },
+  {
+    "name": "Alchemical glue accelerant",
+    "type": "gear",
+    "price": "25 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Alchemical grease",
+    "type": "gear",
+    "price": "5 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Alchemist's Fire",
+    "category": "alchemical",
+    "price": 20,
+    "weight": 1,
+    "description": "Flask of volatile liquid igniting for 1d6 fire damage plus burning.",
+    "slot": "none"
+  },
+  {
+    "name": "Alchemy crafting kit",
+    "type": "gear",
+    "price": "25 gp",
+    "weight": "50 lbs."
+  },
+  {
+    "name": "Alchemy Jug",
+    "category": "wondrous",
+    "price": 3600,
+    "weight": 1,
+    "description": "Jug producing various liquids on command.",
+    "slot": "none"
+  },
+  {
+    "name": "Alkali Flask",
+    "category": "alchemical",
+    "price": 15,
+    "weight": 1,
+    "description": "Caustic liquid dealing double damage to oozes.",
+    "slot": "none"
+  },
+  {
+    "name": "Amentum",
+    "type": "weapon",
+    "price": "\u2014",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "x2",
+    "range": "50 ft.",
+    "weight": "1 lb.",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Performance"
+  },
+  {
+    "name": "Amulet of Health",
+    "category": "wondrous",
+    "price": 4000,
+    "weight": 0,
+    "description": "Amulet enhancing Constitution by +2 or +4.",
+    "slot": "neck"
+  },
+  {
+    "name": "Amulet of Natural Armor",
+    "category": "wondrous",
+    "price": 2000,
+    "weight": 0,
+    "description": "Amulet granting +1 natural armor bonus to AC.",
+    "slot": "neck"
+  },
+  {
+    "name": "Amulet of Proof Against Detection",
+    "category": "wondrous",
+    "price": 35000,
+    "weight": 0,
+    "description": "Amulet preventing detection by magical means.",
+    "slot": "neck"
+  },
+  {
+    "name": "Animal harness",
+    "type": "gear",
+    "price": "2 gp",
+    "weight": "2 lbs."
+  },
+  {
+    "name": "Antidote kit",
+    "type": "gear",
+    "price": "100 gp",
+    "weight": "3 lbs."
+  },
+  {
+    "name": "Antiplague",
+    "type": "gear",
+    "price": "50 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Antitoxin",
+    "type": "gear",
+    "price": "50 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Area map",
+    "type": "gear",
+    "price": "50 gp",
+    "weight": "2 lbs."
+  },
+  {
+    "name": "Armor ointment",
+    "type": "gear",
+    "price": "30 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Armor spikes",
+    "type": "weapon",
+    "price": "+50 gp",
+    "dmgS": "\u2014",
+    "dmgM": "\u2014",
+    "critical": "\u2014",
+    "range": "",
+    "weight": "\u2014",
+    "damageType": "",
+    "special": "+10 lbs."
+  },
+  {
+    "name": "Astrolabe",
+    "type": "gear",
+    "price": "1,000 gp",
+    "weight": "6 lbs."
+  },
+  {
+    "name": "Atlatl",
+    "type": "weapon",
+    "price": "2 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "x2",
+    "range": "50 ft.",
+    "weight": "2 lbs.",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons"
+  },
+  {
+    "name": "Atlatl dart",
+    "type": "gear",
+    "price": "1 gp",
+    "weight": "2 lbs."
+  },
+  {
+    "name": "Axe beak egg",
+    "type": "gear",
+    "price": "1,000 gp",
+    "weight": "10 lbs."
+  },
+  {
+    "name": "Backpack",
+    "type": "gear",
+    "price": "2 gp",
+    "weight": "2 lbs.",
+    "description": "A leather pack carried on the back, typically with several pouches and straps."
+  },
+  {
+    "name": "Backpack, Common",
+    "category": "gear",
+    "price": 2,
+    "weight": 2,
+    "description": "Leather knapsack with one large pocket, holds about 2 cubic feet.",
+    "slot": "none"
+  },
+  {
+    "name": "Backpack, Masterwork",
+    "category": "gear",
+    "price": 50,
+    "weight": 4,
+    "description": "Leather backpack with chest and waist straps, treats Strength +1 for carrying capacity.",
+    "slot": "none"
+  },
+  {
+    "name": "Badger",
+    "type": "gear",
+    "price": "15 gp",
+    "weight": "20 lbs."
+  },
+  {
+    "name": "Bag of Holding",
+    "category": "wondrous",
+    "price": 2500,
+    "weight": 15,
+    "description": "Magical bag holding up to 250 pounds of material.",
+    "slot": "none"
+  },
+  {
+    "name": "Bag of Tricks",
+    "category": "wondrous",
+    "price": 900,
+    "weight": 1,
+    "description": "Magical bag producing small animals when reached into.",
+    "slot": "none"
+  },
+  {
+    "name": "Balancing pole",
+    "type": "gear",
+    "price": "8 sp",
+    "weight": "12 lbs."
+  },
+  {
+    "name": "Banded mail",
+    "type": "armor",
+    "price": "250 gp",
+    "acBonus": 7,
+    "maxDex": "+1",
+    "checkPenalty": "\u20136",
+    "spellFailure": "35%",
+    "speed": "20 ft.",
+    "description": "Overlapping strips of metal sewn to a backing of chain.",
+    "category": "Heavy"
+  },
+  {
+    "name": "Bandolier",
+    "category": "gear",
+    "price": 0.5,
+    "weight": 0,
+    "description": "Leather belt worn over shoulder with eight flask-sized pouches.",
+    "slot": "none"
+  },
+  {
+    "name": "Banshee Ballerina Firework",
+    "category": "alchemical",
+    "price": 75,
+    "weight": 0,
+    "description": "Firework with piercing whistle sound deafening nearby creatures.",
+    "slot": "none"
+  },
+  {
+    "name": "Barbed vest",
+    "type": "gear",
+    "price": "10 gp",
+    "weight": "4 lbs."
+  },
+  {
+    "name": "Bardiche",
+    "type": "weapon",
+    "price": "13 gp",
+    "dmgS": "1d8",
+    "dmgM": "1d10",
+    "critical": "19\u201320/x2",
+    "range": "",
+    "weight": "14 lbs.",
+    "damageType": "S",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Brace, reach, see text"
+  },
+  {
+    "name": "Barrel",
+    "type": "gear",
+    "price": "2 gp",
+    "weight": "30 lbs."
+  },
+  {
+    "name": "Basket",
+    "type": "gear",
+    "price": "4 sp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Bastard sword",
+    "type": "weapon",
+    "price": "35 gp",
+    "dmgS": "1d8",
+    "dmgM": "1d10",
+    "critical": "19\u201320/x2",
+    "range": "",
+    "weight": "6 lbs.",
+    "damageType": "S",
+    "category": "One-Handed Melee Weapons",
+    "description": "A versatile blade usable one- or two-handed."
+  },
+  {
+    "name": "Bat",
+    "type": "gear",
+    "price": "5 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Battle aspergillum",
+    "type": "weapon",
+    "price": "5 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "x2",
+    "range": "",
+    "weight": "4 lbs.",
+    "damageType": "B",
+    "category": "Light Melee Weapons",
+    "special": "See text"
+  },
+  {
+    "name": "Battleaxe",
+    "type": "weapon",
+    "price": "10 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "x3",
+    "range": "",
+    "weight": "6 lbs.",
+    "damageType": "S",
+    "category": "One-Handed Melee Weapons",
+    "description": "A broad-bladed axe designed for combat."
+  },
+  {
+    "name": "Bayonet",
+    "type": "weapon",
+    "price": "5 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "x2",
+    "range": "",
+    "weight": "1 lb.",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons"
+  },
+  {
+    "name": "Bear trap",
+    "type": "gear",
+    "price": "2 gp",
+    "weight": "10 lbs."
+  },
+  {
+    "name": "Bec de corbin",
+    "type": "weapon",
+    "price": "15 gp",
+    "dmgS": "1d8",
+    "dmgM": "1d10",
+    "critical": "x3",
+    "range": "",
+    "weight": "12 lbs.",
+    "damageType": "B or P",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Brace, reach, see text"
+  },
+  {
+    "name": "Bedroll",
+    "category": "gear",
+    "price": 0.1,
+    "weight": 5,
+    "description": "Woolen sleeping bag with cloth straps to tie closed.",
+    "slot": "none"
+  },
+  {
+    "name": "Bell",
+    "category": "gear",
+    "price": 1,
+    "weight": 0,
+    "description": "Handbell producing one loud note.",
+    "slot": "none"
+  },
+  {
+    "name": "Bell Net",
+    "category": "gear",
+    "price": 2,
+    "weight": 2,
+    "description": "Wire net with copper bells at corners, alarm system for gear protection.",
+    "slot": "none"
+  },
+  {
+    "name": "Bellows",
+    "type": "gear",
+    "price": "1 gp",
+    "weight": "3 lbs."
+  },
+  {
+    "name": "Belt of Constitution",
+    "category": "wondrous",
+    "price": 4000,
+    "weight": 1,
+    "description": "Belt enhancing Constitution by +2 or +4.",
+    "slot": "belt"
+  },
+  {
+    "name": "Belt of Endless Cargo",
+    "category": "wondrous",
+    "price": 15000,
+    "weight": 1,
+    "description": "Belt creating extradimensional storage.",
+    "slot": "belt"
+  },
+  {
+    "name": "Belt of Giant Strength",
+    "category": "wondrous",
+    "price": 4000,
+    "weight": 1,
+    "description": "Belt enhancing Strength by +2 or +4.",
+    "slot": "belt"
+  },
+  {
+    "name": "Belt Pouch",
+    "category": "gear",
+    "price": 1,
+    "weight": 0.5,
+    "description": "Small leather pouch for 100-200 coins, worn at belt.",
+    "slot": "none"
+  },
+  {
+    "name": "Bill",
+    "type": "weapon",
+    "price": "11 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "x3",
+    "range": "",
+    "weight": "11 lbs.",
+    "damageType": "S",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Brace, disarm, reach,"
+  },
+  {
+    "name": "Billiards gear",
+    "type": "gear",
+    "price": "5 sp",
+    "weight": "8 lbs."
+  },
+  {
+    "name": "Bit and bridle",
+    "type": "gear",
+    "price": "2 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Blackfire clay",
+    "type": "gear",
+    "price": "20 gp",
+    "weight": "10 lbs."
+  },
+  {
+    "name": "Bladeguard",
+    "type": "gear",
+    "price": "40 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Blanket",
+    "category": "gear",
+    "price": 0.5,
+    "weight": 3,
+    "description": "Warm woven blanket with straps for rolling and tying.",
+    "slot": "none"
+  },
+  {
+    "name": "Block and Tackle",
+    "category": "gear",
+    "price": 5,
+    "weight": 5,
+    "description": "Pulley system providing +5 bonus on Strength checks to lift objects.",
+    "slot": "none"
+  },
+  {
+    "name": "Bloodblock",
+    "type": "gear",
+    "price": "25 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Blue book",
+    "type": "gear",
+    "price": "5 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Boar spear",
+    "type": "weapon",
+    "price": "5 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "x2",
+    "range": "",
+    "weight": "8 lbs.",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Brace, see text"
+  },
+  {
+    "name": "Bolas",
+    "type": "weapon",
+    "price": "5 gp",
+    "dmgS": "1d3",
+    "dmgM": "1d4",
+    "critical": "x2",
+    "range": "10 ft.",
+    "weight": "2 lbs.",
+    "damageType": "B",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Nonlethal, trip"
+  },
+  {
+    "name": "Book of letters",
+    "type": "gear",
+    "price": "50 gp",
+    "weight": "3 lbs."
+  },
+  {
+    "name": "Boomerang",
+    "type": "weapon",
+    "price": "3 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "x2",
+    "range": "30 ft.",
+    "weight": "3 lbs.",
+    "damageType": "B",
+    "category": "Two-Handed Melee Weapons",
+    "special": "See text"
+  },
+  {
+    "name": "Boots of Levitation",
+    "category": "wondrous",
+    "price": 7500,
+    "weight": 1,
+    "description": "Boots allowing wearer to levitate at will.",
+    "slot": "feet"
+  },
+  {
+    "name": "Boots of Speed",
+    "category": "wondrous",
+    "price": 12000,
+    "weight": 1,
+    "description": "Boots doubling movement speed for 10 rounds per day.",
+    "slot": "feet"
+  },
+  {
+    "name": "Boots of Striding and Springing",
+    "category": "wondrous",
+    "price": 5500,
+    "weight": 1,
+    "description": "Boots increasing movement speed by +10 feet per round.",
+    "slot": "feet"
+  },
+  {
+    "name": "Boots of Teleportation",
+    "category": "wondrous",
+    "price": 49000,
+    "weight": 1,
+    "description": "Boots allowing one teleportation per day.",
+    "slot": "feet"
+  },
+  {
+    "name": "Boots of the Winterlands",
+    "category": "wondrous",
+    "price": 2500,
+    "weight": 1,
+    "description": "Boots protecting from cold and allowing travel on snow.",
+    "slot": "feet"
+  },
+  {
+    "name": "Bottle",
+    "type": "gear",
+    "price": "2 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Bottle, Glass",
+    "category": "gear",
+    "price": 2,
+    "weight": 1,
+    "description": "Glass bottle holding about a pint, includes cork.",
+    "slot": "none"
+  },
+  {
+    "name": "Bottled Lightning",
+    "category": "alchemical",
+    "price": 40,
+    "weight": 1,
+    "description": "Electricity crackles from bottle dealing 1d8 electricity damage.",
+    "slot": "none"
+  },
+  {
+    "name": "Brass knuckles",
+    "type": "weapon",
+    "price": "1 gp",
+    "dmgS": "1d2",
+    "dmgM": "1d3",
+    "critical": "x2",
+    "range": "",
+    "weight": "1 lb.",
+    "damageType": "B",
+    "category": "Light Melee Weapons",
+    "special": "Monk, see text"
+  },
+  {
+    "name": "Breakaway Chains",
+    "category": "gear",
+    "price": 65,
+    "weight": 2,
+    "description": "Masterwork chains that break easily (DC 10 Strength check).",
+    "slot": "none"
+  },
+  {
+    "name": "Breastplate",
+    "type": "armor",
+    "price": "200 gp",
+    "acBonus": 6,
+    "maxDex": "+3",
+    "checkPenalty": "\u20134",
+    "spellFailure": "25%",
+    "speed": "20 ft.",
+    "description": "A fitted metal chestpiece covering the torso.",
+    "category": "Medium"
+  },
+  {
+    "name": "Bucket",
+    "category": "gear",
+    "price": 0.5,
+    "weight": 2,
+    "description": "Rope-handled bucket holding 1-2 gallons of liquid.",
+    "slot": "none"
+  },
+  {
+    "name": "Buckler",
+    "type": "armor",
+    "price": "5 gp",
+    "acBonus": 1,
+    "maxDex": null,
+    "checkPenalty": "\u20131",
+    "spellFailure": "5%",
+    "speed": "",
+    "description": "A small metal shield strapped to the forearm.",
+    "category": "Shield"
+  },
+  {
+    "name": "Bullseye Lantern",
+    "category": "gear",
+    "price": 12,
+    "weight": 3,
+    "description": "Lantern providing 60-foot cone of bright light, burns 6 hours per pint of oil.",
+    "slot": "none"
+  },
+  {
+    "name": "Buoy, Common",
+    "category": "gear",
+    "price": 5,
+    "weight": 16,
+    "description": "Float with 200-foot twine and stone anchor to mark location in water.",
+    "slot": "none"
+  },
+  {
+    "name": "Buoy, Superior",
+    "category": "gear",
+    "price": 10,
+    "weight": 30,
+    "description": "Metal float buoy with chain and metal anchor.",
+    "slot": "none"
+  },
+  {
+    "name": "Buoyant balloon",
+    "type": "gear",
+    "price": "10 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Burst Jar",
+    "category": "alchemical",
+    "price": 35,
+    "weight": 1,
+    "description": "Clay pot exploding for sonic damage and deafening creatures.",
+    "slot": "none"
+  },
+  {
+    "name": "Butterfly Net",
+    "category": "gear",
+    "price": 5,
+    "weight": 2,
+    "description": "Six-foot pole with mesh net for capturing fine creatures.",
+    "slot": "none"
+  },
+  {
+    "name": "Caltrops",
+    "category": "gear",
+    "price": 1,
+    "weight": 2,
+    "description": "Bag of 20 four-pronged spikes dealing 1 damage and reducing movement speed.",
+    "slot": "none"
+  },
+  {
+    "name": "Camouflage Netting",
+    "category": "gear",
+    "price": 20,
+    "weight": 5,
+    "description": "Mesh net providing +4 bonus to Stealth in appropriate terrain.",
+    "slot": "none"
+  },
+  {
+    "name": "Campsite kit",
+    "type": "gear",
+    "price": "12 gp",
+    "weight": "80 lbs."
+  },
+  {
+    "name": "Candle",
+    "category": "gear",
+    "price": 0.01,
+    "weight": 0,
+    "description": "Simple candle providing light in 5-foot radius, burns 1 hour.",
+    "slot": "none"
+  },
+  {
+    "name": "Candle Lamp",
+    "category": "gear",
+    "price": 5,
+    "weight": 1,
+    "description": "Lanternlike device holding candle with adjustable shutter.",
+    "slot": "none"
+  },
+  {
+    "name": "Candlerod",
+    "type": "gear",
+    "price": "1 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Candlestick",
+    "category": "gear",
+    "price": 0.01,
+    "weight": 0.5,
+    "description": "Saucerlike holder with handle and spike for candle.",
+    "slot": "none"
+  },
+  {
+    "name": "Canteen",
+    "category": "gear",
+    "price": 2,
+    "weight": 1,
+    "description": "Wooden or metal container for liquids, resistant to punctures.",
+    "slot": "none"
+  },
+  {
+    "name": "Canvas, per Square Yard",
+    "category": "gear",
+    "price": 0.1,
+    "weight": 1,
+    "description": "Heavy cloth suitable for paintings, sails, or improvised bags.",
+    "slot": "none"
+  },
+  {
+    "name": "Cape of the Mountebank",
+    "category": "wondrous",
+    "price": 10800,
+    "weight": 1,
+    "description": "Cape allowing one teleportation per day up to 90 feet.",
+    "slot": "shoulders"
+  },
+  {
+    "name": "Casting plaster",
+    "type": "gear",
+    "price": "5 sp",
+    "weight": "5 lbs."
+  },
+  {
+    "name": "Cat",
+    "type": "gear",
+    "price": "3 cp",
+    "weight": "8 lbs."
+  },
+  {
+    "name": "Cat, hunting",
+    "type": "gear",
+    "price": "100 gp",
+    "weight": "100 lbs."
+  },
+  {
+    "name": "Cauldron",
+    "type": "gear",
+    "price": "1 gp",
+    "weight": "5 lbs."
+  },
+  {
+    "name": "Cauldron, Common",
+    "category": "gear",
+    "price": 1,
+    "weight": 5,
+    "description": "Large iron pot holding approximately 1 gallon.",
+    "slot": "none"
+  },
+  {
+    "name": "Cauldron, Mithral",
+    "category": "gear",
+    "price": 2501,
+    "weight": 2.5,
+    "description": "Lightweight mithral cauldron with non-stick properties.",
+    "slot": "none"
+  },
+  {
+    "name": "Caviar",
+    "type": "gear",
+    "price": "50 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Cestus",
+    "type": "weapon",
+    "price": "5 gp",
+    "dmgS": "1d3",
+    "dmgM": "1d4",
+    "critical": "19\u201320/x2",
+    "range": "",
+    "weight": "1 lb.",
+    "damageType": "B or P",
+    "category": "Light Melee Weapons",
+    "special": "Monk, see text"
+  },
+  {
+    "name": "Chain (10 ft.)",
+    "type": "gear",
+    "price": "30 gp",
+    "weight": "2 lbs.",
+    "description": "A 10-foot length of chain. Hardness 10, HP 5."
+  },
+  {
+    "name": "Chain shirt",
+    "type": "armor",
+    "price": "100 gp",
+    "acBonus": 4,
+    "maxDex": "+4",
+    "checkPenalty": "\u20132",
+    "spellFailure": "20%",
+    "speed": "30 ft.",
+    "description": "A shirt of interlocking metal rings.",
+    "category": "Light"
+  },
+  {
+    "name": "Chain, 10 ft.",
+    "category": "gear",
+    "price": 30,
+    "weight": 2,
+    "description": "Ten feet of sturdy chain for securing objects.",
+    "slot": "none"
+  },
+  {
+    "name": "Chainmail",
+    "type": "armor",
+    "price": "150 gp",
+    "acBonus": 6,
+    "maxDex": "+2",
+    "checkPenalty": "\u20135",
+    "spellFailure": "30%",
+    "speed": "20 ft.",
+    "description": "A full suit of interlocking metal rings.",
+    "category": "Medium"
+  },
+  {
+    "name": "Chakram",
+    "type": "weapon",
+    "price": "1 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "x2",
+    "range": "30 ft.",
+    "weight": "1 lb.",
+    "damageType": "S",
+    "category": "Two-Handed Melee Weapons"
+  },
+  {
+    "name": "Chalk",
+    "category": "gear",
+    "price": 0.01,
+    "weight": 0,
+    "description": "Writing chalk for marking surfaces.",
+    "slot": "none"
+  },
+  {
+    "name": "Chalk (1 piece)",
+    "type": "gear",
+    "price": "1 cp",
+    "weight": "\u2014",
+    "description": "A piece of chalk for marking surfaces."
+  },
+  {
+    "name": "Chalkboard",
+    "type": "gear",
+    "price": "1 gp",
+    "weight": "2 lbs."
+  },
+  {
+    "name": "Chest",
+    "type": "gear",
+    "price": "2 gp",
+    "weight": "25 lbs.",
+    "description": "A wooden chest for storing valuables."
+  },
+  {
+    "name": "Chest, huge",
+    "type": "gear",
+    "price": "25 gp",
+    "weight": "250 lbs."
+  },
+  {
+    "name": "Chest, large",
+    "type": "gear",
+    "price": "10 gp",
+    "weight": "100 lbs."
+  },
+  {
+    "name": "Chest, medium",
+    "type": "gear",
+    "price": "5 gp",
+    "weight": "50 lbs."
+  },
+  {
+    "name": "Chest, small",
+    "type": "gear",
+    "price": "2 gp",
+    "weight": "25 lbs."
+  },
+  {
+    "name": "Chicken",
+    "type": "gear",
+    "price": "1 gp",
+    "weight": "6 lbs."
+  },
+  {
+    "name": "Chill cream",
+    "type": "gear",
+    "price": "15 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Clay",
+    "type": "gear",
+    "price": "1 sp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Cleats",
+    "type": "gear",
+    "price": "5 gp",
+    "weight": "2 lbs."
+  },
+  {
+    "name": "Climber's kit",
+    "type": "gear",
+    "price": "80 gp",
+    "weight": "5 lbs.",
+    "description": "+2 circumstance bonus on Climb checks."
+  },
+  {
+    "name": "Cloak of Charisma",
+    "category": "wondrous",
+    "price": 4000,
+    "weight": 1,
+    "description": "Cloak enhancing Charisma by +2 or +4 depending on quality.",
+    "slot": "shoulders"
+  },
+  {
+    "name": "Cloak of Elvenkind",
+    "category": "wondrous",
+    "price": 2500,
+    "weight": 1,
+    "description": "Cloak granting +5 bonus to Hide checks.",
+    "slot": "shoulders"
+  },
+  {
+    "name": "Cloak of Invisibility",
+    "category": "wondrous",
+    "price": 62000,
+    "weight": 1,
+    "description": "Cloak rendering wearer invisible while worn.",
+    "slot": "shoulders"
+  },
+  {
+    "name": "Cloak of Resistance",
+    "category": "wondrous",
+    "price": 1000,
+    "weight": 1,
+    "description": "Cloak granting +1 bonus to all saving throws.",
+    "slot": "shoulders"
+  },
+  {
+    "name": "Club",
+    "type": "weapon",
+    "price": "\u2014",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "x2",
+    "range": "10 ft.",
+    "weight": "3 lbs.",
+    "damageType": "B",
+    "category": "One-Handed Melee Weapons",
+    "description": "A simple bludgeon."
+  },
+  {
+    "name": "Coffee pot",
+    "type": "gear",
+    "price": "3 gp",
+    "weight": "4 lbs."
+  },
+  {
+    "name": "Coffin, common",
+    "type": "gear",
+    "price": "10 gp",
+    "weight": "30 lbs."
+  },
+  {
+    "name": "Coffin, ornate",
+    "type": "gear",
+    "price": "100 gp",
+    "weight": "50 lbs."
+  },
+  {
+    "name": "Cold-weather outfit",
+    "type": "gear",
+    "price": "8 gp",
+    "weight": "7 lbs."
+  },
+  {
+    "name": "Collapsible bathtub",
+    "type": "gear",
+    "price": "15 gp",
+    "weight": "20 lbs."
+  },
+  {
+    "name": "Collapsible plank",
+    "type": "gear",
+    "price": "4 sp",
+    "weight": "10 lbs."
+  },
+  {
+    "name": "Compass",
+    "category": "gear",
+    "price": 10,
+    "weight": 0.5,
+    "description": "Navigation instrument providing direction.",
+    "slot": "none"
+  },
+  {
+    "name": "Composite longbow",
+    "type": "weapon",
+    "price": "100 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "x3",
+    "range": "110 ft.",
+    "weight": "3 lbs.",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons",
+    "description": "A powerful bow made from composite materials, can add Strength bonus to damage."
+  },
+  {
+    "name": "Composite shortbow",
+    "type": "weapon",
+    "price": "75 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "x3",
+    "range": "70 ft.",
+    "weight": "2 lbs.",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons",
+    "description": "A smaller composite bow for mounted archers."
+  },
+  {
+    "name": "Cooking Kit",
+    "category": "gear",
+    "price": 3,
+    "weight": 16,
+    "description": "Basic cooking implements for preparing meals.",
+    "slot": "none"
+  },
+  {
+    "name": "Copy of a key",
+    "type": "gear",
+    "price": "1 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Cot",
+    "type": "gear",
+    "price": "1 gp",
+    "weight": "30 lbs."
+  },
+  {
+    "name": "Croquet set",
+    "type": "gear",
+    "price": "5 sp",
+    "weight": "10 lbs."
+  },
+  {
+    "name": "Crossbow, heavy",
+    "type": "weapon",
+    "category": "Simple Ranged",
+    "price": "50 gp",
+    "dmgM": "1d10",
+    "critical": "19-20/x2",
+    "range": "120 ft.",
+    "weight": "8 lbs.",
+    "damageType": "P",
+    "description": "A heavy mechanical ranged weapon."
+  },
+  {
+    "name": "Crossbow, light",
+    "type": "weapon",
+    "category": "Simple Ranged",
+    "price": "35 gp",
+    "dmgM": "1d8",
+    "critical": "19-20/x2",
+    "range": "80 ft.",
+    "weight": "4 lbs.",
+    "damageType": "P",
+    "description": "A lighter mechanical ranged weapon."
+  },
+  {
+    "name": "Crowbar",
+    "category": "gear",
+    "price": 2,
+    "weight": 5,
+    "description": "Iron lever for prying open doors and containers.",
+    "slot": "none"
+  },
+  {
+    "name": "Cypher books",
+    "type": "gear",
+    "price": "150 gp",
+    "weight": "2 lbs."
+  },
+  {
+    "name": "Dagger",
+    "type": "weapon",
+    "price": "2 gp",
+    "dmgS": "1d3",
+    "dmgM": "1d4",
+    "critical": "19\u201320/x2",
+    "range": "10 ft.",
+    "weight": "1 lb.",
+    "damageType": "P or S",
+    "category": "Light Melee Weapons",
+    "description": "A simple blade used as both tool and weapon."
+  },
+  {
+    "name": "Dan bong",
+    "type": "weapon",
+    "price": "1 sp",
+    "dmgS": "1d2",
+    "dmgM": "1d3",
+    "critical": "19\u201320/x2",
+    "range": "10 ft.",
+    "weight": "\u2014",
+    "damageType": "B",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special",
+    "special": "Blocking, monk,"
+  },
+  {
+    "name": "Dart",
+    "type": "weapon",
+    "category": "Simple Ranged",
+    "price": "5 sp",
+    "dmgM": "1d4",
+    "critical": "x2",
+    "range": "20 ft.",
+    "weight": "0.5 lbs.",
+    "damageType": "P",
+    "description": "A small throwing weapon."
+  },
+  {
+    "name": "Dartboard set",
+    "type": "gear",
+    "price": "5 sp",
+    "weight": "10 lbs."
+  },
+  {
+    "name": "Decanter of Endless Water",
+    "category": "wondrous",
+    "price": 2000,
+    "weight": 2,
+    "description": "Container producing endless fresh water.",
+    "slot": "none"
+  },
+  {
+    "name": "Defoliant",
+    "type": "gear",
+    "price": "30 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Dice",
+    "type": "gear",
+    "price": "1 sp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Diminutive or Fine",
+    "type": "gear",
+    "price": "10 gp",
+    "weight": "2 lbs."
+  },
+  {
+    "name": "Dire bat, riding",
+    "type": "gear",
+    "price": "300 gp",
+    "weight": "400 lbs."
+  },
+  {
+    "name": "Disguise kit",
+    "type": "gear",
+    "price": "50 gp",
+    "weight": "8 lbs."
+  },
+  {
+    "name": "Diving suit",
+    "type": "gear",
+    "price": "10 gp",
+    "weight": "2 lbs."
+  },
+  {
+    "name": "Do-maru",
+    "type": "armor",
+    "price": "200 gp",
+    "acBonus": 5,
+    "maxDex": "+4",
+    "checkPenalty": "\u20134",
+    "spellFailure": "25%",
+    "speed": "20 ft."
+  },
+  {
+    "name": "Dog, guard",
+    "type": "gear",
+    "price": "25 gp",
+    "weight": "25 lbs."
+  },
+  {
+    "name": "Dog, lap",
+    "type": "gear",
+    "price": "15 gp",
+    "weight": "5 lbs."
+  },
+  {
+    "name": "Dog, riding",
+    "type": "gear",
+    "price": "150 gp",
+    "weight": "50 lbs."
+  },
+  {
+    "name": "Dogslicer",
+    "type": "weapon",
+    "price": "8 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "19\u201320/x2",
+    "range": "",
+    "weight": "1 lb.",
+    "damageType": "S",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special",
+    "special": "Fragile"
+  },
+  {
+    "name": "Donkey rat",
+    "type": "gear",
+    "price": "1 gp",
+    "weight": "50 lbs"
+  },
+  {
+    "name": "Double chicken saber",
+    "type": "weapon",
+    "price": "12 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "19\u201320/x2",
+    "range": "",
+    "weight": "3 lbs.",
+    "damageType": "S",
+    "category": "One-Handed Melee Weapons",
+    "special": "Disarm, monk"
+  },
+  {
+    "name": "Double crossbow",
+    "type": "weapon",
+    "price": "300 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "19\u201320/x2",
+    "range": "80 ft.",
+    "weight": "18 lbs.",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons",
+    "special": "See text"
+  },
+  {
+    "name": "Double walking stick katana",
+    "type": "weapon",
+    "price": "50 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "19\u201320/x2",
+    "range": "",
+    "weight": "6 lbs.",
+    "damageType": "S",
+    "category": "Two-Handed Melee Weapons"
+  },
+  {
+    "name": "Drill",
+    "category": "gear",
+    "price": 0.5,
+    "weight": 1,
+    "description": "Tool for drilling holes in wood or soft materials.",
+    "slot": "none"
+  },
+  {
+    "name": "Duck",
+    "type": "gear",
+    "price": "2 gp",
+    "weight": "3 lbs."
+  },
+  {
+    "name": "Dungeoneering kit, common",
+    "type": "gear",
+    "price": "15 gp",
+    "weight": "25 lbs."
+  },
+  {
+    "name": "Dungeoneering kit, deluxe",
+    "type": "gear",
+    "price": "130 gp",
+    "weight": "15 lbs."
+  },
+  {
+    "name": "Dust of Dryness",
+    "category": "wondrous",
+    "price": 650,
+    "weight": 0,
+    "description": "Dust drying liquids or removing water effects.",
+    "slot": "none"
+  },
+  {
+    "name": "Dust of Sneezing and Choking",
+    "category": "wondrous",
+    "price": 600,
+    "weight": 0,
+    "description": "Dust causing sneezing fits in target area.",
+    "slot": "none"
+  },
+  {
+    "name": "Dwarven waraxe",
+    "type": "weapon",
+    "price": "30 gp",
+    "dmgS": "1d8",
+    "dmgM": "1d10",
+    "critical": "x3",
+    "range": "",
+    "weight": "8 lbs.",
+    "damageType": "S",
+    "category": "One-Handed Melee Weapons",
+    "description": "A dwarven-crafted axe usable one-handed with proficiency."
+  },
+  {
+    "name": "Ear trumpet",
+    "type": "gear",
+    "price": "5 gp",
+    "weight": "2 lbs."
+  },
+  {
+    "name": "Earplugs",
+    "type": "gear",
+    "price": "3 cp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Earth breaker",
+    "type": "weapon",
+    "price": "40 gp",
+    "dmgS": "1d10",
+    "dmgM": "2d6",
+    "critical": "x3",
+    "range": "",
+    "weight": "14 lbs.",
+    "damageType": "B",
+    "category": "Two-Handed Melee Weapons"
+  },
+  {
+    "name": "Elven curve blade",
+    "type": "weapon",
+    "price": "80 gp",
+    "dmgS": "1d8",
+    "dmgM": "1d10",
+    "critical": "18\u201320/x2",
+    "range": "",
+    "weight": "7 lbs.",
+    "damageType": "S",
+    "category": "Two-Handed Melee Weapons",
+    "description": "An elegantly curved blade favored by elven warriors."
+  },
+  {
+    "name": "Elven trail rations",
+    "type": "gear",
+    "price": "2 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Embalming fluid",
+    "type": "gear",
+    "price": "50 gp",
+    "weight": "10 lbs."
+  },
+  {
+    "name": "Emei piercer",
+    "type": "weapon",
+    "price": "3 gp",
+    "dmgS": "1d2",
+    "dmgM": "1d3",
+    "critical": "19\u201320/x2",
+    "range": "",
+    "weight": "\u2014",
+    "damageType": "P",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special",
+    "special": "See text"
+  },
+  {
+    "name": "Empathy",
+    "type": "gear",
+    "price": "\u2014",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Everburning Torch",
+    "category": "gear",
+    "price": 110,
+    "weight": 1,
+    "description": "Torch that burns permanently without fuel.",
+    "slot": "none"
+  },
+  {
+    "name": "Explorer's outfit",
+    "type": "gear",
+    "price": "10 gp",
+    "weight": "8 lbs.",
+    "description": "Sturdy boots, leather breeches, belt, shirt, jacket, gloves, cloak."
+  },
+  {
+    "name": "Fake footprint shoes",
+    "type": "gear",
+    "price": "5 gp",
+    "weight": "2 lbs."
+  },
+  {
+    "name": "Falcata",
+    "type": "weapon",
+    "price": "18 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "19\u201320/x3",
+    "range": "",
+    "weight": "4 lbs.",
+    "damageType": "S",
+    "category": "One-Handed Melee Weapons"
+  },
+  {
+    "name": "Falchion",
+    "type": "weapon",
+    "price": "75 gp",
+    "dmgS": "1d6",
+    "dmgM": "2d4",
+    "critical": "18\u201320/x2",
+    "range": "",
+    "weight": "8 lbs.",
+    "damageType": "S",
+    "category": "Two-Handed Melee Weapons",
+    "description": "A heavy curved sword with devastating critical hits."
+  },
+  {
+    "name": "Falcon",
+    "type": "gear",
+    "price": "40 gp",
+    "weight": "2 lbs."
+  },
+  {
+    "name": "Falconry gauntlet",
+    "type": "gear",
+    "price": "10 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "False manacles",
+    "type": "gear",
+    "price": "65 gp",
+    "weight": "2 lbs."
+  },
+  {
+    "name": "False-bottomed chest",
+    "type": "gear",
+    "price": "52 gp",
+    "weight": "25 lbs."
+  },
+  {
+    "name": "False-bottomed cup",
+    "type": "gear",
+    "price": "1 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "False-bottomed scabbard",
+    "type": "gear",
+    "price": "45 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Familiar satchel",
+    "type": "gear",
+    "price": "25 gp",
+    "weight": "6 lbs."
+  },
+  {
+    "name": "Fighting fan",
+    "type": "weapon",
+    "price": "5 gp",
+    "dmgS": "1d3",
+    "dmgM": "1d4",
+    "critical": "x3",
+    "range": "",
+    "weight": "\u2014",
+    "damageType": "P",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special",
+    "special": "Distracting, monk"
+  },
+  {
+    "name": "Filter hood",
+    "type": "gear",
+    "price": "10 gp",
+    "weight": "4 lbs."
+  },
+  {
+    "name": "Fire ward gel",
+    "type": "gear",
+    "price": "150 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Fire-resistant boots",
+    "type": "gear",
+    "price": "20 gp",
+    "weight": "2 lbs."
+  },
+  {
+    "name": "Firewood (per day)",
+    "type": "gear",
+    "price": "1 cp",
+    "weight": "20 lbs.",
+    "description": "Firewood sufficient for one night."
+  },
+  {
+    "name": "Fishhook",
+    "category": "gear",
+    "price": 0.1,
+    "weight": 0,
+    "description": "Single fishing hook.",
+    "slot": "none"
+  },
+  {
+    "name": "Fishing kit",
+    "type": "gear",
+    "price": "5 sp",
+    "weight": "3 lbs."
+  },
+  {
+    "name": "Fishing Net",
+    "category": "gear",
+    "price": 4,
+    "weight": 5,
+    "description": "Net for catching fish in water.",
+    "slot": "none"
+  },
+  {
+    "name": "Flail",
+    "type": "weapon",
+    "category": "Martial One-Handed Melee",
+    "price": "8 gp",
+    "dmgM": "1d8",
+    "critical": "x2",
+    "range": "",
+    "weight": "5 lbs.",
+    "damageType": "B",
+    "special": "Disarm, trip",
+    "description": "A spiked ball on a chain attached to a handle."
+  },
+  {
+    "name": "Flash Powder",
+    "category": "alchemical",
+    "price": 50,
+    "weight": 0,
+    "description": "Powder blinding creatures in 10-foot radius for 1 round.",
+    "slot": "none"
+  },
+  {
+    "name": "Flask",
+    "category": "gear",
+    "price": 0.03,
+    "weight": 1.5,
+    "description": "Small flask for carrying liquids, holds about 1 pint.",
+    "slot": "none"
+  },
+  {
+    "name": "Flint and Steel",
+    "category": "gear",
+    "price": 1,
+    "weight": 0,
+    "description": "Tools for starting fires.",
+    "slot": "none"
+  },
+  {
+    "name": "Flying blade",
+    "type": "weapon",
+    "price": "40 gp",
+    "dmgS": "1d10",
+    "dmgM": "1d12",
+    "critical": "x3",
+    "range": "",
+    "weight": "12 lbs.",
+    "damageType": "S",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Performance, reach"
+  },
+  {
+    "name": "Foaming powder",
+    "type": "gear",
+    "price": "10 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Folding Chair",
+    "category": "gear",
+    "price": 2,
+    "weight": 10,
+    "description": "Portable chair that folds for travel.",
+    "slot": "none"
+  },
+  {
+    "name": "Folding Ladder",
+    "category": "gear",
+    "price": 2,
+    "weight": 16,
+    "description": "Portable ladder that folds for transport.",
+    "slot": "none"
+  },
+  {
+    "name": "Folding Pole",
+    "category": "gear",
+    "price": 0.2,
+    "weight": 10,
+    "description": "Collapsible ten-foot pole for testing dungeon floors.",
+    "slot": "none"
+  },
+  {
+    "name": "Folding Table",
+    "category": "gear",
+    "price": 10,
+    "weight": 20,
+    "description": "Portable table that folds for travel.",
+    "slot": "none"
+  },
+  {
+    "name": "Footprint book",
+    "type": "gear",
+    "price": "50 gp",
+    "weight": "3 lbs."
+  },
+  {
+    "name": "Formula book",
+    "type": "gear",
+    "price": "15 gp",
+    "weight": "3 lbs."
+  },
+  {
+    "name": "Fortune cookie",
+    "type": "gear",
+    "price": "1 cp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Four-mirror",
+    "type": "armor",
+    "price": "125 gp",
+    "acBonus": 6,
+    "maxDex": "+2",
+    "checkPenalty": "\u20135",
+    "spellFailure": "30%",
+    "speed": "20 ft."
+  },
+  {
+    "name": "Fox",
+    "type": "gear",
+    "price": "8 gp",
+    "weight": "12 lbs."
+  },
+  {
+    "name": "Frost ward gel",
+    "type": "gear",
+    "price": "150 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Full plate",
+    "type": "armor",
+    "price": "1,500 gp",
+    "acBonus": 9,
+    "maxDex": "+1",
+    "checkPenalty": "\u20136",
+    "spellFailure": "35%",
+    "speed": "20 ft.",
+    "description": "A complete suit of heavy metal plates.",
+    "category": "Heavy"
+  },
+  {
+    "name": "Furs",
+    "type": "gear",
+    "price": "12 gp",
+    "weight": "5 lbs."
+  },
+  {
+    "name": "Fuse Grenade",
+    "category": "alchemical",
+    "price": 100,
+    "weight": 1,
+    "description": "Clay pot with fuse exploding for 2d6 bludgeoning and 1d6 fire damage.",
+    "slot": "none"
+  },
+  {
+    "name": "Gauntlet",
+    "type": "weapon",
+    "price": "2 gp",
+    "dmgS": "1d2",
+    "dmgM": "1d3",
+    "critical": "x2",
+    "range": "",
+    "weight": "1 lb.",
+    "damageType": "B",
+    "category": "Light Melee Weapons",
+    "description": "A metal glove that lets you deal lethal damage."
+  },
+  {
+    "name": "Gear maintenance kit",
+    "type": "gear",
+    "price": "5 gp",
+    "weight": "2 lbs."
+  },
+  {
+    "name": "Ghast Retch Flask",
+    "category": "alchemical",
+    "price": 50,
+    "weight": 1,
+    "description": "Foul dust nauseating target for 1 round and sickening for 3 rounds.",
+    "slot": "none"
+  },
+  {
+    "name": "Gladius",
+    "type": "weapon",
+    "price": "15 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "19\u201320/x2",
+    "range": "",
+    "weight": "3 lbs.",
+    "damageType": "P or S",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special",
+    "special": "Performance"
+  },
+  {
+    "name": "Glaive",
+    "type": "weapon",
+    "price": "8 gp",
+    "dmgS": "1d8",
+    "dmgM": "1d10",
+    "critical": "x3",
+    "range": "",
+    "weight": "10 lbs.",
+    "damageType": "S",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Reach",
+    "description": "A blade on a long pole with reach."
+  },
+  {
+    "name": "Glaive-guisarme",
+    "type": "weapon",
+    "price": "12 gp",
+    "dmgS": "1d8",
+    "dmgM": "1d10",
+    "critical": "x3",
+    "range": "",
+    "weight": "10 lbs.",
+    "damageType": "S",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Brace, reach, see text"
+  },
+  {
+    "name": "Glass cutter",
+    "type": "gear",
+    "price": "5 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Gloves of Arrow Snaring",
+    "category": "wondrous",
+    "price": 4000,
+    "weight": 0,
+    "description": "Gloves allowing wearer to catch projectiles.",
+    "slot": "hands"
+  },
+  {
+    "name": "Gloves of Dexterity",
+    "category": "wondrous",
+    "price": 4000,
+    "weight": 0,
+    "description": "Gloves enhancing Dexterity by +2 or +4.",
+    "slot": "hands"
+  },
+  {
+    "name": "Gloves of Strength",
+    "category": "wondrous",
+    "price": 4000,
+    "weight": 0,
+    "description": "Gloves enhancing Strength by +2 or +4.",
+    "slot": "hands"
+  },
+  {
+    "name": "Gloves of Swimming and Climbing",
+    "category": "wondrous",
+    "price": 6250,
+    "weight": 0,
+    "description": "Gloves allowing climbing and swimming at full speed.",
+    "slot": "hands"
+  },
+  {
+    "name": "Glowing ink",
+    "type": "gear",
+    "price": "5 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Glue paper",
+    "type": "gear",
+    "price": "1 sp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Gnome trail rations",
+    "type": "gear",
+    "price": "2 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Grappling hook",
+    "type": "gear",
+    "price": "1 gp",
+    "weight": "4 lbs.",
+    "description": "A metal hook attached to a rope for climbing."
+  },
+  {
+    "name": "Grappling Hook, Common",
+    "category": "gear",
+    "price": 1,
+    "weight": 4,
+    "description": "Metal hook for climbing and scaling.",
+    "slot": "none"
+  },
+  {
+    "name": "Grappling Hook, Mithral",
+    "category": "gear",
+    "price": 2001,
+    "weight": 2,
+    "description": "Lightweight mithral grappling hook.",
+    "slot": "none"
+  },
+  {
+    "name": "Great terbutje",
+    "type": "weapon",
+    "price": "12 gp",
+    "dmgS": "1d8",
+    "dmgM": "1d10",
+    "critical": "19\u201320/x2",
+    "range": "",
+    "weight": "4 lbs.",
+    "damageType": "S",
+    "category": "One-Handed Melee Weapons",
+    "special": "Fragile"
+  },
+  {
+    "name": "Greataxe",
+    "type": "weapon",
+    "price": "20 gp",
+    "dmgS": "1d10",
+    "dmgM": "1d12",
+    "critical": "x3",
+    "range": "",
+    "weight": "12 lbs.",
+    "damageType": "S",
+    "category": "Two-Handed Melee Weapons",
+    "description": "A massive two-handed axe."
+  },
+  {
+    "name": "Greatclub",
+    "type": "weapon",
+    "price": "5 gp",
+    "dmgS": "1d8",
+    "dmgM": "1d10",
+    "critical": "x2",
+    "range": "",
+    "weight": "8 lbs.",
+    "damageType": "B",
+    "category": "Two-Handed Melee Weapons"
+  },
+  {
+    "name": "Greatsword",
+    "type": "weapon",
+    "price": "50 gp",
+    "dmgS": "1d10",
+    "dmgM": "2d6",
+    "critical": "19\u201320/x2",
+    "range": "",
+    "weight": "8 lbs.",
+    "damageType": "S",
+    "category": "Two-Handed Melee Weapons",
+    "description": "A large two-handed sword."
+  },
+  {
+    "name": "Griffon egg",
+    "type": "gear",
+    "price": "3,500 gp",
+    "weight": "10 lbs."
+  },
+  {
+    "name": "Grooming Kit",
+    "category": "gear",
+    "price": 1,
+    "weight": 2,
+    "description": "Basic tools for personal grooming.",
+    "slot": "none"
+  },
+  {
+    "name": "Guisarme",
+    "type": "weapon",
+    "price": "9 gp",
+    "dmgS": "1d6",
+    "dmgM": "2d4",
+    "critical": "x3",
+    "range": "",
+    "weight": "12 lbs.",
+    "damageType": "S",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Reach, trip"
+  },
+  {
+    "name": "Halberd",
+    "type": "weapon",
+    "price": "10 gp",
+    "dmgS": "1d8",
+    "dmgM": "1d10",
+    "critical": "x3",
+    "range": "",
+    "weight": "12 lbs.",
+    "damageType": "P or S",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Brace, trip",
+    "description": "An axe blade topped with a spike, mounted on a long shaft."
+  },
+  {
+    "name": "Half-plate",
+    "type": "armor",
+    "price": "600 gp",
+    "acBonus": 8,
+    "maxDex": "+0",
+    "checkPenalty": "\u20137",
+    "spellFailure": "40%",
+    "speed": "20 ft.",
+    "description": "Combination of chainmail and metal plates.",
+    "category": "Heavy"
+  },
+  {
+    "name": "Halfling sling staff",
+    "type": "weapon",
+    "price": "20 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "x3",
+    "range": "80 ft.",
+    "weight": "3 lbs.",
+    "damageType": "B",
+    "category": "Two-Handed Melee Weapons"
+  },
+  {
+    "name": "Hammer",
+    "category": "gear",
+    "price": 0.5,
+    "weight": 2,
+    "description": "Standard tool hammer for driving nails.",
+    "slot": "none"
+  },
+  {
+    "name": "Hammock",
+    "category": "gear",
+    "price": 0.1,
+    "weight": 3,
+    "description": "Portable sleeping bed suspended between trees.",
+    "slot": "none"
+  },
+  {
+    "name": "Hand crossbow",
+    "type": "weapon",
+    "price": "100 gp",
+    "dmgS": "1d3",
+    "dmgM": "1d4",
+    "critical": "19\u201320/x2",
+    "range": "30 ft.",
+    "weight": "2 lbs.",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons",
+    "description": "A small, one-handed crossbow."
+  },
+  {
+    "name": "Handaxe",
+    "type": "weapon",
+    "price": "6 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "x3",
+    "range": "",
+    "weight": "3 lbs.",
+    "damageType": "S",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special",
+    "description": "A one-handed chopping weapon."
+  },
+  {
+    "name": "Handy Haversack",
+    "category": "wondrous",
+    "price": 2000,
+    "weight": 5,
+    "description": "Backpack holding up to 120 pounds while seeming empty.",
+    "slot": "none"
+  },
+  {
+    "name": "Haramaki",
+    "type": "armor",
+    "price": "3 gp",
+    "acBonus": 1,
+    "maxDex": null,
+    "checkPenalty": "0",
+    "spellFailure": "0%",
+    "speed": "30 ft."
+  },
+  {
+    "name": "Harpoon",
+    "type": "weapon",
+    "price": "5 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "x3",
+    "range": "10 ft.",
+    "weight": "16 lbs.",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Grapple, see text"
+  },
+  {
+    "name": "Harrow deck",
+    "type": "gear",
+    "price": "100 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Hawk",
+    "type": "gear",
+    "price": "18 gp",
+    "weight": "2 lbs."
+  },
+  {
+    "name": "Headband of Inspiration",
+    "category": "wondrous",
+    "price": 4400,
+    "weight": 0,
+    "description": "Headband granting temporary skill bonuses.",
+    "slot": "head"
+  },
+  {
+    "name": "Headband of Intelligence",
+    "category": "wondrous",
+    "price": 4000,
+    "weight": 0,
+    "description": "Headband enhancing Intelligence by +2 or +4.",
+    "slot": "head"
+  },
+  {
+    "name": "Headband of Wisdom",
+    "category": "wondrous",
+    "price": 4000,
+    "weight": 0,
+    "description": "Headband enhancing Wisdom by +2 or +4.",
+    "slot": "head"
+  },
+  {
+    "name": "Healer's kit",
+    "type": "gear",
+    "price": "50 gp",
+    "weight": "1 lb.",
+    "description": "+2 circumstance bonus on Heal checks. 10 uses."
+  },
+  {
+    "name": "Heavy crossbow",
+    "type": "weapon",
+    "price": "50 gp",
+    "dmgS": "1d8",
+    "dmgM": "1d10",
+    "critical": "19\u201320/x2",
+    "range": "120 ft.",
+    "weight": "8 lbs.",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons"
+  },
+  {
+    "name": "Heavy flail",
+    "type": "weapon",
+    "price": "15 gp",
+    "dmgS": "1d8",
+    "dmgM": "1d10",
+    "critical": "19\u201320/x2",
+    "range": "",
+    "weight": "10 lbs.",
+    "damageType": "B",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Disarm, trip",
+    "description": "A heavy spiked ball on a chain."
+  },
+  {
+    "name": "Heavy mace",
+    "type": "weapon",
+    "price": "12 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "x2",
+    "range": "",
+    "weight": "8 lbs.",
+    "damageType": "B",
+    "category": "One-Handed Melee Weapons",
+    "description": "A larger, heavier version of the light mace."
+  },
+  {
+    "name": "Heavy pick",
+    "type": "weapon",
+    "price": "8 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "x4",
+    "range": "",
+    "weight": "6 lbs.",
+    "damageType": "P",
+    "category": "One-Handed Melee Weapons",
+    "description": "A heavy mining pick adapted for war."
+  },
+  {
+    "name": "Heavy shield",
+    "type": "weapon",
+    "price": "7 gp/20 gp",
+    "dmgS": "1d3",
+    "dmgM": "1d4",
+    "critical": "x2",
+    "range": "",
+    "weight": "Special",
+    "damageType": "B",
+    "category": "One-Handed Melee Weapons"
+  },
+  {
+    "name": "Heavy steel",
+    "type": "armor",
+    "price": "20 gp",
+    "acBonus": 2,
+    "maxDex": null,
+    "checkPenalty": "\u20132",
+    "spellFailure": "15%",
+    "speed": ""
+  },
+  {
+    "name": "Heavy steel shield",
+    "type": "armor",
+    "category": "Shield",
+    "price": "20 gp",
+    "acBonus": 2,
+    "maxDex": "\u2014",
+    "checkPenalty": "-2",
+    "spellFailure": "15%",
+    "weight": "15 lbs.",
+    "description": "A large steel shield."
+  },
+  {
+    "name": "Heavy wooden",
+    "type": "armor",
+    "price": "7 gp",
+    "acBonus": 2,
+    "maxDex": null,
+    "checkPenalty": "\u20132",
+    "spellFailure": "15%",
+    "speed": ""
+  },
+  {
+    "name": "Heavy wooden shield",
+    "type": "armor",
+    "category": "Shield",
+    "price": "7 gp",
+    "acBonus": 2,
+    "maxDex": "\u2014",
+    "checkPenalty": "-2",
+    "spellFailure": "15%",
+    "weight": "10 lbs.",
+    "description": "A large wooden shield."
+  },
+  {
+    "name": "Hedgehog",
+    "type": "gear",
+    "price": "5 gp",
+    "weight": "3 lbs."
+  },
+  {
+    "name": "Helm of Comprehend Languages",
+    "category": "wondrous",
+    "price": 5200,
+    "weight": 1,
+    "description": "Helm allowing wearer to understand any language.",
+    "slot": "head"
+  },
+  {
+    "name": "Helm of Telepathy",
+    "category": "wondrous",
+    "price": 27500,
+    "weight": 1,
+    "description": "Helm allowing telepathic communication.",
+    "slot": "head"
+  },
+  {
+    "name": "Helmet candle",
+    "type": "gear",
+    "price": "2 gp",
+    "weight": "4 lbs"
+  },
+  {
+    "name": "Heritage book",
+    "type": "gear",
+    "price": "50 gp",
+    "weight": "2 lbs."
+  },
+  {
+    "name": "Hide",
+    "type": "armor",
+    "price": "15 gp",
+    "acBonus": 4,
+    "maxDex": "+4",
+    "checkPenalty": "\u20133",
+    "spellFailure": "20%",
+    "speed": "20 ft."
+  },
+  {
+    "name": "Hide armor",
+    "type": "armor",
+    "category": "Medium",
+    "price": "15 gp",
+    "acBonus": 4,
+    "maxDex": "+4",
+    "checkPenalty": "-3",
+    "spellFailure": "20%",
+    "weight": "25 lbs.",
+    "description": "Armor made from the thick hide of a beast."
+  },
+  {
+    "name": "Hippogriff egg",
+    "type": "gear",
+    "price": "200 gp",
+    "weight": "10 lbs."
+  },
+  {
+    "name": "Hollowed pommel",
+    "type": "gear",
+    "price": "5 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Holy symbol, gold",
+    "type": "gear",
+    "price": "100 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Holy symbol, iron",
+    "type": "gear",
+    "price": "5 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Holy symbol, platinum",
+    "type": "gear",
+    "price": "500 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Holy symbol, silver",
+    "type": "gear",
+    "price": "25 gp",
+    "weight": "1 lb.",
+    "description": "A silver holy symbol of a deity."
+  },
+  {
+    "name": "Holy symbol, tattoo",
+    "type": "gear",
+    "price": "100 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Holy symbol, wooden",
+    "type": "gear",
+    "price": "1 gp",
+    "weight": "\u2014",
+    "description": "A wooden holy symbol of a deity."
+  },
+  {
+    "name": "Holy Water",
+    "category": "alchemical",
+    "price": 25,
+    "weight": 1,
+    "description": "Sacred water dealing 2d4 damage to undead and evil outsiders.",
+    "slot": "none"
+  },
+  {
+    "name": "Holy water (flask)",
+    "type": "gear",
+    "price": "25 gp",
+    "weight": "1 lb.",
+    "description": "2d4 damage to undead or evil outsiders on a direct hit."
+  },
+  {
+    "name": "Hooded Lantern",
+    "category": "gear",
+    "price": 7,
+    "weight": 2,
+    "description": "Lantern with hood reducing light direction.",
+    "slot": "none"
+  },
+  {
+    "name": "Hooked axe",
+    "type": "weapon",
+    "price": "20 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "x3",
+    "range": "",
+    "weight": "7 lbs.",
+    "damageType": "S",
+    "category": "One-Handed Melee Weapons",
+    "special": "Disarm,"
+  },
+  {
+    "name": "Hooked lance",
+    "type": "weapon",
+    "price": "3 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "x4",
+    "range": "",
+    "weight": "10 lbs.",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Reach, trip"
+  },
+  {
+    "name": "Horse, light",
+    "type": "gear",
+    "price": "75 gp",
+    "weight": "900 lbs."
+  },
+  {
+    "name": "Horsechopper",
+    "type": "weapon",
+    "price": "10 gp",
+    "dmgS": "1d8",
+    "dmgM": "1d10",
+    "critical": "x3",
+    "range": "",
+    "weight": "12 lbs.",
+    "damageType": "P or S",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Reach, trip"
+  },
+  {
+    "name": "Horseshoes game",
+    "type": "gear",
+    "price": "5 sp",
+    "weight": "3 lbs."
+  },
+  {
+    "name": "Hot weather outfit",
+    "type": "gear",
+    "price": "8 gp",
+    "weight": "4 lbs."
+  },
+  {
+    "name": "Huge",
+    "type": "gear",
+    "price": "60 gp",
+    "weight": "960 lbs."
+  },
+  {
+    "name": "Hunga munga",
+    "type": "weapon",
+    "price": "4 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "x2",
+    "range": "15 ft.",
+    "weight": "3 lbs.",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons"
+  },
+  {
+    "name": "Ice cream",
+    "type": "gear",
+    "price": "1 sp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Ice skates",
+    "type": "gear",
+    "price": "1 gp",
+    "weight": "2 lbs."
+  },
+  {
+    "name": "Immovable Rod",
+    "category": "wondrous",
+    "price": 5000,
+    "weight": 1,
+    "description": "Rod that can be frozen in place until command is given.",
+    "slot": "none"
+  },
+  {
+    "name": "Impact foam",
+    "type": "gear",
+    "price": "25 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Ink",
+    "category": "gear",
+    "price": 0.08,
+    "weight": 0,
+    "description": "Writing ink in small vial.",
+    "slot": "none"
+  },
+  {
+    "name": "Ink (1 oz. vial)",
+    "type": "gear",
+    "price": "8 gp",
+    "weight": "\u2014",
+    "description": "Black ink for writing."
+  },
+  {
+    "name": "Inkpen",
+    "category": "gear",
+    "price": 0.1,
+    "weight": 0,
+    "description": "Pen for writing with ink.",
+    "slot": "none"
+  },
+  {
+    "name": "Iron brush",
+    "type": "weapon",
+    "price": "2 gp",
+    "dmgS": "1d2",
+    "dmgM": "1d3",
+    "critical": "x2",
+    "range": "10 ft.",
+    "weight": "\u2014",
+    "damageType": "P",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special"
+  },
+  {
+    "name": "Iron Spike",
+    "category": "gear",
+    "price": 0.05,
+    "weight": 0,
+    "description": "Single iron spike for climbing or wedging.",
+    "slot": "none"
+  },
+  {
+    "name": "Iron vial",
+    "type": "gear",
+    "price": "1 sp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Itching Powder",
+    "category": "alchemical",
+    "price": 60,
+    "weight": 2,
+    "description": "Fine powder causing uncontrollable itching for 1d4+1 rounds.",
+    "slot": "none"
+  },
+  {
+    "name": "Javelin",
+    "type": "weapon",
+    "price": "1 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "x2",
+    "range": "30 ft.",
+    "weight": "2 lbs.",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons",
+    "description": "A light throwing spear."
+  },
+  {
+    "name": "Journal",
+    "category": "gear",
+    "price": 10,
+    "weight": 1,
+    "description": "Blank journal for recording notes and adventures.",
+    "slot": "none"
+  },
+  {
+    "name": "Jug",
+    "type": "gear",
+    "price": "3 cp",
+    "weight": "9 lbs."
+  },
+  {
+    "name": "Jutte",
+    "type": "weapon",
+    "price": "8 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "x2",
+    "range": "",
+    "weight": "1 lb.",
+    "damageType": "B",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special",
+    "special": "Disarm, monk"
+  },
+  {
+    "name": "Kama",
+    "type": "weapon",
+    "price": "2 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "x2",
+    "range": "",
+    "weight": "2 lbs.",
+    "damageType": "S",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special",
+    "special": "Monk, trip"
+  },
+  {
+    "name": "Katana",
+    "type": "weapon",
+    "price": "50 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "18\u201320/x2",
+    "range": "",
+    "weight": "6 lbs.",
+    "damageType": "S",
+    "category": "One-Handed Melee Weapons",
+    "special": "Deadly",
+    "description": "A curved, single-edged blade from Tian Xia."
+  },
+  {
+    "name": "Kerambit",
+    "type": "weapon",
+    "price": "2 gp",
+    "dmgS": "1d2",
+    "dmgM": "1d3",
+    "critical": "x3",
+    "range": "",
+    "weight": "\u2014",
+    "damageType": "S",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special"
+  },
+  {
+    "name": "Keros Oil",
+    "category": "alchemical",
+    "price": 5,
+    "weight": 0,
+    "description": "Firebreather's oil for spit attacks dealing 1d3 fire damage.",
+    "slot": "none"
+  },
+  {
+    "name": "Kestros",
+    "type": "weapon",
+    "price": "1 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "x3",
+    "range": "50 ft.",
+    "weight": "1 lb.",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons"
+  },
+  {
+    "name": "Khopesh",
+    "type": "weapon",
+    "price": "20 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "19\u201320/x2",
+    "range": "",
+    "weight": "8 lbs.",
+    "damageType": "S",
+    "category": "One-Handed Melee Weapons",
+    "special": "Trip"
+  },
+  {
+    "name": "Kikko",
+    "type": "armor",
+    "price": "250 gp",
+    "acBonus": 5,
+    "maxDex": "+4",
+    "checkPenalty": "\u20133",
+    "spellFailure": "20%",
+    "speed": "20 ft."
+  },
+  {
+    "name": "Kilt",
+    "type": "gear",
+    "price": "2 sp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Klar",
+    "type": "weapon",
+    "price": "12 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "x2",
+    "range": "",
+    "weight": "6 lbs.",
+    "damageType": "S",
+    "category": "One-Handed Melee Weapons",
+    "special": "See text"
+  },
+  {
+    "name": "Knuckle axe",
+    "type": "weapon",
+    "price": "9 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "x3",
+    "range": "",
+    "weight": "2 lbs.",
+    "damageType": "S",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special",
+    "special": "Monk, performance"
+  },
+  {
+    "name": "Kukri",
+    "type": "weapon",
+    "price": "8 gp",
+    "dmgS": "1d3",
+    "dmgM": "1d4",
+    "critical": "18\u201320/x2",
+    "range": "",
+    "weight": "2 lbs.",
+    "damageType": "S",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special",
+    "description": "A curved blade favored by rogues."
+  },
+  {
+    "name": "Kusari gusoku",
+    "type": "armor",
+    "price": "350 gp",
+    "acBonus": 7,
+    "maxDex": "+1",
+    "checkPenalty": "\u20137",
+    "spellFailure": "35%",
+    "speed": "20 ft."
+  },
+  {
+    "name": "Kyoketsu shoge",
+    "type": "weapon",
+    "price": "6 gp",
+    "dmgS": "1d3",
+    "dmgM": "1d4",
+    "critical": "x2",
+    "range": "20 ft.",
+    "weight": "1 lb.",
+    "damageType": "B",
+    "category": "Two-Handed Melee Weapons",
+    "special": ", S, or P Disarm, grapple,"
+  },
+  {
+    "name": "Ladder",
+    "category": "gear",
+    "price": 0.03,
+    "weight": 30,
+    "description": "Wooden ladder for climbing.",
+    "slot": "none"
+  },
+  {
+    "name": "Lamellar cuirass",
+    "type": "armor",
+    "price": "15 gp",
+    "acBonus": 2,
+    "maxDex": "+4",
+    "checkPenalty": "0",
+    "spellFailure": "5%",
+    "speed": "30 ft."
+  },
+  {
+    "name": "Lamp",
+    "category": "gear",
+    "price": 0.1,
+    "weight": 1,
+    "description": "Oil lamp providing light, burns 6 hours per pint of oil.",
+    "slot": "none"
+  },
+  {
+    "name": "Lance",
+    "type": "weapon",
+    "price": "10 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "x3",
+    "range": "",
+    "weight": "10 lbs.",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Reach",
+    "description": "A cavalry weapon that deals double damage on a mounted charge."
+  },
+  {
+    "name": "Lantern, bullseye",
+    "type": "gear",
+    "price": "12 gp",
+    "weight": "3 lbs.",
+    "description": "60-ft. cone of bright light, burns 6 hours per pint of oil."
+  },
+  {
+    "name": "Lantern, hooded",
+    "type": "gear",
+    "price": "7 gp",
+    "weight": "2 lbs.",
+    "description": "30-ft. radius of bright light, burns 6 hours per pint of oil."
+  },
+  {
+    "name": "Large",
+    "type": "gear",
+    "price": "30 gp",
+    "weight": "240 lbs."
+  },
+  {
+    "name": "Lasso",
+    "type": "weapon",
+    "price": "1 sp",
+    "dmgS": "\u2014",
+    "dmgM": "\u2014",
+    "critical": "\u2014",
+    "range": "",
+    "weight": "5 lbs.",
+    "damageType": "",
+    "category": "Two-Handed Melee Weapons",
+    "special": "See text"
+  },
+  {
+    "name": "Leather",
+    "type": "armor",
+    "price": "10 gp",
+    "acBonus": 2,
+    "maxDex": "+6",
+    "checkPenalty": "0",
+    "spellFailure": "10%",
+    "speed": "30 ft."
+  },
+  {
+    "name": "Leather armor",
+    "type": "armor",
+    "category": "Light",
+    "price": "10 gp",
+    "acBonus": 2,
+    "maxDex": "+6",
+    "checkPenalty": "0",
+    "spellFailure": "10%",
+    "weight": "15 lbs.",
+    "description": "A breastpiece and shoulder protectors made of leather."
+  },
+  {
+    "name": "Leeching kit",
+    "type": "gear",
+    "price": "5 gp",
+    "weight": "5 lbs."
+  },
+  {
+    "name": "Light crossbow",
+    "type": "weapon",
+    "price": "35 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "19\u201320/x2",
+    "range": "80 ft.",
+    "weight": "4 lbs.",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons"
+  },
+  {
+    "name": "Light detector",
+    "type": "gear",
+    "price": "1 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Light flail",
+    "type": "weapon",
+    "price": "8 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "x2",
+    "range": "",
+    "weight": "5 lbs.",
+    "damageType": "B",
+    "category": "One-Handed Melee Weapons",
+    "special": "Disarm, trip"
+  },
+  {
+    "name": "Light hammer",
+    "type": "weapon",
+    "price": "1 gp",
+    "dmgS": "1d3",
+    "dmgM": "1d4",
+    "critical": "x2",
+    "range": "20 ft.",
+    "weight": "2 lbs.",
+    "damageType": "B",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special",
+    "description": "A small hammer that can be thrown."
+  },
+  {
+    "name": "Light mace",
+    "type": "weapon",
+    "price": "5 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "x2",
+    "range": "",
+    "weight": "4 lbs.",
+    "damageType": "B",
+    "category": "Light Melee Weapons",
+    "description": "A short metal head on a wooden haft."
+  },
+  {
+    "name": "Light pick",
+    "type": "weapon",
+    "price": "4 gp",
+    "dmgS": "1d3",
+    "dmgM": "1d4",
+    "critical": "x4",
+    "range": "",
+    "weight": "3 lbs.",
+    "damageType": "P",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special",
+    "description": "A small pick with a deadly critical multiplier."
+  },
+  {
+    "name": "Light shield",
+    "type": "weapon",
+    "price": "3 gp/9 gp",
+    "dmgS": "1d2",
+    "dmgM": "1d3",
+    "critical": "x2",
+    "range": "",
+    "weight": "Special",
+    "damageType": "B",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special"
+  },
+  {
+    "name": "Light steel",
+    "type": "armor",
+    "price": "9 gp",
+    "acBonus": 1,
+    "maxDex": null,
+    "checkPenalty": "\u20131",
+    "spellFailure": "5%",
+    "speed": ""
+  },
+  {
+    "name": "Light steel quickdraw",
+    "type": "armor",
+    "price": "59 gp",
+    "acBonus": 1,
+    "maxDex": null,
+    "checkPenalty": "\u20132",
+    "spellFailure": "5%",
+    "speed": ""
+  },
+  {
+    "name": "Light steel shield",
+    "type": "armor",
+    "category": "Shield",
+    "price": "9 gp",
+    "acBonus": 1,
+    "maxDex": "\u2014",
+    "checkPenalty": "-1",
+    "spellFailure": "5%",
+    "weight": "6 lbs.",
+    "description": "A small steel shield."
+  },
+  {
+    "name": "Light wooden",
+    "type": "armor",
+    "price": "3 gp",
+    "acBonus": 1,
+    "maxDex": null,
+    "checkPenalty": "\u20131",
+    "spellFailure": "5%",
+    "speed": ""
+  },
+  {
+    "name": "Light wooden quickdraw",
+    "type": "armor",
+    "price": "53 gp",
+    "acBonus": 1,
+    "maxDex": null,
+    "checkPenalty": "\u20132",
+    "spellFailure": "5%",
+    "speed": ""
+  },
+  {
+    "name": "Light wooden shield",
+    "type": "armor",
+    "category": "Shield",
+    "price": "3 gp",
+    "acBonus": 1,
+    "maxDex": "\u2014",
+    "checkPenalty": "-1",
+    "spellFailure": "5%",
+    "weight": "5 lbs.",
+    "description": "A small wooden shield."
+  },
+  {
+    "name": "Liquid Blade",
+    "category": "alchemical",
+    "price": 40,
+    "weight": 2,
+    "description": "Liquid solidifying into fragile crystalline short sword.",
+    "slot": "none"
+  },
+  {
+    "name": "Liquid Ice",
+    "category": "alchemical",
+    "price": 40,
+    "weight": 2,
+    "description": "Crystalline fluid freezing objects or dealing 1d6 cold damage.",
+    "slot": "none"
+  },
+  {
+    "name": "Loaded dice, average",
+    "type": "gear",
+    "price": "10 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Loaded dice, superior",
+    "type": "gear",
+    "price": "50 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Lock, Average",
+    "category": "gear",
+    "price": 1,
+    "weight": 1,
+    "description": "Average lock requiring moderate effort to pick.",
+    "slot": "none"
+  },
+  {
+    "name": "Lock, Good",
+    "category": "gear",
+    "price": 20,
+    "weight": 1,
+    "description": "Good quality lock for secure storage.",
+    "slot": "none"
+  },
+  {
+    "name": "Lock, Simple",
+    "category": "gear",
+    "price": 2,
+    "weight": 1,
+    "description": "Simple lock for basic security.",
+    "slot": "none"
+  },
+  {
+    "name": "Lock, Superior",
+    "category": "gear",
+    "price": 40,
+    "weight": 1,
+    "description": "Superior quality lock providing excellent security.",
+    "slot": "none"
+  },
+  {
+    "name": "Longbow",
+    "type": "weapon",
+    "price": "75 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "x3",
+    "range": "100 ft.",
+    "weight": "3 lbs.",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons",
+    "description": "A tall bow that fires arrows great distances."
+  },
+  {
+    "name": "Longspear",
+    "type": "weapon",
+    "price": "5 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "x3",
+    "range": "",
+    "weight": "9 lbs.",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Brace, reach"
+  },
+  {
+    "name": "Longsword",
+    "type": "weapon",
+    "price": "15 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "19\u201320/x2",
+    "range": "",
+    "weight": "4 lbs.",
+    "damageType": "S",
+    "category": "One-Handed Melee Weapons",
+    "description": "The classic knight's weapon."
+  },
+  {
+    "name": "Lucerne hammer",
+    "type": "weapon",
+    "price": "15 gp",
+    "dmgS": "1d10",
+    "dmgM": "1d12",
+    "critical": "x2",
+    "range": "",
+    "weight": "12 lbs.",
+    "damageType": "B or P",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Brace, reach, see text"
+  },
+  {
+    "name": "Lungchuan tamo",
+    "type": "weapon",
+    "price": "5 gp",
+    "dmgS": "1d3",
+    "dmgM": "1d4",
+    "critical": "x2",
+    "range": "10 ft.",
+    "weight": "1 lb.",
+    "damageType": "P or S",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special",
+    "special": "Monk"
+  },
+  {
+    "name": "Magnifying Glass",
+    "category": "gear",
+    "price": 100,
+    "weight": 0,
+    "description": "Lens for examining small details.",
+    "slot": "none"
+  },
+  {
+    "name": "Manacles",
+    "type": "gear",
+    "price": "15 gp",
+    "weight": "2 lbs.",
+    "description": "DC 35 Strength or DC 30 Escape Artist to break free."
+  },
+  {
+    "name": "Manacles, Common",
+    "category": "gear",
+    "price": 15,
+    "weight": 2,
+    "description": "Metal restraints for prisoners.",
+    "slot": "none"
+  },
+  {
+    "name": "Manacles, Masterwork",
+    "category": "gear",
+    "price": 50,
+    "weight": 2,
+    "description": "Masterwork manacles with superior construction.",
+    "slot": "none"
+  },
+  {
+    "name": "Manacles, Mithral",
+    "category": "gear",
+    "price": 2015,
+    "weight": 2,
+    "description": "Lightweight mithral manacles.",
+    "slot": "none"
+  },
+  {
+    "name": "Mancatcher 15 gp 1 1d2",
+    "type": "gear",
+    "price": "\u2014",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Marbles",
+    "type": "gear",
+    "price": "1 sp",
+    "weight": "2 lbs."
+  },
+  {
+    "name": "Marked cards",
+    "type": "gear",
+    "price": "1 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Marker dye",
+    "type": "gear",
+    "price": "15 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Masterwork tool",
+    "type": "gear",
+    "price": "50 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Mattock",
+    "type": "weapon",
+    "price": "12 gp",
+    "dmgS": "1d6",
+    "dmgM": "2d4",
+    "critical": "x4",
+    "range": "",
+    "weight": "12 lbs.",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Fragile"
+  },
+  {
+    "name": "Meditation tea",
+    "type": "gear",
+    "price": "30 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Mere club",
+    "type": "weapon",
+    "price": "2 gp",
+    "dmgS": "1d3",
+    "dmgM": "1d4",
+    "critical": "x2",
+    "range": "",
+    "weight": "2 lbs.",
+    "damageType": "B or P",
+    "category": "One-Handed Melee Weapons",
+    "special": "Fragile"
+  },
+  {
+    "name": "Mess Kit",
+    "category": "gear",
+    "price": 1,
+    "weight": 1,
+    "description": "Basic cooking and eating utensils.",
+    "slot": "none"
+  },
+  {
+    "name": "Metal cartridge",
+    "type": "gear",
+    "price": "15 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Meteor hammer",
+    "type": "weapon",
+    "price": "10 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "x2",
+    "range": "",
+    "weight": "10 lbs.",
+    "damageType": "B",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Reach, trip"
+  },
+  {
+    "name": "Military",
+    "type": "gear",
+    "price": "20 gp",
+    "weight": "30 lbs."
+  },
+  {
+    "name": "Miner's Pick",
+    "category": "gear",
+    "price": 10,
+    "weight": 10,
+    "description": "Specialized pick for mining ore and stone.",
+    "slot": "none"
+  },
+  {
+    "name": "Mirror",
+    "category": "gear",
+    "price": 10,
+    "weight": 0.5,
+    "description": "Polished steel mirror for reflection.",
+    "slot": "none"
+  },
+  {
+    "name": "Mirror, small steel",
+    "type": "gear",
+    "price": "10 gp",
+    "weight": "0.5 lbs.",
+    "description": "A small polished steel mirror."
+  },
+  {
+    "name": "Mock armor",
+    "type": "gear",
+    "price": "90 gp",
+    "weight": "10 lbs."
+  },
+  {
+    "name": "Monkey",
+    "type": "gear",
+    "price": "3 gp",
+    "weight": "5 lbs."
+  },
+  {
+    "name": "Morningstar",
+    "type": "weapon",
+    "price": "8 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "x2",
+    "range": "",
+    "weight": "6 lbs.",
+    "damageType": "B and P",
+    "category": "One-Handed Melee Weapons",
+    "description": "A spiked metal ball on a handle."
+  },
+  {
+    "name": "Mountain pattern",
+    "type": "armor",
+    "price": "250 gp",
+    "acBonus": 6,
+    "maxDex": "+3",
+    "checkPenalty": "\u20134",
+    "spellFailure": "30%",
+    "speed": "20 ft."
+  },
+  {
+    "name": "Musical instrument, common",
+    "type": "gear",
+    "price": "5 gp",
+    "weight": "3 lbs."
+  },
+  {
+    "name": "Musical instrument, masterwork",
+    "type": "gear",
+    "price": "100 gp",
+    "weight": "3 lbs."
+  },
+  {
+    "name": "Naginata",
+    "type": "weapon",
+    "price": "35 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "x4",
+    "range": "",
+    "weight": "9 lbs.",
+    "damageType": "S",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Reach"
+  },
+  {
+    "name": "Net",
+    "type": "weapon",
+    "price": "20 gp",
+    "dmgS": "\u2014",
+    "dmgM": "\u2014",
+    "critical": "\u2014",
+    "range": "10 ft.",
+    "weight": "6 lbs.",
+    "damageType": "",
+    "category": "Two-Handed Melee Weapons",
+    "special": "See text",
+    "description": "A weighted net thrown to entangle opponents."
+  },
+  {
+    "name": "Nine-ring broadsword",
+    "type": "weapon",
+    "price": "15 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "x3",
+    "range": "",
+    "weight": "4 lbs.",
+    "damageType": "S",
+    "category": "One-Handed Melee Weapons",
+    "special": "Monk"
+  },
+  {
+    "name": "Nine-section whip",
+    "type": "weapon",
+    "price": "8 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "19\u201320/x2",
+    "range": "",
+    "weight": "3 lbs.",
+    "damageType": "B",
+    "category": "One-Handed Melee Weapons",
+    "special": "Blocking, distracting,"
+  },
+  {
+    "name": "Nodachi",
+    "type": "weapon",
+    "price": "60 gp",
+    "dmgS": "1d8",
+    "dmgM": "1d10",
+    "critical": "18\u201320/x2",
+    "range": "",
+    "weight": "8 lbs.",
+    "damageType": "S or P",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Brace"
+  },
+  {
+    "name": "Nunchaku",
+    "type": "weapon",
+    "price": "2 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "x2",
+    "range": "",
+    "weight": "2 lbs.",
+    "damageType": "B",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special",
+    "special": "Disarm, monk"
+  },
+  {
+    "name": "Nushadir",
+    "type": "gear",
+    "price": "10 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "O-yoroi",
+    "type": "armor",
+    "price": "1,700 gp",
+    "acBonus": 8,
+    "maxDex": "+2",
+    "checkPenalty": "\u20136",
+    "spellFailure": "35%",
+    "speed": "20 ft."
+  },
+  {
+    "name": "Octopus",
+    "type": "gear",
+    "price": "25 gp",
+    "weight": "2 lbs."
+  },
+  {
+    "name": "Ogre hook",
+    "type": "weapon",
+    "price": "24 gp",
+    "dmgS": "1d8",
+    "dmgM": "1d10",
+    "critical": "x3",
+    "range": "",
+    "weight": "10 lbs.",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Trip"
+  },
+  {
+    "name": "Oil",
+    "type": "gear",
+    "price": "1 sp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Oil (1-pint flask)",
+    "type": "gear",
+    "price": "1 sp",
+    "weight": "1 lb.",
+    "description": "Burns for 6 hours in a lantern, or can be lit and thrown."
+  },
+  {
+    "name": "Oil, per Pint",
+    "category": "gear",
+    "price": 0.08,
+    "weight": 1,
+    "description": "Lamp oil for burning in lanterns and torches.",
+    "slot": "none"
+  },
+  {
+    "name": "Orc trail rations",
+    "type": "gear",
+    "price": "1 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Otter",
+    "type": "gear",
+    "price": "20 gp",
+    "weight": "10 lbs."
+  },
+  {
+    "name": "Pack",
+    "type": "gear",
+    "price": "5 gp",
+    "weight": "15 lbs."
+  },
+  {
+    "name": "Padded",
+    "type": "armor",
+    "price": "5 gp",
+    "acBonus": 1,
+    "maxDex": "+8",
+    "checkPenalty": "0",
+    "spellFailure": "5%",
+    "speed": "30 ft."
+  },
+  {
+    "name": "Padded armor",
+    "type": "armor",
+    "category": "Light",
+    "price": "5 gp",
+    "acBonus": 1,
+    "maxDex": "+8",
+    "checkPenalty": "0",
+    "spellFailure": "5%",
+    "weight": "10 lbs.",
+    "description": "Layers of quilted padding."
+  },
+  {
+    "name": "Padzahr",
+    "type": "gear",
+    "price": "80 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Paper (sheet)",
+    "type": "gear",
+    "price": "4 sp",
+    "weight": "\u2014",
+    "description": "A single sheet of parchment."
+  },
+  {
+    "name": "Paper Candle Firework",
+    "category": "alchemical",
+    "price": 1,
+    "weight": 0,
+    "description": "Small explosive dazzling creatures for 1d4 rounds.",
+    "slot": "none"
+  },
+  {
+    "name": "Paper, per Sheet",
+    "category": "gear",
+    "price": 0.4,
+    "weight": 0,
+    "description": "Single sheet of paper for writing.",
+    "slot": "none"
+  },
+  {
+    "name": "Parade",
+    "type": "armor",
+    "price": "25 gp",
+    "acBonus": 3,
+    "maxDex": "+5",
+    "checkPenalty": "\u20131",
+    "spellFailure": "15%",
+    "speed": "30 ft."
+  },
+  {
+    "name": "Parasol",
+    "type": "gear",
+    "price": "1 gp",
+    "weight": "2 lbs."
+  },
+  {
+    "name": "Parchment, per Sheet",
+    "category": "gear",
+    "price": 0.2,
+    "weight": 0,
+    "description": "Single sheet of parchment for writing.",
+    "slot": "none"
+  },
+  {
+    "name": "Parchment, Rice Paper",
+    "category": "gear",
+    "price": 0.05,
+    "weight": 0,
+    "description": "Delicate rice paper for fine writing.",
+    "slot": "none"
+  },
+  {
+    "name": "Parrot",
+    "type": "gear",
+    "price": "50 gp",
+    "weight": "4 lbs."
+  },
+  {
+    "name": "Pata",
+    "type": "weapon",
+    "price": "14 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "x3",
+    "range": "",
+    "weight": "3 lbs.",
+    "damageType": "P",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special",
+    "special": "Performance"
+  },
+  {
+    "name": "Pellet Grenade, Adamantine",
+    "category": "alchemical",
+    "price": 150,
+    "weight": 1,
+    "description": "Grenade with adamantine pellets bypassing all damage reduction.",
+    "slot": "none"
+  },
+  {
+    "name": "Pellet Grenade, Cold Iron",
+    "category": "alchemical",
+    "price": 100,
+    "weight": 1,
+    "description": "Grenade with cold iron pellets bypassing certain damage reduction.",
+    "slot": "none"
+  },
+  {
+    "name": "Pellet Grenade, Iron",
+    "category": "alchemical",
+    "price": 50,
+    "weight": 1,
+    "description": "Grenade with iron pellets dealing 1d6 each bludgeoning and piercing damage.",
+    "slot": "none"
+  },
+  {
+    "name": "Pellet Grenade, Silver",
+    "category": "alchemical",
+    "price": 70,
+    "weight": 1,
+    "description": "Grenade with silver pellets bypassing certain damage reduction.",
+    "slot": "none"
+  },
+  {
+    "name": "Periapt of Wisdom",
+    "category": "wondrous",
+    "price": 4000,
+    "weight": 0,
+    "description": "Pendant enhancing Wisdom by +2 or +4.",
+    "slot": "neck"
+  },
+  {
+    "name": "Periscope",
+    "category": "gear",
+    "price": 20,
+    "weight": 4,
+    "description": "Device for viewing over obstacles.",
+    "slot": "none"
+  },
+  {
+    "name": "Pilum",
+    "type": "weapon",
+    "price": "5 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "x2",
+    "range": "20 ft.",
+    "weight": "4 lbs.",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons",
+    "special": "See text"
+  },
+  {
+    "name": "Pitcher",
+    "type": "gear",
+    "price": "2 cp",
+    "weight": "5 lbs."
+  },
+  {
+    "name": "Piton",
+    "type": "gear",
+    "price": "1 sp",
+    "weight": "0.5 lbs.",
+    "description": "An iron spike that can be driven into walls for climbing aid."
+  },
+  {
+    "name": "Pitons, 10",
+    "category": "gear",
+    "price": 1,
+    "weight": 5,
+    "description": "Ten metal spikes for climbing.",
+    "slot": "none"
+  },
+  {
+    "name": "Pitted bullet",
+    "type": "gear",
+    "price": "5 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Poisoned sand tube 1 gp Special Special",
+    "type": "gear",
+    "price": "\u2014",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Poisoning sheath",
+    "type": "gear",
+    "price": "50 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Pole",
+    "type": "gear",
+    "price": "5 cp",
+    "weight": "8 lbs."
+  },
+  {
+    "name": "Pole, 10 ft.",
+    "category": "gear",
+    "price": 0.05,
+    "weight": 8,
+    "description": "Wooden pole for testing dungeon floors.",
+    "slot": "none"
+  },
+  {
+    "name": "Polo gear",
+    "type": "gear",
+    "price": "5 sp",
+    "weight": "5 lbs."
+  },
+  {
+    "name": "Poncho",
+    "type": "gear",
+    "price": "5 sp",
+    "weight": "2 lbs."
+  },
+  {
+    "name": "Pony",
+    "type": "gear",
+    "price": "30 gp",
+    "weight": "800 lbs."
+  },
+  {
+    "name": "Portable Ram",
+    "category": "gear",
+    "price": 10,
+    "weight": 20,
+    "description": "Tool for breaking down doors with +2 bonus to damage.",
+    "slot": "none"
+  },
+  {
+    "name": "Portrait book",
+    "type": "gear",
+    "price": "10 gp",
+    "weight": "3 lbs."
+  },
+  {
+    "name": "Pot, common",
+    "type": "gear",
+    "price": "8 sp",
+    "weight": "4 lbs."
+  },
+  {
+    "name": "Pot, mithral",
+    "type": "gear",
+    "price": "2,001 gp",
+    "weight": "2 lbs."
+  },
+  {
+    "name": "Potion of Bear's Endurance",
+    "type": "potion",
+    "price": "300 gp",
+    "weight": "\u2014",
+    "description": "+4 enhancement bonus to Constitution for 3 minutes."
+  },
+  {
+    "name": "Potion of Blur",
+    "category": "potion",
+    "price": 300,
+    "weight": 0,
+    "description": "Potion blurring appearance giving 20% miss chance for 1 hour.",
+    "slot": "none"
+  },
+  {
+    "name": "Potion of Bull's Strength",
+    "type": "potion",
+    "price": "300 gp",
+    "weight": "\u2014",
+    "description": "+4 enhancement bonus to Strength for 3 minutes."
+  },
+  {
+    "name": "Potion of Cat's Grace",
+    "type": "potion",
+    "price": "300 gp",
+    "weight": "\u2014",
+    "description": "+4 enhancement bonus to Dexterity for 3 minutes."
+  },
+  {
+    "name": "Potion of Charisma",
+    "category": "potion",
+    "price": 300,
+    "weight": 0,
+    "description": "Potion increasing Charisma by +4 for 1 hour.",
+    "slot": "none"
+  },
+  {
+    "name": "Potion of Climbing",
+    "category": "potion",
+    "price": 50,
+    "weight": 0,
+    "description": "Potion allowing drinker to climb at full speed for 1 hour.",
+    "slot": "none"
+  },
+  {
+    "name": "Potion of Cold Resistance",
+    "category": "potion",
+    "price": 300,
+    "weight": 0,
+    "description": "Potion providing resistance 10 to cold damage for 1 hour.",
+    "slot": "none"
+  },
+  {
+    "name": "Potion of Constitution",
+    "category": "potion",
+    "price": 300,
+    "weight": 0,
+    "description": "Potion increasing Constitution by +4 for 1 hour.",
+    "slot": "none"
+  },
+  {
+    "name": "Potion of Cure Critical Wounds",
+    "category": "potion",
+    "price": 1500,
+    "weight": 0,
+    "description": "Potion healing 4d8+7 hit points when consumed.",
+    "slot": "none"
+  },
+  {
+    "name": "Potion of Cure Light Wounds",
+    "category": "potion",
+    "price": 50,
+    "weight": 0,
+    "description": "Potion healing 1d8+1 hit points when consumed.",
+    "slot": "none"
+  },
+  {
+    "name": "Potion of Cure Moderate Wounds",
+    "category": "potion",
+    "price": 300,
+    "weight": 0,
+    "description": "Potion healing 2d8+3 hit points when consumed.",
+    "slot": "none"
+  },
+  {
+    "name": "Potion of Cure Serious Wounds",
+    "category": "potion",
+    "price": 750,
+    "weight": 0,
+    "description": "Potion healing 3d8+5 hit points when consumed.",
+    "slot": "none"
+  },
+  {
+    "name": "Potion of Dexterity",
+    "category": "potion",
+    "price": 300,
+    "weight": 0,
+    "description": "Potion increasing Dexterity by +4 for 1 hour.",
+    "slot": "none"
+  },
+  {
+    "name": "Potion of Fire Resistance",
+    "category": "potion",
+    "price": 300,
+    "weight": 0,
+    "description": "Potion providing resistance 10 to fire damage for 1 hour.",
+    "slot": "none"
+  },
+  {
+    "name": "Potion of Floating Disc",
+    "category": "potion",
+    "price": 75,
+    "weight": 0,
+    "description": "Potion creating disc to carry up to 100 pounds for 1 hour.",
+    "slot": "none"
+  },
+  {
+    "name": "Potion of Fly",
+    "category": "potion",
+    "price": 500,
+    "weight": 0,
+    "description": "Potion allowing drinker to fly at 60 feet per round for 1 hour.",
+    "slot": "none"
+  },
+  {
+    "name": "Potion of Good Hope",
+    "category": "potion",
+    "price": 250,
+    "weight": 0,
+    "description": "Potion granting +2 to attacks, saves, and ability checks for 1 hour.",
+    "slot": "none"
+  },
+  {
+    "name": "Potion of Greater Invisibility",
+    "category": "potion",
+    "price": 1500,
+    "weight": 0,
+    "description": "Potion rendering drinker invisible while acting for 13 minutes.",
+    "slot": "none"
+  },
+  {
+    "name": "Potion of Haste",
+    "category": "potion",
+    "price": 500,
+    "weight": 0,
+    "description": "Potion providing extra attack and actions for 10 rounds.",
+    "slot": "none"
+  },
+  {
+    "name": "Potion of Heroism",
+    "category": "potion",
+    "price": 250,
+    "weight": 0,
+    "description": "Potion granting +2 to attacks, saves, and ability checks for 1 hour.",
+    "slot": "none"
+  },
+  {
+    "name": "Potion of Intelligence",
+    "category": "potion",
+    "price": 300,
+    "weight": 0,
+    "description": "Potion increasing Intelligence by +4 for 1 hour.",
+    "slot": "none"
+  },
+  {
+    "name": "Potion of Invisibility",
+    "category": "potion",
+    "price": 500,
+    "weight": 0,
+    "description": "Potion rendering drinker invisible for 13 minutes.",
+    "slot": "none"
+  },
+  {
+    "name": "Potion of Jump",
+    "category": "potion",
+    "price": 50,
+    "weight": 0,
+    "description": "Potion allowing drinker to jump triple distance for 1 minute.",
+    "slot": "none"
+  },
+  {
+    "name": "Potion of Lesser Restoration",
+    "type": "potion",
+    "price": "300 gp",
+    "weight": "\u2014",
+    "description": "Dispels any magical ability penalty or heals 1d4 ability damage."
+  },
+  {
+    "name": "Potion of Levitate",
+    "category": "potion",
+    "price": 300,
+    "weight": 0,
+    "description": "Potion allowing drinker to levitate for 1 hour.",
+    "slot": "none"
+  },
+  {
+    "name": "Potion of Mirror Image",
+    "category": "potion",
+    "price": 300,
+    "weight": 0,
+    "description": "Potion creating 1d4+1 illusory duplicates for 1 hour.",
+    "slot": "none"
+  },
+  {
+    "name": "Potion of Protection",
+    "category": "potion",
+    "price": 50,
+    "weight": 0,
+    "description": "Potion providing +1 to AC and saves for 1 hour.",
+    "slot": "none"
+  },
+  {
+    "name": "Potion of Strength",
+    "category": "potion",
+    "price": 300,
+    "weight": 0,
+    "description": "Potion increasing Strength by +4 for 1 hour.",
+    "slot": "none"
+  },
+  {
+    "name": "Potion of Water Walking",
+    "category": "potion",
+    "price": 250,
+    "weight": 0,
+    "description": "Potion allowing drinker to walk on water for 1 hour.",
+    "slot": "none"
+  },
+  {
+    "name": "Potion of Wisdom",
+    "category": "potion",
+    "price": 300,
+    "weight": 0,
+    "description": "Potion increasing Wisdom by +4 for 1 hour.",
+    "slot": "none"
+  },
+  {
+    "name": "Powder horn",
+    "type": "gear",
+    "price": "3 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Powdered milk",
+    "type": "gear",
+    "price": "1 sp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Pseudodragon",
+    "type": "gear",
+    "price": "200 gp",
+    "weight": "7 lbs."
+  },
+  {
+    "name": "Punching dagger",
+    "type": "weapon",
+    "price": "2 gp",
+    "dmgS": "1d3",
+    "dmgM": "1d4",
+    "critical": "x3",
+    "range": "",
+    "weight": "1 lb.",
+    "damageType": "P",
+    "category": "Light Melee Weapons",
+    "description": "A blade extending from a horizontal handle."
+  },
+  {
+    "name": "Pyrography kit",
+    "type": "gear",
+    "price": "1 gp",
+    "weight": "2 lbs."
+  },
+  {
+    "name": "Quadrens",
+    "type": "weapon",
+    "price": "8 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "19\u201320/x2",
+    "range": "",
+    "weight": "2 lbs.",
+    "damageType": "P",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special",
+    "special": "Performance"
+  },
+  {
+    "name": "Quarterstaff",
+    "type": "weapon",
+    "category": "Simple Two-Handed Melee",
+    "price": "\u2014",
+    "dmgM": "1d6/1d6",
+    "critical": "x2",
+    "range": "",
+    "weight": "4 lbs.",
+    "damageType": "B",
+    "special": "Double, monk",
+    "description": "A wooden staff wielded with both hands. Can be used as a double weapon."
+  },
+  {
+    "name": "Quilted cloth",
+    "type": "armor",
+    "price": "100 gp",
+    "acBonus": 1,
+    "maxDex": "+8",
+    "checkPenalty": "0",
+    "spellFailure": "10%",
+    "speed": "30 ft."
+  },
+  {
+    "name": "Rabbit",
+    "type": "gear",
+    "price": "2 gp",
+    "weight": "3 lbs."
+  },
+  {
+    "name": "Raccoon",
+    "type": "gear",
+    "price": "5 gp",
+    "weight": "7 lbs."
+  },
+  {
+    "name": "Ranseur",
+    "type": "weapon",
+    "price": "10 gp",
+    "dmgS": "1d6",
+    "dmgM": "2d4",
+    "critical": "x3",
+    "range": "",
+    "weight": "12 lbs.",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Disarm, reach"
+  },
+  {
+    "name": "Rapier",
+    "type": "weapon",
+    "price": "20 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "18\u201320/x2",
+    "range": "",
+    "weight": "2 lbs.",
+    "damageType": "P",
+    "category": "One-Handed Melee Weapons",
+    "description": "A thin, sharp blade favored for precision attacks."
+  },
+  {
+    "name": "Rat",
+    "type": "gear",
+    "price": "1 cp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Rat, dire",
+    "type": "gear",
+    "price": "5 gp",
+    "weight": "50 lbs."
+  },
+  {
+    "name": "Rations, 1 day",
+    "category": "gear",
+    "price": 0.5,
+    "weight": 1,
+    "description": "One day of trail rations for traveling.",
+    "slot": "none"
+  },
+  {
+    "name": "Rations, trail (per day)",
+    "type": "gear",
+    "price": "5 sp",
+    "weight": "1 lb.",
+    "description": "A day's worth of food."
+  },
+  {
+    "name": "Raven",
+    "type": "gear",
+    "price": "2 gp",
+    "weight": "3 lbs."
+  },
+  {
+    "name": "Reinforced scarf",
+    "type": "gear",
+    "price": "10 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Repeating hand crossbow",
+    "type": "weapon",
+    "price": "800 gp",
+    "dmgS": "1d3",
+    "dmgM": "1d4",
+    "critical": "19\u201320/x2",
+    "range": "30 ft.",
+    "weight": "4 lbs.",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons"
+  },
+  {
+    "name": "Repeating heavy crossbow",
+    "type": "weapon",
+    "price": "400 gp",
+    "dmgS": "1d8",
+    "dmgM": "1d10",
+    "critical": "19\u201320/x2",
+    "range": "120 ft.",
+    "weight": "12 lbs.",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons",
+    "description": "A heavy crossbow with a 5-bolt magazine."
+  },
+  {
+    "name": "Repeating light crossbow",
+    "type": "weapon",
+    "price": "250 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "19\u201320/x2",
+    "range": "80 ft.",
+    "weight": "6 lbs.",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons"
+  },
+  {
+    "name": "Rhoka sword",
+    "type": "weapon",
+    "price": "25 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "18\u201320/x2",
+    "range": "",
+    "weight": "6 lbs.",
+    "damageType": "S",
+    "category": "One-Handed Melee Weapons"
+  },
+  {
+    "name": "Rhomphaia",
+    "type": "weapon",
+    "price": "15 gp",
+    "dmgS": "1d6",
+    "dmgM": "2d4",
+    "critical": "x3",
+    "range": "",
+    "weight": "10 lbs.",
+    "damageType": "P or S",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Brace, fragile, reach"
+  },
+  {
+    "name": "Riding",
+    "type": "gear",
+    "price": "10 gp",
+    "weight": "25 lbs."
+  },
+  {
+    "name": "Riding kit, common",
+    "type": "gear",
+    "price": "16 gp",
+    "weight": "54 lbs."
+  },
+  {
+    "name": "Riding kit, exotic mount",
+    "type": "gear",
+    "price": "36 gp",
+    "weight": "59 lbs."
+  },
+  {
+    "name": "Ring of Climbing",
+    "category": "ring",
+    "price": 2500,
+    "weight": 0,
+    "description": "Ring allowing wearer to climb at full speed.",
+    "slot": "ring"
+  },
+  {
+    "name": "Ring of Evasion",
+    "category": "ring",
+    "price": 25000,
+    "weight": 0,
+    "description": "Ring allowing one evasion attempt per day.",
+    "slot": "ring"
+  },
+  {
+    "name": "Ring of Force Shield",
+    "category": "ring",
+    "price": 8500,
+    "weight": 0,
+    "description": "Ring projecting protective force granting 2 temporary HP per round.",
+    "slot": "ring"
+  },
+  {
+    "name": "Ring of Invisibility",
+    "category": "ring",
+    "price": 20000,
+    "weight": 0,
+    "description": "Ring making wearer invisible while not acting.",
+    "slot": "ring"
+  },
+  {
+    "name": "Ring of Jumping",
+    "category": "ring",
+    "price": 2500,
+    "weight": 0,
+    "description": "Ring allowing wearer to jump triple distance.",
+    "slot": "ring"
+  },
+  {
+    "name": "Ring of Mind Shielding",
+    "category": "ring",
+    "price": 8000,
+    "weight": 0,
+    "description": "Ring protecting thoughts from detection and mind-reading.",
+    "slot": "ring"
+  },
+  {
+    "name": "Ring of Protection",
+    "category": "ring",
+    "price": 2000,
+    "weight": 0,
+    "description": "Ring granting +1 to AC and saves.",
+    "slot": "ring"
+  },
+  {
+    "name": "Ring of Resistance",
+    "category": "ring",
+    "price": 12000,
+    "weight": 0,
+    "description": "Ring providing resistance 20 to one energy type.",
+    "slot": "ring"
+  },
+  {
+    "name": "Ring of Spell Storing",
+    "category": "ring",
+    "price": 50000,
+    "weight": 0,
+    "description": "Ring storing up to three spell levels.",
+    "slot": "ring"
+  },
+  {
+    "name": "Ring of Sustenance",
+    "category": "ring",
+    "price": 2500,
+    "weight": 0,
+    "description": "Ring allowing wearer to need only 2 hours sleep and little food.",
+    "slot": "ring"
+  },
+  {
+    "name": "Ring of Swimming",
+    "category": "ring",
+    "price": 2500,
+    "weight": 0,
+    "description": "Ring allowing wearer to swim at full speed.",
+    "slot": "ring"
+  },
+  {
+    "name": "Rod of Absorption",
+    "category": "rod",
+    "price": 50000,
+    "weight": 5,
+    "description": "Rod absorbing up to 50 spell levels, granting temporary powers.",
+    "slot": "none"
+  },
+  {
+    "name": "Rod of Alertness",
+    "category": "rod",
+    "price": 25000,
+    "weight": 5,
+    "description": "Rod granting +1 bonus on Perception checks and alertness benefits.",
+    "slot": "none"
+  },
+  {
+    "name": "Rod of Cancellation",
+    "category": "rod",
+    "price": 11000,
+    "weight": 5,
+    "description": "Rod nullifying magical items and spells.",
+    "slot": "none"
+  },
+  {
+    "name": "Rod of Dominion",
+    "category": "rod",
+    "price": 50000,
+    "weight": 5,
+    "description": "Rod of rulership affecting crowds and providing bonuses to leadership.",
+    "slot": "none"
+  },
+  {
+    "name": "Rod of Enlargement",
+    "category": "rod",
+    "price": 12000,
+    "weight": 5,
+    "description": "Rod allowing user to grow one size category at will.",
+    "slot": "none"
+  },
+  {
+    "name": "Rod of Extend",
+    "category": "rod",
+    "price": 3000,
+    "weight": 5,
+    "description": "Metamagic rod extending spell durations as if using Extend Spell.",
+    "slot": "none"
+  },
+  {
+    "name": "Rod of Python",
+    "category": "rod",
+    "price": 13000,
+    "weight": 5,
+    "description": "Rod that becomes a python to obey commands.",
+    "slot": "none"
+  },
+  {
+    "name": "Rod of Wonder",
+    "category": "rod",
+    "price": 12000,
+    "weight": 5,
+    "description": "Rod producing random magical effects when activated.",
+    "slot": "none"
+  },
+  {
+    "name": "Rope dart",
+    "type": "weapon",
+    "price": "1 gp",
+    "dmgS": "1d3",
+    "dmgM": "1d4",
+    "critical": "x2",
+    "range": "20 ft.",
+    "weight": "\u2014",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Blocking, distracting,"
+  },
+  {
+    "name": "Rope, hemp (50 ft.)",
+    "type": "gear",
+    "price": "1 gp",
+    "weight": "10 lbs.",
+    "description": "50 feet of hemp rope. HP 2, DC 23 Strength to burst."
+  },
+  {
+    "name": "Rope, Hempen, 50 ft.",
+    "category": "gear",
+    "price": 1,
+    "weight": 10,
+    "description": "Fifty feet of strong hempen rope.",
+    "slot": "none"
+  },
+  {
+    "name": "Rope, silk (50 ft.)",
+    "type": "gear",
+    "price": "10 gp",
+    "weight": "5 lbs.",
+    "description": "50 feet of silk rope. HP 4, DC 24 Strength to burst."
+  },
+  {
+    "name": "Rope, Silk, 50 ft.",
+    "category": "gear",
+    "price": 85,
+    "weight": 5,
+    "description": "Fifty feet of strong silk rope.",
+    "slot": "none"
+  },
+  {
+    "name": "Rope, Spider's Silk, 50 ft.",
+    "category": "gear",
+    "price": 100,
+    "weight": 4,
+    "description": "Fifty feet of durable spider's silk rope.",
+    "slot": "none"
+  },
+  {
+    "name": "Royal outfit",
+    "type": "gear",
+    "price": "200 gp",
+    "weight": "15 lbs."
+  },
+  {
+    "name": "Rusting powder",
+    "type": "gear",
+    "price": "60 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Sack",
+    "category": "gear",
+    "price": 0.1,
+    "weight": 0.5,
+    "description": "Large cloth sack holding 30 lbs.",
+    "slot": "none"
+  },
+  {
+    "name": "Saddlebags",
+    "type": "gear",
+    "price": "4 gp",
+    "weight": "8 lbs."
+  },
+  {
+    "name": "Sai",
+    "type": "weapon",
+    "price": "1 gp",
+    "dmgS": "1d3",
+    "dmgM": "1d4",
+    "critical": "x2",
+    "range": "",
+    "weight": "1 lb.",
+    "damageType": "B",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special",
+    "special": "Disarm, monk"
+  },
+  {
+    "name": "Sansetsukon",
+    "type": "weapon",
+    "price": "8 gp",
+    "dmgS": "1d8",
+    "dmgM": "1d10",
+    "critical": "19\u201320/x2",
+    "range": "",
+    "weight": "3 lbs.",
+    "damageType": "B",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Blocking, disarm, monk"
+  },
+  {
+    "name": "Sap",
+    "type": "weapon",
+    "price": "1 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "x2",
+    "range": "",
+    "weight": "2 lbs.",
+    "damageType": "B",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special",
+    "special": "Nonlethal"
+  },
+  {
+    "name": "Saw",
+    "category": "gear",
+    "price": 0.04,
+    "weight": 2,
+    "description": "Tool for cutting wood and bone.",
+    "slot": "none"
+  },
+  {
+    "name": "Sawtooth sabre",
+    "type": "weapon",
+    "price": "35 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "19\u201320/x2",
+    "range": "",
+    "weight": "2 lbs.",
+    "damageType": "S",
+    "category": "One-Handed Melee Weapons"
+  },
+  {
+    "name": "Scale mail",
+    "type": "armor",
+    "price": "50 gp",
+    "acBonus": 5,
+    "maxDex": "+3",
+    "checkPenalty": "\u20134",
+    "spellFailure": "25%",
+    "speed": "20 ft.",
+    "description": "Overlapping metal scales on a leather backing.",
+    "category": "Medium"
+  },
+  {
+    "name": "Scent cloak",
+    "type": "gear",
+    "price": "20 gp",
+    "weight": "2 lbs."
+  },
+  {
+    "name": "Scimitar",
+    "type": "weapon",
+    "price": "15 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "18\u201320/x2",
+    "range": "",
+    "weight": "4 lbs.",
+    "damageType": "S",
+    "category": "One-Handed Melee Weapons",
+    "description": "A curved, single-edged blade."
+  },
+  {
+    "name": "Scizore",
+    "type": "weapon",
+    "price": "20 gp",
+    "dmgS": "1d8",
+    "dmgM": "1d10",
+    "critical": "x2",
+    "range": "",
+    "weight": "3 lbs.",
+    "damageType": "P",
+    "category": "One-Handed Melee Weapons",
+    "special": "Performance"
+  },
+  {
+    "name": "Scorpion whip",
+    "type": "weapon",
+    "price": "5 gp",
+    "dmgS": "1d3",
+    "dmgM": "1d4",
+    "critical": "x2",
+    "range": "",
+    "weight": "3 lbs.",
+    "damageType": "S",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special",
+    "special": "Performance"
+  },
+  {
+    "name": "Scroll box",
+    "type": "gear",
+    "price": "5 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Scroll of Charm Person",
+    "category": "scroll",
+    "price": 12.5,
+    "weight": 0,
+    "description": "Scroll casting charm person once.",
+    "slot": "none"
+  },
+  {
+    "name": "Scroll of Color Spray",
+    "category": "scroll",
+    "price": 12.5,
+    "weight": 0,
+    "description": "Scroll casting color spray once.",
+    "slot": "none"
+  },
+  {
+    "name": "Scroll of Cure Light Wounds",
+    "category": "scroll",
+    "price": 12.5,
+    "weight": 0,
+    "description": "Scroll casting cure light wounds once.",
+    "slot": "none"
+  },
+  {
+    "name": "Scroll of Cure Moderate Wounds",
+    "category": "scroll",
+    "price": 75,
+    "weight": 0,
+    "description": "Scroll casting cure moderate wounds once.",
+    "slot": "none"
+  },
+  {
+    "name": "Scroll of Cure Serious Wounds",
+    "category": "scroll",
+    "price": 187.5,
+    "weight": 0,
+    "description": "Scroll casting cure serious wounds once.",
+    "slot": "none"
+  },
+  {
+    "name": "Scroll of Detect Magic",
+    "category": "scroll",
+    "price": 12.5,
+    "weight": 0,
+    "description": "Scroll casting detect magic once.",
+    "slot": "none"
+  },
+  {
+    "name": "Scroll of Fireball",
+    "category": "scroll",
+    "price": 187.5,
+    "weight": 0,
+    "description": "Scroll casting fireball once.",
+    "slot": "none"
+  },
+  {
+    "name": "Scroll of Hold Person",
+    "category": "scroll",
+    "price": 25,
+    "weight": 0,
+    "description": "Scroll casting hold person once.",
+    "slot": "none"
+  },
+  {
+    "name": "Scroll of Identify",
+    "category": "scroll",
+    "price": 12.5,
+    "weight": 0,
+    "description": "Scroll casting identify once.",
+    "slot": "none"
+  },
+  {
+    "name": "Scroll of Lightning Bolt",
+    "category": "scroll",
+    "price": 187.5,
+    "weight": 0,
+    "description": "Scroll casting lightning bolt once.",
+    "slot": "none"
+  },
+  {
+    "name": "Scroll of Mage Armor",
+    "category": "scroll",
+    "price": 12.5,
+    "weight": 0,
+    "description": "Scroll casting mage armor once.",
+    "slot": "none"
+  },
+  {
+    "name": "Scroll of Magic Missile",
+    "category": "scroll",
+    "price": 12.5,
+    "weight": 0,
+    "description": "Scroll casting magic missile once.",
+    "slot": "none"
+  },
+  {
+    "name": "Scroll of Protection from Evil",
+    "type": "scroll",
+    "price": "25 gp",
+    "weight": "\u2014",
+    "description": "+2 deflection AC and +2 resistance saves vs evil creatures."
+  },
+  {
+    "name": "Scroll of Shield",
+    "category": "scroll",
+    "price": 12.5,
+    "weight": 0,
+    "description": "Scroll casting shield once.",
+    "slot": "none"
+  },
+  {
+    "name": "Scroll of Summon Monster I",
+    "category": "scroll",
+    "price": 12.5,
+    "weight": 0,
+    "description": "Scroll casting summon monster I once.",
+    "slot": "none"
+  },
+  {
+    "name": "Scythe",
+    "type": "weapon",
+    "price": "18 gp",
+    "dmgS": "1d6",
+    "dmgM": "2d4",
+    "critical": "x4",
+    "range": "",
+    "weight": "10 lbs.",
+    "damageType": "P or S",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Trip",
+    "description": "A long-handled farming tool turned weapon with devastating crits."
+  },
+  {
+    "name": "Sealing wax",
+    "type": "gear",
+    "price": "1 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Sentry mannequin",
+    "type": "gear",
+    "price": "30 gp",
+    "weight": "35 lbs."
+  },
+  {
+    "name": "Seven-branched sword",
+    "type": "weapon",
+    "price": "50 gp",
+    "dmgS": "1d8",
+    "dmgM": "1d10",
+    "critical": "x3",
+    "range": "",
+    "weight": "7 lbs.",
+    "damageType": "S",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Disarm, monk"
+  },
+  {
+    "name": "Sewing needle",
+    "type": "gear",
+    "price": "5 sp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Sextant",
+    "type": "gear",
+    "price": "500 gp",
+    "weight": "2 lbs."
+  },
+  {
+    "name": "Shang gou",
+    "type": "weapon",
+    "price": "6 gp",
+    "dmgS": "1d3",
+    "dmgM": "1d4",
+    "critical": "x2",
+    "range": "",
+    "weight": "1 lb.",
+    "damageType": "S",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special",
+    "special": "Disarm or trip, monk"
+  },
+  {
+    "name": "Shard Gel",
+    "category": "alchemical",
+    "price": 25,
+    "weight": 1,
+    "description": "Green gel crystallizing into caltrops upon contact.",
+    "slot": "none"
+  },
+  {
+    "name": "Shield spikes",
+    "type": "weapon",
+    "price": "+10 gp",
+    "dmgS": "\u2014",
+    "dmgM": "\u2014",
+    "critical": "\u2014",
+    "range": "",
+    "weight": "\u2014",
+    "damageType": "",
+    "special": "+5 lbs."
+  },
+  {
+    "name": "Shortbow",
+    "type": "weapon",
+    "price": "30 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "x3",
+    "range": "60 ft.",
+    "weight": "2 lbs.",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons",
+    "description": "A smaller bow favored by mounted archers and halflings."
+  },
+  {
+    "name": "Shortspear",
+    "type": "weapon",
+    "price": "1 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "x2",
+    "range": "20 ft.",
+    "weight": "3 lbs.",
+    "damageType": "P",
+    "category": "One-Handed Melee Weapons",
+    "description": "A short thrusting spear."
+  },
+  {
+    "name": "Shortsword",
+    "type": "weapon",
+    "price": "10 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "19\u201320/x2",
+    "range": "",
+    "weight": "2 lbs.",
+    "damageType": "P",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special",
+    "description": "A short, double-edged blade."
+  },
+  {
+    "name": "Shotel",
+    "type": "weapon",
+    "price": "30 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "x3",
+    "range": "",
+    "weight": "3 lbs.",
+    "damageType": "P",
+    "category": "One-Handed Melee Weapons",
+    "special": "Performance"
+  },
+  {
+    "name": "Shovel",
+    "type": "gear",
+    "price": "2 gp",
+    "weight": "8 lbs.",
+    "description": "A digging tool."
+  },
+  {
+    "name": "Shovel, Common",
+    "category": "gear",
+    "price": 2,
+    "weight": 8,
+    "description": "Standard shovel for digging.",
+    "slot": "none"
+  },
+  {
+    "name": "Shovel, Folding",
+    "category": "gear",
+    "price": 10,
+    "weight": 12,
+    "description": "Portable folding shovel for travel.",
+    "slot": "none"
+  },
+  {
+    "name": "Shuriken (5)",
+    "type": "weapon",
+    "category": "Exotic Ranged",
+    "price": "1 gp",
+    "dmgM": "1d2",
+    "critical": "x2",
+    "range": "10 ft.",
+    "weight": "0.5 lbs.",
+    "damageType": "P",
+    "special": "Monk",
+    "description": "Small throwing stars."
+  },
+  {
+    "name": "Siangham",
+    "type": "weapon",
+    "price": "3 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "x2",
+    "range": "",
+    "weight": "1 lb.",
+    "damageType": "P",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special",
+    "special": "Monk"
+  },
+  {
+    "name": "Sibat",
+    "type": "weapon",
+    "price": "2 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "x3",
+    "range": "10 ft.",
+    "weight": "2 lbs.",
+    "damageType": "P or S",
+    "category": "One-Handed Melee Weapons",
+    "special": "Grapple"
+  },
+  {
+    "name": "Sica",
+    "type": "weapon",
+    "price": "10 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "x2",
+    "range": "",
+    "weight": "2 lbs.",
+    "damageType": "S",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special",
+    "special": "Performance"
+  },
+  {
+    "name": "Sickle",
+    "type": "weapon",
+    "price": "6 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "x2",
+    "range": "",
+    "weight": "2 lbs.",
+    "damageType": "S",
+    "category": "Light Melee Weapons",
+    "special": "Trip",
+    "description": "A curved blade on a short handle."
+  },
+  {
+    "name": "Signal Horn",
+    "category": "gear",
+    "price": 1,
+    "weight": 2,
+    "description": "Horn for signaling over distance.",
+    "slot": "none"
+  },
+  {
+    "name": "Signal Whistle",
+    "category": "gear",
+    "price": 0.8,
+    "weight": 0,
+    "description": "Whistle for silent communication.",
+    "slot": "none"
+  },
+  {
+    "name": "Signet ring",
+    "type": "gear",
+    "price": "5 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Silent whistle",
+    "type": "gear",
+    "price": "9 sp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Silken ceremonial",
+    "type": "armor",
+    "price": "30 gp",
+    "acBonus": 1,
+    "maxDex": null,
+    "checkPenalty": "0",
+    "spellFailure": "0%",
+    "speed": "30 ft."
+  },
+  {
+    "name": "Skeleton Key",
+    "category": "gear",
+    "price": 0,
+    "weight": 0,
+    "description": "Master key useful for picking common locks.",
+    "slot": "none"
+  },
+  {
+    "name": "Skillet, Common",
+    "category": "gear",
+    "price": 0.8,
+    "weight": 4,
+    "description": "Pan for cooking food.",
+    "slot": "none"
+  },
+  {
+    "name": "Skillet, Mithral",
+    "category": "gear",
+    "price": 2001,
+    "weight": 2,
+    "description": "Lightweight mithral cooking pan.",
+    "slot": "none"
+  },
+  {
+    "name": "Skis",
+    "type": "gear",
+    "price": "5 gp",
+    "weight": "20 lbs."
+  },
+  {
+    "name": "Skunk",
+    "type": "gear",
+    "price": "10 gp",
+    "weight": "10 lbs."
+  },
+  {
+    "name": "Skyrocket Firework",
+    "category": "alchemical",
+    "price": 50,
+    "weight": 1,
+    "description": "Firework launching for 1d6 rounds before exploding for 2d6 fire damage.",
+    "slot": "none"
+  },
+  {
+    "name": "Sledge",
+    "type": "gear",
+    "price": "1 gp",
+    "weight": "10 lbs."
+  },
+  {
+    "name": "Sling",
+    "type": "weapon",
+    "price": "\u2014",
+    "dmgS": "1d3",
+    "dmgM": "1d4",
+    "critical": "x2",
+    "range": "50 ft.",
+    "weight": "\u2014",
+    "damageType": "B",
+    "category": "Two-Handed Melee Weapons",
+    "description": "A leather strap for hurling stones."
+  },
+  {
+    "name": "Small or Medium",
+    "type": "gear",
+    "price": "15 gp",
+    "weight": "60 lbs."
+  },
+  {
+    "name": "Smelling salts",
+    "type": "gear",
+    "price": "25 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Smoke arrow",
+    "type": "gear",
+    "price": "10 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Smoke pellet",
+    "type": "gear",
+    "price": "25 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Smoked goggles",
+    "type": "gear",
+    "price": "10 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Snag net",
+    "type": "weapon",
+    "price": "30 gp",
+    "dmgS": "\u2014",
+    "dmgM": "\u2014",
+    "critical": "\u2014",
+    "range": "10 ft.",
+    "weight": "10 lbs.",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Trip, see text"
+  },
+  {
+    "name": "Snake, constrictor",
+    "type": "gear",
+    "price": "5 gp",
+    "weight": "60 lbs."
+  },
+  {
+    "name": "Sneezing Powder",
+    "category": "alchemical",
+    "price": 60,
+    "weight": 2,
+    "description": "Yellow powder causing uncontrollable sneezing for 1d4+1 rounds.",
+    "slot": "none"
+  },
+  {
+    "name": "Snorkel, common",
+    "type": "gear",
+    "price": "5 sp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Snorkel, masterwork",
+    "type": "gear",
+    "price": "5 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Snowshoes",
+    "type": "gear",
+    "price": "5 gp",
+    "weight": "4 lbs."
+  },
+  {
+    "name": "Soap",
+    "category": "gear",
+    "price": 0.01,
+    "weight": 0.5,
+    "description": "Soap for cleaning.",
+    "slot": "none"
+  },
+  {
+    "name": "Soul stimulant",
+    "type": "gear",
+    "price": "300 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Spear",
+    "type": "weapon",
+    "price": "2 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "x3",
+    "range": "20 ft.",
+    "weight": "6 lbs.",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Brace",
+    "description": "A wooden shaft with a pointed metal head."
+  },
+  {
+    "name": "Spell component pouch",
+    "type": "gear",
+    "price": "5 gp",
+    "weight": "2 lbs.",
+    "description": "A small waterproof pouch for holding material spell components."
+  },
+  {
+    "name": "Spellbook",
+    "type": "gear",
+    "price": "15 gp",
+    "weight": "3 lbs."
+  },
+  {
+    "name": "Spelunking kit",
+    "type": "gear",
+    "price": "174 gp",
+    "weight": "32 lbs."
+  },
+  {
+    "name": "Spiked armor",
+    "type": "weapon",
+    "price": "+50 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "x2",
+    "range": "",
+    "weight": "Special",
+    "damageType": "P",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special"
+  },
+  {
+    "name": "Spiked chain",
+    "type": "weapon",
+    "price": "25 gp",
+    "dmgS": "1d6",
+    "dmgM": "2d4",
+    "critical": "x2",
+    "range": "",
+    "weight": "10 lbs.",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Disarm, trip",
+    "description": "A length of spiked chain wielded as a weapon."
+  },
+  {
+    "name": "Spiked gauntlet",
+    "type": "weapon",
+    "price": "5 gp",
+    "dmgS": "1d3",
+    "dmgM": "1d4",
+    "critical": "x2",
+    "range": "",
+    "weight": "1 lb.",
+    "damageType": "P",
+    "category": "Light Melee Weapons"
+  },
+  {
+    "name": "Spiked heavy shield",
+    "type": "weapon",
+    "price": "17 gp/30 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "x2",
+    "range": "",
+    "weight": "Special",
+    "damageType": "P",
+    "category": "One-Handed Melee Weapons"
+  },
+  {
+    "name": "Spiked light shield",
+    "type": "weapon",
+    "price": "13 gp/19 gp",
+    "dmgS": "1d3",
+    "dmgM": "1d4",
+    "critical": "x2",
+    "range": "",
+    "weight": "Special",
+    "damageType": "P",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special"
+  },
+  {
+    "name": "Splint mail",
+    "type": "armor",
+    "price": "200 gp",
+    "acBonus": 7,
+    "maxDex": "+0",
+    "checkPenalty": "\u20137",
+    "spellFailure": "40%",
+    "speed": "20 ft.",
+    "description": "Strips of metal attached to a backing of leather and chainmail.",
+    "category": "Heavy"
+  },
+  {
+    "name": "Spyglass",
+    "category": "gear",
+    "price": 1000,
+    "weight": 1,
+    "description": "Device for viewing distant objects clearly.",
+    "slot": "none"
+  },
+  {
+    "name": "Squirrel, common",
+    "type": "gear",
+    "price": "1 gp",
+    "weight": "2 lbs."
+  },
+  {
+    "name": "Squirrel, flying",
+    "type": "gear",
+    "price": "20 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Staff of Authority",
+    "category": "staff",
+    "price": 23000,
+    "weight": 5,
+    "description": "Staff casting command spells and domination magic.",
+    "slot": "none"
+  },
+  {
+    "name": "Staff of Charming",
+    "category": "staff",
+    "price": 17600,
+    "weight": 5,
+    "description": "Staff casting charm person and similar enchantment spells.",
+    "slot": "none"
+  },
+  {
+    "name": "Staff of Electricity",
+    "category": "staff",
+    "price": 31900,
+    "weight": 5,
+    "description": "Staff casting electrical spells including lightning bolt.",
+    "slot": "none"
+  },
+  {
+    "name": "Staff of Fire",
+    "category": "staff",
+    "price": 18950,
+    "weight": 5,
+    "description": "Staff casting fire spells including fireball and flame arrow.",
+    "slot": "none"
+  },
+  {
+    "name": "Staff of Frost",
+    "category": "staff",
+    "price": 39300,
+    "weight": 5,
+    "description": "Staff casting frost spells including cone of cold.",
+    "slot": "none"
+  },
+  {
+    "name": "Staff of Healing",
+    "category": "staff",
+    "price": 29600,
+    "weight": 5,
+    "description": "Staff casting healing spells curing wounds.",
+    "slot": "none"
+  },
+  {
+    "name": "Staff of Spiders",
+    "category": "staff",
+    "price": 30200,
+    "weight": 5,
+    "description": "Staff casting spider-related spells and summoning spiders.",
+    "slot": "none"
+  },
+  {
+    "name": "Star Candle Firework",
+    "category": "alchemical",
+    "price": 5,
+    "weight": 0,
+    "description": "Firework launching flaming projectiles each round for 4 rounds.",
+    "slot": "none"
+  },
+  {
+    "name": "Starfountain Firework",
+    "category": "alchemical",
+    "price": 500,
+    "weight": 100,
+    "description": "Large firework creating massive indoor display of burning particles.",
+    "slot": "none"
+  },
+  {
+    "name": "Starknife",
+    "type": "weapon",
+    "price": "24 gp",
+    "dmgS": "1d3",
+    "dmgM": "1d4",
+    "critical": "x3",
+    "range": "20 ft.",
+    "weight": "3 lbs.",
+    "damageType": "P",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special",
+    "description": "A bladed, star-shaped throwing weapon."
+  },
+  {
+    "name": "Stationery",
+    "type": "gear",
+    "price": "1 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Stilts, common",
+    "type": "gear",
+    "price": "2 sp",
+    "weight": "10 lbs."
+  },
+  {
+    "name": "Stilts, masterwork",
+    "type": "gear",
+    "price": "5 gp",
+    "weight": "10 lbs."
+  },
+  {
+    "name": "Stirge",
+    "type": "gear",
+    "price": "20 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Stoneplate",
+    "type": "armor",
+    "price": "1,800 gp",
+    "acBonus": 9,
+    "maxDex": "+1",
+    "checkPenalty": "\u20136",
+    "spellFailure": "35%",
+    "speed": "15 ft."
+  },
+  {
+    "name": "Stove can",
+    "type": "gear",
+    "price": "10 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Stretcher",
+    "type": "gear",
+    "price": "1 gp",
+    "weight": "10 lbs."
+  },
+  {
+    "name": "String or Twine, 50 ft.",
+    "category": "gear",
+    "price": 0.01,
+    "weight": 0.5,
+    "description": "Fifty feet of basic string or twine.",
+    "slot": "none"
+  },
+  {
+    "name": "Studded leather",
+    "type": "armor",
+    "price": "25 gp",
+    "acBonus": 3,
+    "maxDex": "+5",
+    "checkPenalty": "\u20131",
+    "spellFailure": "15%",
+    "speed": "30 ft.",
+    "description": "Leather armor reinforced with small metal studs.",
+    "category": "Light"
+  },
+  {
+    "name": "Sunrod",
+    "type": "gear",
+    "price": "2 gp",
+    "weight": "1 lb.",
+    "description": "30-ft. radius of bright light for 6 hours."
+  },
+  {
+    "name": "Survival kit, common",
+    "type": "gear",
+    "price": "5 gp",
+    "weight": "4 lbs."
+  },
+  {
+    "name": "Survival kit, masterwork",
+    "type": "gear",
+    "price": "50 gp",
+    "weight": "5 lbs."
+  },
+  {
+    "name": "Swarmsuit",
+    "type": "gear",
+    "price": "20 gp",
+    "weight": "10 lbs."
+  },
+  {
+    "name": "Sword cane",
+    "type": "weapon",
+    "price": "45 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "x2",
+    "range": "",
+    "weight": "4 lbs.",
+    "damageType": "P",
+    "category": "One-Handed Melee Weapons"
+  },
+  {
+    "name": "Swordbreaker dagger",
+    "type": "weapon",
+    "price": "10 gp",
+    "dmgS": "1d3",
+    "dmgM": "1d4",
+    "critical": "x2",
+    "range": "",
+    "weight": "3 lbs.",
+    "damageType": "S",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special",
+    "special": "Disarm, see text"
+  },
+  {
+    "name": "Symptom kit",
+    "type": "gear",
+    "price": "25 gp",
+    "weight": "5 lbs."
+  },
+  {
+    "name": "Tabard",
+    "type": "gear",
+    "price": "5 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Tangleburn Bag",
+    "category": "alchemical",
+    "price": 150,
+    "weight": 5,
+    "description": "Tanglefoot bag combined with burning alchemical powders.",
+    "slot": "none"
+  },
+  {
+    "name": "Tanglefoot Bag",
+    "category": "alchemical",
+    "price": 50,
+    "weight": 4,
+    "description": "Sack of sticky goo entangling creatures and pinning them.",
+    "slot": "none"
+  },
+  {
+    "name": "Tatami-do",
+    "type": "armor",
+    "price": "1,000 gp",
+    "acBonus": 7,
+    "maxDex": "+3",
+    "checkPenalty": "\u20136",
+    "spellFailure": "35%",
+    "speed": "20 ft."
+  },
+  {
+    "name": "Tea ceremony set",
+    "type": "gear",
+    "price": "25 gp",
+    "weight": "5 lbs."
+  },
+  {
+    "name": "Teapot",
+    "type": "gear",
+    "price": "1 sp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Tekko-kagi",
+    "type": "weapon",
+    "price": "2 gp",
+    "dmgS": "1d2",
+    "dmgM": "1d3",
+    "critical": "x2",
+    "range": "",
+    "weight": "\u2014",
+    "damageType": "P",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special",
+    "special": "Disarm, see text"
+  },
+  {
+    "name": "Temple sword",
+    "type": "weapon",
+    "price": "30 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "19\u201320/x2",
+    "range": "",
+    "weight": "3 lbs.",
+    "damageType": "S",
+    "category": "One-Handed Melee Weapons",
+    "special": "Monk, trip"
+  },
+  {
+    "name": "Tennis gear",
+    "type": "gear",
+    "price": "3 sp",
+    "weight": "3 lbs."
+  },
+  {
+    "name": "Tent",
+    "type": "gear",
+    "price": "10 gp",
+    "weight": "20 lbs.",
+    "description": "A two-person tent."
+  },
+  {
+    "name": "Tent, Large",
+    "category": "gear",
+    "price": 30,
+    "weight": 40,
+    "description": "Portable shelter for up to eight people.",
+    "slot": "none"
+  },
+  {
+    "name": "Tent, Medium",
+    "category": "gear",
+    "price": 15,
+    "weight": 30,
+    "description": "Portable shelter for up to four people.",
+    "slot": "none"
+  },
+  {
+    "name": "Tent, Pavilion",
+    "category": "gear",
+    "price": 100,
+    "weight": 50,
+    "description": "Large decorated tent suitable for camps.",
+    "slot": "none"
+  },
+  {
+    "name": "Tent, Small",
+    "category": "gear",
+    "price": 10,
+    "weight": 20,
+    "description": "Portable shelter for one person.",
+    "slot": "none"
+  },
+  {
+    "name": "Tepoztopilli",
+    "type": "weapon",
+    "price": "8 gp",
+    "dmgS": "1d8",
+    "dmgM": "1d10",
+    "critical": "19\u201320/x2",
+    "range": "",
+    "weight": "8 lbs.",
+    "damageType": "P or S",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Fragile, reach"
+  },
+  {
+    "name": "Terbutje",
+    "type": "weapon",
+    "price": "5 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "19\u201320/x2",
+    "range": "",
+    "weight": "2 lbs.",
+    "damageType": "S",
+    "category": "One-Handed Melee Weapons",
+    "special": "Fragile"
+  },
+  {
+    "name": "Tetsubo",
+    "type": "weapon",
+    "price": "20 gp",
+    "dmgS": "1d8",
+    "dmgM": "1d10",
+    "critical": "x4",
+    "range": "",
+    "weight": "10 lbs.",
+    "damageType": "B",
+    "category": "Two-Handed Melee Weapons"
+  },
+  {
+    "name": "Thieves' tools",
+    "type": "gear",
+    "price": "30 gp",
+    "weight": "1 lb.",
+    "description": "Required to use Disable Device on locks and traps."
+  },
+  {
+    "name": "Thieves' tools, masterwork",
+    "type": "gear",
+    "price": "100 gp",
+    "weight": "2 lbs.",
+    "description": "+2 circumstance bonus on Disable Device checks."
+  },
+  {
+    "name": "Throwing axe",
+    "type": "weapon",
+    "price": "8 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "x2",
+    "range": "10 ft.",
+    "weight": "2 lbs.",
+    "damageType": "S",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special",
+    "description": "A small axe balanced for throwing."
+  },
+  {
+    "name": "Throwing shield",
+    "type": "weapon",
+    "price": "+50 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "x2",
+    "range": "20 ft.",
+    "weight": "\u2014",
+    "damageType": "B",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Performance, trip"
+  },
+  {
+    "name": "Thunderstone",
+    "category": "alchemical",
+    "price": 30,
+    "weight": 1,
+    "description": "Stone deafening creatures within 10-foot radius for 1 hour.",
+    "slot": "none"
+  },
+  {
+    "name": "Thurible",
+    "type": "gear",
+    "price": "50 gp",
+    "weight": "3 lbs."
+  },
+  {
+    "name": "Tiger fork",
+    "type": "weapon",
+    "price": "5 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "x2",
+    "range": "",
+    "weight": "8 lbs.",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Brace, monk"
+  },
+  {
+    "name": "Tindertwig",
+    "type": "gear",
+    "price": "1 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Tiny",
+    "type": "gear",
+    "price": "2 gp",
+    "weight": "5 lbs."
+  },
+  {
+    "name": "Tonfa",
+    "type": "weapon",
+    "price": "1 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "x2",
+    "range": "",
+    "weight": "1 lb.",
+    "damageType": "B",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special",
+    "special": "Blocking, monk"
+  },
+  {
+    "name": "Torch",
+    "category": "gear",
+    "price": 0.01,
+    "weight": 1,
+    "description": "Torch providing 20-foot radius of light, burns 1 hour.",
+    "slot": "none"
+  },
+  {
+    "name": "Tower shield",
+    "type": "armor",
+    "category": "Shield",
+    "price": "30 gp",
+    "acBonus": 4,
+    "maxDex": "+2",
+    "checkPenalty": "-10",
+    "spellFailure": "50%",
+    "weight": "45 lbs.",
+    "description": "A massive shield that provides total cover."
+  },
+  {
+    "name": "Trail rations",
+    "type": "gear",
+    "price": "5 sp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Travel cake mix",
+    "type": "gear",
+    "price": "1 sp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Traveling formula book",
+    "type": "gear",
+    "price": "10 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Traveling spellbook",
+    "type": "gear",
+    "price": "10 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Tri-point double-edged sword",
+    "type": "weapon",
+    "price": "12 gp",
+    "dmgS": "1d8",
+    "dmgM": "1d10",
+    "critical": "x3",
+    "range": "",
+    "weight": "14 lbs.",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons",
+    "special": "Reach"
+  },
+  {
+    "name": "Trident",
+    "type": "weapon",
+    "price": "15 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "x2",
+    "range": "10 ft.",
+    "weight": "4 lbs.",
+    "damageType": "P",
+    "category": "One-Handed Melee Weapons",
+    "special": "Brace",
+    "description": "A three-pronged spear that can be thrown."
+  },
+  {
+    "name": "Troll oil",
+    "type": "gear",
+    "price": "50 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Turtle",
+    "type": "gear",
+    "price": "3 gp",
+    "weight": "4 lbs."
+  },
+  {
+    "name": "Twitch tonic",
+    "type": "gear",
+    "price": "45 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Type I",
+    "type": "gear",
+    "price": "\u2014",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Type II",
+    "type": "gear",
+    "price": "\u2014",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Type III",
+    "type": "gear",
+    "price": "\u2014",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Type IV",
+    "type": "gear",
+    "price": "\u2014",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Unarmed strike",
+    "type": "weapon",
+    "price": "\u2014",
+    "dmgS": "1d2",
+    "dmgM": "1d3",
+    "critical": "x2",
+    "range": "",
+    "weight": "\u2014",
+    "damageType": "B",
+    "special": "Nonlethal"
+  },
+  {
+    "name": "Underwater heavy crossbow",
+    "type": "weapon",
+    "price": "100 gp",
+    "dmgS": "1d8",
+    "dmgM": "1d10",
+    "critical": "19\u201320/x2",
+    "range": "120 ft.",
+    "weight": "8 lbs.",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons"
+  },
+  {
+    "name": "Underwater light crossbow",
+    "type": "weapon",
+    "price": "70 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "19\u201320/x2",
+    "range": "80 ft.",
+    "weight": "4 lbs.",
+    "damageType": "P",
+    "category": "Two-Handed Melee Weapons"
+  },
+  {
+    "name": "Up to",
+    "type": "gear",
+    "price": "1,000 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Urumi",
+    "type": "weapon",
+    "price": "30 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "18\u201320/x2",
+    "range": "",
+    "weight": "6 lbs.",
+    "damageType": "S",
+    "category": "One-Handed Melee Weapons",
+    "special": "Distracting"
+  },
+  {
+    "name": "Vermin repellent",
+    "type": "gear",
+    "price": "5 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Vial",
+    "type": "gear",
+    "price": "1 gp",
+    "weight": "\u2014",
+    "description": "A small glass vial for holding liquids."
+  },
+  {
+    "name": "Waffle iron, common",
+    "type": "gear",
+    "price": "1 gp",
+    "weight": "5 lbs."
+  },
+  {
+    "name": "Wahaika",
+    "type": "weapon",
+    "price": "3 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "x2",
+    "range": "10 ft.",
+    "weight": "3 lbs.",
+    "damageType": "B",
+    "category": "One-Handed Melee Weapons",
+    "special": "Disarm"
+  },
+  {
+    "name": "Wakizashi",
+    "type": "weapon",
+    "price": "35 gp",
+    "dmgS": "1d4",
+    "dmgM": "1d6",
+    "critical": "18\u201320/x2",
+    "range": "",
+    "weight": "2 lbs.",
+    "damageType": "P or S",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special",
+    "special": "Deadly"
+  },
+  {
+    "name": "Wand of Burning Hands",
+    "type": "wand",
+    "price": "750 gp",
+    "weight": "\u2014",
+    "description": "50 charges, 1d4 fire damage in 15-ft. cone (CL 1st)."
+  },
+  {
+    "name": "Wand of Charm Person",
+    "category": "wand",
+    "price": 375,
+    "weight": 0,
+    "description": "Wand casting charm person with 50 charges.",
+    "slot": "none"
+  },
+  {
+    "name": "Wand of Cure Light Wounds",
+    "category": "wand",
+    "price": 375,
+    "weight": 0,
+    "description": "Wand casting cure light wounds with 50 charges.",
+    "slot": "none"
+  },
+  {
+    "name": "Wand of Cure Moderate Wounds",
+    "category": "wand",
+    "price": 2250,
+    "weight": 0,
+    "description": "Wand casting cure moderate wounds with 50 charges.",
+    "slot": "none"
+  },
+  {
+    "name": "Wand of Fireball",
+    "category": "wand",
+    "price": 3125,
+    "weight": 0,
+    "description": "Wand casting fireball with 50 charges.",
+    "slot": "none"
+  },
+  {
+    "name": "Wand of Hold Person",
+    "category": "wand",
+    "price": 750,
+    "weight": 0,
+    "description": "Wand casting hold person with 50 charges.",
+    "slot": "none"
+  },
+  {
+    "name": "Wand of Ice Storm",
+    "category": "wand",
+    "price": 5625,
+    "weight": 0,
+    "description": "Wand casting ice storm with 50 charges.",
+    "slot": "none"
+  },
+  {
+    "name": "Wand of Lightning Bolt",
+    "category": "wand",
+    "price": 3125,
+    "weight": 0,
+    "description": "Wand casting lightning bolt with 50 charges.",
+    "slot": "none"
+  },
+  {
+    "name": "Wand of Magic Missile",
+    "category": "wand",
+    "price": 375,
+    "weight": 0,
+    "description": "Wand casting magic missile with 50 charges.",
+    "slot": "none"
+  },
+  {
+    "name": "Wand of Scorching Ray",
+    "category": "wand",
+    "price": 1125,
+    "weight": 0,
+    "description": "Wand casting scorching ray with 50 charges.",
+    "slot": "none"
+  },
+  {
+    "name": "Wand of Shocking Grasp",
+    "category": "wand",
+    "price": 375,
+    "weight": 0,
+    "description": "Wand casting shocking grasp with 50 charges.",
+    "slot": "none"
+  },
+  {
+    "name": "Wand of Summon Monster I",
+    "category": "wand",
+    "price": 375,
+    "weight": 0,
+    "description": "Wand casting summon monster I with 50 charges.",
+    "slot": "none"
+  },
+  {
+    "name": "Warhammer",
+    "type": "weapon",
+    "price": "12 gp",
+    "dmgS": "1d6",
+    "dmgM": "1d8",
+    "critical": "x3",
+    "range": "",
+    "weight": "5 lbs.",
+    "damageType": "B",
+    "category": "One-Handed Melee Weapons",
+    "description": "A hammer with a weighted head designed for war."
+  },
+  {
+    "name": "Water clock",
+    "type": "gear",
+    "price": "1,000 gp",
+    "weight": "200 lbs."
+  },
+  {
+    "name": "Water purification sponge",
+    "type": "gear",
+    "price": "25 gp",
+    "weight": "1 lb."
+  },
+  {
+    "name": "Waterskin",
+    "category": "gear",
+    "price": 0.1,
+    "weight": 4,
+    "description": "Leather waterskin holds 1 gallon of water.",
+    "slot": "none"
+  },
+  {
+    "name": "Wax Key Blank",
+    "category": "gear",
+    "price": 15,
+    "weight": 0,
+    "description": "Blank key cast in wax for copying.",
+    "slot": "none"
+  },
+  {
+    "name": "Weapon cord",
+    "type": "gear",
+    "price": "1 sp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Whetstone",
+    "category": "gear",
+    "price": 0.02,
+    "weight": 1,
+    "description": "Stone for sharpening blades.",
+    "slot": "none"
+  },
+  {
+    "name": "Whip",
+    "type": "weapon",
+    "price": "1 gp",
+    "dmgS": "1d2",
+    "dmgM": "1d3",
+    "critical": "x2",
+    "range": "",
+    "weight": "2 lbs.",
+    "damageType": "S",
+    "category": "One-Handed Melee Weapons",
+    "special": "Disarm, nonlethal,",
+    "description": "A leather whip with 15-foot reach."
+  },
+  {
+    "name": "Wire saw, adamantine",
+    "type": "gear",
+    "price": "150 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Wire saw, common",
+    "type": "gear",
+    "price": "30 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Wismuth salix",
+    "type": "gear",
+    "price": "30 gp",
+    "weight": "\u2014"
+  },
+  {
+    "name": "Wooden",
+    "type": "armor",
+    "price": "20 gp",
+    "acBonus": 3,
+    "maxDex": "+3",
+    "checkPenalty": "\u20131",
+    "spellFailure": "15%",
+    "speed": "30 ft."
+  },
+  {
+    "name": "Wooden stake",
+    "type": "weapon",
+    "price": "\u2014",
+    "dmgS": "1d3",
+    "dmgM": "1d4",
+    "critical": "x2",
+    "range": "10 ft.",
+    "weight": "1 lb.",
+    "damageType": "P",
+    "category": "Light Melee Weapons"
+  },
+  {
+    "name": "Wrist Sheath",
+    "category": "gear",
+    "price": 1,
+    "weight": 1,
+    "description": "Hidden sheath worn on wrist for small blade.",
+    "slot": "none"
+  },
+  {
+    "name": "Wushu dart",
+    "type": "weapon",
+    "price": "2 sp",
+    "dmgS": "1d2",
+    "dmgM": "1d3",
+    "critical": "x2",
+    "range": "10 ft.",
+    "weight": "\u2014",
+    "damageType": "P",
+    "category": "Light Melee Weapons Price Dmg (S) Dmg (M) Critical Range Weight Type Special",
+    "special": "Monk"
+  }
+]

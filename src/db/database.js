@@ -1,0 +1,132 @@
+import Dexie from 'dexie';
+
+export const db = new Dexie('PathfinderDM');
+
+db.version(1).stores({
+  races: 'name, size',
+  classes: 'name, hd, bab',
+  monsters: '++id, name, cr, type',
+  spells: '++id, name, level, school, type',
+  weapons: '++id, name, category, type',
+  armor: '++id, name, type',
+  shields: '++id, name',
+  feats: '++id, name, category',
+  traps: '++id, name, cr',
+  treasure: '++id, name, type',
+  locations: '++id, name, terrain',
+  characters: '++id, name, race, class',
+  campaigns: '++id, name, createdAt',
+  gameLog: '++id, campaignId, text, type, time',
+});
+
+db.version(2).stores({
+  races: 'name, size',
+  classes: 'name, hd, bab',
+  monsters: '++id, name, cr, type',
+  spells: '++id, name, level, school, type',
+  weapons: '++id, name, category, type',
+  armor: '++id, name, type',
+  shields: '++id, name',
+  feats: '++id, name, category',
+  traps: '++id, name, cr',
+  treasure: '++id, name, type',
+  locations: '++id, name, terrain',
+  characters: '++id, name, race, class',
+  campaigns: '++id, name, createdAt',
+  campaignData: 'id, name',
+  campaignProgress: '++id, campaignId, chapterId, partId, encounterId, status',
+  gameLog: '++id, campaignId, text, type, time',
+});
+
+db.version(3).stores({
+  races: 'name, size',
+  classes: 'name, hd, bab',
+  monsters: '++id, name, cr, type',
+  spells: '++id, name, level, school, type',
+  weapons: '++id, name, category, type',
+  armor: '++id, name, type',
+  shields: '++id, name',
+  feats: '++id, name, category',
+  traps: '++id, name, cr',
+  treasure: '++id, name, type',
+  locations: '++id, name, terrain',
+  characters: '++id, name, race, class',
+  campaigns: '++id, name, createdAt',
+  campaignData: 'id, name',
+  campaignProgress: '++id, campaignId, chapterId, partId, encounterId, status',
+  npcs: '++id, name, cr, class, race',
+  gameLog: '++id, campaignId, text, type, time',
+});
+
+db.version(4).stores({
+  races: 'name, size',
+  classes: 'name, hd, bab',
+  monsters: '++id, name, cr, type',
+  spells: '++id, name, level, school, type',
+  weapons: '++id, name, category, type',
+  armor: '++id, name, type',
+  shields: '++id, name',
+  feats: '++id, name, category',
+  traps: '++id, name, cr',
+  treasure: '++id, name, type',
+  locations: '++id, name, terrain',
+  characters: '++id, name, race, class',
+  campaigns: '++id, name, createdAt',
+  campaignData: 'id, name',
+  campaignProgress: '++id, campaignId, chapterId, partId, encounterId, status',
+  npcs: '++id, name, cr, class, race',
+  savedGames: '++id, name, savedAt',
+  gameLog: '++id, campaignId, text, type, time',
+});
+
+db.version(5).stores({
+  races: 'name, size',
+  classes: 'name, hd, bab',
+  monsters: '++id, name, cr, type',
+  spells: '++id, name, level, school, type',
+  weapons: '++id, name, category, type',
+  armor: '++id, name, type',
+  shields: '++id, name',
+  feats: '++id, name, category',
+  traps: '++id, name, cr',
+  treasure: '++id, name, type',
+  locations: '++id, name, terrain',
+  characters: '++id, name, race, class',
+  campaigns: '++id, name, createdAt',
+  campaignData: 'id, name',
+  campaignProgress: '++id, campaignId, chapterId, partId, encounterId, status',
+  npcs: '++id, name, cr, class, race',
+  savedGames: '++id, name, savedAt',
+  gameLog: '++id, campaignId, text, type, time',
+  // v5: encountered NPCs and area items
+  encounteredNpcs: '++id, name, location, disposition, metAt',
+  areaItems: '++id, name, location, found',
+});
+
+db.version(6).stores({
+  races: 'name, size',
+  classes: 'name, hd, bab',
+  monsters: '++id, name, cr, type',
+  spells: '++id, name, level, school, type',
+  weapons: '++id, name, category, type',
+  armor: '++id, name, type',
+  shields: '++id, name',
+  feats: '++id, name, category',
+  traps: '++id, name, cr',
+  treasure: '++id, name, type',
+  locations: '++id, name, terrain',
+  characters: '++id, name, race, class',
+  campaigns: '++id, name, createdAt',
+  campaignData: 'id, name',
+  campaignProgress: '++id, campaignId, chapterId, partId, encounterId, status',
+  npcs: '++id, name, cr, class, race',
+  savedGames: '++id, name, savedAt',
+  gameLog: '++id, campaignId, text, type, time',
+  encounteredNpcs: '++id, name, location, disposition, metAt',
+  areaItems: '++id, name, location, found',
+  // v6: archetypes, skills reference, game rules
+  archetypes: '++id, name, class, source',
+  skillsRef: '++id, name, ability',
+});
+
+export default db;

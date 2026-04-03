@@ -1,0 +1,1036 @@
+{
+  "massCombat": {
+    "armyStats": {
+      "hp": "ACR x hit die (d8 default)",
+      "acr": "Average CR of units composing the army",
+      "dv": "10 + ACR + armor bonus + shield bonus",
+      "om": "ACR + commander bonus + troop type bonus",
+      "speed": "Slowest member base speed",
+      "consumption": "Size / 2 (minimum 1)",
+      "morale": "Starts at 0, range -4 to +4"
+    },
+    "armySizes": [
+      { "size": "Fine", "creatures": "1", "dvMod": 0, "omMod": 0, "consumptionDiv": 8 },
+      { "size": "Diminutive", "creatures": "10", "dvMod": 0, "omMod": 0, "consumptionDiv": 6 },
+      { "size": "Tiny", "creatures": "25", "dvMod": 0, "omMod": 0, "consumptionDiv": 4 },
+      { "size": "Small", "creatures": "50", "dvMod": 0, "omMod": 0, "consumptionDiv": 2 },
+      { "size": "Medium", "creatures": "100", "dvMod": 0, "omMod": 0, "consumptionDiv": 1 },
+      { "size": "Large", "creatures": "200", "dvMod": 2, "omMod": 2, "consumptionDiv": 1 },
+      { "size": "Huge", "creatures": "500", "dvMod": 4, "omMod": 4, "consumptionDiv": 1 },
+      { "size": "Gargantuan", "creatures": "1000", "dvMod": 6, "omMod": 6, "consumptionDiv": 1 },
+      { "size": "Colossal", "creatures": "2000+", "dvMod": 8, "omMod": 8, "consumptionDiv": 1 }
+    ],
+    "armyTypes": [
+      { "id": "infantry", "name": "Infantry", "omBonus": 0, "dvBonus": 0, "speed": 30, "consumption": 1, "description": "Foot soldiers with melee weapons" },
+      { "id": "cavalry", "name": "Cavalry", "omBonus": 2, "dvBonus": 0, "speed": 50, "consumption": 2, "description": "Mounted soldiers for rapid strikes" },
+      { "id": "siege", "name": "Siege Engines", "omBonus": 4, "dvBonus": -2, "speed": 0, "consumption": 3, "description": "Catapults, ballistae, battering rams" },
+      { "id": "archers", "name": "Ranged", "omBonus": 0, "dvBonus": 0, "speed": 30, "consumption": 1, "description": "Crossbowmen and archers" },
+      { "id": "skirmishers", "name": "Skirmishers", "omBonus": 1, "dvBonus": 1, "speed": 40, "consumption": 1, "description": "Light mobile troops" },
+      { "id": "heavy_infantry", "name": "Heavy Infantry", "omBonus": 1, "dvBonus": 2, "speed": 20, "consumption": 2, "description": "Heavily armored foot soldiers" }
+    ],
+    "tactics": [
+      { "id": "standard", "name": "Standard", "omMod": 0, "dvMod": 0, "description": "Balanced formation", "rounds": "all" },
+      { "id": "cautious", "name": "Cautious Combat", "omMod": -2, "dvMod": 2, "description": "Defensive posture", "rounds": "all" },
+      { "id": "cavalry_charge", "name": "Cavalry Experts", "omMod": 2, "dvMod": -2, "description": "Aggressive mounted charge", "requires": "cavalry", "rounds": "all" },
+      { "id": "defensive_wall", "name": "Defensive Wall", "omMod": -2, "dvMod": 2, "description": "Shield wall formation", "rounds": "all" },
+      { "id": "dirty_fighters", "name": "Dirty Fighters", "omMod": 6, "dvMod": 0, "description": "Underhanded tactics", "rounds": "1" },
+      { "id": "expert_flankers", "name": "Expert Flankers", "omMod": 2, "dvMod": -2, "description": "Coordinated flanking attacks", "rounds": "all" },
+      { "id": "false_retreat", "name": "False Retreat", "omMod": 2, "dvMod": -2, "description": "Feign retreat to lure enemy", "rounds": "2-3" },
+      { "id": "full_defense", "name": "Full Defense", "omMod": -4, "dvMod": 4, "description": "Turtle up behind shields", "rounds": "all" },
+      { "id": "hold_the_line", "name": "Hold the Line", "omMod": 0, "dvMod": 2, "description": "Stand firm against charges", "rounds": "all" },
+      { "id": "relentless_brutality", "name": "Relentless Brutality", "omMod": 4, "dvMod": -4, "description": "All-out assault", "rounds": "all" },
+      { "id": "siegebreaker", "name": "Siegebreaker", "omMod": 4, "dvMod": 0, "description": "Specialized vs fortifications", "rounds": "all", "requires": "siege" },
+      { "id": "sniper_support", "name": "Sniper Support", "omMod": 2, "dvMod": 0, "description": "Ranged fire support", "requires": "archers", "rounds": "all" },
+      { "id": "spellbreaker", "name": "Spellbreaker", "omMod": 1, "dvMod": 1, "description": "Counter enemy spellcasters", "rounds": "all" },
+      { "id": "withdraw", "name": "Withdraw", "omMod": -4, "dvMod": 4, "description": "Fighting retreat", "rounds": "all" }
+    ],
+    "commanderBonuses": [
+      { "charisma": "10-11", "bonus": 0 },
+      { "charisma": "12-15", "bonus": 1 },
+      { "charisma": "16-19", "bonus": 2 },
+      { "charisma": "20-23", "bonus": 3 },
+      { "charisma": "24-27", "bonus": 4 },
+      { "charisma": "28+", "bonus": 5 }
+    ],
+    "commanderTiers": [
+      { "tier": "1", "minLevel": 5, "abilities": ["Inspiring Word (+1 morale to adjacent armies once per battle)", "Strategic Formation (choose tactic with +1 bonus)"], "special": "Can command up to 3 armies" },
+      { "tier": "2", "minLevel": 10, "abilities": ["Inspiring Word (+2 morale)", "Strategic Formation (+1)", "Rally the Troops (end rout once per battle)"], "special": "Can command up to 5 armies" },
+      { "tier": "3", "minLevel": 15, "abilities": ["Inspiring Word (+3 morale)", "Strategic Formation (+2)", "Rally the Troops", "Master Tactician (select two tactics)"], "special": "Can command up to 10 armies" },
+      { "tier": "4", "minLevel": 20, "abilities": ["Inspiring Word (+4 morale)", "Strategic Formation (+3)", "Rally the Troops (use twice)", "Master Tactician (select three tactics)", "Legendary Commander (+2 OM and DV to all armies)"], "special": "Can command unlimited armies" }
+    ],
+    "specialAbilities": [
+      { "id": "alchemy", "name": "Alchemy", "omMod": 1, "dvMod": 0, "description": "Alchemical weapons deal extra damage" },
+      { "id": "breath_weapon", "name": "Breath Weapon", "omMod": 3, "dvMod": 0, "description": "Once per battle, +3 OM for one round" },
+      { "id": "burn", "name": "Burn", "omMod": 1, "dvMod": 0, "description": "Fire damage persists (1 hp per round)" },
+      { "id": "construct", "name": "Construct", "dvMod": 2, "description": "Immune to morale, no OM penalties from morale" },
+      { "id": "disease", "name": "Disease", "omMod": 1, "description": "Can inflict sickness on opposing army" },
+      { "id": "energy_drain", "name": "Energy Drain", "omMod": 2, "description": "Drains levels/abilities from enemy units" },
+      { "id": "energy_resistance", "name": "Energy Resistance", "dvMod": 2, "description": "+2 DV vs energy attacks" },
+      { "id": "fear", "name": "Fear", "effect": "Target must make morale check or -2 OM", "description": "Frightening presence" },
+      { "id": "flight", "name": "Flight", "omMod": 1, "dvMod": 1, "description": "Aerial advantage, avoid difficult terrain" },
+      { "id": "grab", "name": "Grab", "omMod": 2, "description": "Can grapple and restrain enemy armies" },
+      { "id": "heal", "name": "Heal", "effect": "Recover 1d6 HP per phase", "description": "Self-healing abilities" },
+      { "id": "mindless", "name": "Mindless", "dvMod": 1, "description": "Immune to morale effects and compulsion" },
+      { "id": "mount", "name": "Mount", "omMod": 2, "description": "Mounted combat advantage" },
+      { "id": "paralysis", "name": "Paralysis", "omMod": 1, "description": "Can immobilize enemy soldiers" },
+      { "id": "pounce", "name": "Pounce", "omMod": 2, "description": "Charge tactics gain additional benefit" },
+      { "id": "poison", "name": "Poison", "omMod": 1, "description": "Venomous attacks deal lingering damage" },
+      { "id": "regeneration", "name": "Regeneration", "effect": "Recover 1 hp per phase", "description": "Slow recovery during battle" },
+      { "id": "savage", "name": "Savage", "omMod": 1, "dvMod": -1, "description": "Reckless ferocity" },
+      { "id": "shield_wall", "name": "Shield Wall", "dvMod": 2, "omMod": -1, "description": "Defensive formation bonus" },
+      { "id": "spell_casting", "name": "Spellcasting", "omMod": 3, "description": "Magical support and direct damage" },
+      { "id": "teleport", "name": "Teleport", "omMod": 1, "dvMod": 1, "description": "Reposition instantly" },
+      { "id": "undead", "name": "Undead", "dvMod": 2, "description": "Immune to morale effects" }
+    ],
+    "moraleChecks": {
+      "triggers": [
+        "Losing a battle phase (taking damage)",
+        "Reduced to half HP",
+        "Commander is killed",
+        "Allied army destroyed or routed",
+        "Flanked by two or more armies",
+        "Surrounded with no escape route"
+      ],
+      "basedc": 15,
+      "dcMod": "Commander Charisma modifier +2",
+      "failureEffect": "Army takes -2 penalty on OM and DV until end of battle",
+      "routEffect": "If morale drops below -4 or army fails two consecutive checks, army routs and flees",
+      "routRecovery": "One hour rest and successful Diplomacy or Intimidate check (DC 20) by commander"
+    },
+    "battlefieldConditions": [
+      { "terrain": "Forest", "omMod": -2, "dvMod": 2, "speedMod": -10, "special": "Ranged attacks at -2" },
+      { "terrain": "Mountains", "omMod": -1, "dvMod": 2, "speedMod": -20, "special": "Cavalry at -4 OM" },
+      { "terrain": "Desert", "omMod": 0, "dvMod": -1, "speedMod": 0, "special": "Heat damage (1 hp per day)" },
+      { "terrain": "Urban", "omMod": 0, "dvMod": 3, "speedMod": 0, "special": "Siege engines +2 OM" },
+      { "terrain": "River/Water", "omMod": -2, "dvMod": 1, "speedMod": -30, "special": "Swim checks required" },
+      { "terrain": "Marsh", "omMod": -1, "dvMod": 2, "speedMod": -20, "special": "Disease risk (Fort DC 14)" },
+      { "terrain": "Open Plain", "omMod": 1, "dvMod": -1, "speedMod": 10, "special": "Cavalry at +2 OM" },
+      { "terrain": "Fortified Position", "omMod": -2, "dvMod": 4, "speedMod": 0, "special": "Defenders only" },
+      { "terrain": "Fog/Darkness", "omMod": -1, "dvMod": 2, "speedMod": -5, "special": "Ranged at -4, Perception at -4" },
+      { "terrain": "Night", "omMod": 0, "dvMod": 0, "speedMod": 0, "special": "Darkvision armies gain +2 DV" }
+    ],
+    "victoryPoints": {
+      "description": "Armies earn VP by achieving objectives. First to set limit wins.",
+      "vpPerRound": "1 VP for winning the round (OM > enemy OM)",
+      "vpObjectives": [
+        "Seize enemy base: 3 VP (once)",
+        "Destroy enemy army: 2 VP (per army)",
+        "Control battlefield: 1 VP (per round)",
+        "Save/protect ally: 2 VP (once)"
+      ],
+      "standardVictoryThreshold": 5
+    },
+    "armyRepair": {
+      "description": "Armies recover HP with rest and resources",
+      "perDay": "ACR x 2 HP recovered per day",
+      "withHealer": "ACR x 3 HP recovered per day",
+      "fullRecovery": "ACR days of rest required for full HP"
+    },
+    "armyConsumption": {
+      "description": "Food and supplies consumed per week",
+      "baseFormula": "Army Size x consumption rating = units per week",
+      "shortage": "Army takes -1 morale and loses 1d4 HP per week without supplies",
+      "storage": "Army can carry 2 weeks of supplies (requires supply wagons for more)"
+    },
+    "armySpeed": {
+      "description": "Distance traveled per day of march",
+      "Infantry": "20 miles per day",
+      "Cavalry": "40 miles per day",
+      "Siege": "10 miles per day",
+      "Mixed": "Speed of slowest unit type",
+      "ForcedMarch": "Double distance but -1 morale and ACR x 1 HP loss per day"
+    }
+  },
+  "reputation": {
+    "fameInfamyScale": {
+      "description": "Combined fame and infamy score from 0-55 points per region",
+      "famePoints": "Earned by heroic deeds, good news, public victories",
+      "infamyPoints": "Earned by villainous acts, criminal activity, public defeats",
+      "regional": "Each major region tracks separately",
+      "maxCombined": 55
+    },
+    "fameTiers": [
+      { "fame": 0, "tier": "Unknown", "benefits": "None", "recognition": "0%" },
+      { "fame": 1, "tier": "Known Locally", "benefits": "+1 on Diplomacy in home settlement", "recognition": "10%" },
+      { "fame": 5, "tier": "Locally Famous", "benefits": "+2 Diplomacy in home settlement, can purchase items 10% below cost", "recognition": "40%" },
+      { "fame": 10, "tier": "Regionally Known", "benefits": "+2 Diplomacy in region, free lodging in settlements, establish contacts", "recognition": "60%" },
+      { "fame": 15, "tier": "Regionally Prominent", "benefits": "+3 Diplomacy in region, audiences with minor nobles", "recognition": "75%" },
+      { "fame": 20, "tier": "Nationally Famous", "benefits": "+4 Diplomacy regionally, noble audiences, request favors from officials", "recognition": "85%" },
+      { "fame": 30, "tier": "Famous Across Lands", "benefits": "+4 Diplomacy widely, military units may offer allegiance, legends written", "recognition": "95%" },
+      { "fame": 40, "tier": "Continentally Renowned", "benefits": "+5 Diplomacy everywhere, kingdoms negotiate with you", "recognition": "99%" },
+      { "fame": 55, "tier": "Legendary", "benefits": "+6 Diplomacy everywhere, can demand armies, political power", "recognition": "100%" }
+    ],
+    "infamyTiers": [
+      { "infamy": 0, "tier": "Clean Reputation", "effects": "None", "reaction": "Neutral/Helpful" },
+      { "infamy": 1, "tier": "Shady", "effects": "+1 on Intimidate, -1 on Diplomacy with law-abiding", "reaction": "Wary" },
+      { "infamy": 5, "tier": "Disreputable", "effects": "+2 Intimidate, -2 Diplomacy with law-abiding, guards watchful", "reaction": "Hostile" },
+      { "infamy": 10, "tier": "Notorious", "effects": "+4 Intimidate, -4 Diplomacy, bounty hunters, refused service", "reaction": "Very Hostile" },
+      { "infamy": 20, "tier": "Reviled", "effects": "+6 Intimidate, -6 Diplomacy, armies sent, assassins hired", "reaction": "Immediate Hostility" },
+      { "infamy": 30, "tier": "Archvillain", "effects": "Kingdoms unite against you, crusades declared, no mercy", "reaction": "Kill on Sight" }
+    ],
+    "earnFame": [
+      { "action": "Complete a quest for settlement", "fame": "1-3", "dc": 10 },
+      { "action": "Defeat monster CR >= APL+2", "fame": "1-2", "dc": 12 },
+      { "action": "Save settlement from destruction", "fame": "3-5", "dc": 20 },
+      { "action": "Win public tournament", "fame": "1-2", "dc": 15 },
+      { "action": "Donate 1000+ gp to public works", "fame": "1", "dc": 0 },
+      { "action": "Publish notable discovery", "fame": "1-2", "dc": 15 },
+      { "action": "Defeat rival in public", "fame": "1-3", "dc": "varies" },
+      { "action": "Cure plague or disaster", "fame": "2-4", "dc": 18 },
+      { "action": "Discover ancient ruin", "fame": "1-2", "dc": 15 },
+      { "action": "Master rare skill publicly", "fame": "1-2", "dc": 16 }
+    ],
+    "loseFame": [
+      { "action": "Commit crime publicly", "fame": "-1 to -5", "dc": 12 },
+      { "action": "Fail major quest publicly", "fame": "-1 to -3", "dc": 10 },
+      { "action": "Betray ally", "fame": "-2 to -5", "dc": 15 },
+      { "action": "Absent from region 1+ months", "fame": "-1", "dc": 0 },
+      { "action": "Lose duel publicly", "fame": "-1 to -2", "dc": 15 },
+      { "action": "Flee from battle", "fame": "-2 to -4", "dc": 12 },
+      { "action": "Be imprisoned", "fame": "-1 to -3", "dc": 10 },
+      { "action": "Destroy property/innocents", "fame": "-2 to -5", "dc": 18 },
+      { "action": "Refuse help when able", "fame": "-1", "dc": 0 },
+      { "action": "Break oath publicly", "fame": "-3 to -5", "dc": 18 },
+      { "action": "Murder for hire/revenge", "fame": "-3 to -5", "dc": 18 },
+      { "action": "Betray settlement", "fame": "-5", "dc": 20 }
+    ],
+    "spendFame": [
+      { "benefit": "Item Procurement", "cost": 3, "description": "Purchase rare item at normal price (normally unavailable)", "prerequisites": "Fame >= 5" },
+      { "benefit": "Circumstance Bonus", "cost": 1, "description": "+2 circumstance bonus on single check", "prerequisites": "Spend once per week" },
+      { "benefit": "Lore Access", "cost": 2, "description": "Access hidden knowledge/secrets", "prerequisites": "Fame >= 10" },
+      { "benefit": "Skill Specialization", "cost": 5, "description": "Train in new skill with +2 bonus", "prerequisites": "Fame >= 15" },
+      { "benefit": "Align Identity", "cost": 4, "description": "Gain special status (knight, monk, etc.)", "prerequisites": "Fame >= 10" },
+      { "benefit": "Title", "cost": 3, "description": "Gain minor noble title", "prerequisites": "Fame >= 10" },
+      { "benefit": "Estate", "cost": 8, "description": "Gain property/base of operations", "prerequisites": "Fame >= 20" },
+      { "benefit": "Base of Operations", "cost": 10, "description": "Establish headquarters", "prerequisites": "Fame >= 25" },
+      { "benefit": "Cohort", "cost": 6, "description": "Gain loyal follower (as Leadership feat)", "prerequisites": "Fame >= 15" },
+      { "benefit": "Political Power", "cost": 12, "description": "Influence government directly", "prerequisites": "Fame >= 30" },
+      { "benefit": "Army Recruitment", "cost": 7, "description": "Recruit small military force", "prerequisites": "Fame >= 20" },
+      { "benefit": "Magical Services", "cost": 5, "description": "Spellcaster performs service for free", "prerequisites": "Fame >= 15" },
+      { "benefit": "Amnesty", "cost": 20, "description": "Clear criminal record", "prerequisites": "Fame >= 40" },
+      { "benefit": "Legendary Status", "cost": 15, "description": "Automatic success on social interaction", "prerequisites": "Fame >= 35" },
+      { "benefit": "Blessing", "cost": 4, "description": "Divine boon from church/religion", "prerequisites": "Fame >= 10" }
+    ],
+    "spheresOfInfluence": [
+      {
+        "sphere": "Church",
+        "benefits": [
+          "Free healing/restoration (up to 2nd level spells)",
+          "+1 Diplomacy with religious figures",
+          "Consecrated ground available",
+          "Access to religious texts and relics",
+          "Sanctuary from persecution"
+        ],
+        "drawbacks": [
+          "Must adhere to faith's tenets",
+          "Cannot use unholy methods",
+          "Betrayal results in excommunication",
+          "May be ordered on quests"
+        ],
+        "cost": "1 Fame per favor"
+      },
+      {
+        "sphere": "Criminal",
+        "benefits": [
+          "Fencing stolen goods",
+          "+1 Intimidate with criminals",
+          "Access to black market",
+          "Hideouts available",
+          "Early warning of law enforcement"
+        ],
+        "drawbacks": [
+          "Must commit crimes for favor",
+          "Gang wars and rivals",
+          "Betrayal means death",
+          "Fame becomes infamy"
+        ],
+        "cost": "1 Infamy per favor"
+      },
+      {
+        "sphere": "Government",
+        "benefits": [
+          "Legal authority in disputes",
+          "+1 Diplomacy with officials",
+          "Military support available",
+          "Taxation authority",
+          "Legal prosecution of enemies"
+        ],
+        "drawbacks": [
+          "Must serve government interests",
+          "Constant political intrigue",
+          "Cannot act against crown",
+          "Loss of favor means arrest"
+        ],
+        "cost": "2 Fame per favor"
+      },
+      {
+        "sphere": "Mercantile",
+        "benefits": [
+          "10-25% discount on purchases",
+          "+1 Diplomacy with merchants",
+          "Access to trade routes",
+          "Investment profits",
+          "Price information and contracts"
+        ],
+        "drawbacks": [
+          "Must maintain business relationships",
+          "Betrayal ends all trade",
+          "Economic rivals",
+          "Business failures affect reputation"
+        ],
+        "cost": "1 Fame per favor"
+      },
+      {
+        "sphere": "Military",
+        "benefits": [
+          "Recruit soldiers/mercenaries",
+          "+1 Diplomacy with soldiers",
+          "Access to military equipment",
+          "Fortifications available",
+          "Martial training"
+        ],
+        "drawbacks": [
+          "Subject to military chain of command",
+          "Must fight for faction",
+          "Desertion = infamy loss",
+          "War drafts available"
+        ],
+        "cost": "2 Fame per favor"
+      },
+      {
+        "sphere": "Noble",
+        "benefits": [
+          "Title and social status",
+          "+2 Diplomacy with nobility",
+          "Estates and lands",
+          "Political alliances",
+          "Immunity from common law"
+        ],
+        "drawbacks": [
+          "Constant political machinations",
+          "Dueling honor code required",
+          "Family obligations",
+          "High society expectations"
+        ],
+        "cost": "3 Fame per favor"
+      }
+    ]
+  },
+  "honor": {
+    "honorCode": {
+      "description": "Honor represents a character's adherence to a personal or cultural code of conduct.",
+      "startingHonor": "3 + CHA modifier (minimum 1)",
+      "maxHonor": 100,
+      "minHonor": 0,
+      "gainPerLevel": "+1 per level if maintaining honor code"
+    },
+    "honorCodeTemplates": [
+      {
+        "code": "Bushido",
+        "tenets": [
+          "Loyalty to liege above all",
+          "Never flee from combat",
+          "Mercy to worthy foes",
+          "Protect the weak",
+          "Maintain personal honor"
+        ],
+        "bonuses": [
+          "+1 morale on attacks vs dishonorable foes",
+          "Can spend 1 honor to reroll failed save vs compulsion",
+          "+2 bonus when defending allies"
+        ],
+        "violations": [
+          "Flee combat: -3 honor",
+          "Betray liege: -10 honor",
+          "Kill helpless: -4 honor",
+          "Use poison: -5 honor"
+        ]
+      },
+      {
+        "code": "Chivalry",
+        "tenets": [
+          "Defend the innocent",
+          "Uphold justice",
+          "Respect authority",
+          "Honor one's word",
+          "Show mercy to defeated"
+        ],
+        "bonuses": [
+          "+1 to helping others in need",
+          "Allies gain +1 morale when you lead",
+          "Can spend 1 honor to cure charm effect"
+        ],
+        "violations": [
+          "Harm innocent: -5 honor",
+          "Break oath: -4 honor",
+          "Show cowardice: -3 honor",
+          "Refuse aid to worthy: -2 honor"
+        ]
+      },
+      {
+        "code": "Criminal Honor",
+        "tenets": [
+          "Respect the code",
+          "Never inform authorities",
+          "Share plunder fairly",
+          "Protect crew/gang",
+          "Settle debts"
+        ],
+        "bonuses": [
+          "+1 Intimidate with criminals",
+          "Underworld contacts offer better rates",
+          "Gain info from criminal networks easier"
+        ],
+        "violations": [
+          "Inform authorities: -10 honor",
+          "Steal from crew: -6 honor",
+          "Abandon crew in danger: -5 honor",
+          "Fail to pay debt: -4 honor"
+        ]
+      },
+      {
+        "code": "Gladiatorial",
+        "tenets": [
+          "Master combat arts",
+          "Defeat opponents fairly",
+          "Gain fame through victory",
+          "Respect worthy fighters",
+          "Never back down"
+        ],
+        "bonuses": [
+          "+1 attack vs cowardly foes",
+          "Can spend 1 honor to make one attack as full attack",
+          "Crowd support grants temporary bonus"
+        ],
+        "violations": [
+          "Use poison/magic on equal opponent: -4 honor",
+          "Flee duel: -5 honor",
+          "Kill already-beaten opponent: -3 honor",
+          "Cheat in competition: -3 honor"
+        ]
+      }
+    ],
+    "honorEvents": [
+      { "action": "Defeat foe in fair combat", "modifier": 1, "dc": 10 },
+      { "action": "Keep sworn oath", "modifier": 2, "dc": 12 },
+      { "action": "Protect weak or innocent", "modifier": 1, "dc": 10 },
+      { "action": "Show mercy to defeated foe", "modifier": 1, "dc": 11 },
+      { "action": "Complete dangerous quest for others", "modifier": 2, "dc": 13 },
+      { "action": "Win formal duel", "modifier": 3, "dc": 15 },
+      { "action": "Sacrifice personal gain for honor", "modifier": 2, "dc": 12 },
+      { "action": "Establish justice in settlement", "modifier": 2, "dc": 14 },
+      { "action": "Defend honor in public duel", "modifier": 1, "dc": 12 },
+      { "action": "Protect sacred object/place", "modifier": 2, "dc": 13 },
+      { "action": "Teach worthy apprentice", "modifier": 1, "dc": 11 },
+      { "action": "Stand against overwhelming odds", "modifier": 2, "dc": 14 },
+      { "action": "Break sworn oath", "modifier": -4, "dc": 10 },
+      { "action": "Attack unarmed or helpless foe", "modifier": -2, "dc": 10 },
+      { "action": "Flee from honorable combat", "modifier": -2, "dc": 10 },
+      { "action": "Commit theft or fraud", "modifier": -3, "dc": 10 },
+      { "action": "Betray ally", "modifier": -5, "dc": 15 },
+      { "action": "Use poison", "modifier": -3, "dc": 12 },
+      { "action": "Murder (non-combat)", "modifier": -5, "dc": 15 },
+      { "action": "Refuse aid to worthy", "modifier": -1, "dc": 11 }
+    ],
+    "honorBenefits": [
+      { "threshold": 10, "benefit": "+1 morale bonus on saves vs fear", "special": "Morale bonus increases to +2 at 25 honor" },
+      { "threshold": 20, "benefit": "+1 morale bonus on attack rolls when defending allies", "special": "Increase to +2 at 40 honor" },
+      { "threshold": 30, "benefit": "Once per day, reroll a failed save (must take second result)", "special": "Use twice per day at 50 honor" },
+      { "threshold": 40, "benefit": "+2 morale bonus on saves vs compulsion and charm", "special": "Immune to charm at 60 honor" },
+      { "threshold": 50, "benefit": "Allies within 30 ft gain +1 morale on attack rolls and saves vs fear", "special": "+2 at 70 honor" },
+      { "threshold": 60, "benefit": "Gain +1 effective level for leadership purposes", "special": "+2 at 80 honor" },
+      { "threshold": 70, "benefit": "Once per week, auto-success on single attack roll", "special": "Use twice per week at 85 honor" },
+      { "threshold": 80, "benefit": "+1 to all saves, gains legendary status", "special": "+2 at 95 honor" }
+    ],
+    "dishonerThresholds": [
+      { "threshold": -10, "effect": "-1 to all saves and attacks" },
+      { "threshold": -20, "effect": "-2 to all saves and attacks, -1 to AC" },
+      { "threshold": -30, "effect": "Loses all honor-based abilities, allies suffer -1 morale" },
+      { "threshold": -40, "effect": "Automatically fail against honorable opponents in single combat" }
+    ],
+    "atonementMechanics": {
+      "description": "Restore lost honor through great deeds",
+      "requirements": [
+        "Perform the action that caused dishonor but correctly",
+        "Make grand gesture or donation",
+        "Quest set by honor code arbiter"
+      ],
+      "restoreAmount": "2-4 honor per completed atonement",
+      "castSpell": "Atonement spell: restores 5d6 honor"
+    }
+  },
+  "contacts": {
+    "trustLevels": [
+      { "level": 0, "name": "Stranger", "dc": 20, "risk": "Will not help", "reliability": "0%", "dcModifier": 0 },
+      { "level": 1, "name": "Acquaintance", "dc": 15, "risk": "Will not risk anything", "reliability": "50%", "dcModifier": -2 },
+      { "level": 2, "name": "Associate", "dc": 12, "risk": "Minor risk only", "reliability": "70%", "dcModifier": -4 },
+      { "level": 3, "name": "Friend", "dc": 10, "risk": "Moderate risk for you", "reliability": "85%", "dcModifier": -6 },
+      { "level": 4, "name": "Confidant", "dc": 8, "risk": "Significant risk", "reliability": "95%", "dcModifier": -8 },
+      { "level": 5, "name": "Bonded Ally", "dc": 5, "risk": "Life on the line", "reliability": "99%", "dcModifier": -10 }
+    ],
+    "contactTypes": [
+      { "id": "informant", "name": "Informant", "skills": ["Knowledge (local)", "Perception"], "services": ["Rumors", "Gossip", "Intelligence", "Surveillance"], "dc": "15", "favors": "1-3 favors for info" },
+      { "id": "fence", "name": "Fence", "skills": ["Appraise", "Sleight of Hand"], "services": ["Buy stolen goods", "Sell contraband", "Launder money", "Smuggle items"], "dc": "18", "favors": "2-5 favors for service" },
+      { "id": "healer", "name": "Healer", "skills": ["Heal", "Knowledge (nature)"], "services": ["Medical care", "Poison antidotes", "Healing", "Resurrection"], "dc": "12", "favors": "1-3 favors" },
+      { "id": "patron", "name": "Patron", "skills": ["Diplomacy", "Knowledge (nobility)"], "services": ["Funding", "Introductions", "Political cover", "Investments"], "dc": "16", "favors": "3-5 favors" },
+      { "id": "muscle", "name": "Muscle", "skills": ["Intimidate", "Perception"], "services": ["Protection", "Enforcement", "Violence", "Scouting"], "dc": "14", "favors": "2-4 favors" },
+      { "id": "smuggler", "name": "Smuggler", "skills": ["Stealth", "Survival"], "services": ["Move goods", "Transport people", "Evade authorities", "Disable patrols"], "dc": "16", "favors": "2-5 favors" },
+      { "id": "sage", "name": "Sage", "skills": ["Knowledge (arcana)", "Spellcraft"], "services": ["Magical expertise", "Lore", "Research", "Spell preparation"], "dc": "15", "favors": "2-4 favors" },
+      { "id": "official", "name": "Official", "skills": ["Diplomacy", "Knowledge (local)"], "services": ["Bureaucratic assistance", "Legal favors", "Records access", "Permits"], "dc": "17", "favors": "2-4 favors" },
+      { "id": "scholar", "name": "Scholar", "skills": ["Knowledge (any)", "Linguistics"], "services": ["Research", "Translation", "Historical info", "Academic connections"], "dc": "14", "favors": "1-3 favors" },
+      { "id": "merchant", "name": "Merchant", "skills": ["Appraise", "Profession (merchant)"], "services": ["Goods purchase", "Trade routes", "Market information", "Investments"], "dc": "13", "favors": "1-2 favors" },
+      { "id": "soldier", "name": "Soldier", "skills": ["Intimidate", "Knowledge (local)"], "services": ["Military info", "Guard duty", "Recruitment", "Intelligence"], "dc": "14", "favors": "2-3 favors" },
+      { "id": "noble", "name": "Noble", "skills": ["Diplomacy", "Knowledge (nobility)"], "services": ["Political power", "Alliances", "Armies", "Political cover"], "dc": "18", "favors": "3-6 favors" }
+    ],
+    "askFavorDC": {
+      "trivial": { "dc": 5, "example": "Confirm a rumor", "risk": "None" },
+      "simple": { "dc": 10, "example": "Provide minor information", "risk": "Minimal" },
+      "moderate": { "dc": 15, "example": "Small favor, minor risk", "risk": "Moderate" },
+      "difficult": { "dc": 20, "example": "Major favor, significant risk", "risk": "High" },
+      "dangerous": { "dc": 25, "example": "Illegal/immoral act", "risk": "Very High" },
+      "life_threatening": { "dc": 30, "example": "Risk death or discovery", "risk": "Extreme" }
+    },
+    "contactCultivation": {
+      "improveTrust": {
+        "timeRequired": "1d4 weeks per trust level increase",
+        "goldRequired": "100-500 gp per contact level",
+        "influenceRequired": "2-4 favors to previous trust level",
+        "successDC": "10 + contact's level"
+      },
+      "maintainTrust": {
+        "frequency": "Once per month minimum",
+        "action": "Deliver message, small favor, or gift worth 50+ gp",
+        "failure": "Trust decreases by 1 level per month of inactivity"
+      }
+    },
+    "betrayalMechanics": {
+      "triggers": [
+        "Expose contact to authorities",
+        "Fail to complete promised favor",
+        "Speak negatively of contact",
+        "Compete with contact for resources",
+        "Demand impossible task"
+      ],
+      "consequences": [
+        "Contact immediately hostile",
+        "Spreads rumors about betrayer (-2 to reputation checks)",
+        "Contact becomes enemy (may hire assassin)",
+        "Access denied to all contacts in network",
+        "Price on head among underworld (500-5000 gp)"
+      ],
+      "redemption": "Requires major favor, apology, 2-4 weeks time, and successful DC 20 Diplomacy check"
+    },
+    "contactDeparture": {
+      "death": "Ally must avenge or accept loss",
+      "imprisonment": "Requires rescue or bail to maintain contact",
+      "relocation": "Contact moves away (relocate or lose)",
+      "promotion": "Contact rises in position (may become patron instead)",
+      "retirement": "Contact leaves profession (becomes enemy or friend)"
+    }
+  },
+  "investigations": {
+    "caseComplexity": [
+      { "level": "Simple", "cluesNeeded": 2, "estimatedTime": "1-2 sessions", "baseDC": 12, "examples": "Missing item, minor theft, simple disappearance" },
+      { "level": "Moderate", "cluesNeeded": 4, "estimatedTime": "3-5 sessions", "baseDC": 15, "examples": "Murder, conspiracy, smuggling ring" },
+      { "level": "Complex", "cluesNeeded": 6, "estimatedTime": "6-10 sessions", "baseDC": 18, "examples": "Large conspiracy, serial crimes, organized crime" },
+      { "level": "Legendary", "cluesNeeded": 8, "estimatedTime": "11+ sessions", "baseDC": 20, "examples": "Powerful organization, god-touched event, world-shaking plot" }
+    ],
+    "clueTypes": [
+      { "id": "physical", "name": "Physical Evidence", "skills": ["Perception", "Heal", "Survival", "Craft"], "description": "Footprints, blood, damage, items left behind", "investigation": "Search DC varies 10-25" },
+      { "id": "witness", "name": "Witness Testimony", "skills": ["Diplomacy", "Intimidate", "Sense Motive", "Bluff"], "description": "What people saw, heard, or know", "investigation": "Opposed Sense Motive vs Bluff" },
+      { "id": "document", "name": "Documentary Evidence", "skills": ["Linguistics", "Knowledge (local)", "Profession"], "description": "Letters, records, maps, contracts", "investigation": "Read Language or Decipher Script DC 15-25" },
+      { "id": "arcane", "name": "Magical Evidence", "skills": ["Spellcraft", "Knowledge (arcana)", "Detect Magic"], "description": "Magical residue, enchantment traces, divination", "investigation": "Spellcraft DC varies 12-30" },
+      { "id": "mundane", "name": "Mundane Trace", "skills": ["Craft", "Appraise", "Profession"], "description": "Weapon, tool marks, material analysis", "investigation": "Craft/Appraise DC 12-20" },
+      { "id": "astrology", "name": "Astrological/Occult", "skills": ["Knowledge (arcana)", "Spellcraft"], "description": "Star patterns, divination, prophecy", "investigation": "Knowledge check DC 15-25" },
+      { "id": "financial", "name": "Financial Records", "skills": ["Knowledge (local)", "Profession (accountant)"], "description": "Money flows, transactions, debts", "investigation": "Knowledge or Profession DC 13-22" },
+      { "id": "biological", "name": "Biological Evidence", "skills": ["Heal", "Knowledge (nature)", "Survival"], "description": "DNA, blood type, tissue analysis", "investigation": "Heal check DC 15-25" }
+    ],
+    "researchRules": {
+      "baseTime": "1d4 hours per research check",
+      "knowledgeDC": "10 + topic obscurity (0-15)",
+      "libraryBonus": { "poor": "+0", "common": "+2", "good": "+4", "exceptional": "+6" },
+      "assistBonus": "+2 per assistant with relevant Knowledge skill",
+      "libraryAccess": "Requires permission or theft",
+      "timeToAccess": "1-24 hours depending on library and popularity"
+    },
+    "redHerrings": {
+      "description": "False clues that lead away from truth",
+      "implant": "Intentionally placed by criminal or by chance",
+      "detection": "Opposed Investigation vs Deception check",
+      "consequence": "Following leads to dead ends and wasted time",
+      "resolution": "Recognize inconsistency with other clues or find contrary evidence"
+    },
+    "deductionSystem": {
+      "description": "Combine clues to reach conclusions",
+      "clueConnection": "Connect 2+ clues for insight (Logic check DC 12-20)",
+      "falseConclu­sion": "Wrong deduction leads to false arrest or wild goose chase",
+      "correctConclusion": "Deduction narrows down suspects or motive",
+      "breakthrough": "Combining 4+ clues provides major revelation"
+    },
+    "interrogation": {
+      "diplomacyDC": "10 + suspect's Will save + Sense Motive",
+      "intimidateDC": "12 + suspect's Will save",
+      "bluffDC": "15 + suspect's Sense Motive",
+      "timeRequired": "10 minutes per interrogation",
+      "toughness": "Suspects can resist over time",
+      "falseConfession": "Poor technique leads to innocent confession"
+    },
+    "chainOfCustody": {
+      "description": "Maintain evidence integrity for legal proceedings",
+      "requirement": "Document all evidence handling",
+      "penalty": "Lack of chain = evidence inadmissible",
+      "forensicBonus": "Proper handling grants +2 investigation bonus"
+    }
+  },
+  "sanity": {
+    "sanityScore": {
+      "initial": "WIS score x 2 + CHA score",
+      "maximum": "WIS score x 2 + CHA score",
+      "threshold": "WIS score (edge of madness)",
+      "zero": "Permanent insanity unless restored",
+      "recovery": "Recovers 1-3 per week with therapy"
+    },
+    "sanityTriggers": [
+      { "trigger": "Witnessing grisly murder", "damage": "1d6", "save": "Will DC 15", "severity": "Moderate" },
+      { "trigger": "Discovering friend's corpse", "damage": "1d6+1", "save": "Will DC 16", "severity": "Moderate" },
+      { "trigger": "Seeing demon/aberration first time", "damage": "1d10", "save": "Will DC 18", "severity": "High" },
+      { "trigger": "Experiencing haunt", "damage": "1d6", "save": "Will DC 15", "severity": "Moderate" },
+      { "trigger": "Being tortured", "damage": "2d6", "save": "Will DC 20", "severity": "Severe" },
+      { "trigger": "Witnessing mass death (20+)", "damage": "2d10", "save": "Will DC 22", "severity": "Severe" },
+      { "trigger": "Encountering Great Old One", "damage": "3d10+5", "save": "Will DC 30", "severity": "Catastrophic" },
+      { "trigger": "Reading forbidden tome", "damage": "1d10", "save": "Will DC 20", "severity": "High" },
+      { "trigger": "Time distortion experience", "damage": "1d8", "save": "Will DC 17", "severity": "High" },
+      { "trigger": "Betrayal by trusted ally", "damage": "1d4", "save": "Will DC 14", "severity": "Moderate" },
+      { "trigger": "Near-death experience", "damage": "1d6", "save": "Will DC 15", "severity": "Moderate" },
+      { "trigger": "Personal failure/loss", "damage": "1d4", "save": "Will DC 12", "severity": "Low" },
+      { "trigger": "Undead encounter", "damage": "1d6", "save": "Will DC 15", "severity": "Moderate" },
+      { "trigger": "Reality unraveling", "damage": "1d12", "save": "Will DC 25", "severity": "Catastrophic" },
+      { "trigger": "Psychic/mind attack", "damage": "1d8", "save": "Will DC 16", "severity": "High" }
+    ],
+    "madnessEffects": [
+      { "id": "phobia", "name": "Phobia", "duration": "1d6 days", "effect": "Shaken when near trigger, panicked on close contact", "save": "Will DC 12/day to suppress" },
+      { "id": "paranoia", "name": "Paranoia", "duration": "1d6 days", "effect": "-4 on Diplomacy/Sense Motive, cannot benefit from Aid Another", "save": "Will DC 14/day" },
+      { "id": "hallucination", "name": "Hallucinations", "duration": "1d6 hours", "effect": "50% chance per round of acting on hallucination", "save": "Will DC 13/hour" },
+      { "id": "amnesia", "name": "Amnesia", "duration": "Permanent until cured", "effect": "Lose all skill ranks, feats, class abilities (retain BAB, saves, HP)", "save": "Restoration spell only" },
+      { "id": "mania", "name": "Mania/Depression", "duration": "2d6 days", "effect": "Alternating rounds of reckless bravery (+2 attack, -2 AC) and despair (-2 all)", "save": "Will DC 15/day" },
+      { "id": "dissociation", "name": "Dissociative Disorder", "duration": "1d6 days", "effect": "Alternate personality takes over 25% of the time (GM controls)", "save": "Will DC 13/day" },
+      { "id": "catatonia", "name": "Catatonia", "duration": "2d6 hours", "effect": "Helpless, unresponsive to stimuli", "save": "Restoration spell" },
+      { "id": "psychosis", "name": "Psychosis", "duration": "2d6 days", "effect": "Cannot distinguish friend from foe, 50% chance to attack nearest", "save": "Will DC 16/day" },
+      { "id": "compulsion", "name": "Compulsion", "duration": "1d4 days", "effect": "Must perform action (counting, touching, speaking) or take -2 all", "save": "Will DC 14/day" },
+      { "id": "depression", "name": "Depression", "duration": "1d6 days", "effect": "-4 to Charisma-based checks, -2 HP per day (voluntary), suicidal thoughts", "save": "Will DC 13/day" },
+      { "id": "obsession", "name": "Obsession", "duration": "2d4 days", "effect": "Fixates on single topic, -4 concentration checks on other tasks", "save": "Will DC 12/day" },
+      { "id": "delusion", "name": "Delusion", "duration": "1d8 days", "effect": "Believes false information, acts based on delusion regardless of evidence", "save": "Will DC 15/day" }
+    ],
+    "sanityMilestones": [
+      { "threshold": "75%", "effect": "Character feels uneasy, -1 to concentration checks" },
+      { "threshold": "50%", "effect": "Character feels paranoid, -2 to Sense Motive, gains Phobia or mild hallucination" },
+      { "threshold": "25%", "effect": "Character feels desperate, -4 to social checks, prone to recklessness" },
+      { "threshold": "0%", "effect": "Permanent insanity, must make daily Will save vs new madness effect" }
+    ],
+    "recoveryMethods": [
+      { "method": "Natural Recovery", "description": "1 sanity point per week of rest in safe conditions", "requirement": "Safe location, no stressors", "time": "1 week per point" },
+      { "method": "Magical Recovery", "description": "Restoration restores 2d6, Greater Restoration restores all, Heal restores 3d6", "requirement": "Access to spellcaster", "time": "Instant" },
+      { "method": "Therapy/Counseling", "description": "Heal check DC 20 once per week, success restores 1d4 sanity", "requirement": "Qualified healer/therapist", "time": "1 week per recovery" },
+      { "method": "Quest Resolution", "description": "Completing quest that caused trauma restores 1d6 sanity", "requirement": "Address root cause", "time": "Variable" }
+    ],
+    "indefiniteMadness": {
+      "description": "Permanent madness requiring 'impossible' cures",
+      "triggers": "Multiple permanent insanities or reaching 0 sanity twice",
+      "effects": "Lose 1 ability point per day, cumulative -2 to all checks per permanent madness",
+      "recovery": "Wish, Miracle, or completing major character arc"
+    },
+    "groupSanity": {
+      "massPanic": "One character's failed save triggers group panic save DC 15 (fail = flee)",
+      "sharedDelusion": "Group of characters can all accept same delusion, reinforcing each other",
+      "morale": "Party sanity loss applies -1 morale to combat actions if loss is recent"
+    }
+  },
+  "crafting": {
+    "magicItemCreation": {
+      "baseCost": "Half item market price",
+      "baseTime": "1 day per 1,000 gp of base cost (minimum 1 day)",
+      "craftingDC": "5 + caster level of the item",
+      "failurePenalty": "Lose materials (half cost) on natural 1, cursed item created on critical failure"
+    },
+    "magicItemTypes": [
+      { "type": "Potion", "feat": "Brew Potion", "casterLevel": 3, "spellMax": 3, "baseCost": "spell level x CL x 25 gp", "time": "1 day per 2 levels" },
+      { "type": "Scroll", "feat": "Scribe Scroll", "casterLevel": 1, "spellMax": 9, "baseCost": "spell level x CL x 12.5 gp", "time": "1 day per spell level" },
+      { "type": "Wand", "feat": "Craft Wand", "casterLevel": 5, "spellMax": 4, "baseCost": "spell level x CL x 375 gp (50 charges)", "time": "1 day per 5 levels" },
+      { "type": "Wondrous Item", "feat": "Craft Wondrous Item", "casterLevel": 3, "spellMax": 9, "baseCost": "Half market price", "time": "1 day per 1000 gp" },
+      { "type": "Arms and Armor", "feat": "Craft Magic Arms and Armor", "casterLevel": 5, "spellMax": 9, "baseCost": "Half market price", "time": "1 day per 1000 gp" },
+      { "type": "Rod", "feat": "Craft Rod", "casterLevel": 9, "spellMax": 9, "baseCost": "Half market price", "time": "1 day per 1500 gp" },
+      { "type": "Staff", "feat": "Craft Staff", "casterLevel": 11, "spellMax": 9, "baseCost": "Half market price", "time": "1 day per 2000 gp" },
+      { "type": "Ring", "feat": "Forge Ring", "casterLevel": 7, "spellMax": 9, "baseCost": "Half market price", "time": "1 day per 1000 gp" },
+      { "type": "Construct", "feat": "Craft Construct", "casterLevel": 10, "spellMax": 9, "baseCost": "Market price x 2", "time": "1 week per HD of construct" },
+      { "type": "Intelligent Item", "feat": "Craft Magic Arms and Armor", "casterLevel": 13, "spellMax": 9, "baseCost": "5000 gp + normal price", "time": "1 month" },
+      { "type": "Artifact", "feat": "Multiple feats", "casterLevel": 20, "spellMax": 9, "baseCost": "Quest reward", "time": "Years or impossible" },
+      { "type": "Cursed Item", "feat": "Dark craft ritual", "casterLevel": "varies", "spellMax": 9, "baseCost": "Half market", "time": "1 day per 500 gp" }
+    ],
+    "mundaneCrafting": [
+      { "skill": "Craft (armor)", "dc": "10 + AC bonus", "rawMaterial": "50% of item cost", "time": "1 day per 10 gp of finished item cost", "examples": "Plate mail, leather, shields" },
+      { "skill": "Craft (weapons)", "dc": 15, "rawMaterial": "50% of item cost", "time": "1 day per 10 gp", "examples": "Swords, bows, spears, exotic weapons" },
+      { "skill": "Craft (carpentry)", "dc": 12, "rawMaterial": "50% of item cost", "time": "1 day per 5 gp", "examples": "Furniture, doors, siege equipment" },
+      { "skill": "Craft (blacksmith)", "dc": 14, "rawMaterial": "50% of item cost", "time": "1 day per 10 gp", "examples": "Hinges, nails, metal fixtures, tools" },
+      { "skill": "Craft (leather)", "dc": 13, "rawMaterial": "50% of item cost", "time": "1 day per 8 gp", "examples": "Armor, saddles, bags, cloaks" },
+      { "skill": "Craft (jewelry)", "dc": 16, "rawMaterial": "50% of item cost", "time": "1 day per 4 gp", "examples": "Rings, necklaces, crowns, brooches" },
+      { "skill": "Craft (painting)", "dc": 14, "rawMaterial": "25% of item cost", "time": "1 day per 5 gp", "examples": "Artwork, murals, portraits, illustrations" },
+      { "skill": "Craft (pottery)", "dc": 12, "rawMaterial": "30% of item cost", "time": "1 day per 3 gp", "examples": "Vases, bowls, pots, clay items" },
+      { "skill": "Craft (alchemy)", "dc": 17, "rawMaterial": "50% of item cost", "time": "1 day per 5 gp", "examples": "Alchemical items, poisons, acids" },
+      { "skill": "Craft (textiles)", "dc": 13, "rawMaterial": "40% of item cost", "time": "1 day per 2 gp", "examples": "Clothing, tapestries, ropes, sails" }
+    ],
+    "masterworkCrafting": {
+      "baseCost": "+20% to normal item cost",
+      "additionalCheck": "Separate Craft check DC 20 after base item complete",
+      "bonus": "+1 to relevant attack or skill check using item",
+      "time": "Double normal crafting time"
+    },
+    "specialMaterials": [
+      { "material": "Adamantine", "costMultiplier": "x3 base material", "properties": "Damage reduction 1/- for weapons, hardness 20, weight -10%", "examples": "Weapons, armor, tools" },
+      { "material": "Cold Iron", "costMultiplier": "x2 base material", "properties": "Overcomes fey and some outsider DR, -1 to magic properties", "examples": "Weapons primarily" },
+      { "material": "Darkwood", "costMultiplier": "x5 base material", "properties": "Weight -50%, +1 dodge AC if armor, strong vs magic", "examples": "Armor, shields, weapons" },
+      { "material": "Mithral", "costMultiplier": "x4 base material", "properties": "Weight -50%, +1 dodge AC, +1 to magic properties", "examples": "Armor, weapons" },
+      { "material": "Alchemical Silver", "costMultiplier": "x2 base material", "properties": "Overcomes DR/silver, -1 damage, brittleness", "examples": "Weapons, ammunition" },
+      { "material": "Hardened Leather", "costMultiplier": "x2 base material", "properties": "Can be treated like armor material, lighter", "examples": "Armor, shields" },
+      { "material": "Ebony", "costMultiplier": "x3 base material", "properties": "Magical affinity, +1 to spell DCs of caster using items", "examples": "Staves, wands, foci" },
+      { "material": "Bone", "costMultiplier": "x1 base material", "properties": "Necromantic affinity, light weight, some DR bypasses", "examples": "Weapons, undead focus" }
+    ],
+    "failedCrafting": [
+      { "result": "Minor flaw", "effect": "Item functions at -1 to bonuses, 10% chance of failure per use", "salvage": "50% of materials" },
+      { "result": "Cursed item", "effect": "Item has negative effect (see cursed items table), -2 to saves", "salvage": "None, must be destroyed" },
+      { "result": "Corrupted magic", "effect": "Item functions opposite of intended, deals damage to user", "salvage": "None, extremely dangerous" },
+      { "result": "Unstable", "effect": "Item disintegrates after 1d6 uses, rolls naturally", "salvage": "25% of materials" },
+      { "result": "Bound cursed spirit", "effect": "Item possessed by harmful entity, -4 to attacks/skill checks", "salvage": "None, requires exorcism" },
+      { "result": "Explosive failure", "effect": "Deals 2d6 damage to crafter, destroys all materials", "salvage": "None" }
+    ],
+    "cooperativeCrafting": {
+      "description": "Multiple crafters work together on single item",
+      "bonus": "+1 per assistant with relevant Craft skill",
+      "minimumDC": "Base DC -2 if two crafters of equal skill",
+      "timeReduction": "-25% time per additional crafter (max -75%)",
+      "requirement": "All crafters present for checks"
+    },
+    "rushCrafting": {
+      "dcPenalty": "+5 to Craft DC",
+      "timeReduction": "-50% normal time",
+      "costIncrease": "+50% material cost",
+      "failureChance": "Roll twice, use worse result"
+    }
+  },
+  "bargaining": {
+    "haggleRules": {
+      "basePrice": "Listed market price",
+      "diplomacyDC": "15 + merchant's Sense Motive bonus",
+      "bluffDC": "15 + merchant's Sense Motive bonus",
+      "intimidateDC": "15 + merchant's Will save bonus",
+      "maxDiscount": "25% below market (minimum 75% of listed price)",
+      "maxMarkup": "150% of market (selling to merchant)",
+      "failurePenalty": "Merchant refuses to negotiate further for 24 hours"
+    },
+    "discountTiers": [
+      { "margin": "0-4", "discount": "5%", "description": "Barely convinced", "settlementMod": -2 },
+      { "margin": "5-9", "discount": "10%", "description": "Good deal negotiated", "settlementMod": -1 },
+      { "margin": "10-14", "discount": "15%", "description": "Excellent bargain", "settlementMod": 0 },
+      { "margin": "15-19", "discount": "20%", "description": "Exceptional haggling", "settlementMod": 1 },
+      { "margin": "20+", "discount": "25%", "description": "Once-in-a-lifetime deal", "settlementMod": 2 }
+    ],
+    "settlementModifiers": [
+      { "settlement": "Thorp (20-200 pop)", "mod": -4, "buyLimit": 50, "baseValue": 250, "description": "Very small settlement" },
+      { "settlement": "Hamlet (200-600 pop)", "mod": -2, "buyLimit": 100, "baseValue": 500, "description": "Small community" },
+      { "settlement": "Village (600-6,000 pop)", "mod": -1, "buyLimit": 250, "baseValue": 1000, "description": "Village" },
+      { "settlement": "Small Town (6,000-10,000 pop)", "mod": 0, "buyLimit": 500, "baseValue": 2500, "description": "Regional hub" },
+      { "settlement": "Large Town (10,000-25,000 pop)", "mod": 1, "buyLimit": 1000, "baseValue": 5000, "description": "Major regional center" },
+      { "settlement": "Small City (25,000-50,000 pop)", "mod": 2, "buyLimit": 2500, "baseValue": 10000, "description": "City" },
+      { "settlement": "Large City (50,000-100,000 pop)", "mod": 3, "buyLimit": 5000, "baseValue": 25000, "description": "Large city" },
+      { "settlement": "Metropolis (100,000+ pop)", "mod": 4, "buyLimit": 10000, "baseValue": 50000, "description": "Major metropolis" }
+    ],
+    "tradeGoods": [
+      { "good": "Grain", "basePrice": "1 sp/lb", "weight": "Variable", "demand": "High", "risk": "Low" },
+      { "good": "Spices", "basePrice": "2 gp/lb", "weight": "Light", "demand": "High", "risk": "Medium" },
+      { "good": "Silk", "basePrice": "5 gp/yard", "weight": "Light", "demand": "High", "risk": "High" },
+      { "good": "Wine", "basePrice": "1 gp/bottle", "weight": "Heavy", "demand": "Medium", "risk": "Medium" },
+      { "good": "Ore", "basePrice": "5 cp/lb", "weight": "Very Heavy", "demand": "High", "risk": "Low" },
+      { "good": "Gems", "basePrice": "50 gp+", "weight": "Light", "demand": "Medium", "risk": "Very High" },
+      { "good": "Timber", "basePrice": "5 cp/lb", "weight": "Heavy", "demand": "High", "risk": "Low" },
+      { "good": "Furs", "basePrice": "2 gp/pelt", "weight": "Light", "demand": "Medium", "risk": "Medium" },
+      { "good": "Iron", "basePrice": "2 cp/lb", "weight": "Very Heavy", "demand": "High", "risk": "Low" },
+      { "good": "Cloth", "basePrice": "1 gp/yard", "weight": "Light", "demand": "High", "risk": "Low" },
+      { "good": "Tea", "basePrice": "3 gp/lb", "weight": "Light", "demand": "Medium", "risk": "Medium" },
+      { "good": "Ivory", "basePrice": "10 gp/item", "weight": "Light", "demand": "Medium", "risk": "High" },
+      { "good": "Perfume", "basePrice": "5 gp/bottle", "weight": "Light", "demand": "Medium", "risk": "High" },
+      { "good": "Salt", "basePrice": "2 cp/lb", "weight": "Variable", "demand": "High", "risk": "Low" },
+      { "good": "Tobacco", "basePrice": "1 gp/lb", "weight": "Light", "demand": "Medium", "risk": "Low" },
+      { "good": "Incense", "basePrice": "2 gp/stick", "weight": "Light", "demand": "Medium", "risk": "Low" },
+      { "good": "Dyes", "basePrice": "10 gp/lb", "weight": "Light", "demand": "Medium", "risk": "Medium" },
+      { "good": "Copper", "basePrice": "3 cp/lb", "weight": "Very Heavy", "demand": "Medium", "risk": "Low" },
+      { "good": "Books", "basePrice": "25 gp+", "weight": "Medium", "demand": "Low", "risk": "High" },
+      { "good": "Alchemical", "basePrice": "50 gp+", "weight": "Light", "demand": "Medium", "risk": "Very High" }
+    ],
+    "auctionMechanics": {
+      "bidding": "Starting bid 50% of estimate, increments of 5-10%",
+      "winnerObligation": "Must pay bid amount",
+      "rivalBidders": "1-3 other bidders (DC 15 opposed Appraise to estimate their budget)",
+      "communalSale": "All parties interested in item must bid"
+    },
+    "blackMarket": {
+      "availability": "Illegal items available (weapons, poisons, stolen goods)",
+      "riskMultiplier": "2x normal price",
+      "detection": "Perception vs Stealth check DC 15 to identify undercover guards",
+      "penalty": "Caught = arrest or violence depending on item"
+    }
+  },
+  "gambling": {
+    "games": [
+      { "id": "dice", "name": "Dice (Bones)", "skillCheck": "Profession (gambler) or Sense Motive", "dc": 15, "stakes": "1-10 gp per roll", "cheating": "Sleight of Hand DC 20", "houseEdge": "5%" },
+      { "id": "cards", "name": "Card Games", "skillCheck": "Profession (gambler) or Bluff", "dc": 15, "stakes": "1-100 gp per hand", "cheating": "Sleight of Hand DC 22", "houseEdge": "10%" },
+      { "id": "wheel", "name": "Wheel of Fortune", "skillCheck": "None (pure luck)", "dc": 0, "stakes": "Fixed bet 1-50 gp", "cheating": "Sleight of Hand DC 18", "houseEdge": "25%" },
+      { "id": "arm_wrestling", "name": "Arm Wrestling", "skillCheck": "Strength check", "dc": "Opposed", "stakes": "1-50 gp", "cheating": "Intimidate DC 18", "houseEdge": "0%" },
+      { "id": "darts", "name": "Darts", "skillCheck": "Ranged attack roll", "dc": 15, "stakes": "1-20 gp", "cheating": "Sleight of Hand DC 19", "houseEdge": "5%" },
+      { "id": "horse_racing", "name": "Horse Racing", "skillCheck": "Knowledge (animal handling)", "dc": 16, "stakes": "5-100 gp", "cheating": "Drugging horse DC 18", "houseEdge": "15%" },
+      { "id": "cockfight", "name": "Cockfighting", "skillCheck": "Profession (animal handler)", "dc": 14, "stakes": "2-50 gp", "cheating": "Intimidate/bribery DC 16", "houseEdge": "20%" },
+      { "id": "stones", "name": "Skipping Stones", "skillCheck": "Dexterity check", "dc": 12, "stakes": "1-10 gp", "cheating": "Sleight of Hand DC 17", "houseEdge": "5%" }
+    ],
+    "cheatingDetection": {
+      "sleightOfHandDC": 20,
+      "detectionCheck": "Perception or Sense Motive (DC = cheater's Sleight of Hand)",
+      "penalty": "Expelled from game, reputation loss, possible violence (-5 to all Charisma checks in settlement)"
+    },
+    "gamblingResults": [
+      { "margin": "-15", "result": "Catastrophic loss — lose 3x your bet" },
+      { "margin": "-10", "result": "Huge loss — lose 2x your bet" },
+      { "margin": "-5", "result": "Bad loss — lose your full bet" },
+      { "margin": "-1", "result": "Narrow loss — lose your bet" },
+      { "margin": "0", "result": "Push — get your bet back" },
+      { "margin": "1", "result": "Narrow win — win equal to your bet" },
+      { "margin": "5", "result": "Good win — win 1.5x your bet" },
+      { "margin": "10", "result": "Big win — win 2x your bet" },
+      { "margin": "15+", "result": "Jackpot — win 3x your bet (chance of trouble)" }
+    ],
+    "stakesBySettlement": [
+      { "settlement": "Thorp", "minStake": "1 cp", "maxStake": "5 sp", "description": "Pocket change" },
+      { "settlement": "Hamlet", "minStake": "5 cp", "maxStake": "1 gp", "description": "Modest wages" },
+      { "settlement": "Village", "minStake": "1 sp", "maxStake": "5 gp", "description": "Day's work" },
+      { "settlement": "Small Town", "minStake": "1 gp", "maxStake": "50 gp", "description": "Significant sum" },
+      { "settlement": "Large Town", "minStake": "5 gp", "maxStake": "500 gp", "description": "Monthly wages" },
+      { "settlement": "City", "minStake": "10 gp", "maxStake": "2000 gp", "description": "Serious money" },
+      { "settlement": "Metropolis", "minStake": "50 gp", "maxStake": "10000 gp", "description": "Fortunes" }
+    ],
+    "professionalProgression": [
+      { "level": "Novice", "bonus": "+0", "requirement": "5 ranks in Profession (gambler)", "income": "Variable, risky" },
+      { "level": "Experienced", "bonus": "+2", "requirement": "10 ranks, 5 successful sessions", "income": "1d6 x 10 gp per week" },
+      { "level": "Expert", "bonus": "+4", "requirement": "15 ranks, famous status", "income": "1d6 x 100 gp per week" },
+      { "level": "Master", "bonus": "+6", "requirement": "20 ranks, legendary status", "income": "1d6 x 500 gp per week" }
+    ]
+  },
+  "disasters": [
+    { "id": "earthquake", "name": "Earthquake", "reflex_dc": 20, "damage": "8d6 bludgeoning", "area": "200 ft radius", "duration": "1d6 rounds", "aftereffects": "Rubble (difficult terrain), fires, aftershocks 50% next 1d4 hours", "frequency": "1/10 years in mountainous areas" },
+    { "id": "flood", "name": "Flood", "swim_dc": 20, "damage": "2d6 bludgeoning per round submerged", "area": "Settlements near water", "duration": "2d6 hours", "aftereffects": "Mud (difficult terrain), disease risk (Fort DC 14), economic disruption", "frequency": "1-2/year in river settlements" },
+    { "id": "wildfire", "name": "Wildfire", "reflex_dc": 15, "damage": "2d6 fire per round in area", "area": "1 mile per hour of spread", "duration": "Until rain or contained", "aftereffects": "Smoke inhalation (Fort DC 15 or nauseated), 1d4 days to clear, starvation risk", "frequency": "1-3/year in dry areas" },
+    { "id": "tornado", "name": "Tornado", "reflex_dc": 25, "damage": "6d6 bludgeoning + thrown 1d6x10 ft", "area": "100 ft wide path", "duration": "1d10 rounds", "aftereffects": "Debris field, destroyed structures, 10d10 damage to buildings", "frequency": "1/5 years in plains" },
+    { "id": "tsunami", "name": "Tsunami", "swim_dc": 25, "damage": "8d6 bludgeoning", "area": "Coastal settlements 50+ miles", "duration": "1d4 rounds of flooding", "aftereffects": "Devastation zone, disease, starvation (massive economic impact -50% trade)", "frequency": "1/20 years in coastal areas" },
+    { "id": "blizzard", "name": "Blizzard", "fort_dc": 18, "damage": "1d6 cold per hour", "area": "Regional", "duration": "1d6 days", "aftereffects": "Snow drifts (difficult terrain), hypothermia risk, food scarcity, isolation", "frequency": "1-2/year in polar areas" },
+    { "id": "volcanic_eruption", "name": "Volcanic Eruption", "reflex_dc": 22, "damage": "10d6 fire (lava), 4d6 bludgeoning (rocks)", "area": "10+ mile radius", "duration": "1d4 days", "aftereffects": "Ash fall (visibility 5 ft, suffocation risk), pyroclastic flow (instant death), years of darkness", "frequency": "1/50 years in volcanic regions" },
+    { "id": "plague", "name": "Plague Outbreak", "fort_dc": 16, "damage": "1d4 CON per day", "area": "Settlement", "duration": "2d6 weeks", "aftereffects": "Population loss (roll 1d6x10% dead), quarantine (trade -75%), economic collapse", "frequency": "1/20 years, sporadic" },
+    { "id": "meteor", "name": "Meteor Strike", "reflex_dc": 24, "damage": "15d6 fire", "area": "1 mile radius", "duration": "Instantaneous", "aftereffects": "Crater, fires everywhere, dust storm (visibility 5 ft for 1d4 days), earthquakes", "frequency": "1/1000 years" },
+    { "id": "famine", "name": "Famine", "fort_dc": "varies", "damage": "1d4 CON per week", "area": "Region", "duration": "2d6 months", "aftereffects": "Starvation (1d6% population dies), poverty, crime increase, economic depression", "frequency": "1/15 years (crop failure)" },
+    { "id": "drought", "name": "Drought", "fort_dc": 15, "damage": "1d2 CON per week", "area": "Region", "duration": "1d6 months", "aftereffects": "Water scarcity, disease increase, wildfires (cascading disaster)", "frequency": "1/10 years" },
+    { "id": "hurricane", "name": "Hurricane", "reflex_dc": 22, "damage": "6d6 bludgeoning + rain damage 1d6/round", "area": "Coastal region", "duration": "1d8 hours", "aftereffects": "Storm surge, flooding, destroyed buildings, disease", "frequency": "1/10 years in tropical areas" }
+  ],
+  "drugs": [
+    { "id": "flayleaf", "name": "Flayleaf", "type": "inhaled", "addiction": "minor", "fortDC": 12, "price": 10, "effect": "+2 alchemical bonus on saves vs mind-affecting, -2 WIS for 1 hour", "overdose": "Unconscious 1d4 hours", "addictionDC": 14, "cost_per_day": 1 },
+    { "id": "pesh", "name": "Pesh", "type": "ingested", "addiction": "moderate", "fortDC": 16, "price": 20, "effect": "+1d8 temp HP, -2 DEX and WIS for 1 hour", "overdose": "1d4 CON damage", "addictionDC": 18, "cost_per_day": 2 },
+    { "id": "shiver", "name": "Shiver", "type": "injury", "addiction": "major", "fortDC": 18, "price": 50, "effect": "+2 alchemical bonus to CHA-based checks, euphoria for 1d4 hours", "overdose": "1d4 WIS damage + nauseated 1d4 hours", "addictionDC": 22, "cost_per_day": 5 },
+    { "id": "zerk", "name": "Zerk", "type": "injury", "addiction": "moderate", "fortDC": 16, "price": 25, "effect": "+1 alchemical bonus to initiative, +1d4 temp HP for 1 hour", "overdose": "1d4 CON and WIS damage", "addictionDC": 18, "cost_per_day": 2 },
+    { "id": "opium", "name": "Opium", "type": "ingested/inhaled", "addiction": "major", "fortDC": 20, "price": 25, "effect": "+1d8 temp HP, -2 STR and DEX, fatigue immunity for 1 hour", "overdose": "Unconscious 1d6 hours, 1d4 CON damage", "addictionDC": 24, "cost_per_day": 3 },
+    { "id": "bloodhaze", "name": "Bloodhaze", "type": "injury", "addiction": "severe", "fortDC": 22, "price": 75, "effect": "+2 to damage rolls, vision turns red, -2 AC for 2 hours", "overdose": "Berserker rage, 2d4 damage to self", "addictionDC": 26, "cost_per_day": 10 },
+    { "id": "lotus", "name": "Lotus", "type": "ingested", "addiction": "severe", "fortDC": 19, "price": 40, "effect": "Euphoria, +1 to social skills, -2 to Perception for 4 hours", "overdose": "Sleep for 1d8 hours, dreams-like delusion", "addictionDC": 23, "cost_per_day": 4 },
+    { "id": "dreamweaver", "name": "Dreamweaver", "type": "inhaled", "addiction": "moderate", "fortDC": 17, "price": 35, "effect": "Can see invisible creatures, -2 to attack rolls for 3 hours", "overdose": "Hallucinations and confusion for 1d4 hours", "addictionDC": 19, "cost_per_day": 3 },
+    { "id": "lich_dust", "name": "Lich Dust", "type": "ingested", "addiction": "major", "fortDC": 24, "price": 100, "effect": "+2 to Knowledge checks, -2 HP per round for 1 hour (up to 10), immunity to fear", "overdose": "1d6 permanent INT damage", "addictionDC": 28, "cost_per_day": 15 },
+    { "id": "ghastbloom", "name": "Ghastbloom", "type": "ingested", "addiction": "minor", "fortDC": 13, "price": 15, "effect": "Appear dead for 1d4 hours, can see undead, -2 CHA", "overdose": "Actually die for 1d6 hours (breathe slowly)", "addictionDC": 15, "cost_per_day": 2 },
+    { "id": "duskfire", "name": "Duskfire", "type": "injury", "addiction": "major", "fortDC": 21, "price": 60, "effect": "Sunlight sensitivity removed for 1 hour, gain darkvision 60 ft", "overdose": "Burn from inside (5d6 fire damage), 2d4 CON damage", "addictionDC": 25, "cost_per_day": 6 },
+    { "id": "essence_of_void", "name": "Essence of Void", "type": "injury", "addiction": "severe", "fortDC": 25, "price": 150, "effect": "Gain 1d4 negative levels for 2 hours, immune to positive energy", "overdose": "Become undead or die, Fortitude save DC 30", "addictionDC": 30, "cost_per_day": 20 }
+  ],
+  "addictionSeverity": [
+    { "type": "minor", "save": "Fort DC (varies)", "frequency": "1/day", "effect": "-2 CON", "withdrawalPeriod": "1d4 days", "cure": "2 consecutive saves", "cureTime": "1 week" },
+    { "type": "moderate", "save": "Fort DC (varies)", "frequency": "1/day", "effect": "-2 CON, -2 STR", "withdrawalPeriod": "1d6 days", "cure": "3 consecutive saves", "cureTime": "2 weeks" },
+    { "type": "major", "save": "Fort DC (varies)", "frequency": "1/day", "effect": "-2 CON, -2 STR, -2 DEX", "withdrawalPeriod": "2d4 days", "cure": "3 consecutive saves + Restoration", "cureTime": "3 weeks" },
+    { "type": "severe", "save": "Fort DC (varies) +5", "frequency": "2/day", "effect": "-4 CON, -4 STR, -4 DEX, -1 mental ability", "withdrawalPeriod": "2d6 days", "cure": "5 consecutive saves + 2x Restoration", "cureTime": "1 month" }
+  ],
+  "npcBoons": [
+    { "id": "guard_patrol", "npcType": "Guard Captain", "boon": "Free patrol of party's property once per week", "condition": "Friendly disposition", "cost": 2 },
+    { "id": "merchant_discount", "npcType": "Merchant", "boon": "10-20% discount on purchases", "condition": "Helpful disposition", "cost": 1 },
+    { "id": "temple_healing", "npcType": "Priest", "boon": "Free healing (up to 3rd level spells) once per week", "condition": "Friendly disposition", "cost": 2 },
+    { "id": "noble_introduction", "npcType": "Noble", "boon": "Introduction to other nobles or officials", "condition": "Helpful disposition", "cost": 3 },
+    { "id": "sage_knowledge", "npcType": "Sage/Scholar", "boon": "Free Knowledge check assistance (+4 bonus) once per week", "condition": "Friendly disposition", "cost": 2 },
+    { "id": "thief_rumor", "npcType": "Thief/Fence", "boon": "One piece of local underworld intelligence per week", "condition": "Friendly disposition", "cost": 2 },
+    { "id": "innkeeper_lodging", "npcType": "Innkeeper", "boon": "Free room and board for party", "condition": "Helpful disposition", "cost": 1 },
+    { "id": "blacksmith_repair", "npcType": "Blacksmith", "boon": "Free weapon/armor repair (non-magical)", "condition": "Friendly disposition", "cost": 1 },
+    { "id": "ranger_guide", "npcType": "Ranger/Scout", "boon": "Free guide service through wilderness", "condition": "Friendly disposition", "cost": 2 },
+    { "id": "alchemist_supply", "npcType": "Alchemist", "boon": "20% discount on alchemical items and potions", "condition": "Helpful disposition", "cost": 2 },
+    { "id": "mage_research", "npcType": "Mage/Wizard", "boon": "Research magical item properties (1/month) or scroll preparation", "condition": "Friendly disposition", "cost": 3 },
+    { "id": "bard_contacts", "npcType": "Bard", "boon": "Access to entertainment venues and gather rumors in any settlement", "condition": "Friendly disposition", "cost": 1 },
+    { "id": "cleric_blessing", "npcType": "Cleric", "boon": "Once per week bestow temporary blessing (+1 to saves for 1 day)", "condition": "Friendly disposition", "cost": 2 },
+    { "id": "druid_sanctuary", "npcType": "Druid", "boon": "Find safe haven in wilderness, free herbalism knowledge", "condition": "Friendly disposition", "cost": 2 },
+    { "id": "paladin_aid", "npcType": "Paladin", "boon": "Emergency aid if party calls (appears in 1d6 days)", "condition": "Helpful disposition", "cost": 3 }
+  ],
+  "alignment": {
+    "alignmentShift": {
+      "description": "Characters may change alignment based on major actions",
+      "severity": {
+        "minor": "-1 alignment per 2-3 minor infractions",
+        "moderate": "-2 alignment per major infraction",
+        "major": "-5 alignment for heinous act"
+      },
+      "recovery": "+1 per week of atonement or good actions"
+    },
+    "alignmentInfraction": [
+      { "action": "Lie to gain advantage", "severity": "minor", "shift": "toward Chaotic" },
+      { "action": "Steal from poor/helpless", "severity": "major", "shift": "toward Evil" },
+      { "action": "Murder in cold blood", "severity": "major", "shift": "-5 toward Evil" },
+      { "action": "Torture for information", "severity": "moderate", "shift": "toward Evil" },
+      { "action": "Rescue innocent", "severity": "minor", "shift": "toward Good" },
+      { "action": "Break oath/law", "severity": "moderate", "shift": "toward Chaotic" },
+      { "action": "Execute justice", "severity": "minor", "shift": "toward Lawful" },
+      { "action": "Enslave others", "severity": "major", "shift": "-5 toward Evil" }
+    ],
+    "atonementSpell": {
+      "description": "Atonement spell allows alignment correction",
+      "casterLevel": 5,
+      "cost": "1000 gp",
+      "time": "1 hour ritual",
+      "effect": "Shift alignment up to 2 steps toward desired alignment",
+      "frequency": "Once per character per month"
+    }
+  },
+  "lineage": {
+    "bloodlines": [
+      {
+        "name": "Celestial",
+        "description": "Descended from angels or heavenly beings",
+        "traits": ["+2 to social interactions with good-aligned beings", "+1 saves vs evil spells"],
+        "abilities": ["Detect evil 3/day (as spell-like ability)", "Resistance to cold 5", "At level 5: Smite evil 1/day (+damage equal to CHA mod)"],
+        "drawbacks": ["Evil beings get +2 save vs your spells", "-1 to Intimidate"]
+      },
+      {
+        "name": "Draconic",
+        "description": "Descended from dragons or draconic beings",
+        "traits": ["+2 to Intimidate", "Gain draconic language"],
+        "abilities": ["Breathe fire (as young dragon, 1d6 per level) 1/day at level 3", "+2 natural armor bonus", "Resistance to elemental damage (based on color)"],
+        "drawbacks": ["Hoarder tendency (must collect valuables)", "+2 to aggression checks"]
+      },
+      {
+        "name": "Infernal",
+        "description": "Descended from devils or demonic beings",
+        "traits": ["+2 to Deception checks", "Read/speak Infernal"],
+        "abilities": ["Infernal resistance (fire 5)", "Summon minor infernal ally 1/day at level 5", "Resistance to acid 5"],
+        "drawbacks": ["Holy water deals extra 1d6 damage", "Paladins gain bonuses vs you", "-2 to holy ceremonies"]
+      },
+      {
+        "name": "Fey",
+        "description": "Descended from fey folk or nature spirits",
+        "traits": ["+2 to Stealth", "Low-light vision"],
+        "abilities": ["Speak with animals (1/day at level 3)", "Entangle spell-like ability (1/day)", "Spell resistance equal to 10 + character level"],
+        "drawbacks": ["Iron weapons deal extra damage", "Cold iron causes weakness"]
+      },
+      {
+        "name": "Undead",
+        "description": "Descended from undead or cursed bloodline",
+        "traits": ["+2 to Intimidate", "Negative energy affinity"],
+        "abilities": ["Resist positive energy (heal less effectively)", "Undead appearance (pale skin, cold touch)", "Can survive on negative energy instead of food"],
+        "drawbacks": ["Turn undead affects you", "Restoration spells deal damage", "Sunlight sensitivity"]
+      },
+      {
+        "name": "Aberrant",
+        "description": "Descended from aberrations or alien beings",
+        "traits": ["+2 to Knowledge (arcana)", "Alien appearance"],
+        "abilities": ["Detect aberrations (1/day)", "Resist psychic damage", "Telepathy 60 ft (1/day)"],
+        "drawbacks": ["Normal people distrust you (-2 Diplomacy)", "Telepathy causes nosebleeds", "Madness vulnerability"]
+      }
+    ]
+  },
+  "retirement": {
+    "characterRetirement": {
+      "description": "Character exits active play to begin new phase of life",
+      "triggers": ["Reach high level (18+)", "Serious injury/curse", "Voluntary decision", "Family obligations"],
+      "benefits": [
+        "Character becomes NPC/patron",
+        "Can be called on for aid in emergencies",
+        "Legacy bonuses for new characters (see below)",
+        "Establish headquarters/organization"
+      ]
+    },
+    "legacyBonuses": {
+      "description": "New character can inherit benefits from retired ancestor/mentor",
+      "mentorFame": "+5 Fame from mentor's connections",
+      "mentorGold": "Mentor provides 1000-10000 gp startup funding",
+      "mentorFeats": "Learn one feat from mentor's list at character creation",
+      "mentorTrain": "Mentor provides free training (2 weeks) in one skill (+3 bonus)",
+      "mentorAlliance": "Mentor's allies become allies of new character (+2 Diplomacy)"
+    }
+  },
+  "tradeRoutes": {
+    "routeEstablishment": {
+      "description": "Party establishes regular trade route between settlements",
+      "startupCost": "500-2000 gp depending on distance and infrastructure",
+      "requiredElements": ["Merchants or leadership", "Safe path (may require dungeon clearing)", "Market agreements in both towns"],
+      "setupTime": "2-6 weeks"
+    },
+    "tradeGoodProfits": {
+      "baseProfit": "Good value x distance multiplier",
+      "distanceMultiplier": { "short": "x1", "medium": "x1.5", "long": "x2", "verylong": "x3" },
+      "weeklyRevenue": "1d6 x 100 gp (scales with route size)",
+      "monthlyIncome": "Varies 2000-10000 gp depending on route"
+    },
+    "banditryRisk": {
+      "roadHazard": "1-5% chance caravan encounters bandits per trip",
+      "lossOnAttack": "25-75% of cargo lost if bandits win",
+      "protection": "Hire guards (+10% cost) reduces loss to 10%",
+      "insurance": "Purchase caravan insurance at 5% of cargo value"
+    },
+    "caravanRules": {
+      "speed": "20 miles per day (slower than normal travel)",
+      "security": "Requires guards or magic protection",
+      "logistics": "Must resupply every 2 weeks",
+      "teamsize": "1 merchant per 10,000 gp of cargo"
+    }
+  },
+  "espionage": {
+    "spyMechanics": {
+      "description": "Covert information gathering and sabotage",
+      "recruitment": "Diplomacy/Intimidate DC 15-25 to turn NPC spy",
+      "paymentRequired": "10-50% of information value",
+      "reliability": "Contact trust level determines likelihood of success"
+    },
+    "informationGathering": {
+      "simpleInfo": "DC 12 (public knowledge, rumors)",
+      "moderateInfo": "DC 15 (secrets, hidden dealings)",
+      "complexInfo": "DC 20 (well-guarded secrets)",
+      "impossibleInfo": "DC 25+ (heavily magical/protected secrets)",
+      "timeRequired": "1d6 days per information level"
+    },
+    "sabotageRules": {
+      "simpleTask": "DC 12 (disable lock, cut rope)",
+      "moderateTask": "DC 15 (poison supplies, cause accident)",
+      "complexTask": "DC 20 (infiltrate heavily guarded area)",
+      "suspicion": "Perception/Sense Motive check opposes Stealth/Bluff",
+      "discovery": "If caught, immediate combat or escape required"
+    },
+    "counterIntelligence": {
+      "detection": "Opposed Sense Motive vs Bluff for lies",
+      "investigation": "DC 15 to discover spy network",
+      "exposure": "Spy is captured or killed, network disrupted"
+    }
+  },
+  "youngCharacters": {
+    "ageCategories": [
+      { "category": "Child", "ageRange": "1-8 (human)", "strMod": -4, "dexMod": -2, "conMod": -2, "intMod": 0, "wisMod": -2, "chaMod": 0, "hitPointMod": -4 },
+      { "category": "Adolescent", "ageRange": "9-14 (human)", "strMod": -2, "dexMod": 0, "conMod": -2, "intMod": 0, "wisMod": -2, "chaMod": 0, "hitPointMod": -2 },
+      { "category": "Adult", "ageRange": "15+ (human)", "strMod": 0, "dexMod": 0, "conMod": 0, "intMod": 0, "wisMod": 0, "chaMod": 0, "hitPointMod": 0 }
+    ],
+    "growth": {
+      "description": "Children grow into adulthood during campaign",
+      "physiqueAdvance": "Gain +1 ability point every 2 years in category",
+      "skillAdvance": "Gain 1 skill rank per year of aging",
+      "levelRequirement": "Cannot gain class levels above certain age (adult = normal levels)"
+    }
+  }
+}

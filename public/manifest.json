@@ -1,0 +1,24 @@
+{
+  "name": "Pathfinder 1e Dungeon Master",
+  "short_name": "PF1e DM",
+  "description": "AI-powered Pathfinder 1st Edition Game Master companion",
+  "start_url": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#1a1a2e",
+  "theme_color": "#ffd700",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

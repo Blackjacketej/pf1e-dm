@@ -1,0 +1,1384 @@
+{
+  "modifierDescriptions": {
+    "corruption": "Affects Bluff checks to get away with crimes, Stealth checks to hide in crowds. Alignment: Evil +1",
+    "crime": "Affects Sense Motive to avoid being bluffed, Sleight of Hand to pick pockets. Alignment: Chaotic +1",
+    "economy": "Affects Craft, Perform, and Profession checks to generate income. Not affected by alignment",
+    "law": "Affects Intimidate to force compliance, Diplomacy to negotiate with officials. Alignment: Lawful +1",
+    "lore": "Affects Diplomacy to gather info, Knowledge checks in local libraries. Alignment: Neutral +1 per neutral axis (N = +2)",
+    "society": "Affects Disguise to blend in, Diplomacy to adjust NPC attitudes. Alignment: Good +1"
+  },
+  "alignmentModifiers": {
+    "L": { "law": 1 },
+    "C": { "crime": 1 },
+    "G": { "society": 1 },
+    "E": { "corruption": 1 },
+    "N_axis": { "lore": 1 },
+    "note": "Alignment bonuses are already included in the published modifier totals for each settlement. Theocracy government doubles these."
+  },
+  "settlementTypes": {
+    "thorp": { "population": [1, 20], "baseValue": 50, "purchaseLimit": 500, "spellcasting": 1, "minorItems": "1d4", "mediumItems": "0", "majorItems": "0" },
+    "hamlet": { "population": [21, 60], "baseValue": 200, "purchaseLimit": 1000, "spellcasting": 2, "minorItems": "1d6", "mediumItems": "0", "majorItems": "0" },
+    "village": { "population": [61, 200], "baseValue": 500, "purchaseLimit": 2500, "spellcasting": 3, "minorItems": "2d4", "mediumItems": "1d4", "majorItems": "0" },
+    "smallTown": { "population": [201, 2000], "baseValue": 1000, "purchaseLimit": 5000, "spellcasting": 4, "minorItems": "3d4", "mediumItems": "1d6", "majorItems": "0" },
+    "largeTown": { "population": [2001, 5000], "baseValue": 2000, "purchaseLimit": 10000, "spellcasting": 5, "minorItems": "3d4", "mediumItems": "2d4", "majorItems": "1d4" },
+    "smallCity": { "population": [5001, 10000], "baseValue": 4000, "purchaseLimit": 25000, "spellcasting": 6, "minorItems": "4d4", "mediumItems": "3d4", "majorItems": "1d6" },
+    "largeCity": { "population": [10001, 25000], "baseValue": 8000, "purchaseLimit": 50000, "spellcasting": 7, "minorItems": "4d4", "mediumItems": "3d4", "majorItems": "2d4" },
+    "metropolis": { "population": [25001, 100000], "baseValue": 16000, "purchaseLimit": 100000, "spellcasting": 8, "minorItems": "4d10", "mediumItems": "4d4", "majorItems": "3d4" }
+  },
+  "settlementQualities": {
+    "abundant": { "economy": 1, "description": "Surplus of natural resources" },
+    "academic": { "lore": 1, "spellcastingBonus": 1, "description": "Center of learning" },
+    "holysite": { "corruption": -2, "spellcastingBonus": 2, "description": "Seat of religious power" },
+    "insular": { "law": 1, "crime": -1, "description": "Isolationist community" },
+    "magicallyAttuned": { "baseValueMod": 0.2, "purchaseLimitMod": 0.2, "description": "Strong magical traditions" },
+    "notorious": { "crime": 1, "law": -1, "infamy": 1, "description": "Famed for vice or danger" },
+    "pious": { "spellcastingBonus": 1, "corruption": -1, "description": "Devout population" },
+    "prosperous": { "economy": 1, "baseValueMod": 0.3, "purchaseLimitMod": 0.5, "description": "Wealthy and thriving" },
+    "raciallyIntolerant": { "priceModForOther": 0.5, "description": "Hostile to certain races" },
+    "rumormongering": { "lore": 1, "society": -1, "description": "Gossip spreads quickly" },
+    "strategicLocation": { "economy": 1, "baseValueMod": 0.1, "description": "Key trade route position" },
+    "superstitious": { "spellcastingBonus": -2, "description": "Distrusts magic" },
+    "touristAttraction": { "economy": 1, "baseValueMod": 0.2, "description": "Draws visitors" }
+  },
+  "shopTypes": {
+    "generalStore": {
+      "name": "General Store",
+      "icon": "🏪",
+      "categories": ["gear", "alchemical"],
+      "maxItemValue": 1.0,
+      "stockMultiplier": 1.0,
+      "description": "Standard adventuring supplies and household goods"
+    },
+    "blacksmith": {
+      "name": "Blacksmith / Armory",
+      "icon": "⚒️",
+      "categories": ["weapon", "armor"],
+      "maxItemValue": 1.5,
+      "stockMultiplier": 0.8,
+      "description": "Weapons, armor, and metalwork"
+    },
+    "magicShop": {
+      "name": "Magic Shop",
+      "icon": "✨",
+      "categories": ["wondrous", "ring", "rod", "staff", "wand", "scroll", "potion"],
+      "maxItemValue": 2.0,
+      "stockMultiplier": 0.4,
+      "magicItemBonus": 2,
+      "description": "Enchanted items, scrolls, and arcane curiosities"
+    },
+    "alchemist": {
+      "name": "Alchemist",
+      "icon": "⚗️",
+      "categories": ["alchemical", "potion"],
+      "maxItemValue": 1.0,
+      "stockMultiplier": 0.6,
+      "description": "Alchemical reagents, potions, and remedies"
+    },
+    "temple": {
+      "name": "Temple / Shrine",
+      "icon": "⛪",
+      "categories": ["potion", "scroll"],
+      "maxItemValue": 1.0,
+      "stockMultiplier": 0.5,
+      "spellServices": true,
+      "description": "Healing, divine scrolls, and holy water"
+    },
+    "tailor": {
+      "name": "Tailor / Outfitter",
+      "icon": "🧵",
+      "categories": ["gear"],
+      "subcategories": ["clothing", "wondrous"],
+      "maxItemValue": 0.8,
+      "stockMultiplier": 0.4,
+      "description": "Clothing, cloaks, and minor enchanted garments"
+    },
+    "jeweler": {
+      "name": "Jeweler",
+      "icon": "💎",
+      "categories": ["ring", "wondrous"],
+      "maxItemValue": 1.5,
+      "stockMultiplier": 0.3,
+      "description": "Rings, amulets, and precious gems"
+    },
+    "stable": {
+      "name": "Stable",
+      "icon": "🐴",
+      "categories": ["gear"],
+      "subcategories": ["mount", "animal"],
+      "maxItemValue": 0.5,
+      "stockMultiplier": 0.3,
+      "description": "Mounts, barding, and animal supplies"
+    },
+    "bookshop": {
+      "name": "Bookshop / Scribe",
+      "icon": "📚",
+      "categories": ["scroll", "gear"],
+      "subcategories": ["book", "scroll"],
+      "maxItemValue": 0.6,
+      "stockMultiplier": 0.3,
+      "description": "Books, maps, spell scrolls, and writing supplies"
+    },
+    "blackMarket": {
+      "name": "Black Market",
+      "icon": "🗝️",
+      "categories": ["weapon", "wondrous", "potion", "ring"],
+      "maxItemValue": 3.0,
+      "stockMultiplier": 0.3,
+      "priceMarkup": 1.5,
+      "sellMarkup": 0.7,
+      "description": "Rare, illegal, and hard-to-find goods at a premium"
+    }
+  },
+  "settlements": {
+    "sandpoint": {
+      "name": "Sandpoint",
+      "title": "Light of the Lost Coast",
+      "type": "smallTown",
+      "population": 1240,
+      "demographics": "1,116 humans, 37 halflings, 25 elves, 24 dwarves, 13 gnomes, 13 half-elves, 12 half-orcs",
+      "alignment": "NG",
+      "government": "autocracy",
+      "baseValue": 1300,
+      "purchaseLimit": 7500,
+      "spellcasting": 4,
+      "qualities": ["prosperous", "rumormongering"],
+      "modifiers": { "corruption": 0, "crime": 0, "economy": 1, "law": 0, "lore": 2, "society": 0 },
+      "danger": 0,
+      "chapter": 1,
+      "source": "Rise of the Runelords Anniversary Edition; Sandpoint, Light of the Lost Coast",
+      "description": "A friendly coastal town on the Varisian Gulf, known as the Light of the Lost Coast. Recently rebuilt its cathedral after the Late Unpleasantness.",
+      "merchants": [
+        {
+          "id": "savah",
+          "name": "Savah's Armory",
+          "shopType": "blacksmith",
+          "npc": "Savah Bevaniky",
+          "personality": "Fair-dealing warrior woman who keeps a +1 dragon-bane longsword under the counter",
+          "specialties": ["masterwork weapons", "martial weapons"],
+          "priceModifier": 1.0,
+          "stockBonus": 2,
+          "description": "The best weapons and armor shop in Sandpoint, stocking a wide variety of martial equipment"
+        },
+        {
+          "id": "redDogSmithy",
+          "name": "Red Dog Smithy",
+          "shopType": "blacksmith",
+          "npc": "Das Korvut",
+          "personality": "Foul-tempered, perpetually drunk smith with a pack of red-furred dogs guarding the forge",
+          "specialties": ["metalwork", "repairs", "horseshoes"],
+          "priceModifier": 0.95,
+          "stockBonus": 1,
+          "description": "Sandpoint's working forge; cheaper than Savah's but rougher quality and ruder service"
+        },
+        {
+          "id": "featheredSerpent",
+          "name": "The Feathered Serpent",
+          "shopType": "magicShop",
+          "npc": "Vorvashali Voon",
+          "personality": "Eccentric Vudrani collector of exotic curiosities from across Golarion",
+          "specialties": ["minor wondrous items", "identify"],
+          "priceModifier": 1.1,
+          "stockBonus": 0,
+          "description": "Exotic magic items, potions, scrolls, and arcane curiosities"
+        },
+        {
+          "id": "bottledSolutions",
+          "name": "Bottled Solutions",
+          "shopType": "alchemist",
+          "npc": "Aliver 'Pillbug' Podiker",
+          "personality": "Nervous, twitchy man who secretly deals in poisons; member of the Sczarni",
+          "specialties": ["alchemical items", "poisons"],
+          "priceModifier": 1.0,
+          "stockBonus": 1,
+          "hasBlackMarket": true,
+          "description": "Alchemical supplies and potions. Discreet customers can acquire poisons."
+        },
+        {
+          "id": "generalStore",
+          "name": "Ven Vinder's General Store",
+          "shopType": "generalStore",
+          "npc": "Ven Vinder",
+          "personality": "Overprotective father of two daughters, gruff but honest merchant",
+          "specialties": ["adventuring gear", "rations", "rope", "tools"],
+          "priceModifier": 1.0,
+          "stockBonus": 3,
+          "description": "The largest general store in Sandpoint, stocking everything an adventurer needs"
+        },
+        {
+          "id": "cathedral",
+          "name": "Sandpoint Cathedral",
+          "shopType": "temple",
+          "npc": "Father Abstalar Zantus",
+          "personality": "Kind and gentle cleric of Desna who tends to the spiritual needs of the community",
+          "specialties": ["healing", "cure potions", "holy water", "remove curse"],
+          "priceModifier": 0.9,
+          "stockBonus": 1,
+          "spellcasterLevel": 4,
+          "deity": "Desna (also serves Erastil, Abadar, Shelyn, Gozreh, Sarenrae)",
+          "description": "Grand cathedral dedicated to six deities; primary source of healing services"
+        },
+        {
+          "id": "sandpointJeweler",
+          "name": "Sandpoint Jeweler",
+          "shopType": "jeweler",
+          "npc": "Maver Kesk",
+          "personality": "Meticulous craftsman who appraises gems and creates fine jewelry",
+          "specialties": ["gems", "jewelry", "appraisal"],
+          "priceModifier": 1.0,
+          "stockBonus": 0,
+          "description": "Fine jewelry, gem appraisal, and custom pieces"
+        },
+        {
+          "id": "curiousGoblin",
+          "name": "The Curious Goblin",
+          "shopType": "bookshop",
+          "npc": "Chask Haladan",
+          "personality": "Quiet bookworm who knows a little about everything",
+          "specialties": ["maps", "rare texts", "historical documents"],
+          "priceModifier": 1.0,
+          "stockBonus": 0,
+          "description": "Books, maps, and rare texts from across Varisia"
+        },
+        {
+          "id": "goblinSquash",
+          "name": "Goblin Squash Stables",
+          "shopType": "stable",
+          "npc": "Daviren Hosk",
+          "personality": "Gruff retired ranger who decorates his stables with goblin ears",
+          "specialties": ["horses", "riding gear"],
+          "priceModifier": 1.0,
+          "stockBonus": 0,
+          "description": "Mounts and riding supplies; boarding at 5 sp/day"
+        }
+      ]
+    },
+    "magnimar": {
+      "name": "Magnimar",
+      "title": "The City of Monuments",
+      "type": "largeCity",
+      "population": 16428,
+      "demographics": "13,307 humans; 821 halflings; 659 dwarves; 655 elves; 493 gnomes; 166 half-elves; 164 half-orcs; 163 other",
+      "alignment": "N",
+      "government": "autocracy",
+      "baseValue": 12800,
+      "purchaseLimit": 75000,
+      "spellcasting": 8,
+      "qualities": ["academic", "holysite", "prosperous", "strategicLocation", "touristAttraction"],
+      "modifiers": { "corruption": 2, "crime": 2, "economy": 5, "law": 2, "lore": 6, "society": 1 },
+      "danger": 10,
+      "chapter": 2,
+      "source": "Magnimar, City of Monuments; Inner Sea World Guide",
+      "description": "The City of Monuments, a thriving metropolis at the mouth of the Yondabakari River, dominated by the colossal Irespan bridge ruin.",
+      "merchants": [
+        {
+          "id": "magBazaarArms",
+          "name": "Bazaar of Sails — Arms Dealers",
+          "shopType": "blacksmith",
+          "npc": "Various Merchants",
+          "personality": "Competitive weapon merchants hawk their wares from colorful stalls under billowing canvas",
+          "specialties": ["masterwork", "enchanted weapons", "exotic weapons"],
+          "priceModifier": 1.0,
+          "stockBonus": 6,
+          "description": "Open-air weapon dealers in the famous Bazaar of Sails"
+        },
+        {
+          "id": "magGolemworks",
+          "name": "The Golemworks",
+          "shopType": "magicShop",
+          "npc": "Toth Bhreacher",
+          "personality": "Cold, analytical artificer obsessed with construct creation",
+          "specialties": ["constructs", "wondrous items", "staves", "custom enchantment"],
+          "priceModifier": 1.15,
+          "stockBonus": 5,
+          "description": "Magnimar's premier magical workshop — high-end items and custom commissions"
+        },
+        {
+          "id": "magNightScales",
+          "name": "The Night Scales",
+          "shopType": "blackMarket",
+          "npc": "The Wraith (guild leader)",
+          "personality": "Magnimar's thieves' guild deals in stolen and forbidden goods through intermediaries in the Shadow district",
+          "specialties": ["stolen goods", "poison", "forbidden scrolls", "cursed items"],
+          "priceModifier": 1.5,
+          "stockBonus": 3,
+          "description": "Underground black market fence network — ask at the right taverns in the Shadow"
+        },
+        {
+          "id": "magTempleAbadar",
+          "name": "Temple of Abadar",
+          "shopType": "temple",
+          "npc": "High Priest",
+          "personality": "The banking temple runs healing services with the precision of financial transactions",
+          "specialties": ["healing", "restoration", "raise dead", "greater restoration"],
+          "priceModifier": 1.0,
+          "stockBonus": 3,
+          "spellcasterLevel": 8,
+          "deity": "Abadar",
+          "description": "Full divine spellcasting services up to 8th level"
+        },
+        {
+          "id": "magBazaarGeneral",
+          "name": "Bazaar of Sails — General Market",
+          "shopType": "generalStore",
+          "npc": "Various Vendors",
+          "personality": "Bustling open-air market with hundreds of stalls selling goods from across Avistan and Garund",
+          "specialties": ["everything", "exotic goods", "imports"],
+          "priceModifier": 1.0,
+          "stockBonus": 10,
+          "description": "Massive open-air bazaar — if it exists, someone here sells it"
+        },
+        {
+          "id": "magAlchemist",
+          "name": "Dockway Alchemists",
+          "shopType": "alchemist",
+          "npc": "Various Alchemists",
+          "personality": "Several competing alchemist shops along the Dockway, from reputable to questionable",
+          "specialties": ["advanced alchemy", "exotic potions", "alchemical weapons"],
+          "priceModifier": 0.95,
+          "stockBonus": 4,
+          "description": "Dockway's alchemist row — best selection in Varisia"
+        },
+        {
+          "id": "magJeweler",
+          "name": "Naos Jewelers Row",
+          "shopType": "jeweler",
+          "npc": "Various Jewelers",
+          "personality": "Upscale jewelers in the wealthy Naos district cater to nobility and adventurers alike",
+          "specialties": ["rings of protection", "amulets", "gems", "custom work"],
+          "priceModifier": 1.1,
+          "stockBonus": 3,
+          "description": "Fine jewelry, enchanted rings, and precious gems in Magnimar's wealthiest district"
+        }
+      ]
+    },
+    "turtleback_ferry": {
+      "name": "Turtleback Ferry",
+      "type": "village",
+      "population": 430,
+      "demographics": "391 humans, 22 gnomes, 17 halflings",
+      "alignment": "LN",
+      "government": "autocracy",
+      "baseValue": 550,
+      "purchaseLimit": 2500,
+      "spellcasting": 3,
+      "qualities": ["insular", "strategicLocation"],
+      "modifiers": { "corruption": -1, "crime": -2, "economy": 0, "law": 1, "lore": 0, "society": -1 },
+      "danger": 0,
+      "chapter": 3,
+      "source": "Rise of the Runelords Anniversary Edition — The Hook Mountain Massacre",
+      "description": "A remote frontier village on Claybottom Lake, the last stop before Fort Rannick and the ogre-haunted Hook Mountain.",
+      "merchants": [
+        {
+          "id": "tbGeneral",
+          "name": "Turtleback General Goods",
+          "shopType": "generalStore",
+          "npc": "Local Merchant",
+          "personality": "Cautious frontier trader who marks up prices due to the remote location",
+          "specialties": ["survival gear", "fishing supplies", "cold weather gear"],
+          "priceModifier": 1.15,
+          "stockBonus": 0,
+          "description": "Basic supplies for life on the frontier — limited stock, higher prices"
+        },
+        {
+          "id": "tbTemple",
+          "name": "Church of Erastil",
+          "shopType": "temple",
+          "npc": "Father Maelin Shreed",
+          "personality": "Aged cleric of Erastil who also serves as the village mayor; deeply worried about Fort Rannick's silence",
+          "specialties": ["basic healing", "bless water"],
+          "priceModifier": 0.9,
+          "stockBonus": 0,
+          "spellcasterLevel": 3,
+          "deity": "Erastil",
+          "description": "Humble frontier church — limited divine services"
+        },
+        {
+          "id": "tbBottoms",
+          "name": "Bottoms Up Tavern",
+          "shopType": "generalStore",
+          "npc": "Berthandy Kesker",
+          "personality": "Warm innkeeper who serves as the social hub of the village",
+          "specialties": ["rations", "drink", "rumors", "lodging"],
+          "priceModifier": 1.0,
+          "stockBonus": 0,
+          "description": "Village tavern and inn — cheap rooms and local gossip"
+        }
+      ]
+    },
+    "kaer_maga": {
+      "name": "Kaer Maga",
+      "title": "The City of Strangers",
+      "type": "smallCity",
+      "population": 8000,
+      "demographics": "5,500 humans, 500 halflings, 400 dwarves, 400 half-elves, 400 half-orcs, 200 gnomes, 100 elves, 100 orcs, 75 trolls, 50 centaurs, 50 nagas, 175 others",
+      "alignment": "CN",
+      "government": "anarchy",
+      "baseValue": 6000,
+      "purchaseLimit": 37500,
+      "spellcasting": 7,
+      "qualities": ["magicallyAttuned", "notorious", "prosperous", "strategicLocation"],
+      "modifiers": { "corruption": 5, "crime": 7, "economy": -1, "law": -6, "lore": 2, "society": -3 },
+      "danger": 35,
+      "chapter": 4,
+      "source": "Pathfinder Chronicles: City of Strangers",
+      "description": "An anarchic city built atop a massive cliff mesa, where anything can be bought and no questions are asked. A frequent resupply point for adventurers heading into the Storval Plateau.",
+      "merchants": [
+        {
+          "id": "kmTrollAugurs",
+          "name": "Troll Augurs' Stalls",
+          "shopType": "magicShop",
+          "npc": "Various Troll Augurs",
+          "personality": "Trolls who read the future in their own regenerating entrails — also sell magical curiosities",
+          "specialties": ["divination", "wondrous items", "bizarre magic"],
+          "priceModifier": 1.0,
+          "stockBonus": 3,
+          "description": "Magical goods from the famously strange Troll Augurs of the Bis district"
+        },
+        {
+          "id": "kmBlackMarket",
+          "name": "Downmarket",
+          "shopType": "blackMarket",
+          "npc": "Various Fences",
+          "personality": "In the Bottoms district, anything is for sale if you have the coin — no questions, no judgment",
+          "specialties": ["stolen goods", "poison", "forbidden magic", "exotic weapons"],
+          "priceModifier": 1.3,
+          "stockBonus": 4,
+          "description": "Kaer Maga's anything-goes underground market"
+        },
+        {
+          "id": "kmGeneral",
+          "name": "Hospice Market",
+          "shopType": "generalStore",
+          "npc": "Various Traders",
+          "personality": "Open-air market in the Hospice district where caravans unload goods from across Varisia",
+          "specialties": ["caravan goods", "exotic imports", "survival gear"],
+          "priceModifier": 1.05,
+          "stockBonus": 5,
+          "description": "Main trading market for caravans crossing the Storval Plateau"
+        },
+        {
+          "id": "kmBlacksmith",
+          "name": "Oriat Forges",
+          "shopType": "blacksmith",
+          "npc": "Various Smiths",
+          "personality": "Dwarven and half-orc smiths who forge weapons designed for the harsh Storval conditions",
+          "specialties": ["cold iron weapons", "adamantine", "masterwork"],
+          "priceModifier": 1.0,
+          "stockBonus": 3,
+          "description": "Quality arms crafted for the dangers of the Storval Plateau"
+        },
+        {
+          "id": "kmAlchemist",
+          "name": "Ankar-Te Alchemists",
+          "shopType": "alchemist",
+          "npc": "Various Alchemists",
+          "personality": "The necromancy-tolerant Ankar-Te district hosts alchemists who push ethical boundaries",
+          "specialties": ["exotic potions", "poisons", "necromantic reagents"],
+          "priceModifier": 1.0,
+          "stockBonus": 2,
+          "hasBlackMarket": true,
+          "description": "Potions and reagents of questionable provenance"
+        }
+      ]
+    },
+    "riddleport": {
+      "name": "Riddleport",
+      "title": "City of Cyphers",
+      "type": "largeCity",
+      "population": 13300,
+      "demographics": "77% human, 7% dwarf, 5% half-elf, 4% half-orc, 3% tiefling, 2% halfling, 1% gnome, 1% other",
+      "alignment": "CN",
+      "government": "overlord",
+      "baseValue": 10400,
+      "purchaseLimit": 55000,
+      "spellcasting": 7,
+      "qualities": ["notorious", "prosperous", "strategicLocation"],
+      "modifiers": { "corruption": 7, "crime": 5, "economy": 4, "law": -4, "lore": 3, "society": -1 },
+      "danger": 20,
+      "chapter": 0,
+      "source": "Pathfinder Adventure Path: Second Darkness; Inner Sea World Guide",
+      "description": "A pirate-ruled port city in northern Varisia, dominated by crimelords and the mysterious Cyphergate arch spanning the harbor.",
+      "merchants": [
+        {
+          "id": "rdBlackMarket",
+          "name": "The Publican House",
+          "shopType": "blackMarket",
+          "npc": "Shorafa Pamodae",
+          "personality": "The most powerful crimelord in Riddleport runs a high-end fence through her pleasure house",
+          "specialties": ["stolen goods", "smuggled weapons", "forbidden magic"],
+          "priceModifier": 1.4,
+          "stockBonus": 4,
+          "description": "High-end black market accessible through the city's crimelords"
+        },
+        {
+          "id": "rdDocks",
+          "name": "Riddleport Docks Market",
+          "shopType": "generalStore",
+          "npc": "Various Merchants",
+          "personality": "Rough-and-tumble dock market where sailors and pirates trade plunder and supplies",
+          "specialties": ["naval supplies", "exotic imports", "weapons"],
+          "priceModifier": 1.0,
+          "stockBonus": 6,
+          "description": "Dockside market dealing in cargo from across the Inner Sea"
+        },
+        {
+          "id": "rdBlacksmith",
+          "name": "Riddleport Forges",
+          "shopType": "blacksmith",
+          "npc": "Various Smiths",
+          "personality": "Arms dealers who equip pirates, mercenaries, and the occasional adventurer",
+          "specialties": ["cutlasses", "boarding weapons", "light armor"],
+          "priceModifier": 1.0,
+          "stockBonus": 4,
+          "description": "Weapons and armor for sea-going fighters"
+        },
+        {
+          "id": "rdCypherlodge",
+          "name": "Order of Cyphers",
+          "shopType": "magicShop",
+          "npc": "Cyphermages",
+          "personality": "Scholarly mages who study the Cyphergate offer magical goods and services as a sideline",
+          "specialties": ["scrolls", "arcane components", "Thassilonian items"],
+          "priceModifier": 1.1,
+          "stockBonus": 3,
+          "description": "Arcane goods from the enigmatic Cyphermages"
+        }
+      ]
+    },
+    "korvosa": {
+      "name": "Korvosa",
+      "title": "The Jewel of Varisia",
+      "type": "largeCity",
+      "population": 18486,
+      "demographics": "90% human, 4% dwarf, 2% elf, 2% halfling, 1% half-elf, 1% other",
+      "alignment": "LN",
+      "government": "autocracy",
+      "baseValue": 13500,
+      "purchaseLimit": 75000,
+      "spellcasting": 8,
+      "qualities": ["prosperous", "strategicLocation"],
+      "modifiers": { "corruption": 3, "crime": 2, "economy": 5, "law": 4, "lore": 4, "society": 1 },
+      "danger": 10,
+      "chapter": 0,
+      "source": "Pathfinder Adventure Path: Curse of the Crimson Throne; Guide to Korvosa",
+      "description": "Varisia's oldest and most traditional city, perched on the banks of the Jeggare River. Rivals Magnimar politically and economically.",
+      "merchants": [
+        {
+          "id": "kvGoldMarket",
+          "name": "Gold Market",
+          "shopType": "generalStore",
+          "npc": "Various Licensed Merchants",
+          "personality": "Korvosa's tightly regulated main market — all transactions taxed by the crown",
+          "specialties": ["everything", "high quality", "regulated"],
+          "priceModifier": 1.05,
+          "stockBonus": 8,
+          "description": "The regulated central marketplace of Korvosa"
+        },
+        {
+          "id": "kvBlacksmith",
+          "name": "Citadel Armory District",
+          "shopType": "blacksmith",
+          "npc": "Various Smiths",
+          "personality": "Arms dealers clustered near Citadel Volshyenek supply the city guard and adventurers",
+          "specialties": ["military weapons", "heavy armor", "masterwork"],
+          "priceModifier": 1.0,
+          "stockBonus": 5,
+          "description": "Military-grade arms and armor near the city garrison"
+        },
+        {
+          "id": "kvTemple",
+          "name": "Temple of Abadar (Bank of Abadar)",
+          "shopType": "temple",
+          "npc": "Archbanker Darb Tuttle",
+          "personality": "Korvosa's wealthiest temple doubles as the city's main bank — healing is a financial service",
+          "specialties": ["healing", "restoration", "raise dead", "banking"],
+          "priceModifier": 1.0,
+          "stockBonus": 3,
+          "spellcasterLevel": 8,
+          "deity": "Abadar",
+          "description": "Full divine spellcasting and banking services"
+        },
+        {
+          "id": "kvAcademae",
+          "name": "Acadamae Annex Shop",
+          "shopType": "magicShop",
+          "npc": "Acadamae Students",
+          "personality": "Student-run shop outside the infamous Acadamae sells minor magical goods to fund their studies",
+          "specialties": ["scrolls", "wands", "arcane components"],
+          "priceModifier": 0.95,
+          "stockBonus": 3,
+          "description": "Affordable magical goods from aspiring wizards"
+        }
+      ]
+    },
+    "galduria": {
+      "name": "Galduria",
+      "type": "smallTown",
+      "population": 1400,
+      "demographics": "Mostly human",
+      "alignment": "NG",
+      "government": "autocracy",
+      "baseValue": 1000,
+      "purchaseLimit": 5000,
+      "spellcasting": 5,
+      "qualities": ["academic"],
+      "modifiers": { "corruption": 0, "crime": -1, "economy": 0, "law": 0, "lore": 2, "society": 0 },
+      "danger": 0,
+      "chapter": 0,
+      "source": "Inner Sea World Guide; Towns of the Inner Sea",
+      "description": "A small Varisian town on the western shore of Ember Lake, notable for the Twilight Academy — a school of arcane magic.",
+      "merchants": [
+        {
+          "id": "galGeneral",
+          "name": "Galduria Market",
+          "shopType": "generalStore",
+          "npc": "Local Merchants",
+          "personality": "Quiet town market catering to Academy students and local farmers",
+          "specialties": ["grain", "lumber", "basic supplies"],
+          "priceModifier": 1.0,
+          "stockBonus": 1,
+          "description": "Small-town market with basic supplies"
+        },
+        {
+          "id": "galAcademy",
+          "name": "Twilight Academy Supply",
+          "shopType": "magicShop",
+          "npc": "Academy Staff",
+          "personality": "The Twilight Academy sells scrolls and minor magical supplies to approved buyers",
+          "specialties": ["scrolls", "arcane components", "spellbooks"],
+          "priceModifier": 1.0,
+          "stockBonus": 1,
+          "description": "Academic magic supply shop attached to the Twilight Academy"
+        }
+      ]
+    },
+    "wolfs_ear": {
+      "name": "Wolf's Ear",
+      "type": "largeTown",
+      "population": 2610,
+      "demographics": "Mostly human, significant shifter population",
+      "alignment": "N",
+      "government": "council",
+      "baseValue": 2000,
+      "purchaseLimit": 10000,
+      "spellcasting": 5,
+      "qualities": ["notorious"],
+      "modifiers": { "corruption": 1, "crime": 2, "economy": 0, "law": -1, "lore": 0, "society": -1 },
+      "danger": 5,
+      "chapter": 0,
+      "source": "Inner Sea World Guide",
+      "description": "A lumber town with a dark history as a haven for lycanthropes, annexed by Magnimar in 4671 AR. Locals are suspicious of outsiders, especially around the full moon.",
+      "merchants": [
+        {
+          "id": "weGeneral",
+          "name": "Wolf's Ear Trading Post",
+          "shopType": "generalStore",
+          "npc": "Local Trader",
+          "personality": "Suspicious trader who keeps silver weapons prominently displayed",
+          "specialties": ["silver weapons", "wolfsbane", "lumber supplies"],
+          "priceModifier": 1.1,
+          "stockBonus": 1,
+          "description": "Frontier trading post with an emphasis on protection against lycanthropes"
+        },
+        {
+          "id": "weBlacksmith",
+          "name": "Wolf's Ear Forge",
+          "shopType": "blacksmith",
+          "npc": "Local Smith",
+          "personality": "Smith who specializes in silver-coated weapons due to local demand",
+          "specialties": ["silver weapons", "cold iron", "axes"],
+          "priceModifier": 1.0,
+          "stockBonus": 1,
+          "description": "Lumber-town forge that does brisk business in silvered blades"
+        }
+      ]
+    }
+  },
+  "spellcastingServices": {
+    "costs": {
+      "0": 5,
+      "1": 10,
+      "2": 60,
+      "3": 150,
+      "4": 280,
+      "5": 450,
+      "6": 660,
+      "7": 910,
+      "8": 1200,
+      "9": 1530
+    },
+    "commonServices": [
+      { "name": "Cure Light Wounds", "level": 1, "cost": 10, "description": "Heals 1d8+1 HP" },
+      { "name": "Cure Moderate Wounds", "level": 2, "cost": 60, "description": "Heals 2d8+3 HP" },
+      { "name": "Cure Serious Wounds", "level": 3, "cost": 150, "description": "Heals 3d8+5 HP" },
+      { "name": "Cure Critical Wounds", "level": 4, "cost": 280, "description": "Heals 4d8+7 HP" },
+      { "name": "Remove Disease", "level": 3, "cost": 150, "description": "Cures one disease" },
+      { "name": "Remove Curse", "level": 3, "cost": 150, "description": "Removes one curse" },
+      { "name": "Lesser Restoration", "level": 2, "cost": 60, "description": "Removes 1d4 ability damage" },
+      { "name": "Restoration", "level": 4, "cost": 280, "description": "Full ability restoration" },
+      { "name": "Neutralize Poison", "level": 4, "cost": 280, "description": "Cures poison" },
+      { "name": "Break Enchantment", "level": 5, "cost": 450, "description": "Breaks enchantments" },
+      { "name": "Raise Dead", "level": 5, "cost": 5450, "description": "Brings back the dead (5000 gp material)" },
+      { "name": "Heal", "level": 6, "cost": 660, "description": "Full healing" },
+      { "name": "Regenerate", "level": 7, "cost": 910, "description": "Restores lost limbs" },
+      { "name": "Resurrection", "level": 7, "cost": 10910, "description": "True resurrection (10000 gp material)" },
+      { "name": "Identify", "level": 1, "cost": 10, "description": "Identifies magic item properties" },
+      { "name": "Dispel Magic", "level": 3, "cost": 150, "description": "Dispels magical effects" }
+    ]
+  },
+  "magicItemTiers": {
+    "minor": { "maxValue": 4000, "label": "Minor", "color": "#7b68ee" },
+    "medium": { "minValue": 4001, "maxValue": 16000, "label": "Medium", "color": "#ffa500" },
+    "major": { "minValue": 16001, "label": "Major", "color": "#ff4444" }
+  },
+  "haggling": {
+    "baseDC": 15,
+    "maxDiscount": 0.1,
+    "perFiveOverDC": 0.02,
+    "skill": "Diplomacy or Bluff",
+    "failPenalty": "Merchant refuses further haggling for 1d4 days"
+  },
+  "specialOrders": {
+    "baseDays": 7,
+    "perThousandGP": 3,
+    "markup": 1.1,
+    "mastworkDays": 14,
+    "enchantmentDaysPerBonus": 7
+  },
+  "foodAndDrink": {
+    "ale": { "name": "Ale (mug)", "price": 0.04, "unit": "mug", "category": "drink" },
+    "banquetDwarf": { "name": "Dwarven Stout", "price": 0.04, "unit": "mug", "category": "drink" },
+    "mead": { "name": "Mead (mug)", "price": 0.05, "unit": "mug", "category": "drink" },
+    "wineCommon": { "name": "Wine, common (pitcher)", "price": 0.2, "unit": "pitcher", "category": "drink" },
+    "wineGood": { "name": "Wine, fine (bottle)", "price": 10, "unit": "bottle", "category": "drink" },
+    "mealPoor": { "name": "Meal, poor", "price": 0.01, "unit": "meal", "category": "food" },
+    "mealCommon": { "name": "Meal, common", "price": 0.3, "unit": "meal", "category": "food" },
+    "mealGood": { "name": "Meal, good", "price": 0.5, "unit": "meal", "category": "food" },
+    "banquet": { "name": "Banquet (per person)", "price": 10, "unit": "person", "category": "food" },
+    "breadLoaf": { "name": "Bread, loaf", "price": 0.02, "unit": "loaf", "category": "food" },
+    "cheese": { "name": "Cheese, hunk", "price": 0.1, "unit": "hunk", "category": "food" },
+    "meat": { "name": "Meat, chunk", "price": 0.3, "unit": "chunk", "category": "food" }
+  },
+  "lodging": {
+    "poorRoom": { "name": "Room, poor (common room floor)", "price": 0.2, "unit": "night", "description": "A spot on the floor of a common room near the fire" },
+    "commonRoom": { "name": "Room, common", "price": 0.5, "unit": "night", "description": "A private room with a bed, chamber pot, and candle" },
+    "goodRoom": { "name": "Room, good", "price": 2, "unit": "night", "description": "A comfortable room with a proper bed, wash basin, desk, and lock" },
+    "suite": { "name": "Suite", "price": 4, "unit": "night", "description": "A lavish suite with a sitting room, fine bedding, and personal service" },
+    "stabling": { "name": "Stabling (per mount)", "price": 0.5, "unit": "night", "description": "Feed, water, and shelter for one mount" }
+  },
+  "costOfLiving": {
+    "destitute": { "name": "Destitute", "monthly": 0, "daily": 0, "description": "Sleep on the streets, beg for scraps. DC 15 Fort save each day or become fatigued" },
+    "poor": { "name": "Poor", "monthly": 3, "daily": 0.1, "description": "Shared housing, simple meals. -2 to Diplomacy and Bluff with middle-class or higher" },
+    "average": { "name": "Average", "monthly": 10, "daily": 0.33, "description": "Modest home, decent food, basic comforts" },
+    "wealthy": { "name": "Wealthy", "monthly": 100, "daily": 3.33, "description": "Fine home, quality food, servants. +2 circumstance to Diplomacy with merchants" },
+    "extravagant": { "name": "Extravagant", "monthly": 1000, "daily": 33.33, "description": "Lavish estate, personal chef, retainers. +4 circumstance to Diplomacy with nobility" }
+  },
+  "hirelings": {
+    "untrained": { "name": "Hireling, untrained", "daily": 0.1, "description": "Porter, servant, or laborer" },
+    "trained": { "name": "Hireling, trained", "daily": 0.3, "description": "Skilled craftsman, guard, or guide" },
+    "professional": { "name": "Hireling, professional", "daily": 1, "description": "Sage, specialist, or expert" }
+  },
+  "services": {
+    "bath": { "name": "Bath", "price": 0.02, "description": "A hot bath at an inn or bathhouse" },
+    "laundry": { "name": "Laundry (4 articles)", "price": 0.01, "description": "Washing and drying of clothing" },
+    "messenger": { "name": "Messenger (per mile)", "price": 0.02, "description": "Delivery of a written message" },
+    "ferry": { "name": "Ferry (per crossing)", "price": 0.01, "description": "River or harbor crossing" },
+    "coach": { "name": "Coach cab (per mile)", "price": 0.03, "description": "Carriage ride within a city" },
+    "shipPassage": { "name": "Ship passage (per mile)", "price": 0.01, "description": "Passage on a merchant vessel" }
+  },
+  "locationMapping": {
+    "Sandpoint": "sandpoint",
+    "Sandpoint - Cathedral Square": "sandpoint",
+    "Sandpoint Glassworks & Catacombs of Wrath": "sandpoint",
+    "Thistletop Island": null,
+    "Hambley Farm": null,
+    "Foxglove Manor": null,
+    "Magnimar": "magnimar",
+    "Fort Rannick": null,
+    "Skull's Crossing Dam": null,
+    "Hook Mountain Clanhold": null,
+    "Jorgenfist": null,
+    "Runeforge": null,
+    "Kodar Mountains": null,
+    "Xin-Shalast": null,
+    "Pinnacle of Avarice": null,
+    "Turtleback Ferry": "turtleback_ferry"
+  },
+  "taverns": {
+    "sandpoint": [
+      {
+        "id": "rustyDragon",
+        "name": "The Rusty Dragon",
+        "type": "inn",
+        "quality": "average",
+        "proprietor": "Ameiko Kaijitsu",
+        "description": "The most popular tavern in Sandpoint. A favorite of adventurers, known for excellent food and a welcoming atmosphere. Ameiko plays samisen music some evenings.",
+        "atmosphere": "Warm, adventurous, cosmopolitan. Trophy weapons hang from the walls. A stuffed dragon head with a rusted iron nail serves as the sign.",
+        "rooms": {
+          "common": { "price": 0.5, "available": 6 },
+          "good": { "price": 2, "available": 4 }
+        },
+        "meals": {
+          "common": 0.3,
+          "good": 0.5
+        },
+        "drinks": { "ale": 0.04, "wine": 0.2, "specialty": { "name": "Dragon Punch Whiskey", "price": 0.15 } },
+        "specialFeature": "Adventurers who tell a good story of their exploits get 50% off lodging (Perform DC 15 or Diplomacy DC 12)",
+        "gatherInfoDC": 10,
+        "rumors": true,
+        "source": "Rise of the Runelords AE; Sandpoint, Light of the Lost Coast"
+      },
+      {
+        "id": "whiteDeer",
+        "name": "The White Deer",
+        "type": "inn",
+        "quality": "good",
+        "proprietor": "Garridan Viskalai",
+        "description": "A refined inn run by a Shoanti man. Caters to a more upscale clientele with fine Shoanti cuisine and quality rooms.",
+        "atmosphere": "Quiet, refined, Shoanti decor. A large white deer head mounted above the fireplace.",
+        "rooms": {
+          "common": { "price": 0.6, "available": 4 },
+          "good": { "price": 2.5, "available": 3 },
+          "suite": { "price": 5, "available": 1 }
+        },
+        "meals": {
+          "common": 0.3,
+          "good": 0.6
+        },
+        "drinks": { "ale": 0.04, "wine": 0.3 },
+        "gatherInfoDC": 12,
+        "source": "Rise of the Runelords AE"
+      },
+      {
+        "id": "hagfish",
+        "name": "The Hagfish",
+        "type": "tavern",
+        "quality": "poor",
+        "proprietor": "Jargie Quinn",
+        "description": "A waterfront dive famous for Norah — a large hagfish kept in a murky tank. Patrons who drink the tank water and keep it down get their name carved on the ceiling.",
+        "atmosphere": "Rowdy, nautical, stinks of fish. The ceiling is covered in carved names. A large slimy tank dominates one corner.",
+        "rooms": null,
+        "meals": {
+          "poor": 0.01,
+          "common": 0.2
+        },
+        "drinks": { "ale": 0.03, "rum": 0.05 },
+        "specialFeature": "Hagfish Challenge: drink from Norah's tank (DC 12 Fort save). Success earns a prize pot (currently 28 gp) and ceiling fame. Failure: nauseated 1d4 rounds.",
+        "gatherInfoDC": 8,
+        "rumors": true,
+        "source": "Rise of the Runelords AE"
+      },
+      {
+        "id": "fatmansFeedbag",
+        "name": "Fatman's Feedbag",
+        "type": "tavern",
+        "quality": "squalid",
+        "proprietor": "Gressel Tenniwar",
+        "description": "A rough dockside tavern popular with laborers and sailors. Cheap drinks and frequent brawls.",
+        "atmosphere": "Rough, smoky, dangerous. Sawdust on the floor, broken chairs a common sight.",
+        "rooms": null,
+        "meals": {
+          "poor": 0.01
+        },
+        "drinks": { "ale": 0.02, "rotgut": 0.01 },
+        "gatherInfoDC": 10,
+        "rumors": true,
+        "criminalContacts": true,
+        "source": "Rise of the Runelords AE"
+      },
+      {
+        "id": "pixiesKitten",
+        "name": "The Pixie's Kitten",
+        "type": "tavern",
+        "quality": "average",
+        "proprietor": "Kaye Tesarani",
+        "description": "Sandpoint's brothel. A well-kept establishment with a surprisingly good reputation, run with professionalism.",
+        "atmosphere": "Dimly lit, perfumed, comfortable. Red curtains and plush furnishings.",
+        "rooms": {
+          "common": { "price": 1, "available": 6 }
+        },
+        "meals": {
+          "common": 0.3
+        },
+        "drinks": { "ale": 0.04, "wine": 0.3 },
+        "gatherInfoDC": 12,
+        "rumors": true,
+        "source": "Rise of the Runelords AE"
+      },
+      {
+        "id": "risasPlace",
+        "name": "Risa's Place",
+        "type": "tavern",
+        "quality": "average",
+        "proprietor": "Risa Magravi",
+        "description": "A quiet neighborhood tavern run by the nearly blind Risa. Known for home-cooked meals and a calm atmosphere.",
+        "atmosphere": "Quiet, homey, the smell of baking bread. A cat sleeps on the bar.",
+        "rooms": null,
+        "meals": {
+          "common": 0.25,
+          "good": 0.4
+        },
+        "drinks": { "ale": 0.04, "cider": 0.03 },
+        "gatherInfoDC": 14,
+        "source": "Rise of the Runelords AE"
+      }
+    ],
+    "magnimar": [
+      {
+        "id": "oldFang",
+        "name": "The Old Fang",
+        "type": "inn",
+        "quality": "good",
+        "proprietor": "Various Staff",
+        "description": "A respectable inn in the Naos district. Popular with merchants and minor nobility visiting the city.",
+        "atmosphere": "Elegant, well-maintained. Paintings of the Irespan on the walls.",
+        "rooms": {
+          "common": { "price": 1, "available": 12 },
+          "good": { "price": 3, "available": 6 },
+          "suite": { "price": 8, "available": 2 }
+        },
+        "meals": {
+          "common": 0.3,
+          "good": 0.5,
+          "banquet": 10
+        },
+        "drinks": { "ale": 0.04, "wine": 0.5 },
+        "gatherInfoDC": 12,
+        "source": "Magnimar, City of Monuments"
+      },
+      {
+        "id": "shadowDocks",
+        "name": "The Shadow Docks Ale House",
+        "type": "tavern",
+        "quality": "squalid",
+        "proprietor": "Various Barkeeps",
+        "description": "A seedy waterfront dive in the Shadow district. Smugglers, thieves, and pirates drink here.",
+        "atmosphere": "Dark, dangerous, stinks of bilge water. Eyes watch you from every corner.",
+        "rooms": null,
+        "meals": {
+          "poor": 0.01
+        },
+        "drinks": { "ale": 0.02, "grog": 0.01 },
+        "gatherInfoDC": 8,
+        "rumors": true,
+        "criminalContacts": true,
+        "source": "Magnimar, City of Monuments"
+      },
+      {
+        "id": "bazaarFood",
+        "name": "Bazaar of Sails — Food Stalls",
+        "type": "tavern",
+        "quality": "average",
+        "proprietor": "Various Vendors",
+        "description": "Dozens of food stalls in the famous open-air market. Cuisine from across Avistan and Garund.",
+        "atmosphere": "Loud, colorful, incredible smells. Exotic spices and foreign tongues everywhere.",
+        "rooms": null,
+        "meals": {
+          "poor": 0.01,
+          "common": 0.2,
+          "good": 0.5,
+          "exotic": 1
+        },
+        "drinks": { "ale": 0.04, "wine": 0.2, "exoticTea": 0.1 },
+        "gatherInfoDC": 10,
+        "rumors": true,
+        "source": "Magnimar, City of Monuments"
+      }
+    ],
+    "turtleback_ferry": [
+      {
+        "id": "bottomsUp",
+        "name": "Bottoms Up Tavern",
+        "type": "inn",
+        "quality": "poor",
+        "proprietor": "Berthandy Kesker",
+        "description": "The only tavern in Turtleback Ferry. A warm, simple establishment where fishermen and trappers gather in the evenings.",
+        "atmosphere": "Rustic, warm, smells of woodsmoke and fish stew. Trophy fish mounted on the walls.",
+        "rooms": {
+          "poor": { "price": 0.1, "available": 2 },
+          "common": { "price": 0.3, "available": 3 }
+        },
+        "meals": {
+          "poor": 0.01,
+          "common": 0.2
+        },
+        "drinks": { "ale": 0.03, "moonshine": 0.02 },
+        "gatherInfoDC": 10,
+        "rumors": true,
+        "specialFeature": "Locals whisper about the 'Paradise' — a gambling barge that recently sank in Claybottom Lake.",
+        "source": "Rise of the Runelords AE — The Hook Mountain Massacre"
+      }
+    ]
+  },
+  "tavernQualityTiers": {
+    "squalid": {
+      "label": "Squalid",
+      "color": "#6b4423",
+      "priceMultiplier": 0.5,
+      "maxMealQuality": "poor",
+      "maxRoomQuality": "poor",
+      "patronCapacity": [4, 12],
+      "roomCount": [0, 2],
+      "staffCount": [1, 2],
+      "gatherInfoBonus": 2,
+      "eventChance": 0.35,
+      "crimeChance": 0.3,
+      "description": "A filthy hole. Watered-down drinks, vermin, and dangerous patrons."
+    },
+    "poor": {
+      "label": "Poor",
+      "color": "#8b6914",
+      "priceMultiplier": 0.75,
+      "maxMealQuality": "common",
+      "maxRoomQuality": "common",
+      "patronCapacity": [6, 20],
+      "roomCount": [1, 6],
+      "staffCount": [2, 4],
+      "gatherInfoBonus": 1,
+      "eventChance": 0.25,
+      "crimeChance": 0.15,
+      "description": "Basic and rough, but functional. Common laborers and travelers."
+    },
+    "average": {
+      "label": "Average",
+      "color": "#d4a574",
+      "priceMultiplier": 1.0,
+      "maxMealQuality": "good",
+      "maxRoomQuality": "good",
+      "patronCapacity": [8, 30],
+      "roomCount": [4, 12],
+      "staffCount": [3, 8],
+      "gatherInfoBonus": 0,
+      "eventChance": 0.2,
+      "crimeChance": 0.08,
+      "description": "A solid establishment. Clean rooms, decent food, a mix of patrons."
+    },
+    "good": {
+      "label": "Good",
+      "color": "#7b68ee",
+      "priceMultiplier": 1.5,
+      "maxMealQuality": "good",
+      "maxRoomQuality": "suite",
+      "patronCapacity": [10, 40],
+      "roomCount": [6, 20],
+      "staffCount": [5, 12],
+      "gatherInfoBonus": -2,
+      "eventChance": 0.15,
+      "crimeChance": 0.03,
+      "description": "Well-appointed with quality service. Merchants, minor nobility, and successful adventurers."
+    },
+    "extravagant": {
+      "label": "Extravagant",
+      "color": "#ffd700",
+      "priceMultiplier": 3.0,
+      "maxMealQuality": "banquet",
+      "maxRoomQuality": "suite",
+      "patronCapacity": [12, 50],
+      "roomCount": [10, 30],
+      "staffCount": [8, 20],
+      "gatherInfoBonus": -4,
+      "eventChance": 0.1,
+      "crimeChance": 0.01,
+      "description": "Opulent luxury. Nobility, powerful merchants, and visiting dignitaries."
+    }
+  },
+  "patronTypes": {
+    "commoner": { "label": "Commoner", "icon": "👤", "description": "Local farmer, laborer, or townsperson", "cr": 0.5, "wealthRange": [0.1, 2], "knowledgeTopics": ["local gossip", "weather", "crops"], "skills": {} },
+    "merchant": { "label": "Merchant", "icon": "💰", "description": "Traveling or local trader", "cr": 1, "wealthRange": [10, 100], "knowledgeTopics": ["trade routes", "prices", "distant cities", "caravan news"], "skills": { "appraise": 6, "bluff": 4, "senseMotivee": 5 } },
+    "guard": { "label": "Off-Duty Guard", "icon": "🛡️", "description": "Town watch or garrison soldier", "cr": 1, "wealthRange": [1, 10], "knowledgeTopics": ["recent crimes", "wanted criminals", "town security"], "skills": { "intimidate": 4, "perception": 3 } },
+    "sailor": { "label": "Sailor", "icon": "⚓", "description": "Dockworker, fisher, or merchant sailor", "cr": 1, "wealthRange": [0.5, 8], "knowledgeTopics": ["sea routes", "port news", "storms", "piracy"], "skills": { "profession_sailor": 5, "climb": 4 } },
+    "scholar": { "label": "Scholar", "icon": "📖", "description": "Sage, student, or researcher", "cr": 1, "wealthRange": [2, 20], "knowledgeTopics": ["history", "arcana", "religion", "ancient ruins"], "skills": { "knowledge_history": 7, "knowledge_arcana": 5, "linguistics": 4 } },
+    "noble": { "label": "Noble", "icon": "👑", "description": "Local aristocrat or visiting dignitary", "cr": 2, "wealthRange": [50, 500], "knowledgeTopics": ["politics", "social events", "land disputes", "family scandals"], "skills": { "diplomacy": 8, "bluff": 6, "senseMotivee": 6 } },
+    "adventurer": { "label": "Adventurer", "icon": "⚔️", "description": "Traveling warrior, mage, or treasure-seeker", "cr": 3, "wealthRange": [20, 200], "knowledgeTopics": ["dungeons", "monsters", "magic items", "distant lands"], "skills": { "perception": 6, "knowledge_dungeoneering": 5, "survival": 4 } },
+    "criminal": { "label": "Shady Figure", "icon": "🗡️", "description": "Pickpocket, smuggler, fence, or worse", "cr": 2, "wealthRange": [5, 80], "knowledgeTopics": ["black market", "stolen goods", "smuggling routes", "bounties"], "skills": { "bluff": 7, "sleightOfHand": 6, "stealth": 6 } },
+    "bard": { "label": "Bard/Entertainer", "icon": "🎵", "description": "Musician, storyteller, or traveling performer", "cr": 2, "wealthRange": [3, 30], "knowledgeTopics": ["legends", "songs", "distant courts", "famous heroes"], "skills": { "perform": 8, "diplomacy": 5, "knowledge_local": 6 } },
+    "priest": { "label": "Priest/Acolyte", "icon": "✝️", "description": "Cleric, monk, or temple servant", "cr": 1, "wealthRange": [1, 15], "knowledgeTopics": ["religion", "undead", "blessings", "temple politics"], "skills": { "knowledge_religion": 6, "heal": 5, "diplomacy": 4 } },
+    "craftsman": { "label": "Craftsman", "icon": "🔨", "description": "Smith, carpenter, weaver, or other artisan", "cr": 1, "wealthRange": [2, 20], "knowledgeTopics": ["materials", "trade", "guild politics", "construction"], "skills": { "craft": 7, "appraise": 4 } },
+    "farmer": { "label": "Farmer/Rancher", "icon": "🌾", "description": "Local agricultural worker", "cr": 0.5, "wealthRange": [0.1, 5], "knowledgeTopics": ["weather", "harvest", "livestock", "local creatures"], "skills": { "profession_farmer": 5, "handle_animal": 3 } },
+    "mysterious": { "label": "Mysterious Stranger", "icon": "🎭", "description": "Hooded figure, speaks little, watches everything", "cr": 4, "wealthRange": [20, 500], "knowledgeTopics": ["cryptic warnings", "ancient prophecy", "quest hooks"], "skills": { "bluff": 10, "stealth": 8, "perception": 8 } }
+  },
+  "patronWeightsByQuality": {
+    "squalid":     { "commoner": 3, "criminal": 4, "sailor": 2, "farmer": 2, "adventurer": 1 },
+    "poor":        { "commoner": 4, "farmer": 3, "sailor": 2, "guard": 1, "criminal": 2, "craftsman": 2, "adventurer": 1 },
+    "average":     { "commoner": 3, "merchant": 2, "guard": 2, "craftsman": 2, "sailor": 1, "adventurer": 1, "bard": 1, "scholar": 1, "priest": 1 },
+    "good":        { "merchant": 3, "noble": 2, "scholar": 2, "adventurer": 2, "bard": 1, "guard": 1, "priest": 1 },
+    "extravagant": { "noble": 4, "merchant": 3, "scholar": 2, "adventurer": 1, "bard": 2, "mysterious": 1 }
+  },
+  "tavernEvents": [
+    {
+      "id": "barBrawl",
+      "name": "Bar Brawl",
+      "weight": 15,
+      "qualityMin": "squalid",
+      "qualityMax": "average",
+      "description": "An insult about someone's lineage sparks a fistfight that quickly spreads across the room.",
+      "mechanic": "intimidate",
+      "dc": 20,
+      "successResult": "You break up the fight with authority. The crowd respects you — +2 circumstance bonus to Diplomacy checks in this tavern for 1 week.",
+      "failureResult": "Chairs fly and tables shatter. You take 1d4 nonlethal damage in the chaos.",
+      "canJoin": true,
+      "joinDescription": "Join the brawl! Nonlethal combat vs 1d3 Commoners (CR 1/2 each). Victory earns bragging rights and 1d6 gp from bets.",
+      "reputationEffect": 1
+    },
+    {
+      "id": "drinkingContest",
+      "name": "Drinking Contest",
+      "weight": 12,
+      "qualityMin": "squalid",
+      "qualityMax": "good",
+      "description": "A boisterous local challenges anyone brave enough to match them drink for drink.",
+      "mechanic": "fortitude",
+      "dc": 14,
+      "rounds": 5,
+      "dcIncreasePerRound": 2,
+      "entryFee": 2,
+      "prizeMultiplier": 4,
+      "successResult": "You drink them under the table! Prize pot is yours.",
+      "failureResult": "The room spins. You're sickened for 1 hour and nauseated for 1d4 rounds.",
+      "canJoin": true
+    },
+    {
+      "id": "bardPerformance",
+      "name": "Bard Performance",
+      "weight": 10,
+      "qualityMin": "poor",
+      "qualityMax": "extravagant",
+      "description": "A traveling bard takes the stage with tales of heroes and villains.",
+      "mechanic": "passive",
+      "successResult": "The performance is inspiring. Party members gain a +1 morale bonus to saves vs fear for 24 hours.",
+      "listenBonus": { "knowledge_local": 2, "knowledge_history": 2 },
+      "tip": 0.5
+    },
+    {
+      "id": "gambling",
+      "name": "Card Game",
+      "weight": 10,
+      "qualityMin": "poor",
+      "qualityMax": "good",
+      "description": "A group waves you over to join their card game. The stakes look interesting.",
+      "mechanic": "profession_gambler_or_bluff",
+      "dc": 15,
+      "rounds": 3,
+      "stakePerRound": 5,
+      "successResult": "Your poker face is unbeatable. You clean up at the table.",
+      "failureResult": "You lose your stake. The other players smirk as they rake in your coin.",
+      "canJoin": true
+    },
+    {
+      "id": "armWrestling",
+      "name": "Arm Wrestling Challenge",
+      "weight": 8,
+      "qualityMin": "squalid",
+      "qualityMax": "average",
+      "description": "A burly regular slams their elbow on the table and dares anyone to test their strength.",
+      "mechanic": "strength",
+      "dc": 16,
+      "entryFee": 1,
+      "prizeMultiplier": 3,
+      "successResult": "You slam their hand down! The crowd cheers and the prize is yours.",
+      "failureResult": "Your arm is forced down. You lose your entry fee and your pride.",
+      "canJoin": true
+    },
+    {
+      "id": "famousVisitor",
+      "name": "Famous Visitor",
+      "weight": 5,
+      "qualityMin": "average",
+      "qualityMax": "extravagant",
+      "description": "A well-known figure enters the establishment, drawing whispers and stares.",
+      "mechanic": "passive",
+      "successResult": "You overhear valuable gossip about current events. +4 to next Gather Information check.",
+      "knowledgeBonus": 4
+    },
+    {
+      "id": "theft",
+      "name": "Pickpocket Attempt",
+      "weight": 8,
+      "qualityMin": "squalid",
+      "qualityMax": "average",
+      "description": "A nimble-fingered patron makes a move on your coin purse.",
+      "mechanic": "perception",
+      "dc": 18,
+      "successResult": "You catch the thief's hand in your pocket. They stammer an apology and flee.",
+      "failureResult": "You feel lighter. Lose 1d10 gp to the pickpocket.",
+      "lossRange": [1, 10]
+    },
+    {
+      "id": "mysteriousStranger",
+      "name": "Mysterious Stranger",
+      "weight": 5,
+      "qualityMin": "poor",
+      "qualityMax": "extravagant",
+      "description": "A cloaked figure in the corner catches your eye and beckons you over.",
+      "mechanic": "passive",
+      "successResult": "The stranger shares a cryptic clue about dangers ahead. Gain a campaign-relevant rumor.",
+      "campaignRelevant": true
+    },
+    {
+      "id": "fire",
+      "name": "Kitchen Fire",
+      "weight": 3,
+      "qualityMin": "squalid",
+      "qualityMax": "average",
+      "description": "Smoke billows from the kitchen as grease catches flame!",
+      "mechanic": "reflex_or_craft",
+      "dc": 15,
+      "successResult": "You help douse the flames quickly. The grateful owner gives you free lodging for the night.",
+      "failureResult": "The fire spreads before being contained. The tavern closes for repairs — no services available for 1d4 days.",
+      "closureDays": [1, 4]
+    },
+    {
+      "id": "romanticInterest",
+      "name": "Admiring Glances",
+      "weight": 6,
+      "qualityMin": "poor",
+      "qualityMax": "extravagant",
+      "description": "An attractive patron seems very interested in your tales of adventure.",
+      "mechanic": "diplomacy_or_bluff",
+      "dc": 12,
+      "successResult": "A pleasant evening. +2 morale bonus to Charisma-based checks for 24 hours.",
+      "failureResult": "Things get awkward. No mechanical effect, but the GM gets to describe the embarrassment."
+    },
+    {
+      "id": "drunkenProphecy",
+      "name": "Drunken Prophecy",
+      "weight": 4,
+      "qualityMin": "squalid",
+      "qualityMax": "average",
+      "description": "An old drunk grabs your arm and delivers a rambling prophecy with wild eyes.",
+      "mechanic": "passive",
+      "successResult": "The words seem like nonsense, but something rings true. Gain a cryptic campaign hint.",
+      "campaignRelevant": true
+    },
+    {
+      "id": "foodPoisoning",
+      "name": "Bad Batch",
+      "weight": 4,
+      "qualityMin": "squalid",
+      "qualityMax": "poor",
+      "description": "Something in the food doesn't agree with you.",
+      "mechanic": "fortitude",
+      "dc": 12,
+      "successResult": "Your constitution holds. Just a brief rumble in the gut.",
+      "failureResult": "You're sickened for 1d4 hours. -2 to attack rolls, saves, skill checks, and ability checks."
+    }
+  ],
+  "drinkingRules": {
+    "drinkTypes": {
+      "ale": { "name": "Ale/Beer", "fortDC": 12, "intoxicationPoints": 1, "price": 0.04 },
+      "mead": { "name": "Mead", "fortDC": 13, "intoxicationPoints": 1, "price": 0.05 },
+      "wine": { "name": "Wine", "fortDC": 14, "intoxicationPoints": 1, "price": 0.2 },
+      "spirits": { "name": "Spirits/Whiskey", "fortDC": 16, "intoxicationPoints": 2, "price": 0.1 },
+      "dwarvenStout": { "name": "Dwarven Stout", "fortDC": 18, "intoxicationPoints": 2, "price": 0.08 },
+      "rotgut": { "name": "Rotgut", "fortDC": 15, "intoxicationPoints": 2, "price": 0.01 },
+      "fineWine": { "name": "Fine Wine", "fortDC": 14, "intoxicationPoints": 1, "price": 10 },
+      "absinthe": { "name": "Absinthe", "fortDC": 20, "intoxicationPoints": 3, "price": 0.3 },
+      "grog": { "name": "Grog", "fortDC": 14, "intoxicationPoints": 1, "price": 0.01 },
+      "moonshine": { "name": "Moonshine", "fortDC": 17, "intoxicationPoints": 2, "price": 0.02 }
+    },
+    "safeDrinksFormula": "1 + (2 * CON modifier), minimum 1",
+    "intoxicationLevels": [
+      { "level": "sober", "threshold": 0, "effects": "No effects", "color": "#7fff00" },
+      { "level": "tipsy", "threshold": 1, "effects": "+2 alchemical bonus to Cha, -2 to Dex and Wis", "color": "#ffd700" },
+      { "level": "drunk", "threshold": 3, "effects": "+2 alchemical bonus to Str and Cha, -4 to Dex and Wis, -2 to Int", "color": "#ffa500" },
+      { "level": "hammered", "threshold": 5, "effects": "-6 Dex, -4 Wis, -4 Int, staggered condition, speak only in slurred words", "color": "#ff6b6b" },
+      { "level": "unconscious", "threshold": 8, "effects": "Fall unconscious for 1d4 hours. DC 25 Fort or become nauseated upon waking for 1 hour.", "color": "#ff4444" }
+    ],
+    "racialBonuses": {
+      "dwarf": { "safeDrinksBonus": 2, "fortBonus": 2, "note": "+2 racial bonus to Fort saves vs poison (applies to alcohol)" },
+      "half-orc": { "safeDrinksBonus": 1, "fortBonus": 0 },
+      "halfling": { "safeDrinksBonus": -1, "fortBonus": 0 }
+    },
+    "hangoverDuration": "1d4 hours after waking",
+    "hangoverEffects": "Sickened condition (-2 attacks, saves, skills, ability checks) until hangover passes"
+  },
+  "restAndRecovery": {
+    "baseHealing": "1 HP per character level per 8 hours of rest",
+    "longTermCare": "2 HP per level with Heal check DC 15 (long-term care)",
+    "lodgingEffects": {
+      "wilderness": { "healingMultiplier": 1.0, "fatigueCheck": true, "fatigueDC": 15, "description": "Sleeping rough — Fort DC 15 or fatigued next day" },
+      "poor": { "healingMultiplier": 1.0, "fatigueCheck": true, "fatigueDC": 12, "description": "Uncomfortable but sheltered — Fort DC 12 or fatigued" },
+      "common": { "healingMultiplier": 1.0, "fatigueCheck": false, "description": "A proper bed — normal rest and healing" },
+      "good": { "healingMultiplier": 1.5, "fatigueCheck": false, "restBonus": true, "description": "Comfortable room — enhanced rest, +50% overnight healing" },
+      "suite": { "healingMultiplier": 2.0, "fatigueCheck": false, "restBonus": true, "moraleBonus": 1, "description": "Luxurious rest — double overnight healing, +1 morale bonus for 4 hours" }
+    }
+  },
+  "campaignRumors": {
+    "sandpoint": {
+      "1": [
+        { "dc": 5, "rumor": "Goblins have been getting bolder lately. Raids on outlying farms have increased.", "true": true },
+        { "dc": 8, "rumor": "The new cathedral is finally finished. Father Zantus is planning a grand consecration at the Swallowtail Festival.", "true": true },
+        { "dc": 10, "rumor": "Lonjiku Kaijitsu's been in a foul mood ever since his daughter refused to give up that tavern of hers.", "true": true },
+        { "dc": 12, "rumor": "They say the Late Unpleasantness — the murders and the fire — were connected somehow. Dark magic, perhaps.", "true": true },
+        { "dc": 15, "rumor": "The five goblin tribes have never worked together before. Something — or someone — must be uniting them.", "true": true },
+        { "dc": 18, "rumor": "Father Tobyn's daughter, Nualia, died in the chapel fire... but some say her body was never found.", "true": true },
+        { "dc": 22, "rumor": "There are ancient Thassilonian tunnels beneath the town. Old Brodert Quink insists the Old Light was a weapon, not a lighthouse.", "true": true },
+        { "dc": 8, "rumor": "The old smugglers' tunnels under town connect to the Glassworks somehow.", "true": true },
+        { "dc": 10, "rumor": "A half-elf was spotted sneaking around the Glassworks at night recently.", "true": true },
+        { "dc": 5, "rumor": "The Rusty Dragon's owner, Ameiko, used to be an adventurer. She still keeps a sword behind the bar.", "true": true },
+        { "dc": 12, "rumor": "A noble from Magnimar has been visiting frequently. They say he's sweet on one of the heroes of the goblin raid.", "true": true },
+        { "dc": 25, "rumor": "The Sandpoint Devil isn't just a legend. Something terrible lives out in the farmlands.", "true": false }
+      ],
+      "2": [
+        { "dc": 5, "rumor": "People have been disappearing around the farmlands south of town. The scarecrows seem... wrong.", "true": true },
+        { "dc": 8, "rumor": "Sheriff Hemlock has gone to Magnimar to request additional soldiers. Something has him spooked.", "true": true },
+        { "dc": 10, "rumor": "Farmer Grump swears the scarecrows in Hambley's field are walking at night.", "true": true },
+        { "dc": 12, "rumor": "There's been a series of murders in Magnimar too. The killer leaves a seven-pointed star carved into victims.", "true": true },
+        { "dc": 15, "rumor": "Foxglove Manor — 'The Misgivings' — is cursed. Nobody goes near the place anymore.", "true": true },
+        { "dc": 18, "rumor": "The Foxglove family has a dark history. Aldern's parents died under mysterious circumstances.", "true": true },
+        { "dc": 22, "rumor": "The murders are connected to an ancient cult. The seven-pointed star is a Thassilonian symbol — the Sihedron Rune.", "true": true },
+        { "dc": 10, "rumor": "That nice nobleman Foxglove hasn't been seen around town lately. Hope nothing happened to him.", "true": true }
+      ],
+      "3": [
+        { "dc": 5, "rumor": "Fort Rannick has gone silent. The Black Arrows haven't reported in weeks.", "true": true },
+        { "dc": 10, "rumor": "Ogres have been moving down from Hook Mountain in greater numbers than anyone's seen.", "true": true },
+        { "dc": 15, "rumor": "The Paradise gambling barge sank in Claybottom Lake, but some say it was no accident.", "true": true },
+        { "dc": 18, "rumor": "The Graul family in the Kreegwood are inbred ogrekin. They've been preying on travelers for years.", "true": true },
+        { "dc": 22, "rumor": "Skull's Crossing — the ancient dam — is cracking. If it breaks, it'll flood the entire valley.", "true": true }
+      ],
+      "4": [
+        { "dc": 5, "rumor": "Giant raids are increasing along the Storval Plateau. Stone giants have been spotted.", "true": true },
+        { "dc": 10, "rumor": "An ancient fortress called Jorgenfist lies deep in the Iron Peaks. The giants are gathering there.", "true": true },
+        { "dc": 15, "rumor": "The stone giant leader, Mokmurian, is no ordinary giant. They say he wields ancient Thassilonian magic.", "true": true },
+        { "dc": 20, "rumor": "The Runelords are returning. The ancient mage-tyrants who once ruled all of Varisia.", "true": true }
+      ]
+    },
+    "magnimar": {
+      "1": [
+        { "dc": 5, "rumor": "The Council of Ushers is arguing about taxes again. Lord-Mayor Grobaras doesn't care about anything but his dinner.", "true": true },
+        { "dc": 8, "rumor": "There's been trouble in the little town of Sandpoint up the coast. Goblins attacked during their festival.", "true": true },
+        { "dc": 12, "rumor": "The Justice Court has been cracking down on Sczarni operations in the Shadow district.", "true": true },
+        { "dc": 15, "rumor": "Something's not right at the Seven's Sawmill. Strange noises at odd hours.", "true": true }
+      ],
+      "2": [
+        { "dc": 5, "rumor": "A series of murders has the city guard on edge. They call the killer 'The Skinsaw Man.'", "true": true },
+        { "dc": 10, "rumor": "The victims all seem connected to the Foxglove family somehow.", "true": true },
+        { "dc": 15, "rumor": "The murders are tied to a secret society. The Skinsaw Cult operates out of a sawmill.", "true": true },
+        { "dc": 18, "rumor": "Justice Ironbriar isn't what he seems. The elven judge has been acting strangely.", "true": true },
+        { "dc": 22, "rumor": "The cult worships Father Skinsaw — an aspect of Norgorber, god of murder.", "true": true }
+      ]
+    },
+    "turtleback_ferry": {
+      "3": [
+        { "dc": 5, "rumor": "Fort Rannick has been silent for weeks. We used to see Black Arrows passing through regularly.", "true": true },
+        { "dc": 8, "rumor": "The Paradise sank in a storm last month. Good riddance — that gambling barge was nothing but trouble.", "true": true },
+        { "dc": 10, "rumor": "The Graul farmstead in the Kreegwood is a place best avoided. The family there aren't... right.", "true": true },
+        { "dc": 12, "rumor": "The floodwaters have been rising steadily. Old-timers say the dam on the Storval Rise is failing.", "true": true },
+        { "dc": 15, "rumor": "Lucrecia, the woman who ran the Paradise, was involved in dark magic. She had tattoos that moved.", "true": true },
+        { "dc": 18, "rumor": "The ogres of Hook Mountain are organized under a new leader. They call themselves the Kreeg.", "true": true }
+      ]
+    }
+  },
+  "travelTimes": {
+    "walkSpeedMPH": 3,
+    "hoursPerDay": 8,
+    "mountedSpeedMPH": 6,
+    "routes": [
+      { "from": "sandpoint", "to": "magnimar", "miles": 50, "terrain": "road", "days": 2 },
+      { "from": "sandpoint", "to": "turtleback_ferry", "miles": 180, "terrain": "road+trail", "days": 8 },
+      { "from": "magnimar", "to": "turtleback_ferry", "miles": 200, "terrain": "road+trail", "days": 9 },
+      { "from": "magnimar", "to": "korvosa", "miles": 300, "terrain": "road", "days": 12 },
+      { "from": "magnimar", "to": "riddleport", "miles": 450, "terrain": "road", "days": 18 }
+    ]
+  }
+}

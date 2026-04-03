@@ -1,0 +1,197 @@
+[
+  {
+    "name": "Blinded",
+    "description": "Cannot see. Takes a -2 penalty to AC, loses Dex bonus to AC, and moves at half speed. All checks and activities that rely on vision automatically fail. All opponents are considered to have total concealment (50% miss chance). Must make DC 10 Acrobatics check to move faster than half speed or fall prone.",
+    "source": "CRB"
+  },
+  {
+    "name": "Confused",
+    "description": "Cannot act normally. Roll d% each round: 01-25 act normally, 26-50 do nothing but babble, 51-75 deal 1d8+Str damage to self, 76-100 attack nearest creature. Confused character who can't attack babbles incoherently.",
+    "source": "CRB"
+  },
+  {
+    "name": "Cowering",
+    "description": "Frozen in fear and can take no actions. Takes a -2 penalty to AC and loses Dex bonus.",
+    "source": "CRB"
+  },
+  {
+    "name": "Dazed",
+    "description": "Unable to act normally. Can take no actions, but has no penalty to AC.",
+    "source": "CRB"
+  },
+  {
+    "name": "Dazzled",
+    "description": "Unable to see well because of overstimulation of the eyes. Takes a -1 penalty on attack rolls and sight-based Perception checks.",
+    "source": "CRB"
+  },
+  {
+    "name": "Dead",
+    "description": "Hit points reduced to a negative amount equal to Constitution score, or killed outright by a spell or effect. Soul departs body. Dead characters cannot benefit from normal or magical healing, but can be restored via raise dead, resurrection, or similar magic.",
+    "source": "CRB"
+  },
+  {
+    "name": "Deafened",
+    "description": "Cannot hear. Takes a -4 penalty on initiative checks, automatically fails Perception checks based on sound, -4 penalty on opposed Perception checks, 20% chance of spell failure for spells with verbal components.",
+    "source": "CRB"
+  },
+  {
+    "name": "Disabled",
+    "description": "At exactly 0 hit points, or does not have negative hit points but has become disabled through some condition. Can only take a single move or standard action each round (but not both, nor full-round actions). Move at half speed. Taking standard actions that are strenuous deals 1 point of damage after completing the act.",
+    "source": "CRB"
+  },
+  {
+    "name": "Dying",
+    "description": "At negative hit points and not stable. Must make a DC 10 Constitution check each round to become stable. Natural 20 on this check restores 1 HP. Failing by 5 or more loses 1 HP. If reduced to negative Con score, character dies.",
+    "source": "CRB"
+  },
+  {
+    "name": "Energy Drained",
+    "description": "Gained one or more negative levels. For each negative level: -1 penalty on ability checks, attack rolls, CMB, CMD, saving throws, and skill checks. Reduce effective level by 1 for spell/ability determination. -5 max HP. Lose one prepared spell or spell slot of highest level.",
+    "source": "CRB"
+  },
+  {
+    "name": "Entangled",
+    "description": "Ensnared. Moves at half speed, cannot run or charge, takes -2 on attack rolls and -4 on Dexterity. Casting a spell while entangled requires a concentration check (DC 15 + spell level).",
+    "source": "CRB"
+  },
+  {
+    "name": "Exhausted",
+    "description": "Moves at half speed, cannot run or charge, takes -6 to Strength and Dexterity. After 1 hour of complete rest, becomes fatigued instead. A fatigued character who becomes exhausted through some effect remains exhausted.",
+    "source": "CRB"
+  },
+  {
+    "name": "Fascinated",
+    "description": "Entranced by a supernatural or spell effect. Stands or sits quietly, taking no actions other than to pay attention to the fascinating effect. Takes a -4 penalty on skill checks made as reactions (like Perception). Any potential threat allows a new saving throw. Obvious threat automatically breaks the effect.",
+    "source": "CRB"
+  },
+  {
+    "name": "Fatigued",
+    "description": "Cannot run or charge, takes -2 to Strength and Dexterity. After 8 hours of complete rest, no longer fatigued. A fatigued character who does something that would cause fatigue becomes exhausted.",
+    "source": "CRB"
+  },
+  {
+    "name": "Flat-Footed",
+    "description": "Not yet acted during combat. Cannot apply Dex bonus to AC (if any). Cannot make attacks of opportunity. This condition ends when the character takes an action or at the start of their first turn, whichever comes first.",
+    "source": "CRB"
+  },
+  {
+    "name": "Frightened",
+    "description": "Flees from the source of its fear as best it can. If unable to flee, may fight. Takes a -2 penalty on all attack rolls, saving throws, skill checks, and ability checks. Can use special abilities, including spells, to flee; must use such means if they are the only way to escape.",
+    "source": "CRB"
+  },
+  {
+    "name": "Grappled",
+    "description": "Restrained by a creature, trap, or effect. Cannot move and takes a -4 penalty to Dexterity. -2 penalty on all attack rolls and combat maneuver checks except to grapple or escape. Cannot take actions that require two hands. Cannot make attacks of opportunity. Cannot cast spells requiring somatic components.",
+    "source": "CRB"
+  },
+  {
+    "name": "Helpless",
+    "description": "Paralyzed, held, bound, sleeping, unconscious, or otherwise completely at an opponent's mercy. Treated as having a Dex of 0 (-5 modifier). Melee attacks against a helpless target get a +4 bonus. Ranged attacks get no special bonus. Rogues can sneak attack helpless targets. Coup de grace is possible.",
+    "source": "CRB"
+  },
+  {
+    "name": "Incorporeal",
+    "description": "Has no physical body. Can be harmed only by other incorporeal creatures, magic weapons (+1 or better), spells, spell-like abilities, or supernatural abilities. Immune to all nonmagical attack forms. Takes 50% damage from magic weapons, spells, spell-like, and supernatural effects. Full damage from other incorporeal creatures and effects, and from force effects.",
+    "source": "CRB"
+  },
+  {
+    "name": "Invisible",
+    "description": "Visually undetectable. +2 bonus on attack rolls against sighted opponents, ignores the opponent's Dex bonus to AC. +20 on Stealth checks if moving, +40 if stationary. Opponents can locate by Perception DC 20 (+20 penalty). Attacks against invisible creatures have 50% miss chance.",
+    "source": "CRB"
+  },
+  {
+    "name": "Nauseated",
+    "description": "Experiencing stomach distress. Unable to attack, cast spells, concentrate on spells, or do anything else requiring attention. Can only take a single move action per turn.",
+    "source": "CRB"
+  },
+  {
+    "name": "Panicked",
+    "description": "Drops anything held and flees at top speed from the source of fear, as well as any other dangers encountered. If cornered, the character cowers and does not attack, getting -2 AC. Can use special abilities and spells to flee but must use them if only way to escape.",
+    "source": "CRB"
+  },
+  {
+    "name": "Paralyzed",
+    "description": "Frozen in place and unable to move or act. Has effective Dex and Str of 0 and is helpless, but can take purely mental actions. A winged creature flying in the air falls. A swimmer cannot swim and may drown.",
+    "source": "CRB"
+  },
+  {
+    "name": "Petrified",
+    "description": "Turned to stone and is considered unconscious. If a petrified character cracks or breaks but the pieces are joined with the body when it returns to flesh, the character is unharmed. If the head or body is missing, the creature is dead when restored.",
+    "source": "CRB"
+  },
+  {
+    "name": "Pinned",
+    "description": "Tightly bound and can take few actions. Cannot move and is denied its Dex bonus. Can only attempt to free self (DC equals opponent's CMD), or take verbal or mental actions. Cannot cast spells requiring somatic or material components. Can attempt to cast a spell or activate a magic item by making a concentration check (DC 10 + grappler's CMB + spell level).",
+    "source": "CRB"
+  },
+  {
+    "name": "Prone",
+    "description": "Lying on the ground. Takes a -4 penalty on melee attack rolls and cannot use a ranged weapon (except crossbow). Gains a +4 bonus to AC against ranged attacks, but takes a -4 penalty to AC against melee attacks. Standing up is a move action that provokes an attack of opportunity.",
+    "source": "CRB"
+  },
+  {
+    "name": "Shaken",
+    "description": "Takes a -2 penalty on attack rolls, saving throws, skill checks, and ability checks. This is a fear effect.",
+    "source": "CRB"
+  },
+  {
+    "name": "Sickened",
+    "description": "Takes a -2 penalty on all attack rolls, weapon damage rolls, saving throws, skill checks, and ability checks.",
+    "source": "CRB"
+  },
+  {
+    "name": "Stable",
+    "description": "No longer dying, but still unconscious. If made stable via healing, no longer loses hit points but is still unconscious. After 1 hour, may attempt a DC 10 Constitution check each hour to regain consciousness. Each check that fails deals 1 HP damage.",
+    "source": "CRB"
+  },
+  {
+    "name": "Staggered",
+    "description": "May take a single move action or standard action each round (but not both, nor full-round actions). Can still take free, swift, and immediate actions.",
+    "source": "CRB"
+  },
+  {
+    "name": "Stunned",
+    "description": "Drops everything held, can't take actions, takes a -2 penalty to AC, and loses Dex bonus to AC.",
+    "source": "CRB"
+  },
+  {
+    "name": "Unconscious",
+    "description": "Knocked out and helpless. Unconsciousness can result from having negative hit points (but more than dead threshold), or from nonlethal damage in excess of current hit points.",
+    "source": "CRB"
+  },
+  {
+    "name": "Staggered (nonlethal)",
+    "description": "If nonlethal damage equals current hit points, character is staggered. Can only take a single move or standard action per round. Further nonlethal damage causes unconsciousness.",
+    "source": "CRB"
+  },
+  {
+    "name": "Bleeding",
+    "description": "Taking hit point damage at the beginning of each turn from bleed damage. Bleed damage does not stack with itself. Can be stopped by a DC 15 Heal check or any spell that restores hit points.",
+    "source": "CRB"
+  },
+  {
+    "name": "Ability Damaged",
+    "description": "Lost ability score points that can be restored through natural healing (1 point per day of rest) or magical healing. A character with Strength 0 falls to the ground helpless. A character with Dex 0 is paralyzed. A character with Con 0 is dead. A character with Int, Wis, or Cha 0 is unconscious.",
+    "source": "CRB"
+  },
+  {
+    "name": "Ability Drained",
+    "description": "Permanent ability score loss. Can only be restored through magic such as restoration or greater restoration.",
+    "source": "CRB"
+  },
+  {
+    "name": "Cursed",
+    "description": "Afflicted by a curse effect. Curses vary widely in their effects. Most can be removed with remove curse or break enchantment.",
+    "source": "CRB"
+  },
+  {
+    "name": "Diseased",
+    "description": "Afflicted by a disease. Must make periodic saving throws to avoid taking ability damage. Can be cured by remove disease or similar magic.",
+    "source": "CRB"
+  },
+  {
+    "name": "Poisoned",
+    "description": "Afflicted by a poison. Must make saving throws to resist effects, which usually involve ability damage. Can be cured by neutralize poison or similar magic.",
+    "source": "CRB"
+  }
+]

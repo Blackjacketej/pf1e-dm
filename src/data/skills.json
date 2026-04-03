@@ -1,0 +1,1330 @@
+[
+  {
+    "name": "Acrobatics",
+    "ability": "DEX",
+    "untrained": true,
+    "armorPenalty": true,
+    "description": "You can keep your balance while traversing narrow or treacherous surfaces. You can also dive, flip, jump, and roll to avoid attacks and overcome obstacles.",
+    "check": "You can use Acrobatics to move on narrow surfaces and uneven ground without falling, move through threatened squares without provoking attacks of opportunity, and make jumps or soften falls. The base DC depends on the surface width and situation.",
+    "action": "None. An Acrobatics check is made as part of another action or as a reaction to a situation.",
+    "retry": "Yes. You can attempt to balance again if you fall, can retry jumps, and may attempt to catch yourself or another falling character.",
+    "special": "If you have 3 or more ranks in Acrobatics, you gain a +3 dodge bonus to AC when fighting defensively (instead of the normal +2) and a +6 dodge bonus when taking the total defense action (instead of the normal +4). The Acrobatic feat provides an additional bonus.",
+    "dcTable": [
+      {
+        "dc": 5,
+        "task": "Balance on surface 1-3 feet wide"
+      },
+      {
+        "dc": 10,
+        "task": "Balance on 7-11 inch wide surface"
+      },
+      {
+        "dc": 15,
+        "task": "Balance on 2-6 inch wide surface"
+      },
+      {
+        "dc": 20,
+        "task": "Balance on surface less than 2 inches wide"
+      },
+      {
+        "dc": 5,
+        "task": "Long jump 5 feet"
+      },
+      {
+        "dc": 10,
+        "task": "Long jump 10 feet"
+      },
+      {
+        "dc": 15,
+        "task": "Long jump 15 feet"
+      },
+      {
+        "dc": 4,
+        "task": "High jump 1 foot"
+      },
+      {
+        "dc": 8,
+        "task": "High jump 2 feet"
+      },
+      {
+        "dc": 15,
+        "task": "Soften fall from any distance (DC 15)"
+      }
+    ],
+    "synergy": "Rank in Climb provides +2 bonus to Acrobatics",
+    "classSkills": [
+      "Barbarian",
+      "Bard",
+      "Monk",
+      "Rogue"
+    ]
+  },
+  {
+    "name": "Appraise",
+    "ability": "INT",
+    "untrained": true,
+    "armorPenalty": false,
+    "description": "You can evaluate the monetary value of an object.",
+    "check": "A DC 20 Appraise check determines the value of a common item. Success by 5+ also identifies magic properties. You can determine the most valuable item in a treasure hoard (DC 20-30).",
+    "action": "Appraising an item takes 1 standard action. Determining the most valuable object in a treasure hoard takes 1 full-round action.",
+    "retry": "Additional attempts to Appraise an item reveal the same result.",
+    "special": "A spellcaster with a raven familiar gains a +3 bonus on Appraise checks.",
+    "dcTable": [
+      {
+        "dc": 20,
+        "task": "Appraise a common item"
+      },
+      {
+        "dc": 20,
+        "task": "Find most valuable item in small hoard"
+      },
+      {
+        "dc": 30,
+        "task": "Find most valuable item in large hoard"
+      }
+    ],
+    "synergy": "",
+    "classSkills": [
+      "Bard",
+      "Rogue",
+      "Wizard"
+    ]
+  },
+  {
+    "name": "Bluff",
+    "ability": "CHA",
+    "untrained": true,
+    "armorPenalty": false,
+    "description": "You know how to tell a lie.",
+    "check": "Bluff is an opposed skill check against opponent's Sense Motive. Success convinces the opponent your false statement is true. Modifiers apply based on believability of the lie (-20 for impossible, +5 if target wants to believe). You can use Bluff to feint in combat (DC = 10 + opponent's BAB + opponent's Wis modifier) or pass secret messages (DC 15 for simple, 20 for complex).",
+    "action": "Attempting to deceive someone takes at least 1 round. Feinting in combat is a standard action. Secret messages take twice as long to deliver as the message would normally take.",
+    "retry": "If you fail to deceive someone, further attempts are at -10 penalty and may be impossible (GM discretion). You can retry feints and secret messages.",
+    "special": "A spellcaster with a viper familiar gains a +3 bonus on Bluff checks. The Deceitful feat provides additional bonuses.",
+    "dcTable": [
+      {
+        "dc": 10,
+        "task": "Feint (vs opponent's Combat Maneuver Defense)"
+      },
+      {
+        "dc": 15,
+        "task": "Pass simple secret message"
+      },
+      {
+        "dc": 20,
+        "task": "Pass complex secret message"
+      }
+    ],
+    "synergy": "Bluff and Disguise can work together for elaborate deceptions",
+    "classSkills": [
+      "Bard",
+      "Rogue",
+      "Sorcerer"
+    ]
+  },
+  {
+    "name": "Climb",
+    "ability": "STR",
+    "untrained": true,
+    "armorPenalty": true,
+    "description": "You are skilled at scaling vertical surfaces, from smooth city walls to rocky cliffs.",
+    "check": "With a successful Climb check, you can advance up, down, or across a slope, wall, or steep incline at one-quarter your normal speed. Failing by 4 or less means no progress; failing by 5+ means you fall from your current height. DCs range from 0 (slope/knotted rope) to 30 (overhang with handholds only).",
+    "action": "Climbing is part of movement and uses part of a move action. Each move action that includes climbing requires a separate Climb check.",
+    "retry": "Yes, but failure has inherent penalty (falling). Some situations prevent taking 20.",
+    "special": "You need both hands free to climb. While climbing, you lose your Dexterity bonus to AC and can't use a shield. Creatures with climb speed get +8 racial bonus and can keep their DEX bonus. The Athletic feat provides bonuses.",
+    "dcTable": [
+      {
+        "dc": 0,
+        "task": "Slope too steep or knotted rope with wall"
+      },
+      {
+        "dc": 5,
+        "task": "Rope with wall or knotted rope"
+      },
+      {
+        "dc": 10,
+        "task": "Surface with ledges (rough wall or ship rigging)"
+      },
+      {
+        "dc": 15,
+        "task": "Surface with adequate handholds (rough rock or tree)"
+      },
+      {
+        "dc": 20,
+        "task": "Wall with narrow handholds (dungeon wall)"
+      },
+      {
+        "dc": 25,
+        "task": "Rough surface (natural rock or brick wall)"
+      },
+      {
+        "dc": 30,
+        "task": "Overhang or ceiling with handholds only"
+      }
+    ],
+    "synergy": "Acrobatics rank provides +2 bonus; Jump skill assists with climbing",
+    "classSkills": [
+      "Barbarian",
+      "Bard",
+      "Cleric",
+      "Druid",
+      "Fighter",
+      "Monk",
+      "Ranger",
+      "Rogue"
+    ]
+  },
+  {
+    "name": "Craft",
+    "ability": "INT",
+    "untrained": true,
+    "armorPenalty": false,
+    "description": "You are skilled in the creation of a specific group of items, such as armor or weapons. Like Knowledge, Perform, and Profession, Craft is actually a number of separate skills. Common Craft skills include alchemy, armor, baskets, books, bows, calligraphy, carpentry, cloth, clothing, glass, jewelry, leather, locks, paintings, pottery, sculptures, ships, shoes, stonemasonry, traps, and weapons.",
+    "check": "You can practice your trade and earn half your check result in gold pieces per week. You can also make items of the appropriate type. Time and cost depend on DC, check result, and item price. Raw materials cost 1/3 of item price.",
+    "action": "Craft checks are made by the day or week (not per standard/move action).",
+    "retry": "Yes, but failure by 5+ ruins half raw materials; must pay half raw material cost again.",
+    "special": "You may voluntarily add +10 to DC to craft items more quickly. Masterwork items require additional checks. Improvi sed tools impose -2 penalty; masterwork tools give +2 bonus. Gnomes get +2 bonus to one Craft skill of their choice.",
+    "dcTable": [
+      {
+        "dc": 5,
+        "task": "Very simple item (wooden spoon)"
+      },
+      {
+        "dc": 10,
+        "task": "Typical item (iron pot)"
+      },
+      {
+        "dc": 12,
+        "task": "Simple melee weapon"
+      },
+      {
+        "dc": 15,
+        "task": "High-quality item (bell) or martial weapon"
+      },
+      {
+        "dc": 15,
+        "task": "Craft (alchemy): Alchemist's fire"
+      },
+      {
+        "dc": 18,
+        "task": "Exotic melee weapon"
+      },
+      {
+        "dc": 20,
+        "task": "Complex or superior item (lock) or masterwork component"
+      }
+    ],
+    "synergy": "Profession and Knowledge skills can assist",
+    "classSkills": [
+      "Barbarian",
+      "Bard",
+      "Cleric",
+      "Druid",
+      "Fighter",
+      "Monk",
+      "Paladin",
+      "Ranger",
+      "Rogue",
+      "Sorcerer",
+      "Wizard"
+    ]
+  },
+  {
+    "name": "Diplomacy",
+    "ability": "CHA",
+    "untrained": true,
+    "armorPenalty": false,
+    "description": "You can use this skill to persuade others to agree with your arguments, to resolve differences, and to gather valuable information or rumors from people. This skill is also used to negotiate conflicts by using the proper etiquette and manners suitable to the problem.",
+    "check": "You can change NPCs' attitudes with a successful check. DC depends on creature's starting attitude adjusted by its CHA modifier. Success improves attitude one step; every 5 you exceed the DC increases attitude one additional step (max 2 steps). You can also use Diplomacy to gather information by spending 1d4 hours canvassing taverns and markets (DC varies by obscurity).",
+    "action": "Using Diplomacy to influence a creature's attitude takes 1 minute of continuous interaction. Gathering information takes 1d4 hours.",
+    "retry": "You cannot use Diplomacy to influence a given creature's attitude more than once per 24 hours. You can retry to gather information.",
+    "special": "Cannot use Diplomacy against creatures that don't understand you or have INT 3 or less. Diplomacy generally lasts 1d4 hours. Impossible in combat. The Persuasive feat grants bonuses.",
+    "dcTable": [
+      {
+        "dc": 25,
+        "task": "Change hostile creature's attitude"
+      },
+      {
+        "dc": 20,
+        "task": "Change unfriendly creature's attitude"
+      },
+      {
+        "dc": 15,
+        "task": "Change indifferent creature's attitude"
+      },
+      {
+        "dc": 10,
+        "task": "Change friendly creature's attitude"
+      },
+      {
+        "dc": 0,
+        "task": "Change helpful creature's attitude"
+      },
+      {
+        "dc": 10,
+        "task": "Gather information on common knowledge"
+      }
+    ],
+    "synergy": "Bluff and Sense Motive assist Diplomacy checks",
+    "classSkills": [
+      "Bard",
+      "Cleric",
+      "Paladin",
+      "Rogue"
+    ]
+  },
+  {
+    "name": "Disable Device",
+    "ability": "DEX",
+    "untrained": false,
+    "armorPenalty": true,
+    "description": "You are skilled at disarming traps and opening locks.",
+    "check": "Disabling a simple device takes 1 round (full-round action). Tricky/difficult devices require 1d4 or 2d4 rounds. Opening a lock is a full-round action. DC varies from 15 (simple lock) to 40 (master lock).",
+    "action": "Disabling a simple device takes 1 round and is a full-round action. Tricky/difficult devices take 1d4 or 2d4 rounds.",
+    "retry": "Yes, you can attempt again if you fail, but failures may trigger the device or alert guards.",
+    "special": "If you fail by less than 4, the device is still usable. If you fail by 4 or less opening a lock, it's still openable. Failure by 5+ may jam or trigger the device. You need appropriate tools (thieves' tools). Masterwork tools give +2 circumstance bonus.",
+    "dcTable": [
+      {
+        "dc": 15,
+        "task": "Simple lock"
+      },
+      {
+        "dc": 20,
+        "task": "Average lock"
+      },
+      {
+        "dc": 25,
+        "task": "Good lock"
+      },
+      {
+        "dc": 30,
+        "task": "Very good lock"
+      },
+      {
+        "dc": 40,
+        "task": "Master lock"
+      }
+    ],
+    "synergy": "Knowledge (Engineering) provides +2 bonus",
+    "classSkills": [
+      "Rogue"
+    ]
+  },
+  {
+    "name": "Disguise",
+    "ability": "CHA",
+    "untrained": true,
+    "armorPenalty": false,
+    "description": "You can change your appearance.",
+    "check": "Success determines whether you fool others. DC depends on disguise quality. Observers can make Perception checks to penetrate disguise. You can't disguise race unless using magic. Minor disguises take 1d4 hours; thorough ones take 8 hours.",
+    "action": "Creating a disguise takes 1d4 hours or 8 hours for a thorough job.",
+    "retry": "You can attempt a new disguise if you fail, spending the time required.",
+    "special": "You gain +2 bonus to Disguise checks if you have access to a disguise kit. You suffer -2 penalty if you attempt to disguise a different gender or age. The Deceitful feat grants bonuses.",
+    "dcTable": [
+      {
+        "dc": 10,
+        "task": "Disguise as different person of same race/gender"
+      },
+      {
+        "dc": 20,
+        "task": "Disguise as different gender"
+      },
+      {
+        "dc": 30,
+        "task": "Disguise as different race (very difficult without magic)"
+      }
+    ],
+    "synergy": "Bluff can work with Disguise for comprehensive deceptions",
+    "classSkills": [
+      "Bard",
+      "Rogue"
+    ]
+  },
+  {
+    "name": "Escape Artist",
+    "ability": "DEX",
+    "untrained": true,
+    "armorPenalty": true,
+    "description": "You are skilled at escaping bonds and confined spaces.",
+    "check": "Success allows you to escape from rope bonds, manacles, nets, grapples, and tight spaces. DC depends on the bonds. Escaping rope is DC 20 + Bind check modifier. Escaping manacles is DC 30. Escaping a grapple is opposed check vs grappler's combat maneuver bonus.",
+    "action": "Escaping rope or manacles is a full-round action. Escaping a grapple is a standard action.",
+    "retry": "You can attempt again if you fail, but each attempt takes a full round.",
+    "special": "You cannot take 20 on this check. Slippery items (oils, grease) grant +5 bonus. Tight restraints impose -5 penalty. You can move through space 2+ inches smaller than your head if you make DC 25 check.",
+    "dcTable": [
+      {
+        "dc": 20,
+        "task": "Escape from rope bonds"
+      },
+      {
+        "dc": 20,
+        "task": "Escape from tight rope (DC = Bind check +5)"
+      },
+      {
+        "dc": 30,
+        "task": "Escape from manacles"
+      },
+      {
+        "dc": 30,
+        "task": "Escape from tight manacles (DC = Bind check +10)"
+      },
+      {
+        "dc": 25,
+        "task": "Move through very tight space"
+      }
+    ],
+    "synergy": "Acrobatics ranks provide +2 bonus",
+    "classSkills": [
+      "Bard",
+      "Monk",
+      "Rogue"
+    ]
+  },
+  {
+    "name": "Fly",
+    "ability": "DEX",
+    "untrained": true,
+    "armorPenalty": true,
+    "description": "You are skilled at flying, through the use of wings, a magical effect, or some other means. You cannot use Fly unless you have a reliable means of flying every day.",
+    "check": "Fly check DC depends on maneuver: hovering is DC 15; flying in strong wind is DC 20; flying in turbulent air is DC 25; avoid diving opponent is opposed Fly vs melee attack.",
+    "action": "Flying is part of movement and uses a move action.",
+    "retry": "Depends on the situation. You can attempt to recover from a fall, and you can attempt to fly again if you fail.",
+    "special": "Creatures with natural fly speed gain +8 racial bonus on Fly checks. The Acrobatic feat grants bonuses. You have a +4 bonus if you have the ability to fly (spell, magic item, etc.) vs creatures without reliable flying means.",
+    "dcTable": [
+      {
+        "dc": 15,
+        "task": "Hover in place"
+      },
+      {
+        "dc": 15,
+        "task": "Fly at quarter speed (diagonal up/down)"
+      },
+      {
+        "dc": 20,
+        "task": "Fly in strong wind"
+      },
+      {
+        "dc": 25,
+        "task": "Fly in turbulent air/storm"
+      },
+      {
+        "dc": 35,
+        "task": "Fly in violent wind"
+      }
+    ],
+    "synergy": "Acrobatics rank provides +2 bonus; Balance assists with flying",
+    "classSkills": [
+      "Druid",
+      "Sorcerer",
+      "Wizard"
+    ]
+  },
+  {
+    "name": "Handle Animal",
+    "ability": "CHA",
+    "untrained": false,
+    "armorPenalty": false,
+    "description": "You are skilled at working with animals and can teach them tricks, care for them, and ride them.",
+    "check": "Training an animal to perform a specific trick is DC 15 for one familiar with the animal, DC 20 otherwise. Pushing an animal requires opposed check vs animal's Will save DC. Riding requires mounted combat checks. DC depends on animal mood and task.",
+    "action": "Training is measured in weeks. Making an animal perform a known trick is a standard action. Pushing an animal is a move action.",
+    "retry": "You can retry if you fail. Wild animals may become hostile if pushed too far.",
+    "special": "You need Trainer feat to train animals. Rangers gain a bonus for their animal companions. Failure to control an animal may result in attack or fleeing.",
+    "dcTable": [
+      {
+        "dc": 10,
+        "task": "Feed, care for, or groom an animal"
+      },
+      {
+        "dc": 15,
+        "task": "Teach an animal a trick"
+      },
+      {
+        "dc": 20,
+        "task": "Push an animal to do something contrary to nature"
+      },
+      {
+        "dc": 25,
+        "task": "Teach exotic animal a trick"
+      }
+    ],
+    "synergy": "Empathy and Ride provide bonuses",
+    "classSkills": [
+      "Barbarian",
+      "Druid",
+      "Fighter",
+      "Paladin",
+      "Ranger"
+    ]
+  },
+  {
+    "name": "Heal",
+    "ability": "WIS",
+    "untrained": true,
+    "armorPenalty": false,
+    "description": "You are skilled at healing wounds and treating diseases and poisons.",
+    "check": "Healing a character: DC 15 to restore hit points using a healer's kit (restore 1d4+1 HP with successful check). Treating poison: DC = poison's DC. Treating disease: DC = disease's DC. Treating wounds: DC varies by wound severity.",
+    "action": "Treating wounds takes 1 minute per wound. Performing first aid on a dying character is a standard action (takes 1 full round).",
+    "retry": "You can retry checks to treat poison/disease with -2 penalty for each prior check. First aid can be reattempted but each attempt takes time.",
+    "special": "A Healer's Kit provides +2 circumstance bonus. A successful check for treating a deadly wound (DC 20) prevents a dying character from losing 1 HP each round and stabilizes them.",
+    "dcTable": [
+      {
+        "dc": 15,
+        "task": "Restore 1d4+1 HP with Healer's Kit"
+      },
+      {
+        "dc": 20,
+        "task": "Treat deadly wounds and stabilize dying character"
+      },
+      {
+        "dc": 20,
+        "task": "Treat poison (varies by poison)"
+      },
+      {
+        "dc": 15,
+        "task": "Treat disease (varies by disease)"
+      }
+    ],
+    "synergy": "Knowledge (Nature) provides +2 bonus for treating animal wounds",
+    "classSkills": [
+      "Cleric",
+      "Druid",
+      "Paladin",
+      "Ranger"
+    ]
+  },
+  {
+    "name": "Intimidate",
+    "ability": "CHA",
+    "untrained": true,
+    "armorPenalty": false,
+    "description": "You can use this skill to frighten an opponent or to get them to act in a way that benefits you.",
+    "check": "Opposed check against target's Will save DC. Success means the opponent becomes shaken (takes -2 on attacks, saves, ability checks) for 1d6\u00d710 minutes. You can intimidate a creature that doesn't understand your language (they get +4 bonus to resist).",
+    "action": "Intimidating opponent in combat is a standard action. Out of combat, it is more variable and depends on the situation.",
+    "retry": "You can attempt to intimidate the same creature again if you fail, but each attempt gives previous attempts cumulative -5 penalty.",
+    "special": "The Intimidating Prowess feat and others grant bonuses. Creatures of different types (undead, constructs) may be immune. Size difference affects DC.",
+    "dcTable": [
+      {
+        "dc": 10,
+        "task": "Demoralize opponent (DC = 10 + opponent's Will save)"
+      },
+      {
+        "dc": 15,
+        "task": "Intimidate creature that doesn't understand your language (add +4 to their resistance)"
+      }
+    ],
+    "synergy": "Bluff and Perception ranks provide bonuses",
+    "classSkills": [
+      "Barbarian",
+      "Fighter",
+      "Paladin",
+      "Ranger",
+      "Rogue",
+      "Sorcerer"
+    ]
+  },
+  {
+    "name": "Knowledge (Arcana)",
+    "ability": "INT",
+    "untrained": false,
+    "armorPenalty": false,
+    "description": "You are educated in magical theory, including the study of magical spells, magic items, magical beasts, planes, and planar inhabitants. You also know the names and locations of important magical organizations and the names and details of famous wizards and sorcerers.",
+    "check": "Answer questions about magical theories, identify magic items, identify magical beasts, understand planar properties. DC varies from 10 (common magic) to 30 (esoteric magical knowledge).",
+    "action": "Usually 1 or more rounds per check, can be longer for research.",
+    "retry": "No, you cannot retry the same question with the same check.",
+    "special": "Cannot use untrained unless dealing with common information (DC 10). Ranks in Spellcraft add +2 bonus.",
+    "dcTable": [
+      {
+        "dc": 10,
+        "task": "Answer question about common magical theory"
+      },
+      {
+        "dc": 15,
+        "task": "Identify spell being cast"
+      },
+      {
+        "dc": 20,
+        "task": "Identify magical creature"
+      },
+      {
+        "dc": 30,
+        "task": "Understand esoteric magical knowledge"
+      }
+    ],
+    "synergy": "Spellcraft ranks provide +2 bonus",
+    "classSkills": [
+      "Bard",
+      "Cleric",
+      "Sorcerer",
+      "Wizard"
+    ]
+  },
+  {
+    "name": "Knowledge (Dungeoneering)",
+    "ability": "INT",
+    "untrained": false,
+    "armorPenalty": false,
+    "description": "You are educated in dungeon-related knowledge, including spelunking, dungeon ecology, the customs of dungeon-dwelling humanoids, giant culture, and the hazards of the underdark.",
+    "check": "Answer questions about dungeon hazards, identify dungeon-dwelling creatures and hazards, understand underground ecosystems. DC 10 for common knowledge to DC 30 for obscure information.",
+    "action": "1 or more rounds per check.",
+    "retry": "No, you cannot retry the same question.",
+    "special": "Cannot use untrained for information DC 10 or higher. Ranks in Climb add +2 bonus.",
+    "dcTable": [
+      {
+        "dc": 10,
+        "task": "Answer question about common dungeon knowledge"
+      },
+      {
+        "dc": 15,
+        "task": "Identify dungeon hazard"
+      },
+      {
+        "dc": 20,
+        "task": "Understand dungeon ecology"
+      },
+      {
+        "dc": 30,
+        "task": "Understand esoteric dungeon lore"
+      }
+    ],
+    "synergy": "Climb ranks provide +2 bonus",
+    "classSkills": [
+      "Barbarian",
+      "Fighter",
+      "Ranger",
+      "Wizard"
+    ]
+  },
+  {
+    "name": "Knowledge (Engineering)",
+    "ability": "INT",
+    "untrained": false,
+    "armorPenalty": false,
+    "description": "You are educated in engineering, including the structure of buildings and other structures, constructing and destroying structures, building siege weaponry, and other fields of engineering knowledge.",
+    "check": "Answer questions about structures, identify structural weaknesses, understand engineering principles. DC 10 for common knowledge to DC 30 for esoteric engineering.",
+    "action": "1 or more rounds per check.",
+    "retry": "No, for the same question.",
+    "special": "Cannot use untrained for DC 10+ information. Ranks in Craft provide +2 bonus.",
+    "dcTable": [
+      {
+        "dc": 10,
+        "task": "Answer question about common engineering"
+      },
+      {
+        "dc": 15,
+        "task": "Identify structural weakness"
+      },
+      {
+        "dc": 20,
+        "task": "Understand siege engineering"
+      },
+      {
+        "dc": 30,
+        "task": "Understand advanced engineering"
+      }
+    ],
+    "synergy": "Craft ranks provide +2 bonus",
+    "classSkills": [
+      "Fighter",
+      "Wizard"
+    ]
+  },
+  {
+    "name": "Knowledge (Geography)",
+    "ability": "INT",
+    "untrained": false,
+    "armorPenalty": false,
+    "description": "You are educated in geography, including the knowledge of lands, climates, populations, political subdivisions, terrain, and trade routes. This knowledge includes the humanoids, cultures, history, and geography of the world.",
+    "check": "Answer questions about geography, identify terrain and climate hazards, understand political boundaries. DC 10 for common knowledge to DC 30 for esoteric geography.",
+    "action": "1 or more rounds per check.",
+    "retry": "No, for the same question.",
+    "special": "Cannot use untrained for DC 10+ information. Ranks in Survival add +2 bonus.",
+    "dcTable": [
+      {
+        "dc": 10,
+        "task": "Answer question about common geography"
+      },
+      {
+        "dc": 15,
+        "task": "Identify terrain hazard"
+      },
+      {
+        "dc": 20,
+        "task": "Understand political boundaries"
+      },
+      {
+        "dc": 30,
+        "task": "Understand esoteric geography"
+      }
+    ],
+    "synergy": "Survival ranks provide +2 bonus",
+    "classSkills": [
+      "Bard",
+      "Druid",
+      "Ranger",
+      "Wizard"
+    ]
+  },
+  {
+    "name": "Knowledge (History)",
+    "ability": "INT",
+    "untrained": false,
+    "armorPenalty": false,
+    "description": "You are educated in history, including the knowledge of historical events, wars, conflicts, legendary people, and historical information of importance to the local region.",
+    "check": "Answer questions about historical events, identify historical figures, understand historical context. DC 10 for common knowledge to DC 30 for esoteric history.",
+    "action": "1 or more rounds per check.",
+    "retry": "No, for the same question.",
+    "special": "Cannot use untrained for DC 10+ information.",
+    "dcTable": [
+      {
+        "dc": 10,
+        "task": "Answer question about well-known historical events"
+      },
+      {
+        "dc": 15,
+        "task": "Identify historical period"
+      },
+      {
+        "dc": 20,
+        "task": "Understand obscure historical details"
+      },
+      {
+        "dc": 30,
+        "task": "Understand esoteric history"
+      }
+    ],
+    "synergy": "Knowledge (Local/Nobility/Religion) provide +1 bonuses",
+    "classSkills": [
+      "Bard",
+      "Cleric",
+      "Wizard"
+    ]
+  },
+  {
+    "name": "Knowledge (Local)",
+    "ability": "INT",
+    "untrained": false,
+    "armorPenalty": false,
+    "description": "You are educated in local information, including the knowledge of a settlement and the surrounding region, local customs, influential people, legends, and local history.",
+    "check": "Answer questions about local areas, identify local figures, understand local customs and politics. DC 10 for common local knowledge to DC 30 for esoteric local information.",
+    "action": "1 or more rounds per check.",
+    "retry": "No, for the same question.",
+    "special": "Cannot use untrained for DC 10+ information. This knowledge is particularly useful when traveling.",
+    "dcTable": [
+      {
+        "dc": 10,
+        "task": "Answer question about well-known local fact"
+      },
+      {
+        "dc": 15,
+        "task": "Identify local figure"
+      },
+      {
+        "dc": 20,
+        "task": "Understand local politics"
+      },
+      {
+        "dc": 30,
+        "task": "Understand esoteric local lore"
+      }
+    ],
+    "synergy": "Knowledge (Nobility) provides +1 bonus",
+    "classSkills": [
+      "Bard",
+      "Rogue",
+      "Wizard"
+    ]
+  },
+  {
+    "name": "Knowledge (Nature)",
+    "ability": "INT",
+    "untrained": false,
+    "armorPenalty": false,
+    "description": "You are educated in nature, including the knowledge of animals, plants, weather patterns, and hazards of the natural world.",
+    "check": "Answer questions about animals, plants, weather, identify creatures. DC 10 for common knowledge to DC 30 for esoteric nature knowledge.",
+    "action": "1 or more rounds per check.",
+    "retry": "No, for the same question.",
+    "special": "Cannot use untrained for DC 10+ information. Ranks in Survival add +2 bonus.",
+    "dcTable": [
+      {
+        "dc": 10,
+        "task": "Answer question about common animal or plant"
+      },
+      {
+        "dc": 15,
+        "task": "Identify creature"
+      },
+      {
+        "dc": 20,
+        "task": "Understand animal behavior"
+      },
+      {
+        "dc": 30,
+        "task": "Understand esoteric nature lore"
+      }
+    ],
+    "synergy": "Survival ranks provide +2 bonus; Handle Animal provides +1",
+    "classSkills": [
+      "Barbarian",
+      "Druid",
+      "Ranger",
+      "Wizard"
+    ]
+  },
+  {
+    "name": "Knowledge (Nobility)",
+    "ability": "INT",
+    "untrained": false,
+    "armorPenalty": false,
+    "description": "You are educated in the laws, customs, and history of the nobility, including the knowledge of heraldry, genealogy, royal houses, and the hierarchy of nobility.",
+    "check": "Answer questions about nobility, identify heraldry, understand noble customs. DC 10 for common knowledge to DC 30 for esoteric nobility knowledge.",
+    "action": "1 or more rounds per check.",
+    "retry": "No, for the same question.",
+    "special": "Cannot use untrained for DC 10+ information. Ranks in Diplomacy add +2 bonus.",
+    "dcTable": [
+      {
+        "dc": 10,
+        "task": "Answer question about well-known noble family"
+      },
+      {
+        "dc": 15,
+        "task": "Identify heraldry"
+      },
+      {
+        "dc": 20,
+        "task": "Understand noble genealogy"
+      },
+      {
+        "dc": 30,
+        "task": "Understand esoteric nobility lore"
+      }
+    ],
+    "synergy": "Diplomacy ranks provide +2 bonus",
+    "classSkills": [
+      "Bard",
+      "Cleric",
+      "Paladin",
+      "Wizard"
+    ]
+  },
+  {
+    "name": "Knowledge (Planes)",
+    "ability": "INT",
+    "untrained": false,
+    "armorPenalty": false,
+    "description": "You are educated in the planes, including knowledge of planar inhabitants, the structure of planes, planar hazards, and the nature of the planes themselves.",
+    "check": "Answer questions about planes, identify planar creatures, understand planar properties. DC 10 for common knowledge to DC 30 for esoteric planar knowledge.",
+    "action": "1 or more rounds per check.",
+    "retry": "No, for the same question.",
+    "special": "Cannot use untrained for DC 10+ information.",
+    "dcTable": [
+      {
+        "dc": 10,
+        "task": "Answer question about well-known plane"
+      },
+      {
+        "dc": 15,
+        "task": "Identify planar creature"
+      },
+      {
+        "dc": 20,
+        "task": "Understand planar properties"
+      },
+      {
+        "dc": 30,
+        "task": "Understand esoteric planar lore"
+      }
+    ],
+    "synergy": "Knowledge (Arcana) provides +2 bonus",
+    "classSkills": [
+      "Cleric",
+      "Druid",
+      "Wizard"
+    ]
+  },
+  {
+    "name": "Knowledge (Religion)",
+    "ability": "INT",
+    "untrained": false,
+    "armorPenalty": false,
+    "description": "You are educated in religion, including knowledge of deities, churches, religious practices, rites, and religious history.",
+    "check": "Answer questions about religion, identify religious figures, understand religious customs. DC 10 for common knowledge to DC 30 for esoteric religious knowledge.",
+    "action": "1 or more rounds per check.",
+    "retry": "No, for the same question.",
+    "special": "Cannot use untrained for DC 10+ information. Clerics and Paladins often know this.",
+    "dcTable": [
+      {
+        "dc": 10,
+        "task": "Answer question about well-known deity"
+      },
+      {
+        "dc": 15,
+        "task": "Identify religious symbol"
+      },
+      {
+        "dc": 20,
+        "task": "Understand religious practice"
+      },
+      {
+        "dc": 30,
+        "task": "Understand esoteric religious lore"
+      }
+    ],
+    "synergy": "Knowledge (History/Planes) provide +1 bonuses",
+    "classSkills": [
+      "Bard",
+      "Cleric",
+      "Paladin",
+      "Wizard"
+    ]
+  },
+  {
+    "name": "Linguistics",
+    "ability": "INT",
+    "untrained": false,
+    "armorPenalty": false,
+    "description": "You are educated in languages and can identify unknown languages by ear and can decipher unfamiliar writing. You can also speak, read, and write the languages you know.",
+    "check": "Identifying a language: DC 15. Understanding written language you don't know: DC 20 + language DC. Creating a forgery: DC 20 + document complexity.",
+    "action": "Identifying language takes 1 round. Understanding or forging takes 1 minute to 1d4 hours depending on complexity.",
+    "retry": "You can retry to identify language or understand text, but for forgeries, each failure represents 1d4 hours of wasted work.",
+    "special": "You cannot use untrained unless dealing with obviously non-supernatural languages. Each rank of Linguistics allows you to speak, read, and write one additional language.",
+    "dcTable": [
+      {
+        "dc": 15,
+        "task": "Identify unknown language by listening"
+      },
+      {
+        "dc": 20,
+        "task": "Understand script of unknown language"
+      },
+      {
+        "dc": 20,
+        "task": "Create basic forgery of handwriting"
+      }
+    ],
+    "synergy": "Knowledge (Local/Nobility) provide +1 bonuses",
+    "classSkills": [
+      "Bard",
+      "Rogue",
+      "Wizard"
+    ]
+  },
+  {
+    "name": "Perception",
+    "ability": "WIS",
+    "untrained": true,
+    "armorPenalty": false,
+    "description": "You are skilled at perceiving your surroundings, including spotting hidden creatures or objects, seeing in poor visibility, and noticing inconsistencies in your environment.",
+    "check": "Spotting hidden creatures: opposed vs Stealth check. Noticing details: DC varies (10 for obvious, 30 for extremely obscure). Hearing in noisy conditions: DC depends on noise level.",
+    "action": "Perception is usually a passive check, but active searches can be made as a move action (or full-round for detailed search).",
+    "retry": "Yes, you can search again for hidden things. Some situations might not allow retries.",
+    "special": "Blindsight is not aided by Perception. Some creatures have penalties to Perception. Darkvision and Low-light vision affect Perception in darkness.",
+    "dcTable": [
+      {
+        "dc": 0,
+        "task": "Notice obvious hazard or creature"
+      },
+      {
+        "dc": 10,
+        "task": "Notice partially hidden creature"
+      },
+      {
+        "dc": 15,
+        "task": "Notice well-hidden creature"
+      },
+      {
+        "dc": 20,
+        "task": "Notice expertly hidden creature"
+      },
+      {
+        "dc": 30,
+        "task": "Notice invisible or imperceptible creature"
+      }
+    ],
+    "synergy": "Knowledge (Nature) provides +2 bonus for noticing animals",
+    "classSkills": [
+      "Barbarian",
+      "Bard",
+      "Fighter",
+      "Monk",
+      "Ranger",
+      "Rogue"
+    ]
+  },
+  {
+    "name": "Perform",
+    "ability": "CHA",
+    "untrained": true,
+    "armorPenalty": false,
+    "description": "You are skilled at presenting yourself in front of an audience. Like Knowledge, Craft, and Profession, Perform is actually a number of separate skills. The most common Perform categories are act, comedy, dance, keyboard instruments, oratory, percussion, sing, string instruments, and wind instruments.",
+    "check": "Earning money: you can earn 1d4, 1d6, 1d8, 1d10, or 1d12 gp per day depending on performance level (depends on your check result vs DC 10, 15, 20, 25, or 30).",
+    "action": "Performances vary in duration from minutes to hours, as determined by the GM.",
+    "retry": "Yes, you can perform again, but each audience is different.",
+    "special": "You can have several Perform skills. A masterwork musical instrument provides +2 circumstance bonus.",
+    "dcTable": [
+      {
+        "dc": 10,
+        "task": "Earn 1d4 gp per day (poor performance)"
+      },
+      {
+        "dc": 15,
+        "task": "Earn 1d6 gp per day (moderate performance)"
+      },
+      {
+        "dc": 20,
+        "task": "Earn 1d8 gp per day (good performance)"
+      },
+      {
+        "dc": 25,
+        "task": "Earn 1d10 gp per day (very good performance)"
+      },
+      {
+        "dc": 30,
+        "task": "Earn 1d12 gp per day (masterful performance)"
+      }
+    ],
+    "synergy": "Bluff and Diplomacy provide +2 bonuses",
+    "classSkills": [
+      "Bard",
+      "Monk",
+      "Rogue"
+    ]
+  },
+  {
+    "name": "Profession",
+    "ability": "WIS",
+    "untrained": false,
+    "armorPenalty": false,
+    "description": "You are skilled in a professional trade. Like Knowledge, Craft, and Perform, Profession is actually a number of separate skills. Common Professions include alchemist, bartender, blacksmith, engineer, farmer, herbalist, laborer, librarian, merchant, moneylender, sailor, and soldier.",
+    "check": "You can practice your profession and earn 1d4\u00d710 cp per day if your check result is 10. Higher results earn 1d6\u00d710 cp (check 15), 1d8\u00d710 cp (check 20), 1d10\u00d710 cp (check 25), or 1d12\u00d710 cp (check 30+).",
+    "action": "A single check represents 1 week of work.",
+    "retry": "Retries typically represent a new week of work.",
+    "special": "You cannot use untrained unless your profession is particularly easy. Ranks in related skills provide +1 bonuses. A gnome gains +2 bonus to one Profession skill.",
+    "dcTable": [
+      {
+        "dc": 10,
+        "task": "Earn adequate living via profession"
+      },
+      {
+        "dc": 15,
+        "task": "Earn double the typical daily wage"
+      },
+      {
+        "dc": 20,
+        "task": "Earn triple the typical daily wage"
+      },
+      {
+        "dc": 25,
+        "task": "Earn quadruple the typical daily wage"
+      }
+    ],
+    "synergy": "Related Knowledge and Craft skills provide +1 bonuses",
+    "classSkills": [
+      "Cleric",
+      "Druid",
+      "Fighter",
+      "Monk",
+      "Paladin",
+      "Ranger",
+      "Rogue",
+      "Wizard"
+    ]
+  },
+  {
+    "name": "Ride",
+    "ability": "DEX",
+    "untrained": true,
+    "armorPenalty": true,
+    "description": "You are skilled at riding and controlling a mount in various situations.",
+    "check": "Riding at a walk or trot requires no check. Galloping or fighting while mounted: opposed check vs mount's CMD. Staying mounted after being knocked: DC 15. Inspiring mount to do unusual action: DC 15 + task difficulty.",
+    "action": "Riding is part of movement (move action).",
+    "retry": "Depends on the situation. You can attempt to stay mounted again if knocked.",
+    "special": "Armor check penalty applies. Ranged weapons impose -4 penalty on Ride checks. Melee weapons impose -2 penalty. The Mounted Combat feat allows negating one hit per round against you or your mount.",
+    "dcTable": [
+      {
+        "dc": 0,
+        "task": "Ride at a walk or trot (no check needed)"
+      },
+      {
+        "dc": 10,
+        "task": "Gallop or ride through difficult terrain"
+      },
+      {
+        "dc": 15,
+        "task": "Stay mounted after being knocked"
+      },
+      {
+        "dc": 20,
+        "task": "Fight while mounted with melee weapon"
+      },
+      {
+        "dc": 25,
+        "task": "Fight while mounted with ranged weapon"
+      }
+    ],
+    "synergy": "Handle Animal ranks provide +2 bonus",
+    "classSkills": [
+      "Barbarian",
+      "Druid",
+      "Fighter",
+      "Monk",
+      "Paladin",
+      "Ranger"
+    ]
+  },
+  {
+    "name": "Sense Motive",
+    "ability": "WIS",
+    "untrained": true,
+    "armorPenalty": false,
+    "description": "You are skilled at reading and understanding people, including their body language, lying, and emotional state.",
+    "check": "Opposed vs Bluff check to sense deception. DC varies (10 for obvious, 30 for subtle deceptions). You can sense if someone is acting strangely (DC 15) or read emotional state (DC 15).",
+    "action": "Sensing motive is usually a move action.",
+    "retry": "You can attempt again, but success doesn't necessarily change past conclusions.",
+    "special": "You can take 10 on Sense Motive checks. Some magic effects make Sense Motive useless.",
+    "dcTable": [
+      {
+        "dc": 10,
+        "task": "Sense obvious deception or lie"
+      },
+      {
+        "dc": 15,
+        "task": "Sense careful lie"
+      },
+      {
+        "dc": 20,
+        "task": "Sense subtle deception"
+      },
+      {
+        "dc": 30,
+        "task": "Sense carefully crafted lie"
+      }
+    ],
+    "synergy": "Bluff and Perception provide +1 bonuses",
+    "classSkills": [
+      "Bard",
+      "Cleric",
+      "Monk",
+      "Paladin",
+      "Rogue"
+    ]
+  },
+  {
+    "name": "Sleight of Hand",
+    "ability": "DEX",
+    "untrained": false,
+    "armorPenalty": true,
+    "description": "You are skilled at making small, undetectable movements with your hands, including picking pockets, concealing items, and palming objects.",
+    "check": "Palming a coin-sized object: DC 10. Performing a minor feat of legerdemain: DC 10. Planting an object: DC 15. Picking a pocket: opposed vs Perception (DC 20 minimum). Concealing object: DC 20 + object size penalty.",
+    "action": "Varies. Palming is part of another action. Picking a pocket is a move action. Complex feats take 1 or more rounds.",
+    "retry": "You can attempt again if you fail, but multiple failures attract attention.",
+    "special": "You cannot use untrained except for simple legerdemain. Armor check penalty applies. An observer can attempt Perception check opposed to your Sleight of Hand to notice.",
+    "dcTable": [
+      {
+        "dc": 10,
+        "task": "Palm coin-sized, unattended object"
+      },
+      {
+        "dc": 10,
+        "task": "Perform minor legerdemain"
+      },
+      {
+        "dc": 15,
+        "task": "Plant an object"
+      },
+      {
+        "dc": 20,
+        "task": "Pick a pocket (minimum)"
+      },
+      {
+        "dc": 20,
+        "task": "Conceal a small object"
+      }
+    ],
+    "synergy": "Bluff provides +2 bonus when used with distraction",
+    "classSkills": [
+      "Bard",
+      "Rogue"
+    ]
+  },
+  {
+    "name": "Spellcraft",
+    "ability": "INT",
+    "untrained": false,
+    "armorPenalty": false,
+    "description": "You are educated in the theory and practice of magic, including how to recognize magic, what a spell is, the mechanics of spell creation, and the nature of magical effects.",
+    "check": "Identify spell being cast: DC 15 + spell level. Identify magic item: DC 15 + item's caster level. Craft magic item: varies. Understand magic instruction/scroll: DC 15 + spell level. Learn spell from scroll: opposed check vs spell's DC.",
+    "action": "Identifying a spell in progress takes 1 round. Other checks vary from 1 minute to hours for complex tasks.",
+    "retry": "You can retry many checks, but for learning from scrolls, failure might damage the scroll.",
+    "special": "You cannot use untrained to identify spells. You can use Spellcraft to craft magic items (in conjunction with Craft). Ranks in Knowledge (Arcana) add +2 bonus.",
+    "dcTable": [
+      {
+        "dc": 15,
+        "task": "Identify spell being cast (0-1st level)"
+      },
+      {
+        "dc": 20,
+        "task": "Identify spell being cast (2nd-3rd level)"
+      },
+      {
+        "dc": 25,
+        "task": "Identify spell being cast (4th-5th level)"
+      },
+      {
+        "dc": 30,
+        "task": "Identify spell being cast (6th+ level)"
+      }
+    ],
+    "synergy": "Knowledge (Arcana) provides +2 bonus",
+    "classSkills": [
+      "Bard",
+      "Cleric",
+      "Druid",
+      "Paladin",
+      "Sorcerer",
+      "Wizard"
+    ]
+  },
+  {
+    "name": "Stealth",
+    "ability": "DEX",
+    "untrained": true,
+    "armorPenalty": true,
+    "description": "You are skilled at concealing yourself and moving without being noticed, including hiding from people and creatures and moving silently.",
+    "check": "Opposed vs Perception checks of those observing you. Moving silently while others are aware: opposed vs Perception. Hiding when others can't see you: DC depends on cover (DC 10 for 75% cover, DC 20 for 50% cover, DC 30 for 25% cover).",
+    "action": "Usually part of movement or a move action. Creating diversion requires an action.",
+    "retry": "You can attempt to hide again after moving.",
+    "special": "If you don't meet specific conditions (3/4 cover), you can't use Stealth. You need a diversion to use Stealth while others are aware of you. Armor check penalty applies.",
+    "dcTable": [
+      {
+        "dc": 10,
+        "task": "Hide with 75% cover"
+      },
+      {
+        "dc": 20,
+        "task": "Hide with 50% cover"
+      },
+      {
+        "dc": 30,
+        "task": "Hide with 25% cover"
+      }
+    ],
+    "synergy": "Acrobatics rank provides +2 bonus",
+    "classSkills": [
+      "Bard",
+      "Monk",
+      "Ranger",
+      "Rogue"
+    ]
+  },
+  {
+    "name": "Survival",
+    "ability": "WIS",
+    "untrained": true,
+    "armorPenalty": false,
+    "description": "You are skilled at surviving in the wilderness, including finding food and water, predicting weather, tracking, and navigating without tools.",
+    "check": "Getting along in wilderness: DC 10 per day. Avoiding hazards: DC depends on hazard. Tracking: DC 10 + creature's Stealth modifier + distance. Predicting weather: DC 10 + 1 per day ahead.",
+    "action": "Varies. Tracking is a move action to follow a trail or full-round to study signs.",
+    "retry": "Tracking can be retried if you lose the trail. Other checks depend on situation.",
+    "special": "You need tracking ability to use Survival for tracking. Rangers gain bonuses in their favored terrain. You take 1d4 subdual damage per day without water, 1 HP per day without food.",
+    "dcTable": [
+      {
+        "dc": 10,
+        "task": "Get along in wilderness for one day"
+      },
+      {
+        "dc": 15,
+        "task": "Avoid natural hazard"
+      },
+      {
+        "dc": 20,
+        "task": "Track Medium creature with fresh trail"
+      },
+      {
+        "dc": 30,
+        "task": "Track Small creature with week-old trail"
+      }
+    ],
+    "synergy": "Knowledge (Nature) and Knowledge (Geography) provide +2 bonuses",
+    "classSkills": [
+      "Barbarian",
+      "Druid",
+      "Fighter",
+      "Ranger"
+    ]
+  },
+  {
+    "name": "Swim",
+    "ability": "STR",
+    "untrained": true,
+    "armorPenalty": true,
+    "description": "You are skilled at swimming and can swim in various conditions, including rough water, underwater, and while encumbered.",
+    "check": "Calm water requires no check at half speed. Rough water: DC 15 to move at half speed. Underwater: hold breath 1d4 + CON modifier rounds (DC 10 Constitution check to extend). Struggling in water: DC 20 to avoid drowning.",
+    "action": "Swimming is part of movement (move action).",
+    "retry": "You can retry, but drowning characters can't retry.",
+    "special": "Medium or heavy load imposes -2 penalty. Armor imposes -2 penalty. If you fail check, you can't take 20 due to drowning hazard. Swimming while grappled is possible with opposed check.",
+    "dcTable": [
+      {
+        "dc": 10,
+        "task": "Swim in calm water at half speed"
+      },
+      {
+        "dc": 15,
+        "task": "Swim in rough water at half speed"
+      },
+      {
+        "dc": 20,
+        "task": "Swim in stormy water"
+      },
+      {
+        "dc": 30,
+        "task": "Swim while heavily encumbered"
+      }
+    ],
+    "synergy": "Knowledge (Local) provides +2 bonus for underwater navigation",
+    "classSkills": [
+      "Barbarian",
+      "Bard",
+      "Druid",
+      "Fighter",
+      "Monk",
+      "Ranger",
+      "Rogue"
+    ]
+  },
+  {
+    "name": "Use Magic Device",
+    "ability": "CHA",
+    "untrained": false,
+    "armorPenalty": false,
+    "description": "You are skilled at activating magic items, even if you are not otherwise able to use them. This allows you to use wands, rods, staves, and other magic items that would normally be restricted by class, caster level, or other requirements.",
+    "check": "Activating magic item: DC 20 + item's caster level. Using magic item with specific requirements: higher DC. Emulating class: DC 20. Emulating race: DC 25. Emulating alignment: DC 30.",
+    "action": "Activating is normally a standard action (varies by item).",
+    "retry": "You can retry, but failure might trigger spell or damage to you.",
+    "special": "You cannot use untrained to activate magic items. You get a +2 bonus if you've activated the item before. Using scroll of spell you can't cast normally has higher DC.",
+    "dcTable": [
+      {
+        "dc": 20,
+        "task": "Activate basic magic item"
+      },
+      {
+        "dc": 20,
+        "task": "Emulate class requirement"
+      },
+      {
+        "dc": 25,
+        "task": "Emulate race requirement"
+      },
+      {
+        "dc": 30,
+        "task": "Emulate alignment requirement"
+      },
+      {
+        "dc": 25,
+        "task": "Activate item outside your caster level"
+      }
+    ],
+    "synergy": "Knowledge (Arcana) provides +2 bonus",
+    "classSkills": [
+      "Bard",
+      "Rogue"
+    ]
+  }
+]
