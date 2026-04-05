@@ -115,15 +115,24 @@ export async function seedDatabase() {
   // Fresh seed - no data exists
   if (monsterCount === 0) {
     console.log('[DB] Seeding Pathfinder database...');
+
+    // equipmentData is a flat array — split into armor and shields by category/slot
+    const armorItems = Array.isArray(equipmentData)
+      ? equipmentData.filter(e => e.category === 'armor' && e.slot !== 'shield')
+      : (equipmentData.armor || []);
+    const shieldItems = Array.isArray(equipmentData)
+      ? equipmentData.filter(e => e.slot === 'shield')
+      : (equipmentData.shields || []);
+
     await db.transaction('rw', [db.races, db.classes, db.monsters, db.weapons, db.armor, db.shields, db.spells, db.feats, db.traps, db.treasure, db.locations, db.npcs, db.campaignData, db.archetypes, db.skillsRef], async () => {
-      await db.races.bulkPut(racesData);
-      await db.classes.bulkPut(classesData);
-      await db.monsters.bulkAdd(monstersData);
-      await db.weapons.bulkAdd(weaponsData);
-      await db.armor.bulkAdd(equipmentData.armor);
-      await db.shields.bulkAdd(equipmentData.shields);
-      await db.spells.bulkAdd(spellsData);
-      await db.feats.bulkAdd(featsData);
+      if (racesData && racesData.length > 0) await db.races.bulkPut(racesData);
+      if (classesData && classesData.length > 0) await db.classes.bulkPut(classesData);
+      if (monstersData && monstersData.length > 0) await db.monsters.bulkAdd(monstersData);
+      if (weaponsData && weaponsData.length > 0) await db.weapons.bulkAdd(weaponsData);
+      if (armorItems.length > 0) await db.armor.bulkAdd(armorItems);
+      if (shieldItems.length > 0) await db.shields.bulkAdd(shieldItems);
+      if (spellsData && spellsData.length > 0) await db.spells.bulkAdd(spellsData);
+      if (featsData && featsData.length > 0) await db.feats.bulkAdd(featsData);
 
       await db.traps.bulkAdd([
         {name:"Pit Trap",cr:1,perception:20,disable:20,effect:"10ft pit, 1d6 falling damage",save:"Reflex DC 20"},
