@@ -3,6 +3,7 @@ import useIsMobile from '../hooks/useIsMobile';
 import dmEngine from '../services/dmEngine';
 import { saveGame, loadGame, listSaves, deleteSave } from '../services/saveGame';
 import { exportToFile, importFromFile, pickSaveFile, autoSaveToFile, hasFileHandle } from '../services/fileSave';
+import { getSyncStatus, linkToken, unlinkSync, pushCurrentState, pullAndApply, fullSync } from '../services/gistSync';
 
 export default function SettingsTab({ party, campaign, adventure, combat, gameLog, worldState, setWorldState, onLoadGame }) {
   const isMobile = useIsMobile();
@@ -17,6 +18,69 @@ export default function SettingsTab({ party, campaign, adventure, combat, gameLo
   const [fileMsg, setFileMsg] = useState(null);
   const [autoSaveFile, setAutoSaveFile] = useState(hasFileHandle() ? 'linked' : null);
   const importRef = useRef(null);
+
+  // Cloud sync state
+  const [syncStatus, setSyncStatus] = useState(() => getSyncStatus());
+  const [syncToken, setSyncToken] = useState('');
+  const [syncMsg, setSyncMsg] = useState(null);
+  const [syncing, setSyncing] = useState(false);
+  const [showSyncToken, setShowSyncToken] = useState(false);
+
+  const handleLinkGist = async () => {
+    if (!syncToken.trim()) return;
+    setSyncing(true);
+    setSyncMsg(null);
+    try {
+      const result = await linkToken(syncToken);
+      setSyncStatus(getSyncStatus());
+      setSyncToken('');
+      setSyncMsg({ ok: true, text: `Linked as ${result.username}! Syncing...` });
+      // Do initial full sync
+      await fullSync();
+      // Reload settings in case cloud had different ones
+      setSettings(dmEngine.getSettings());
+      setSyncMsg({ ok: true, text: `Synced! Connected as ${result.username}.` });
+    } catch (err) {
+      setSyncMsg({ ok: false, text: `Link failed: ${err.message}` });
+    }
+    setSyncing(false);
+  };
+
+  const handlePush = async () => {
+    setSyncing(true);
+    setSyncMsg(null);
+    try {
+      await pushCurrentState();
+      setSyncStatus(getSyncStatus());
+      setSyncMsg({ ok: true, text: 'Settings & saves pushed to cloud.' });
+    } catch (err) {
+      setSyncMsg({ ok: false, text: `Push failed: ${err.message}` });
+    }
+    setSyncing(false);
+  };
+
+  const handlePull = async () => {
+    setSyncing(true);
+    setSyncMsg(null);
+    try {
+      await pullAndApply();
+      setSyncStatus(getSyncStatus());
+      // Reload settings from localStorage since pull may have updated them
+      const fresh = dmEngine.getSettings();
+      setSettings(fresh);
+      dmEngine.updateSettings(fresh);
+      setSyncMsg({ ok: true, text: 'Settings pulled from cloud and applied.' });
+    } catch (err) {
+      setSyncMsg({ ok: false, text: `Pull failed: ${err.message}` });
+    }
+    setSyncing(false);
+  };
+
+  const handleUnlink = () => {
+    unlinkSync();
+    setSyncStatus(getSyncStatus());
+    setSyncMsg({ ok: true, text: 'Unlinked. Your cloud data is still in your Gist.' });
+  };
 
   const updateWorld = (key, value) => {
     setWorldState?.(prev => ({
@@ -203,6 +267,93 @@ export default function SettingsTab({ party, campaign, adventure, combat, gameLo
             {aiActive ? 'Claude API connected — dynamic narration enabled' : 'Add an API key below to enable AI-powered narration'}
           </div>
         </div>
+      </div>
+
+      {/* Cloud Sync */}
+      <div style={styles.section}>
+        <label style={styles.label}>Cloud Sync</label>
+        <span style={styles.sublabel}>
+          Sync your API key, settings, and saves across devices using a private GitHub Gist.
+          {!syncStatus.configured && (
+            <> Create a token at <a href="https://github.com/settings/tokens/new?scopes=gist&description=AI+Pathfinder+DM" target="_blank" rel="noopener" style={{ color: '#7b68ee' }}>github.com/settings/tokens</a> with only the <strong style={{ color: '#d4c5a9' }}>gist</strong> scope.</>
+          )}
+        </span>
+
+        {syncStatus.configured ? (
+          <div>
+            <div style={{
+              display: 'flex', alignItems: 'center', gap: '10px', padding: '10px 12px',
+              backgroundColor: '#0d1117', borderRadius: '4px', border: '1px solid #30363d', marginBottom: '10px',
+            }}>
+              <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#7fff00', flexShrink: 0 }} />
+              <div style={{ flex: 1 }}>
+                <div style={{ color: '#7fff00', fontSize: '12px', fontWeight: 'bold' }}>
+                  Linked to GitHub as {syncStatus.username}
+                </div>
+                <div style={{ color: '#8b949e', fontSize: '10px', marginTop: '2px' }}>
+                  {syncStatus.lastSync
+                    ? `Last sync: ${new Date(syncStatus.lastSync).toLocaleString()}`
+                    : 'Not synced yet'}
+                </div>
+              </div>
+            </div>
+            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', flexDirection: isMobile ? 'column' : 'row' }}>
+              <button
+                style={{ ...styles.btn, flex: isMobile ? 1 : 'auto', backgroundColor: '#1a2a3a', borderColor: '#4488cc', color: '#4488cc' }}
+                onClick={handlePull}
+                disabled={syncing}
+              >
+                {syncing ? 'Syncing...' : 'Pull from Cloud'}
+              </button>
+              <button
+                style={{ ...styles.btn, flex: isMobile ? 1 : 'auto', backgroundColor: '#1a3a1a', borderColor: '#7fff00', color: '#7fff00' }}
+                onClick={handlePush}
+                disabled={syncing}
+              >
+                {syncing ? 'Syncing...' : 'Push to Cloud'}
+              </button>
+              <button
+                style={{ ...styles.btn, flex: isMobile ? 1 : 'auto', backgroundColor: '#2a1a1a', borderColor: '#ff6b6b', color: '#ff6b6b', fontSize: '11px' }}
+                onClick={handleUnlink}
+                disabled={syncing}
+              >
+                Unlink
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div>
+            <div style={{ display: 'flex', gap: '8px', flexDirection: isMobile ? 'column' : 'row' }}>
+              <input
+                type={showSyncToken ? 'text' : 'password'}
+                style={{ ...styles.input, flex: 1 }}
+                value={syncToken}
+                onChange={e => setSyncToken(e.target.value)}
+                onKeyDown={e => { if (e.key === 'Enter') handleLinkGist(); }}
+                placeholder="ghp_... (GitHub Personal Access Token)"
+              />
+              <button
+                style={{ ...styles.btn, fontSize: '11px', padding: isMobile ? '12px' : '8px 12px', minWidth: isMobile ? 'auto' : 'fit-content' }}
+                onClick={() => setShowSyncToken(!showSyncToken)}
+              >
+                {showSyncToken ? 'Hide' : 'Show'}
+              </button>
+            </div>
+            <button
+              style={{ ...styles.btn, marginTop: '8px', width: isMobile ? '100%' : 'auto' }}
+              onClick={handleLinkGist}
+              disabled={syncing || !syncToken.trim()}
+            >
+              {syncing ? 'Linking...' : 'Link GitHub & Sync'}
+            </button>
+          </div>
+        )}
+
+        {syncMsg && (
+          <div style={styles.status(syncMsg.ok)}>
+            {syncMsg.text}
+          </div>
+        )}
       </div>
 
       {/* API Key */}

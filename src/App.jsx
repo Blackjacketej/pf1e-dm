@@ -7,6 +7,7 @@ import gameEvents from './services/gameEventEngine';
 import { calculateEncounterXP, getXPForCR, checkLevelUp } from './services/dmToolsService';
 import { autoSave } from './services/saveGame';
 import { autoSaveToFile, hasFileHandle } from './services/fileSave';
+import { isSyncConfigured, pullAndApply } from './services/gistSync';
 import useIsMobile from './hooks/useIsMobile';
 
 // ── Tab components ──
@@ -217,6 +218,16 @@ function App() {
           }
         } catch (e) {
           console.warn('[Restore] Failed to restore campaign:', e);
+        }
+      }
+
+      // Auto-pull from cloud sync if configured (updates settings/API key)
+      if (isSyncConfigured()) {
+        try {
+          await pullAndApply();
+          console.log('[Sync] Auto-pulled settings from cloud');
+        } catch (e) {
+          console.warn('[Sync] Auto-pull failed (offline?):', e.message);
         }
       }
 
