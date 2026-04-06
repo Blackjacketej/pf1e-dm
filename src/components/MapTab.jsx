@@ -4,7 +4,8 @@ import overlandService from '../services/overlandService';
 import { ParchmentFrame, TerrainIcon } from './MapAssets';
 import InteractiveMap from './InteractiveMap';
 import mapRegistry from '../services/mapRegistry';
-import { pixelToHex, hexCenter, TERRAIN_COLORS, HEX_TAGS, getTagInfo, parseHexValue } from './HexGridOverlay';
+import { pixelToHex, hexCenter, TERRAIN_COLORS, HEX_TAGS, getTagInfo, parseHexValue, getAdjacentHexKeys } from './HexGridOverlay';
+import { checkForaging, checkHunting, waterCollection, getHexExplorationTime, exploreCurrentHex } from '../services/overlandService';
 
 const catIcons = {
   temple: '\u2720', tavern: '\u{1F37A}', shop: '\u{1F6CD}', government: '\u{1F6E1}', craft: '\u{1F528}',
@@ -58,6 +59,126 @@ export default function MapTab({ party, campaign, addLog, worldState, setWorldSt
   const [showHexGrid, setShowHexGrid] = useState(true);
   const [selectedHex, setSelectedHex] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(!isMobile);
+  const [hexCrawlMode, setHexCrawlMode] = useState(false);
+  const [hexTravelLog, setHexTravelLog] = useState([]);
+
+  // Get the party hex from worldState
+  const partyHex = worldState?.partyHex || null;
+  const exploredHexes = useMemo(() => new Set(worldState?.exploredHexes || []), [worldState?.exploredHexes]);
+  const hexExploring = worldState?.hexExploring || null;
+
+  // Move party to a hex
+  const movePartyToHex = useCallback((hexKey) => {
+    setWorldState(prev => {
+      const newExplored = new Set(prev.exploredHexes || []);
+      newExplored.add(hexKey);
+      // Also mark adjacent hexes as "seen" (visible but not explored)
+      return {
+        ...prev,
+        partyHex: hexKey,
+        exploredHexes: [...newExplored],
+      };
+    });
+    const hexData = hexTerrainData?.get(hexKey);
+    const terrain = hexData?.terrain || 'plains';
+    const logEntry = { time: `Day ${worldState?.currentDay || 1}`, text: `Party enters hex ${hexKey} (${terrain})`, type: 'move' };
+    setHexTravelLog(prev => [...prev, logEntry]);
+    addLog?.(`Party moves to hex ${hexKey} — ${terrain} terrain`, 'narration');
+  }, [setWorldState, hexTerrainData, worldState?.currentDay, addLog]);
+
+  // Start exploring current hex
+  const startExploreHex = useCallback(() => {
+    if (!partyHex) return;
+    const hexData = hexTerrainData?.get(partyHex);
+    const terrain = hexData?.terrain || 'plains';
+    const speed = party.length > 0 ? overlandService.getPartySpeed(party) : 30;
+    const explTime = getHexExplorationTime(terrain, speed);
+
+    setWorldState(prev => ({
+      ...prev,
+      hexExploring: partyHex,
+      hexExplorationDaysLeft: explTime.adjustedDays,
+    }));
+    const logEntry = { time: `Day ${worldState?.currentDay || 1}`, text: `Begin exploring hex ${partyHex} (${terrain}) — ${explTime.adjustedDays} days needed`, type: 'explore' };
+    setHexTravelLog(prev => [...prev, logEntry]);
+    addLog?.(`Party begins exploring this hex. Estimated ${explTime.adjustedDays} day(s) to fully explore.`, 'narration');
+  }, [partyHex, hexTerrainData, party, setWorldState, worldState?.currentDay, addLog]);
+
+  // Advance one day of exploration
+  const advanceExploreDay = useCallback(() => {
+    if (!hexExploring) return;
+    const hexData = hexTerrainData?.get(hexExploring);
+    const terrain = hexData?.terrain || 'plains';
+    const daysLeft = (worldState?.hexExplorationDaysLeft || 1) - 1;
+    const newEntries = [];
+
+    // Advance day counter
+    const newDay = (worldState?.currentDay || 1) + 1;
+
+    if (daysLeft <= 0) {
+      // Exploration complete
+      newEntries.push({ time: `Day ${newDay}`, text: `Exploration of hex ${hexExploring} complete!`, type: 'explore' });
+      addLog?.(`Hex ${hexExploring} fully explored! All points of interest discovered.`, 'narration');
+      setWorldState(prev => ({
+        ...prev,
+        hexExploring: null,
+        hexExplorationDaysLeft: 0,
+        currentDay: newDay,
+      }));
+    } else {
+      newEntries.push({ time: `Day ${newDay}`, text: `Exploring ${hexExploring}... ${daysLeft} day(s) remaining`, type: 'explore' });
+      setWorldState(prev => ({
+        ...prev,
+        hexExplorationDaysLeft: daysLeft,
+        currentDay: newDay,
+      }));
+    }
+
+    // Random encounter check during exploration (higher chance)
+    const encCheck = overlandService.checkEncounter(terrain, 'morning');
+    if (encCheck.encountered) {
+      newEntries.push({ time: `Day ${newDay}`, text: encCheck.description, type: 'encounter' });
+      addLog?.(encCheck.description, 'combat');
+    }
+
+    setHexTravelLog(prev => [...prev, ...newEntries]);
+  }, [hexExploring, hexTerrainData, worldState, setWorldState, addLog]);
+
+  // Forage in current hex
+  const handleForage = useCallback(() => {
+    if (!partyHex || party.length === 0) return;
+    const hexData = hexTerrainData?.get(partyHex);
+    const terrain = hexData?.terrain || 'plains';
+    const forager = party[0]; // party leader forages
+    const result = checkForaging(forager, terrain);
+    const entry = { time: `Day ${worldState?.currentDay || 1}`, text: result.description, type: result.success ? 'info' : 'encounter' };
+    setHexTravelLog(prev => [...prev, entry]);
+    addLog?.(result.description, result.success ? 'narration' : 'system');
+  }, [partyHex, party, hexTerrainData, worldState?.currentDay, addLog]);
+
+  // Hunt in current hex
+  const handleHunt = useCallback(() => {
+    if (!partyHex || party.length === 0) return;
+    const hexData = hexTerrainData?.get(partyHex);
+    const terrain = hexData?.terrain || 'plains';
+    const hunter = party[0];
+    const result = checkHunting(hunter, terrain);
+    const entry = { time: `Day ${worldState?.currentDay || 1}`, text: result.description, type: result.success ? 'info' : 'encounter' };
+    setHexTravelLog(prev => [...prev, entry]);
+    addLog?.(result.description, result.success ? 'narration' : 'system');
+  }, [partyHex, party, hexTerrainData, worldState?.currentDay, addLog]);
+
+  // Find water
+  const handleFindWater = useCallback(() => {
+    if (!partyHex || party.length === 0) return;
+    const hexData = hexTerrainData?.get(partyHex);
+    const terrain = hexData?.terrain || 'plains';
+    const searcher = party[0];
+    const result = waterCollection(searcher, terrain);
+    const entry = { time: `Day ${worldState?.currentDay || 1}`, text: result.description, type: result.success ? 'info' : 'encounter' };
+    setHexTravelLog(prev => [...prev, entry]);
+    addLog?.(result.description, result.success ? 'narration' : 'system');
+  }, [partyHex, party, hexTerrainData, worldState?.currentDay, addLog]);
 
   const locations = useMemo(() => overlandService.getLocations(), []);
   const mapSettings = useMemo(() => overlandService.getMapSettings(), []);
@@ -171,7 +292,7 @@ export default function MapTab({ party, campaign, addLog, worldState, setWorldSt
     return data;
   }, [showHexGrid, mapSettings, gmHexTerrain, activeMapId]);
 
-  // Hex click — show info about the hex
+  // Hex click — show info about the hex, or move party in hex crawl mode
   const handleHexClick = useCallback((hex) => {
     const key = `${hex.col},${hex.row}`;
     setSelectedHex(key);
@@ -183,12 +304,28 @@ export default function MapTab({ party, campaign, addLog, worldState, setWorldSt
     const tags = hex.tags || hexData?.tags;
     const featStr = tags && tags.size > 0 ? ` [${[...tags].join(', ')}]` : '';
     const locNames = locs.map(l => l.name).join(', ');
+
+    // In hex crawl mode, clicking an adjacent hex moves the party
+    if (hexCrawlMode && partyHex) {
+      const [pc, pr] = partyHex.split(',').map(Number);
+      const adjacent = getAdjacentHexKeys(pc, pr);
+      if (adjacent.includes(key)) {
+        movePartyToHex(key);
+        // Advance time by terrain movement cost
+        setWorldState(prev => ({
+          ...prev,
+          currentHour: Math.min(23, (prev.currentHour || 8) + 2),
+        }));
+        return;
+      }
+    }
+
     const msg = locNames
       ? `Hex (${hex.col},${hex.row}): ${terrainStr}${featStr} — ${locNames}`
       : `Hex (${hex.col},${hex.row}): ${terrainStr}${featStr}`;
     addLog?.(msg, 'info');
     if (locs.length === 1) setSelectedLocation(locs[0]);
-  }, [hexTerrainData, addLog]);
+  }, [hexTerrainData, addLog, hexCrawlMode, partyHex, movePartyToHex, setWorldState]);
 
   // Pin click
   const handlePinClick = useCallback((pin) => {
@@ -250,6 +387,10 @@ export default function MapTab({ party, campaign, addLog, worldState, setWorldSt
           mapWidthMiles={MAP_WIDTH_MILES}
           onHexClick={handleHexClick}
           highlightedHex={selectedHex}
+          partyHex={hexCrawlMode ? partyHex : null}
+          exploredHexes={hexCrawlMode ? exploredHexes : null}
+          showFogOfWar={hexCrawlMode}
+          exploringHex={hexExploring}
         />
 
         {/* Time of Day Display */}
@@ -316,6 +457,102 @@ export default function MapTab({ party, campaign, addLog, worldState, setWorldSt
               <span style={styles.label}>Weather</span>
               <span style={{ color: '#8b949e' }}>{currentWeather.description || 'Clear'}</span>
             </div>
+          )}
+        </div>
+
+        {/* Hex Crawl Controls */}
+        <div style={{ ...styles.card, borderColor: hexCrawlMode ? '#ffd700' : 'rgba(255,215,0,0.2)' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+            <span style={styles.subtitle}>Hex Crawl</span>
+            <button
+              style={{ ...styles.btn, fontSize: '10px', ...(hexCrawlMode ? styles.btnActive : {}) }}
+              onClick={() => {
+                setHexCrawlMode(!hexCrawlMode);
+                if (!hexCrawlMode && !partyHex) {
+                  // Initialize party position to center hex on first enable
+                  const imgW = mapSettings.bounds?.width || 1200;
+                  const hexSizePx = (HEX_SIZE_MILES / MAP_WIDTH_MILES) * imgW;
+                  const startHex = pixelToHex(500, 370, hexSizePx); // Sandpoint area
+                  movePartyToHex(startHex.key);
+                }
+              }}
+            >
+              {hexCrawlMode ? 'Active' : 'Off'}
+            </button>
+          </div>
+
+          {hexCrawlMode && (
+            <>
+              {partyHex && (
+                <div style={{ fontSize: '11px', marginBottom: '6px' }}>
+                  <div style={styles.statRow}>
+                    <span style={styles.label}>Party Hex</span>
+                    <span style={styles.value}>{partyHex}</span>
+                  </div>
+                  <div style={styles.statRow}>
+                    <span style={styles.label}>Terrain</span>
+                    <span style={{ color: '#d4c5a9', textTransform: 'capitalize' }}>
+                      {hexTerrainData?.get(partyHex)?.terrain || 'Unknown'}
+                    </span>
+                  </div>
+                  <div style={styles.statRow}>
+                    <span style={styles.label}>Explored</span>
+                    <span style={styles.value}>{exploredHexes.size} hexes</span>
+                  </div>
+                </div>
+              )}
+
+              {/* Exploration */}
+              {hexExploring ? (
+                <div style={{ marginBottom: '8px' }}>
+                  <div style={{ fontSize: '11px', color: '#ffd700', marginBottom: '4px' }}>
+                    Exploring hex {hexExploring}... ({worldState?.hexExplorationDaysLeft || 0} days left)
+                  </div>
+                  <button style={{ ...styles.btn, width: '100%' }} onClick={advanceExploreDay}>
+                    Advance 1 Day
+                  </button>
+                </div>
+              ) : partyHex && (
+                <button style={{ ...styles.btn, width: '100%', marginBottom: '4px' }} onClick={startExploreHex}>
+                  Explore This Hex
+                </button>
+              )}
+
+              {/* Survival Actions */}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px', marginBottom: '8px' }}>
+                <button style={styles.btn} onClick={handleForage} disabled={party.length === 0}>
+                  Forage
+                </button>
+                <button style={styles.btn} onClick={handleHunt} disabled={party.length === 0}>
+                  Hunt
+                </button>
+                <button style={styles.btn} onClick={handleFindWater} disabled={party.length === 0}>
+                  Find Water
+                </button>
+              </div>
+
+              {/* Movement hint */}
+              <div style={{ fontSize: '10px', color: '#8b949e', marginBottom: '8px' }}>
+                Click an adjacent hex on the map to move the party.
+              </div>
+
+              {/* Travel Log */}
+              {hexTravelLog.length > 0 && (
+                <div>
+                  <div style={styles.subtitle}>Travel Log</div>
+                  <div style={{ maxHeight: '200px', overflowY: 'auto', background: 'rgba(0,0,0,0.2)', borderRadius: '4px', padding: '4px' }}>
+                    {hexTravelLog.slice(-20).reverse().map((entry, i) => (
+                      <div key={i} style={{ fontSize: '10px', padding: '2px 0', borderBottom: '1px solid rgba(48,54,61,0.3)' }}>
+                        <span style={{ color: '#555', marginRight: '4px' }}>{entry.time}</span>
+                        <span style={{ color: entry.type === 'encounter' ? '#ff6040' : entry.type === 'explore' ? '#ffd700' : '#d4c5a9' }}>
+                          {entry.text}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </>
           )}
         </div>
 

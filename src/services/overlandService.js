@@ -593,6 +593,273 @@ function getSkillBonus(character, skillName) {
   return skill ? (skill.total || skill.bonus || skill.ranks || 0) : 0;
 }
 
+// ═══════════════════════════════════════════════════
+// FORAGING, HUNTING & EXPLORATION CONSTANTS
+// ═══════════════════════════════════════════════════
+
+const FORAGING_DC_MOD = {
+  plains: 0, forest: -2, hills: 0, mountain: 2,
+  desert: 5, swamp: 2, urban: -5, coastal: 0, water: 10
+};
+
+const HEX_EXPLORATION_DAYS = {
+  plains: 1, forest: 2, hills: 1, mountain: 3,
+  swamp: 3, desert: 2, water: 1, coastal: 1, urban: 0.5, river: 1
+};
+
+const WATER_DC = {
+  plains: 10, forest: 10, hills: 10, mountain: 15,
+  desert: 20, swamp: 10, urban: 5, coastal: 10, water: 5
+};
+
+// ═══════════════════════════════════════════════════
+// FORAGING & HUNTING
+// ═══════════════════════════════════════════════════
+
+/**
+ * Check foraging while traveling at half speed.
+ * PF1e foraging rules: Survival DC 10 to feed yourself while moving at half speed.
+ * Each 2 points above DC feeds one additional person.
+ * Terrain modifiers: desert +5, swamp +2, mountain +2, forest -2, plains 0.
+ */
+export function checkForaging(character, terrainType, conditions = []) {
+  const baseDC = 10;
+  const terrainMod = FORAGING_DC_MOD[terrainType] || 0;
+
+  // Apply condition modifiers if any are present
+  let conditionMod = 0;
+  const conditionMods = {
+    'drought': 5,
+    'abundant_game': -3,
+    'season_spring': -2,
+    'season_summer': -1,
+    'season_fall': 0,
+    'season_winter': 3
+  };
+
+  for (const cond of conditions) {
+    conditionMod += conditionMods[cond] || 0;
+  }
+
+  const dc = Math.max(5, baseDC + terrainMod + conditionMod);
+  const survivalBonus = getSkillBonus(character, 'Survival');
+  const roll = rollDice(1, 20);
+  const total = roll + survivalBonus;
+  const success = total >= dc;
+
+  // Calculate how many people can be fed
+  let peopleFed = 0;
+  if (success) {
+    peopleFed = 1; // Base: feeds the character
+    const pointsAbove = total - dc;
+    peopleFed += Math.floor(pointsAbove / 2); // Each 2 points above DC feeds 1 more
+  }
+
+  return {
+    success,
+    dc,
+    baseDC,
+    terrainMod,
+    conditionMod,
+    roll,
+    survivalBonus,
+    total,
+    peopleFed,
+    description: success
+      ? `${character.name} forages in ${terrainType} terrain: Survival ${roll} + ${survivalBonus} = ${total} vs DC ${dc}. Success! Feeds ${peopleFed} people.`
+      : `${character.name} forages in ${terrainType} terrain: Survival ${roll} + ${survivalBonus} = ${total} vs DC ${dc}. Failed — no food secured.`
+  };
+}
+
+/**
+ * Check hunting (requires stopping for the day or spending hours).
+ * PF1e hunting rules: Survival DC 10. Each 5 points above DC yields 1 additional day of food for 1 person.
+ * Base success feeds the character for 1 day.
+ */
+export function checkHunting(character, terrainType, hoursSpent = 4) {
+  const baseDC = 10;
+  const terrainMod = FORAGING_DC_MOD[terrainType] || 0;
+
+  // Hour bonus: more time = better chance (but soft cap at 8 hours)
+  const hourBonus = Math.min(hoursSpent, 8) > 4 ? Math.floor((Math.min(hoursSpent, 8) - 4) / 2) : 0;
+
+  const dc = Math.max(5, baseDC + terrainMod);
+  const survivalBonus = getSkillBonus(character, 'Survival');
+  const roll = rollDice(1, 20);
+  const total = roll + survivalBonus + hourBonus;
+  const success = total >= dc;
+
+  // Calculate food days gained
+  let foodDaysGained = 0;
+  if (success) {
+    foodDaysGained = 1; // Base: 1 day of food for the character
+    const pointsAbove = total - dc;
+    foodDaysGained += Math.floor(pointsAbove / 5); // Each 5 points above DC yields 1 more day
+  }
+
+  return {
+    success,
+    dc,
+    baseDC,
+    terrainMod,
+    hoursSpent,
+    hourBonus,
+    roll,
+    survivalBonus,
+    total,
+    foodDaysGained,
+    description: success
+      ? `${character.name} hunts for ${hoursSpent} hours in ${terrainType} terrain: Survival ${roll} + ${survivalBonus} ${hourBonus > 0 ? '+ ' + hourBonus + ' (hours)' : ''} = ${total} vs DC ${dc}. Success! Secures ${foodDaysGained} days of food.`
+      : `${character.name} hunts for ${hoursSpent} hours in ${terrainType} terrain: Survival ${roll} + ${survivalBonus} ${hourBonus > 0 ? '+ ' + hourBonus + ' (hours)' : ''} = ${total} vs DC ${dc}. Failed — no game found.`
+  };
+}
+
+/**
+ * Find water in the wilderness.
+ * PF1e water finding: Survival DC varies by terrain.
+ * Desert DC 20, Mountain DC 15, most others DC 10, Urban/Water DC 5.
+ * Success feeds one person with water for one day.
+ */
+export function waterCollection(character, terrainType, conditions = []) {
+  const baseDC = WATER_DC[terrainType] || 10;
+
+  // Apply condition modifiers
+  let conditionMod = 0;
+  const conditionMods = {
+    'drought': 5,
+    'rain_recent': -3,
+    'near_river': -5,
+    'near_coast': -4
+  };
+
+  for (const cond of conditions) {
+    conditionMod += conditionMods[cond] || 0;
+  }
+
+  const dc = Math.max(5, baseDC + conditionMod);
+  const survivalBonus = getSkillBonus(character, 'Survival');
+  const roll = rollDice(1, 20);
+  const total = roll + survivalBonus;
+  const success = total >= dc;
+
+  // Calculate water found (in gallons)
+  let gallonsFound = 0;
+  if (success) {
+    // Base: 1 gallon per person (roughly 1 day of hydration)
+    gallonsFound = 1;
+    const pointsAbove = total - dc;
+    // Each 3 points above yields 1 additional gallon
+    gallonsFound += Math.floor(pointsAbove / 3);
+  }
+
+  return {
+    success,
+    dc,
+    baseDC,
+    conditionMod,
+    roll,
+    survivalBonus,
+    total,
+    gallonsFound,
+    description: success
+      ? `${character.name} finds water in ${terrainType} terrain: Survival ${roll} + ${survivalBonus} = ${total} vs DC ${dc}. Success! Collects ${gallonsFound} gallons.`
+      : `${character.name} searches for water in ${terrainType} terrain: Survival ${roll} + ${survivalBonus} = ${total} vs DC ${dc}. Failed — no water source found.`
+  };
+}
+
+// ═══════════════════════════════════════════════════
+// HEX EXPLORATION
+// ═══════════════════════════════════════════════════
+
+/**
+ * Calculate exploration time for a 12-mile hex based on terrain.
+ * PF1e Ultimate Campaign hex crawl rules.
+ * Base times: Plains 1 day, Forest 2 days, Hills 1 day, Mountain 3 days,
+ *             Swamp 3 days, Desert 2 days, Water 1 day (by boat).
+ * Adjusts for party speed.
+ */
+export function getHexExplorationTime(terrainType, partySpeed = 30) {
+  const baseDays = HEX_EXPLORATION_DAYS[terrainType] || 1;
+
+  // Adjust for party speed (slower parties take longer)
+  // Base is 30 ft speed = 1x multiplier
+  const speedMult = 30 / Math.max(partySpeed, 15); // Prevent division issues
+  const adjustedDays = Math.round(baseDays * speedMult * 10) / 10;
+
+  return {
+    baseDays,
+    adjustedDays,
+    terrain: terrainType,
+    partySpeed,
+    speedMultiplier: speedMult,
+    description: `${terrainType} hex: ${baseDays} day(s) base, ${adjustedDays} day(s) adjusted for party speed ${partySpeed} ft`
+  };
+}
+
+/**
+ * Process one day of hex exploration.
+ * Reduces remaining exploration days, checks for encounters, and rolls for discoveries.
+ */
+export function exploreCurrentHex(travelState, party, terrainType) {
+  // Initialize hex tracking if not present
+  if (!travelState.hexExploration) {
+    travelState.hexExploration = {};
+  }
+
+  // Get hex ID or location-based key
+  const hexKey = `${Math.floor(travelState.partyX / 100)}_${Math.floor(travelState.partyY / 100)}`;
+
+  if (!travelState.hexExploration[hexKey]) {
+    const speed = getPartySpeed(party);
+    const timeData = getHexExplorationTime(terrainType, speed);
+    travelState.hexExploration[hexKey] = {
+      terrain: terrainType,
+      daysRemaining: timeData.adjustedDays,
+      discovered: []
+    };
+  }
+
+  const hexData = travelState.hexExploration[hexKey];
+  const events = [];
+  const discovered = [];
+
+  // Reduce remaining exploration days
+  hexData.daysRemaining = Math.max(0, hexData.daysRemaining - 1);
+  events.push(`Exploring ${terrainType} hex. ${hexData.daysRemaining} days of exploration remaining.`);
+
+  // Encounter check for exploration (higher chance than travel)
+  const baseChance = mapData.overland.encounterFrequency[terrainType] || 15;
+  const explorationChance = Math.round(baseChance * 1.5); // 1.5x normal encounter rate
+  const encounterRoll = rollDice(1, 100);
+  const encountered = encounterRoll <= explorationChance;
+
+  if (encountered) {
+    const enc = rollEncounterTable(terrainType);
+    events.push(`[Exploration] Encounter: ${enc.encounter} (CR ${enc.cr})`);
+  }
+
+  // Points of interest discovery (varies by terrain)
+  const poiChance = { plains: 10, forest: 15, hills: 15, mountain: 20, swamp: 12, desert: 8, water: 5, coastal: 10 };
+  const poiRoll = rollDice(1, 100);
+  const poiDiscovered = poiRoll <= (poiChance[terrainType] || 12);
+
+  if (poiDiscovered) {
+    const poiTypes = ['ruins', 'shrine', 'natural_feature', 'settlement', 'monster_lair', 'resource_site', 'ruin'];
+    const poiType = poiTypes[Math.floor(Math.random() * poiTypes.length)];
+    discovered.push({ type: poiType, hex: hexKey });
+    events.push(`[Exploration] Point of Interest discovered: ${poiType}`);
+    hexData.discovered.push({ type: poiType, day: travelState.dayNumber });
+  }
+
+  return {
+    daysRemaining: hexData.daysRemaining,
+    events,
+    discovered,
+    encounterCheck: { roll: encounterRoll, chance: explorationChance, encountered },
+    poiCheck: { roll: poiRoll, chance: poiChance[terrainType] || 12, discovered: poiDiscovered }
+  };
+}
+
 export default {
   calculateTravelDistance,
   getPartySpeed,
@@ -624,5 +891,10 @@ export default {
   findLocationByName,
   getLocationsInRegion,
   getNearbyLocations,
-  rollEncounterTable
+  rollEncounterTable,
+  checkForaging,
+  checkHunting,
+  waterCollection,
+  getHexExplorationTime,
+  exploreCurrentHex
 };

@@ -126,6 +126,13 @@ function App() {
     nearbyNPCs: [],
     areaItems: [],
     contextActions: [],
+    // Hex crawl state
+    partyHex: null,           // current hex key like "5,4"
+    exploredHexes: [],        // array of hex keys the party has explored
+    hexCrawlActive: false,    // whether hex crawl mode is on
+    hexExploring: null,       // hex key currently being explored
+    hexExplorationDaysLeft: 0,// days remaining to finish exploring current hex
+    travelLog: [],            // hex crawl travel log entries
   };
   const [worldState, setWorldState] = useState({
     ...defaultWorldState,

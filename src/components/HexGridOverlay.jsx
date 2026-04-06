@@ -230,12 +230,25 @@ function tagIndicators(hex, hexSizePx) {
 }
 
 
+// ── Adjacency helper for fog of war ──
+
+function getAdjacentHexKeys(col, row) {
+  const evenOffsets = [[1,0],[-1,0],[0,-1],[0,1],[1,-1],[1,1]];
+  const oddOffsets = [[1,0],[-1,0],[0,-1],[0,1],[-1,-1],[-1,1]];
+  const offsets = col % 2 === 0 ? evenOffsets : oddOffsets;
+  return offsets.map(([dc, dr]) => `${col+dc},${row+dr}`);
+}
+
 export default function HexGridOverlay({
   imgW, imgH,
   hexSizeMiles = 12, mapWidthMiles = 50,
   visible = true, terrainData = null,
   highlightedHex = null, routeHexes = [],
   onHexClick, opacity = 0.45,
+  partyHex = null,
+  exploredHexes = null,
+  showFogOfWar = false,
+  exploringHex = null,
 }) {
   const hexSizePx = useMemo(() => {
     return (hexSizeMiles / mapWidthMiles) * imgW;
@@ -304,6 +317,13 @@ export default function HexGridOverlay({
   }, [routeHexes, hexSizePx]);
   const routeSet = useMemo(() => new Set(routeHexes), [routeHexes]);
 
+  // Compute adjacent hex keys for fog of war
+  const adjacentHexKeys = useMemo(() => {
+    if (!partyHex) return new Set();
+    const [pc, pr] = partyHex.split(',').map(Number);
+    return new Set(getAdjacentHexKeys(pc, pr));
+  }, [partyHex]);
+
   if (!visible || !imgW || !imgH) return null;
 
   const stripeW = Math.max(4, hexSizePx * 0.18);
@@ -330,6 +350,18 @@ export default function HexGridOverlay({
         <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
           <polygon points="0 0, 8 3, 0 6" fill="#ff8c00" />
         </marker>
+        <style>{`
+          @keyframes pulse-border {
+            0% { stroke-width: 2; stroke-opacity: 0.9; }
+            50% { stroke-width: 3; stroke-opacity: 1; }
+            100% { stroke-width: 2; stroke-opacity: 0.9; }
+          }
+          @keyframes pulse-text {
+            0% { fill-opacity: 0.7; }
+            50% { fill-opacity: 1; }
+            100% { fill-opacity: 0.7; }
+          }
+        `}</style>
       </defs>
 
       {hexes.map(hex => {
@@ -362,6 +394,14 @@ export default function HexGridOverlay({
         else if (isHybrid) { fill = `url(#${stripePatternId(hex.terrain, hex.terrain2)})`; useFillOp = opacity; }
         else { fill = color1; useFillOp = fillOp; }
 
+        // Determine fog of war state
+        const isPartyHex = partyHex === hex.key;
+        const isAdjacentToParty = adjacentHexKeys.has(hex.key);
+        const isExplored = exploredHexes?.has(hex.key) || false;
+        const isFoggedOut = showFogOfWar && !isExplored && !isPartyHex && !isAdjacentToParty;
+        const isDimmed = showFogOfWar && !isExplored && isAdjacentToParty && !isPartyHex;
+        const isExploring = exploringHex === hex.key;
+
         return (
           <g key={hex.key}>
             <polygon
@@ -373,6 +413,42 @@ export default function HexGridOverlay({
 
             {/* Tag overlays (road, trail, river, farmland, etc.) */}
             {tagIndicators(hex, hexSizePx)}
+
+            {/* Fog of war overlay for unexplored hexes */}
+            {isFoggedOut && (
+              <polygon
+                points={hexPoints(hex.cx, hex.cy, hexSizePx)}
+                fill="black" fillOpacity={0.6}
+                stroke="none" pointerEvents="none"
+              />
+            )}
+
+            {/* Dimmed overlay for adjacent unexplored hexes */}
+            {isDimmed && (
+              <polygon
+                points={hexPoints(hex.cx, hex.cy, hexSizePx)}
+                fill="black" fillOpacity={0.3}
+                stroke="none" pointerEvents="none"
+              />
+            )}
+
+            {/* Exploring hex indicator */}
+            {isExploring && (
+              <g pointerEvents="none">
+                <polygon
+                  points={hexPoints(hex.cx, hex.cy, hexSizePx)}
+                  fill="none" stroke="#ffd700" strokeWidth={2.5} strokeOpacity={0.9}
+                  style={{ animation: 'pulse-border 1.5s ease-in-out infinite' }}
+                />
+                <text x={hex.cx} y={hex.cy + hexSizePx * 0.15}
+                  textAnchor="middle" fontSize={hexSizePx * 0.4}
+                  fill="#ffd700" fillOpacity={0.8}
+                  style={{ animation: 'pulse-text 1.5s ease-in-out infinite', pointerEvents: 'none' }}
+                >
+                  🔍
+                </text>
+              </g>
+            )}
           </g>
         );
       })}
@@ -382,6 +458,36 @@ export default function HexGridOverlay({
           strokeOpacity={0.8} strokeDasharray="8 4" strokeLinecap="round"
           strokeLinejoin="round" markerEnd="url(#arrowhead)" />
       )}
+
+      {/* Party position marker */}
+      {partyHex && (() => {
+        const [pc, pr] = partyHex.split(',').map(Number);
+        const center = hexCenter(pc, pr, hexSizePx);
+        return (
+          <g pointerEvents="none">
+            {/* Pulsing gold circle */}
+            <circle cx={center.x} cy={center.y} r={hexSizePx * 0.28}
+              fill="#ffd700" fillOpacity={0.8} stroke="#b8860b" strokeWidth={2}
+            >
+              <animate attributeName="r"
+                values={`${hexSizePx*0.28};${hexSizePx*0.33};${hexSizePx*0.28}`}
+                dur="2s" repeatCount="indefinite"
+              />
+              <animate attributeName="fillOpacity"
+                values="0.8;0.95;0.8"
+                dur="2s" repeatCount="indefinite"
+              />
+            </circle>
+            {/* Shield/sword icon in center */}
+            <text x={center.x} y={center.y + hexSizePx * 0.12}
+              textAnchor="middle" fontSize={hexSizePx * 0.35}
+              fill="#1a1a2e" fillOpacity={0.95}
+            >
+              ⚔
+            </text>
+          </g>
+        );
+      })()}
     </svg>
   );
 }
@@ -406,4 +512,4 @@ export function hexToPercent(col, row, hexSizePx, imgW, imgH) {
   return { xPct: (center.x / imgW) * 100, yPct: (center.y / imgH) * 100 };
 }
 
-export { hexCenter, TERRAIN_COLORS, TERRAIN_TYPES, HEX_TAGS, TAG_CATEGORIES, getTagInfo, parseHexValue, encodeHexValue };
+export { hexCenter, TERRAIN_COLORS, TERRAIN_TYPES, HEX_TAGS, TAG_CATEGORIES, getTagInfo, parseHexValue, encodeHexValue, getAdjacentHexKeys };

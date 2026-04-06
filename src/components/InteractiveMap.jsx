@@ -50,6 +50,10 @@ const InteractiveMap = forwardRef(function InteractiveMap({
   onHexClick = null,
   hexSizeMiles = 12,
   mapWidthMiles = 50,
+  partyHex = null,           // Current party hex for hex crawl mode
+  exploredHexes = null,      // Set of explored hexes for hex crawl mode
+  showFogOfWar = false,      // Show fog of war for unexplored hexes
+  exploringHex = null,       // Currently exploring hex
 }, ref) {
   const isMobile = useIsMobile();
   const containerRef = useRef(null);
@@ -378,6 +382,10 @@ const InteractiveMap = forwardRef(function InteractiveMap({
             highlightedHex={highlightedHex}
             routeHexes={hexRoute}
             onHexClick={onHexClick}
+            partyHex={partyHex}
+            exploredHexes={exploredHexes}
+            showFogOfWar={showFogOfWar}
+            exploringHex={exploringHex}
           />
         )}
 
