@@ -6,6 +6,7 @@ import InteractiveMap from './InteractiveMap';
 import mapRegistry from '../services/mapRegistry';
 import { pixelToHex, hexCenter, TERRAIN_COLORS, HEX_TAGS, getTagInfo, parseHexValue, getAdjacentHexKeys } from './HexGridOverlay';
 import { checkForaging, checkHunting, waterCollection, getHexExplorationTime, exploreCurrentHex } from '../services/overlandService';
+import { generateDailyWeather, generateEncounter, advanceHexCrawlDay } from '../services/hexCrawlService';
 
 const catIcons = {
   temple: '\u2720', tavern: '\u{1F37A}', shop: '\u{1F6CD}', government: '\u{1F6E1}', craft: '\u{1F528}',
@@ -61,6 +62,8 @@ export default function MapTab({ party, campaign, addLog, worldState, setWorldSt
   const [sidebarOpen, setSidebarOpen] = useState(!isMobile);
   const [hexCrawlMode, setHexCrawlMode] = useState(false);
   const [hexTravelLog, setHexTravelLog] = useState([]);
+  const [currentWeatherLocal, setCurrentWeatherLocal] = useState(null);
+  const [lastEncounter, setLastEncounter] = useState(null);
 
   // Get the party hex from worldState
   const partyHex = worldState?.partyHex || null;
@@ -84,6 +87,13 @@ export default function MapTab({ party, campaign, addLog, worldState, setWorldSt
     const logEntry = { time: `Day ${worldState?.currentDay || 1}`, text: `Party enters hex ${hexKey} (${terrain})`, type: 'move' };
     setHexTravelLog(prev => [...prev, logEntry]);
     addLog?.(`Party moves to hex ${hexKey} — ${terrain} terrain`, 'narration');
+
+    // Generate weather for current day when entering new hex
+    const hexInfo = hexTerrainData?.get(hexKey);
+    const t = hexInfo?.terrain || 'plains';
+    const w = generateDailyWeather(t, worldState?.currentDay || 1);
+    setCurrentWeatherLocal(w);
+    setWorldState(prev => ({ ...prev, currentWeather: w }));
   }, [setWorldState, hexTerrainData, worldState?.currentDay, addLog]);
 
   // Start exploring current hex
@@ -115,6 +125,12 @@ export default function MapTab({ party, campaign, addLog, worldState, setWorldSt
     // Advance day counter
     const newDay = (worldState?.currentDay || 1) + 1;
 
+    // Generate daily weather
+    const weather = generateDailyWeather(terrain, newDay);
+    setCurrentWeatherLocal(weather);
+    setWorldState(prev => ({ ...prev, currentWeather: weather }));
+    newEntries.push({ time: `Day ${newDay}`, text: weather.description + ` (${weather.temperatureF}°F)`, type: 'weather' });
+
     if (daysLeft <= 0) {
       // Exploration complete
       newEntries.push({ time: `Day ${newDay}`, text: `Exploration of hex ${hexExploring} complete!`, type: 'explore' });
@@ -134,15 +150,19 @@ export default function MapTab({ party, campaign, addLog, worldState, setWorldSt
       }));
     }
 
-    // Random encounter check during exploration (higher chance)
-    const encCheck = overlandService.checkEncounter(terrain, 'morning');
-    if (encCheck.encountered) {
-      newEntries.push({ time: `Day ${newDay}`, text: encCheck.description, type: 'encounter' });
-      addLog?.(encCheck.description, 'combat');
-    }
+    // CR-appropriate encounter check from monster database
+    const partyLevel = Math.max(1, ...party.map(c => c.level || 1));
+    generateEncounter(terrain, partyLevel).then(enc => {
+      if (enc.encountered) {
+        setLastEncounter(enc);
+        const encEntry = { time: `Day ${newDay}`, text: enc.description, type: 'encounter' };
+        setHexTravelLog(prev => [...prev, encEntry]);
+        addLog?.(enc.description, 'combat');
+      }
+    });
 
     setHexTravelLog(prev => [...prev, ...newEntries]);
-  }, [hexExploring, hexTerrainData, worldState, setWorldState, addLog]);
+  }, [hexExploring, hexTerrainData, worldState, setWorldState, party, addLog]);
 
   // Forage in current hex
   const handleForage = useCallback(() => {
@@ -502,6 +522,51 @@ export default function MapTab({ party, campaign, addLog, worldState, setWorldSt
                 </div>
               )}
 
+              {/* Current Weather */}
+              {currentWeatherLocal && (
+                <div style={{ marginBottom: '8px', padding: '6px', background: 'rgba(0,0,0,0.3)', borderRadius: '4px', fontSize: '11px' }}>
+                  <div style={{ color: '#87ceeb', fontWeight: 'bold', marginBottom: '2px' }}>
+                    {currentWeatherLocal.precipitation?.isStorm ? '⛈️' : currentWeatherLocal.precipitation ? '🌧️' : currentWeatherLocal.temperatureF > 85 ? '☀️' : '🌤️'} Weather
+                  </div>
+                  <div style={{ color: '#d4c5a9' }}>{currentWeatherLocal.description}</div>
+                  <div style={styles.statRow}>
+                    <span style={styles.label}>Temp</span>
+                    <span style={{ color: currentWeatherLocal.temperatureF < 40 ? '#87ceeb' : currentWeatherLocal.temperatureF > 90 ? '#ff6040' : '#d4c5a9' }}>
+                      {currentWeatherLocal.temperatureF}°F
+                    </span>
+                  </div>
+                  {currentWeatherLocal.wind && (
+                    <div style={styles.statRow}>
+                      <span style={styles.label}>Wind</span>
+                      <span style={styles.value}>{currentWeatherLocal.wind.name}</span>
+                    </div>
+                  )}
+                  {currentWeatherLocal.speedPenalty > 0 && (
+                    <div style={{ color: '#ff6040', fontSize: '10px' }}>
+                      Speed reduced by {Math.round(currentWeatherLocal.speedPenalty * 100)}%
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Last Encounter */}
+              {lastEncounter && lastEncounter.encountered && (
+                <div style={{ marginBottom: '8px', padding: '6px', background: 'rgba(255,60,40,0.1)', border: '1px solid rgba(255,60,40,0.3)', borderRadius: '4px', fontSize: '11px' }}>
+                  <div style={{ color: '#ff6040', fontWeight: 'bold', marginBottom: '2px' }}>⚔️ Encounter</div>
+                  <div style={{ color: '#d4c5a9' }}>
+                    {lastEncounter.count > 1 ? `${lastEncounter.count}x ` : ''}{lastEncounter.monster?.name || 'Unknown'} (CR {lastEncounter.monster?.cr || '?'})
+                  </div>
+                  {lastEncounter.monster && (
+                    <div style={{ color: '#8b949e', fontSize: '10px', marginTop: '2px' }}>
+                      HP {lastEncounter.monster.hp} | AC {lastEncounter.monster.ac} | {lastEncounter.monster.type}
+                    </div>
+                  )}
+                  <button style={{ ...styles.btn, marginTop: '4px', fontSize: '10px' }} onClick={() => setLastEncounter(null)}>
+                    Dismiss
+                  </button>
+                </div>
+              )}
+
               {/* Exploration */}
               {hexExploring ? (
                 <div style={{ marginBottom: '8px' }}>
@@ -515,6 +580,37 @@ export default function MapTab({ party, campaign, addLog, worldState, setWorldSt
               ) : partyHex && (
                 <button style={{ ...styles.btn, width: '100%', marginBottom: '4px' }} onClick={startExploreHex}>
                   Explore This Hex
+                </button>
+              )}
+
+              {/* Advance Day (without exploring) */}
+              {!hexExploring && partyHex && (
+                <button
+                  style={{ ...styles.btn, width: '100%', marginBottom: '4px' }}
+                  onClick={async () => {
+                    const hexData = hexTerrainData?.get(partyHex);
+                    const terrain = hexData?.terrain || 'plains';
+                    const partyLevel = Math.max(1, ...party.map(c => c.level || 1));
+                    const newDay = (worldState?.currentDay || 1) + 1;
+
+                    // Weather
+                    const w = generateDailyWeather(terrain, newDay);
+                    setCurrentWeatherLocal(w);
+
+                    // Encounter
+                    const enc = await generateEncounter(terrain, partyLevel);
+                    if (enc.encountered) {
+                      setLastEncounter(enc);
+                      setHexTravelLog(prev => [...prev, { time: `Day ${newDay}`, text: enc.description, type: 'encounter' }]);
+                      addLog?.(enc.description, 'combat');
+                    }
+
+                    setWorldState(prev => ({ ...prev, currentDay: newDay, currentWeather: w }));
+                    setHexTravelLog(prev => [...prev, { time: `Day ${newDay}`, text: `${w.description} (${w.temperatureF}°F)`, type: 'weather' }]);
+                    addLog?.(`Day ${newDay} — ${w.description}`, 'narration');
+                  }}
+                >
+                  ⏩ Advance Day
                 </button>
               )}
 
@@ -544,7 +640,7 @@ export default function MapTab({ party, campaign, addLog, worldState, setWorldSt
                     {hexTravelLog.slice(-20).reverse().map((entry, i) => (
                       <div key={i} style={{ fontSize: '10px', padding: '2px 0', borderBottom: '1px solid rgba(48,54,61,0.3)' }}>
                         <span style={{ color: '#555', marginRight: '4px' }}>{entry.time}</span>
-                        <span style={{ color: entry.type === 'encounter' ? '#ff6040' : entry.type === 'explore' ? '#ffd700' : '#d4c5a9' }}>
+                        <span style={{ color: entry.type === 'weather' ? '#87ceeb' : entry.type === 'encounter' ? '#ff6040' : entry.type === 'explore' ? '#ffd700' : '#d4c5a9' }}>
                           {entry.text}
                         </span>
                       </div>
