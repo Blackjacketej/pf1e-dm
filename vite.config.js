@@ -5,6 +5,10 @@ export default defineConfig({
   // Set base for GitHub Pages — change 'pf1e-dm' to your repo name
   base: process.env.GITHUB_PAGES ? '/pf1e-dm/' : '/',
   plugins: [react()],
+  // Use OS temp dir for Vite cache to avoid OneDrive locking issues
+  cacheDir: process.env.TEMP
+    ? `${process.env.TEMP}/vite-pf-dm`
+    : 'node_modules/.vite',
   server: {
     open: true,
   },
