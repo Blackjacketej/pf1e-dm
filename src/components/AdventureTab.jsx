@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect, useMemo } from 'react';
 import GameLog from './GameLog';
 import NPCPanel from './NPCPanel';
 import AreaItemsPanel from './AreaItemsPanel';
+import CollapsibleSection from './CollapsibleSection';
+import ApiKeyBanner from './ApiKeyBanner';
 import useIsMobile from '../hooks/useIsMobile';
 import { rollDice, roll } from '../utils/dice';
 import { db } from '../db/database';
@@ -699,9 +701,19 @@ export default function AdventureTab({
       border: '1px solid #ffd700',
       borderRadius: '4px',
       color: '#d4c5a9',
-      fontFamily: 'monospace',
-      fontSize: isMobile ? '13px' : 'inherit',
+      fontSize: isMobile ? '14px' : 'inherit',
       minHeight: isMobile ? '40px' : 'auto',
+    },
+    mobileBtn: {
+      padding: '12px 10px',
+      backgroundColor: '#3a3a6e',
+      border: '1px solid #ffd700',
+      color: '#ffd700',
+      borderRadius: '8px',
+      cursor: 'pointer',
+      fontSize: '13px',
+      fontWeight: 'bold',
+      touchAction: 'manipulation',
     },
     empty: {
       display: 'flex',
@@ -849,6 +861,7 @@ export default function AdventureTab({
   if (!adventure || !adventure.active) {
     return (
       <div style={styles.container}>
+        <ApiKeyBanner onOpenSettings={() => setTab?.('Settings')} />
         <div style={styles.empty}>
           <div style={{ fontSize: isMobile ? '32px' : '48px', marginBottom: '16px' }}>{campaign ? '\u{1F4DC}' : '\u{1F5FA}\uFE0F'}</div>
           <div style={{ fontSize: isMobile ? '16px' : '18px', color: '#ffd700', marginBottom: '4px' }}>
@@ -970,76 +983,329 @@ export default function AdventureTab({
     );
   }
 
+  // Map rendering helper
+  const renderMap = () => {
+    if (adventure?.type === 'dungeon') {
+      const mapMatch = mapRegistry.findMapForLocation(adventure?.location?.name || '');
+      if (mapMatch && mapRegistry.hasMapImage(mapMatch.id)) {
+        return (
+          <div style={{ borderRadius: '4px', overflow: 'hidden', border: '1px solid rgba(255,215,0,0.2)' }}>
+            <InteractiveMap
+              mapId={mapMatch.id}
+              pins={getMergedPins(mapMatch.id)}
+              regions={getRegions(mapMatch.id)}
+              skipRegistryPins={true}
+              currentRoom={adventure.room || 0}
+              fogEnabled={true}
+              width={isMobile ? '100%' : '244px'} height={isMobile ? '220px' : '200px'}
+              addLog={addLog}
+            />
+          </div>
+        );
+      }
+      return (
+        <ParchmentFrame title="Dungeon Map">
+          <DungeonMap
+            roomCount={Math.max(5, 3 + (adventure.room || 0) * 2)}
+            seed={adventure.location?.name?.charCodeAt(0) || 42}
+            currentRoom={adventure.room || 0}
+            width={isMobile ? 300 : 230} height={isMobile ? 200 : 180}
+          />
+        </ParchmentFrame>
+      );
+    }
+    if (adventure?.type === 'town' && adventure?.location) {
+      const mapMatch = mapRegistry.findMapForLocation(adventure?.location?.name || '');
+      if (mapMatch && mapRegistry.hasMapImage(mapMatch.id)) {
+        return (
+          <div style={{ borderRadius: '4px', overflow: 'hidden', border: '1px solid rgba(255,215,0,0.2)' }}>
+            <InteractiveMap
+              mapId={mapMatch.id}
+              pins={getMergedPins(mapMatch.id)}
+              regions={getRegions(mapMatch.id)}
+              skipRegistryPins={true}
+              fogEnabled={false}
+              width={isMobile ? '100%' : '244px'} height={isMobile ? '220px' : '200px'}
+              showLegend={false}
+              addLog={addLog}
+            />
+          </div>
+        );
+      }
+      return (
+        <ParchmentFrame title={adventure.location.name || 'Settlement'}>
+          <SettlementMap
+            name={adventure.location.name}
+            size={adventure.location.terrain === 'city' ? 'large_town' : 'village'}
+            seed={adventure.location.name?.charCodeAt(0) || 42}
+            width={isMobile ? 300 : 230} height={isMobile ? 200 : 180}
+          />
+        </ParchmentFrame>
+      );
+    }
+    return null;
+  };
+
+  // Context action buttons renderer
+  const renderContextActions = () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+      {contextActions.map((ca, idx) => {
+        const colors = contextBtnColors[ca.type] || contextBtnColors.neutral;
+        const typeIcon = ca.type === 'social' ? '💬' : ca.type === 'skill' ? '🎯' : ca.type === 'combat' ? '⚔️' : ca.type === 'explore' ? '🔍' : '▸';
+        return (
+          <button
+            key={idx}
+            style={{
+              display: 'flex', alignItems: 'flex-start', gap: '10px',
+              padding: isMobile ? '12px 14px' : '7px 10px', backgroundColor: 'rgba(42, 42, 78, 0.6)',
+              border: `1px solid ${colors.border}33`, borderLeft: `3px solid ${colors.border}`,
+              borderRadius: '6px', cursor: narrating || loading ? 'not-allowed' : 'pointer',
+              color: colors.color, fontSize: isMobile ? '14px' : '12px', lineHeight: '1.5',
+              textAlign: 'left', width: '100%',
+              opacity: narrating || loading ? 0.5 : 1,
+              transition: 'background-color 0.15s',
+            }}
+            onClick={() => handleContextAction(ca)}
+            disabled={narrating || loading}
+            onMouseEnter={e => { if (!narrating && !loading) e.currentTarget.style.backgroundColor = 'rgba(58, 58, 110, 0.8)'; }}
+            onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'rgba(42, 42, 78, 0.6)'; }}
+          >
+            <span style={{ flexShrink: 0, fontSize: isMobile ? '16px' : '13px' }}>{typeIcon}</span>
+            <span style={{ flex: 1 }}>{ca.action || ca.label}</span>
+          </button>
+        );
+      })}
+    </div>
+  );
+
+  // --- MOBILE LAYOUT ---
+  if (isMobile) {
+    return (
+      <div style={styles.container}>
+        {/* API Key Banner */}
+        <ApiKeyBanner onOpenSettings={() => setTab?.('Settings')} />
+
+        {/* Location header */}
+        <div style={{
+          flexShrink: 0,
+          padding: '10px 14px',
+          backgroundColor: '#2a2a4e',
+          borderBottom: '1px solid #ffd70033',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}>
+          <div>
+            <div style={{ color: '#ffd700', fontSize: '14px', fontWeight: 'bold' }}>
+              {adventure?.type === 'town' ? '🏘️' : '⚔️'} {adventure?.location?.name || 'Unknown'}
+            </div>
+            <div style={{ color: '#8b949e', fontSize: '11px' }}>
+              {adventure?.type === 'town' ? 'Town Adventure' : 'Dungeon Crawl'}
+            </div>
+          </div>
+          <button
+            style={{
+              padding: '6px 12px',
+              backgroundColor: '#3a1a1a',
+              border: '1px solid #ff6b6b',
+              color: '#ff6b6b',
+              borderRadius: '6px',
+              cursor: 'pointer',
+              fontSize: '11px',
+              fontWeight: 'bold',
+            }}
+            onClick={() => { setAdventure(null); setNearbyNPCs([]); setAreaItems([]); setContextActions([]); addLog?.('Adventure ended.', 'system'); }}
+          >
+            End
+          </button>
+        </div>
+
+        {/* Scrollable content area */}
+        <div style={{ flex: '1 1 0', minHeight: 0, overflowY: 'auto', WebkitOverflowScrolling: 'touch' }}>
+          {/* Game Log — always visible, takes most space */}
+          <div style={{ padding: '6px', minHeight: '250px', maxHeight: '50vh' }}>
+            <GameLog logs={gameLog} logRef={logRef} />
+          </div>
+
+          {/* Collapsible sections */}
+          <div style={{ padding: '0 6px 6px' }}>
+            {/* Context Actions — most important, default open */}
+            {contextActions.length > 0 && (
+              <CollapsibleSection
+                title="What do you do?"
+                icon="🎭"
+                count={contextActions.length}
+                defaultOpen={true}
+                color="#b8b8ff"
+              >
+                {renderContextActions()}
+              </CollapsibleSection>
+            )}
+
+            {/* Map */}
+            {renderMap() && (
+              <CollapsibleSection
+                title="Map"
+                icon="🗺️"
+                defaultOpen={false}
+                color="#ffd700"
+              >
+                {renderMap()}
+              </CollapsibleSection>
+            )}
+
+            {/* NPCs */}
+            {nearbyNPCs.length > 0 && (
+              <CollapsibleSection
+                title="Nearby NPCs"
+                icon="👥"
+                count={nearbyNPCs.length}
+                defaultOpen={false}
+                color="#40e0d0"
+              >
+                <NPCPanel npcs={nearbyNPCs} onTalkTo={narrating ? null : handleTalkToNPC} />
+              </CollapsibleSection>
+            )}
+
+            {/* Items */}
+            {areaItems.length > 0 && (
+              <CollapsibleSection
+                title="Area Items"
+                icon="🎒"
+                count={areaItems.length}
+                defaultOpen={false}
+                color="#ffd700"
+              >
+                <AreaItemsPanel items={areaItems} onInteract={narrating ? null : handleItemInteract} />
+              </CollapsibleSection>
+            )}
+          </div>
+        </div>
+
+        {/* Mobile action bar — compact grid */}
+        <div style={{
+          flexShrink: 0,
+          backgroundColor: '#2a2a4e',
+          borderTop: '2px solid #ffd70066',
+          padding: '8px',
+        }}>
+          {/* Quick action buttons row */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '6px',
+            marginBottom: '8px',
+          }}>
+            <button
+              style={{ ...styles.mobileBtn }}
+              onClick={handleExplore}
+              disabled={loading || narrating || !party || party.length === 0}
+            >
+              {loading ? '...' : adventure?.type === 'town' ? '🚶 Walk' : '🔍 Explore'}
+            </button>
+            <div style={{ position: 'relative' }}>
+              <button
+                style={{ ...styles.mobileBtn, width: '100%' }}
+                onClick={() => setRestType(restType ? null : 'pick')}
+                disabled={narrating || !party || party.length === 0}
+              >
+                🛏️ Rest
+              </button>
+              {restType === 'pick' && (
+                <div style={{
+                  position: 'absolute', bottom: '100%', left: 0, right: 0, marginBottom: '4px',
+                  backgroundColor: '#2a2a4e', border: '1px solid #ffd700', borderRadius: '8px',
+                  padding: '6px', display: 'flex', flexDirection: 'column', gap: '4px', zIndex: 10,
+                }}>
+                  <button
+                    style={{ ...styles.mobileBtn, fontSize: '12px', textAlign: 'left' }}
+                    onClick={() => handleRest('short')}
+                  >
+                    Short Rest (1 hr)
+                  </button>
+                  <button
+                    style={{ ...styles.mobileBtn, fontSize: '12px', textAlign: 'left' }}
+                    onClick={() => handleRest('full')}
+                  >
+                    Full Rest (8 hrs)
+                  </button>
+                </div>
+              )}
+            </div>
+            <button
+              style={{ ...styles.mobileBtn }}
+              onClick={handleForceEncounter}
+              disabled={loading || narrating || !party || party.length === 0}
+            >
+              ⚔️ Fight
+            </button>
+          </div>
+          {/* Travel button */}
+          <div style={{ marginBottom: '8px' }}>
+            {adventure?.type === 'town' ? (
+              <button
+                style={{ ...styles.mobileBtn, width: '100%', borderColor: '#7b68ee', color: '#7b68ee' }}
+                onClick={() => startAdventure('dungeon')}
+              >
+                🏔️ Leave Town
+              </button>
+            ) : (
+              <button
+                style={{ ...styles.mobileBtn, width: '100%', borderColor: '#7fff00', color: '#7fff00' }}
+                onClick={() => startAdventure('town')}
+              >
+                🏘️ Return to Town
+              </button>
+            )}
+          </div>
+          {/* Custom action input */}
+          <div style={{ display: 'flex', gap: '6px' }}>
+            <input
+              type="text"
+              style={{
+                flex: 1,
+                padding: '12px',
+                backgroundColor: '#1a1a2e',
+                border: '1px solid #ffd70066',
+                borderRadius: '8px',
+                color: '#e0d6c2',
+                fontSize: '14px',
+              }}
+              placeholder={narrating ? 'DM is speaking...' : 'What do you do?'}
+              value={customAction}
+              onChange={(e) => setCustomAction(e.target.value)}
+              onKeyDown={(e) => e.key === 'Enter' && handleCustomAction()}
+              disabled={narrating}
+            />
+            <button
+              style={{ ...styles.mobileBtn, minWidth: '60px' }}
+              onClick={handleCustomAction}
+              disabled={!customAction.trim() || narrating}
+            >
+              {narrating ? '...' : 'Go'}
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // --- DESKTOP LAYOUT ---
   return (
     <div style={styles.container}>
+      {/* API Key Banner */}
+      <ApiKeyBanner onOpenSettings={() => setTab?.('Settings')} />
+
       {/* Main content: log + side panels */}
-      <div style={{ display: 'flex', flex: '1 1 0', minHeight: 0, overflow: 'hidden', flexDirection: isMobile ? 'column' : 'row' }}>
+      <div style={{ display: 'flex', flex: '1 1 0', minHeight: 0, overflow: 'hidden' }}>
         {/* Game log - main area */}
-        <div style={{ ...styles.logContainer, flex: '1 1 0', minWidth: isMobile ? 0 : undefined }}>
+        <div style={{ ...styles.logContainer, flex: '1 1 0' }}>
           <GameLog logs={gameLog} logRef={logRef} />
         </div>
 
         {/* Side panel: Map + NPCs + Area Items */}
-        <div style={{ width: isMobile ? '100%' : '260px', flexShrink: 0, overflowY: 'auto', padding: isMobile ? '6px' : '8px', display: 'flex', flexDirection: isMobile ? 'row' : 'column', gap: isMobile ? '6px' : '4px', maxHeight: isMobile ? '200px' : 'auto', flexWrap: isMobile ? 'wrap' : 'nowrap' }}>
-          {/* Mini map — official image when available, procedural fallback */}
-          {adventure?.type === 'dungeon' && (() => {
-            const mapMatch = mapRegistry.findMapForLocation(adventure?.location?.name || '');
-            if (mapMatch && mapRegistry.hasMapImage(mapMatch.id)) {
-              return (
-                <div style={{ marginBottom: '6px', borderRadius: '4px', overflow: 'hidden', border: '1px solid rgba(255,215,0,0.2)' }}>
-                  <InteractiveMap
-                    mapId={mapMatch.id}
-                    pins={getMergedPins(mapMatch.id)}
-                    regions={getRegions(mapMatch.id)}
-                    skipRegistryPins={true}
-                    currentRoom={adventure.room || 0}
-                    fogEnabled={true}
-                    width="244px" height="200px"
-                    addLog={addLog}
-                  />
-                </div>
-              );
-            }
-            return (
-              <ParchmentFrame title="Dungeon Map" style={{ marginBottom: '6px' }}>
-                <DungeonMap
-                  roomCount={Math.max(5, 3 + (adventure.room || 0) * 2)}
-                  seed={adventure.location?.name?.charCodeAt(0) || 42}
-                  currentRoom={adventure.room || 0}
-                  width={230} height={180}
-                />
-              </ParchmentFrame>
-            );
-          })()}
-          {adventure?.type === 'town' && adventure?.location && (() => {
-            const mapMatch = mapRegistry.findMapForLocation(adventure?.location?.name || '');
-            if (mapMatch && mapRegistry.hasMapImage(mapMatch.id)) {
-              return (
-                <div style={{ marginBottom: '6px', borderRadius: '4px', overflow: 'hidden', border: '1px solid rgba(255,215,0,0.2)' }}>
-                  <InteractiveMap
-                    mapId={mapMatch.id}
-                    pins={getMergedPins(mapMatch.id)}
-                    regions={getRegions(mapMatch.id)}
-                    skipRegistryPins={true}
-                    fogEnabled={false}
-                    width="244px" height="200px"
-                    showLegend={false}
-                    addLog={addLog}
-                  />
-                </div>
-              );
-            }
-            return (
-              <ParchmentFrame title={adventure.location.name || 'Settlement'} style={{ marginBottom: '6px' }}>
-                <SettlementMap
-                  name={adventure.location.name}
-                  size={adventure.location.terrain === 'city' ? 'large_town' : 'village'}
-                  seed={adventure.location.name?.charCodeAt(0) || 42}
-                  width={230} height={180}
-                />
-              </ParchmentFrame>
-            );
-          })()}
+        <div style={{ width: '260px', flexShrink: 0, overflowY: 'auto', padding: '8px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
+          {renderMap()}
           {nearbyNPCs.length > 0 && <NPCPanel npcs={nearbyNPCs} onTalkTo={narrating ? null : handleTalkToNPC} />}
           {areaItems.length > 0 && <AreaItemsPanel items={areaItems} onInteract={narrating ? null : handleItemInteract} />}
         </div>
@@ -1047,37 +1313,9 @@ export default function AdventureTab({
 
       {/* Contextual action choices */}
       {contextActions.length > 0 && (
-        <div style={{ flexShrink: 0, padding: isMobile ? '8px 6px' : '6px 8px', borderTop: '1px solid rgba(255, 215, 0, 0.2)', maxHeight: isMobile ? '120px' : '160px', overflowY: 'auto' }}>
-          <div style={{ fontSize: isMobile ? '11px' : '10px', color: '#8b949e', marginBottom: '4px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>What do you do?</div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
-            {contextActions.map((ca, idx) => {
-              const colors = contextBtnColors[ca.type] || contextBtnColors.neutral;
-              const typeIcon = ca.type === 'social' ? '💬' : ca.type === 'skill' ? '🎯' : ca.type === 'combat' ? '⚔️' : ca.type === 'explore' ? '🔍' : '▸';
-              return (
-                <button
-                  key={idx}
-                  style={{
-                    display: 'flex', alignItems: 'flex-start', gap: isMobile ? '10px' : '8px',
-                    padding: isMobile ? '10px 12px' : '7px 10px', backgroundColor: 'rgba(42, 42, 78, 0.6)',
-                    border: `1px solid ${colors.border}33`, borderLeft: `3px solid ${colors.border}`,
-                    borderRadius: '4px', cursor: narrating || loading ? 'not-allowed' : 'pointer',
-                    color: colors.color, fontSize: isMobile ? '13px' : '12px', lineHeight: '1.4',
-                    textAlign: 'left', width: '100%', fontFamily: 'monospace',
-                    opacity: narrating || loading ? 0.5 : 1,
-                    transition: 'background-color 0.15s',
-                    minHeight: isMobile ? '40px' : 'auto',
-                  }}
-                  onClick={() => handleContextAction(ca)}
-                  disabled={narrating || loading}
-                  onMouseEnter={e => { if (!narrating && !loading) e.currentTarget.style.backgroundColor = 'rgba(58, 58, 110, 0.8)'; }}
-                  onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'rgba(42, 42, 78, 0.6)'; }}
-                >
-                  <span style={{ flexShrink: 0, fontSize: isMobile ? '16px' : '13px' }}>{typeIcon}</span>
-                  <span style={{ flex: 1 }}>{ca.action || ca.label}</span>
-                </button>
-              );
-            })}
-          </div>
+        <div style={{ flexShrink: 0, padding: '6px 8px', borderTop: '1px solid rgba(255, 215, 0, 0.2)', maxHeight: '160px', overflowY: 'auto' }}>
+          <div style={{ fontSize: '10px', color: '#8b949e', marginBottom: '4px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>What do you do?</div>
+          {renderContextActions()}
         </div>
       )}
 
@@ -1102,21 +1340,21 @@ export default function AdventureTab({
             <div style={{
               position: 'absolute', bottom: '100%', left: 0, marginBottom: '4px',
               backgroundColor: '#2a2a4e', border: '1px solid #ffd700', borderRadius: '6px',
-              padding: '6px', display: 'flex', flexDirection: 'column', gap: '4px', zIndex: 10, minWidth: isMobile ? '140px' : '160px',
+              padding: '6px', display: 'flex', flexDirection: 'column', gap: '4px', zIndex: 10, minWidth: '160px',
             }}>
               <button
-                style={{ ...styles.button, fontSize: isMobile ? '12px' : '11px', padding: isMobile ? '10px' : '8px', textAlign: 'left', width: '100%' }}
+                style={{ ...styles.button, fontSize: '11px', padding: '8px', textAlign: 'left', width: '100%' }}
                 onClick={() => handleRest('short')}
               >
                 Short Rest (1 hr)
-                <div style={{ fontSize: isMobile ? '10px' : '9px', color: '#8b949e', fontWeight: 'normal', marginTop: '2px' }}>Catch breath, no HP recovery</div>
+                <div style={{ fontSize: '9px', color: '#8b949e', fontWeight: 'normal', marginTop: '2px' }}>Catch breath, no HP recovery</div>
               </button>
               <button
-                style={{ ...styles.button, fontSize: isMobile ? '12px' : '11px', padding: isMobile ? '10px' : '8px', textAlign: 'left', width: '100%' }}
+                style={{ ...styles.button, fontSize: '11px', padding: '8px', textAlign: 'left', width: '100%' }}
                 onClick={() => handleRest('full')}
               >
                 Full Rest (8 hrs)
-                <div style={{ fontSize: isMobile ? '10px' : '9px', color: '#8b949e', fontWeight: 'normal', marginTop: '2px' }}>Heal 1 HP/level, recover spells</div>
+                <div style={{ fontSize: '9px', color: '#8b949e', fontWeight: 'normal', marginTop: '2px' }}>Heal 1 HP/level, recover spells</div>
               </button>
             </div>
           )}

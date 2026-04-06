@@ -2,21 +2,39 @@ import React, { useEffect } from 'react';
 import useIsMobile from '../hooks/useIsMobile';
 
 const typeColors = {
-  narration: '#d4c5a9',
+  narration: '#e8dcc8',
   header: '#ffd700',
   roll: '#7eb8da',
   success: '#7fff00',
   danger: '#ff6b6b',
   warning: '#ffaa00',
   npc: '#40e0d0',
-  dialogue: '#87ceeb',
+  dialogue: '#a8d8ea',
   loot: '#ffd700',
   damage: '#ff4444',
   system: '#8b949e',
   heal: '#44ff44',
-  info: '#b0b0b0',
-  action: '#aaaaff',
+  info: '#c0c0c0',
+  action: '#b8b8ff',
   event: '#da70d6',
+};
+
+const typeLabels = {
+  narration: null,
+  header: null,
+  roll: 'ROLL',
+  success: 'SUCCESS',
+  danger: 'DANGER',
+  warning: 'WARNING',
+  npc: 'NPC',
+  dialogue: 'DIALOGUE',
+  loot: 'LOOT',
+  damage: 'DAMAGE',
+  system: 'SYSTEM',
+  heal: 'HEAL',
+  info: 'INFO',
+  action: 'ACTION',
+  event: 'EVENT',
 };
 
 export default function GameLog({ logs = [], logRef }) {
@@ -30,30 +48,42 @@ export default function GameLog({ logs = [], logRef }) {
   const styles = {
     container: {
       height: '100%',
-      backgroundColor: '#1a1a2e',
-      border: '2px solid #ffd700',
+      backgroundColor: '#12121f',
+      border: '2px solid #ffd70066',
       borderRadius: '8px',
-      padding: isMobile ? '10px' : '12px',
+      padding: isMobile ? '12px' : '14px',
       overflowY: 'auto',
-      fontFamily: 'monospace',
-      fontSize: isMobile ? '13px' : '14px',
-      color: '#d4c5a9',
+      fontSize: isMobile ? '14px' : '14px',
+      color: '#e0d6c2',
       boxSizing: 'border-box',
-      lineHeight: '1.6',
+      lineHeight: '1.7',
+      WebkitOverflowScrolling: 'touch',
     },
     entry: {
-      marginBottom: '8px',
-      paddingBottom: '8px',
-      borderBottom: '1px solid rgba(255, 215, 0, 0.2)',
+      marginBottom: '10px',
+      paddingBottom: '10px',
+      borderBottom: '1px solid rgba(255, 215, 0, 0.12)',
+    },
+    header: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '8px',
+      marginBottom: '4px',
     },
     time: {
-      fontSize: '12px',
-      color: '#666',
-      marginRight: '8px',
+      fontSize: isMobile ? '11px' : '11px',
+      color: '#555',
+    },
+    label: {
+      fontSize: '10px',
+      fontWeight: 'bold',
+      padding: '1px 6px',
+      borderRadius: '3px',
+      letterSpacing: '0.5px',
     },
     text: {
-      marginTop: '4px',
-      lineHeight: '1.4',
+      lineHeight: '1.6',
+      wordWrap: 'break-word',
     },
     empty: {
       textAlign: 'center',
@@ -68,8 +98,8 @@ export default function GameLog({ logs = [], logRef }) {
       <div style={styles.container}>
         <div style={styles.empty}>
           <div style={{ fontSize: '48px', marginBottom: '16px' }}>🏰</div>
-          <div>Welcome, Dungeon Master!</div>
-          <div style={{ fontSize: '12px', marginTop: '8px', color: '#555' }}>
+          <div style={{ color: '#d4c5a9' }}>Welcome, Dungeon Master!</div>
+          <div style={{ fontSize: '13px', marginTop: '8px', color: '#666' }}>
             Your adventure log awaits...
           </div>
         </div>
@@ -79,19 +109,59 @@ export default function GameLog({ logs = [], logRef }) {
 
   return (
     <div style={styles.container} ref={logRef}>
-      {logs.map((log) => (
-        <div key={log.id} style={styles.entry}>
-          <div>
-            <span style={styles.time}>[{log.time || '00:00'}]</span>
-            <span style={{ color: typeColors[log.type] || '#d4c5a9' }}>
-              [{log.type?.toUpperCase() || 'INFO'}]
-            </span>
+      {logs.map((log) => {
+        const color = typeColors[log.type] || '#e0d6c2';
+        const label = typeLabels[log.type];
+        const isHeader = log.type === 'header';
+        const isNarration = log.type === 'narration';
+        const isAction = log.type === 'action';
+
+        return (
+          <div key={log.id} style={{
+            ...styles.entry,
+            ...(isHeader ? { borderBottom: '2px solid #ffd70044', paddingTop: '8px' } : {}),
+          }}>
+            {/* Label + time row — skip for narration/headers to keep them clean */}
+            {label && (
+              <div style={styles.header}>
+                <span style={{
+                  ...styles.label,
+                  backgroundColor: `${color}22`,
+                  color,
+                }}>
+                  {label}
+                </span>
+                <span style={styles.time}>{log.time || ''}</span>
+              </div>
+            )}
+
+            {/* Main text */}
+            <div style={{
+              ...styles.text,
+              color,
+              ...(isHeader ? {
+                fontSize: isMobile ? '16px' : '16px',
+                fontWeight: 'bold',
+                textAlign: 'center',
+                letterSpacing: '2px',
+                padding: '4px 0',
+              } : {}),
+              ...(isNarration ? {
+                fontSize: isMobile ? '15px' : '14px',
+                fontFamily: 'Georgia, "Times New Roman", serif',
+                lineHeight: '1.8',
+              } : {}),
+              ...(isAction ? {
+                fontStyle: 'italic',
+                paddingLeft: '12px',
+                borderLeft: `2px solid ${color}55`,
+              } : {}),
+            }}>
+              {log.text}
+            </div>
           </div>
-          <div style={{ ...styles.text, color: typeColors[log.type] || '#d4c5a9' }}>
-            {log.text}
-          </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }
