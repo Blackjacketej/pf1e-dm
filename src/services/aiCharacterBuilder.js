@@ -38,12 +38,19 @@ RULES:
 - Create a rich backstory (2-3 paragraphs) with personality traits, motivations, a key event, and a connection hook for adventuring.
 - Pick an alignment that fits the concept.
 
+GOLARION ETHNICITIES (for humans): Chelaxian (Cheliax — pale, dark hair, disciplined), Garundi (Osirion — dark skin, scholarly), Keleshite (Qadira — olive skin, traders), Kellid (Numeria — tanned, tribal warriors), Mwangi (Mwangi Expanse — dark skin, diverse cultures), Shoanti (Varisia Storval Plateau — bronze, tattooed warriors), Taldan (Taldor — fair, refined nobility), Tian (Tian Xia — East Asian, honor/martial arts), Ulfen (Linnorm Kings — fair/blond, Viking raiders), Varisian (Varisia — olive skin, nomadic storytellers), Vudrani (Vudra — brown skin, philosophical).
+
+NON-HUMAN ORIGINS: Dwarves from Janderhoff/Highhelm/Kraggodan, Elves from Kyonin/Mierani Forest/Ekujae/Forlorn, Gnomes from Brastlewark/Wanderer, Half-Elves from Absalom/Varisia, Half-Orcs from Hold of Belkzen/Magnimar, Halflings from Cheliax/Andoran/Varisian Caravans.
+
 Respond with ONLY a JSON object (no markdown fences, no explanation) with these exact fields:
 {
   "name": "string",
   "race": "one of the available races",
   "class": "one of the available classes",
   "alignment": "e.g. Chaotic Good",
+  "ethnicity": "for humans: one of the Golarion ethnicities; for others: race name",
+  "origin": "homeland or settlement name from Golarion",
+  "languages": ["Common", "other appropriate languages"],
   "level": number,
   "abilities": { "STR": n, "DEX": n, "CON": n, "INT": n, "WIS": n, "CHA": n },
   "feats": ["feat names"],
@@ -56,9 +63,9 @@ Respond with ONLY a JSON object (no markdown fences, no explanation) with these 
   "domains": ["domain names"] or [],
   "favoredEnemy": "creature type" or null,
   "bloodline": "bloodline name" or null,
-  "backstory": "2-3 paragraph backstory",
+  "backstory": "2-3 paragraph backstory that incorporates their ethnicity and homeland",
   "personality": "one-line personality summary",
-  "appearance": "brief physical description",
+  "appearance": "brief physical description reflecting their ethnicity",
   "inventory": ["gear item names"]
 }`;
 
@@ -241,6 +248,9 @@ function buildCharacterFromAI(ai) {
     spellsKnown: ai.spellsKnown || [],
     spellsPrepared: ai.spellsPrepared || [],
     spellSlotsUsed: {},
+    ethnicity: ai.ethnicity || race,
+    origin: ai.origin || '',
+    languages: ai.languages || ['Common'],
     backstory: ai.backstory || '',
     personality: ai.personality || '',
     appearance: ai.appearance || '',

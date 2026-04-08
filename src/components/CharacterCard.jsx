@@ -147,7 +147,8 @@ export default function CharacterCard({
         <div>
           <div style={styles.title}>{char.name}</div>
           <div style={styles.subTitle}>
-            {char.race} {char.class} Level {char.level}
+            {char.ethnicity && char.ethnicity !== char.race ? `${char.ethnicity} ` : ''}{char.race} {char.class} Level {char.level}
+            {char.origin ? ` — ${char.origin}` : ''}
           </div>
         </div>
         <div style={{ fontSize: '16px' }}>{expanded ? '▼' : '▶'}</div>

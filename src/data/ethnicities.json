@@ -1,0 +1,171 @@
+{
+  "humanEthnicities": [
+    {
+      "name": "Chelaxian",
+      "description": "Pale skin, dark hair, sharp features. From the devil-bound empire of Cheliax.",
+      "homeland": "Cheliax",
+      "region": "Avistan",
+      "languages": ["Common", "Infernal"],
+      "commonClasses": ["Fighter", "Wizard", "Cleric"],
+      "traits": ["Worldly (Social)", "Chelaxian Faction"],
+      "culturalNotes": "Proud, disciplined, legalistic. Many serve or oppose House Thrune."
+    },
+    {
+      "name": "Garundi",
+      "description": "Dark skin, tall and lean. From the sun-scorched lands of northern Garund.",
+      "homeland": "Osirion",
+      "region": "Garund",
+      "languages": ["Common", "Osiriani"],
+      "commonClasses": ["Cleric", "Wizard", "Rogue"],
+      "traits": ["Desert Child (Regional)", "Mummy-Touched"],
+      "culturalNotes": "Ancient civilization of scholars, tomb-builders, and pharaohs."
+    },
+    {
+      "name": "Keleshite",
+      "description": "Olive to dark skin, dark eyes, aquiline features. From the vast Kelesh empire.",
+      "homeland": "Qadira",
+      "region": "Casmaron",
+      "languages": ["Common", "Kelish"],
+      "commonClasses": ["Fighter", "Rogue", "Bard"],
+      "traits": ["Horse Lord (Regional)", "Eastern Mysteries"],
+      "culturalNotes": "Master traders, horsemen, and storytellers. Wealth and hospitality are paramount."
+    },
+    {
+      "name": "Kellid",
+      "description": "Tanned skin, strong build, scarred. Hardy nomads of the north.",
+      "homeland": "Numeria",
+      "region": "Avistan",
+      "languages": ["Common", "Hallit"],
+      "commonClasses": ["Barbarian", "Druid", "Ranger"],
+      "traits": ["Savage (Combat)", "Superstitious"],
+      "culturalNotes": "Tribal warriors who distrust arcane magic. Fierce and resilient survivors."
+    },
+    {
+      "name": "Mwangi",
+      "description": "Dark skin, diverse builds. From the vast Mwangi Expanse jungles and savannas.",
+      "homeland": "Mwangi Expanse",
+      "region": "Garund",
+      "languages": ["Common", "Polyglot"],
+      "commonClasses": ["Druid", "Ranger", "Barbarian"],
+      "traits": ["Jungle Walker (Regional)", "Savanna Hunter"],
+      "culturalNotes": "Diverse cultures of the Expanse — city-builders, jungle tribes, and ancient kingdoms."
+    },
+    {
+      "name": "Shoanti",
+      "description": "Bronze skin, tall and muscular, tattooed. Tribal people of the Storval Plateau.",
+      "homeland": "Varisia (Storval Plateau)",
+      "region": "Avistan",
+      "languages": ["Common", "Shoanti"],
+      "commonClasses": ["Barbarian", "Ranger", "Druid"],
+      "traits": ["Quah Affinity (Regional)", "Totem Spirit"],
+      "culturalNotes": "Proud clans (quahs) with a warrior culture. Ancestral enemies of Chelaxian colonists.",
+      "quahs": ["Lyrune-Quah (Moon Clan)", "Shadde-Quah (Axe Clan)", "Shriikirri-Quah (Hawk Clan)", "Skoan-Quah (Skull Clan)", "Sklar-Quah (Sun Clan)", "Tamiir-Quah (Wind Clan)", "Shundar-Quah (Spire Clan)"]
+    },
+    {
+      "name": "Taldan",
+      "description": "Fair skin, brown or auburn hair. Refined and cultured, from the old empire.",
+      "homeland": "Taldor",
+      "region": "Avistan",
+      "languages": ["Common", "Taldane"],
+      "commonClasses": ["Fighter", "Bard", "Paladin"],
+      "traits": ["Impressive Presence (Social)", "Taldan Faction"],
+      "culturalNotes": "Heirs of a fading empire. Value tradition, pageantry, and noble bloodlines."
+    },
+    {
+      "name": "Tian",
+      "description": "East Asian features, diverse complexions. From Tian Xia across the Crown of the World.",
+      "homeland": "Tian Xia",
+      "region": "Tian Xia",
+      "languages": ["Common", "Tien"],
+      "commonClasses": ["Monk", "Rogue", "Wizard"],
+      "traits": ["Easterner (Regional)", "Tian Weapon Training"],
+      "culturalNotes": "Ancient civilizations with deep traditions of honor, martial arts, and scholarship.",
+      "subgroups": ["Tian-Min", "Tian-Shu", "Tian-Dan", "Tian-Hwan", "Tian-La", "Tian-Sing", "Tian-Dtang"]
+    },
+    {
+      "name": "Ulfen",
+      "description": "Fair skin, blond or red hair, tall and powerful. Northern seafarers and raiders.",
+      "homeland": "Lands of the Linnorm Kings",
+      "region": "Avistan",
+      "languages": ["Common", "Skald"],
+      "commonClasses": ["Barbarian", "Fighter", "Ranger"],
+      "traits": ["Viking Blood (Regional)", "Cold Endurance"],
+      "culturalNotes": "Bold raiders and explorers. Value strength, honor, and saga-worthy deeds."
+    },
+    {
+      "name": "Varisian",
+      "description": "Olive skin, dark hair, colorful clothing. Traveling people of Varisia.",
+      "homeland": "Varisia",
+      "region": "Avistan",
+      "languages": ["Common", "Varisian"],
+      "commonClasses": ["Bard", "Sorcerer", "Rogue"],
+      "traits": ["Wanderer's Fortune (Regional)", "Harrowed"],
+      "culturalNotes": "Nomadic storytellers, fortune-tellers, and wanderers. The Harrow deck is central to their culture."
+    },
+    {
+      "name": "Vudrani",
+      "description": "Brown skin, dark hair, often adorned. From the vast subcontinent of Vudra.",
+      "homeland": "Vudra",
+      "region": "Casmaron",
+      "languages": ["Common", "Vudrani"],
+      "commonClasses": ["Monk", "Cleric", "Wizard"],
+      "traits": ["Meditative Discipline (Regional)", "Vudrani Weapon Training"],
+      "culturalNotes": "Deeply philosophical people with rich traditions of martial arts and divine magic."
+    }
+  ],
+  "nonHumanOrigins": {
+    "Dwarf": [
+      { "name": "Janderhoff", "region": "Varisia", "description": "Sky Citadel of the Mindspin Mountains. Trade hub between dwarves and Varisians.", "languages": ["Common", "Dwarven"] },
+      { "name": "Highhelm", "region": "Five Kings Mountains", "description": "Greatest of the Sky Citadels, seat of dwarven culture and craftsmanship.", "languages": ["Common", "Dwarven"] },
+      { "name": "Kraggodan", "region": "Nirmathas", "description": "Fortress-city holding the line against Molthuni expansion.", "languages": ["Common", "Dwarven"] },
+      { "name": "Surface-Dweller", "region": "Various", "description": "Raised among humans in a surface settlement.", "languages": ["Common", "Dwarven"] }
+    ],
+    "Elf": [
+      { "name": "Kyonin", "region": "Avistan", "description": "The elven homeland, an ancient forest kingdom.", "languages": ["Common", "Elven"] },
+      { "name": "Mierani Forest", "region": "Varisia", "description": "Elves who remained during the exodus, now returned to this wild forest.", "languages": ["Common", "Elven"] },
+      { "name": "Ekujae", "region": "Mwangi Expanse", "description": "Jungle elves who never left Golarion. Fierce guardians of the Expanse.", "languages": ["Common", "Elven", "Polyglot"] },
+      { "name": "Forlorn", "region": "Various", "description": "Raised among shorter-lived races. Often melancholic but worldly.", "languages": ["Common", "Elven"] }
+    ],
+    "Gnome": [
+      { "name": "Brastlewark", "region": "Cheliax", "description": "The largest gnome settlement, a chaotic city of inventors and tinkerers.", "languages": ["Common", "Gnome", "Sylvan"] },
+      { "name": "Wanderer", "region": "Various", "description": "Constantly roaming to stave off the Bleaching through new experiences.", "languages": ["Common", "Gnome", "Sylvan"] },
+      { "name": "First World Touched", "region": "First World", "description": "Stronger connection to the fey realm. More eccentric than most.", "languages": ["Common", "Gnome", "Sylvan"] }
+    ],
+    "Half-Elf": [
+      { "name": "Absalom", "region": "Isle of Kortos", "description": "The great city where all races mix. Half-elves find acceptance here.", "languages": ["Common", "Elven"] },
+      { "name": "Varisian", "region": "Varisia", "description": "Born of elven and Varisian parents. Common in Sandpoint and Magnimar.", "languages": ["Common", "Elven", "Varisian"] },
+      { "name": "Kyonin-Raised", "region": "Kyonin", "description": "Raised among elves, often struggling to fit in with their shorter-lived side.", "languages": ["Common", "Elven"] }
+    ],
+    "Half-Orc": [
+      { "name": "Hold of Belkzen", "region": "Avistan", "description": "The orcish homeland. Those who leave often do so to escape brutality.", "languages": ["Common", "Orc"] },
+      { "name": "Urgir", "region": "Hold of Belkzen", "description": "The orc capital, a conquered dwarven Sky Citadel.", "languages": ["Common", "Orc"] },
+      { "name": "Magnimar", "region": "Varisia", "description": "The cosmopolitan city accepts half-orcs more than most.", "languages": ["Common", "Orc"] },
+      { "name": "Frontlander", "region": "Various", "description": "Raised in human borderlands, caught between two worlds.", "languages": ["Common", "Orc"] }
+    ],
+    "Halfling": [
+      { "name": "Cheliax (Freed)", "region": "Cheliax", "description": "Escaped or freed from slavery in devil-bound Cheliax.", "languages": ["Common", "Halfling"] },
+      { "name": "Andoran", "region": "Avistan", "description": "Free citizens of the democratic nation. Proud abolitionists.", "languages": ["Common", "Halfling"] },
+      { "name": "Varisian Caravan", "region": "Varisia", "description": "Traveling with Varisian caravans as guides, cooks, or entertainers.", "languages": ["Common", "Halfling", "Varisian"] },
+      { "name": "Riverfolk", "region": "Various", "description": "Living along rivers and waterways, skilled boaters and fishers.", "languages": ["Common", "Halfling"] }
+    ]
+  },
+  "homelands": [
+    { "name": "Absalom", "region": "Isle of Kortos", "description": "City at the Center of the World" },
+    { "name": "Andoran", "region": "Avistan", "description": "Birthplace of Freedom" },
+    { "name": "Cheliax", "region": "Avistan", "description": "Devil-bound empire of law and infernal contracts" },
+    { "name": "Katapesh", "region": "Garund", "description": "Markets of the impossible, where anything can be bought" },
+    { "name": "Kyonin", "region": "Avistan", "description": "Ancient elven kingdom" },
+    { "name": "Lastwall", "region": "Avistan", "description": "Crusader nation guarding against the Whispering Tyrant" },
+    { "name": "Magnimar", "region": "Varisia", "description": "City of Monuments on the Lost Coast" },
+    { "name": "Nidal", "region": "Avistan", "description": "Shadow-cursed theocracy of Zon-Kuthon" },
+    { "name": "Nirmathas", "region": "Avistan", "description": "Forest nation of guerrilla freedom fighters" },
+    { "name": "Numeria", "region": "Avistan", "description": "Savage land of fallen starships and alien technology" },
+    { "name": "Osirion", "region": "Garund", "description": "Land of pharaohs and ancient tombs" },
+    { "name": "Qadira", "region": "Avistan", "description": "Gateway to the east, land of genies and trade" },
+    { "name": "Riddleport", "region": "Varisia", "description": "Pirate haven beneath the Cyphergate" },
+    { "name": "Sandpoint", "region": "Varisia", "description": "Sleepy coastal town on the Lost Coast" },
+    { "name": "Taldor", "region": "Avistan", "description": "Crumbling empire of decadent nobility" },
+    { "name": "Ustalav", "region": "Avistan", "description": "Gothic horror land haunted by the undead" },
+    { "name": "Varisia", "region": "Avistan", "description": "Frontier land of ancient Thassilonian ruins" }
+  ]
+}

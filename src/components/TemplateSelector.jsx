@@ -88,6 +88,9 @@ export default function TemplateSelector({
       spellsPrepared: template.spellsPrepared || [],
       spellSlotsUsed: {},
       equipped: {},
+      ethnicity: template.ethnicity || template.race,
+      origin: template.origin || '',
+      languages: template.languages || ['Common'],
       notes: '',
       // Extra class flavor fields
       ...(template.domains ? { domains: template.domains } : {}),
@@ -256,6 +259,14 @@ export default function TemplateSelector({
                 <div style={styles.detail}>
                   <span style={styles.detailLabel}>Alignment:</span> {template.alignment}
                 </div>
+                {(template.ethnicity || template.origin) && (
+                  <div style={styles.detail}>
+                    <span style={styles.detailLabel}>Origin:</span>{' '}
+                    {template.ethnicity && template.ethnicity !== template.race ? `${template.ethnicity}, ` : ''}
+                    {template.origin || 'Unknown'}
+                    {template.languages?.length > 1 && ` (speaks ${template.languages.join(', ')})`}
+                  </div>
+                )}
                 <div style={styles.detail}>
                   <span style={styles.detailLabel}>Abilities:</span> STR {template.abilities.STR}{' '}
                   DEX {template.abilities.DEX} CON {template.abilities.CON} INT{' '}

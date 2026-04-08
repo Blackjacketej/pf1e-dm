@@ -5,6 +5,7 @@ import skillsData from '../data/skills.json';
 import spellsData from '../data/spells.json';
 import gearData from '../data/gear.json';
 import equipmentData from '../data/equipment.json';
+import ethnicitiesData from '../data/ethnicities.json';
 
 const POINT_BUY_TABLE = {
   7: -4, 8: -2, 9: -1, 10: 0, 11: 1, 12: 2, 13: 3,
@@ -57,6 +58,9 @@ export default function CharacterCreator({
     race: '',
     class: '',
     alignment: '',
+    ethnicity: '',
+    origin: '',
+    languages: ['Common'],
     level: 1,
     xp: 0,
     abilities: { STR: 10, DEX: 10, CON: 10, INT: 10, WIS: 10, CHA: 10 },
@@ -612,6 +616,107 @@ export default function CharacterCreator({
                 })}
               </select>
             </div>
+
+            {/* Ethnicity / Origin */}
+            <div style={styles.formGroup}>
+              <label style={styles.label}>
+                {char.race === 'Human' ? 'Ethnicity' : 'Origin'}
+              </label>
+              {char.race === 'Human' ? (
+                <>
+                  <select
+                    style={styles.select}
+                    value={char.ethnicity}
+                    onChange={(e) => {
+                      const eth = ethnicitiesData.humanEthnicities.find(x => x.name === e.target.value);
+                      setChar({
+                        ...char,
+                        ethnicity: e.target.value,
+                        origin: eth?.homeland || char.origin,
+                        languages: eth?.languages || ['Common'],
+                      });
+                    }}
+                  >
+                    <option value="">Select Ethnicity (optional)</option>
+                    {ethnicitiesData.humanEthnicities.map(eth => (
+                      <option key={eth.name} value={eth.name}>{eth.name}</option>
+                    ))}
+                  </select>
+                  {char.ethnicity && (() => {
+                    const eth = ethnicitiesData.humanEthnicities.find(x => x.name === char.ethnicity);
+                    return eth ? (
+                      <div style={styles.infoPanel}>
+                        <div style={{ color: '#d4c5a9', marginBottom: '4px' }}>{eth.description}</div>
+                        <div><strong>Homeland:</strong> {eth.homeland} ({eth.region})</div>
+                        <div><strong>Languages:</strong> {eth.languages.join(', ')}</div>
+                        <div style={{ fontSize: '11px', color: '#8b949e', marginTop: '4px', fontStyle: 'italic' }}>{eth.culturalNotes}</div>
+                      </div>
+                    ) : null;
+                  })()}
+                </>
+              ) : char.race && ethnicitiesData.nonHumanOrigins[char.race] ? (
+                <>
+                  <select
+                    style={styles.select}
+                    value={char.origin}
+                    onChange={(e) => {
+                      const orig = ethnicitiesData.nonHumanOrigins[char.race]?.find(x => x.name === e.target.value);
+                      setChar({
+                        ...char,
+                        ethnicity: char.race,
+                        origin: e.target.value,
+                        languages: orig?.languages || ['Common'],
+                      });
+                    }}
+                  >
+                    <option value="">Select Origin (optional)</option>
+                    {ethnicitiesData.nonHumanOrigins[char.race].map(orig => (
+                      <option key={orig.name} value={orig.name}>{orig.name} — {orig.region}</option>
+                    ))}
+                  </select>
+                  {char.origin && (() => {
+                    const orig = ethnicitiesData.nonHumanOrigins[char.race]?.find(x => x.name === char.origin);
+                    return orig ? (
+                      <div style={styles.infoPanel}>
+                        <div style={{ color: '#d4c5a9', marginBottom: '4px' }}>{orig.description}</div>
+                        <div><strong>Region:</strong> {orig.region}</div>
+                        <div><strong>Languages:</strong> {orig.languages.join(', ')}</div>
+                      </div>
+                    ) : null;
+                  })()}
+                </>
+              ) : (
+                <input
+                  style={styles.input}
+                  value={char.origin}
+                  onChange={(e) => setChar({ ...char, origin: e.target.value, ethnicity: char.race || '' })}
+                  placeholder="Where are they from? (optional)"
+                />
+              )}
+            </div>
+
+            {/* Homeland override */}
+            {(char.ethnicity || char.race) && (
+              <div style={styles.formGroup}>
+                <label style={styles.label}>Homeland</label>
+                <select
+                  style={styles.select}
+                  value={char.origin}
+                  onChange={(e) => setChar({ ...char, origin: e.target.value })}
+                >
+                  <option value={char.origin}>{char.origin || 'Custom / Not Set'}</option>
+                  {ethnicitiesData.homelands
+                    .filter(h => h.name !== char.origin)
+                    .map(h => (
+                      <option key={h.name} value={h.name}>{h.name} — {h.description}</option>
+                    ))
+                  }
+                </select>
+                <div style={{ fontSize: '10px', color: '#8b949e', marginTop: '4px' }}>
+                  Override with any Golarion homeland, or leave the default from your ethnicity/origin.
+                </div>
+              </div>
+            )}
           </>
         )}
 
@@ -1063,9 +1168,16 @@ export default function CharacterCreator({
               <div style={{ fontSize: '14px', fontWeight: 'bold', color: '#ffd700', marginBottom: '12px' }}>
                 {char.name || 'Unnamed Character'}
               </div>
-              <div style={{ marginBottom: '12px' }}>
+              <div style={{ marginBottom: '4px' }}>
                 <strong>{char.race || 'Unknown'} {char.class || 'Unknown'}</strong> ({char.alignment || 'No alignment'})
               </div>
+              {(char.ethnicity || char.origin) && (
+                <div style={{ fontSize: '12px', color: '#8b949e', marginBottom: '12px' }}>
+                  {char.ethnicity && char.ethnicity !== char.race ? `${char.ethnicity} ` : ''}
+                  {char.origin ? `from ${char.origin}` : ''}
+                  {char.languages?.length > 1 && ` — speaks ${char.languages.join(', ')}`}
+                </div>
+              )}
 
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '12px', marginBottom: '16px' }}>
                 {['STR', 'DEX', 'CON', 'INT', 'WIS', 'CHA'].map(ability => (
