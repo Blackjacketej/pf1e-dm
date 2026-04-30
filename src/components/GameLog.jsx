@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import useIsMobile from '../hooks/useIsMobile';
+import { buildPartyColorMap, colorizeNarration } from '../utils/narrativeColors';
 
 const typeColors = {
   narration: '#e8dcc8',
@@ -17,6 +18,16 @@ const typeColors = {
   info: '#c0c0c0',
   action: '#b8b8ff',
   event: '#da70d6',
+  // Journal additions — anything the party commits to the Adventurer's
+  // Journal (clues, NPCs met, factions discovered, locations visited,
+  // creatures encountered, items found, journal notes). Teal-gold so it
+  // reads as "in-character record keeping" distinct from system meta-lines.
+  journal: '#d4af37',
+  // Attack-roll extremes. Natural 20 → critical, natural 1 → fumble. Kept
+  // distinct from plain success/danger so the log visually marks the
+  // "big swing" moments you'd expect an NWN-style log to highlight.
+  critical: '#ffeb3b',
+  fumble: '#8b0000',
 };
 
 const typeLabels = {
@@ -35,10 +46,16 @@ const typeLabels = {
   info: 'INFO',
   action: 'ACTION',
   event: 'EVENT',
+  journal: 'JOURNAL',
+  critical: 'CRITICAL',
+  fumble: 'FUMBLE',
 };
 
-export default function GameLog({ logs = [], logRef }) {
+export default function GameLog({ logs = [], logRef, party = [] }) {
   const isMobile = useIsMobile();
+  // Memoize the party color lookup so we don't rebuild on every log update.
+  // Recomputes only when the party roster changes (add / drop / rename / etc.).
+  const partyColorMap = useMemo(() => buildPartyColorMap(party), [party]);
   useEffect(() => {
     if (logRef?.current) {
       logRef.current.scrollTop = logRef.current.scrollHeight;
@@ -157,7 +174,22 @@ export default function GameLog({ logs = [], logRef }) {
                 borderLeft: `2px solid ${color}55`,
               } : {}),
             }}>
-              {log.text}
+              {/* Option B (2026-04-20) — sentence-level color-coding for
+                  split-party narration. Each sentence inherits its single
+                  named PC's class color; sentences with 0 or 2+ named PCs
+                  stay default. Only applied to `narration` entries — other
+                  log types render plain. Skipped silently if there's no
+                  party (legacy callers, log-only views). */}
+              {isNarration && partyColorMap.size > 0
+                ? colorizeNarration(log.text, partyColorMap).map((seg, i) => (
+                  <span
+                    key={i}
+                    style={seg.color ? { color: seg.color } : undefined}
+                  >
+                    {seg.text}
+                  </span>
+                ))
+                : log.text}
             </div>
           </div>
         );

@@ -5,7 +5,16 @@
  * Trade Routes, Espionage, Alignment, Lineage, Retirement.
  */
 import advData from '../data/advancedSystems.json';
-import { rollDice } from '../utils/dice';
+import { rollDice as rollDiceRaw } from '../utils/dice';
+import { getMerchantSkills, attitudeBonus as attitudeBonusFor, attitudeBaseDiscount as attitudeBaseDiscountFor, refusesService } from './merchantSkills';
+import { getCharacterSkillTotal } from '../utils/characterSkills';
+
+// Local wrapper: every call site in this file uses rollDice as if it returned
+// a plain number (e.g. `rollDice(1, 20) + skillBonus`). The canonical helper in
+// utils/dice returns `{ total, rolls }`, which silently coerced into strings
+// like "[object Object]" and broke every d20 check here. Unwrap to .total so
+// the existing call sites continue to work arithmetically.
+const rollDice = (count, sides) => rollDiceRaw(count, sides).total;
 
 // ═══════════════════════════════════════════════════
 // MASS COMBAT
@@ -888,11 +897,77 @@ export function getCraftingItemTypes() { return advData.crafting.itemTypes; }
 // BARGAINING
 // ═══════════════════════════════════════════════════
 
-export function attemptBargain(character, itemPrice, skillName = 'Diplomacy', merchantSenseMotive = 5) {
-  const dc = 15 + merchantSenseMotive;
+/**
+ * Attempt to bargain down an item price.
+ *
+ * The 4th parameter is polymorphic for backward compatibility:
+ *   - if a number, treated as the merchant's raw Sense Motive bonus (old
+ *     call-site shape preserved from Phase 5)
+ *   - if an object, treated as a merchant record and the relevant skill
+ *     bonus is pulled from getMerchantSkills():
+ *       * Diplomacy haggle → opposed by the merchant's ½ Diplomacy
+ *       * Bluff haggle → opposed by the merchant's Sense Motive
+ *       * Intimidate haggle → opposed by the merchant's own Intimidate
+ *         (willpower to resist coercion)
+ *
+ * This lets ShopTab pass `shopData.merchant` directly instead of
+ * hardcoding a flat +5.
+ */
+export function attemptBargain(character, itemPrice, skillName = 'Diplomacy', merchantOrSenseMotive = 5, attitude = 'indifferent') {
+  // Resolve the opposed skill bonus from either a number or a merchant object
+  let merchantOpposed = 0;
+  let merchantOpposedLabel = 'Sense Motive';
+  if (typeof merchantOrSenseMotive === 'number') {
+    merchantOpposed = merchantOrSenseMotive;
+  } else if (merchantOrSenseMotive && typeof merchantOrSenseMotive === 'object') {
+    const m = getMerchantSkills(merchantOrSenseMotive);
+    const lower = (skillName || '').toLowerCase();
+    if (lower === 'bluff') {
+      merchantOpposed = m.senseMotive || 0;
+      merchantOpposedLabel = 'Sense Motive';
+    } else if (lower === 'intimidate') {
+      merchantOpposed = m.intimidate || 0;
+      merchantOpposedLabel = 'Intimidate';
+    } else {
+      // Diplomacy or anything else: oppose by half the merchant's Diplomacy
+      merchantOpposed = Math.floor((m.diplomacy || 0) / 2);
+      merchantOpposedLabel = '½ Diplomacy';
+    }
+  }
+
+  // Hostile merchants refuse to deal at all. Delegated to merchantSkills so
+  // the "what counts as refusal" rule has a single source of truth.
+  if (refusesService(attitude)) {
+    return {
+      refused: true,
+      success: false,
+      roll: null,
+      total: null,
+      dc: null,
+      margin: null,
+      merchantOpposed,
+      merchantOpposedLabel,
+      attitude,
+      attitudeBonus: 0,
+      discount: 0,
+      discountLabel: '0%',  // shape parity with the success path for UI code
+      originalPrice: itemPrice,
+      newPrice: itemPrice,
+      savings: 0,
+      description: `The merchant is hostile and refuses to bargain.`,
+    };
+  }
+
+  // Attitude folds into both the PC's effective roll and a baseline
+  // price shift. Mirrors the resolveHaggle logic so the Bargain button
+  // and the haggle flow agree.
+  const attBonus = attitudeBonusFor(attitude);
+  const attBase = attitudeBaseDiscountFor(attitude); // positive = discount, negative = markup
+
+  const dc = 15 + merchantOpposed;
   const skillBonus = getSkillBonus(character, skillName);
   const roll = rollDice(1, 20);
-  const total = roll + skillBonus;
+  const total = roll + skillBonus + attBonus;
   const margin = total - dc;
 
   const adjustments = advData.bargaining.adjustments;
@@ -910,16 +985,31 @@ export function attemptBargain(character, itemPrice, skillName = 'Diplomacy', me
     }
   }
 
-  const newPrice = Math.round(itemPrice * (1 - discount / 100));
+  // Apply baseline attitude discount/markup, clamped so the player never
+  // ends up *paying more* after a successful bargain just because the
+  // merchant is unfriendly.
+  const totalDiscountFraction = (discount / 100) + attBase;
+  const rawNewPrice = Math.round(itemPrice * (1 - totalDiscountFraction));
+  const newPrice = margin >= 0 ? Math.min(itemPrice, Math.max(0, rawNewPrice)) : Math.max(0, rawNewPrice);
+
+  const attPart = attBonus !== 0
+    ? `, ${attitude}: ${attBonus >= 0 ? '+' : ''}${attBonus}`
+    : '';
 
   return {
     success: margin >= 0,
+    refused: false,
     roll, total, dc, margin,
-    discount: `${discount}%`,
+    merchantOpposed,
+    merchantOpposedLabel,
+    attitude,
+    attitudeBonus: attBonus,
+    discount,                   // numeric, e.g. 10  (not "10%")
+    discountLabel: `${discount}%`, // kept for any display code that wants the string
     originalPrice: itemPrice,
     newPrice,
-    savings: itemPrice - newPrice,
-    description: `${skillName} ${total} vs DC ${dc} (margin ${margin >= 0 ? '+' : ''}${margin}): ${desc}. Price: ${itemPrice} gp → ${newPrice} gp`
+    savings: Math.max(0, itemPrice - newPrice),
+    description: `${skillName} ${total} vs DC ${dc} (${merchantOpposedLabel} ${merchantOpposed >= 0 ? '+' : ''}${merchantOpposed}${attPart}, margin ${margin >= 0 ? '+' : ''}${margin}): ${desc}. Price: ${itemPrice} gp → ${newPrice} gp`
   };
 }
 
@@ -1499,12 +1589,13 @@ export function getNpcBoons() { return advData.npcBoons; }
 // HELPERS
 // ═══════════════════════════════════════════════════
 
+// Delegates to the canonical characterSkills helper, which understands
+// all three character storage shapes:
+//   1. character.skillRanks (canonical — full rulesEngine computation)
+//   2. character.skills object (legacy: { diplomacy: 4, ... })
+//   3. character.skills array (legacy: [{ name: 'Diplomacy', total: 7 }])
 function getSkillBonus(character, skillName) {
-  if (!character || !character.skills) return 0;
-  const skill = character.skills.find(s =>
-    s.name === skillName || s.name?.toLowerCase() === skillName?.toLowerCase()
-  );
-  return skill ? (skill.total || skill.bonus || skill.ranks || 0) : 0;
+  return getCharacterSkillTotal(character, skillName);
 }
 
 export default {

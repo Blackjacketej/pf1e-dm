@@ -22,6 +22,21 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-pdfs/ 
-src/assets/maps/ 
-vite.config.js.timestamp* 
+pdfs/
+src/assets/maps/
+vite.config.js.timestamp*
+
+# Claude / operator-local working files
+claude-notes.md
+claude-priority.json
+claude-resolutions.json
+claude-attachments/
+_sync_probe.txt
+_tmp_*.mjs
+tmp-parse*.mjs
+bash-test-marker.txt
+
+# Scratch + build artifacts
+*.tmp
+dist-check/
+outputs/

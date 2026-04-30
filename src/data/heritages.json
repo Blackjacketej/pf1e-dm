@@ -1,0 +1,199 @@
+{
+  "Aasimar": [
+    {
+      "name": "Standard Aasimar",
+      "description": "The base aasimar with generalized celestial heritage.",
+      "bonuses": { "WIS": 2, "CHA": 2 },
+      "penalty": {},
+      "replaceTraits": [],
+      "addTraits": [],
+      "spellLike": "daylight 1/day"
+    },
+    {
+      "name": "Angelkin (Angel-Blooded)",
+      "description": "Descended from angels. Strong and charismatic, born warriors of good.",
+      "bonuses": { "STR": 2, "CHA": 2 },
+      "penalty": {},
+      "replaceTraits": ["Spell-Like Ability (daylight 1/day)", "Skilled (Perception +2)"],
+      "addTraits": ["Spell-Like Ability (alter self 1/day)", "Skilled (Heal +2)"],
+      "spellLike": "alter self 1/day"
+    },
+    {
+      "name": "Plumekith (Azata-Blooded)",
+      "description": "Descended from azatas. Free-spirited and perceptive.",
+      "bonuses": { "DEX": 2, "CHA": 2 },
+      "penalty": {},
+      "replaceTraits": ["Spell-Like Ability (daylight 1/day)", "Skilled (Perception +2)"],
+      "addTraits": ["Spell-Like Ability (glitterdust 1/day)", "Skilled (Acrobatics +2)"],
+      "spellLike": "glitterdust 1/day"
+    },
+    {
+      "name": "Idyllkin (Agathion-Blooded)",
+      "description": "Descended from agathions. Hardy and wise protectors of nature.",
+      "bonuses": { "CON": 2, "CHA": 2 },
+      "penalty": {},
+      "replaceTraits": ["Spell-Like Ability (daylight 1/day)", "Skilled (Perception +2)"],
+      "addTraits": ["Spell-Like Ability (summon nature's ally II 1/day)", "Skilled (Handle Animal +2)"],
+      "spellLike": "summon nature's ally II 1/day"
+    },
+    {
+      "name": "Musetouched (Azata-Blooded)",
+      "description": "Descended from lillend azatas. Artistic and graceful.",
+      "bonuses": { "DEX": 2, "CHA": 2 },
+      "penalty": { "WIS": -2 },
+      "replaceTraits": ["Spell-Like Ability (daylight 1/day)", "Skilled (Perception +2)"],
+      "addTraits": ["Spell-Like Ability (glitterdust 1/day)", "Skilled (Perform +2)"],
+      "spellLike": "glitterdust 1/day"
+    },
+    {
+      "name": "Emberkin (Peri-Blooded)",
+      "description": "Descended from peris. Intelligent and willful, touched by sacred fire.",
+      "bonuses": { "INT": 2, "CHA": 2 },
+      "penalty": {},
+      "replaceTraits": ["Spell-Like Ability (daylight 1/day)", "Skilled (Perception +2)"],
+      "addTraits": ["Spell-Like Ability (pyrotechnics 1/day)", "Skilled (Knowledge: Planes +2)"],
+      "spellLike": "pyrotechnics 1/day"
+    }
+  ],
+  "Tiefling": [
+    {
+      "name": "Standard Tiefling",
+      "description": "The base tiefling with generalized fiendish heritage.",
+      "bonuses": { "DEX": 2, "INT": 2 },
+      "penalty": { "CHA": -2 },
+      "replaceTraits": [],
+      "addTraits": [],
+      "spellLike": "darkness 1/day"
+    },
+    {
+      "name": "Pitborn (Demon-Spawn)",
+      "description": "Descended from demons. Powerful and intimidating.",
+      "bonuses": { "STR": 2, "CHA": 2 },
+      "penalty": { "INT": -2 },
+      "replaceTraits": ["Spell-Like Ability (darkness 1/day)"],
+      "addTraits": ["Spell-Like Ability (shatter 1/day)", "Skilled (Disable Device +2)"],
+      "spellLike": "shatter 1/day"
+    },
+    {
+      "name": "Hungerseed (Daemon-Spawn)",
+      "description": "Descended from daemons. Gaunt, cunning, patient predators.",
+      "bonuses": { "DEX": 2, "WIS": 2 },
+      "penalty": { "CHA": -2 },
+      "replaceTraits": ["Spell-Like Ability (darkness 1/day)"],
+      "addTraits": ["Spell-Like Ability (death knell 1/day)", "Skilled (Sleight of Hand +2)"],
+      "spellLike": "death knell 1/day"
+    },
+    {
+      "name": "Foulspawn (Qlippoth-Spawn)",
+      "description": "Descended from qlippoth. Alien and unsettling, touched by primordial evil.",
+      "bonuses": { "STR": 2, "WIS": 2 },
+      "penalty": { "INT": -2 },
+      "replaceTraits": ["Spell-Like Ability (darkness 1/day)"],
+      "addTraits": ["Spell-Like Ability (blur 1/day)", "Skilled (Escape Artist +2)"],
+      "spellLike": "blur 1/day"
+    },
+    {
+      "name": "Spitespawn (Div-Spawn)",
+      "description": "Descended from divs. Manipulative and filled with spite.",
+      "bonuses": { "DEX": 2, "CHA": 2 },
+      "penalty": { "INT": -2 },
+      "replaceTraits": ["Spell-Like Ability (darkness 1/day)"],
+      "addTraits": ["Spell-Like Ability (misdirection 1/day)", "Skilled (Diplomacy +2)"],
+      "spellLike": "misdirection 1/day"
+    },
+    {
+      "name": "Hellspawn (Devil-Spawn)",
+      "description": "Descended from devils. Disciplined, calculating, and imperious.",
+      "bonuses": { "CON": 2, "WIS": 2 },
+      "penalty": { "CHA": -2 },
+      "replaceTraits": ["Spell-Like Ability (darkness 1/day)"],
+      "addTraits": ["Spell-Like Ability (pyrotechnics 1/day)", "Skilled (Sense Motive +2)"],
+      "spellLike": "pyrotechnics 1/day"
+    }
+  ],
+  "Changeling": [
+    {
+      "name": "Standard Changeling",
+      "description": "General hag heritage, no specific hag mother identified.",
+      "bonuses": { "WIS": 2, "CHA": 2 },
+      "penalty": { "CON": -2 },
+      "replaceTraits": [],
+      "addTraits": [],
+      "spellLike": null
+    },
+    {
+      "name": "Hulking Changeling (Annis Hag)",
+      "description": "Daughter of an annis hag. Larger and stronger than typical changelings.",
+      "bonuses": { "STR": 2, "CHA": 2 },
+      "penalty": { "CON": -2 },
+      "replaceTraits": [],
+      "addTraits": ["Hulking (+1 natural armor)"],
+      "spellLike": null
+    },
+    {
+      "name": "Green Widow (Green Hag)",
+      "description": "Daughter of a green hag. Beguiling and dangerously beautiful.",
+      "bonuses": { "WIS": 2, "CHA": 2 },
+      "penalty": { "CON": -2 },
+      "replaceTraits": [],
+      "addTraits": ["Green Widow (Bluff +2 vs attracted creatures)"],
+      "spellLike": null
+    },
+    {
+      "name": "Sea Lungs (Sea Hag)",
+      "description": "Daughter of a sea hag. Adapted to water and coastlines.",
+      "bonuses": { "WIS": 2, "CHA": 2 },
+      "penalty": { "CON": -2 },
+      "replaceTraits": [],
+      "addTraits": ["Sea Lungs (hold breath 3x normal)", "Swim 30ft"],
+      "spellLike": null
+    },
+    {
+      "name": "Dreamweaver (Night Hag)",
+      "description": "Daughter of a night hag. Touched by the ethereal and dreams.",
+      "bonuses": { "WIS": 2, "CHA": 2 },
+      "penalty": { "CON": -2 },
+      "replaceTraits": [],
+      "addTraits": ["Dreamweaver (+2 saves vs sleep/dream effects)", "Spell-Like Ability (lullaby 1/day)"],
+      "spellLike": "lullaby 1/day"
+    }
+  ],
+  "Dhampir": [
+    {
+      "name": "Standard Dhampir",
+      "description": "General vampiric heritage.",
+      "bonuses": { "DEX": 2, "CHA": 2 },
+      "penalty": { "CON": -2 },
+      "replaceTraits": [],
+      "addTraits": [],
+      "spellLike": "detect undead 3/day"
+    },
+    {
+      "name": "Jiang-Shi Born",
+      "description": "Descended from hopping vampires of Tian Xia.",
+      "bonuses": { "STR": 2, "CHA": 2 },
+      "penalty": { "CON": -2 },
+      "replaceTraits": ["Spell-Like Ability (detect undead 3/day)"],
+      "addTraits": ["Spell-Like Ability (command undead 1/day)"],
+      "spellLike": "command undead 1/day"
+    },
+    {
+      "name": "Moroi Born (Svetocher)",
+      "description": "Descended from the classic vampires of Ustalav.",
+      "bonuses": { "DEX": 2, "CHA": 2 },
+      "penalty": { "CON": -2 },
+      "replaceTraits": ["Spell-Like Ability (detect undead 3/day)"],
+      "addTraits": ["Spell-Like Ability (charm person 1/day)"],
+      "spellLike": "charm person 1/day"
+    },
+    {
+      "name": "Nosferatu Born (Ancient Born)",
+      "description": "Descended from ancient, monstrous vampires.",
+      "bonuses": { "STR": 2, "WIS": 2 },
+      "penalty": { "CON": -2 },
+      "replaceTraits": ["Spell-Like Ability (detect undead 3/day)"],
+      "addTraits": ["Spell-Like Ability (obscuring mist 1/day)"],
+      "spellLike": "obscuring mist 1/day"
+    }
+  ]
+}

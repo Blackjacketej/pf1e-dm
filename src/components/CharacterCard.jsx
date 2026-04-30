@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { mod, modStr, calcBAB, calcSave, getMaxHP } from '../utils/dice';
 import useIsMobile from '../hooks/useIsMobile';
+import { getEffectiveMaxHP, aggregateFamiliarModifiers } from '../utils/familiarEngine';
 
 export default function CharacterCard({
   char,
@@ -11,13 +12,23 @@ export default function CharacterCard({
   onOpenSheet,
   onGenerateBackstory,
   classesMap,
+  worldState,
 }) {
   const isMobile = useIsMobile();
   const [expanded, setExpanded] = useState(false);
 
   if (!char) return null;
 
-  const hpPercent = Math.max(0, (char.currentHP / char.maxHP) * 100);
+  // Phase 7.6 — familiar HP bonus (e.g. toad +3) folds into the displayed
+  // max HP, but only when the range gate passes. The toad bonus can make
+  // currentHP temporarily exceed base HP; we clamp the percentage at 100
+  // and guard against divide-by-zero when a character has no HP assigned.
+  const effectiveMaxHP = getEffectiveMaxHP(char, { worldState });
+  const famMods = aggregateFamiliarModifiers(char, { worldState });
+  const famHpBonus = famMods.hpBonus || 0;
+  const hpPercent = effectiveMaxHP > 0
+    ? Math.min(100, Math.max(0, (char.currentHP / effectiveMaxHP) * 100))
+    : 0;
   const hpColor =
     hpPercent > 50 ? '#44ff44' : hpPercent > 25 ? '#ffaa00' : '#ff4444';
 
@@ -147,7 +158,7 @@ export default function CharacterCard({
         <div>
           <div style={styles.title}>{char.name}</div>
           <div style={styles.subTitle}>
-            {char.ethnicity && char.ethnicity !== char.race ? `${char.ethnicity} ` : ''}{char.race} {char.class} Level {char.level}
+            {char.heritage && !char.heritage.startsWith('Standard') ? `${char.heritage} ` : ''}{char.ethnicity && char.ethnicity !== char.race ? `${char.ethnicity} ` : ''}{char.race} {char.class} Level {char.level}
             {char.origin ? ` — ${char.origin}` : ''}
           </div>
         </div>
@@ -156,7 +167,15 @@ export default function CharacterCard({
 
       <div style={styles.hpBar}>
         <div style={styles.hpFill}>
-          {char.currentHP}/{char.maxHP}
+          {char.currentHP}/{effectiveMaxHP}
+          {famHpBonus > 0 && (
+            <span
+              style={{ fontSize: '10px', marginLeft: 4, opacity: 0.8 }}
+              title={`+${famHpBonus} HP from familiar (CRB p. 82)`}
+            >
+              (+{famHpBonus} fam)
+            </span>
+          )}
         </div>
       </div>
 
@@ -226,6 +245,20 @@ export default function CharacterCard({
 
       {expanded && (
         <div style={styles.expandedSection}>
+          {(char.characterTraits?.length > 0 || char.drawback) && (
+            <div>
+              <div style={styles.sectionTitle}>Character Traits</div>
+              <div style={styles.itemList}>
+                {char.characterTraits?.map((trait, i) => (
+                  <div key={i}>• {trait}</div>
+                ))}
+                {char.drawback && (
+                  <div style={{ color: '#cc6644' }}>• Drawback: {char.drawback}</div>
+                )}
+              </div>
+            </div>
+          )}
+
           {char.feats && char.feats.length > 0 && (
             <div>
               <div style={styles.sectionTitle}>Feats</div>

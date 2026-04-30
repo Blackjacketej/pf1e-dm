@@ -1,0 +1,108 @@
+{
+  "_source": "Ultimate Campaign p.94-99, CRB p.158 Table 6-9",
+  "_note": "Each facility maps to the UC room type that provides masterwork artisan's tools for specific Craft sub-skills. The toolBonus field matches the +2 circumstance bonus from masterwork tools (CRB p.92).",
+  "facilities": [
+    {
+      "id": "forge",
+      "name": "Forge",
+      "ucRoom": "Forge",
+      "description": "A hearth, anvil, slack tub, and metalworking tools for shaping iron and other metals.",
+      "toolBonus": 2,
+      "toolBonusNote": "Counts as masterwork artisan's tools for smithing skills",
+      "craftSubSkills": ["Craft (armor)", "Craft (weapons)"],
+      "createCost": { "goods": 9, "influence": 1, "labor": 8, "gp": 370, "time": 20 },
+      "size": "8-16 squares",
+      "capacity": 3
+    },
+    {
+      "id": "artisan-workshop",
+      "name": "Artisan's Workshop",
+      "ucRoom": "Artisan's Workshop",
+      "description": "A specialist's workshop with tools for a particular art form such as glassworking, gemcutting, or sculpting.",
+      "toolBonus": 2,
+      "toolBonusNote": "Counts as masterwork artisan's tools for one Craft skill (chosen when built)",
+      "craftSubSkills": ["Craft (jewelry)", "Craft (stonemasonry)", "Craft (carpentry)", "Craft (locks)"],
+      "createCost": { "goods": 9, "influence": 0, "labor": 9, "gp": 360, "time": 20 },
+      "size": "8-16 squares",
+      "capacity": 3
+    },
+    {
+      "id": "leather-workshop",
+      "name": "Leather Workshop",
+      "ucRoom": "Leather Workshop",
+      "description": "A sturdy table, stool, vats, drying racks, and tools for turning raw hides into leather.",
+      "toolBonus": 2,
+      "toolBonusNote": "Counts as masterwork artisan's tools for leatherworking skills",
+      "craftSubSkills": ["Craft (leather)"],
+      "createCost": { "goods": 7, "influence": 1, "labor": 7, "gp": 310, "time": 16 },
+      "size": "4-10 squares",
+      "capacity": 3
+    },
+    {
+      "id": "alchemy-lab",
+      "name": "Alchemy Lab",
+      "ucRoom": "Alchemy Lab",
+      "description": "A room equipped for Craft (alchemy) checks, researching formulae, and performing alchemical tasks.",
+      "toolBonus": 2,
+      "toolBonusNote": "Counts as an alchemist's lab (equipment)",
+      "craftSubSkills": ["Craft (alchemy)"],
+      "createCost": { "goods": 8, "influence": 1, "labor": 5, "magic": 1, "gp": 390, "time": 16 },
+      "size": "8-16 squares",
+      "capacity": 3
+    },
+    {
+      "id": "clockwork-shop",
+      "name": "Clockwork Shop",
+      "ucRoom": "Clockwork Shop",
+      "description": "A workshop with precision tools and workstations for creating delicate clockwork goods.",
+      "toolBonus": 2,
+      "toolBonusNote": "Counts as masterwork artisan's tools for Craft (clockwork)",
+      "craftSubSkills": ["Craft (clockwork)"],
+      "createCost": { "goods": 9, "influence": 0, "labor": 9, "gp": 360, "time": 20 },
+      "size": "8-16 squares",
+      "capacity": 3
+    },
+    {
+      "id": "siege-workshop",
+      "name": "Siege Workshop",
+      "ucRoom": "Siege Workshop",
+      "description": "A large workspace for constructing and repairing siege weapons and other large war machines.",
+      "toolBonus": 2,
+      "toolBonusNote": "Counts as masterwork artisan's tools for Craft (siege engines)",
+      "craftSubSkills": ["Craft (siege engines)"],
+      "createCost": { "goods": 15, "influence": 2, "labor": 12, "gp": 590, "time": 24 },
+      "size": "12-24 squares",
+      "capacity": 3
+    },
+    {
+      "id": "bowyer-workshop",
+      "name": "Bowyer's Workshop",
+      "ucRoom": "Artisan's Workshop",
+      "description": "A specialist workshop set up for crafting bows, crossbows, and arrows.",
+      "toolBonus": 2,
+      "toolBonusNote": "Counts as masterwork artisan's tools for Craft (bows)",
+      "craftSubSkills": ["Craft (bows)"],
+      "createCost": { "goods": 9, "influence": 0, "labor": 9, "gp": 360, "time": 20 },
+      "size": "8-16 squares",
+      "capacity": 3
+    },
+    {
+      "id": "trap-workshop",
+      "name": "Trap Workshop",
+      "ucRoom": "Artisan's Workshop",
+      "description": "A specialist workshop set up for crafting mechanical traps.",
+      "toolBonus": 2,
+      "toolBonusNote": "Counts as masterwork artisan's tools for Craft (traps)",
+      "craftSubSkills": ["Craft (traps)"],
+      "createCost": { "goods": 9, "influence": 0, "labor": 9, "gp": 360, "time": 20 },
+      "size": "8-16 squares",
+      "capacity": 3
+    }
+  ],
+  "personalTools": {
+    "_note": "CRB Table 6-9. Equipment a PC can carry to gain tool bonuses without a fixed location.",
+    "artisansTools": { "cost": 5, "weight": 5, "bonus": 0, "note": "Required for crafting; without them use improvised (-2)" },
+    "artisansToolsMasterwork": { "cost": 55, "weight": 5, "bonus": 2, "note": "+2 circumstance to Craft checks" },
+    "alchemistsLab": { "cost": 200, "weight": 40, "bonus": 2, "note": "+2 circumstance to Craft (alchemy) checks" }
+  }
+}

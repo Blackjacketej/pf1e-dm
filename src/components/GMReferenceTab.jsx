@@ -2,6 +2,8 @@ import React, { useState, useMemo } from 'react';
 import BestiaryTab from './BestiaryTab';
 import MythicTab from './MythicTab';
 import GMMapPinEditor from './GMMapPinEditor';
+import FeatTree from './FeatTree';
+import CompendiumBrowser from './CompendiumBrowser';
 import classesData from '../data/classes.json';
 import featsData from '../data/feats.json';
 import spellsData from '../data/spells.json';
@@ -11,17 +13,23 @@ import conditionsData from '../data/conditions.json';
 import skillsData from '../data/skills.json';
 import racesData from '../data/races.json';
 import prestigeClassesData from '../data/prestigeClasses.json';
+import ethnicitiesData from '../data/ethnicities.json';
+import heritagesData from '../data/heritages.json';
+import traitsData from '../data/traits.json';
 
 const SECTIONS = [
+  { key: 'compendium', label: 'Compendium', icon: '\u{1F4DA}' },
   { key: 'map-pins', label: 'Map Pins', icon: '\u{1F4CD}' },
   { key: 'bestiary', label: 'Bestiary', icon: '\u{1F409}' },
   { key: 'spells', label: 'Spells', icon: '\u2728' },
   { key: 'feats', label: 'Feats', icon: '\u{1F4AA}' },
   { key: 'classes', label: 'Classes', icon: '\u2694\uFE0F' },
   { key: 'races', label: 'Races', icon: '\u{1F9DD}' },
+  { key: 'peoples', label: 'Peoples & Lands', icon: '\u{1F30D}' },
   { key: 'equipment', label: 'Equipment', icon: '\u{1F6E1}\uFE0F' },
   { key: 'conditions', label: 'Conditions', icon: '\u{1F480}' },
   { key: 'skills', label: 'Skills', icon: '\u{1F3AF}' },
+  { key: 'traits', label: 'Traits', icon: '\u{1F3AD}' },
   { key: 'mythic', label: 'Mythic GME', icon: '\u{1F52E}' },
 ];
 
@@ -234,47 +242,76 @@ function SpellsSection() {
 }
 
 function FeatsSection() {
+  const [featView, setFeatView] = useState('list'); // 'list' | 'tree'
+
   const feats = useMemo(() => {
     if (Array.isArray(featsData)) return featsData;
     return Object.values(featsData).flat();
   }, []);
 
   return (
-    <SearchableCards
-      items={feats}
-      placeholder="Search feats by name or benefit..."
-      sortOptions={[
-        { label: 'A-Z', value: 'alpha', fn: (a, b) => (a.name || '').localeCompare(b.name || '') },
-        { label: 'Z-A', value: 'alpha-desc', fn: (a, b) => (b.name || '').localeCompare(a.name || '') },
-        { label: 'Type', value: 'type', fn: (a, b) => (a.type || 'zzz').localeCompare(b.type || 'zzz') || (a.name || '').localeCompare(b.name || '') },
-      ]}
-      filterOptions={[
-        { key: 'type', label: 'Type', options: [{ label: 'All Types', value: 'all' }, ...FEAT_TYPES.map(t => ({ label: t, value: t }))],
-          filterFn: (item, val) => (item.type || '') === val },
-      ]}
-      renderCard={(feat, i, expandedId, toggleExpand) => {
-        const id = feat.name || i;
-        const open = expandedId === id;
-        const desc = feat.benefit || feat.description || '';
-        return (
-          <div key={id} style={{ ...sty.card, cursor: 'pointer', borderColor: open ? 'rgba(255,215,0,0.4)' : undefined }}
-            onClick={() => toggleExpand(id)}>
-            <div style={sty.cardTitle}>{feat.name || feat.Name}
-              <span style={{ float: 'right', fontSize: 10, color: '#8b949e' }}>{open ? '\u25B2' : '\u25BC'}</span>
-            </div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: 4 }}>
-              {feat.type && <span style={sty.tag('#4a3a1a')}>{feat.type}</span>}
-              {feat.category && <span style={sty.tag('#2a4a3a')}>{feat.category}</span>}
-              {feat.source && open && <span style={sty.tag('#3a3a2a')}>{feat.source}</span>}
-            </div>
-            <DetailRow label="Prerequisites" value={feat.prerequisites} />
-            <div style={{ marginTop: 4, color: '#b0a690', lineHeight: 1.4 }}>
-              {open ? desc : (desc.substring(0, 250) + (desc.length > 250 ? '...' : ''))}
-            </div>
-          </div>
-        );
-      }}
-    />
+    <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+      {/* Sub-tab toggle */}
+      <div style={{ display: 'flex', gap: 6, marginBottom: 12 }}>
+        {[
+          { key: 'list', label: 'Feat List' },
+          { key: 'tree', label: 'Feat Trees' },
+        ].map(t => (
+          <button
+            key={t.key}
+            onClick={() => setFeatView(t.key)}
+            style={{
+              padding: '6px 14px', borderRadius: 4, fontSize: 12, fontWeight: 600, cursor: 'pointer',
+              background: featView === t.key ? '#ffd700' : '#16213e',
+              color: featView === t.key ? '#0d1117' : '#d4c5a9',
+              border: `1px solid ${featView === t.key ? '#ffd700' : '#30363d'}`,
+            }}
+          >
+            {t.label}
+          </button>
+        ))}
+      </div>
+
+      {featView === 'tree' ? (
+        <FeatTree />
+      ) : (
+        <SearchableCards
+          items={feats}
+          placeholder="Search feats by name or benefit..."
+          sortOptions={[
+            { label: 'A-Z', value: 'alpha', fn: (a, b) => (a.name || '').localeCompare(b.name || '') },
+            { label: 'Z-A', value: 'alpha-desc', fn: (a, b) => (b.name || '').localeCompare(a.name || '') },
+            { label: 'Type', value: 'type', fn: (a, b) => (a.type || 'zzz').localeCompare(b.type || 'zzz') || (a.name || '').localeCompare(b.name || '') },
+          ]}
+          filterOptions={[
+            { key: 'type', label: 'Type', options: [{ label: 'All Types', value: 'all' }, ...FEAT_TYPES.map(t => ({ label: t, value: t }))],
+              filterFn: (item, val) => (item.type || '') === val },
+          ]}
+          renderCard={(feat, i, expandedId, toggleExpand) => {
+            const id = feat.name || i;
+            const open = expandedId === id;
+            const desc = feat.benefit || feat.description || '';
+            return (
+              <div key={id} style={{ ...sty.card, cursor: 'pointer', borderColor: open ? 'rgba(255,215,0,0.4)' : undefined }}
+                onClick={() => toggleExpand(id)}>
+                <div style={sty.cardTitle}>{feat.name || feat.Name}
+                  <span style={{ float: 'right', fontSize: 10, color: '#8b949e' }}>{open ? '\u25B2' : '\u25BC'}</span>
+                </div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: 4 }}>
+                  {feat.type && <span style={sty.tag('#4a3a1a')}>{feat.type}</span>}
+                  {feat.category && <span style={sty.tag('#2a4a3a')}>{feat.category}</span>}
+                  {feat.source && open && <span style={sty.tag('#3a3a2a')}>{feat.source}</span>}
+                </div>
+                <DetailRow label="Prerequisites" value={feat.prerequisites} />
+                <div style={{ marginTop: 4, color: '#b0a690', lineHeight: 1.4 }}>
+                  {open ? desc : (desc.substring(0, 250) + (desc.length > 250 ? '...' : ''))}
+                </div>
+              </div>
+            );
+          }}
+        />
+      )}
+    </div>
   );
 }
 
@@ -401,6 +438,8 @@ function RacesSection() {
         const id = race.name || i;
         const open = expandedId === id;
         const traits = race.traits && Array.isArray(race.traits) ? race.traits : [];
+        const origins = race.name === 'Human' ? ethnicitiesData.humanEthnicities : (ethnicitiesData.nonHumanOrigins[race.name] || []);
+        const heritages = heritagesData[race.name] || [];
         return (
           <div key={id} style={{ ...sty.card, cursor: 'pointer', borderColor: open ? 'rgba(255,215,0,0.4)' : undefined }}
             onClick={() => toggleExpand(id)}>
@@ -411,6 +450,8 @@ function RacesSection() {
               {race.size && <span style={sty.tag('#2a4a4e')}>{race.size}</span>}
               {race.speed && <span style={sty.tag('#4a4a2a')}>Speed: {race.speed} ft</span>}
               {race.type && <span style={sty.tag('#3a2a4a')}>{race.type}</span>}
+              {origins.length > 0 && <span style={sty.tag('#4a2a3a')}>{origins.length} {race.name === 'Human' ? 'ethnicities' : 'origins'}</span>}
+              {heritages.length > 1 && <span style={sty.tag('#2a3a4a')}>{heritages.length} heritages</span>}
             </div>
             <DetailRow label="Ability Bonuses" value={race.bonuses} />
             <DetailRow label="Languages" value={race.languages} />
@@ -425,10 +466,170 @@ function RacesSection() {
                 {!open && traits.length > 3 && <div style={{ color: '#8b949e', fontSize: 10, marginTop: 2 }}>+{traits.length - 3} more traits...</div>}
               </div>
             )}
+            {open && heritages.length > 1 && (
+              <div style={{ marginTop: 8, borderTop: '1px solid rgba(192,160,255,0.2)', paddingTop: 8 }}>
+                <span style={{ ...sty.label, color: '#c4a0ff' }}>Heritages / Subraces:</span>
+                {heritages.filter(h => !h.name.startsWith('Standard')).map((h, j) => {
+                  const bonusStr = Object.entries(h.bonuses || {}).map(([k,v]) => `${k}+${v}`).join(' ');
+                  const penaltyStr = Object.entries(h.penalty || {}).filter(([,v]) => v !== 0).map(([k,v]) => `${k}${v}`).join(' ');
+                  return (
+                    <div key={j} style={{ marginTop: 4, paddingLeft: 8, borderLeft: '2px solid rgba(192,160,255,0.2)' }}>
+                      <strong style={{ color: '#c4a0ff', fontSize: 11 }}>{h.name}</strong>
+                      {(bonusStr || penaltyStr) && <span style={{ color: '#8b949e', fontSize: 10, marginLeft: 6 }}>({[bonusStr, penaltyStr].filter(Boolean).join(', ')})</span>}
+                      <div style={{ color: '#b0a690', fontSize: 10 }}>{h.description}</div>
+                      {h.addTraits?.length > 0 && <div style={{ color: '#51cf66', fontSize: 10 }}>+ {h.addTraits.join(', ')}</div>}
+                      {h.replaceTraits?.length > 0 && <div style={{ color: '#ff6040', fontSize: 10 }}>- {h.replaceTraits.join(', ')}</div>}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+            {open && origins.length > 0 && (
+              <div style={{ marginTop: 8, borderTop: '1px solid rgba(255,215,0,0.15)', paddingTop: 8 }}>
+                <span style={{ ...sty.label, color: '#ffd700' }}>{race.name === 'Human' ? 'Ethnicities:' : 'Known Origins:'}</span>
+                {origins.map((o, j) => (
+                  <div key={j} style={{ marginTop: 4, paddingLeft: 8, borderLeft: '2px solid rgba(255,215,0,0.2)' }}>
+                    <strong style={{ color: '#d4c5a9', fontSize: 11 }}>{o.name}</strong>
+                    <span style={{ color: '#8b949e', fontSize: 10, marginLeft: 6 }}>({o.region || o.homeland})</span>
+                    <div style={{ color: '#b0a690', fontSize: 10 }}>{o.description}</div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         );
       }}
     />
+  );
+}
+
+function PeoplesSection() {
+  const [subTab, setSubTab] = useState('ethnicities');
+  const allItems = useMemo(() => {
+    if (subTab === 'ethnicities') {
+      return ethnicitiesData.humanEthnicities.map(e => ({ ...e, _type: 'ethnicity' }));
+    } else if (subTab === 'origins') {
+      const items = [];
+      Object.entries(ethnicitiesData.nonHumanOrigins).sort(([a],[b]) => a.localeCompare(b)).forEach(([race, origins]) => {
+        origins.forEach(o => items.push({ ...o, _race: race, _type: 'origin', _sortName: race + ' - ' + o.name }));
+      });
+      return items;
+    } else {
+      return ethnicitiesData.homelands.map(h => ({ ...h, _type: 'homeland' }));
+    }
+  }, [subTab]);
+
+  return (
+    <div>
+      <div style={{ display: 'flex', gap: 6, marginBottom: 12, flexWrap: 'wrap' }}>
+        {[
+          { key: 'ethnicities', label: 'Human Ethnicities' },
+          { key: 'origins', label: 'Non-Human Origins' },
+          { key: 'homelands', label: 'Homelands' },
+        ].map(t => (
+          <button key={t.key} onClick={() => setSubTab(t.key)} style={{
+            padding: '6px 14px', borderRadius: 4, border: '1px solid #ffd700', cursor: 'pointer',
+            fontSize: 12, fontWeight: subTab === t.key ? 700 : 400,
+            backgroundColor: subTab === t.key ? '#ffd700' : '#2a2a4e',
+            color: subTab === t.key ? '#1a1a2e' : '#ffd700',
+          }}>{t.label}</button>
+        ))}
+      </div>
+      <SearchableCards
+        items={allItems}
+        placeholder={subTab === 'ethnicities' ? 'Search ethnicities...' : subTab === 'origins' ? 'Search origins...' : 'Search homelands...'}
+        sortOptions={subTab === 'origins' ? [
+          { label: 'By Race', value: 'race', fn: (a, b) => (a._sortName || a.name || '').localeCompare(b._sortName || b.name || '') },
+          { label: 'A-Z (Location)', value: 'alpha', fn: (a, b) => (a.name || '').localeCompare(b.name || '') },
+        ] : [
+          { label: 'A-Z', value: 'alpha', fn: (a, b) => (a.name || '').localeCompare(b.name || '') },
+          { label: 'Z-A', value: 'alpha-desc', fn: (a, b) => (b.name || '').localeCompare(a.name || '') },
+        ]}
+        filterOptions={subTab === 'origins' ? [{
+          key: 'race', label: 'Race',
+          options: [
+            { label: 'All Races', value: 'all' },
+            ...Object.keys(ethnicitiesData.nonHumanOrigins).sort().map(r => ({ label: r, value: r }))
+          ],
+          filterFn: (item, val) => item._race === val,
+        }] : subTab === 'homelands' ? [{
+          key: 'region', label: 'Region',
+          options: [
+            { label: 'All Regions', value: 'all' },
+            ...Array.from(new Set(ethnicitiesData.homelands.map(h => h.region))).sort().map(r => ({ label: r, value: r }))
+          ],
+          filterFn: (item, val) => item.region === val,
+        }] : [{
+          key: 'region', label: 'Region',
+          options: [
+            { label: 'All Regions', value: 'all' },
+            ...Array.from(new Set(ethnicitiesData.humanEthnicities.map(e => e.region))).sort().map(r => ({ label: r, value: r }))
+          ],
+          filterFn: (item, val) => item.region === val,
+        }]}
+        renderCard={(item, i, expandedId, toggleExpand) => {
+          const id = (item._race ? item._race + '-' : '') + (item.name || i);
+          const open = expandedId === id;
+          if (item._type === 'ethnicity') {
+            return (
+              <div key={id} style={{ ...sty.card, cursor: 'pointer', borderColor: open ? 'rgba(255,215,0,0.4)' : undefined }}
+                onClick={() => toggleExpand(id)}>
+                <div style={sty.cardTitle}>{item.name}
+                  <span style={{ float: 'right', fontSize: 10, color: '#8b949e' }}>{open ? '\u25B2' : '\u25BC'}</span>
+                </div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: 4 }}>
+                  <span style={sty.tag('#2a4a4e')}>{item.region}</span>
+                  <span style={sty.tag('#4a4a2a')}>{item.homeland}</span>
+                </div>
+                <div style={{ color: '#b0a690', fontSize: 11, marginBottom: 4 }}>{item.description}</div>
+                {open && (
+                  <div style={{ marginTop: 6 }}>
+                    <div style={{ marginBottom: 4 }}><span style={sty.label}>Languages: </span><span style={{ color: '#d4c5a9', fontSize: 11 }}>{item.languages?.join(', ')}</span></div>
+                    <div style={{ marginBottom: 4 }}><span style={sty.label}>Common Classes: </span><span style={{ color: '#d4c5a9', fontSize: 11 }}>{item.commonClasses?.join(', ')}</span></div>
+                    <div style={{ marginBottom: 4 }}><span style={sty.label}>Cultural Notes: </span><span style={{ color: '#b0a690', fontSize: 11 }}>{item.culturalNotes}</span></div>
+                    {item.quahs && <div style={{ marginBottom: 4 }}><span style={sty.label}>Quahs: </span><span style={{ color: '#d4c5a9', fontSize: 11 }}>{item.quahs.join(', ')}</span></div>}
+                    {item.subgroups && <div style={{ marginBottom: 4 }}><span style={sty.label}>Subgroups: </span><span style={{ color: '#d4c5a9', fontSize: 11 }}>{item.subgroups.join(', ')}</span></div>}
+                    {item.traits && <div><span style={sty.label}>Traits: </span><span style={{ color: '#d4c5a9', fontSize: 11 }}>{item.traits.join(', ')}</span></div>}
+                  </div>
+                )}
+              </div>
+            );
+          }
+          if (item._type === 'origin') {
+            return (
+              <div key={id} style={{ ...sty.card, cursor: 'pointer', borderColor: open ? 'rgba(255,215,0,0.4)' : undefined }}
+                onClick={() => toggleExpand(id)}>
+                <div style={sty.cardTitle}>
+                  <span style={{ color: '#c4a0ff', marginRight: 6 }}>{item._race}</span>
+                  <span style={{ color: '#8b949e', fontWeight: 400, marginRight: 4 }}>&mdash;</span>
+                  {item.name}
+                  <span style={{ float: 'right', fontSize: 10, color: '#8b949e' }}>{open ? '\u25B2' : '\u25BC'}</span>
+                </div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: 4 }}>
+                  <span style={sty.tag('#2a4a4e')}>{item.region}</span>
+                </div>
+                <div style={{ color: '#b0a690', fontSize: 11 }}>{item.description}</div>
+                {open && (
+                  <div style={{ marginTop: 6 }}>
+                    <div><span style={sty.label}>Languages: </span><span style={{ color: '#d4c5a9', fontSize: 11 }}>{item.languages?.join(', ')}</span></div>
+                  </div>
+                )}
+              </div>
+            );
+          }
+          // homeland
+          return (
+            <div key={id} style={sty.card}>
+              <div style={sty.cardTitle}>{item.name}</div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: 4 }}>
+                <span style={sty.tag('#2a4a4e')}>{item.region}</span>
+              </div>
+              <div style={{ color: '#b0a690', fontSize: 11 }}>{item.description}</div>
+            </div>
+          );
+        }}
+      />
+    </div>
   );
 }
 
@@ -597,11 +798,28 @@ function SkillsSection() {
               {skill.dcTable && Array.isArray(skill.dcTable) && (
                 <div style={{ marginTop: 4 }}>
                   <span style={sty.label}>DC Table:</span>
-                  {skill.dcTable.map((row, j) => (
-                    <div key={j} style={{ color: '#b0a690', fontSize: 11, marginTop: 1 }}>
-                      DC {row.dc || row.DC}: {row.task || row.description || row.desc || ''}
-                    </div>
-                  ))}
+                  {skill.dcTable.map((row, j) => {
+                    const dcVal = row.dc !== undefined ? row.dc : row.DC;
+                    const label = dcVal === null ? 'Impossible' : `DC ${dcVal}`;
+                    return (
+                      <div key={j} style={{ color: '#b0a690', fontSize: 11, marginTop: 1 }}>
+                        {label}: {row.task || row.description || row.desc || ''}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+              {skill.dcModifiers && Array.isArray(skill.dcModifiers) && (
+                <div style={{ marginTop: 4 }}>
+                  <span style={sty.label}>DC Modifiers:</span>
+                  {skill.dcModifiers.map((row, j) => {
+                    const sign = row.modifier > 0 ? '+' : '';
+                    return (
+                      <div key={j} style={{ color: '#b0a690', fontSize: 11, marginTop: 1 }}>
+                        {sign}{row.modifier}: {row.condition || row.description || ''}
+                      </div>
+                    );
+                  })}
                 </div>
               )}
             </>}
@@ -615,13 +833,72 @@ function SkillsSection() {
   );
 }
 
+function TraitsSection() {
+  const traitCategories = ['combat', 'magic', 'social', 'faith', 'regional', 'drawback'];
+  const categoryColors = {
+    combat: '#ff6b6b', magic: '#7b68ee', social: '#40e0d0',
+    faith: '#ffd700', regional: '#51cf66', drawback: '#cc6644',
+  };
+
+  return (
+    <SearchableCards
+      items={traitsData}
+      placeholder="Search character traits..."
+      sortOptions={[
+        { label: 'A-Z', value: 'alpha', fn: (a, b) => (a.name || '').localeCompare(b.name || '') },
+        { label: 'Category', value: 'category', fn: (a, b) => (a.type || '').localeCompare(b.type || '') || (a.name || '').localeCompare(b.name || '') },
+      ]}
+      filterOptions={[
+        {
+          key: 'type', label: 'Category',
+          options: [
+            { label: 'All Categories', value: 'all' },
+            ...traitCategories.map(c => ({ label: c.charAt(0).toUpperCase() + c.slice(1), value: c })),
+          ],
+          filterFn: (item, val) => item.type === val,
+        },
+        {
+          key: 'source', label: 'Source',
+          options: [
+            { label: 'All Sources', value: 'all' },
+            { label: 'APG', value: 'APG' },
+            { label: 'RotRL', value: 'RotRL' },
+            { label: 'Ultimate Campaign', value: 'UC' },
+          ],
+          filterFn: (item, val) => item.source === val,
+        },
+      ]}
+      renderCard={(trait, i, expandedId, toggleExpand) => {
+        const id = trait.name || i;
+        const open = expandedId === id;
+        const color = categoryColors[trait.type] || '#8b949e';
+        return (
+          <div key={id} style={{ ...sty.card, cursor: 'pointer', borderColor: open ? 'rgba(255,215,0,0.4)' : undefined }}
+            onClick={() => toggleExpand(id)}>
+            <div style={sty.cardTitle}>{trait.name}
+              <span style={{ float: 'right', fontSize: 10, color: '#8b949e' }}>{open ? '\u25B2' : '\u25BC'}</span>
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', marginBottom: 4 }}>
+              <span style={{ ...sty.tag('#2a2a4e'), color, borderColor: color }}>{trait.type}</span>
+              <span style={sty.tag('#2a3a2e')}>{trait.source}</span>
+            </div>
+            <div style={{ marginTop: 4, color: '#b0a690', lineHeight: 1.4, fontSize: 12 }}>
+              {trait.benefit}
+            </div>
+          </div>
+        );
+      }}
+    />
+  );
+}
+
 // ── Main GM Reference Tab ──
 
 export default function GMReferenceTab({ party, addLog, setCombat, openCombatPanel, worldState, setWorldState }) {
-  const [section, setSection] = useState('map-pins');
+  const [section, setSection] = useState('compendium');
 
-  // Map Pins section needs full height without padding
-  const isFullHeight = section === 'map-pins';
+  // Full-height sections without padding
+  const isFullHeight = section === 'map-pins' || section === 'compendium';
 
   return (
     <div style={sty.container}>
@@ -641,6 +918,7 @@ export default function GMReferenceTab({ party, addLog, setCombat, openCombatPan
 
       {/* Right content area */}
       <div style={{ ...sty.content, padding: isFullHeight ? 0 : 16 }}>
+        {section === 'compendium' && <CompendiumBrowser />}
         {section === 'map-pins' && (
           <GMMapPinEditor worldState={worldState} setWorldState={setWorldState} addLog={addLog} />
         )}
@@ -651,9 +929,11 @@ export default function GMReferenceTab({ party, addLog, setCombat, openCombatPan
         {section === 'feats' && <FeatsSection />}
         {section === 'classes' && <ClassesSection />}
         {section === 'races' && <RacesSection />}
+        {section === 'peoples' && <PeoplesSection />}
         {section === 'equipment' && <EquipmentSection />}
         {section === 'conditions' && <ConditionsSection />}
         {section === 'skills' && <SkillsSection />}
+        {section === 'traits' && <TraitsSection />}
         {section === 'mythic' && (
           <MythicTab addLog={addLog} worldState={worldState} setWorldState={setWorldState} party={party} />
         )}

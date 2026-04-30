@@ -54,6 +54,8 @@ const InteractiveMap = forwardRef(function InteractiveMap({
   exploredHexes = null,      // Set of explored hexes for hex crawl mode
   showFogOfWar = false,      // Show fog of war for unexplored hexes
   exploringHex = null,       // Currently exploring hex
+  visitedPoiIds = null,      // Set<string> of POI ids the party has visited — rendered with a visited halo
+  focusedPoiId = null,       // POI id to highlight with a pulsing ring (e.g. Journal "View on map")
 }, ref) {
   const isMobile = useIsMobile();
   const containerRef = useRef(null);
@@ -395,8 +397,12 @@ const InteractiveMap = forwardRef(function InteractiveMap({
           const isHovered = hoveredPin === pin.id;
           const isDraggingThis = dragPinId === pin.id;
           const canDrag = draggablePins && onPinDrag;
+          const isVisited = visitedPoiIds && visitedPoiIds.has && visitedPoiIds.has(pin.id);
+          const isFocused = focusedPoiId && pin.id === focusedPoiId;
           // Counter-scale so pin icons stay a consistent visual size regardless of zoom
-          const pinScale = (1 / zoom) * (isDraggingThis ? 1.4 : isHovered ? 1.3 : 1);
+          const pinScale = (1 / zoom) * (isDraggingThis ? 1.4 : isHovered ? 1.3 : isFocused ? 1.25 : 1);
+          const visitedShadow = isVisited ? ' drop-shadow(0 0 6px #ffd700)' : '';
+          const focusedShadow = isFocused ? ' drop-shadow(0 0 10px #00e5ff) drop-shadow(0 0 4px #00e5ff)' : '';
           return (
             <div
               key={pin.id}
@@ -406,9 +412,9 @@ const InteractiveMap = forwardRef(function InteractiveMap({
                 transform: `translate(-50%, -50%) scale(${pinScale})`,
                 cursor: canDrag ? (isDraggingThis ? 'grabbing' : 'grab') : 'pointer',
                 fontSize: `${style.size}px`,
-                filter: `drop-shadow(0 0 3px ${style.color})${isDraggingThis ? ' drop-shadow(0 0 8px #ff8c00)' : ''}`,
+                filter: `drop-shadow(0 0 3px ${style.color})${isDraggingThis ? ' drop-shadow(0 0 8px #ff8c00)' : ''}${visitedShadow}${focusedShadow}`,
                 transition: isDraggingThis ? 'none' : 'transform 0.15s',
-                zIndex: isDraggingThis ? 200 : isHovered ? 100 : 10,
+                zIndex: isDraggingThis ? 200 : isFocused ? 150 : isHovered ? 100 : isVisited ? 20 : 10,
                 pointerEvents: 'auto',
               }}
               onMouseEnter={() => setHoveredPin(pin.id)}
@@ -450,31 +456,7 @@ const InteractiveMap = forwardRef(function InteractiveMap({
           );
         })}
 
-        {/* Party Token */}
-        {imgLoaded && partyPosition && (
-          <div
-            style={{
-              position: 'absolute',
-              left: `${partyPosition.xPct}%`,
-              top: `${partyPosition.yPct}%`,
-              transform: 'translate(-50%, -50%)',
-              width: '28px', height: '28px',
-              borderRadius: '50%',
-              backgroundColor: '#ffd700',
-              border: '3px solid #1a1a2e',
-              boxShadow: '0 0 12px rgba(255,215,0,0.8), 0 0 4px rgba(255,215,0,0.4)',
-              cursor: 'grab',
-              zIndex: 50,
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: '14px',
-              pointerEvents: 'auto',
-            }}
-            onMouseDown={handlePartyDragStart}
-            title="Party Position"
-          >
-            \u2694
-          </div>
-        )}
+        {/* Party Token — now displayed via hex grid overlay (partyHex) */}
       </div>
 
       {/* Zoom Controls */}

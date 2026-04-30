@@ -4,6 +4,18 @@ import downtimeService from '../services/downtimeService';
 import advancedService from '../services/advancedService';
 import * as dmTools from '../services/dmToolsService';
 import gameEvents from '../services/gameEventEngine';
+import { tickCampaign } from '../services/factionSimulation';
+import { tickPCCrafters, hoursToWeeks } from '../services/craftSimulation';
+import { getCharacterSkillTotal } from '../utils/characterSkills';
+import { getEffectiveMaxHP } from '../utils/familiarEngine';
+import {
+  applyEmotionalEvent, computeTrustScore, getTrustTier,
+  recordMemory, getBehavioralTells, getPressureResponse,
+  buildPersonalityProfile, willShareKnowledge, EMOTIONAL_EVENTS,
+  determineAwareness, applyEventWithAwareness, propagateEvent, eventToKnowledge,
+  AWARENESS_SCOPES, CONCEALABLE_EVENTS, discoverDeferredEvent,
+} from '../services/npcPersonality';
+import { simulateElapsed, getNPCActivityAtHour } from '../services/npcSimulation';
 import { SettlementMap, ParchmentFrame, Divider, TerrainIcon, HexMap, MapLegend } from './MapAssets';
 
 const styles = {
@@ -68,7 +80,7 @@ const PANELS = [
   { id: 'retirement', label: 'Retirement', icon: '🏡', override: true },
 ];
 
-export default function WorldTab({ campaign, party, setParty, addLog, worldState, setWorldState, setCombat, setTab }) {
+export default function WorldTab({ campaign, setCampaign, party, setParty, addLog, worldState, setWorldState, setCombat, setTab }) {
   const [activePanel, setActivePanel] = useState('partyProgress');
   const [showGMOverrides, setShowGMOverrides] = useState(false);
   const [weatherResult, setWeatherResult] = useState(null);
@@ -141,6 +153,16 @@ export default function WorldTab({ campaign, party, setParty, addLog, worldState
   const [npcAttitude, setNPCAttitude] = useState('indifferent');
   const [npcLevel, setNPCLevel] = useState(1);
   const [npcWis, setNPCWis] = useState(10);
+  // NPC deception system state
+  const [askTopic, setAskTopic] = useState('');           // "Ask About" topic input
+  const [newSecretTopic, setNewSecretTopic] = useState('');
+  const [newSecretDetail, setNewSecretDetail] = useState('');
+  const [newSecretSeverity, setNewSecretSeverity] = useState('medium');
+  const [secretTargetIdx, setSecretTargetIdx] = useState(null); // which NPC card is adding a secret
+  const [eventDetected, setEventDetected] = useState(true); // for concealable events: did the NPC notice?
+  const [advanceHours, setAdvanceHours] = useState(24);
+  const [worldTime, setWorldTime] = useState(new Date().toISOString());
+  const [pendingGossip, setPendingGossip] = useState([]); // gossip queue propagated during Advance Time
 
   // Helper to update worldState
   const updateWorld = (key, value) => {
@@ -335,7 +357,7 @@ export default function WorldTab({ campaign, party, setParty, addLog, worldState
                   const pc = party[0];
                   const detect = worldService.detectTrap(traps[selectedTrap], pc);
                   setTrapResult(detect);
-                  addLog?.(`${pc.name} ${detect.detected ? 'spots' : 'misses'} the ${traps[selectedTrap].name} (${detect.total} vs DC ${detect.dc})`, detect.detected ? 'success' : 'info');
+                  addLog?.(`${pc.name} ${detect.detected ? 'spots' : 'misses'} the ${traps[selectedTrap].name} (${detect.total} vs DC ${detect.dc})`, detect.detected ? 'success' : 'danger');
                 }}>
                   Perception Check ({party[0]?.name})
                 </button>
@@ -376,7 +398,7 @@ export default function WorldTab({ campaign, party, setParty, addLog, worldState
                   const results = worldService.resolveHaunt(haunt, party.filter(p => p.currentHP > 0));
                   setHauntResult({ haunt: haunt.name, results });
                   results.forEach(r => {
-                    addLog?.(`${r.target} ${r.saved ? 'resists' : 'is affected by'} ${haunt.name}${r.damage > 0 ? ` (${r.damage} dmg)` : ''}`, r.saved ? 'info' : 'danger');
+                    addLog?.(`${r.target} ${r.saved ? 'resists' : 'is affected by'} ${haunt.name}${r.damage > 0 ? ` (${r.damage} dmg)` : ''}`, r.saved ? 'success' : 'danger');
                   });
                 }}>
                   Trigger on Party
@@ -1084,7 +1106,7 @@ export default function WorldTab({ campaign, party, setParty, addLog, worldState
       const result = advancedService.resolveMassCombatRound({ ...armies[0] }, { ...armies[1] });
       updateWorld('armies', prev => prev.map((a, i) => i === 0 ? result.attackArmy : i === 1 ? result.defenseArmy : a));
       setMassCombatLog(prev => [...prev, ...result.results]);
-      result.results.forEach(r => addLog?.(r, r.includes('DESTROY') || r.includes('ROUT') ? 'danger' : 'combat'));
+      result.results.forEach(r => addLog?.(r, r.includes('DESTROY') || r.includes('ROUT') ? 'danger' : 'action'));
 
       if (result.attackArmy.hp <= 0 || result.defenseArmy.hp <= 0) {
         const destroyed = result.attackArmy.hp <= 0 ? armies[0]?.name : armies[1]?.name;
@@ -2216,7 +2238,7 @@ export default function WorldTab({ campaign, party, setParty, addLog, worldState
       const char = party[0]; // Use first party member
       const npc = npcAttitudeState.trackedNPCs[npcIdx];
       const result = dmTools.attemptDiplomacy(
-        { name: char.name, diplomacy: (char.skills?.diplomacy || 0), cha: char.abilities?.CHA || 10 },
+        { name: char.name, diplomacy: getCharacterSkillTotal(char, 'Diplomacy'), cha: char.abilities?.CHA || 10 },
         npc
       );
       const updated = [...npcAttitudeState.trackedNPCs];
@@ -2229,13 +2251,264 @@ export default function WorldTab({ campaign, party, setParty, addLog, worldState
       const char = party[0];
       const npc = npcAttitudeState.trackedNPCs[npcIdx];
       const result = dmTools.attemptIntimidate(
-        { name: char.name, intimidate: (char.skills?.intimidate || 0), str: char.abilities?.STR || 10 },
+        { name: char.name, intimidate: getCharacterSkillTotal(char, 'Intimidate'), str: char.abilities?.STR || 10 },
         npc
       );
       const updated = [...npcAttitudeState.trackedNPCs];
       if (result.success) updated[npcIdx] = { ...npc, attitude: result.newAttitude };
       setNpcAttitudeState(prev => ({ ...prev, trackedNPCs: updated }));
       addLog?.(`Intimidate: ${result.description}`, result.success ? 'success' : 'info');
+    };
+    const handleBluff = (npcIdx) => {
+      if (party.length === 0) return;
+      const char = party[0];
+      const npc = npcAttitudeState.trackedNPCs[npcIdx];
+      const result = dmTools.attemptBluff(
+        { name: char.name, bluff: getCharacterSkillTotal(char, 'Bluff') },
+        npc,
+        'believable'
+      );
+      const updated = [...npcAttitudeState.trackedNPCs];
+      if (result.hostileReaction) updated[npcIdx] = { ...npc, attitude: 'hostile' };
+      setNpcAttitudeState(prev => ({ ...prev, trackedNPCs: updated }));
+      addLog?.(`Bluff: ${result.description} (${result.breakdown})`, result.success ? 'success' : 'danger');
+    };
+    const handleNPCBluff = (npcIdx) => {
+      if (party.length === 0) return;
+      const pc = party[0];
+      const npc = npcAttitudeState.trackedNPCs[npcIdx];
+      // NPC Bluff bonus: derive from level + Cha mod (untrained) if not explicit
+      const npcBluff = npc.bluff ?? (npc.level || 1) + Math.floor(((npc.cha || 10) - 10) / 2);
+      const pcSM = getCharacterSkillTotal(pc, 'Sense Motive');
+      const result = dmTools.attemptNPCBluff(
+        { name: npc.name, bluff: npcBluff },
+        { name: pc.name, sense_motive: pcSM },
+        'believable'
+      );
+      addLog?.(`NPC Bluff: ${result.description} (${result.breakdown})`, result.success ? 'warning' : 'success');
+    };
+    const handleSecretMessage = (npcIdx) => {
+      if (party.length === 0) return;
+      const char = party[0];
+      const npc = npcAttitudeState.trackedNPCs[npcIdx];
+      const result = dmTools.attemptSecretMessage(
+        { name: char.name, bluff: getCharacterSkillTotal(char, 'Bluff') },
+        { name: npc.name, sense_motive: Math.floor(((npc.wis || 10) - 10) / 2) },
+        'simple'
+      );
+      addLog?.(`Secret Message: ${result.description} (${result.breakdown})`, result.senderSucceeds ? 'success' : 'warning');
+    };
+    const handleAskAbout = (npcIdx, topic) => {
+      if (!topic || party.length === 0) return;
+      const pc = party[0];
+      const npc = npcAttitudeState.trackedNPCs[npcIdx];
+      // AI DM decides: does this NPC deceive?
+      const decision = dmTools.shouldNPCDeceive(npc, topic);
+      if (!decision.willDeceive) {
+        // NPC tells the truth
+        const reason = decision.matchedSecret
+          ? `(has a secret about "${decision.matchedSecret.topic}" but chose honesty)`
+          : '(no reason to lie)';
+        addLog?.(`🗣️ ${npc.name} answers truthfully about "${topic}" ${reason}`, 'info');
+        return;
+      }
+      // NPC is deceiving — approach determines what happens
+      if (decision.approach === 'deflect') {
+        addLog?.(`🗣️ ${npc.name} deflects the question about "${topic}" — ${decision.reason}`, 'warning');
+        return;
+      }
+      // 'lie' or 'omit' → roll Bluff vs PC Sense Motive
+      const npcBluff = npc.bluff ?? (npc.level || 1) + Math.floor(((npc.cha || 10) - 10) / 2);
+      const pcSM = getCharacterSkillTotal(pc, 'Sense Motive');
+      const omitBonus = decision.approach === 'omit' ? 2 : 0;
+      const result = dmTools.attemptNPCBluff(
+        { name: npc.name, bluff: npcBluff + omitBonus },
+        { name: pc.name, sense_motive: pcSM },
+        decision.plausibility
+      );
+      const approachLabel = decision.approach === 'omit' ? 'tells a half-truth (+2)' : 'lies outright';
+      if (result.success) {
+        addLog?.(`🎭 ${npc.name} ${approachLabel} about "${topic}" — ${pc.name} believes it! (${result.breakdown})`, 'warning');
+      } else if (result.hostileReaction) {
+        addLog?.(`🎭 ${npc.name} ${approachLabel} about "${topic}" — ${pc.name} sees through it and is offended! (${result.breakdown})`, 'danger');
+      } else {
+        addLog?.(`🎭 ${npc.name} ${approachLabel} about "${topic}" — ${pc.name} senses something is off. (${result.breakdown})`, 'success');
+      }
+      setAskTopic('');
+    };
+    const handleEmotionalEvent = (npcIdx, eventKey) => {
+      const updated = [...npcAttitudeState.trackedNPCs];
+      const targetNPC = updated[npcIdx];
+      const targetName = targetNPC.name;
+      const pcName = party[0]?.name || 'the party';
+
+      // Memory type mapping
+      const memTypeMap = {
+        party_saved_life: 'saved_life', party_helped: 'helped', party_broke_promise: 'promise_broken',
+        party_caught_lying: 'caught_lying', party_stole: 'stole_from', party_threatened: 'threatened',
+        party_insulted: 'insulted', party_kept_promise: 'promise_kept', party_complimented: 'helped',
+      };
+
+      // Gather all NPC names present (all tracked NPCs, simplified — in a real scene you'd filter by location)
+      const presentNames = updated.map(n => n.name);
+
+      // Collect all relationship data from all NPCs
+      const allRelationships = updated.flatMap(n => (n.relationships || []).map(r => ({ ...r, sourceName: r.sourceName || n.name })));
+
+      // Propagate the event across all NPCs
+      const propagationResults = propagateEvent(updated, targetName, eventKey, {
+        presentNPCNames: presentNames,
+        relationships: allRelationships,
+        settlementSize: 'town',
+        hoursElapsed: 0,  // Immediate — witnesses only, gossip comes later
+        timestamp: new Date().toISOString(),
+        detected: eventDetected,
+      });
+
+      // Apply results to each NPC
+      for (const res of propagationResults) {
+        const idx = updated.findIndex(n => n.name === res.npcName);
+        if (idx === -1) continue;
+
+        // Deferred (concealable, undetected): persist the queued event but
+        // do NOT apply mood/trust/memory/knowledge.
+        if (res.deferred) {
+          const npc = { ...updated[idx], emotionalState: res.emotionalState };
+          updated[idx] = npc;
+          addLog?.(
+            `🕵️ ${npc.name} hasn't noticed the ${eventKey.replace(/_/g, ' ')} yet — queued for discovery.`,
+            'info'
+          );
+          continue;
+        }
+
+        if (!res.applied) continue;
+
+        const npc = { ...updated[idx] };
+        npc.emotionalState = res.emotionalState;
+
+        // Record memory for direct/witnessed
+        if (res.scope === 'direct' || (res.scope === 'witnessed' && Math.abs(res.trustDelta) >= 5)) {
+          const memType = memTypeMap[eventKey] || 'helped';
+          const memDetail = res.scope === 'direct'
+            ? `${eventKey.replace(/_/g, ' ')} — direct`
+            : `Witnessed: ${eventKey.replace(/_/g, ' ')} involving ${targetName}`;
+          const memResult = recordMemory(npc, memType, memDetail, { pcName });
+          if (memResult.memory) {
+            const scaledMem = { ...memResult.memory, trustImpact: res.trustDelta };
+            npc.memories = [...(npc.memories || []), scaledMem];
+          }
+        }
+
+        // Convert event into knowledge
+        const knowledgeEntry = eventToKnowledge(eventKey, targetName, res.scope);
+        npc.knowledge = [...(npc.knowledge || []), knowledgeEntry];
+
+        updated[idx] = npc;
+
+        // Log for each affected NPC
+        const scopeLabel = res.scope === 'direct' ? '🎯' : res.scope === 'witnessed' ? '👁️' : '🗣️';
+        if (res.scope !== 'unaware') {
+          addLog?.(
+            `${scopeLabel} ${npc.name} [${res.scope}]: now ${res.emotionalState.mood} (${res.scaledIntensity})${res.trustDelta ? `, trust ${res.trustDelta > 0 ? '+' : ''}${res.trustDelta}` : ''}`,
+            res.trustDelta >= 0 ? 'info' : 'warning'
+          );
+        }
+      }
+
+      setNpcAttitudeState(prev => ({ ...prev, trackedNPCs: updated }));
+
+      // Queue a pending gossip entry so the event can continue spreading
+      // during Advance Time. Private events don't gossip; undetected
+      // concealable events produce no gossip (only the target knows).
+      const eventDef = EMOTIONAL_EVENTS[eventKey];
+      const visibility = eventDef?.visibility || 'private';
+      const concealable = CONCEALABLE_EVENTS.has(eventKey);
+      if (visibility !== 'private' && !(concealable && !eventDetected)) {
+        const reachedNames = propagationResults
+          .filter(r => r.scope !== 'unaware')
+          .map(r => r.npcName);
+        setPendingGossip(prev => [
+          ...prev,
+          {
+            eventKey,
+            targetName,
+            relationships: allRelationships,
+            hoursElapsed: 0,
+            reachedNPCs: reachedNames,
+            queuedAt: new Date().toISOString(),
+          },
+        ]);
+      }
+    };
+    const handleDiscoverDeferred = (npcIdx, eventKey) => {
+      const updated = [...npcAttitudeState.trackedNPCs];
+      const npc = { ...updated[npcIdx] };
+      const result = discoverDeferredEvent(npc, eventKey, { timestamp: new Date().toISOString() });
+      if (!result.discovered) {
+        addLog?.(`No deferred ${eventKey} on ${npc.name}.`, 'warning');
+        return;
+      }
+      npc.emotionalState = result.emotionalState;
+      const memResult = recordMemory(npc, eventKey === 'party_stole' ? 'stole_from' : eventKey === 'party_caught_lying' ? 'caught_lying' : 'promise_broken', `Discovered: ${eventKey.replace(/_/g, ' ')}`, { pcName: party[0]?.name || 'the party' });
+      if (memResult.memory) {
+        npc.memories = [...(npc.memories || []), { ...memResult.memory, trustImpact: result.trustDelta }];
+      }
+      npc.knowledge = [...(npc.knowledge || []), eventToKnowledge(eventKey, npc.name, 'direct')];
+      updated[npcIdx] = npc;
+      setNpcAttitudeState(prev => ({ ...prev, trackedNPCs: updated }));
+      addLog?.(
+        `💥 ${npc.name} discovered the concealed ${eventKey.replace(/_/g, ' ')} — now ${result.emotionalState.mood} (${result.emotionalState.intensity}), trust ${result.trustDelta > 0 ? '+' : ''}${result.trustDelta}${result.amplified ? ' [betrayal!]' : ''}`,
+        'danger'
+      );
+    };
+    const handleAdvanceTime = () => {
+      if (npcAttitudeState.trackedNPCs.length === 0) {
+        addLog?.('No tracked NPCs to simulate.', 'warning');
+        return;
+      }
+      const hours = Math.max(1, Math.min(24 * 30, Number(advanceHours) || 24));
+      const sim = simulateElapsed(npcAttitudeState.trackedNPCs, hours, {
+        startTime: worldTime,
+        settlementSize: 'town',
+        pendingGossip,
+      });
+      setNpcAttitudeState(prev => ({ ...prev, trackedNPCs: sim.npcs }));
+      setWorldTime(sim.endTime);
+      setPendingGossip(sim.pendingGossip || []);
+
+      // Summarize the event log for the DM
+      const byKind = sim.events.reduce((acc, e) => {
+        acc[e.kind] = (acc[e.kind] || 0) + 1;
+        return acc;
+      }, {});
+      const summary = Object.entries(byKind).map(([k, v]) => `${v} ${k}`).join(', ') || 'quiet days';
+      addLog?.(`⏳ Advanced ${hours}h — ${summary}.`, 'info');
+
+      // Log notable events individually (goal completions, ambient with narrative)
+      sim.events
+        .filter(e => e.kind === 'goal_completed' || (e.kind === 'ambient' && e.narrative))
+        .slice(0, 10)
+        .forEach(e => {
+          if (e.kind === 'goal_completed') {
+            addLog?.(`🎯 ${e.npcName} completed their goal: ${e.detail}`, 'success');
+          } else {
+            addLog?.(`· ${e.narrative}`, 'info');
+          }
+        });
+    };
+    const handleAddSecret = (npcIdx) => {
+      if (!newSecretTopic) return;
+      const updated = [...npcAttitudeState.trackedNPCs];
+      const npc = { ...updated[npcIdx] };
+      npc.secrets = [...(npc.secrets || []), { topic: newSecretTopic, detail: newSecretDetail, severity: newSecretSeverity }];
+      updated[npcIdx] = npc;
+      setNpcAttitudeState(prev => ({ ...prev, trackedNPCs: updated }));
+      addLog?.(`📝 Added ${newSecretSeverity} secret for ${npc.name}: "${newSecretTopic}"`, 'info');
+      setNewSecretTopic('');
+      setNewSecretDetail('');
+      setNewSecretSeverity('medium');
+      setSecretTargetIdx(null);
     };
     const attitudeColors = { hostile: '#ff6b6b', unfriendly: '#ff9966', indifferent: '#8b949e', friendly: '#51cf66', helpful: '#ffd700' };
     return (
@@ -2249,21 +2522,151 @@ export default function WorldTab({ campaign, party, setParty, addLog, worldState
           <input style={{ ...styles.select, width: '50px' }} type="number" value={npcWis} onChange={e => setNPCWis(+e.target.value)} placeholder="WIS" />
           <button style={styles.btn} onClick={handleAddNPC}>Add NPC</button>
         </div>
+        {/* World clock & time advance */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '12px', alignItems: 'center', padding: '6px 10px', backgroundColor: '#2a2a4e', border: '1px solid rgba(126, 184, 218, 0.4)', borderRadius: '4px' }}>
+          <span style={{ fontSize: '11px', color: '#7eb8da' }}>🕰️ {new Date(worldTime).toLocaleString()}</span>
+          {pendingGossip.length > 0 && <span style={{ fontSize: '10px', color: '#ffd700' }} title="News still spreading — advance time to propagate">🗣️ {pendingGossip.length} rumor{pendingGossip.length > 1 ? 's' : ''} spreading</span>}
+          <input
+            type="number"
+            min={1}
+            max={720}
+            value={advanceHours}
+            onChange={e => setAdvanceHours(+e.target.value)}
+            style={{ ...styles.select, width: '60px' }}
+            title="Hours to advance"
+          />
+          <span style={{ fontSize: '10px', color: '#8b949e' }}>hours</span>
+          <button
+            style={{ ...styles.btn, borderColor: '#7eb8da', color: '#7eb8da' }}
+            onClick={handleAdvanceTime}
+            title="Simulate NPCs offscreen: schedules, goals, ambient events, gossip"
+          >
+            ⏩ Advance Time
+          </button>
+        </div>
         {npcAttitudeState.trackedNPCs.length === 0 ? (
           <div style={{ color: '#8b949e', fontStyle: 'italic' }}>No tracked NPCs. Add one above.</div>
         ) : (
           <div style={styles.grid}>
-            {npcAttitudeState.trackedNPCs.map((npc, i) => (
+            {npcAttitudeState.trackedNPCs.map((npc, i) => {
+              const tendencyColors = { honest: '#51cf66', evasive: '#ffd700', manipulative: '#ff9966', compulsive: '#ff6b6b' };
+              const moodColors = { calm: '#8b949e', happy: '#51cf66', angry: '#ff6b6b', afraid: '#c9a0dc', grief: '#7eb8da', desperate: '#ff9966', grateful: '#ffd700', suspicious: '#ff9966', embarrassed: '#c9a0dc', inspired: '#51cf66' };
+              const secretCount = (npc.secrets || []).length;
+              const mood = npc.emotionalState?.mood || 'calm';
+              const moodIntensity = npc.emotionalState?.intensity || 0;
+              const trustData = computeTrustScore(npc.memories || [], new Date().toISOString());
+              const trustTier = getTrustTier(trustData.trustScore);
+              const trustColors = { devoted: '#ffd700', trusted: '#51cf66', friendly: '#51cf66', neutral: '#8b949e', wary: '#ff9966', distrustful: '#ff6b6b', hostile: '#ff6b6b' };
+              return (
               <div key={i} style={styles.card}>
                 <div style={styles.value}>{npc.name}</div>
-                <div style={{ color: attitudeColors[npc.attitude] || '#8b949e', fontWeight: 'bold', textTransform: 'uppercase', fontSize: '11px' }}>{npc.attitude}</div>
-                <div style={{ fontSize: '10px' }}>Level {npc.level} | WIS {npc.wis}</div>
-                <div style={{ display: 'flex', gap: '4px', marginTop: '6px' }}>
+                {/* Status line: attitude, tendency, mood, trust */}
+                <div style={{ display: 'flex', gap: '6px', alignItems: 'center', flexWrap: 'wrap' }}>
+                  <span style={{ color: attitudeColors[npc.attitude] || '#8b949e', fontWeight: 'bold', textTransform: 'uppercase', fontSize: '11px' }}>{npc.attitude}</span>
+                  <span style={{ color: tendencyColors[npc.deceptionTendency] || '#8b949e', fontSize: '10px', fontStyle: 'italic' }}>
+                    {npc.deceptionTendency || 'honest'}
+                  </span>
+                  {mood !== 'calm' && <span style={{ fontSize: '10px', color: moodColors[mood] || '#8b949e' }}>
+                    {mood} ({moodIntensity})
+                  </span>}
+                  <span style={{ fontSize: '10px', color: trustColors[trustTier.tier] || '#8b949e' }}>
+                    🤝 {trustTier.label} ({trustData.trustScore})
+                  </span>
+                  {secretCount > 0 && <span style={{ fontSize: '10px', color: '#ff6b6b' }}>🤫 {secretCount}</span>}
+                </div>
+                <div style={{ fontSize: '10px' }}>Level {npc.level} | WIS {npc.wis}{npc.goal ? ` | Goal: ${npc.goal.description}${npc.goal.progress != null ? ` (${Math.round(npc.goal.progress)}%)` : ''}` : ''}</div>
+                {(npc.currentActivity || npc.currentLocation) && (
+                  <div style={{ fontSize: '10px', color: '#7eb8da' }}>
+                    Currently: {npc.currentActivity || getNPCActivityAtHour(npc, new Date(worldTime).getHours()).activity}
+                    {npc.currentLocation ? ` @ ${npc.currentLocation}` : ''}
+                  </div>
+                )}
+                {/* Social skill buttons */}
+                <div style={{ display: 'flex', gap: '4px', marginTop: '6px', flexWrap: 'wrap' }}>
                   <button style={{ ...styles.btn, fontSize: '10px', padding: '2px 6px' }} onClick={() => handleDiplomacy(i)}>Diplomacy</button>
                   <button style={{ ...styles.btn, fontSize: '10px', padding: '2px 6px' }} onClick={() => handleIntimidate(i)}>Intimidate</button>
+                  <button style={{ ...styles.btn, fontSize: '10px', padding: '2px 6px', borderColor: '#c9a0dc', color: '#c9a0dc' }} onClick={() => handleBluff(i)}>Bluff</button>
+                  <button style={{ ...styles.btn, fontSize: '10px', padding: '2px 6px', borderColor: '#e07070', color: '#e07070' }} onClick={() => handleNPCBluff(i)}>NPC Lies</button>
+                  <button style={{ ...styles.btn, fontSize: '10px', padding: '2px 6px', borderColor: '#7eb8da', color: '#7eb8da' }} onClick={() => handleSecretMessage(i)}>Secret Msg</button>
+                </div>
+                {/* Ask About — triggers shouldNPCDeceive */}
+                <div style={{ display: 'flex', gap: '4px', marginTop: '4px' }}>
+                  <input style={{ ...styles.select, flex: 1, fontSize: '10px', padding: '2px 4px' }} placeholder="Ask about..." value={askTopic} onChange={e => setAskTopic(e.target.value)} onKeyDown={e => e.key === 'Enter' && handleAskAbout(i, askTopic)} />
+                  <button style={{ ...styles.btn, fontSize: '10px', padding: '2px 6px', borderColor: '#9ecfff', color: '#9ecfff' }} onClick={() => handleAskAbout(i, askTopic)}>Ask</button>
+                </div>
+                {/* Emotional events */}
+                <div style={{ display: 'flex', gap: '3px', marginTop: '4px', flexWrap: 'wrap', alignItems: 'center' }}>
+                  <label style={{ fontSize: '9px', color: eventDetected ? '#51cf66' : '#ff9966', whiteSpace: 'nowrap', cursor: 'pointer' }} title="If unchecked, concealable events (theft, lying, broken promises) are deferred until the NPC discovers them.">
+                    <input type="checkbox" checked={eventDetected} onChange={e => setEventDetected(e.target.checked)} style={{ marginRight: '2px' }} />
+                    {eventDetected ? 'noticed' : 'concealed'}
+                  </label>
+                  <select style={{ ...styles.select, flex: 1, fontSize: '9px', padding: '1px 3px' }} defaultValue="" onChange={e => { if (e.target.value) { handleEmotionalEvent(i, e.target.value); e.target.value = ''; } }}>
+                    <option value="" disabled>Trigger event...</option>
+                    <optgroup label="Positive">
+                      {['party_saved_life', 'party_helped', 'party_complimented', 'party_kept_promise', 'received_good_news', 'inspired_by_speech'].map(e => (
+                        <option key={e} value={e}>{e.replace(/_/g, ' ')}</option>
+                      ))}
+                    </optgroup>
+                    <optgroup label="Negative">
+                      {['party_broke_promise', 'party_threatened', 'party_insulted', 'party_stole', 'party_caught_lying', 'witnessed_violence', 'lost_loved_one', 'lost_property', 'was_embarrassed'].map(e => (
+                        <option key={e} value={e}>{e.replace(/_/g, ' ')}</option>
+                      ))}
+                    </optgroup>
+                    <optgroup label="Situational">
+                      {['under_pressure', 'discovered_betrayal'].map(e => (
+                        <option key={e} value={e}>{e.replace(/_/g, ' ')}</option>
+                      ))}
+                    </optgroup>
+                  </select>
+                </div>
+                {/* Deferred (concealed) events awaiting discovery */}
+                {(npc.emotionalState?.deferredEvents || []).length > 0 && (
+                  <div style={{ marginTop: '4px', padding: '3px 5px', backgroundColor: 'rgba(255, 107, 107, 0.1)', border: '1px dashed #ff6b6b', borderRadius: '3px' }}>
+                    <div style={{ fontSize: '9px', color: '#ff9966', marginBottom: '2px' }}>🕵️ Concealed (not yet noticed):</div>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '3px' }}>
+                      {(npc.emotionalState.deferredEvents).map((d, di) => (
+                        <button key={di} style={{ ...styles.btn, fontSize: '9px', padding: '1px 5px', borderColor: '#ff6b6b', color: '#ff6b6b' }} onClick={() => handleDiscoverDeferred(i, d.eventKey)} title="Apply the concealed event now — the NPC discovers what happened.">
+                          discover {d.eventKey.replace(/_/g, ' ')}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {/* Behavioral tells (visible flavor text) */}
+                {(() => {
+                  const tells = getBehavioralTells(npc, { isDeceiving: false, isUnderPressure: mood === 'desperate' || mood === 'afraid' });
+                  return tells.length > 0 ? (
+                    <div style={{ fontSize: '9px', color: '#a89e8c', fontStyle: 'italic', marginTop: '3px' }}>
+                      {tells.join('; ')}
+                    </div>
+                  ) : null;
+                })()}
+                {/* Add Secret toggle */}
+                <div style={{ marginTop: '4px' }}>
+                  <button style={{ ...styles.btn, fontSize: '9px', padding: '1px 4px', borderColor: '#666', color: '#888' }} onClick={() => setSecretTargetIdx(secretTargetIdx === i ? null : i)}>
+                    {secretTargetIdx === i ? '▾ Hide Secrets' : '▸ Secrets'}
+                  </button>
+                  {secretTargetIdx === i && (
+                    <div style={{ marginTop: '4px', padding: '4px', border: '1px solid #333', borderRadius: '4px', background: '#1a1a2e' }}>
+                      {(npc.secrets || []).map((s, si) => (
+                        <div key={si} style={{ fontSize: '9px', color: '#ccc', marginBottom: '2px' }}>
+                          <span style={{ color: { low: '#51cf66', medium: '#ffd700', high: '#ff9966', critical: '#ff6b6b' }[s.severity] || '#8b949e' }}>[{s.severity}]</span> {s.topic}{s.detail ? `: ${s.detail}` : ''}
+                        </div>
+                      ))}
+                      <div style={{ display: 'flex', gap: '3px', marginTop: '4px', flexWrap: 'wrap' }}>
+                        <input style={{ ...styles.select, width: '70px', fontSize: '9px', padding: '1px 3px' }} placeholder="Topic" value={newSecretTopic} onChange={e => setNewSecretTopic(e.target.value)} />
+                        <input style={{ ...styles.select, flex: 1, fontSize: '9px', padding: '1px 3px' }} placeholder="Detail (optional)" value={newSecretDetail} onChange={e => setNewSecretDetail(e.target.value)} />
+                        <select style={{ ...styles.select, width: '65px', fontSize: '9px', padding: '1px 2px' }} value={newSecretSeverity} onChange={e => setNewSecretSeverity(e.target.value)}>
+                          {['low', 'medium', 'high', 'critical'].map(s => <option key={s} value={s}>{s}</option>)}
+                        </select>
+                        <button style={{ ...styles.btn, fontSize: '9px', padding: '1px 4px' }} onClick={() => handleAddSecret(i)}>+</button>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
         )}
         <div style={{ ...styles.subtitle, marginTop: '12px' }}>Attitude Reference</div>
@@ -2509,17 +2912,26 @@ export default function WorldTab({ campaign, party, setParty, addLog, worldState
       const char = party[charIdx];
       const result = dmTools.attemptSkillCheck(
         { ...skillChallengeState },
-        { name: char.name, skill_bonus: char.skills?.[skillName.toLowerCase()] || 0 },
+        { name: char.name, skill_bonus: getCharacterSkillTotal(char, skillName) },
         skillName,
         isPrimary
       );
       setSkillChallengeState(result.challenge);
-      addLog?.(`Skill Check: ${result.check.description}`, result.check.success ? 'success' : 'info');
+      addLog?.(`Skill Check: ${result.check.description}`, result.check.success ? 'success' : 'danger');
       if (result.challenge.resolved) {
         addLog?.(`Skill challenge ${result.challenge.result}!`, result.challenge.result === 'success' ? 'success' : 'danger');
       }
     };
-    const commonSkills = ['Diplomacy', 'Perception', 'Stealth', 'Knowledge', 'Bluff', 'Intimidate', 'Survival', 'Disable Device', 'Acrobatics'];
+    // Knowledge in PF1e is split into many sub-skills (Arcana, Local, etc.)
+    // and the bare label "Knowledge" is not a real skill — it would resolve
+    // to a 0 bonus and feel broken. Expand to the most commonly-rolled
+    // Knowledge subtypes so the GM can pick the right one for the situation.
+    const commonSkills = [
+      'Diplomacy', 'Perception', 'Stealth', 'Bluff', 'Intimidate',
+      'Survival', 'Disable Device', 'Acrobatics',
+      'Knowledge (Arcana)', 'Knowledge (Local)', 'Knowledge (Nature)',
+      'Knowledge (Religion)', 'Knowledge (Dungeoneering)',
+    ];
     return (
       <div>
         {!skillChallengeState ? (
@@ -2670,6 +3082,104 @@ export default function WorldTab({ campaign, party, setParty, addLog, worldState
               const result = dmTools.advanceTime(currentDay, currentHour, hours);
               updateWorld('currentDay', result.newDay);
               updateWorld('currentHour', result.newHour);
+
+              // Tick campaign (faction + NPC craft simulation + shop stocking)
+              if (campaign && typeof campaign === 'object') {
+                const tickResult = tickCampaign(campaign, hours);
+                const newCampaign = tickResult.campaign;
+                const events = tickResult.events || [];
+
+                // Persist updated campaign state (npcs, shops, factions, worldTime)
+                if (typeof setCampaign === 'function') {
+                  setCampaign(newCampaign);
+                }
+
+                // Resolve commissioned completions → deliver items to payer characters
+                const commissions = Array.isArray(newCampaign.worldState?.commissions)
+                  ? [...newCampaign.worldState.commissions]
+                  : [];
+                const craftCompletions = events.filter(
+                  (ev) => ev.type === 'craft' && ev.kind === 'complete',
+                );
+                for (const ev of craftCompletions) {
+                  const record = commissions.find(
+                    (r) => r && r.id === ev.projectId && r.status !== 'delivered',
+                  );
+                  if (!record) continue;
+                  // Deliver to payer
+                  const payer = party.find((p) => p.id === record.payerCharacterId);
+                  if (payer && typeof setParty === 'function') {
+                    const deliveredItem = {
+                      id: `${record.id}-item`,
+                      name: record.itemName,
+                      priceGP: record.priceGP,
+                      source: 'commission',
+                      commissionId: record.id,
+                    };
+                    setParty((prev) =>
+                      prev.map((p) =>
+                        p.id === payer.id
+                          ? { ...p, inventory: [...(p.inventory || []), deliveredItem] }
+                          : p,
+                      ),
+                    );
+                  }
+                  const idx = commissions.findIndex((r) => r.id === record.id);
+                  if (idx >= 0) {
+                    commissions[idx] = {
+                      ...record,
+                      status: 'delivered',
+                      deliveredAt: new Date().toISOString(),
+                    };
+                  }
+                }
+                if (craftCompletions.length > 0 && typeof setCampaign === 'function') {
+                  setCampaign((prev) =>
+                    prev
+                      ? {
+                          ...prev,
+                          worldState: { ...(prev.worldState || {}), commissions },
+                        }
+                      : prev,
+                  );
+                }
+
+                // Append craft and shop-stocked events to world event log
+                if (events.length > 0) {
+                  const craftEvents = events.filter(
+                    (ev) => ev.type === 'craft' || ev.type === 'shop-stocked',
+                  );
+                  if (craftEvents.length > 0) {
+                    const nowIso = new Date().toISOString();
+                    updateWorld('eventLog', (prev) => [
+                      ...(prev || []),
+                      ...craftEvents.map((ev) => ({ ...ev, at: nowIso })),
+                    ]);
+                  }
+                }
+              }
+
+              // Tick PC craft projects (downtime take-10). Runs independently of
+              // campaign/faction tick — PCs own their projects on `character.craftProjects`.
+              const pcWeeks = hoursToWeeks(hours);
+              if (pcWeeks > 0 && Array.isArray(party) && party.length > 0) {
+                const pcCraft = tickPCCrafters(party, pcWeeks, { take10: true });
+                if (typeof setParty === 'function') {
+                  setParty(pcCraft.party);
+                }
+                if (pcCraft.completions.length > 0) {
+                  for (const c of pcCraft.completions) {
+                    addLog?.(`${c.itemName} craft project completed${c.masterwork ? ' (masterwork)' : ''}!`, 'system');
+                  }
+                }
+                for (const ev of pcCraft.events) {
+                  if (ev.kind === 'material-loss') {
+                    const charName = party.find((p) => p.id === ev.characterId)?.name || 'A crafter';
+                    addLog?.(`${charName}: craft materials ruined (lost ${(ev.lossGP || 0).toFixed(1)} gp)`, 'system');
+                  }
+                }
+              }
+
               addLog?.(`Time advanced: ${hours < 24 ? hours + ' hours' : Math.floor(hours / 24) + ' days'}. Now day ${result.newDay}, ${result.newHour}:00`, 'system');
             }}>
               {hours < 24 ? `+${hours}h` : `+${Math.floor(hours / 24)}d`}
@@ -2752,7 +3262,7 @@ export default function WorldTab({ campaign, party, setParty, addLog, worldState
                       <div style={{ background: levelUp.shouldLevel ? '#51cf66' : '#ffd700', width: `${pct}%`, height: '100%', borderRadius: '4px', transition: 'width 0.3s' }} />
                     </div>
                     <div style={{ fontSize: '9px', color: '#8b949e', marginTop: '2px' }}>
-                      {track} track | HP: {c.currentHP || 0}/{c.maxHP || 0} | AC: {c.ac || 10}
+                      {track} track | HP: {c.currentHP || 0}/{getEffectiveMaxHP(c, { worldState })} | AC: {c.ac || 10}
                     </div>
                   </div>
                   {levelUp.shouldLevel && (

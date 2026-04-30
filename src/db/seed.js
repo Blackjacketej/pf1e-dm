@@ -95,12 +95,26 @@ export async function seedDatabase() {
       upgraded = true;
     }
 
-    // Always ensure campaign data is seeded
+    // Always re-sync campaign data from the bundled JSON.
+    //
+    // Bug #70 (2026-04-20): this used to only seed when the table was
+    // empty, which meant any new top-level field added to campaign-rotrl.json
+    // (e.g. Bug #39's `startPath`) never reached operators whose DB was
+    // seeded on an earlier build. Live repro: Tom's RotRL game landed at
+    // Turandarok Bridge instead of Cathedral Square because his stored
+    // campaign record pre-dated the `startPath` field and the sidecar saw
+    // `campaign.data.startPath === undefined`.
+    //
+    // Safe to always upsert because nothing else writes to campaignData —
+    // it's pure static reference. Runtime state lives in `adventure`.
+    // Dexie's put() is idempotent; the ~50KB JSON is cheap on boot.
     const campaignCount = await db.campaignData.count();
     if (campaignCount === 0) {
       console.log('[DB] Seeding campaign data...');
-      await db.campaignData.put(campaignRotrl);
+    } else {
+      console.log('[DB] Re-syncing campaign data from bundled JSON');
     }
+    await db.campaignData.put(campaignRotrl);
 
     if (upgraded) {
       console.log('[DB] Upgrade complete.');

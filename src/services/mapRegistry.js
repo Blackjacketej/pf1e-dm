@@ -352,6 +352,56 @@ export function getAllMaps() {
   return [...mapRegistry];
 }
 
+/**
+ * Resolve a location name to { mapId, poiId } — bridges the journal's
+ * name-based records to the map registry's structured POIs. Returns
+ * null if no map/POI can be matched.
+ *
+ * Strategy:
+ *   1. Find containing map via findMapForLocation
+ *   2. Inside that map, pick the POI whose label best matches the name
+ *      (exact case-insensitive, then contains, then token-overlap)
+ *   3. If the location IS the map itself (e.g. "Sandpoint" → sandpoint_town),
+ *      return { mapId, poiId: null } — journal card can still jump to the map.
+ */
+export function resolveMapPoiForLocation(locationName) {
+  if (!locationName) return null;
+  const needle = String(locationName).toLowerCase().trim();
+  const map = findMapForLocation(locationName);
+  if (!map) return null;
+
+  // If name matches the map itself, no specific POI to highlight
+  if (map.name && map.name.toLowerCase() === needle) {
+    return { mapId: map.id, poiId: null };
+  }
+
+  if (!Array.isArray(map.poi) || map.poi.length === 0) {
+    return { mapId: map.id, poiId: null };
+  }
+
+  // Exact label match (case-insensitive)
+  let poi = map.poi.find(p => (p.label || '').toLowerCase() === needle);
+  if (poi) return { mapId: map.id, poiId: poi.id };
+
+  // "The Rusty Dragon" → label "The Rusty Dragon"; also try stripping "the "
+  const stripped = needle.replace(/^the\s+/, '');
+  poi = map.poi.find(p => {
+    const l = (p.label || '').toLowerCase();
+    return l === stripped || l.replace(/^the\s+/, '') === stripped;
+  });
+  if (poi) return { mapId: map.id, poiId: poi.id };
+
+  // Contains match
+  poi = map.poi.find(p => {
+    const l = (p.label || '').toLowerCase();
+    return l.includes(needle) || needle.includes(l);
+  });
+  if (poi) return { mapId: map.id, poiId: poi.id };
+
+  // Fallback — no specific POI, just the map
+  return { mapId: map.id, poiId: null };
+}
+
 export default {
   getMap,
   getMapUrl,
@@ -363,6 +413,7 @@ export default {
   getTownMaps,
   getRegionMaps,
   findMapForLocation,
+  resolveMapPoiForLocation,
   getOverlandMap,
   getAllMaps,
 };

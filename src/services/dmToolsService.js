@@ -1,5 +1,7 @@
 import dmToolsData from '../data/dmToolsData.json';
 import { roll, rollDice } from '../utils/dice';
+import { resolveBluff, resolveSecretMessage } from '../utils/rulesEngine';
+import { getEmotionalModifiers } from './npcPersonality.js';
 
 // ══════════════════════════════════════════════════════════════════════════════
 // XP & ENCOUNTER BUILDING
@@ -415,30 +417,152 @@ export function attemptIntimidate(character, npc) {
 }
 
 /**
- * Attempt to Bluff
- * @param {object} character - { bluff }
- * @param {object} npc - { sense_motive }
- * @param {string} lieCircumstance - 'trivial', 'believable', 'unlikely', 'far_fetched'
- * @returns {object} { success, discovered, description }
+ * Attempt social Bluff (deception) — CRB pp. 90–92.
+ *
+ * Opposed check: character's Bluff vs NPC's Sense Motive, modified by
+ * plausibility, disposition, and optional circumstance modifiers.
+ *
+ * On failure by 5+, the NPC has a hostile reaction (CRB: "convinced you
+ * are trying to use it"). Attitude drops to hostile.
+ *
+ * @param {object} character  { name, bluff (total modifier) }
+ * @param {object} npc        { name, sense_motive, attitude, wis }
+ * @param {string} plausibility  'believable' | 'unlikely' | 'far-fetched' | 'impossible'
+ * @param {object} opts        { targetWantsToBelieve, drunk, proofBonus, retryPenalty }
+ * @returns {object} { success, hostileReaction, newAttitude, roll, bluffTotal, smTotal, breakdown, description }
  */
-export function attemptBluff(character, npc, lieCircumstance = 'believable') {
-  const bluffRules = dmToolsData.npcAttitudes?.bluffRules || {};
-  const dcMods = bluffRules.dcModifiers || {};
-  const baseDC = dcMods[lieCircumstance] || 10;
+export function attemptBluff(character, npc, plausibility = 'believable', opts = {}) {
+  const bluffRoll = rollDice('1d20');
+  const bluffTotal = bluffRoll + (character.bluff || 0);
 
-  const roll = rollDice('1d20');
-  const total = roll + (character.bluff || 0);
-  const success = total >= baseDC + (npc.sense_motive || 0);
+  // NPC Sense Motive: use explicit bonus or derive from Wis + half level (untrained default)
+  const smBonus = npc.sense_motive ?? Math.floor(((npc.wis || 10) - 10) / 2);
+  const smRoll = rollDice('1d20');
+  const smTotal = smRoll + smBonus;
+
+  const targetWants = opts.targetWantsToBelieve || 0;
+  const result = resolveBluff(bluffTotal, smTotal, plausibility, targetWants, {
+    drunk: opts.drunk || false,
+    proofBonus: opts.proofBonus || 0,
+    retryPenalty: opts.retryPenalty || 0,
+  });
+
+  // Attitude consequence: hostile reaction drops attitude to hostile
+  let newAttitude = npc.attitude || 'indifferent';
+  if (result.hostileReaction) {
+    newAttitude = 'hostile';
+  }
+
+  const pcName = character.name || 'Character';
+  const npcName = npc.name || 'NPC';
+  const description = result.success
+    ? `${pcName} successfully deceived ${npcName} with a ${plausibility} lie.`
+    : result.hostileReaction
+      ? `${pcName}'s lie was seen through badly — ${npcName} is now hostile!`
+      : `${pcName}'s lie was seen through by ${npcName}.`;
 
   return {
-    success,
-    discovered: !success,
-    roll,
-    total,
-    dc: baseDC + (npc.sense_motive || 0),
-    description: success
-      ? `Bluff succeeded! NPC believed the ${lieCircumstance} lie.`
-      : `Bluff failed! NPC saw through the lie and is now hostile.`,
+    success: result.success,
+    hostileReaction: result.hostileReaction,
+    discovered: !result.success,
+    newAttitude,
+    roll: bluffRoll,
+    bluffTotal,
+    smTotal,
+    breakdown: result.breakdown,
+    description,
+  };
+}
+
+/**
+ * Attempt to pass a secret message via Bluff — CRB p. 92.
+ *
+ * @param {object} sender    { name, bluff (total modifier) }
+ * @param {object} listener  { name, sense_motive }
+ * @param {string} complexity 'simple' (DC 15) | 'complex' (DC 20)
+ * @returns {object} { senderSucceeds, wrongMessageDelivered, intendedReadable, breakdown, description }
+ */
+export function attemptSecretMessage(sender, listener, complexity = 'simple') {
+  const bluffRoll = rollDice('1d20');
+  const bluffTotal = bluffRoll + (sender.bluff || 0);
+  const smRoll = rollDice('1d20');
+  const smBonus = listener.sense_motive ?? Math.floor(((listener.wis || 10) - 10) / 2);
+  const smTotal = smRoll + smBonus;
+
+  const result = resolveSecretMessage(bluffTotal, smTotal, complexity);
+
+  const sName = sender.name || 'Sender';
+  const lName = listener.name || 'Listener';
+  let description;
+  if (result.wrongMessageDelivered) {
+    description = `${sName} botched the secret message — the wrong meaning was conveyed to ${lName}!`;
+  } else if (!result.senderSucceeds) {
+    description = `${sName} failed to encode the message clearly.`;
+  } else if (result.intendedReadable) {
+    description = `${sName} passed a secret ${complexity} message to ${lName} successfully.`;
+  } else {
+    description = `${sName} encoded the message, but ${lName} couldn't decode it.`;
+  }
+
+  return {
+    ...result,
+    bluffRoll,
+    bluffTotal,
+    smTotal,
+    description,
+  };
+}
+
+/**
+ * NPC → PC bluff pathway: an NPC lies to the party — CRB pp. 90-92.
+ * The NPC rolls Bluff (using its stored bonus); the PC opposes with Sense Motive.
+ *
+ * @param {object} npc  { name, bluff (modifier), attitude }
+ * @param {object} pc   { name, sense_motive or senseMotive (modifier) }
+ * @param {string} plausibility  'believable' | 'unlikely' | 'far-fetched' | 'impossible'
+ * @param {object} opts  { targetWantsToBelieve, drunk, proofBonus }
+ * @returns {object} { success, hostileReaction, discovered, pcSuspects, breakdown, description, ... }
+ */
+export function attemptNPCBluff(npc, pc, plausibility = 'believable', opts = {}) {
+  // NPC Bluff roll
+  const bluffBonus = npc.bluff ?? npc.sense_motive ?? 0; // npc.bluff is explicit Bluff modifier
+  const npcBluffRoll = rollDice('1d20');
+  const bluffTotal = npcBluffRoll + (npc.bluff || 0);
+
+  // PC Sense Motive roll
+  const smBonus = pc.sense_motive ?? pc.senseMotive ?? Math.floor(((pc.wis || 10) - 10) / 2);
+  const smRoll = rollDice('1d20');
+  const smTotal = smRoll + smBonus;
+
+  const result = resolveBluff(bluffTotal, smTotal, plausibility, opts.targetWantsToBelieve || 0, {
+    drunk: opts.drunk || false,
+    proofBonus: opts.proofBonus || 0,
+    retryPenalty: opts.retryPenalty || 0,
+  });
+
+  const npcLabel = npc.name || 'The stranger';
+  const pcName = pc.name || 'you';
+
+  let description;
+  if (result.success) {
+    description = `${npcLabel} told ${pcName} a ${plausibility} lie — and ${pcName} believed it.`;
+  } else if (result.hostileReaction) {
+    description = `${pcName} saw through ${npcLabel}'s lie and is offended by the deception!`;
+  } else {
+    description = `${pcName} gets the feeling ${npcLabel} isn't being truthful.`;
+  }
+
+  return {
+    success: result.success,
+    hostileReaction: result.hostileReaction,
+    discovered: !result.success,
+    pcSuspects: !result.success && !result.hostileReaction,
+    npcBluffRoll,
+    bluffTotal,
+    smRoll,
+    smTotal,
+    breakdown: result.breakdown,
+    description,
   };
 }
 
@@ -461,23 +585,222 @@ export function getRequestDC(attitude, requestType) {
   };
 }
 
+// ══════════════════════════════════════════════════════════════════════════════
+// NPC DECEPTION PERSONALITY SYSTEM
+// ══════════════════════════════════════════════════════════════════════════════
+
+/**
+ * Deception tendency — how inclined the NPC is to lie or withhold.
+ *
+ *   honest       — Lies only when life/loved-ones are at stake.
+ *   evasive      — Dodges and deflects rather than outright lying.
+ *   manipulative — Lies strategically for personal/political gain.
+ *   compulsive   — Lies even when there's no clear benefit.
+ *
+ * Each tendency carries a base weight that feeds into shouldNPCDeceive().
+ */
+export const DECEPTION_TENDENCIES = {
+  honest:       { label: 'Honest',       baseWeight: 0,  description: 'Lies only under dire threat to self or loved ones.' },
+  evasive:      { label: 'Evasive',      baseWeight: 20, description: 'Prefers half-truths and deflection over outright lies.' },
+  manipulative: { label: 'Manipulative', baseWeight: 45, description: 'Lies strategically to advance personal or political goals.' },
+  compulsive:   { label: 'Compulsive',   baseWeight: 65, description: 'Lies frequently, even when truth would serve better.' },
+};
+
+/**
+ * Personality → deception tendency weighting.
+ * Existing personality strings from npcTracker map to likelihood of each tendency.
+ */
+const PERSONALITY_DECEPTION_MAP = {
+  cunning:      { honest: 5,  evasive: 25, manipulative: 55, compulsive: 15 },
+  secretive:    { honest: 10, evasive: 50, manipulative: 30, compulsive: 10 },
+  greedy:       { honest: 10, evasive: 20, manipulative: 55, compulsive: 15 },
+  paranoid:     { honest: 15, evasive: 45, manipulative: 25, compulsive: 15 },
+  kind:         { honest: 65, evasive: 25, manipulative: 5,  compulsive: 5  },
+  pious:        { honest: 55, evasive: 30, manipulative: 10, compulsive: 5  },
+  noble:        { honest: 50, evasive: 30, manipulative: 15, compulsive: 5  },
+  jovial:       { honest: 40, evasive: 30, manipulative: 15, compulsive: 15 },
+  gruff:        { honest: 40, evasive: 35, manipulative: 15, compulsive: 10 },
+  nervous:      { honest: 30, evasive: 40, manipulative: 10, compulsive: 20 },
+  boisterous:   { honest: 35, evasive: 15, manipulative: 20, compulsive: 30 },
+  melancholy:   { honest: 40, evasive: 40, manipulative: 10, compulsive: 10 },
+  stern:        { honest: 45, evasive: 35, manipulative: 15, compulsive: 5  },
+  'absent-minded': { honest: 50, evasive: 20, manipulative: 5, compulsive: 25 },
+  flirtatious:  { honest: 20, evasive: 25, manipulative: 35, compulsive: 20 },
+  sarcastic:    { honest: 30, evasive: 35, manipulative: 20, compulsive: 15 },
+  suspicious:   { honest: 25, evasive: 45, manipulative: 20, compulsive: 10 },
+};
+
+/**
+ * Pick a deception tendency based on personality weights.
+ * Falls back to a balanced distribution if personality is unknown.
+ */
+function rollDeceptionTendency(personality) {
+  const weights = PERSONALITY_DECEPTION_MAP[(personality || '').toLowerCase()]
+    || { honest: 30, evasive: 30, manipulative: 25, compulsive: 15 };
+  const total = Object.values(weights).reduce((a, b) => a + b, 0);
+  let r = Math.random() * total;
+  for (const [tendency, w] of Object.entries(weights)) {
+    r -= w;
+    if (r <= 0) return tendency;
+  }
+  return 'honest'; // fallback
+}
+
+/**
+ * Determine whether an NPC should attempt to deceive the party and with what
+ * plausibility / approach, given the conversational context.
+ *
+ * @param {object} npc   — full NPC object (with secrets, deceptionTendency, attitude, etc.)
+ * @param {string} topic — what the party is asking about (matched against npc.secrets[].topic)
+ * @param {object} opts  — { pcIntimidate: bool, pcDiplomacy: bool, pcInsight: bool }
+ * @returns {object} { willDeceive, approach, plausibility, reason, matchedSecret }
+ *
+ * approach values:
+ *   'lie'      — outright false statement (Bluff check)
+ *   'deflect'  — evasive non-answer (no check, but perceptive PCs may notice)
+ *   'omit'     — tells partial truth, hides the dangerous part (Bluff at +2 situational)
+ *   'truth'    — NPC tells the truth
+ */
+export function shouldNPCDeceive(npc, topic = '', opts = {}) {
+  if (!npc) return { willDeceive: false, approach: 'truth', plausibility: 'believable', reason: 'No NPC provided.' };
+
+  const tendency = npc.deceptionTendency || 'honest';
+  const tendencyData = DECEPTION_TENDENCIES[tendency] || DECEPTION_TENDENCIES.honest;
+  const attitude = (npc.attitude || 'indifferent').toLowerCase();
+  const intScore = npc.int ?? npc.abilities?.INT ?? 10;
+  const secrets = npc.secrets || [];
+
+  // ── 1. Find relevant secret ──
+  const topicLower = (topic || '').toLowerCase();
+  const matchedSecret = secrets.find(s => {
+    if (!s.topic) return false;
+    const sTopic = s.topic.toLowerCase();
+    return topicLower.includes(sTopic) || sTopic.includes(topicLower);
+  });
+
+  // ── 2. Base deception score (0–100) ──
+  let score = tendencyData.baseWeight;
+
+  // Secret relevance is the single biggest driver
+  if (matchedSecret) {
+    const severityBonus = { low: 10, medium: 25, high: 40, critical: 60 };
+    score += severityBonus[matchedSecret.severity] || 25;
+  } else if (tendency === 'compulsive') {
+    // Compulsive liars may lie even without a secret to protect
+    score += 10;
+  }
+  // No secret and not compulsive → strong pull toward truth
+  if (!matchedSecret && tendency !== 'compulsive') {
+    score = Math.min(score, 15);
+  }
+
+  // ── 3. Attitude modifier ──
+  const attitudeMod = {
+    hostile: 30,     // actively wants to mislead
+    unfriendly: 15,  // not inclined to help
+    indifferent: 0,
+    friendly: -15,   // disposed to be helpful
+    helpful: -30,    // strong pull toward honesty
+  };
+  score += attitudeMod[attitude] ?? 0;
+
+  // ── 4. Intelligence modifier — smarter NPCs are better at judging when to lie ──
+  if (intScore <= 5) {
+    // Very low Int: poor liars, less likely to attempt
+    score -= 15;
+  } else if (intScore >= 16) {
+    // High Int: better at crafting believable lies, more willing if strategic
+    if (tendency === 'manipulative') score += 10;
+  }
+
+  // ── 5. Emotional state modifier ──
+  const eMods = getEmotionalModifiers(npc.emotionalState);
+  score += eMods.deceptionMod;
+
+  // ── 6. Situational modifiers ──
+  if (opts.pcIntimidate) {
+    // Being intimidated can crack honest/evasive NPCs but makes manipulative ones dig in
+    if (tendency === 'honest' || tendency === 'evasive') score -= 20;
+    else score += 5;
+  }
+  if (opts.pcDiplomacy) {
+    // Successful diplomacy lowers deception inclination
+    score -= 15;
+  }
+
+  // ── 6. Clamp and decide ──
+  score = Math.max(0, Math.min(100, score));
+  const willDeceive = score >= 40;
+
+  // ── 7. Pick approach based on tendency + score ──
+  let approach = 'truth';
+  if (willDeceive) {
+    if (tendency === 'evasive' || (score < 55 && tendency !== 'compulsive')) {
+      approach = score >= 50 ? 'omit' : 'deflect';
+    } else {
+      approach = 'lie';
+    }
+  }
+
+  // ── 8. Plausibility — how believable is the lie? ──
+  let plausibility = 'believable';
+  if (willDeceive) {
+    if (matchedSecret?.severity === 'critical' || matchedSecret?.severity === 'high') {
+      // Big secrets are harder to cover convincingly
+      plausibility = intScore >= 14 ? 'believable' : 'unlikely';
+    }
+    if (tendency === 'compulsive' && !matchedSecret) {
+      // Pointless lies tend to be sloppy
+      plausibility = 'unlikely';
+    }
+    if (intScore <= 5) {
+      plausibility = 'far-fetched';
+    }
+  }
+
+  const reason = willDeceive
+    ? matchedSecret
+      ? `${tendency} NPC is hiding a ${matchedSecret.severity} secret about "${matchedSecret.topic}".`
+      : `${tendency} NPC is inclined to deceive (score ${score}).`
+    : matchedSecret
+      ? `Despite having a secret, ${tendency} NPC chooses honesty (score ${score}).`
+      : `${tendency} NPC has no reason to lie.`;
+
+  return { willDeceive, approach, plausibility, score, reason, matchedSecret: matchedSecret || null };
+}
+
 /**
  * Create NPC with attitude tracking
  * @param {string} name - NPC name
  * @param {string} attitude - Starting attitude
  * @param {number} level - NPC level/HD
  * @param {number} wis - Wisdom score
+ * @param {object} extra - Optional overrides: { personality, secrets, deceptionTendency, int, cha }
  * @returns {object} Complete NPC object
  */
-export function createTrackedNPC(name, attitude = 'indifferent', level = 1, wis = 10) {
+export function createTrackedNPC(name, attitude = 'indifferent', level = 1, wis = 10, extra = {}) {
+  const personality = extra.personality || '';
+  const deceptionTendency = extra.deceptionTendency || rollDeceptionTendency(personality);
+  const intScore = extra.int ?? 10;
+  const occupation = extra.occupation || '';
   return {
     name,
     attitude,
     level,
     hd: level,
     wis,
-    cha: 10,
+    cha: extra.cha ?? 10,
+    int: intScore,
     sense_motive: 0,
+    personality,
+    occupation,
+    deceptionTendency,
+    secrets: extra.secrets || [],
+    emotionalState: extra.emotionalState || { mood: 'calm', intensity: 0, setAt: null, recentEvents: [] },
+    memories: extra.memories || [],
+    goal: extra.goal || null,
+    knowledge: extra.knowledge || [],
+    relationships: extra.relationships || [],
     gear: [],
     attitudeHistory: [{ attitude, timestamp: new Date().toISOString() }],
     description: `${name} (${attitude}) - HD ${level}, WIS ${wis}`,
@@ -1059,7 +1382,9 @@ export function getPlanarHazardEffects(planeName, character) {
  */
 export function getMonth(monthIndex) {
   const monthIndex0 = monthIndex % 12;
-  const calendar = dmToolsData.calendarAndTimekeeping?.months || [];
+  // Bug #15 fix: data key is `golarionMonths`, not `months` — old lookup
+// always fell back to [] which made getMonth/advanceTime return 'Unknown'.
+const calendar = dmToolsData.calendarAndTimekeeping?.golarionMonths || [];
   const month = calendar[monthIndex0];
 
   if (!month) {
@@ -1106,7 +1431,9 @@ export function advanceTime(currentDay, currentHour, hoursToAdvance) {
     daysElapsed++;
   }
 
-  const calendar = dmToolsData.calendarAndTimekeeping?.months || [];
+  // Bug #15 fix: data key is `golarionMonths`, not `months` — old lookup
+// always fell back to [] which made getMonth/advanceTime return 'Unknown'.
+const calendar = dmToolsData.calendarAndTimekeeping?.golarionMonths || [];
   const daysInCurrentMonth = calendar[month]?.daysInMonth || 30;
 
   while (day > daysInCurrentMonth) {
@@ -1210,8 +1537,12 @@ export default {
   attemptDiplomacy,
   attemptIntimidate,
   attemptBluff,
+  attemptNPCBluff,
+  attemptSecretMessage,
   getRequestDC,
   createTrackedNPC,
+  DECEPTION_TENDENCIES,
+  shouldNPCDeceive,
   // Settlements
   generateSettlement,
   getSettlementStats,

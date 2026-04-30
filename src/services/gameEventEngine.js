@@ -17,6 +17,7 @@ import advancedService from './advancedService';
 import downtimeService from './downtimeService';
 import { roll, rollDice } from '../utils/dice';
 import { getEncumbranceLevel, getEncumbranceEffects, getCarryingCapacity } from '../utils/character';
+import { getEffectiveMaxHP } from '../utils/familiarEngine';
 
 // ══════════════════════════════════════════════════════════════════════════════
 // TRAVEL EVENTS — Fired each time the party moves overland
@@ -70,9 +71,22 @@ export function onTravelHour(ctx) {
     events.push({ type: 'rations', text: 'The party consumes rations for the day.', severity: 'info' });
   }
 
-  // 5. Visibility check for night travel
+  // 5. Visibility check for night travel — respect Darkvision / Low-Light Vision
   if (timeResult.newHour >= 21 || timeResult.newHour <= 5) {
-    events.push({ type: 'visibility', text: 'Traveling in darkness. Perception checks at -4 without darkvision.', severity: 'warning' });
+    const affectedMembers = party.filter(c => (c.visionType || 'normal') === 'normal');
+    const darkvisionMembers = party.filter(c => c.visionType === 'darkvision');
+    const lowLightMembers = party.filter(c => c.visionType === 'low-light');
+    if (affectedMembers.length === party.length) {
+      events.push({ type: 'visibility', text: 'Traveling in darkness. All party members have normal vision — Perception -4, melee miss chance 20%.', severity: 'warning' });
+    } else if (affectedMembers.length > 0) {
+      const names = affectedMembers.map(c => c.name).join(', ');
+      events.push({ type: 'visibility', text: `Traveling in darkness. ${names} lack darkvision — Perception -4 for them. ${darkvisionMembers.length} with darkvision, ${lowLightMembers.length} with low-light vision.`, severity: 'warning' });
+    } else {
+      const msg = darkvisionMembers.length === party.length
+        ? 'Traveling in darkness. All party members have darkvision — no penalties.'
+        : `Traveling in darkness. Party has darkvision/low-light vision — reduced penalties.`;
+      events.push({ type: 'visibility', text: msg, severity: 'info' });
+    }
   }
 
   // 6. Fatigue check if traveling more than 8 hours
@@ -89,7 +103,7 @@ export function onTravelHour(ctx) {
     const str = c.abilities?.STR || 10;
     const encLevel = getEncumbranceLevel(totalWeight, str);
     if (encLevel === 'heavy' || encLevel === 'overloaded') {
-      const effects = getEncumbranceEffects(encLevel);
+      const effects = getEncumbranceEffects(encLevel, c.race);
       events.push({ type: 'encumbrance', text: `${c.name} is ${encLevel} (${totalWeight} lbs). Speed ×${effects.speedMult}, check penalty ${effects.checkPenalty}.`, severity: 'warning' });
     }
   });
@@ -286,10 +300,13 @@ export function onRest(ctx) {
     party.forEach(c => {
       const level = c.level || 1;
       const recovery = level * hpPerNight;
-      const newHP = Math.min((c.maxHP || c.hp || 10), (c.currentHP || 0) + recovery);
+      // Phase 7.6 — cap natural rest healing at effective max (base + in-range
+      // familiar bonus). Falls back to raw hp if no base is set (legacy saves).
+      const effMax = getEffectiveMaxHP(c, { worldState }) || c.hp || 10;
+      const newHP = Math.min(effMax, (c.currentHP || 0) + recovery);
       if (newHP > (c.currentHP || 0)) {
         partyUpdates.push({ id: c.id, currentHP: newHP });
-        events.push({ type: 'heal', text: `${c.name} recovers ${recovery} HP (now ${newHP}/${c.maxHP || c.hp}).`, severity: 'heal' });
+        events.push({ type: 'heal', text: `${c.name} recovers ${recovery} HP (now ${newHP}/${effMax}).`, severity: 'heal' });
       }
     });
   }
@@ -1054,10 +1071,22 @@ export function eventsToLog(events) {
     sanity: 'warning', alignment: 'warning', trap: 'danger', haunt: 'danger',
     explore: 'info',
   };
-  return events.map(e => ({
-    text: e.text,
-    type: typeMap[e.type] || 'info',
-  }));
+  // Per-event severity takes precedence over the type default so callers
+  // that deliberately flag a specific outcome (e.g. light-out → 'danger',
+  // vision-update → 'info') aren't silently downgraded to the category map.
+  // Fall back to typeMap for events that don't set severity, then to 'info'.
+  const VALID_LOG_TYPES = new Set([
+    'narration', 'header', 'roll', 'success', 'danger', 'warning', 'npc',
+    'dialogue', 'loot', 'damage', 'system', 'heal', 'info', 'action', 'event',
+    'journal', 'critical', 'fumble',
+  ]);
+  return events.map(e => {
+    const sev = e.severity && VALID_LOG_TYPES.has(e.severity) ? e.severity : null;
+    return {
+      text: e.text,
+      type: sev || typeMap[e.type] || 'info',
+    };
+  });
 }
 
 

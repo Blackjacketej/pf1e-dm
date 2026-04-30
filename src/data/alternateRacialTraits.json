@@ -1,0 +1,682 @@
+{
+  "Human": [
+    {
+      "name": "Dual Talent",
+      "replaces": ["Bonus Feat", "Skilled"],
+      "description": "Some humans are uniquely skilled at maximizing their natural talents. These humans pick two ability scores and gain a +2 racial bonus in each. This replaces the bonus feat and skilled traits.",
+      "bonuses": { "choice2": 2 },
+      "penalties": {},
+      "grants": null,
+      "source": "APG"
+    },
+    {
+      "name": "Heart of the Fields",
+      "replaces": ["Skilled"],
+      "description": "Humans with strong ties to the land can ignore one Fatigue effect 1/day and gain +half their character level to one Craft or Profession skill.",
+      "bonuses": {},
+      "penalties": {},
+      "grants": "Ignore 1 Fatigue 1/day; +halfLevel to one Craft or Profession",
+      "source": "APG"
+    },
+    {
+      "name": "Heart of the Streets",
+      "replaces": ["Skilled"],
+      "description": "Urban humans gain +1 to Reflex saves and +1 to CMD against bull rush and trip attempts when in crowded areas.",
+      "bonuses": { "reflex": 1 },
+      "penalties": {},
+      "grants": "+1 CMD vs bull rush/trip in crowds",
+      "source": "APG"
+    },
+    {
+      "name": "Heart of the Wilderness",
+      "replaces": ["Skilled"],
+      "description": "Wilderness-adapted humans gain +half their character level to Survival checks and gain +5 to stabilize when dying.",
+      "bonuses": {},
+      "penalties": {},
+      "grants": "+halfLevel Survival; +5 to stabilize when dying",
+      "source": "APG"
+    },
+    {
+      "name": "Eye for Talent",
+      "replaces": ["Bonus Feat"],
+      "description": "These humans are adept at recognizing potential in animal companions and familiars. The human's animal companion or familiar gains a +2 bonus to one ability score of the human's choice.",
+      "bonuses": {},
+      "penalties": {},
+      "grants": "+2 to animal companion or familiar's chosen ability",
+      "source": "ARG"
+    },
+    {
+      "name": "Focused Study",
+      "replaces": ["Bonus Feat"],
+      "description": "Rather than gaining a bonus feat at 1st level, a human with this trait gains the Skill Focus feat in a skill of their choice. At 8th and 16th level, they can retrain their Skill Focus to a different skill.",
+      "bonuses": {},
+      "penalties": {},
+      "grants": "Skill Focus at 1st, 8th, and 16th levels",
+      "source": "APG"
+    },
+    {
+      "name": "Heroic",
+      "replaces": ["Skilled"],
+      "description": "Some humans are born heroes, blessed with the gift of inspiration. These humans gain 1 Hero Point at character creation and gain an additional Hero Point at each level.",
+      "bonuses": {},
+      "penalties": {},
+      "grants": "1 Hero Point per level",
+      "source": "APG"
+    },
+    {
+      "name": "Silver Tongued",
+      "replaces": ["Skilled"],
+      "description": "Humans with this trait gain +2 to Diplomacy and Bluff checks. They can shift a creature's attitude by up to 3 steps with a successful Diplomacy check (instead of the normal 1 step).",
+      "bonuses": { "diplomacy": 2, "bluff": 2 },
+      "penalties": {},
+      "grants": "Can shift attitude up to 3 steps with Diplomacy",
+      "source": "APG"
+    },
+    {
+      "name": "Adoptive Parentage",
+      "replaces": ["Bonus Feat"],
+      "description": "Humans adopted and raised by other races gain one racial trait from the foster parent's race as long as the human meets the prerequisites.",
+      "bonuses": {},
+      "penalties": {},
+      "grants": "One racial trait from another race",
+      "source": "APG"
+    },
+    {
+      "name": "Awareness",
+      "replaces": ["Bonus Feat"],
+      "description": "Humans with this trait gain +1 to Perception and Sense Motive checks. Both Perception and Sense Motive are always class skills for them.",
+      "bonuses": { "perception": 1, "sense_motive": 1 },
+      "penalties": {},
+      "grants": "Perception and Sense Motive are always class skills",
+      "source": "APG"
+    }
+  ],
+  "Dwarf": [
+    {
+      "name": "Deep Delver",
+      "replaces": ["Defensive Training"],
+      "description": "Dwarves with this trait gain +2 to Dungeoneering checks and can automatically determine how deep underground they are within 100 feet.",
+      "bonuses": { "dungeoneering": 2 },
+      "penalties": {},
+      "grants": "Automatically determine depth underground",
+      "source": "APG"
+    },
+    {
+      "name": "Giant Hunter",
+      "replaces": ["Defensive Training"],
+      "description": "These dwarves are specially trained in combat against giants. They gain +1 to attack rolls against creatures of Large or larger size and +2 dodge AC against such creatures.",
+      "bonuses": { "vs_giants_attack": 1 },
+      "penalties": {},
+      "grants": "+2 dodge AC vs Large or larger creatures",
+      "source": "APG"
+    },
+    {
+      "name": "Lorekeeper",
+      "replaces": ["Greed"],
+      "description": "Dwarven lorekeepers are repositories of ancient knowledge. They gain +2 to Knowledge (History) checks and can make Knowledge (History) checks untrained.",
+      "bonuses": { "knowledge_history": 2 },
+      "penalties": {},
+      "grants": "Can make Knowledge (History) checks untrained",
+      "source": "APG"
+    },
+    {
+      "name": "Craftsman",
+      "replaces": ["Greed"],
+      "description": "These dwarves are exceptional craftspeople. They gain +2 to Craft or Profession checks related to creating metal or stone objects.",
+      "bonuses": { "craft_metal_stone": 2, "profession_metal_stone": 2 },
+      "penalties": {},
+      "grants": null,
+      "source": "APG"
+    },
+    {
+      "name": "Rock Stepper",
+      "replaces": ["Stonecunning"],
+      "description": "Dwarves with this trait can ignore difficult terrain caused by rubble, loose stone, or uneven stone surfaces.",
+      "bonuses": {},
+      "penalties": {},
+      "grants": "Ignore rubble and stone difficult terrain",
+      "source": "APG"
+    },
+    {
+      "name": "Stubborn",
+      "replaces": ["Hardy"],
+      "description": "Dwarves with this trait gain +2 to Will saves against charm and compulsion effects. Additionally, they can reroll a failed saving throw against such effects once per day.",
+      "bonuses": { "will_charm_compulsion": 2 },
+      "penalties": {},
+      "grants": "Reroll failed save vs charm/compulsion 1/day",
+      "source": "APG"
+    },
+    {
+      "name": "Wyrmscourged",
+      "replaces": ["Hatred"],
+      "description": "These dwarves are experienced dragon slayers. They gain +1 to attack rolls against dragons and +2 to Perception checks to notice dragons and dragon-related traps.",
+      "bonuses": { "vs_dragons_attack": 1, "perception_dragons": 2 },
+      "penalties": {},
+      "grants": null,
+      "source": "APG"
+    },
+    {
+      "name": "Surface Survivalist",
+      "replaces": ["Darkvision"],
+      "description": "These dwarves have adapted to surface life. They have low-light vision instead of darkvision and gain +2 to Survival checks when on the surface.",
+      "bonuses": { "survival_surface": 2 },
+      "penalties": {},
+      "grants": "Low-light vision instead of darkvision",
+      "source": "ARG"
+    }
+  ],
+  "Elf": [
+    {
+      "name": "Arctic Elf",
+      "replaces": ["Keen Senses"],
+      "description": "Elves adapted to arctic environments gain +2 to Perception checks in snow and ice conditions and gain cold resistance 5.",
+      "bonuses": { "perception_cold": 2 },
+      "penalties": {},
+      "grants": "Cold resistance 5",
+      "source": "APG"
+    },
+    {
+      "name": "Desert Runner",
+      "replaces": ["Elven Magic"],
+      "description": "Desert elves gain +4 to Constitution checks to resist the effects of a hot environment and suffer fatigue one step less (fatigued instead of exhausted, or nothing instead of fatigued).",
+      "bonuses": { "constitution_heat": 4 },
+      "penalties": {},
+      "grants": "Fatigue effects reduced one step",
+      "source": "APG"
+    },
+    {
+      "name": "Woodlands Elf",
+      "replaces": ["Keen Senses"],
+      "description": "Elves of the deep forests gain +4 to Stealth checks when in a forest environment.",
+      "bonuses": { "stealth_forest": 4 },
+      "penalties": {},
+      "grants": null,
+      "source": "APG"
+    },
+    {
+      "name": "Dreamspeaker",
+      "replaces": ["Elven Immunities"],
+      "description": "These elves gain +1 to the DC of divination spells they cast. At 15th level, they can cast dream once per day.",
+      "bonuses": {},
+      "penalties": {},
+      "grants": "+1 DC divination spells; dream 1/day at 15th level",
+      "source": "APG"
+    },
+    {
+      "name": "Envoy",
+      "replaces": ["Elven Magic"],
+      "description": "Diplomatic elves gain +1 to Bluff, Diplomacy, and Knowledge (Nobility) checks. They can use spells with the charm descriptor to affect animals as though they were humanoids.",
+      "bonuses": { "bluff": 1, "diplomacy": 1, "knowledge_nobility": 1 },
+      "penalties": {},
+      "grants": "Charm spells affect animals",
+      "source": "APG"
+    },
+    {
+      "name": "Fleet-Footed",
+      "replaces": ["Keen Senses"],
+      "description": "These elves gain the Run feat as a bonus feat. Additionally, they gain +2 to initiative checks.",
+      "bonuses": { "initiative": 2 },
+      "penalties": {},
+      "grants": "Run feat",
+      "source": "APG"
+    },
+    {
+      "name": "Lightbringer",
+      "replaces": ["Elven Immunities"],
+      "description": "Elves devoted to light magic gain +1 to the caster level of their light-based spells and gain +1 to turn undead checks.",
+      "bonuses": {},
+      "penalties": {},
+      "grants": "+1 CL for light spells; +1 turn undead",
+      "source": "APG"
+    },
+    {
+      "name": "Silent Hunter",
+      "replaces": ["Elven Magic"],
+      "description": "Forest-dwelling elves gain +2 to Perception checks in forest environments and reduce the Stealth penalty for moving at normal speed by 5.",
+      "bonuses": { "perception_forest": 2 },
+      "penalties": {},
+      "grants": "Stealth penalty for movement reduced by 5",
+      "source": "APG"
+    }
+  ],
+  "Gnome": [
+    {
+      "name": "Pyromaniac",
+      "replaces": ["Gnome Magic", "Illusion Resistance"],
+      "description": "These gnomes are obsessed with fire magic. They gain +1 to the caster level of fire spells and can cast dancing lights, flare, prestidigitation, and produce flame as spell-like abilities.",
+      "bonuses": {},
+      "penalties": {},
+      "grants": "+1 CL fire spells; dancing lights, flare, prestidigitation, produce flame 1/day each",
+      "source": "APG"
+    },
+    {
+      "name": "Fell Magic",
+      "replaces": ["Gnome Magic"],
+      "description": "Dark-minded gnomes gain +1 to the DC of necromancy spells they cast. They can cast bleed, chill touch, detect poison, and touch of fatigue as spell-like abilities.",
+      "bonuses": {},
+      "penalties": {},
+      "grants": "+1 DC necromancy spells; bleed, chill touch, detect poison, touch of fatigue 1/day each",
+      "source": "APG"
+    },
+    {
+      "name": "Eternal Hope",
+      "replaces": ["Defensive Training", "Hatred"],
+      "description": "Optimistic gnomes gain +2 to saving throws against fear effects. Additionally, once per day they can reroll a natural 1 on any d20 roll they just made.",
+      "bonuses": { "saves_fear": 2 },
+      "penalties": {},
+      "grants": "Reroll natural 1 on any d20 1/day",
+      "source": "APG"
+    },
+    {
+      "name": "Nosophobia",
+      "replaces": ["Obsessive"],
+      "description": "Disease-wary gnomes gain +4 to saving throws against disease. They can reroll a failed saving throw against a disease once per day.",
+      "bonuses": { "saves_disease": 4 },
+      "penalties": {},
+      "grants": "Reroll failed disease save 1/day",
+      "source": "APG"
+    },
+    {
+      "name": "Gift of Tongues",
+      "replaces": ["Defensive Training", "Hatred"],
+      "description": "Linguistically gifted gnomes gain +1 to Bluff and Diplomacy checks. They can learn a new language after spending 1 week of continuous interaction with a new culture.",
+      "bonuses": { "bluff": 1, "diplomacy": 1 },
+      "penalties": {},
+      "grants": "Learn new language after 1 week",
+      "source": "APG"
+    },
+    {
+      "name": "Master Tinker",
+      "replaces": ["Obsessive"],
+      "description": "Masterful gnome crafters gain +1 to Disable Device and Knowledge (Engineering) checks. They are proficient with any weapon they craft themselves.",
+      "bonuses": { "disable_device": 1, "knowledge_engineering": 1 },
+      "penalties": {},
+      "grants": "Proficiency with self-crafted weapons",
+      "source": "APG"
+    }
+  ],
+  "Halfling": [
+    {
+      "name": "Fleet of Foot",
+      "replaces": ["Sure-Footed"],
+      "description": "These halflings are remarkably swift. Their base speed increases to 30 feet instead of the normal 20 feet.",
+      "bonuses": { "speed": 10 },
+      "penalties": {},
+      "grants": null,
+      "source": "APG"
+    },
+    {
+      "name": "Warslinger",
+      "replaces": ["Sure-Footed"],
+      "description": "Halfling slingers can reload their slings as a free action instead of a move action.",
+      "bonuses": {},
+      "penalties": {},
+      "grants": "Reload sling as free action",
+      "source": "APG"
+    },
+    {
+      "name": "Underfoot",
+      "replaces": ["Halfling Luck"],
+      "description": "These halflings are experts at staying out of larger foes' way. They gain +1 dodge AC against Large or larger creatures and +1 to Acrobatics checks to move through threatened squares.",
+      "bonuses": { "acrobatics": 1 },
+      "penalties": {},
+      "grants": "+1 dodge AC vs Large or larger foes",
+      "source": "APG"
+    },
+    {
+      "name": "Outrider",
+      "replaces": ["Sure-Footed"],
+      "description": "Mounted halflings gain +2 to Handle Animal and Ride checks.",
+      "bonuses": { "handle_animal": 2, "ride": 2 },
+      "penalties": {},
+      "grants": null,
+      "source": "APG"
+    },
+    {
+      "name": "Adaptable Luck",
+      "replaces": ["Halfling Luck"],
+      "description": "These halflings' luck is more flexible. Three times per day, they can add +2 luck bonus to any ability check, skill check, or saving throw they just made.",
+      "bonuses": {},
+      "penalties": {},
+      "grants": "+2 luck bonus to check/skill/save 3/day",
+      "source": "APG"
+    },
+    {
+      "name": "Polyglot",
+      "replaces": ["Keen Senses"],
+      "description": "Linguistically skilled halflings gain +2 to Linguistics checks. They start with one bonus language per point of Intelligence modifier.",
+      "bonuses": { "linguistics": 2 },
+      "penalties": {},
+      "grants": "One bonus language per INT modifier",
+      "source": "ARG"
+    }
+  ],
+  "Half-Elf": [
+    {
+      "name": "Ancestral Arms",
+      "replaces": ["Adaptability"],
+      "description": "Half-elves with strong ties to their heritage gain proficiency with one martial or exotic weapon of their choice.",
+      "bonuses": {},
+      "penalties": {},
+      "grants": "Proficiency with one martial or exotic weapon",
+      "source": "APG"
+    },
+    {
+      "name": "Dual Minded",
+      "replaces": ["Adaptability"],
+      "description": "These half-elves' mixed heritage grants them exceptional willpower. They gain +2 to Will saves.",
+      "bonuses": { "will": 2 },
+      "penalties": {},
+      "grants": null,
+      "source": "APG"
+    },
+    {
+      "name": "Water Child",
+      "replaces": ["Adaptability"],
+      "description": "Half-elves raised near water gain +4 to Swim checks and can hold their breath for additional rounds equal to their Constitution modifier.",
+      "bonuses": { "swim": 4 },
+      "penalties": {},
+      "grants": "Hold breath extra rounds equal to CON modifier",
+      "source": "APG"
+    },
+    {
+      "name": "Integrated",
+      "replaces": ["Adaptability"],
+      "description": "Half-elves who move between cultures gain +1 to Bluff, Disguise, and Knowledge (Local) checks.",
+      "bonuses": { "bluff": 1, "disguise": 1, "knowledge_local": 1 },
+      "penalties": {},
+      "grants": null,
+      "source": "APG"
+    },
+    {
+      "name": "Sociable",
+      "replaces": ["Adaptability"],
+      "description": "Charismatic half-elves gain a unique ability: when a Diplomacy check fails, they can attempt the check again as an immediate action with a -5 penalty.",
+      "bonuses": {},
+      "penalties": {},
+      "grants": "Retry failed Diplomacy as immediate action at -5",
+      "source": "APG"
+    }
+  ],
+  "Half-Orc": [
+    {
+      "name": "Shaman's Apprentice",
+      "replaces": ["Intimidating"],
+      "description": "Half-orcs trained in shamanic traditions gain the Endurance feat as a bonus feat.",
+      "bonuses": {},
+      "penalties": {},
+      "grants": "Endurance feat",
+      "source": "APG"
+    },
+    {
+      "name": "Toothy",
+      "replaces": ["Orc Ferocity"],
+      "description": "These half-orcs have prominent tusks that serve as a weapon. They gain a bite attack that deals 1d4 damage.",
+      "bonuses": {},
+      "penalties": {},
+      "grants": "Bite attack 1d4",
+      "source": "APG"
+    },
+    {
+      "name": "Sacred Tattoo",
+      "replaces": ["Orc Ferocity"],
+      "description": "Half-orcs marked with sacred tattoos gain +1 luck bonus to all saving throws.",
+      "bonuses": { "saves": 1 },
+      "penalties": {},
+      "grants": null,
+      "source": "APG"
+    },
+    {
+      "name": "Skilled",
+      "replaces": ["Darkvision"],
+      "description": "Some half-orcs gain an additional skill rank per level (like humans), instead of having darkvision.",
+      "bonuses": { "skill_ranks": 1 },
+      "penalties": {},
+      "grants": null,
+      "source": "APG"
+    },
+    {
+      "name": "Cavewight",
+      "replaces": ["Intimidating"],
+      "description": "Underground-dwelling half-orcs gain +1 to Knowledge (Dungeoneering) and Survival checks made underground.",
+      "bonuses": { "knowledge_dungeoneering_underground": 1, "survival_underground": 1 },
+      "penalties": {},
+      "grants": null,
+      "source": "APG"
+    },
+    {
+      "name": "Scavenger",
+      "replaces": ["Intimidating"],
+      "description": "Half-orcs with keen senses gain +2 to Appraise and Perception checks made to find hidden objects and treasures.",
+      "bonuses": { "appraise_hidden": 2, "perception_hidden": 2 },
+      "penalties": {},
+      "grants": null,
+      "source": "APG"
+    }
+  ],
+  "Catfolk": [
+    {
+      "name": "Climber",
+      "replaces": ["Sprinter"],
+      "description": "These catfolk are natural climbers. They gain a 20-foot climb speed instead of the increased land speed.",
+      "bonuses": {},
+      "penalties": { "speed": -10 },
+      "grants": "20 ft climb speed",
+      "source": "ARG"
+    },
+    {
+      "name": "Curiosity",
+      "replaces": ["Natural Hunter"],
+      "description": "Inquisitive catfolk gain +4 to Diplomacy checks to gather information and +1 to Knowledge (History) and Knowledge (Local) checks.",
+      "bonuses": { "diplomacy_gather": 4, "knowledge_history": 1, "knowledge_local": 1 },
+      "penalties": {},
+      "grants": null,
+      "source": "ARG"
+    },
+    {
+      "name": "Nimble Faller",
+      "replaces": ["Sprinter"],
+      "description": "These catfolk always land on their feet. They take no falling damage from falls of 20 feet or less and treat all falls as if 20 feet shorter than actual.",
+      "bonuses": {},
+      "penalties": {},
+      "grants": "Reduce falling damage 20 ft; always land on feet",
+      "source": "ARG"
+    }
+  ],
+  "Kitsune": [
+    {
+      "name": "Fast Shifter",
+      "replaces": ["Kitsune Magic"],
+      "description": "These kitsune can change their shape as a move action instead of a standard action, allowing them to shift and act in the same round.",
+      "bonuses": {},
+      "penalties": {},
+      "grants": "Shape change as move action",
+      "source": "ARG"
+    },
+    {
+      "name": "Keen Kitsune",
+      "replaces": ["Agile"],
+      "description": "Intellectually gifted kitsune gain +2 to Intelligence instead of +2 to Dexterity.",
+      "bonuses": { "intelligence": 2 },
+      "penalties": { "dexterity": -2 },
+      "grants": null,
+      "source": "ARG"
+    },
+    {
+      "name": "Gregarious",
+      "replaces": ["Kitsune Magic"],
+      "description": "Socially adept kitsune gain +2 to Diplomacy checks. When they succeed at a Diplomacy check, the target becomes friendly for 24 hours instead of the normal duration.",
+      "bonuses": { "diplomacy": 2 },
+      "penalties": {},
+      "grants": "Make target friendly for 24 hours with successful Diplomacy",
+      "source": "ARG"
+    }
+  ],
+  "Tengu": [
+    {
+      "name": "Glide",
+      "replaces": ["Gifted Linguist"],
+      "description": "These tengu can glide on air currents. They take no falling damage from any distance and can glide, moving 5 feet forward for every 20 feet they fall.",
+      "bonuses": {},
+      "penalties": {},
+      "grants": "No fall damage; glide 5 ft per 20 ft fallen",
+      "source": "ARG"
+    },
+    {
+      "name": "Claw Attack",
+      "replaces": ["Swordtrained"],
+      "description": "Tengu with this trait have prominent claws. They gain two claw attacks that deal 1d3 damage each. They do not lose proficiency with simple weapons.",
+      "bonuses": {},
+      "penalties": {},
+      "grants": "Two claw attacks 1d3 each",
+      "source": "ARG"
+    },
+    {
+      "name": "Carrion Sense",
+      "replaces": ["Gifted Linguist"],
+      "description": "These tengu have exceptional senses for death. They gain scent ability, but only for corpses and dying creatures within 15 feet.",
+      "bonuses": {},
+      "penalties": {},
+      "grants": "Scent for corpses and dying creatures within 15 ft",
+      "source": "ARG"
+    }
+  ],
+  "Goblin": [
+    {
+      "name": "Tree Runner",
+      "replaces": ["Skilled"],
+      "description": "Forest-dwelling goblins are excellent climbers. They gain a 30-foot climb speed.",
+      "bonuses": {},
+      "penalties": {},
+      "grants": "30 ft climb speed",
+      "source": "ARG"
+    },
+    {
+      "name": "Hard Head Big Teeth",
+      "replaces": ["Skilled"],
+      "description": "These goblins have harder skulls and larger teeth. They gain a bite attack that deals 1d4 damage.",
+      "bonuses": {},
+      "penalties": {},
+      "grants": "Bite attack 1d4",
+      "source": "ARG"
+    },
+    {
+      "name": "Oversized Ears",
+      "replaces": ["Skilled"],
+      "description": "Goblins with outsized ears gain +4 to Perception checks.",
+      "bonuses": { "perception": 4 },
+      "penalties": {},
+      "grants": null,
+      "source": "ARG"
+    }
+  ],
+  "Orc": [
+    {
+      "name": "Dayrunner",
+      "replaces": ["Light Sensitivity"],
+      "description": "These orcs have adapted to surface life and no longer suffer from light sensitivity. However, they take -2 to ranged attack rolls in bright light.",
+      "bonuses": {},
+      "penalties": { "ranged_bright_light": -2 },
+      "grants": "No light sensitivity",
+      "source": "ARG"
+    },
+    {
+      "name": "Smeller",
+      "replaces": ["Ferocity"],
+      "description": "Orcs with keen senses gain the scent ability, allowing them to detect creatures and objects by smell within 30 feet.",
+      "bonuses": {},
+      "penalties": {},
+      "grants": "Scent ability",
+      "source": "ARG"
+    },
+    {
+      "name": "Squalid",
+      "replaces": ["Weapon Familiarity"],
+      "description": "Orcs inured to filth gain +2 to Fortitude saving throws against disease and nauseating effects.",
+      "bonuses": { "fortitude_disease_nausea": 2 },
+      "penalties": {},
+      "grants": null,
+      "source": "ARG"
+    }
+  ],
+  "Ifrit": [
+    {
+      "name": "Wildfire Heart",
+      "replaces": ["Energy Resistance"],
+      "description": "These fire genasi are unpredictably volatile. They gain +4 to initiative checks.",
+      "bonuses": { "initiative": 4 },
+      "penalties": {},
+      "grants": null,
+      "source": "APG"
+    },
+    {
+      "name": "Fire in the Blood",
+      "replaces": ["Fire Affinity"],
+      "description": "When an ifrit takes fire damage, they gain fast healing 2 for 1 round.",
+      "bonuses": {},
+      "penalties": {},
+      "grants": "Fast healing 2 for 1 round when taking fire damage",
+      "source": "APG"
+    }
+  ],
+  "Oread": [
+    {
+      "name": "Crystalline Form",
+      "replaces": ["Earth Affinity"],
+      "description": "These earth genasi have crystalline structures within their bodies. They gain +2 AC against rays and a 10% miss chance from ranged attacks.",
+      "bonuses": { "ac_rays": 2 },
+      "penalties": {},
+      "grants": "10% miss chance from ranged attacks",
+      "source": "APG"
+    },
+    {
+      "name": "Treacherous Earth",
+      "replaces": ["Earth Affinity"],
+      "description": "Once per day, an oread with this trait can create difficult terrain in a 10-foot radius for 1 round as a standard action.",
+      "bonuses": {},
+      "penalties": {},
+      "grants": "Create difficult terrain 10 ft radius 1/day",
+      "source": "APG"
+    }
+  ],
+  "Sylph": [
+    {
+      "name": "Whispering Wind",
+      "replaces": ["Air Affinity"],
+      "description": "These air genasi are experts at moving silently. They gain +4 to Stealth checks.",
+      "bonuses": { "stealth": 4 },
+      "penalties": {},
+      "grants": null,
+      "source": "APG"
+    },
+    {
+      "name": "Breeze-Kissed",
+      "replaces": ["Air Affinity"],
+      "description": "Sylphs blessed by gentle winds gain +2 AC against non-magical ranged attacks.",
+      "bonuses": { "ac_ranged": 2 },
+      "penalties": {},
+      "grants": null,
+      "source": "APG"
+    }
+  ],
+  "Undine": [
+    {
+      "name": "Amphibious",
+      "replaces": ["Water Affinity"],
+      "description": "These water genasi can breathe water as easily as air, allowing them to exist in aquatic environments indefinitely.",
+      "bonuses": {},
+      "penalties": {},
+      "grants": "Can breathe water and air",
+      "source": "APG"
+    },
+    {
+      "name": "Water Sense",
+      "replaces": ["Energy Resistance"],
+      "description": "Undines with this trait have extraordinary sensory awareness underwater. They gain blindsense 30 feet while in water.",
+      "bonuses": {},
+      "penalties": {},
+      "grants": "Blindsense 30 ft in water",
+      "source": "APG"
+    }
+  ]
+}

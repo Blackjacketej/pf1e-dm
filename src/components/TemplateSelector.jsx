@@ -1,7 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { mod, getMaxHP } from '../utils/dice';
 import { getStartingGold } from '../utils/character';
-import { generateBackstory } from '../services/aiCharacterBuilder';
+import { validateFeatList } from '../utils/featPrereqs';
+import { hydrateGearItem } from '../utils/gearHydrate';
+import gearData from '../data/gear.json';
+import equipmentData from '../data/equipment.json';
+// Bug #2: template characters ship with a fixed, pre-written backstory in
+// data/templates.json. No AI generation is offered here — the pregens are the
+// canonical source.
+// Bug #52: gearInventory is hydrated via hydrateGearItem so each backpack
+// row carries weight (number), price, description, and category — not just
+// a bare name. Without this, every row rendered as "0 lbs" with no tooltip.
 
 const portraitEmojis = {
   axes: '⚒️',
@@ -25,11 +34,10 @@ export default function TemplateSelector({
   armorList = [],
   shields = [],
   weapons = [],
+  feats = [],
 }) {
   const [selected, setSelected] = useState(null);
   const [expanded, setExpanded] = useState(null);
-  const [generatingBackstory, setGeneratingBackstory] = useState(null); // template name
-  const [backstories, setBackstories] = useState({}); // { templateName: backstoryText }
 
   const findEquipment = (name, list) => {
     return list.find((item) => item.name === name) || { name };
@@ -56,12 +64,29 @@ export default function TemplateSelector({
     if (armor.name && armor.name !== 'None') equipment.push({ name: armor.name, equipped: true, type: 'armor' });
     if (shield.name && shield.name !== 'None') equipment.push({ name: shield.name, equipped: true, type: 'shield' });
 
-    // Add adventuring gear from template inventory
-    const gearInventory = (template.inventory || []).map(item => ({
-      name: typeof item === 'string' ? item : item.name,
-      quantity: typeof item === 'string' ? 1 : (item.quantity || 1),
-      type: 'gear',
-    }));
+    // Add adventuring gear from template inventory.
+    // Bug #52: hydrate each entry against gear.json + equipment.json so
+    // weight/price/description/category flow through to the backpack UI.
+    // parseQuantityFromName inside hydrateGearItem handles "Trail rations (5)"
+    // → { name: "Trail rations", quantity: 5 }; "Rope (50 ft.)" stays one
+    // entry at qty 1 because "50 ft." isn't a pure integer.
+    const gearInventory = (template.inventory || []).map(item =>
+      hydrateGearItem(item, gearData, equipmentData)
+    );
+
+    // Validate template feats against prerequisites
+    const tempCharForFeats = {
+      race: template.race,
+      class: template.class,
+      level: 1,
+      abilities: template.abilities,
+      skillRanks: template.skillRanks || {},
+      feats: [],
+    };
+    const { valid: validFeats, invalid: invalidFeats } = validateFeatList(template.feats || [], tempCharForFeats, feats);
+    if (invalidFeats.length > 0) {
+      console.warn(`Template "${template.name}" had invalid feats removed:`, invalidFeats.map(f => `${f.name} (missing: ${f.missing.join(', ')})`));
+    }
 
     return {
       id: Math.random().toString(36).slice(2, 9),
@@ -72,7 +97,7 @@ export default function TemplateSelector({
       level: 1,
       xp: 0,
       abilities: template.abilities,
-      feats: template.feats || [],
+      feats: validFeats,
       weapons: weaponList,
       armor: armor.name,
       shield: shield.name,
@@ -88,6 +113,11 @@ export default function TemplateSelector({
       spellsPrepared: template.spellsPrepared || [],
       spellSlotsUsed: {},
       equipped: {},
+      heritage: template.heritage || '',
+      characterTraits: template.characterTraits || [],
+      drawback: template.drawback || '',
+      personality: template.personality || '',
+      appearance: template.appearance || '',
       ethnicity: template.ethnicity || template.race,
       origin: template.origin || '',
       languages: template.languages || ['Common'],
@@ -97,30 +127,12 @@ export default function TemplateSelector({
       ...(template.bloodline ? { bloodline: template.bloodline } : {}),
       ...(template.favoredEnemy ? { favoredEnemy: template.favoredEnemy } : {}),
       ...(template.animalCompanion ? { animalCompanion: template.animalCompanion } : {}),
-      backstory: backstories[template.name] || '',
+      // Bug #2: always use the fixed pregen backstory; no AI regeneration path.
+      backstory: template.backstory || '',
     };
   };
 
-  const handleGenerateTemplateBackstory = async (template) => {
-    setGeneratingBackstory(template.name);
-    try {
-      const backstory = await generateBackstory({
-        name: template.name,
-        race: template.race,
-        class: template.class,
-        alignment: template.alignment,
-        desc: template.desc,
-        roleTip: template.roleTip,
-      });
-      if (backstory) {
-        setBackstories(prev => ({ ...prev, [template.name]: backstory }));
-      }
-    } catch (err) {
-      console.warn('Backstory generation failed:', err);
-    } finally {
-      setGeneratingBackstory(null);
-    }
-  };
+  // Bug #2: handleGenerateTemplateBackstory removed — templates are fixed.
 
   const styles = {
     container: {
@@ -284,6 +296,16 @@ export default function TemplateSelector({
                 <div style={styles.detail}>
                   <span style={styles.detailLabel}>Armor:</span> {template.armorName}
                 </div>
+                {template.heritage && template.heritage !== `Standard ${template.race}` && (
+                  <div style={styles.detail}>
+                    <span style={styles.detailLabel}>Heritage:</span> {template.heritage}
+                  </div>
+                )}
+                {template.characterTraits && template.characterTraits.length > 0 && (
+                  <div style={styles.detail}>
+                    <span style={styles.detailLabel}>Traits:</span> {template.characterTraits.join(', ')}
+                  </div>
+                )}
                 {template.desc && (
                   <div style={styles.detail}>
                     <span style={styles.detailLabel}>Description:</span>
@@ -295,20 +317,12 @@ export default function TemplateSelector({
                   <div style={styles.roleTip}>{template.roleTip}</div>
                 )}
 
-                {/* Backstory section */}
-                {backstories[template.name] ? (
+                {/* Bug #2: pregens always have a fixed backstory — show it, never offer regen. */}
+                {template.backstory && (
                   <div style={{ marginTop: '10px', padding: '8px', backgroundColor: 'rgba(147,130,220,0.1)', borderLeft: '3px solid #9382dc', borderRadius: '2px' }}>
                     <div style={{ fontSize: '11px', color: '#9382dc', fontWeight: 'bold', marginBottom: '4px' }}>Backstory</div>
-                    <div style={{ fontSize: '11px', color: '#c4b998', lineHeight: '1.5', maxHeight: '120px', overflowY: 'auto' }}>{backstories[template.name]}</div>
+                    <div style={{ fontSize: '11px', color: '#c4b998', lineHeight: '1.5', maxHeight: '120px', overflowY: 'auto' }}>{template.backstory}</div>
                   </div>
-                ) : (
-                  <button
-                    style={{ ...styles.button, marginTop: '8px', borderColor: '#9382dc', color: '#9382dc', backgroundColor: 'transparent', width: '100%', opacity: generatingBackstory === template.name ? 0.6 : 1 }}
-                    onClick={(e) => { e.stopPropagation(); handleGenerateTemplateBackstory(template); }}
-                    disabled={generatingBackstory === template.name}
-                  >
-                    {generatingBackstory === template.name ? 'Generating backstory...' : 'Generate Backstory'}
-                  </button>
                 )}
 
                 <div style={styles.buttonRow}>

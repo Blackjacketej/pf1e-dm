@@ -32,9 +32,17 @@ import {
   tickConditions,
   analyzeEncounterDifficulty,
   BEHAVIOR_PRESETS,
+  getEnemySkillBonus,
 } from './monsterTactics.js';
+import { aggregateConditionModifiers, createCondition } from '../utils/conditionTracker.js';
+import { resolveFeintInCombat } from '../utils/rulesEngine.js';
+import { enemyCanCastSpell, consumeEnemySpellSlot, initEnemySpellSlots } from '../utils/spellEngine.js';
+import { resolveSpellEffect } from '../utils/spellEffectResolver.js';
+import { createActiveEffect } from '../utils/activeEffectsTracker.js';
+import { getCharacterModifiers } from '../utils/rulesEngine.js';
+import { computeSneakAttackDamage, hasEvasion, applyEvasion, getPassiveClassModifiers } from '../utils/classAbilityResolver.js';
 
-// Re-export monsterTactics for use by other components
+// Re-export for use by other components
 export {
   coordinateGroupTactics,
   detectAbilities,
@@ -45,6 +53,7 @@ export {
   CONDITIONS,
   BEHAVIOR_PRESETS,
   tickConditions,
+  initEnemySpellSlots,
   getBossPhase,
 };
 
@@ -453,6 +462,38 @@ export function decideEnemyActions(enemy, alivePCs, allEnemies, combatState = {}
         }
         break;
 
+      case 'feint': {
+        // Enemy feints a PC — Bluff vs target's feint DC (CRB pp. 92, 201)
+        const bluffBonus = getEnemySkillBonus(enemy, 'Bluff');
+        const feintRoll = Math.floor(Math.random() * 20) + 1 + bluffBonus;
+        const feintTarget = bestAction.target
+          ? alivePCs.find(p => p.id === bestAction.target) || target
+          : target;
+        const feintResult = resolveFeintInCombat(feintRoll, {
+          bab: feintTarget.bab || 0,
+          wisMod: Math.floor(((feintTarget.abilities?.WIS || 10) - 10) / 2),
+          senseMotive: feintTarget.skills?.['Sense Motive']?.bonus || 0,
+          intelligence: feintTarget.abilities?.INT ?? 10,
+          creatureType: 'humanoid',
+        });
+        actions.push({
+          type: ACTION_TYPES.STANDARD,
+          action: 'feint',
+          feintResult,
+          targetId: feintTarget.id,
+          description: feintResult.success
+            ? `${enemy.name} feints ${feintTarget.name}, denying their DEX bonus to AC!`
+            : `${enemy.name} attempts to feint ${feintTarget.name} but fails.`,
+          conditionToApply: feintResult.success ? {
+            targetId: feintTarget.id,
+            condition: 'feinted',
+            duration: 1,
+            source: `${enemy.name} feint`,
+          } : null,
+        });
+        break;
+      }
+
       case 'total_defense':
         actions.push({
           type: ACTION_TYPES.STANDARD,
@@ -580,11 +621,82 @@ function buildAttackAction(enemy, target, attacks, tier, atkBonus = 0, dmgBonus 
   };
 }
 
+// ── Get condition + active effect modifiers for an enemy ──
+// Merges conditions AND active spell effects (buffs/debuffs) into one modifier object
+function getEnemyConditionMods(enemy) {
+  // Use the unified modifier system that merges conditions + active effects
+  if ((enemy.activeConditions && enemy.activeConditions.length > 0) ||
+      (enemy.activeEffects && enemy.activeEffects.length > 0)) {
+    return getCharacterModifiers(enemy);
+  }
+  // Fallback: no modifiers
+  return { attack: 0, damage: 0, ac: 0, saves: 0, skills: 0, concentration: 0,
+           initiative: 0, cmb: 0, cmd: 0, speed: 0, missChance: 0,
+           cannotAct: false, cannotAttack: false, cannotCast: false,
+           cannotMove: false, cannotCharge: false, loseDexToAC: false };
+}
+
 // ── Resolve Attack Roll ──
-export function resolveAttack(attack, target) {
+// Now applies condition modifiers from the attacker (enemy) and checks target conditions
+export function resolveAttack(attack, target, enemy = null) {
+  // Get attacker condition modifiers
+  const atkCondMods = enemy ? getEnemyConditionMods(enemy) : { attack: 0, damage: 0, missChance: 0, cannotAttack: false };
+
+  // If attacker cannot attack due to conditions, auto-miss
+  if (atkCondMods.cannotAttack) {
+    return {
+      attackRoll: 0, totalAtk: 0, targetAC: target.ac || 10,
+      hit: false, isCrit: false, isFumble: false, critConfirmed: false,
+      damage: 0, attackName: attack.name, critRange: attack.critRange || 20,
+      conditionBlocked: true,
+    };
+  }
+
+  // Check miss chance from attacker conditions (e.g., blinded = 50%)
+  if (atkCondMods.missChance > 0) {
+    const missRoll = Math.floor(Math.random() * 100) + 1;
+    if (missRoll <= atkCondMods.missChance) {
+      return {
+        attackRoll: 0, totalAtk: 0, targetAC: target.ac || 10,
+        hit: false, isCrit: false, isFumble: false, critConfirmed: false,
+        damage: 0, attackName: attack.name, critRange: attack.critRange || 20,
+        missedByChance: true, missChance: atkCondMods.missChance,
+      };
+    }
+  }
+
+  // Check if target loses DEX to AC (from target conditions like flat-footed, stunned, etc.)
+  const targetCondMods = (target.activeConditions || target.activeEffects) ? getCharacterModifiers(target) : { loseDexToAC: false, ac: 0 };
+  let targetAC = target.ac || 10;
+  // If target loses DEX to AC, reduce AC by DEX modifier (minimum 10)
+  if (targetCondMods.loseDexToAC && target.abilities?.DEX) {
+    const dexMod = Math.floor((target.abilities.DEX - 10) / 2);
+    if (dexMod > 0) targetAC = Math.max(10, targetAC - dexMod);
+  }
+  // Apply target's condition AC modifier (e.g., prone = -4 to AC vs melee)
+  targetAC += (targetCondMods.ac || 0);
+
+  // Racial Defensive Training (e.g., Dwarf +4 dodge AC vs Giants)
+  const dt = target.racialCombatBonuses?.defensiveTraining;
+  if (dt && enemy) {
+    const enemyType = (enemy.type || '').toLowerCase();
+    const enemySubtype = (enemy.subtype || '').toLowerCase();
+    if (dt.vsTypes.some(vt => enemyType.includes(vt) || enemySubtype.includes(vt))) {
+      targetAC += dt.acBonus;
+    }
+  }
+
+  // Class passive AC bonuses (Monk WIS to AC, Swashbuckler Nimble, etc.)
+  if (target.class) {
+    try {
+      const classPassives = getPassiveClassModifiers(target);
+      if (classPassives.ac) targetAC += classPassives.ac;
+    } catch (e) { /* safety net */ }
+  }
+
   const attackRoll = roll(20);
-  const totalAtk = attackRoll + attack.bonus;
-  const targetAC = target.ac || 10;
+  const conditionAtkMod = atkCondMods.attack || 0;
+  const totalAtk = attackRoll + attack.bonus + conditionAtkMod;
   const critRange = attack.critRange || 20;
   const critMultiplier = attack.critMultiplier || 2;
   const isCritThreat = attackRoll >= critRange;
@@ -593,13 +705,14 @@ export function resolveAttack(attack, target) {
 
   let damage = 0;
   let critConfirmed = false;
+  const conditionDmgMod = atkCondMods.damage || 0;
 
   if (hit) {
-    damage = Math.max(1, rollDice(attack.damageDice, attack.damageSides).total + (attack.damageBonus || 0));
+    damage = Math.max(1, rollDice(attack.damageDice, attack.damageSides).total + (attack.damageBonus || 0) + conditionDmgMod);
 
     // Critical threat — confirm
     if (isCritThreat) {
-      const confirmRoll = roll(20) + attack.bonus;
+      const confirmRoll = roll(20) + attack.bonus + conditionAtkMod;
       if (confirmRoll >= targetAC) {
         critConfirmed = true;
         damage *= critMultiplier;
@@ -618,6 +731,8 @@ export function resolveAttack(attack, target) {
     damage,
     attackName: attack.name,
     critRange,
+    conditionAtkMod,
+    conditionDmgMod,
   };
 }
 
@@ -630,12 +745,27 @@ export function executeEnemyTurn(enemy, party, allEnemies, combatState = {}) {
     enemy._breathRechargeRounds--;
   }
 
-  const alivePCs = party.filter(p => p.currentHP > 0);
+  // Phase B (Ally-NPC) — enemies target both party and allies. Pool is
+  // assembled once here and passed downstream as `alivePCs` (internal
+  // naming kept for diff minimization; semantics are now "any alive
+  // combatant on the party side"). Pre-Phase-B callers that don't pass
+  // combatState.allies get identical behavior via the `|| []` fallback.
+  // A monster ally with class='' safely scores lower on the cunning/genius
+  // caster + healer bonuses, so a squishy bard ally still draws fire
+  // before a bear ally — which matches the operator's expectation.
+  const alliesPool = Array.isArray(combatState?.allies) ? combatState.allies : [];
+  const alivePCs = [...party, ...alliesPool].filter(t => t.currentHP > 0);
   const { actions, morale, tier, reasoning } = decideEnemyActions(enemy, alivePCs, allEnemies, combatState);
   const results = [];
   let totalDamage = 0;
   const hpChanges = {}; // targetId -> damage
   const conditionsApplied = {}; // targetId -> [conditions]
+  const activeEffectsToApply = []; // { targetId, effect } — for spell buffs/debuffs on PCs
+  // Observation events — consumed by CombatTab to update combat.observed[enemy.id].
+  // Shapes: {kind:'attack', name:string} | {kind:'ability', name:string}
+  //       | {kind:'save', save:'fort'|'ref'|'will', passed:boolean}
+  // Keyed to the acting enemy by caller (one executeEnemyTurn call = one enemy).
+  const observationEvents = [];
 
   if (reasoning) {
     results.push({ text: `[AI: ${reasoning}]`, type: 'debug' });
@@ -668,7 +798,26 @@ export function executeEnemyTurn(enemy, party, allEnemies, combatState = {}) {
       case 'pounce': {
         results.push({ text: action.description, type: 'danger' });
         for (const atk of action.attacks) {
-          const result = resolveAttack(atk, action.target);
+          const result = resolveAttack(atk, action.target, enemy);
+          if (result.conditionBlocked) {
+            results.push({ text: `${enemy.name} is unable to attack due to its condition!`, type: 'info' });
+            break;
+          }
+          // Hit, miss, or fumble — the party saw the attack thrown.
+          // (Skipped above on conditionBlocked: no swing actually happened.)
+          const atkName = result.attackName || atk.name;
+          if (atkName) observationEvents.push({ kind: 'attack', name: atkName });
+          if (result.missedByChance) {
+            results.push({ text: `${enemy.name}'s ${atk.name} misses ${action.target.name} (${result.missChance}% miss chance)!`, type: 'info' });
+            continue;
+          }
+          // Announce the nat 20 threat in the critical color before damage line.
+          if (result.isCrit) {
+            results.push({
+              text: `🎯 Natural ${result.attackRoll}! ${enemy.name}'s ${result.attackName} threatens a critical hit!`,
+              type: 'critical',
+            });
+          }
           if (result.hit) {
             const dmg = result.damage + (action.damageBonus || 0);
             totalDamage += dmg;
@@ -676,8 +825,8 @@ export function executeEnemyTurn(enemy, party, allEnemies, combatState = {}) {
 
             if (result.critConfirmed) {
               results.push({
-                text: `CRITICAL HIT! ${enemy.name}'s ${result.attackName} devastates ${action.target.name} for ${dmg} damage!`,
-                type: 'danger',
+                text: `💥 CRITICAL HIT! ${enemy.name}'s ${result.attackName} devastates ${action.target.name} for ${dmg} damage!`,
+                type: 'critical',
               });
             } else {
               results.push({
@@ -685,12 +834,16 @@ export function executeEnemyTurn(enemy, party, allEnemies, combatState = {}) {
                 type: 'danger',
               });
             }
+            const modBreakdown = result.conditionAtkMod ? ` [cond ${result.conditionAtkMod >= 0 ? '+' : ''}${result.conditionAtkMod}]` : '';
             results.push({
-              text: `(Roll: ${result.attackRoll}+${atk.bonus}=${result.totalAtk} vs AC ${result.targetAC}, ${dmg} dmg)`,
+              text: `(Roll: ${result.attackRoll}+${atk.bonus}${modBreakdown}=${result.totalAtk} vs AC ${result.targetAC}, ${dmg} dmg)`,
               type: 'info',
             });
           } else if (result.isFumble) {
-            results.push({ text: `${enemy.name} fumbles with its ${result.attackName}!`, type: 'success' });
+            // A fumbling monster is a win for the party, but the color is still
+            // the fumble red — the GameLog palette distinguishes fumble from
+            // generic danger so NWN-style nat-1 cues pop visually.
+            results.push({ text: `💢 Natural 1! ${enemy.name} fumbles with its ${result.attackName}!`, type: 'fumble' });
           } else {
             results.push({ text: `${enemy.name}'s ${result.attackName} misses ${action.target.name}.`, type: 'info' });
             results.push({ text: `(Roll: ${result.attackRoll}+${atk.bonus}=${result.totalAtk} vs AC ${result.targetAC})`, type: 'info' });
@@ -701,12 +854,35 @@ export function executeEnemyTurn(enemy, party, allEnemies, combatState = {}) {
 
       case 'charge': {
         results.push({ text: action.description, type: 'danger' });
-        const result = resolveAttack(action.attack, action.target);
+        const result = resolveAttack(action.attack, action.target, enemy);
+        if (result.conditionBlocked) {
+          results.push({ text: `${enemy.name} is unable to attack due to its condition!`, type: 'info' });
+          break;
+        }
+        // Charge swing happened (may still whiff to concealment) — record it.
+        const chgName = result.attackName || action.attack?.name;
+        if (chgName) observationEvents.push({ kind: 'attack', name: chgName });
+        if (result.missedByChance) {
+          results.push({ text: `${enemy.name}'s charge misses ${action.target.name} (${result.missChance}% miss chance)!`, type: 'info' });
+          break;
+        }
+        if (result.isCrit) {
+          results.push({
+            text: `🎯 Natural ${result.attackRoll}! ${enemy.name}'s charge threatens a critical hit!`,
+            type: 'critical',
+          });
+        }
         if (result.hit) {
           totalDamage += result.damage;
           hpChanges[action.target.id] = (hpChanges[action.target.id] || 0) + result.damage;
-          results.push({ text: `The charge connects! ${action.target.name} takes ${result.damage} damage!`, type: 'danger' });
+          if (result.critConfirmed) {
+            results.push({ text: `💥 CRITICAL! The charge devastates ${action.target.name} for ${result.damage} damage!`, type: 'critical' });
+          } else {
+            results.push({ text: `The charge connects! ${action.target.name} takes ${result.damage} damage!`, type: 'danger' });
+          }
           results.push({ text: `(Charge: ${result.attackRoll}+${action.attack.bonus}=${result.totalAtk} vs AC ${result.targetAC}, ${result.damage} dmg)`, type: 'info' });
+        } else if (result.isFumble) {
+          results.push({ text: `💢 Natural 1! ${enemy.name}'s charge goes wildly wide of ${action.target.name}!`, type: 'fumble' });
         } else {
           results.push({ text: `${enemy.name}'s charge misses ${action.target.name}!`, type: 'info' });
         }
@@ -715,19 +891,37 @@ export function executeEnemyTurn(enemy, party, allEnemies, combatState = {}) {
       }
 
       case 'attack': {
-        const result = resolveAttack(action.attack, action.target);
+        const result = resolveAttack(action.attack, action.target, enemy);
+        if (result.conditionBlocked) {
+          results.push({ text: `${enemy.name} is unable to attack due to its condition!`, type: 'info' });
+          break;
+        }
+        // Swing happened — record before hit/miss branching.
+        const sAtkName = result.attackName || action.attack?.name;
+        if (sAtkName) observationEvents.push({ kind: 'attack', name: sAtkName });
+        if (result.missedByChance) {
+          results.push({ text: `${enemy.name}'s ${action.attack.name || 'attack'} misses ${action.target.name} (${result.missChance}% miss chance)!`, type: 'info' });
+          break;
+        }
+        if (result.isCrit) {
+          results.push({
+            text: `🎯 Natural ${result.attackRoll}! ${enemy.name}'s ${result.attackName} threatens a critical hit!`,
+            type: 'critical',
+          });
+        }
         if (result.hit) {
           const dmg = result.damage + (action.damageBonus || 0);
           totalDamage += dmg;
           hpChanges[action.target.id] = (hpChanges[action.target.id] || 0) + dmg;
           if (result.critConfirmed) {
-            results.push({ text: `CRITICAL HIT! ${enemy.name}'s ${result.attackName} devastates ${action.target.name} for ${dmg} damage!`, type: 'danger' });
+            results.push({ text: `💥 CRITICAL HIT! ${enemy.name}'s ${result.attackName} devastates ${action.target.name} for ${dmg} damage!`, type: 'critical' });
           } else {
             results.push({ text: `${enemy.name}'s ${result.attackName} hits ${action.target.name} for ${dmg} damage.`, type: 'danger' });
           }
-          results.push({ text: `(Roll: ${result.attackRoll}+${action.attack.bonus}=${result.totalAtk} vs AC ${result.targetAC}, ${dmg} dmg)`, type: 'info' });
+          const modBreakdown = result.conditionAtkMod ? ` [cond ${result.conditionAtkMod >= 0 ? '+' : ''}${result.conditionAtkMod}]` : '';
+          results.push({ text: `(Roll: ${result.attackRoll}+${action.attack.bonus}${modBreakdown}=${result.totalAtk} vs AC ${result.targetAC}, ${dmg} dmg)`, type: 'info' });
         } else if (result.isFumble) {
-          results.push({ text: `${enemy.name} fumbles with its ${result.attackName}!`, type: 'success' });
+          results.push({ text: `💢 Natural 1! ${enemy.name} fumbles with its ${result.attackName}!`, type: 'fumble' });
         } else {
           results.push({ text: `${enemy.name}'s ${result.attackName} misses ${action.target.name}.`, type: 'info' });
           results.push({ text: `(Roll: ${result.attackRoll}+${action.attack.bonus}=${result.totalAtk} vs AC ${result.targetAC})`, type: 'info' });
@@ -738,9 +932,11 @@ export function executeEnemyTurn(enemy, party, allEnemies, combatState = {}) {
       // ── NEW: Breath Weapon ──
       case 'breath_weapon': {
         results.push({ text: action.description, type: 'danger' });
+        observationEvents.push({ kind: 'ability', name: 'Breath Weapon' });
         if (action.breathResult) {
           results.push({ text: `(${action.breathResult.damageDice} damage, DC ${action.breathResult.dc} Reflex for half)`, type: 'info' });
           for (const r of action.breathResult.results) {
+            observationEvents.push({ kind: 'save', save: 'ref', passed: !!r.saved });
             const dmg = r.damage;
             hpChanges[r.target.id] = (hpChanges[r.target.id] || 0) + dmg;
             totalDamage += dmg;
@@ -748,7 +944,7 @@ export function executeEnemyTurn(enemy, party, allEnemies, combatState = {}) {
               text: r.saved
                 ? `${r.target.name} dives aside! (Reflex ${r.saveRoll} vs DC ${r.dc}) Takes ${dmg} damage (halved).`
                 : `${r.target.name} is caught in the blast! (Reflex ${r.saveRoll} vs DC ${r.dc}) Takes ${dmg} damage!`,
-              type: r.saved ? 'info' : 'danger',
+              type: r.saved ? 'warning' : 'danger',
             });
           }
         }
@@ -758,12 +954,14 @@ export function executeEnemyTurn(enemy, party, allEnemies, combatState = {}) {
       // ── NEW: Frightful Presence ──
       case 'frightful_presence': {
         results.push({ text: action.description, type: 'warning' });
+        observationEvents.push({ kind: 'ability', name: 'Frightful Presence' });
         if (action.fpResult) {
           for (const r of action.fpResult.results) {
+            observationEvents.push({ kind: 'save', save: 'will', passed: !!r.saved });
             if (r.saved) {
               results.push({ text: `${r.target.name} steels their resolve! (Will ${r.saveRoll} vs DC ${r.dc})`, type: 'success' });
             } else {
-              results.push({ text: `${r.target.name} is shaken with fear! (Will ${r.saveRoll} vs DC ${r.dc})`, type: 'warning' });
+              results.push({ text: `${r.target.name} is shaken with fear! (Will ${r.saveRoll} vs DC ${r.dc})`, type: 'danger' });
               if (r.condition) {
                 conditionsApplied[r.target.id] = conditionsApplied[r.target.id] || [];
                 conditionsApplied[r.target.id].push(r.condition);
@@ -777,6 +975,7 @@ export function executeEnemyTurn(enemy, party, allEnemies, combatState = {}) {
       // ── NEW: Trip Attack ──
       case 'trip': {
         results.push({ text: action.description, type: action.tripResult?.success ? 'danger' : 'info' });
+        observationEvents.push({ kind: 'ability', name: 'Trip' });
         if (action.tripResult) {
           results.push({
             text: `(CMB ${action.tripResult.cmbTotal} vs CMD ${action.tripResult.cmd})`,
@@ -793,6 +992,7 @@ export function executeEnemyTurn(enemy, party, allEnemies, combatState = {}) {
       // ── NEW: Grab/Grapple ──
       case 'grab': {
         results.push({ text: action.description, type: action.grabResult?.success ? 'danger' : 'info' });
+        observationEvents.push({ kind: 'ability', name: 'Grab' });
         if (action.grabResult) {
           results.push({
             text: `(CMB ${action.grabResult.cmbTotal} vs CMD ${action.grabResult.cmd})`,
@@ -809,30 +1009,150 @@ export function executeEnemyTurn(enemy, party, allEnemies, combatState = {}) {
       // ── NEW: Gaze Attack ──
       case 'gaze':
         results.push({ text: action.description, type: 'warning' });
+        observationEvents.push({ kind: 'ability', name: 'Gaze' });
         break;
 
-      // ── NEW: Spellcasting ──
+      // ── Spellcasting (with slot tracking, condition checks, SR) ──
       case 'cast_spell': {
+        // Check conditions preventing casting
+        const castCondMods = getEnemyConditionMods(enemy);
+        if (castCondMods.cannotCast || castCondMods.cannotAct) {
+          results.push({ text: `${enemy.name} tries to cast a spell but cannot — a condition prevents it!`, type: 'info' });
+          break;
+        }
+
+        // Check spell slot availability (if tracked)
+        const spellLevel = action.spell?.level || 1;
+        if (enemy.spellSlots) {
+          const slotCheck = enemyCanCastSpell(enemy, spellLevel);
+          if (!slotCheck.canCast) {
+            results.push({ text: `${enemy.name} has exhausted their level ${spellLevel} spell slots!`, type: 'info' });
+            break;
+          }
+          consumeEnemySpellSlot(enemy, spellLevel);
+          results.push({ text: `(${enemy.name} expends a level ${spellLevel} spell slot — ${slotCheck.remaining - 1} remaining)`, type: 'info' });
+        }
+
+        // Concentration check if grappled or entangled
+        const enemyCondNames = (enemy.activeConditions || []).map(c => (c.name || c.type || '').toLowerCase());
+        if (enemyCondNames.includes('grappled') || enemyCondNames.includes('entangled')) {
+          const concDC = enemyCondNames.includes('grappled') ? (10 + spellLevel + 5) : (15 + spellLevel);
+          const concRoll = roll(20);
+          const clBonus = enemy.level || Math.floor((enemy.cr || 1) * 1); // Approximate caster level from CR
+          const concTotal = concRoll + clBonus;
+          if (concTotal < concDC) {
+            results.push({ text: `${enemy.name}'s spell fizzles — failed concentration check (${concTotal} vs DC ${concDC})!`, type: 'success' });
+            break;
+          }
+          results.push({ text: `(Concentration: ${concTotal} vs DC ${concDC} — passed)`, type: 'info' });
+        }
+
         results.push({ text: action.description, type: 'warning' });
+        if (action.spell?.name) {
+          observationEvents.push({ kind: 'ability', name: action.spell.name });
+        }
+
         if (action.spell) {
           const cat = action.spell.category;
-          if (cat === 'damage' && action.target) {
-            // Resolve spell damage (approximate based on spell level)
-            const spellLevel = action.spell.level || 1;
-            const dmg = rollDice(Math.max(1, spellLevel), 6).total;
-            hpChanges[action.target.id] = (hpChanges[action.target.id] || 0) + dmg;
-            totalDamage += dmg;
-            results.push({ text: `${action.target.name} takes ${dmg} damage from the spell!`, type: 'danger' });
-          } else if (cat === 'healing') {
-            const healAmt = rollDice(Math.max(1, action.spell.level || 1), 8).total + 5;
-            hpChanges[enemy.id] = (hpChanges[enemy.id] || 0) - healAmt; // Negative damage = healing
-            results.push({ text: `${enemy.name} heals ${healAmt} hit points!`, type: 'success' });
-          } else if (cat === 'buff') {
-            results.push({ text: `${enemy.name} is enhanced by the spell!`, type: 'info' });
-          } else if (cat === 'debuff' || cat === 'control') {
-            results.push({ text: `The spell targets ${action.target?.name || 'the party'}!`, type: 'warning' });
-          } else if (cat === 'summon') {
-            results.push({ text: `Dark energy swirls as ${enemy.name} calls forth allies!`, type: 'warning' });
+
+          // Check spell resistance if targeting a PC
+          const spellTarget = action.target;
+          if (spellTarget && spellTarget.sr && spellTarget.sr > 0 && cat !== 'healing' && cat !== 'buff') {
+            const srRoll = roll(20);
+            const clSR = enemy.level || Math.floor((enemy.cr || 1));
+            const srTotal = srRoll + clSR;
+            if (srTotal < spellTarget.sr) {
+              results.push({ text: `${spellTarget.name}'s spell resistance deflects the magic! (${srTotal} vs SR ${spellTarget.sr})`, type: 'success' });
+              break;
+            }
+            results.push({ text: `(Overcame SR: ${srTotal} vs SR ${spellTarget.sr})`, type: 'info' });
+          }
+
+          // ── Resolve spell effects mechanically ──
+          const spellTargets = cat === 'healing' || cat === 'buff' ? [enemy] : (spellTarget ? [spellTarget] : []);
+          const cl = enemy.level || Math.floor((enemy.cr || 1));
+          const castAbilityScore = enemy.abilities?.[enemy.castingAbility || 'CHA'] || 14;
+          const castAbilityMod = Math.floor((castAbilityScore - 10) / 2);
+          const spellDCCalc = 10 + spellLevel + castAbilityMod;
+
+          const spellResult = resolveSpellEffect(
+            action.spell.name || action.description,
+            enemy,
+            spellTargets,
+            { spellDC: spellDCCalc, spellLevel, casterLevel: cl, school: action.spell.school || '', descriptors: action.spell.descriptors || [] }
+          );
+
+          if (spellResult.resolved) {
+            // Surface save outcomes from the resolver as observation events.
+            // saveType is 'Fort'|'Ref'|'Will'; we normalize to lowercase short keys.
+            // Filter to PC targets only — savesObserved records PARTY saves vs
+            // this enemy's DC. If an AOE catches an ally enemy or the spell is
+            // self-targeted, that save outcome carries opposite semantics and
+            // must not pollute the party-saves bucket (symmetric to the PC-cast
+            // filter in CombatTab.recordEnemySavesFromSpellResult).
+            for (const sr of (spellResult.saveResults || [])) {
+              if (!sr?.targetId) continue;
+              if (!party.some(p => p.id === sr.targetId)) continue;
+              const key = String(sr.saveType || '').toLowerCase();
+              const save = key.startsWith('fort') ? 'fort'
+                : key.startsWith('ref') ? 'ref'
+                : key.startsWith('will') ? 'will' : null;
+              if (save) observationEvents.push({ kind: 'save', save, passed: !!sr.passed });
+            }
+            // Apply HP changes from resolved spell
+            for (const [targetId, hpDelta] of Object.entries(spellResult.hpChanges)) {
+              hpChanges[targetId] = (hpChanges[targetId] || 0) + hpDelta;
+              if (hpDelta > 0) totalDamage += hpDelta;
+            }
+
+            // Apply conditions from resolved spell
+            for (const condApp of spellResult.conditionsToApply) {
+              if (!conditionsApplied[condApp.targetId]) conditionsApplied[condApp.targetId] = [];
+              const cond = createCondition(condApp.condition, {
+                duration: condApp.duration,
+                source: condApp.source || action.spell.name,
+                customMods: condApp.customMods,
+              });
+              if (cond) conditionsApplied[condApp.targetId].push(cond);
+            }
+
+            // Track active spell effects (buffs/debuffs not in PF1E_CONDITIONS)
+            for (const eff of spellResult.activeEffects) {
+              const activeEff = createActiveEffect(eff);
+              // Store on the target — find if it's enemy or party member
+              const isEnemy = eff.targetId === enemy.id;
+              if (isEnemy) {
+                if (!enemy.activeEffects) enemy.activeEffects = [];
+                enemy.activeEffects.push(activeEff);
+              }
+              // Party member active effects are returned via result for CombatTab to apply
+              if (!isEnemy) {
+                activeEffectsToApply.push({ targetId: eff.targetId, effect: activeEff });
+              }
+            }
+
+            // Add all messages from the resolver
+            for (const msg of spellResult.messages) {
+              results.push(msg);
+            }
+          } else {
+            // Fallback: no structured data — use simplified categories like before
+            if (cat === 'damage' && spellTarget) {
+              const dmg = rollDice(Math.max(1, spellLevel), 6).total;
+              hpChanges[spellTarget.id] = (hpChanges[spellTarget.id] || 0) + dmg;
+              totalDamage += dmg;
+              results.push({ text: `${spellTarget.name} takes ${dmg} damage from the spell!`, type: 'danger' });
+            } else if (cat === 'healing') {
+              const healAmt = rollDice(Math.max(1, spellLevel), 8).total + 5;
+              hpChanges[enemy.id] = (hpChanges[enemy.id] || 0) - healAmt;
+              results.push({ text: `${enemy.name} heals ${healAmt} hit points!`, type: 'success' });
+            } else if (cat === 'buff') {
+              results.push({ text: `${enemy.name} is enhanced by the spell!`, type: 'info' });
+            } else if (cat === 'debuff' || cat === 'control') {
+              results.push({ text: `The spell targets ${spellTarget?.name || 'the party'}!`, type: 'warning' });
+            } else if (cat === 'summon') {
+              results.push({ text: `Dark energy swirls as ${enemy.name} calls forth allies!`, type: 'warning' });
+            }
           }
         }
         break;
@@ -841,6 +1161,20 @@ export function executeEnemyTurn(enemy, party, allEnemies, combatState = {}) {
       // ── NEW: Summon ──
       case 'summon':
         results.push({ text: action.description, type: 'warning' });
+        observationEvents.push({ kind: 'ability', name: 'Summon' });
+        break;
+
+      // ── Feint (Bluff standard action — CRB pp. 92, 201) ──
+      case 'feint':
+        results.push({ text: action.description, type: action.feintResult?.success ? 'warning' : 'info' });
+        if (action.conditionToApply) {
+          const { targetId: fTargetId, condition, duration, source } = action.conditionToApply;
+          const cond = createCondition(condition, { duration, source });
+          if (cond) {
+            if (!conditionsApplied[fTargetId]) conditionsApplied[fTargetId] = [];
+            conditionsApplied[fTargetId].push(cond);
+          }
+        }
         break;
 
       // ── NEW: Total Defense ──
@@ -873,6 +1207,8 @@ export function executeEnemyTurn(enemy, party, allEnemies, combatState = {}) {
     fled: morale === 'flee',
     surrendered: morale === 'surrender',
     conditionsApplied,
+    activeEffectsToApply,
+    observationEvents,
     reasoning,
   };
 }

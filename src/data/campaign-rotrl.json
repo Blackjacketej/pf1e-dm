@@ -4,6 +4,8 @@
   "subtitle": "Anniversary Edition",
   "description": "In the sleepy coastal town of Sandpoint, evil is brewing. An attack by crazed goblins reveals the shadows of a forgotten past returning to threaten the town—and perhaps all of Varisia.",
   "levelRange": "1-18",
+  "_startPathDoc": "Bug #39 (2026-04-17): Canonical opener for RotR is the Swallowtail Festival at Sandpoint's Cathedral Square (in front of the new cathedral), NOT the town's generic Main Road hub. startPath is consumed by worldTreeMigration to plant the party at Cathedral Square on a fresh campaign start, bypassing the defaultEntry cascade that would otherwise route them to Main Road. Each entry matches a node NAME in the world tree seed (case-insensitive). Bug #68 (2026-04-18): renamed 'Market Square' → 'Cathedral Square' in both the seed and here so the tree node and the chapter narrative agree on the festival plaza's name (prevents extractor from creating a duplicate ghost node).",
+  "startPath": ["Golarion", "Avistan", "Varisia", "Sandpoint Hinterlands", "Sandpoint", "Cathedral Square"],
   "chapters": [
     {
       "id": "ch1-burnt-offerings",

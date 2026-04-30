@@ -1,0 +1,331 @@
+{
+  "name": "Sandpoint, Light of the Lost Coast",
+  "setting": "Golarion (Varisia)",
+  "initialReputation": { "fame": 0, "infamy": 0 },
+  "regions": [
+    {
+      "id": "sandpoint",
+      "name": "Sandpoint",
+      "factions": [
+        {
+          "id": "sandpoint-mercantile-league",
+          "name": "Sandpoint Mercantile League",
+          "archetype": "consortium",
+          "speciesHints": ["human"],
+          "baseReputation": 40,
+          "motto": "Four Families, One Town",
+          "foundingDate": "4666 AR",
+          "mood": "wary",
+          "leader": { "name": "Kendra Deverin", "title": "Mayor & League Head", "legitimacy": 82 },
+          "resources": { "wealth": 75, "manpower": 35, "influence": 70, "secrecy": 45, "morale": 60 },
+          "goals": [
+            { "type": "legacy_building", "narrative": "Rebuild the town council's unity after Ethram Valdemar's death", "priority": "high" },
+            { "type": "wealth_accumulation", "narrative": "Expand trade routes to Magnimar and Riddleport", "priority": "normal" },
+            { "type": "political_influence", "narrative": "Maintain autonomy from Magnimar's magistrates", "priority": "normal" }
+          ],
+          "secrets": [
+            { "narrative": "In 4666 AR, Alamon Scarnetti led a murderous raid on the local Varisian camp that killed five. The compact with the Varisian Council papered over the incident — but the founding families still carry the blood debt.", "severity": "serious", "leakRisk": 0.008 }
+          ],
+          "rumors": [
+            { "text": "With Ethram Valdemar's death, the old guard in the League is coming apart", "truth": true }
+          ]
+        },
+        {
+          "id": "scarnetti-family",
+          "name": "Scarnetti Family",
+          "archetype": "mercantile",
+          "speciesHints": ["human"],
+          "baseReputation": 20,
+          "motto": "Our Lumber Built This Town",
+          "mood": "beleaguered",
+          "leader": { "name": "Titus Scarnetti", "title": "Patriarch", "legitimacy": 70 },
+          "resources": { "wealth": 70, "manpower": 30, "influence": 55, "secrecy": 60, "morale": 40 },
+          "goals": [
+            { "type": "wealth_accumulation", "narrative": "Monopolize regional lumber by eliminating rival mills", "priority": "high" },
+            { "type": "revenge", "narrative": "Settle scores with those who blocked Scarnetti expansion", "priority": "normal" }
+          ],
+          "secrets": [
+            { "narrative": "The Scarnettis arranged the arson at Cougar Creek Mill, eliminating a rival lumber operation", "severity": "serious", "leakRisk": 0.015 },
+            { "narrative": "Adimar Scarnetti was seen committing a crime the family has buried", "severity": "minor", "leakRisk": 0.02 }
+          ]
+        },
+        {
+          "id": "kaijitsu-family",
+          "name": "Kaijitsu Family",
+          "archetype": "mercantile",
+          "speciesHints": ["human"],
+          "baseReputation": 35,
+          "motto": "Glass Like the Light on the Sea",
+          "mood": "rebuilding",
+          "leader": { "name": "Ameiko Kaijitsu", "title": "Heir & Tavern-keeper", "legitimacy": 65 },
+          "resources": { "wealth": 55, "manpower": 20, "influence": 50, "secrecy": 40, "morale": 65 },
+          "goals": [
+            { "type": "legacy_building", "narrative": "Restore the Kaijitsu Glassworks after the family's recent tragedies", "priority": "high" },
+            { "type": "survival", "narrative": "Ameiko resists being drawn back into Tian-noble politics", "priority": "normal" }
+          ],
+          "secrets": [
+            { "narrative": "Lonjiku Kaijitsu's ghost haunts the Glassworks furnace", "severity": "serious", "leakRisk": 0.02 },
+            { "narrative": "Tsuto Kaijitsu's full betrayal of the family has been partially concealed from outsiders", "severity": "minor", "leakRisk": 0.03 }
+          ]
+        },
+        {
+          "id": "valdemar-family",
+          "name": "Valdemar Family",
+          "archetype": "mercantile",
+          "speciesHints": ["human"],
+          "baseReputation": 25,
+          "motto": "Hulls Stronger Than the Storm",
+          "mood": "desperate",
+          "leader": { "name": "Kaleb Valdemar", "title": "Acting Heir", "legitimacy": 45, "challengers": ["disputing-cousins"] },
+          "resources": { "wealth": 40, "manpower": 25, "influence": 35, "secrecy": 70, "morale": 30 },
+          "goals": [
+            { "type": "survival", "narrative": "Keep the shipbuilding concern afloat after Ethram's death", "priority": "critical" }
+          ],
+          "secrets": [
+            { "narrative": "Kaleb Valdemar has re-forged ties with the Bunyip Club Sczarni for smuggling income", "severity": "serious", "leakRisk": 0.025 }
+          ]
+        },
+        {
+          "id": "deverin-family",
+          "name": "Deverin Family",
+          "archetype": "mercantile",
+          "speciesHints": ["human"],
+          "baseReputation": 45,
+          "motto": "Tend the Fields, Tend the Town",
+          "mood": "confident",
+          "leader": { "name": "Kendra Deverin", "title": "Matriarch & Mayor", "legitimacy": 88 },
+          "resources": { "wealth": 55, "manpower": 45, "influence": 75, "secrecy": 30, "morale": 75 },
+          "goals": [
+            { "type": "political_influence", "narrative": "Hold the mayoralty and guide the town through coming upheaval", "priority": "high" }
+          ]
+        },
+        {
+          "id": "sandpoint-town-guard",
+          "name": "Sandpoint Town Guard",
+          "archetype": "martial",
+          "speciesHints": ["human"],
+          "baseReputation": 35,
+          "motto": "Keep the Light Burning",
+          "mood": "wary",
+          "leader": { "name": "Belor Hemlock", "title": "Sheriff", "legitimacy": 80 },
+          "resources": { "wealth": 25, "manpower": 40, "influence": 50, "secrecy": 35, "morale": 65 },
+          "goals": [
+            { "type": "survival", "narrative": "Protect Sandpoint from goblin raids and creeping hinterland threats", "priority": "critical" },
+            { "type": "political_influence", "narrative": "Keep Sczarni smuggling contained without igniting open war", "priority": "normal" }
+          ],
+          "secrets": [
+            { "narrative": "Belor changed his family name from Viskalai to Hemlock to distance himself from Shoanti kin", "severity": "minor", "leakRisk": 0.01 }
+          ]
+        },
+        {
+          "id": "sandpoint-cathedral",
+          "name": "Sandpoint Cathedral",
+          "archetype": "religious",
+          "speciesHints": ["human"],
+          "baseReputation": 55,
+          "motto": "Six Faiths, One Flame",
+          "mood": "stable",
+          "leader": { "name": "Abstalar Zantus", "title": "High Priest (Desna)", "legitimacy": 85 },
+          "resources": { "wealth": 40, "manpower": 20, "influence": 70, "secrecy": 55, "morale": 80 },
+          "goals": [
+            { "type": "religious_conversion", "narrative": "Shepherd the town through its coming trials", "priority": "normal" },
+            { "type": "knowledge_pursuit", "narrative": "Guard the Varisian stones and the cathedral basement mysteries", "priority": "high" }
+          ],
+          "secrets": [
+            { "narrative": "The cathedral basement conceals bricked-over Thassilonian passages", "severity": "serious", "leakRisk": 0.01 },
+            { "narrative": "Ghouls are slowly colonizing the Boneyard crypts beneath the cathedral", "severity": "critical", "leakRisk": 0.04 }
+          ]
+        },
+        {
+          "id": "bunyip-club",
+          "name": "Bunyip Club (Sandpoint Sczarni)",
+          "archetype": "criminal",
+          "speciesHints": ["human"],
+          "baseReputation": -15,
+          "motto": "Walk the Line, Never Cross It Publicly",
+          "mood": "confident",
+          "leader": { "name": "Jubrayl Vhiski", "title": "Gang-leader & Tavern Owner", "legitimacy": 75 },
+          "resources": { "wealth": 40, "manpower": 30, "influence": 30, "secrecy": 80, "morale": 60 },
+          "goals": [
+            { "type": "wealth_accumulation", "narrative": "Run smuggling through Thistletop's goblin territory", "priority": "high" },
+            { "type": "survival", "narrative": "Avoid provoking Sheriff Hemlock into full crackdown", "priority": "high" }
+          ],
+          "secrets": [
+            { "narrative": "The Bunyip Club is using Thistletop goblin tunnels as a smuggling route into town", "severity": "serious", "leakRisk": 0.03 },
+            { "narrative": "The Club is loosely allied with a larger Magnimar-based Sczarni syndicate", "severity": "minor", "leakRisk": 0.02 }
+          ]
+        },
+        {
+          "id": "varisian-council-sandpoint",
+          "name": "Sandpoint Varisian Council",
+          "archetype": "tribe",
+          "speciesHints": ["human"],
+          "baseReputation": 20,
+          "motto": "The Road Remembers",
+          "mood": "stable",
+          "resources": { "wealth": 30, "manpower": 25, "influence": 45, "secrecy": 60, "morale": 70 },
+          "goals": [
+            { "type": "legacy_building", "narrative": "Preserve the compact that followed the 4666 AR blood debt", "priority": "normal" },
+            { "type": "ritual_completion", "narrative": "Tend the old stone circle that predates the cathedral", "priority": "normal" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sandpoint-hinterlands",
+      "name": "Sandpoint Hinterlands",
+      "factions": [
+        {
+          "id": "thistletop-goblins",
+          "name": "Thistletop Tribe",
+          "archetype": "horde",
+          "speciesHints": ["goblin"],
+          "baseReputation": -40,
+          "motto": "Burn the Longshanks",
+          "mood": "beleaguered",
+          "leader": { "name": "Warchief (vacant)", "title": "Warchief", "legitimacy": 30, "challengers": ["ambitious-subchiefs"] },
+          "resources": { "wealth": 10, "manpower": 40, "influence": 15, "secrecy": 55, "morale": 35 },
+          "goals": [
+            { "type": "revenge", "narrative": "Retaliate against Sandpoint for repeated defeats", "priority": "high" },
+            { "type": "territorial_expansion", "narrative": "Recapture the bramble-fortress at Thistletop", "priority": "normal" }
+          ]
+        },
+        {
+          "id": "licktoad-goblins",
+          "name": "Licktoad Tribe",
+          "archetype": "tribe",
+          "speciesHints": ["goblin"],
+          "baseReputation": -25,
+          "mood": "wary",
+          "resources": { "wealth": 5, "manpower": 25, "influence": 10, "secrecy": 65, "morale": 50 },
+          "goals": [
+            { "type": "survival", "narrative": "Stay hidden in the swamps, avoid Mosswood cannibal neighbors", "priority": "critical" }
+          ]
+        },
+        {
+          "id": "birdcruncher-goblins",
+          "name": "Birdcruncher Tribe",
+          "archetype": "tribe",
+          "speciesHints": ["goblin"],
+          "baseReputation": -5,
+          "motto": "Trade, Don't Fight",
+          "mood": "stable",
+          "resources": { "wealth": 15, "manpower": 20, "influence": 20, "secrecy": 50, "morale": 65 },
+          "goals": [
+            { "type": "wealth_accumulation", "narrative": "Be the goblin tribe Sandpoint-folk will actually trade with", "priority": "normal" },
+            { "type": "survival", "narrative": "Stay on good terms with the longshanks to avoid reprisals", "priority": "high" }
+          ]
+        },
+        {
+          "id": "mosswood-goblin-confederation",
+          "name": "Mosswood Goblin Confederation",
+          "archetype": "horde",
+          "speciesHints": ["goblin"],
+          "baseReputation": -30,
+          "motto": "Thirty-Four Tribes, One Wood",
+          "mood": "wary",
+          "resources": { "wealth": 8, "manpower": 60, "influence": 20, "secrecy": 75, "morale": 55 },
+          "goals": [
+            { "type": "territorial_expansion", "narrative": "Hold Mosswood against loggers; prevent Gugmuts and other cannibal factions from dominating the other 33 tribes", "priority": "normal" },
+            { "type": "survival", "narrative": "Keep small tribes like Birdcrunchers and Licktoads from being picked off", "priority": "normal" }
+          ],
+          "secrets": [
+            { "narrative": "Mosswood contains 34 distinct goblin tribes; outsiders have no idea how fractured or numerous they actually are", "severity": "minor", "leakRisk": 0.005 }
+          ]
+        },
+        {
+          "id": "sandpoint-devil-cultists",
+          "name": "Devotees of the Sandpoint Devil",
+          "archetype": "cult",
+          "speciesHints": ["human", "goblin"],
+          "baseReputation": -20,
+          "motto": "It Hunts Still",
+          "mood": "stable",
+          "resources": { "wealth": 10, "manpower": 8, "influence": 20, "secrecy": 85, "morale": 60 },
+          "goals": [
+            { "type": "ritual_completion", "narrative": "Leave offerings where the Devil's prints appear", "priority": "normal" },
+            { "type": "prophecy_fulfillment", "narrative": "Await the Devil's return in its full terror", "priority": "low" }
+          ]
+        },
+        {
+          "id": "seven-tooth-goblins",
+          "name": "Seven Tooth Tribe",
+          "archetype": "tribe",
+          "speciesHints": ["goblin"],
+          "baseReputation": -35,
+          "motto": "Take What Washes Up",
+          "mood": "stable",
+          "resources": { "wealth": 5, "manpower": 20, "influence": 5, "secrecy": 55, "morale": 70 },
+          "lair": "Shank's Wood (east of Sandpoint)",
+          "goals": [
+            { "type": "resource_acquisition", "narrative": "Scavenge Junk Beach before townsfolk arrive", "priority": "high" },
+            { "type": "reputation_trade", "narrative": "Maintain reputation as best goblin traders on the coast", "priority": "normal" }
+          ],
+          "secrets": [
+            { "topic": "Pre-dawn raids on Junk Beach are routine", "narrative": "They scurry off the moment a human is spotted" }
+          ]
+        },
+        {
+          "id": "cult-of-lamashtu",
+          "name": "Cult of Lamashtu (Catacombs of Wrath)",
+          "archetype": "cult",
+          "speciesHints": ["human", "monstrous"],
+          "baseReputation": -75,
+          "motto": "Mother of Monsters, Bless the Womb",
+          "mood": "hostile",
+          "resources": { "wealth": 20, "manpower": 15, "influence": 10, "secrecy": 80, "morale": 65 },
+          "lair": "Ancient temple of Lamashtu beneath western Sandpoint",
+          "goals": [
+            { "type": "prophecy_fulfillment", "narrative": "Rebirth of the Demon Mother's chosen below the town", "priority": "high" },
+            { "type": "territory_expansion", "narrative": "Reopen the buried shrine and spread corruption upward", "priority": "normal" }
+          ],
+          "secrets": [
+            { "topic": "The temple predates Sandpoint by millennia", "narrative": "Linked to the ancient Thassilonian Catacombs of Wrath" }
+          ]
+        },
+        {
+          "id": "cult-of-pazuzu",
+          "name": "Cult of Pazuzu (Grubber's Hermitage)",
+          "archetype": "cult",
+          "speciesHints": ["human", "demon-tainted"],
+          "baseReputation": -80,
+          "motto": "The Lord of the Wind Watches",
+          "mood": "cold",
+          "resources": { "wealth": 35, "manpower": 8, "influence": 15, "secrecy": 90, "morale": 70 },
+          "leader": { "name": "The Red Bishop", "title": "Cleric of Pazuzu", "legitimacy": 90 },
+          "lair": "Grubber's Hermitage / lower Underflume / Chopper's Isle shrine",
+          "goals": [
+            { "type": "prophecy_fulfillment", "narrative": "Await Sandpoint's reckoning and Pazuzu's return", "priority": "high" },
+            { "type": "artifact_recovery", "narrative": "Recover and protect the Pazuzu statuette and buried altar", "priority": "normal" }
+          ],
+          "secrets": [
+            { "topic": "Red Bishop disguises himself as a red seagull", "narrative": "The 'Stoot Bird' folk rumor is the Bishop scouting the coast" },
+            { "topic": "Controls the lower Underflume", "narrative": "Has claimed the demilich-guarded chambers below the old flume" }
+          ]
+        }
+      ]
+    }
+  ],
+  "factionRelations": [
+    { "from": "sandpoint-town-guard", "to": "thistletop-goblins", "score": -85, "mutual": true, "reason": "decades of goblin raids on Sandpoint" },
+    { "from": "sandpoint-town-guard", "to": "bunyip-club", "score": -40, "mutual": true, "reason": "ongoing smuggling vs. law-enforcement tension" },
+    { "from": "sandpoint-mercantile-league", "to": "varisian-council-sandpoint", "score": 25, "mutual": true, "reason": "the 4666 AR compact still binds the families to the Council" },
+    { "from": "scarnetti-family", "to": "valdemar-family", "score": -25, "mutual": false, "reason": "Scarnettis resent Valdemar's side trade concessions" },
+    { "from": "scarnetti-family", "to": "deverin-family", "score": -10, "mutual": false, "reason": "Titus resents Mayor Deverin's growing civic power" },
+    { "from": "kaijitsu-family", "to": "sandpoint-mercantile-league", "score": 40, "mutual": true, "reason": "founding family, still holds its seat" },
+    { "from": "valdemar-family", "to": "bunyip-club", "score": 20, "mutual": false, "reason": "Kaleb's secret smuggling alliance" },
+    { "from": "sandpoint-cathedral", "to": "varisian-council-sandpoint", "score": 15, "mutual": true, "reason": "cathedral was built at and around the Varisian stone circle" },
+    { "from": "sandpoint-cathedral", "to": "sandpoint-mercantile-league", "score": 30, "mutual": true, "reason": "the League funded cathedral construction" },
+    { "from": "birdcruncher-goblins", "to": "thistletop-goblins", "score": -50, "mutual": true, "reason": "Birdcrunchers refuse to join Thistletop's raids" },
+    { "from": "thistletop-goblins", "to": "licktoad-goblins", "score": -20, "mutual": true, "reason": "territorial friction" },
+    { "from": "bunyip-club", "to": "thistletop-goblins", "score": 10, "mutual": false, "reason": "the Club uses goblin tunnels for smuggling but doesn't trust them" },
+    { "from": "scarnetti-family", "to": "sandpoint-mercantile-league", "score": 20, "mutual": true, "reason": "founding family, holds seat" },
+    { "from": "valdemar-family", "to": "sandpoint-mercantile-league", "score": 15, "mutual": true, "reason": "founding family, currently disengaged after Ethram's death" },
+    { "from": "deverin-family", "to": "sandpoint-mercantile-league", "score": 45, "mutual": true, "reason": "Kendra holds both the founder's and mayoral seat" },
+    { "from": "sandpoint-town-guard", "to": "seven-tooth-goblins", "score": -55, "mutual": true, "reason": "ongoing beach raids, though less aggressive than Thistletop" },
+    { "from": "seven-tooth-goblins", "to": "thistletop-goblins", "score": -30, "mutual": true, "reason": "rival goblin tribes on the same coast" },
+    { "from": "cult-of-pazuzu", "to": "cult-of-lamashtu", "score": -40, "mutual": true, "reason": "Pazuzu and Lamashtu are ancient rival demon-lords" },
+    { "from": "cult-of-pazuzu", "to": "sandpoint-cathedral", "score": -60, "mutual": true, "reason": "cathedral built over the Pazuzu shrine blocks full awakening" },
+    { "from": "cult-of-lamashtu", "to": "sandpoint-cathedral", "score": -60, "mutual": true, "reason": "cathedral's foundations seal the Catacombs of Wrath" }
+  ]
+}

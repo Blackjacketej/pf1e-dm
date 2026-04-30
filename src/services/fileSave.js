@@ -14,6 +14,7 @@
 
 import db from '../db/database';
 import dmEngine from './dmEngine';
+import { migrateSaveData } from './saveGame';
 
 const FILE_VERSION = 1;
 const APP_ID = 'pf1e-dm-app';
@@ -115,6 +116,8 @@ export async function importFromFile(file) {
   }
 
   // Restore saved games to IndexedDB (merge — don't delete existing)
+  // Phase 7.7 — migrate legacy save rows to v3 on import so the archive
+  // doesn't carry pre-familiar state forward untouched.
   if (data.savedGames && data.savedGames.length > 0) {
     for (const save of data.savedGames) {
       // Avoid duplicates by checking name+savedAt
@@ -124,7 +127,7 @@ export async function importFromFile(file) {
         .first();
       if (!existing) {
         const { id, ...saveWithoutId } = save; // strip old ID so Dexie assigns new one
-        await db.savedGames.add(saveWithoutId);
+        await db.savedGames.add(migrateSaveData(saveWithoutId));
       }
     }
   }
@@ -150,8 +153,17 @@ export async function importFromFile(file) {
     }
   }
 
+  // Phase 7.7 — normalize the top-level live state (not just the archived
+  // savedGames array above) so an imported legacy file lands in memory with
+  // the v3 familiar field contract.
+  const liveMigrated = migrateSaveData({
+    version: data._fileVersion >= 2 ? 3 : 1,
+    party: data.party,
+    worldState: data.worldState,
+  });
+
   // Merge worldState with gmMapData from the file
-  let worldState = data.worldState || {};
+  let worldState = liveMigrated.worldState || {};
   if (data.gmMapData) {
     worldState = {
       ...worldState,
@@ -162,9 +174,13 @@ export async function importFromFile(file) {
       gmHexTerrain: data.gmMapData.gmHexTerrain || worldState.gmHexTerrain || {},
     };
   }
+  // Ensure familiarLocation survives the gmMapData merge above.
+  if (!worldState.familiarLocation || typeof worldState.familiarLocation !== 'object') {
+    worldState.familiarLocation = {};
+  }
 
   return {
-    party: data.party || [],
+    party: liveMigrated.party || [],
     campaign,
     adventure: data.adventure || null,
     combat: data.combat || null,

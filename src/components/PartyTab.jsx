@@ -4,13 +4,50 @@ import CharacterCreator from './CharacterCreator';
 import CharacterSheet from './CharacterSheet';
 import LevelUpWizard from './LevelUpWizard';
 import TemplateSelector from './TemplateSelector';
+import FamiliarPanel from './FamiliarPanel';
 import { getMaxHP, mod, uid } from '../utils/dice';
+import { getEffectiveMaxHP } from '../utils/familiarEngine';
 import { getStartingGold } from '../utils/character';
 import templates from '../data/templates.json';
 import races from '../data/races.json';
 import classesData from '../data/classes.json';
 import weapons from '../data/weapons.json';
-import equipmentData from '../data/equipment.json';
+import featsData from '../data/feats.json';
+import rawEquipmentData from '../data/equipment.json';
+
+// Base PF1e armor and shield tables for character creation
+// equipment.json is a flat array of magic items — it doesn't have base armor stats
+const BASE_ARMOR = [
+  { name: 'None', ac: 0, maxDex: 99, acp: 0, type: 'none' },
+  { name: 'Padded', ac: 1, maxDex: 8, acp: 0, type: 'light' },
+  { name: 'Leather', ac: 2, maxDex: 6, acp: 0, type: 'light' },
+  { name: 'Studded Leather', ac: 3, maxDex: 5, acp: -1, type: 'light' },
+  { name: 'Chain Shirt', ac: 4, maxDex: 4, acp: -2, type: 'light' },
+  { name: 'Hide', ac: 4, maxDex: 4, acp: -3, type: 'medium' },
+  { name: 'Scale Mail', ac: 5, maxDex: 3, acp: -4, type: 'medium' },
+  { name: 'Chainmail', ac: 6, maxDex: 2, acp: -5, type: 'medium' },
+  { name: 'Breastplate', ac: 6, maxDex: 3, acp: -4, type: 'medium' },
+  { name: 'Splint Mail', ac: 7, maxDex: 0, acp: -7, type: 'heavy' },
+  { name: 'Banded Mail', ac: 7, maxDex: 1, acp: -6, type: 'heavy' },
+  { name: 'Half-Plate', ac: 8, maxDex: 0, acp: -7, type: 'heavy' },
+  { name: 'Full Plate', ac: 9, maxDex: 1, acp: -6, type: 'heavy' },
+];
+
+const BASE_SHIELDS = [
+  { name: 'None', ac: 0, acp: 0 },
+  { name: 'Buckler', ac: 1, acp: -1 },
+  { name: 'Light Shield (Wood)', ac: 1, acp: -1 },
+  { name: 'Light Shield (Steel)', ac: 1, acp: -1 },
+  { name: 'Heavy Shield (Wood)', ac: 2, acp: -2 },
+  { name: 'Heavy Shield (Steel)', ac: 2, acp: -2 },
+  { name: 'Tower Shield', ac: 4, acp: -10 },
+];
+
+const equipmentData = {
+  armor: BASE_ARMOR,
+  shields: BASE_SHIELDS,
+  raw: rawEquipmentData,
+};
 import spellsData from '../data/spells.json';
 import spellSlotData from '../data/spellSlots.json';
 import db from '../db/database';
@@ -19,7 +56,7 @@ import { aiQuickCreate, generateBackstory } from '../services/aiCharacterBuilder
 import gameEvents from '../services/gameEventEngine';
 import useIsMobile from '../hooks/useIsMobile';
 
-export default function PartyTab({ party = [], setParty, addLog, updateCharHP }) {
+export default function PartyTab({ party = [], setParty, addLog, updateCharHP, worldState, setWorldState, campaign, onContinueToCampaign }) {
   const isMobile = useIsMobile();
   const [view, setView] = useState('party'); // 'party', 'creator', 'templates', 'import'
   const [feats, setFeats] = useState([]);
@@ -158,7 +195,7 @@ export default function PartyTab({ party = [], setParty, addLog, updateCharHP })
     ];
     setParty(quickParty);
     setView('party');
-    addLog?.('Quick party assembled!', 'info');
+    addLog?.('Quick party assembled!', 'success');
   };
 
   const handleRemoveCharacter = (id) => {
@@ -170,7 +207,11 @@ export default function PartyTab({ party = [], setParty, addLog, updateCharHP })
   const handleHeal = (id, amount) => {
     const char = party.find((c) => c.id === id);
     if (char) {
-      const delta = Math.min(amount, char.maxHP - char.currentHP);
+      // Phase 7.6 — cap healing at effective max HP (base + in-range familiar
+      // bonus). updateCharHP also clamps, but clamping here avoids a spurious
+      // "0-heal" log when currentHP already equals effectiveMaxHP.
+      const effMax = getEffectiveMaxHP(char, { worldState });
+      const delta = Math.min(amount, effMax - char.currentHP);
       if (delta > 0) updateCharHP?.(id, delta);
     }
   };
@@ -257,7 +298,7 @@ export default function PartyTab({ party = [], setParty, addLog, updateCharHP })
       setParty(prev => prev.map(c => c.id === charId ? { ...c, backstory } : c));
       addLog?.(`Backstory generated for ${char.name}.`, 'success');
     } else {
-      addLog?.('Could not generate backstory. Check your API key in Settings.', 'error');
+      addLog?.('Could not generate backstory. Check your API key in Settings.', 'warning');
     }
   };
 
@@ -277,6 +318,7 @@ export default function PartyTab({ party = [], setParty, addLog, updateCharHP })
         onComplete={handleAddCharacter} onCancel={() => setView('party')}
         races={races} classes={classesData} weapons={weapons}
         armorList={equipmentData.armor} shields={equipmentData.shields} feats={feats}
+        dmPreferences={worldState?.dmPreferences}
       />
     );
   }
@@ -287,6 +329,7 @@ export default function PartyTab({ party = [], setParty, addLog, updateCharHP })
         onSelect={handleAddCharacter} onCancel={() => setView('party')}
         templates={templates} races={races} classesMap={classesMap}
         armorList={equipmentData.armor} shields={equipmentData.shields} weapons={weapons}
+        feats={featsData}
       />
     );
   }
@@ -387,10 +430,37 @@ export default function PartyTab({ party = [], setParty, addLog, updateCharHP })
 
   const sheetChar = sheetCharId ? party.find(c => c.id === sheetCharId) : null;
 
+  // Show the "Choose Campaign Path" CTA only when a party has been built
+  // but no campaign is selected yet — this is the New-Game handoff from
+  // Party → Campaign. Once a campaign is picked, the tab is reachable
+  // directly from the tab bar, so we hide the CTA to avoid clutter.
+  const showCampaignCTA = !!onContinueToCampaign && party.length > 0 && !campaign;
+
   return (
     <div style={styles.container}>
       <div style={styles.header}>
         <div style={styles.title}>Party ({party.length}/6)</div>
+        {showCampaignCTA && (
+          <button
+            onClick={onContinueToCampaign}
+            style={{
+              marginLeft: 'auto',
+              background: 'linear-gradient(135deg, #2d1b00 0%, #4a2800 100%)',
+              border: '2px solid #7fff00',
+              color: '#7fff00',
+              padding: '8px 16px',
+              borderRadius: 6,
+              cursor: 'pointer',
+              fontSize: 13,
+              fontWeight: 700,
+              letterSpacing: 0.5,
+              fontFamily: 'inherit',
+            }}
+            title="Party is ready — pick an adventure path to start your campaign"
+          >
+            Next: Choose Campaign Path &rarr;
+          </button>
+        )}
       </div>
 
       <div style={styles.buttonRow}>
@@ -467,20 +537,41 @@ export default function PartyTab({ party = [], setParty, addLog, updateCharHP })
           <div style={{ fontSize: '12px', color: '#555' }}>Use templates, quick party, or create custom characters</div>
         </div>
       ) : (
-        <div style={styles.grid}>
-          {party.map((char) => (
-            <CharacterCard
-              key={char.id} char={char}
-              onRemove={handleRemoveCharacter}
-              onHeal={handleHeal}
-              onDamage={handleDamage}
-              onLevelUp={handleLevelUp}
-              onOpenSheet={() => setSheetCharId(char.id)}
-              onGenerateBackstory={handleGenerateBackstory}
-              classesMap={classesMap}
-            />
-          ))}
-        </div>
+        <>
+          <div style={styles.grid}>
+            {party.map((char) => (
+              <CharacterCard
+                key={char.id} char={char}
+                onRemove={handleRemoveCharacter}
+                onHeal={handleHeal}
+                onDamage={handleDamage}
+                onLevelUp={handleLevelUp}
+                onOpenSheet={() => setSheetCharId(char.id)}
+                onGenerateBackstory={handleGenerateBackstory}
+                classesMap={classesMap}
+                worldState={worldState}
+              />
+            ))}
+          </div>
+
+          {/* Phase 7.5 — Familiar panels for any party member with a familiar */}
+          {setWorldState && party.some((c) => c?.familiar?.id) && (
+            <div style={{ marginTop: 20 }}>
+              {party
+                .filter((c) => c?.familiar?.id)
+                .map((char) => (
+                  <FamiliarPanel
+                    key={`fam-${char.id}`}
+                    char={char}
+                    worldState={worldState}
+                    setWorldState={setWorldState}
+                    setParty={setParty}
+                    addLog={addLog}
+                  />
+                ))}
+            </div>
+          )}
+        </>
       )}
 
       {/* Character Sheet Modal */}
@@ -495,6 +586,7 @@ export default function PartyTab({ party = [], setParty, addLog, updateCharHP })
           armorList={equipmentData.armor}
           shieldsList={equipmentData.shields}
           weaponsList={weapons}
+          worldState={worldState}
         />
       )}
 

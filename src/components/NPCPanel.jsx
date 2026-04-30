@@ -1,21 +1,37 @@
 import React, { useState } from 'react';
 import useIsMobile from '../hooks/useIsMobile';
+import { publicNpcView } from '../services/npcKnowledge';
 
-// Helper: get the name to display based on whether party knows the NPC
-function displayName(npc) {
-  if (!npc) return 'someone';
-  if (npc.knownToParty) return npc.name;
-  if (npc.shortDesc) return `The ${npc.shortDesc}`;
-  return 'A stranger';
+// Label used on the "Talk to X" button. When identified we pick the first
+// name ("Mira" rather than "Mira Darkbrook"); otherwise we use the view's
+// own unknown-descriptor ("the dwarf woman" / "a stranger").
+function talkLabel(view) {
+  if (view.identified && view.displayName) {
+    return view.displayName.split(' ')[0];
+  }
+  return view.displayName || 'them';
 }
 
-// Helper: get short label for buttons
-function shortLabel(npc) {
-  if (npc.knownToParty) return npc.name.split(' ')[0];
-  // Use a short descriptor: "the dwarf", "the woman", "them"
-  if (npc.race && npc.race !== 'Human') return `the ${npc.race.toLowerCase()}`;
-  if (npc.appearance?.gender) return `the ${npc.appearance.gender === 'female' ? 'woman' : 'man'}`;
-  return 'them';
+// Second-line descriptor that grows richer as knowledge increases.
+//  L0 unidentified -> firstImpression / generic
+//  L1+  race
+//  stats unlock  -> + class + classLevel
+//  L3+  powerLevelHint (only if no class revealed yet)
+//  L2+  occupation
+function roleLine(view) {
+  if (!view.identified) {
+    return view.firstImpression || 'Appears to be a traveler';
+  }
+  const chunks = [];
+  if (view.race) chunks.push(view.race);
+  if (view.class) {
+    chunks.push(view.classLevel ? `${view.class} Lv${view.classLevel}` : view.class);
+  } else if (view.powerLevelHint) {
+    chunks.push(`(${view.powerLevelHint})`);
+  }
+  if (view.occupation) chunks.push(`— ${view.occupation}`);
+  const line = chunks.filter(Boolean).join(' ');
+  return line || 'someone you know';
 }
 
 export default function NPCPanel({ npcs = [], onTalkTo, onRevealName }) {
@@ -31,6 +47,20 @@ export default function NPCPanel({ npcs = [], onTalkTo, onRevealName }) {
       borderRadius: '6px',
       padding: '8px',
       marginBottom: '8px',
+    },
+    // Scrollable list container — Tom's live Market Square session hit 7+
+    // nearby NPCs and the list was getting clipped because the enclosing
+    // collapsible just rendered every row without any vertical bound.
+    // Cap at ~6 desktop rows / ~5 mobile rows before a scrollbar appears
+    // so the panel doesn't swallow the whole sidebar when the party is
+    // standing in a crowded festival square. The sidebar itself is
+    // resizable (drag the splitter on the left edge) so power users can
+    // open it wider instead of scrolling.
+    listScroll: {
+      maxHeight: isMobile ? '360px' : '440px',
+      overflowY: 'auto',
+      overflowX: 'hidden',
+      paddingRight: '2px', // reserve a sliver so scrollbar doesn't overlap text
     },
     title: {
       color: '#40e0d0',
@@ -157,82 +187,111 @@ export default function NPCPanel({ npcs = [], onTalkTo, onRevealName }) {
         <span>👥</span>
         <span>Nearby NPCs ({npcs.length})</span>
       </div>
+      <div style={styles.listScroll}>
       {npcs.map((npc, idx) => {
+        // One projection per NPC — same gate the Journal uses, so neither
+        // surface can leak more than the party has earned. Raw npc is kept
+        // for callback handlers (onTalkTo) that still expect the real object.
+        const view = publicNpcView(npc);
         const isExpanded = expanded === idx;
-        const dColors = dispositionColors[npc.disposition] || dispositionColors.neutral;
-        const known = npc.knownToParty;
-        const dName = displayName(npc);
+        // Disposition chip: publicNpcView maps npc.disposition -> demeanor at
+        // L2+ and -> disposition at L3+. Below L2 we show nothing so a
+        // five-second glance doesn't telegraph friendliness.
+        const dispLabel = view.disposition || view.demeanor || null;
+        const dColors = dispLabel
+          ? (dispositionColors[dispLabel] || dispositionColors.neutral)
+          : null;
 
         return (
-          <div key={npc.id || idx}>
+          <div key={view.id || idx}>
             <div
               style={styles.npcRow}
               onClick={() => setExpanded(isExpanded ? null : idx)}
             >
-              {npc.portraitSvg && (
+              {view.portraitSvg && (
                 <div
                   style={styles.portrait}
-                  dangerouslySetInnerHTML={{ __html: npc.portraitSvg }}
+                  dangerouslySetInnerHTML={{ __html: view.portraitSvg }}
                 />
               )}
               <div style={styles.npcInfo}>
-                <div style={known ? styles.npcName : styles.unknownName}>
-                  {dName}
+                <div style={view.identified ? styles.npcName : styles.unknownName}>
+                  {view.displayName}
                 </div>
                 <div style={styles.npcDetail}>
-                  {known
-                    ? `${npc.race} ${npc.class} ${npc.level ? `Lv${npc.level}` : ''} — ${npc.occupation || npc.class}`
-                    : npc.firstImpression || `Appears to be a ${npc.occupation || 'traveler'}`
-                  }
+                  {roleLine(view)}
                 </div>
               </div>
-              <span style={{ ...styles.disposition, backgroundColor: dColors.bg, color: dColors.color }}>
-                {npc.disposition}
-              </span>
+              {dispLabel && dColors && (
+                <span style={{ ...styles.disposition, backgroundColor: dColors.bg, color: dColors.color }}>
+                  {dispLabel}
+                </span>
+              )}
             </div>
             {isExpanded && (
               <div style={styles.expandedCard}>
-                {/* Appearance - always visible (PCs can see this) */}
-                {npc.appearance && (
+                {/* Appearance — always visible (you can see someone the moment
+                    you lay eyes on them, no knowledge required). */}
+                {view.appearance && (
                   <div style={{ marginBottom: '4px' }}>
                     <span style={{ color: '#ffd700' }}>Appearance:</span>{' '}
-                    {npc.appearance.build} build, {npc.appearance.hair} hair, {npc.appearance.eyes} eyes
-                    {npc.appearance.distinguishing ? `, ${npc.appearance.distinguishing}` : ''}
+                    {[
+                      view.appearance.build && `${view.appearance.build} build`,
+                      view.appearance.hair && `${view.appearance.hair} hair`,
+                      view.appearance.eyes && `${view.appearance.eyes} eyes`,
+                      view.appearance.distinguishing,
+                    ].filter(Boolean).join(', ')}
                   </div>
                 )}
 
-                {/* Only show personality and stats if the party knows this NPC */}
-                {known && (
-                  <>
-                    <div style={{ marginBottom: '4px' }}>
-                      <span style={{ color: '#ffd700' }}>Personality:</span> {npc.personality}
-                    </div>
-                    {npc.abilities && (
-                      <div style={styles.statRow}>
-                        {Object.entries(npc.abilities).map(([k, v]) => (
-                          <span key={k} style={styles.stat}>{k}: {v}</span>
-                        ))}
-                        <span style={styles.stat}>HP: {npc.hp}</span>
-                        <span style={styles.stat}>AC: {npc.ac}</span>
-                      </div>
-                    )}
-                  </>
+                {/* Mood unlocks at L2+ (short conversation lets you read a mood). */}
+                {view.emotionalState && (
+                  <div style={{ marginBottom: '4px' }}>
+                    <span style={{ color: '#ffd700' }}>Mood:</span> {view.emotionalState}
+                  </div>
                 )}
 
-                {/* If unknown, show hint that PCs need to interact to learn more */}
-                {!known && (
+                {/* Personality unlocks at L2+ (acquainted). */}
+                {view.personality && (
+                  <div style={{ marginBottom: '4px' }}>
+                    <span style={{ color: '#ffd700' }}>Personality:</span> {view.personality}
+                  </div>
+                )}
+
+                {/* Long-term goal unlocks at L3+ (genuinely known). */}
+                {view.goal && (
+                  <div style={{ marginBottom: '4px' }}>
+                    <span style={{ color: '#ffd700' }}>Goal:</span> {view.goal}
+                  </div>
+                )}
+
+                {/* Stat block unlocks behind stats/combatStats facts or L4. */}
+                {view.abilities && (
+                  <div style={styles.statRow}>
+                    {Object.entries(view.abilities).map(([k, v]) => (
+                      <span key={k} style={styles.stat}>{k}: {v}</span>
+                    ))}
+                    {view.hp != null && <span style={styles.stat}>HP: {view.hp}</span>}
+                    {view.ac != null && <span style={styles.stat}>AC: {view.ac}</span>}
+                  </div>
+                )}
+
+                {/* Gentle hint about how to learn more, tuned to the tier. */}
+                {!view.identified && (
                   <div style={{ marginTop: '4px', color: '#8b949e', fontStyle: 'italic', fontSize: '10px' }}>
                     You don't know this person's name yet. Try speaking with them.
                   </div>
                 )}
-
-                {npc.notes && (
-                  <div style={{ marginTop: '4px', color: '#8b949e', fontStyle: 'italic' }}>{npc.notes}</div>
+                {view.identified && view.knowledgeLevel < 3 && !view.abilities && (
+                  <div style={{ marginTop: '4px', color: '#8b949e', fontStyle: 'italic', fontSize: '10px' }}>
+                    You'd need more time together — or to see them in action — to know more.
+                  </div>
                 )}
+
                 <div style={{ ...styles.statRow, marginTop: '6px' }}>
                   {onTalkTo && (
                     <button style={styles.button} onClick={(e) => { e.stopPropagation(); onTalkTo(npc); }}>
-                      Talk to {shortLabel(npc)}
+                      Talk to {talkLabel(view)}
                     </button>
                   )}
                 </div>
@@ -241,6 +300,7 @@ export default function NPCPanel({ npcs = [], onTalkTo, onRevealName }) {
           </div>
         );
       })}
+      </div>
     </div>
   );
 }

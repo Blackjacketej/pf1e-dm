@@ -51,9 +51,39 @@
       "culturalNotes": "Diverse cultures of the Expanse — city-builders, jungle tribes, and ancient kingdoms."
     },
     {
+      "name": "Bonuwat",
+      "description": "Dark skin, wiry build. Seafaring people of western Garund's coastline.",
+      "homeland": "The Shackles",
+      "region": "Garund",
+      "languages": ["Common", "Polyglot"],
+      "commonClasses": ["Ranger", "Rogue", "Fighter"],
+      "traits": ["Sea Legs (Regional)", "Storm Sense"],
+      "culturalNotes": "Master sailors and fishermen who revere Gozreh and Desna. Navigators of the Arcadian Ocean."
+    },
+    {
+      "name": "Bekyar",
+      "description": "Dark skin, tall and imposing. From the southern Mwangi Expanse.",
+      "homeland": "Mwangi Expanse",
+      "region": "Garund",
+      "languages": ["Common", "Polyglot"],
+      "commonClasses": ["Fighter", "Cleric", "Ranger"],
+      "traits": ["Demon Slaver (Regional)", "Jungle Warrior"],
+      "culturalNotes": "Feared slavers and demon-worshippers of the southern jungles. Their city-states trade in lives."
+    },
+    {
+      "name": "Zenj",
+      "description": "Dark skin, lean and agile. Indigenous people of the northern Mwangi Expanse.",
+      "homeland": "Mwangi Expanse",
+      "region": "Garund",
+      "languages": ["Common", "Polyglot"],
+      "commonClasses": ["Ranger", "Druid", "Barbarian"],
+      "traits": ["Jungle Survivalist (Regional)", "Spirit Speaker"],
+      "culturalNotes": "Ancient tribal people with deep ties to the land and ancestor spirits. Guardians of the jungle."
+    },
+    {
       "name": "Shoanti",
       "description": "Bronze skin, tall and muscular, tattooed. Tribal people of the Storval Plateau.",
-      "homeland": "Varisia (Storval Plateau)",
+      "homeland": "Varisia",
       "region": "Avistan",
       "languages": ["Common", "Shoanti"],
       "commonClasses": ["Barbarian", "Ranger", "Druid"],
@@ -111,6 +141,46 @@
       "commonClasses": ["Monk", "Cleric", "Wizard"],
       "traits": ["Meditative Discipline (Regional)", "Vudrani Weapon Training"],
       "culturalNotes": "Deeply philosophical people with rich traditions of martial arts and divine magic."
+    },
+    {
+      "name": "Jadwiga",
+      "description": "Pale skin, light hair, cold eyes. Descended from Baba Yaga's bloodline.",
+      "homeland": "Irrisen",
+      "region": "Avistan",
+      "languages": ["Common", "Skald"],
+      "commonClasses": ["Witch", "Wizard", "Fighter"],
+      "traits": ["Winter Witch Heritage (Regional)", "Noble Born"],
+      "culturalNotes": "Ruling class of frozen Irrisen. Each generation descends from one of Baba Yaga's daughters. Rule over enslaved Ulfen."
+    },
+    {
+      "name": "Varki",
+      "description": "Dark skin, stocky build, adapted to extreme cold. Arctic hunters of the far north.",
+      "homeland": "Crown of the World",
+      "region": "Avistan (Arctic)",
+      "languages": ["Common", "Hallit"],
+      "commonClasses": ["Ranger", "Druid", "Barbarian"],
+      "traits": ["Arctic Adaptation (Regional)", "Ice Walker"],
+      "culturalNotes": "Nomadic hunters of the Crown of the World. Expert survivalists in the harshest conditions on Golarion."
+    },
+    {
+      "name": "Nidalese",
+      "description": "Pale, gaunt features with dark circles under the eyes. Shadow-touched people of Nidal.",
+      "homeland": "Nidal",
+      "region": "Avistan",
+      "languages": ["Common", "Shadowtongue"],
+      "commonClasses": ["Cleric", "Rogue", "Fighter"],
+      "traits": ["Shadow-Touched (Regional)", "Pain Tolerance"],
+      "culturalNotes": "People bound to Zon-Kuthon's shadow for millennia. Stoic, secretive, and accustomed to suffering."
+    },
+    {
+      "name": "Azlanti",
+      "description": "Tall, athletic, dark hair, violet or deep blue eyes. Remnants of a lost empire.",
+      "homeland": "Absalom",
+      "region": "Various",
+      "languages": ["Common", "Azlanti"],
+      "commonClasses": ["Wizard", "Fighter", "Paladin"],
+      "traits": ["Ancient Blood (Regional)", "Azlanti Purity"],
+      "culturalNotes": "Pure Azlanti are nearly extinct since Earthfall destroyed their empire. Those with Azlanti blood are considered exceptional."
     }
   ],
   "nonHumanOrigins": {
@@ -147,25 +217,382 @@
       { "name": "Andoran", "region": "Avistan", "description": "Free citizens of the democratic nation. Proud abolitionists.", "languages": ["Common", "Halfling"] },
       { "name": "Varisian Caravan", "region": "Varisia", "description": "Traveling with Varisian caravans as guides, cooks, or entertainers.", "languages": ["Common", "Halfling", "Varisian"] },
       { "name": "Riverfolk", "region": "Various", "description": "Living along rivers and waterways, skilled boaters and fishers.", "languages": ["Common", "Halfling"] }
+    ],
+    "Aasimar": [
+      { "name": "Absalom", "region": "Isle of Kortos", "description": "The cosmopolitan city where celestial-blooded are most accepted.", "languages": ["Common", "Celestial"] },
+      { "name": "Lastwall", "region": "Avistan", "description": "Crusader nation where aasimars are revered as blessed warriors against evil.", "languages": ["Common", "Celestial"] },
+      { "name": "Mendev", "region": "Avistan", "description": "Born near the Worldwound, many aasimars are called to the crusade.", "languages": ["Common", "Celestial"] },
+      { "name": "Unknown Heritage", "region": "Various", "description": "Celestial blood manifested unexpectedly. Raised unaware of their heritage.", "languages": ["Common", "Celestial"] }
+    ],
+    "Tiefling": [
+      { "name": "Cheliax", "region": "Avistan", "description": "Common in devil-bound Cheliax where fiendish pacts run deep.", "languages": ["Common", "Infernal"] },
+      { "name": "Worldwound Refugee", "region": "Mendev", "description": "Born near the demonic rift. Distrusted despite fighting for good.", "languages": ["Common", "Abyssal"] },
+      { "name": "Absalom Outcast", "region": "Isle of Kortos", "description": "Scraping by in the great city's underclass, mistrusted by many.", "languages": ["Common", "Infernal"] },
+      { "name": "Nidal", "region": "Avistan", "description": "Shadow-touched Nidal tolerates fiendish bloodlines more than most nations.", "languages": ["Common", "Infernal"] }
+    ],
+    "Orc": [
+      { "name": "Hold of Belkzen", "region": "Avistan", "description": "The savage orcish homeland of warring tribes.", "languages": ["Common", "Orc"] },
+      { "name": "Urgir", "region": "Hold of Belkzen", "description": "The orc capital built within a conquered dwarven Sky Citadel.", "languages": ["Common", "Orc"] },
+      { "name": "Darklands Raider", "region": "Darklands", "description": "From orc tribes in the upper Darklands who raid the surface.", "languages": ["Common", "Orc", "Undercommon"] },
+      { "name": "Exiled", "region": "Various", "description": "Cast out from the tribe, now surviving among other races.", "languages": ["Common", "Orc"] }
+    ],
+    "Goblin": [
+      { "name": "Varisia", "region": "Avistan", "description": "Countless goblin tribes infest Varisia's hinterlands and coast.", "languages": ["Common", "Goblin"] },
+      { "name": "Isger", "region": "Avistan", "description": "Goblinblood Wars scarred this land. Goblins remain a persistent threat.", "languages": ["Common", "Goblin"] },
+      { "name": "Sandpoint Hinterlands", "region": "Varisia", "description": "The notorious goblin tribes near the Lost Coast — Thistletop, Birdcruncher, and more.", "languages": ["Common", "Goblin"] },
+      { "name": "Urbanized", "region": "Various", "description": "A rare goblin raised among other races, struggling with civilized ways.", "languages": ["Common", "Goblin"] }
+    ],
+    "Kobold": [
+      { "name": "Darklands Warren", "region": "Darklands", "description": "From the vast kobold warrens that honeycomb the upper Darklands.", "languages": ["Common", "Draconic"] },
+      { "name": "Dragon-Sworn", "region": "Various", "description": "Served a true dragon as minion, now free to pursue own destiny.", "languages": ["Common", "Draconic"] },
+      { "name": "Varisian Foothills", "region": "Varisia", "description": "From mining colonies in the Mindspin or Kodar Mountains.", "languages": ["Common", "Draconic"] },
+      { "name": "Outcast", "region": "Various", "description": "Exiled from the tribe for being too clever, too kind, or too curious.", "languages": ["Common", "Draconic"] }
+    ],
+    "Catfolk": [
+      { "name": "Southern Garund", "region": "Garund", "description": "From the warm grasslands and jungles south of the Mwangi Expanse.", "languages": ["Common", "Catfolk"] },
+      { "name": "Qadira Trader", "region": "Qadira", "description": "Catfolk merchant traveling the trade routes of the east.", "languages": ["Common", "Catfolk", "Kelish"] },
+      { "name": "Wandering Pride", "region": "Various", "description": "Part of a nomadic catfolk pride roaming between settlements.", "languages": ["Common", "Catfolk"] }
+    ],
+    "Kitsune": [
+      { "name": "Tian Xia", "region": "Tian Xia", "description": "The ancestral homeland of kitsune, where fox-folk are part of legend.", "languages": ["Common", "Tien"] },
+      { "name": "Minkai", "region": "Tian Xia", "description": "From the empire of Minkai where kitsune live in disguise among humans.", "languages": ["Common", "Tien"] },
+      { "name": "Avistan Exile", "region": "Various", "description": "Kitsune who crossed the Crown of the World, living hidden in human cities.", "languages": ["Common", "Tien"] }
+    ],
+    "Tengu": [
+      { "name": "Tian Xia", "region": "Tian Xia", "description": "Tengu are widespread in Tian Xia, often as wandering swordsmen.", "languages": ["Common", "Tengu", "Tien"] },
+      { "name": "Absalom", "region": "Isle of Kortos", "description": "A growing tengu community thrives in the great city.", "languages": ["Common", "Tengu"] },
+      { "name": "Magnimar", "region": "Varisia", "description": "Tengu who settled in the cosmopolitan City of Monuments.", "languages": ["Common", "Tengu"] },
+      { "name": "Riddleport", "region": "Varisia", "description": "Tengu are common in the pirate haven, serving as sailors and thieves.", "languages": ["Common", "Tengu"] }
+    ],
+    "Ratfolk": [
+      { "name": "Darklands Trader", "region": "Darklands", "description": "Ratfolk merchant clans that trade between surface and Darklands.", "languages": ["Common", "Undercommon"] },
+      { "name": "Katapesh", "region": "Garund", "description": "Thriving in the great markets where anything can be bought.", "languages": ["Common", "Undercommon"] },
+      { "name": "Absalom Warrens", "region": "Isle of Kortos", "description": "Living in the under-city of Absalom, running trade networks.", "languages": ["Common", "Undercommon"] }
+    ],
+    "Nagaji": [
+      { "name": "Nagajor", "region": "Tian Xia", "description": "The naga kingdom where nagaji serve as the chosen people of the nagas.", "languages": ["Common", "Draconic"] },
+      { "name": "Tian Xia Wanderer", "region": "Tian Xia", "description": "Nagaji who left their naga masters to see the wider world.", "languages": ["Common", "Draconic", "Tien"] },
+      { "name": "Exiled", "region": "Various", "description": "Cast out from Nagajor or freed from naga service.", "languages": ["Common", "Draconic"] }
+    ],
+    "Changeling": [
+      { "name": "Irrisen", "region": "Avistan", "description": "Daughter of a winter hag from the frozen land of witches.", "languages": ["Common", "Aklo"] },
+      { "name": "Varisia", "region": "Avistan", "description": "Born to an annis or green hag of the wilds, raised by humans.", "languages": ["Common", "Aklo"] },
+      { "name": "Ustalav", "region": "Avistan", "description": "From the haunted land where hags are frighteningly common.", "languages": ["Common", "Aklo"] },
+      { "name": "Unknown Mother", "region": "Various", "description": "Raised unaware of hag heritage until the Call begins.", "languages": ["Common"] }
+    ],
+    "Dhampir": [
+      { "name": "Ustalav", "region": "Avistan", "description": "Gothic horror land where vampires are a persistent plague.", "languages": ["Common", "Undercommon"] },
+      { "name": "Nidal", "region": "Avistan", "description": "The shadow nation tolerates the undead-touched.", "languages": ["Common", "Shadowtongue"] },
+      { "name": "Geb", "region": "Garund", "description": "The undead nation where dhampirs are practically nobility.", "languages": ["Common", "Undercommon"] },
+      { "name": "Hidden Birth", "region": "Various", "description": "Born to a vampire's victim, raised unaware of their true nature.", "languages": ["Common"] }
+    ],
+    "Fetchling": [
+      { "name": "Shadow Plane", "region": "Shadow Plane", "description": "Born in the Shadow Plane, where fetchlings have lived for generations.", "languages": ["Common", "Aklo"] },
+      { "name": "Nidal", "region": "Avistan", "description": "Shadow-touched Nidal has strong connections to the Shadow Plane.", "languages": ["Common", "Shadowtongue"] },
+      { "name": "Absalom Exile", "region": "Isle of Kortos", "description": "Fetchlings who crossed over and now dwell in the great city.", "languages": ["Common", "Aklo"] }
+    ],
+    "Ifrit": [
+      { "name": "Qadira", "region": "Avistan", "description": "Fire-blooded ifrit are most common in the land of genies.", "languages": ["Common", "Ignan"] },
+      { "name": "Katapesh", "region": "Garund", "description": "The markets attract all manner of genie-touched.", "languages": ["Common", "Ignan"] },
+      { "name": "Absalom", "region": "Isle of Kortos", "description": "The cosmopolitan city where any heritage is possible.", "languages": ["Common", "Ignan"] }
+    ],
+    "Oread": [
+      { "name": "Janderhoff", "region": "Varisia", "description": "Earth-blooded often drawn to dwarven mountain communities.", "languages": ["Common", "Terran"] },
+      { "name": "Five Kings Mountains", "region": "Avistan", "description": "Living among dwarves who accept earth-touched kin.", "languages": ["Common", "Terran"] },
+      { "name": "Osirion", "region": "Garund", "description": "Desert oreads shaped by sand and ancient stone.", "languages": ["Common", "Terran"] }
+    ],
+    "Sylph": [
+      { "name": "Varisia", "region": "Avistan", "description": "Air-touched born in the windswept frontier lands.", "languages": ["Common", "Auran"] },
+      { "name": "Lands of the Linnorm Kings", "region": "Avistan", "description": "Born amid the northern gales and icy winds.", "languages": ["Common", "Auran", "Skald"] },
+      { "name": "Absalom", "region": "Isle of Kortos", "description": "Sylphs drawn to the cosmopolitan city.", "languages": ["Common", "Auran"] }
+    ],
+    "Undine": [
+      { "name": "Absalom", "region": "Isle of Kortos", "description": "Water-touched born in the great port city.", "languages": ["Common", "Aquan"] },
+      { "name": "The Shackles", "region": "Garund", "description": "Undines among the pirate isles, valued as sailors.", "languages": ["Common", "Aquan"] },
+      { "name": "River Kingdoms", "region": "Avistan", "description": "Living along the many rivers that define this chaotic region.", "languages": ["Common", "Aquan"] }
+    ],
+    "Duergar": [
+      { "name": "Nar-Voth", "region": "Darklands", "description": "Gray dwarves of the upper Darklands, bitter enemies of surface dwarves.", "languages": ["Common", "Dwarven", "Undercommon"] },
+      { "name": "Hagegraf", "region": "Darklands", "description": "The great duergar city-fortress in the Darklands.", "languages": ["Common", "Dwarven", "Undercommon"] },
+      { "name": "Surface Exile", "region": "Various", "description": "Rare duergar who left the Darklands for the blinding surface world.", "languages": ["Common", "Dwarven", "Undercommon"] }
+    ],
+    "Svirfneblin": [
+      { "name": "Nar-Voth", "region": "Darklands", "description": "Deep gnome warrens in the upper Darklands, hidden from drow.", "languages": ["Common", "Gnome", "Undercommon"] },
+      { "name": "Andoran Depths", "region": "Darklands", "description": "Svirfneblin communities beneath the free nation of Andoran.", "languages": ["Common", "Gnome", "Undercommon"] },
+      { "name": "Surface Refugee", "region": "Various", "description": "Fled the Darklands after their warren was overrun.", "languages": ["Common", "Gnome", "Undercommon"] }
+    ],
+    "Wayang": [
+      { "name": "Shadow Plane", "region": "Shadow Plane", "description": "Originally from the Shadow Plane, adapted to Material Plane life.", "languages": ["Common", "Wayang"] },
+      { "name": "Tian Xia", "region": "Tian Xia", "description": "Wayang communities in the distant east.", "languages": ["Common", "Wayang", "Tien"] },
+      { "name": "Wanderer", "region": "Various", "description": "A wayang far from home, seeking new shadows to explore.", "languages": ["Common", "Wayang"] }
     ]
   },
   "homelands": [
-    { "name": "Absalom", "region": "Isle of Kortos", "description": "City at the Center of the World" },
-    { "name": "Andoran", "region": "Avistan", "description": "Birthplace of Freedom" },
-    { "name": "Cheliax", "region": "Avistan", "description": "Devil-bound empire of law and infernal contracts" },
-    { "name": "Katapesh", "region": "Garund", "description": "Markets of the impossible, where anything can be bought" },
-    { "name": "Kyonin", "region": "Avistan", "description": "Ancient elven kingdom" },
-    { "name": "Lastwall", "region": "Avistan", "description": "Crusader nation guarding against the Whispering Tyrant" },
-    { "name": "Magnimar", "region": "Varisia", "description": "City of Monuments on the Lost Coast" },
-    { "name": "Nidal", "region": "Avistan", "description": "Shadow-cursed theocracy of Zon-Kuthon" },
-    { "name": "Nirmathas", "region": "Avistan", "description": "Forest nation of guerrilla freedom fighters" },
-    { "name": "Numeria", "region": "Avistan", "description": "Savage land of fallen starships and alien technology" },
-    { "name": "Osirion", "region": "Garund", "description": "Land of pharaohs and ancient tombs" },
-    { "name": "Qadira", "region": "Avistan", "description": "Gateway to the east, land of genies and trade" },
-    { "name": "Riddleport", "region": "Varisia", "description": "Pirate haven beneath the Cyphergate" },
-    { "name": "Sandpoint", "region": "Varisia", "description": "Sleepy coastal town on the Lost Coast" },
-    { "name": "Taldor", "region": "Avistan", "description": "Crumbling empire of decadent nobility" },
-    { "name": "Ustalav", "region": "Avistan", "description": "Gothic horror land haunted by the undead" },
-    { "name": "Varisia", "region": "Avistan", "description": "Frontier land of ancient Thassilonian ruins" }
+    {
+      "name": "Absalom", "region": "Isle of Kortos", "description": "City at the Center of the World",
+      "demographics": {
+        "ethnicities": { "Taldan": 15, "Chelaxian": 15, "Keleshite": 12, "Garundi": 12, "Varisian": 8, "Tian": 5, "Mwangi": 5, "Vudrani": 5, "Ulfen": 3, "Azlanti": 2 },
+        "races": { "Human": 45, "Halfling": 8, "Half-Elf": 8, "Elf": 7, "Dwarf": 6, "Gnome": 5, "Half-Orc": 5, "Aasimar": 3, "Tiefling": 3, "Tengu": 2, "Ratfolk": 2, "Catfolk": 2, "Kitsune": 1, "Fetchling": 1, "Undine": 1, "Ifrit": 1 }
+      }
+    },
+    {
+      "name": "Andoran", "region": "Avistan", "description": "Birthplace of Freedom",
+      "demographics": {
+        "ethnicities": { "Chelaxian": 25, "Taldan": 25, "Keleshite": 5, "Garundi": 5, "Varisian": 3, "Mwangi": 3 },
+        "races": { "Human": 60, "Halfling": 10, "Dwarf": 6, "Half-Elf": 5, "Elf": 5, "Gnome": 5, "Half-Orc": 4, "Aasimar": 2, "Tiefling": 2, "Catfolk": 1 }
+      }
+    },
+    {
+      "name": "Cheliax", "region": "Avistan", "description": "Devil-bound empire of law and infernal contracts",
+      "demographics": {
+        "ethnicities": { "Chelaxian": 50, "Taldan": 10, "Nidalese": 5, "Garundi": 3, "Keleshite": 3, "Varisian": 3 },
+        "races": { "Human": 60, "Halfling": 10, "Tiefling": 8, "Half-Orc": 4, "Gnome": 4, "Dwarf": 3, "Half-Elf": 3, "Elf": 2, "Aasimar": 2, "Changeling": 1, "Dhampir": 1 }
+      }
+    },
+    {
+      "name": "Galt", "region": "Avistan", "description": "Perpetual revolution and the soul-trapping Final Blades",
+      "demographics": {
+        "ethnicities": { "Taldan": 30, "Chelaxian": 25, "Kellid": 10, "Varisian": 5, "Garundi": 3 },
+        "races": { "Human": 65, "Half-Elf": 7, "Halfling": 6, "Dwarf": 5, "Elf": 5, "Gnome": 4, "Half-Orc": 3, "Tiefling": 3, "Changeling": 1, "Dhampir": 1 }
+      }
+    },
+    {
+      "name": "Geb", "region": "Garund", "description": "Undead nation ruled by a ghostly necromancer",
+      "demographics": {
+        "ethnicities": { "Garundi": 35, "Mwangi": 15, "Keleshite": 10, "Nidalese": 5, "Chelaxian": 3, "Taldan": 3 },
+        "races": { "Human": 40, "Dhampir": 15, "Half-Orc": 8, "Halfling": 6, "Tiefling": 5, "Fetchling": 5, "Elf": 4, "Gnome": 3, "Dwarf": 3, "Aasimar": 2, "Half-Elf": 3, "Changeling": 3, "Orc": 3 }
+      }
+    },
+    {
+      "name": "Hermea", "region": "Avistan", "description": "Gold dragon's utopian island experiment",
+      "demographics": {
+        "ethnicities": { "Taldan": 15, "Chelaxian": 15, "Garundi": 12, "Tian": 10, "Keleshite": 8, "Vudrani": 8, "Varisian": 5, "Mwangi": 5, "Azlanti": 5 },
+        "races": { "Human": 50, "Half-Elf": 12, "Elf": 10, "Aasimar": 8, "Gnome": 5, "Halfling": 5, "Dwarf": 4, "Half-Orc": 3, "Tiefling": 2, "Catfolk": 1 }
+      }
+    },
+    {
+      "name": "Irrisen", "region": "Avistan", "description": "Frozen queendom ruled by Baba Yaga's descendants",
+      "demographics": {
+        "ethnicities": { "Jadwiga": 30, "Ulfen": 30, "Kellid": 10, "Varki": 5, "Taldan": 2 },
+        "races": { "Human": 55, "Changeling": 10, "Dwarf": 5, "Elf": 5, "Half-Orc": 5, "Gnome": 5, "Halfling": 5, "Dhampir": 3, "Fetchling": 3, "Sylph": 2, "Oread": 2 }
+      }
+    },
+    {
+      "name": "Isger", "region": "Avistan", "description": "Chelish vassal state scarred by the Goblinblood Wars",
+      "demographics": {
+        "ethnicities": { "Chelaxian": 30, "Taldan": 15, "Kellid": 10, "Varisian": 5, "Garundi": 3 },
+        "races": { "Human": 55, "Halfling": 8, "Goblin": 8, "Half-Orc": 6, "Dwarf": 5, "Gnome": 5, "Half-Elf": 4, "Elf": 3, "Tiefling": 3, "Kobold": 2, "Orc": 1 }
+      }
+    },
+    {
+      "name": "Katapesh", "region": "Garund", "description": "Markets of the impossible, where anything can be bought",
+      "demographics": {
+        "ethnicities": { "Keleshite": 30, "Garundi": 20, "Mwangi": 10, "Vudrani": 5, "Taldan": 5 },
+        "races": { "Human": 50, "Halfling": 8, "Gnome": 5, "Half-Orc": 5, "Half-Elf": 4, "Dwarf": 4, "Elf": 3, "Ratfolk": 5, "Catfolk": 4, "Ifrit": 3, "Aasimar": 2, "Tiefling": 2, "Tengu": 2, "Undine": 2, "Oread": 1 }
+      }
+    },
+    {
+      "name": "Kyonin", "region": "Avistan", "description": "Ancient elven kingdom",
+      "demographics": {
+        "ethnicities": { "Taldan": 5, "Varisian": 3 },
+        "races": { "Elf": 55, "Half-Elf": 15, "Human": 10, "Gnome": 8, "Halfling": 5, "Dwarf": 3, "Aasimar": 2, "Catfolk": 1, "Sylph": 1 }
+      }
+    },
+    {
+      "name": "Lands of the Linnorm Kings", "region": "Avistan", "description": "Viking kingdoms of the frozen north",
+      "demographics": {
+        "ethnicities": { "Ulfen": 50, "Kellid": 10, "Varki": 5, "Shoanti": 3, "Jadwiga": 3 },
+        "races": { "Human": 65, "Dwarf": 8, "Half-Orc": 6, "Halfling": 5, "Gnome": 4, "Half-Elf": 4, "Elf": 3, "Sylph": 2, "Oread": 1, "Changeling": 1, "Tiefling": 1 }
+      }
+    },
+    {
+      "name": "Lastwall", "region": "Avistan", "description": "Crusader nation guarding against the Whispering Tyrant",
+      "demographics": {
+        "ethnicities": { "Taldan": 25, "Chelaxian": 15, "Kellid": 10, "Garundi": 5, "Ulfen": 5 },
+        "races": { "Human": 55, "Dwarf": 8, "Aasimar": 8, "Half-Elf": 6, "Halfling": 5, "Elf": 5, "Half-Orc": 4, "Gnome": 4, "Tiefling": 2, "Dhampir": 2, "Oread": 1 }
+      }
+    },
+    {
+      "name": "Magnimar", "region": "Varisia", "description": "City of Monuments on the Lost Coast",
+      "demographics": {
+        "ethnicities": { "Varisian": 25, "Chelaxian": 20, "Shoanti": 10, "Taldan": 10, "Tian": 5, "Ulfen": 5, "Garundi": 3, "Keleshite": 3, "Vudrani": 3, "Mwangi": 2 },
+        "races": { "Human": 55, "Halfling": 8, "Half-Elf": 8, "Elf": 6, "Dwarf": 5, "Gnome": 4, "Half-Orc": 4, "Aasimar": 2, "Tiefling": 2, "Tengu": 2, "Catfolk": 1, "Ratfolk": 1, "Kitsune": 1, "Goblin": 1 }
+      }
+    },
+    {
+      "name": "Mendev", "region": "Avistan", "description": "Crusader nation bordering the Worldwound",
+      "demographics": {
+        "ethnicities": { "Kellid": 25, "Taldan": 15, "Chelaxian": 10, "Garundi": 5, "Ulfen": 5, "Mwangi": 3 },
+        "races": { "Human": 55, "Aasimar": 8, "Dwarf": 7, "Half-Elf": 6, "Halfling": 5, "Elf": 5, "Half-Orc": 4, "Gnome": 4, "Tiefling": 3, "Orc": 2, "Changeling": 1 }
+      }
+    },
+    {
+      "name": "Molthune", "region": "Avistan", "description": "Expansionist military nation at war with Nirmathas",
+      "demographics": {
+        "ethnicities": { "Chelaxian": 25, "Taldan": 20, "Kellid": 10, "Varisian": 5, "Garundi": 3 },
+        "races": { "Human": 60, "Halfling": 8, "Dwarf": 7, "Half-Elf": 5, "Gnome": 5, "Elf": 4, "Half-Orc": 5, "Tiefling": 2, "Aasimar": 2, "Goblin": 1, "Orc": 1 }
+      }
+    },
+    {
+      "name": "Mwangi Expanse", "region": "Garund", "description": "Vast jungles and savannas of central Garund",
+      "demographics": {
+        "ethnicities": { "Mwangi": 25, "Zenj": 20, "Bekyar": 15, "Bonuwat": 10, "Garundi": 5, "Keleshite": 3 },
+        "races": { "Human": 50, "Catfolk": 10, "Elf": 8, "Half-Orc": 6, "Halfling": 5, "Gnome": 4, "Half-Elf": 4, "Nagaji": 3, "Aasimar": 2, "Tengu": 2, "Tiefling": 2, "Changeling": 2, "Goblin": 2 }
+      }
+    },
+    {
+      "name": "Nex", "region": "Garund", "description": "Arcane nation founded by the archmage Nex",
+      "demographics": {
+        "ethnicities": { "Garundi": 30, "Keleshite": 15, "Taldan": 10, "Mwangi": 8, "Vudrani": 5, "Tian": 3 },
+        "races": { "Human": 45, "Halfling": 7, "Gnome": 7, "Half-Elf": 6, "Elf": 6, "Dwarf": 4, "Aasimar": 4, "Tiefling": 4, "Half-Orc": 3, "Ifrit": 3, "Sylph": 3, "Undine": 3, "Oread": 3, "Fetchling": 2 }
+      }
+    },
+    {
+      "name": "Nidal", "region": "Avistan", "description": "Shadow-cursed theocracy of Zon-Kuthon",
+      "demographics": {
+        "ethnicities": { "Nidalese": 45, "Chelaxian": 15, "Varisian": 5, "Taldan": 3, "Kellid": 2 },
+        "races": { "Human": 55, "Fetchling": 10, "Half-Orc": 5, "Tiefling": 5, "Halfling": 5, "Dhampir": 4, "Half-Elf": 4, "Dwarf": 3, "Elf": 3, "Gnome": 3, "Changeling": 2, "Wayang": 1 }
+      }
+    },
+    {
+      "name": "Nirmathas", "region": "Avistan", "description": "Forest nation of guerrilla freedom fighters",
+      "demographics": {
+        "ethnicities": { "Chelaxian": 20, "Kellid": 20, "Taldan": 15, "Varisian": 5, "Ulfen": 3 },
+        "races": { "Human": 55, "Half-Elf": 8, "Elf": 8, "Dwarf": 6, "Halfling": 6, "Gnome": 5, "Half-Orc": 5, "Aasimar": 2, "Tiefling": 2, "Goblin": 2, "Catfolk": 1 }
+      }
+    },
+    {
+      "name": "Numeria", "region": "Avistan", "description": "Savage land of fallen starships and alien technology",
+      "demographics": {
+        "ethnicities": { "Kellid": 45, "Ulfen": 10, "Shoanti": 5, "Taldan": 3, "Garundi": 2 },
+        "races": { "Human": 60, "Half-Orc": 8, "Orc": 5, "Dwarf": 5, "Halfling": 5, "Gnome": 4, "Half-Elf": 4, "Elf": 3, "Tiefling": 2, "Aasimar": 2, "Ifrit": 1, "Android": 1 }
+      }
+    },
+    {
+      "name": "Osirion", "region": "Garund", "description": "Land of pharaohs and ancient tombs",
+      "demographics": {
+        "ethnicities": { "Garundi": 50, "Keleshite": 15, "Mwangi": 5, "Taldan": 5, "Vudrani": 3 },
+        "races": { "Human": 60, "Halfling": 7, "Dwarf": 5, "Half-Elf": 5, "Gnome": 4, "Elf": 4, "Half-Orc": 4, "Aasimar": 2, "Tiefling": 2, "Ifrit": 2, "Oread": 2, "Ratfolk": 2, "Undine": 1 }
+      }
+    },
+    {
+      "name": "Qadira", "region": "Avistan", "description": "Gateway to the east, land of genies and trade",
+      "demographics": {
+        "ethnicities": { "Keleshite": 50, "Garundi": 10, "Taldan": 8, "Vudrani": 8, "Mwangi": 3 },
+        "races": { "Human": 60, "Halfling": 8, "Gnome": 5, "Half-Orc": 5, "Half-Elf": 4, "Dwarf": 3, "Elf": 3, "Ifrit": 3, "Catfolk": 2, "Aasimar": 2, "Tiefling": 2, "Ratfolk": 2, "Undine": 1 }
+      }
+    },
+    {
+      "name": "Razmiran", "region": "Avistan", "description": "Theocracy ruled by a false living god",
+      "demographics": {
+        "ethnicities": { "Taldan": 25, "Chelaxian": 20, "Kellid": 15, "Varisian": 5, "Garundi": 3 },
+        "races": { "Human": 65, "Halfling": 7, "Dwarf": 5, "Gnome": 5, "Half-Elf": 5, "Elf": 4, "Half-Orc": 4, "Tiefling": 2, "Aasimar": 2, "Changeling": 1 }
+      }
+    },
+    {
+      "name": "Riddleport", "region": "Varisia", "description": "Pirate haven beneath the Cyphergate",
+      "demographics": {
+        "ethnicities": { "Varisian": 20, "Chelaxian": 15, "Ulfen": 15, "Shoanti": 8, "Tian": 5, "Taldan": 5, "Keleshite": 5, "Garundi": 3 },
+        "races": { "Human": 55, "Half-Orc": 8, "Halfling": 7, "Dwarf": 6, "Half-Elf": 5, "Gnome": 4, "Elf": 4, "Tiefling": 3, "Tengu": 3, "Ratfolk": 2, "Goblin": 2, "Orc": 1 }
+      }
+    },
+    {
+      "name": "River Kingdoms", "region": "Avistan", "description": "Lawless patchwork of petty kingdoms and bandit lords",
+      "demographics": {
+        "ethnicities": { "Taldan": 20, "Kellid": 15, "Chelaxian": 15, "Varisian": 10, "Ulfen": 5, "Garundi": 3 },
+        "races": { "Human": 55, "Half-Elf": 8, "Halfling": 7, "Half-Orc": 6, "Elf": 5, "Dwarf": 5, "Gnome": 5, "Tiefling": 3, "Aasimar": 2, "Catfolk": 2, "Goblin": 1, "Kobold": 1 }
+      }
+    },
+    {
+      "name": "Sandpoint", "region": "Varisia", "description": "Sleepy coastal town on the Lost Coast",
+      "demographics": {
+        "ethnicities": { "Varisian": 30, "Chelaxian": 25, "Shoanti": 15, "Tian": 5, "Ulfen": 5, "Taldan": 3, "Garundi": 2, "Keleshite": 2, "Vudrani": 2 },
+        "races": { "Human": 65, "Halfling": 8, "Half-Elf": 6, "Elf": 5, "Dwarf": 4, "Gnome": 3, "Half-Orc": 3, "Goblin": 2, "Aasimar": 1, "Tiefling": 1, "Kitsune": 1, "Tengu": 1 }
+      }
+    },
+    {
+      "name": "The Shackles", "region": "Garund", "description": "Pirate isles ruled by the Hurricane King",
+      "demographics": {
+        "ethnicities": { "Bonuwat": 20, "Mwangi": 15, "Chelaxian": 10, "Varisian": 10, "Garundi": 8, "Ulfen": 5, "Keleshite": 5 },
+        "races": { "Human": 50, "Half-Orc": 8, "Halfling": 7, "Half-Elf": 6, "Tengu": 5, "Dwarf": 4, "Elf": 4, "Gnome": 4, "Undine": 3, "Tiefling": 3, "Catfolk": 2, "Ratfolk": 2, "Goblin": 2 }
+      }
+    },
+    {
+      "name": "Taldor", "region": "Avistan", "description": "Crumbling empire of decadent nobility",
+      "demographics": {
+        "ethnicities": { "Taldan": 45, "Chelaxian": 15, "Keleshite": 8, "Garundi": 5, "Varisian": 3 },
+        "races": { "Human": 65, "Halfling": 8, "Half-Elf": 6, "Elf": 5, "Dwarf": 4, "Gnome": 4, "Half-Orc": 3, "Aasimar": 2, "Tiefling": 2, "Catfolk": 1 }
+      }
+    },
+    {
+      "name": "The Worldwound", "region": "Avistan", "description": "Demon-infested rift torn in the fabric of reality",
+      "demographics": {
+        "ethnicities": { "Kellid": 30, "Taldan": 10, "Chelaxian": 5, "Garundi": 5, "Ulfen": 5 },
+        "races": { "Human": 40, "Tiefling": 12, "Aasimar": 8, "Half-Orc": 8, "Orc": 5, "Dwarf": 5, "Halfling": 4, "Half-Elf": 4, "Elf": 4, "Gnome": 3, "Changeling": 3, "Dhampir": 2, "Fetchling": 2 }
+      }
+    },
+    {
+      "name": "Thuvia", "region": "Garund", "description": "Desert land famous for its sun orchid elixir",
+      "demographics": {
+        "ethnicities": { "Garundi": 35, "Keleshite": 20, "Mwangi": 10, "Taldan": 5, "Vudrani": 3 },
+        "races": { "Human": 60, "Halfling": 7, "Dwarf": 5, "Gnome": 5, "Half-Elf": 5, "Elf": 4, "Half-Orc": 4, "Aasimar": 2, "Ifrit": 2, "Oread": 2, "Catfolk": 2, "Tiefling": 2 }
+      }
+    },
+    {
+      "name": "Ustalav", "region": "Avistan", "description": "Gothic horror land haunted by the undead",
+      "demographics": {
+        "ethnicities": { "Varisian": 20, "Kellid": 20, "Chelaxian": 15, "Taldan": 10, "Nidalese": 5 },
+        "races": { "Human": 55, "Dhampir": 8, "Halfling": 6, "Half-Elf": 5, "Dwarf": 5, "Gnome": 4, "Half-Orc": 4, "Elf": 4, "Changeling": 3, "Tiefling": 2, "Fetchling": 2, "Aasimar": 2 }
+      }
+    },
+    {
+      "name": "Varisia", "region": "Avistan", "description": "Frontier land of ancient Thassilonian ruins",
+      "demographics": {
+        "ethnicities": { "Varisian": 30, "Chelaxian": 20, "Shoanti": 15, "Taldan": 5, "Ulfen": 5, "Tian": 4, "Garundi": 2, "Keleshite": 2 },
+        "races": { "Human": 60, "Halfling": 7, "Half-Elf": 6, "Elf": 5, "Dwarf": 5, "Gnome": 4, "Half-Orc": 4, "Goblin": 3, "Aasimar": 2, "Tiefling": 2, "Tengu": 1, "Kitsune": 1 }
+      }
+    },
+    {
+      "name": "Vudra", "region": "Casmaron", "description": "Vast subcontinent of a hundred kingdoms",
+      "demographics": {
+        "ethnicities": { "Vudrani": 55, "Keleshite": 10, "Tian": 5, "Garundi": 3 },
+        "races": { "Human": 60, "Halfling": 6, "Gnome": 5, "Ratfolk": 5, "Nagaji": 5, "Catfolk": 4, "Half-Elf": 3, "Dwarf": 3, "Elf": 3, "Aasimar": 3, "Ifrit": 2, "Oread": 1 }
+      }
+    },
+    {
+      "name": "Tian Xia", "region": "Tian Xia", "description": "Dragon Empires of the distant east",
+      "demographics": {
+        "ethnicities": { "Tian": 55, "Vudrani": 5, "Keleshite": 3 },
+        "races": { "Human": 50, "Kitsune": 10, "Tengu": 8, "Nagaji": 8, "Wayang": 5, "Half-Elf": 4, "Elf": 3, "Aasimar": 3, "Tiefling": 2, "Catfolk": 2, "Ratfolk": 2, "Dhampir": 1, "Changeling": 1, "Halfling": 1 }
+      }
+    },
+    {
+      "name": "Crown of the World", "region": "Arctic", "description": "Frozen roof of the world connecting Avistan and Tian Xia",
+      "demographics": {
+        "ethnicities": { "Varki": 35, "Ulfen": 20, "Tian": 15, "Kellid": 10 },
+        "races": { "Human": 60, "Dwarf": 8, "Half-Orc": 6, "Gnome": 5, "Halfling": 5, "Elf": 4, "Half-Elf": 4, "Oread": 3, "Sylph": 3, "Changeling": 2 }
+      }
+    },
+    {
+      "name": "Darklands", "region": "Underground", "description": "The vast underworld beneath Golarion's surface",
+      "demographics": {
+        "ethnicities": { "Kellid": 10, "Shoanti": 5, "Garundi": 3 },
+        "races": { "Dwarf": 15, "Duergar": 15, "Svirfneblin": 15, "Orc": 12, "Kobold": 10, "Goblin": 8, "Half-Orc": 5, "Ratfolk": 5, "Fetchling": 5, "Wayang": 5, "Human": 5 }
+      }
+    },
+    {
+      "name": "Hold of Belkzen", "region": "Avistan", "description": "Savage orcish territory of warring tribes",
+      "demographics": {
+        "ethnicities": { "Kellid": 15, "Shoanti": 5, "Ulfen": 3 },
+        "races": { "Orc": 35, "Half-Orc": 25, "Human": 15, "Goblin": 8, "Ogre": 5, "Kobold": 4, "Dwarf": 3, "Gnome": 2, "Halfling": 2, "Tiefling": 1 }
+      }
+    },
+    {
+      "name": "Korvosa", "region": "Varisia", "description": "Chelish-founded city of strict order and ancient curses",
+      "demographics": {
+        "ethnicities": { "Chelaxian": 35, "Varisian": 20, "Shoanti": 10, "Taldan": 8, "Garundi": 3, "Keleshite": 3, "Tian": 2 },
+        "races": { "Human": 60, "Halfling": 8, "Half-Elf": 6, "Elf": 5, "Dwarf": 5, "Gnome": 4, "Half-Orc": 3, "Tiefling": 3, "Aasimar": 2, "Tengu": 2, "Ratfolk": 1, "Goblin": 1 }
+      }
+    }
   ]
 }

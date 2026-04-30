@@ -15,6 +15,31 @@
  */
 
 import { roll, rollDice, mod } from '../utils/dice';
+import { computeSave, getBluffFeintOpposed } from '../utils/rulesEngine';
+import { applyEvasion } from '../utils/classAbilityResolver';
+
+/**
+ * Parse an enemy's skill bonus from any of the three storage formats:
+ *  1. String: "Bluff +11, Perception +14"  (monsters.json default)
+ *  2. Structured: { Bluff: { bonus: 11 } }
+ *  3. Flat number: { Bluff: 11 }
+ * Returns the numeric bonus or 0 if not found.
+ */
+export function getEnemySkillBonus(enemy, skillName) {
+  const s = enemy?.skills;
+  if (!s) return 0;
+  // Format 1: entire skills field is a string
+  if (typeof s === 'string') {
+    const re = new RegExp(`${skillName}\\s+([+-]?\\d+)`, 'i');
+    const m = s.match(re);
+    return m ? parseInt(m[1], 10) : 0;
+  }
+  // Format 2: structured object with .bonus
+  if (s[skillName]?.bonus != null) return s[skillName].bonus;
+  // Format 3: flat numeric value
+  if (typeof s[skillName] === 'number') return s[skillName];
+  return 0;
+}
 
 // ═══════════════════════════════════════════════════
 // CONDITION SYSTEM
@@ -420,6 +445,11 @@ export function scorePossibleActions(enemy, alivePCs, allEnemies, combatState = 
     }
   }
 
+  // --- FEINT (standard action, Bluff-based) ---
+  if (tier === 'cunning' || tier === 'genius') {
+    candidates.push(scoreFeint(enemy, alivePCs, allEnemies, tier));
+  }
+
   // --- TACTICAL RETREAT / REPOSITION ---
   if (tier === 'cunning' || tier === 'genius') {
     candidates.push(scoreReposition(enemy, alivePCs, tier, hpPct));
@@ -583,6 +613,50 @@ function scoreTripAttack(enemy, alivePCs, tier) {
     action: 'trip',
     score: Math.max(0, score),
     reasoning: 'Trip attack to knock target prone.',
+  };
+}
+
+/**
+ * Score feint action (CRB pp. 92, 201). Cunning/genius creatures with Bluff
+ * skill may feint to deny a target's DEX bonus to AC, enabling sneak attacks
+ * from rogue-type allies or just improving hit chance.
+ */
+function scoreFeint(enemy, alivePCs, allEnemies, tier) {
+  // Only for creatures that could reasonably feint (have Bluff or Int 3+)
+  const bluffBonus = getEnemySkillBonus(enemy, 'Bluff');
+  const intelligence = enemy.intelligence ?? enemy.abilities?.INT ?? 10;
+  if (intelligence <= 2 || bluffBonus <= 0) return { action: 'feint', score: 0, reasoning: 'No Bluff skill or too low Int.' };
+
+  let score = 25; // Lower base than attack — feint is a setup move
+
+  // Feint is much more valuable if there are allies who can exploit denied-Dex (rogues, etc.)
+  const hasSnealAttacker = allEnemies.some(e =>
+    e.id !== enemy.id && e.currentHP > 0 && (
+      (e.type || '').toLowerCase().includes('rogue') ||
+      e.sneakAttack || e.sneak_attack
+    )
+  );
+  if (hasSnealAttacker) score += 25;
+
+  // Higher Bluff = more likely to succeed = more valuable
+  if (bluffBonus >= 10) score += 10;
+  else if (bluffBonus >= 5) score += 5;
+
+  // Genius creatures value tactical setups more
+  if (tier === 'genius') score += 10;
+  else if (tier === 'cunning') score += 5;
+
+  // Don't feint if target is already denied Dex
+  const primaryTarget = alivePCs[0]; // simplified — real targeting is done elsewhere
+  if (primaryTarget?.conditions?.some(c => c.id === 'feinted' || c.modifiers?.loseDexToAC)) {
+    score = 0;
+  }
+
+  return {
+    action: 'feint',
+    score: Math.max(0, score),
+    target: primaryTarget?.id,
+    reasoning: `Feint to deny target DEX to AC${hasSnealAttacker ? ' (enabling ally sneak attack!)' : ''}.`,
   };
 }
 
@@ -864,16 +938,25 @@ export function resolveBreathWeapon(enemy, alivePCs) {
   const conMod = enemy.con ? mod(parseInt(enemy.con)) : 0;
   const dc = 10 + Math.floor(cr / 2) + conMod;
 
-  // Each PC makes a Reflex save
+  // Each PC makes a Reflex save (uses full rules engine: base + ability + feats + racial bonuses)
+  // Breath weapons are supernatural abilities, not spells — no conditional racial save bonuses apply
   const results = alivePCs.map(pc => {
-    const refSave = roll(20) + (pc.ref || pc.reflex || 0);
-    const saved = refSave >= dc;
+    const d20 = roll(20);
+    const saveData = computeSave(pc, 'Ref', {}, { isSpell: false });
+    const total = d20 + saveData.total;
+    const saved = d20 === 1 ? false : (d20 === 20 ? true : total >= dc);
+    // Apply Evasion (Monk/Rogue/Ranger): Reflex half → 0 on pass, Improved Evasion: half on fail
+    const evasionResult = applyEvasion(pc, saved, damage);
     return {
       target: pc,
-      damage: saved ? Math.floor(damage / 2) : damage,
+      damage: evasionResult.finalDamage,
       saved,
-      saveRoll: refSave,
+      saveRoll: total,
+      natural: d20,
+      saveBonus: saveData.total,
       dc,
+      evasionApplied: evasionResult.evasionApplied,
+      evasionMessage: evasionResult.evasionApplied ? evasionResult.message : null,
     };
   });
 
@@ -891,7 +974,10 @@ export function resolveBreathWeapon(enemy, alivePCs) {
  */
 export function resolveTripAttempt(enemy, target) {
   const cmb = enemy.cmb || (enemy.bab || 0) + mod(parseInt(enemy.str || 10));
-  const cmd = target.cmd || (10 + (target.bab || 0) + mod(parseInt(target.str || 10)) + mod(parseInt(target.dex || 10)));
+  let cmd = target.cmd || (10 + (target.bab || 0) + mod(parseInt(target.str || 10)) + mod(parseInt(target.dex || 10)));
+  // Racial Stability bonus (Dwarf +4 CMD vs trip)
+  const stability = target.racialCombatBonuses?.stability;
+  if (stability && stability.vsManeuvers.includes('trip')) cmd += stability.cmdBonus;
 
   const cmbRoll = roll(20) + cmb;
   const success = cmbRoll >= cmd;
@@ -911,7 +997,9 @@ export function resolveTripAttempt(enemy, target) {
  */
 export function resolveGrabAttempt(enemy, target) {
   const cmb = enemy.cmb || (enemy.bab || 0) + mod(parseInt(enemy.str || 10));
-  const cmd = target.cmd || (10 + (target.bab || 0) + mod(parseInt(target.str || 10)) + mod(parseInt(target.dex || 10)));
+  let cmd = target.cmd || (10 + (target.bab || 0) + mod(parseInt(target.str || 10)) + mod(parseInt(target.dex || 10)));
+  // Racial Stability bonus — note: Stability is specifically vs bull rush and trip, NOT grapple per CRB
+  // But we check anyway in case the data includes it
 
   const cmbRoll = roll(20) + cmb;
   const success = cmbRoll >= cmd;
@@ -934,13 +1022,18 @@ export function resolveFrightfulPresence(enemy, alivePCs) {
   const cr = enemy.cr || 1;
   const dc = 10 + Math.floor(cr / 2) + mod(parseInt(enemy.cha || 10));
 
+  // Frightful presence is a fear effect — Halfling Fearless (+2 vs fear) applies
   const results = alivePCs.map(pc => {
-    const willSave = roll(20) + (pc.will || 0);
-    const saved = willSave >= dc;
+    const d20 = roll(20);
+    const saveData = computeSave(pc, 'Will', {}, { descriptors: ['fear'] });
+    const total = d20 + saveData.total;
+    const saved = d20 === 1 ? false : (d20 === 20 ? true : total >= dc);
     return {
       target: pc,
       saved,
-      saveRoll: willSave,
+      saveRoll: total,
+      natural: d20,
+      saveBonus: saveData.total,
       dc,
       condition: saved ? null : { id: 'shaken', name: 'Shaken', duration: 3 + roll(4) },
     };

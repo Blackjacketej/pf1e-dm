@@ -1,0 +1,75 @@
+/* AdventureGrid.css — Bug #48 follow-up, visual polish for the dockable
+ * grid spike (2026-04-18 + 2026-04-18 feedback pass).
+ *
+ * The default react-resizable handle is a ~20x20 SVG arrow in dark gray
+ * drawn via a CSS background-image. Against our #1a1a2e tile bg it's
+ * functionally invisible — the handle still works, the operator just
+ * can't see it. Override the handle art with a bright-on-dark variant
+ * so resizing is discoverable.
+ *
+ * We also force `.react-grid-layout` to fill its parent; by default RGL
+ * container height is autoSize-driven (sum of tile rows). We feed it a
+ * computed rowHeight from the measured container, but we still want the
+ * wrapper itself to claim the full flex cell.
+ */
+
+.adv-grid.react-grid-layout {
+  position: relative;
+  width: 100%;
+  /* Parent provides bounded height via flex: 1 1 0 + minHeight: 0. */
+}
+
+/* Tile drag handle — cursor treatment when hovering panel headers. */
+.adv-grid .adv-grid-handle {
+  touch-action: none;
+}
+
+/* ---------- resize handle visibility ---------- */
+/* The SE corner handle is the one RGL wires up by default. Replace the
+ * shipped background-image (dark-gray chevron) with a CSS-drawn corner
+ * wedge that picks up our gold accent. */
+.adv-grid .react-resizable-handle,
+.adv-grid .react-resizable-handle-se {
+  background-image: none !important;
+  width: 16px;
+  height: 16px;
+  right: 2px;
+  bottom: 2px;
+  opacity: 0.55;
+  cursor: se-resize;
+  transition: opacity 0.15s ease;
+}
+
+.adv-grid .react-resizable-handle::after,
+.adv-grid .react-resizable-handle-se::after {
+  /* Two short diagonal strokes — a classic "grip" mark. */
+  content: '';
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid #ffd700;
+  border-bottom: 2px solid #ffd700;
+  border-bottom-right-radius: 2px;
+}
+
+.adv-grid .react-grid-item:hover .react-resizable-handle,
+.adv-grid .react-grid-item:hover .react-resizable-handle-se {
+  opacity: 1;
+}
+
+/* ---------- tile frame while dragging / resizing ---------- */
+.adv-grid .react-grid-item.react-grid-placeholder {
+  background: rgba(255, 215, 0, 0.15) !important;
+  border: 1px dashed rgba(255, 215, 0, 0.6);
+  border-radius: 6px;
+  opacity: 0.5;
+}
+
+.adv-grid .react-grid-item.react-draggable-dragging,
+.adv-grid .react-grid-item.resizing {
+  z-index: 5;
+  opacity: 0.95;
+  box-shadow: 0 0 0 1px rgba(255, 215, 0, 0.45);
+}

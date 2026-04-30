@@ -47,6 +47,7 @@
       "description": "The best place in Sandpoint to buy weapons and armor. Savah Bevaniky stocks a wide variety of martial equipment.",
       "npcs": ["Savah Bevaniky"],
       "services": ["Buy/sell weapons", "Buy/sell armor"],
+      "craftFacilities": ["forge"],
       "stock_level": "Standard martial weapons and armor, occasional masterwork items"
     },
     {
@@ -73,6 +74,7 @@
       "description": "An alchemist's shop run by Niska Mvashti's apprentice. Sells alchemical supplies and potions.",
       "npcs": ["Aliver 'Pillbug' Podiker"],
       "services": ["Alchemical items", "Potions", "Poisons (secret)"],
+      "craftFacilities": ["alchemy-lab"],
       "stock_level": "Alchemist's fire, antitoxin, thunderstones, tanglefoot bags"
     },
     {
@@ -113,6 +115,7 @@
       "type": "factory",
       "description": "The town's famous glassworks, owned by the Kaijitsu family. Produces exquisite glassware known throughout Varisia. Currently run by Lonjiku Kaijitsu.",
       "npcs": ["Lonjiku Kaijitsu", "Tsuto Kaijitsu"],
+      "craftFacilities": ["artisan-workshop"],
       "quests": ["Investigate disturbances at the Glassworks"]
     },
     {
@@ -121,6 +124,7 @@
       "type": "business",
       "description": "One of Sandpoint's oldest industries, the lumber mill processes timber from the surrounding forests.",
       "npcs": ["Ibor Thorn", "Banny Harker"],
+      "craftFacilities": ["artisan-workshop"],
       "quests": ["Investigate murders at the lumber mill"]
     },
     {
@@ -202,7 +206,8 @@
       "type": "business",
       "description": "A small but functional shipyard that services the fishing fleet and occasional merchant vessels.",
       "npcs": [],
-      "services": ["Ship repair", "Boat rental"]
+      "services": ["Ship repair", "Boat rental"],
+      "craftFacilities": ["artisan-workshop"]
     },
     {
       "id": 24,

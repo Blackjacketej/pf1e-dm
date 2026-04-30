@@ -1,0 +1,108 @@
+{
+  "source": "Rise of the Runelords Anniversary Edition — Chapter 1: Burnt Offerings",
+  "seedVersion": 1,
+  "regions": [
+    {
+      "id": "thistletop",
+      "name": "Thistletop",
+      "description": "Thorn-choked islet off the Varisian coast, seat of the Thistletop goblin tribe and Nualia's cabal during the Sandpoint raid arc.",
+      "factions": [
+        {
+          "id": "nualias-cabal",
+          "name": "Nualia's Cabal",
+          "archetype": "strike_team",
+          "speciesHints": ["aasimar", "half-elf", "human", "bugbear"],
+          "baseReputation": -90,
+          "motto": "Burn the Town, Feed the Mother",
+          "mood": "hostile",
+          "resources": { "wealth": 45, "manpower": 12, "influence": 15, "secrecy": 70, "morale": 80 },
+          "leader": { "name": "Nualia Tobyn", "title": "Herald of Lamashtu", "legitimacy": 95 },
+          "lair": "Upper fortress of Thistletop and the Catacombs of Wrath below Sandpoint",
+          "goals": [
+            { "type": "ritual_completion", "narrative": "Burn Sandpoint as offering to Lamashtu to complete her demonic transformation", "priority": "high" },
+            { "type": "artifact_recovery", "narrative": "Free the imprisoned barghest Malfeshnekor from below Thistletop", "priority": "high" },
+            { "type": "territory_consolidation", "narrative": "Turn the Thistletop goblins into an army under Nualia's banner", "priority": "normal" }
+          ],
+          "secrets": [
+            { "topic": "Nualia is the believed-dead daughter of Ezakien Tobyn", "narrative": "The former Desnan priest's aasimar ward was thought lost in the Old Light fire; she survived and returned corrupted" },
+            { "topic": "The cabal answers to a Skinsaw Man in Magnimar", "narrative": "Nualia received her Sihedron medallion from a Karzoug-aligned handler during her years in Magnimar" },
+            { "topic": "Tsuto is the infiltrator", "narrative": "Tsuto Kaijitsu fed the cabal intel on Sandpoint's defenses and helped coordinate the festival raid" }
+          ]
+        },
+        {
+          "id": "catacombs-of-wrath",
+          "name": "Catacombs of Wrath Cult",
+          "archetype": "cult",
+          "speciesHints": ["quasit", "sinspawn", "human"],
+          "baseReputation": -85,
+          "motto": "Wrath Wakes Below",
+          "mood": "hostile",
+          "resources": { "wealth": 30, "manpower": 25, "influence": 10, "secrecy": 85, "morale": 70 },
+          "leader": { "name": "Erylium", "title": "Quasit Witch of Wrath", "legitimacy": 90 },
+          "lair": "Ancient Thassilonian catacombs beneath western Sandpoint",
+          "goals": [
+            { "type": "ritual_completion", "narrative": "Recharge the runewell with the blood of slain goblins and prisoners", "priority": "high" },
+            { "type": "prophecy_fulfillment", "narrative": "Spawn a sinspawn army large enough to expand to the surface", "priority": "normal" }
+          ],
+          "secrets": [
+            { "topic": "The minor runewell of Wrath is functional again", "narrative": "Recent goblin slaughter has reignited the ancient Thassilonian rune-font" },
+            { "topic": "Erylium has served here for millennia", "narrative": "The quasit was left as caretaker when the original Runelord Alaznist's priests abandoned the site" },
+            { "topic": "Koruvus, the mutant goblin champion, is a sinspawn-tainted hero", "narrative": "Once a Seven Tooth hero, now a deranged enforcer bound to the cult" }
+          ]
+        },
+        {
+          "id": "thistletop-goblin-leadership",
+          "name": "Thistletop Warband (Ripnugget's Court)",
+          "archetype": "horde",
+          "speciesHints": ["goblin"],
+          "baseReputation": -70,
+          "motto": "Longshanks Burn Good",
+          "mood": "aggressive",
+          "resources": { "wealth": 15, "manpower": 80, "influence": 20, "secrecy": 40, "morale": 85 },
+          "leader": { "name": "Chief Ripnugget", "title": "Warchief of Thistletop", "legitimacy": 75 },
+          "lair": "Fortified top of Thistletop islet",
+          "goals": [
+            { "type": "raid_and_plunder", "narrative": "Lead the tribe into the Sandpoint assault Nualia promised", "priority": "high" },
+            { "type": "dominance_assertion", "narrative": "Keep the other Lost Coast goblin tribes cowed and obedient", "priority": "normal" }
+          ],
+          "secrets": [
+            { "topic": "Ripnugget has been seduced by Nualia's promises", "narrative": "He has put aside his druid advisor's warnings in favor of demonic glory" },
+            { "topic": "Gogmurt is sidelined", "narrative": "The tribe's goblin druid has withdrawn to the thicket in protest, leaving Ripnugget without his spiritual advisor" },
+            { "topic": "A captured Shoanti horse is kept in the exercise yard", "narrative": "Daviren Hosk's stolen prize warhorse Shadowmist is here, a persistent rumor-magnet" }
+          ]
+        },
+        {
+          "id": "malfeshnekors-prison",
+          "name": "Malfeshnekor — The Caged Barghest",
+          "archetype": "entity",
+          "speciesHints": ["barghest"],
+          "baseReputation": -95,
+          "motto": "Free Me and I Will Howl the Moon Down",
+          "mood": "furious",
+          "resources": { "wealth": 5, "manpower": 1, "influence": 5, "secrecy": 50, "morale": 40 },
+          "leader": { "name": "Malfeshnekor", "title": "Greater Barghest", "legitimacy": 100 },
+          "lair": "Sealed room beneath Thistletop",
+          "goals": [
+            { "type": "escape", "narrative": "Be freed from the Thassilonian seal binding him below", "priority": "high" },
+            { "type": "revenge", "narrative": "Slaughter Sandpoint in repayment for centuries of imprisonment", "priority": "normal" }
+          ],
+          "secrets": [
+            { "topic": "Nualia believes freeing him is her path to demonhood", "narrative": "She interprets Lamashtu's visions as commanding his release" },
+            { "topic": "He has an empathic link with goblins", "narrative": "The Thistletop tribe unknowingly worship him as a goblin god" }
+          ]
+        }
+      ]
+    }
+  ],
+  "factionRelations": [
+    { "from": "nualias-cabal", "to": "catacombs-of-wrath", "score": 60, "mutual": true, "reason": "Nualia studied under Erylium and their goals align under Lamashtu" },
+    { "from": "nualias-cabal", "to": "thistletop-goblin-leadership", "score": 70, "mutual": false, "reason": "Ripnugget has thrown the tribe in with Nualia's promised assault" },
+    { "from": "thistletop-goblin-leadership", "to": "nualias-cabal", "score": 55, "mutual": false, "reason": "Ripnugget serves Nualia for now, but goblin loyalty is thin" },
+    { "from": "nualias-cabal", "to": "malfeshnekors-prison", "score": 40, "mutual": false, "reason": "Nualia intends to free the barghest" },
+    { "from": "catacombs-of-wrath", "to": "cult-of-lamashtu", "score": 85, "mutual": true, "reason": "Both serve the Mother of Monsters; Erylium's cell is the seed of the larger Sandpoint cult" },
+    { "from": "thistletop-goblin-leadership", "to": "thistletop-goblins", "score": 100, "mutual": true, "reason": "Same organization — this is the leadership layer of the Sandpoint-level tribe entry" },
+    { "from": "nualias-cabal", "to": "sandpoint-cathedral", "score": -90, "mutual": true, "reason": "The cathedral's foundation ritual sealed Lamashtu's shrine; Nualia intends to shatter it" },
+    { "from": "nualias-cabal", "to": "sandpoint-town-guard", "score": -80, "mutual": true, "reason": "Festival raid inaugurated active hostilities" },
+    { "from": "nualias-cabal", "to": "kaijitsu-family", "score": -70, "mutual": false, "reason": "Tsuto's betrayal and blackmail of his sister Ameiko" }
+  ]
+}

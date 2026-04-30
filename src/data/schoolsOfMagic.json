@@ -1,0 +1,286 @@
+[
+  {
+    "name": "Abjuration",
+    "description": "The school of abjuration focuses on protective magic and creating barriers against harm. Abjurers specialize in shields, dispelling hostile magic, and warding against various threats. These wizards excel at defense and can absorb incoming damage.",
+    "specialists": ["Wizard"],
+    "schoolPowers": [
+      {
+        "name": "Resistance",
+        "level": 1,
+        "type": "Su",
+        "description": "As a standard action, you can grant yourself or an adjacent creature energy resistance 10 to one energy type (acid, cold, electricity, fire, or sonic). This resistance lasts for 1 minute per wizard level."
+      },
+      {
+        "name": "Energy Absorption",
+        "level": 6,
+        "type": "Su",
+        "description": "As an immediate action, you can absorb incoming energy damage from a single attack, spell, or supernatural ability. When you use this ability, you gain resistance 25 to one energy type until the end of your next turn. You can use this ability once per day, plus one additional time per day at 11th level and every 5 levels thereafter."
+      }
+    ],
+    "bonusSlot": "Specialists gain one bonus spell slot per spell level for abjuration spells.",
+    "opposedRestriction": "If a specialist casts spells from opposed schools (Conjuration and Evocation), they must expend two spell slots of that spell level to cast the spell.",
+    "subschools": [],
+    "exampleSpells": [
+      {"name": "Shield", "level": 1},
+      {"name": "Mage Armor", "level": 1},
+      {"name": "Dispel Magic", "level": 3},
+      {"name": "Stoneskin", "level": 4},
+      {"name": "Globe of Invulnerability", "level": 6},
+      {"name": "Telekinetic Sphere", "level": 8},
+      {"name": "Antimagic Field", "level": 9}
+    ],
+    "source": "CRB"
+  },
+  {
+    "name": "Conjuration",
+    "description": "The school of conjuration encompasses spells that bring creatures or objects to you through teleportation, summoning, or creation. Conjurers excel at summoning allies, creating objects, and moving themselves or others across distances. This versatile school includes several specialized subschools.",
+    "specialists": ["Wizard"],
+    "schoolPowers": [
+      {
+        "name": "Acid Dart",
+        "level": 1,
+        "type": "Sp",
+        "description": "As a standard action, you can fire a dart of acid that targets one creature within 30 feet. This dart deals 1d6 acid damage plus 1 point for every two wizard levels you possess. This ability can be used a number of times per day equal to 3 + your Intelligence modifier."
+      },
+      {
+        "name": "Dimensional Steps",
+        "level": 8,
+        "type": "Sp",
+        "description": "Once per round as a standard action, you can teleport up to 30 feet per wizard level to any space you can see. This ability does not provoke attacks of opportunity and can be used once per day, plus one additional time per day at 13th level and every 4 levels thereafter."
+      }
+    ],
+    "bonusSlot": "Specialists gain one bonus spell slot per spell level for conjuration spells.",
+    "opposedRestriction": "If a specialist casts spells from opposed schools (Abjuration and Evocation), they must expend two spell slots of that spell level to cast the spell.",
+    "subschools": ["Calling", "Creation", "Healing", "Summoning", "Teleportation"],
+    "exampleSpells": [
+      {"name": "Summon Monster I", "level": 1},
+      {"name": "Stinking Cloud", "level": 3},
+      {"name": "Dimension Door", "level": 4},
+      {"name": "Summon Monster VI", "level": 6},
+      {"name": "Teleport", "level": 5},
+      {"name": "Gate", "level": 9}
+    ],
+    "source": "CRB"
+  },
+  {
+    "name": "Divination",
+    "description": "The school of divination reveals hidden truths, glimpses the future, and allows the caster to see beyond normal sensory limitations. Diviners are masters of foresight, often gaining advance warning of danger and uncovering secrets. This school is unique in having only one opposed school.",
+    "specialists": ["Wizard"],
+    "schoolPowers": [
+      {
+        "name": "Forewarned",
+        "level": 1,
+        "type": "Su",
+        "description": "You gain a prescient awareness of danger. You can always act in a surprise round, even when you are surprised. In addition, you gain a +2 bonus to initiative checks."
+      },
+      {
+        "name": "Scrying Adept",
+        "level": 8,
+        "type": "Su",
+        "description": "When casting a scrying spell, you gain a +2 bonus to the target's Will save DC. You can use divination scrying abilities (such as scrying or arcane eye) a number of times per day equal to 3 + your Intelligence modifier."
+      }
+    ],
+    "bonusSlot": "Specialists gain one bonus spell slot per spell level for divination spells.",
+    "opposedRestriction": "If a specialist casts spells from the opposed school (Necromancy), they must expend two spell slots of that spell level to cast the spell. Note: Divination has only ONE opposed school, unlike other schools.",
+    "subschools": ["Scrying"],
+    "exampleSpells": [
+      {"name": "Detect Magic", "level": 0},
+      {"name": "Detect Secret Doors", "level": 1},
+      {"name": "See Invisibility", "level": 2},
+      {"name": "Arcane Eye", "level": 4},
+      {"name": "Contact Other Plane", "level": 5},
+      {"name": "True Seeing", "level": 6},
+      {"name": "Legend Lore", "level": 6}
+    ],
+    "source": "CRB"
+  },
+  {
+    "name": "Enchantment",
+    "description": "The school of enchantment covers magic that controls or influences the minds of sentient creatures through charm and compulsion effects. Enchanters specialize in manipulation, persuasion, and mental domination. These wizards excel at controlling others through magical influence.",
+    "specialists": ["Wizard"],
+    "schoolPowers": [
+      {
+        "name": "Enchanting Smile",
+        "level": 1,
+        "type": "Su",
+        "description": "You gain a +2 bonus on Bluff, Diplomacy, and Intimidate checks. This bonus increases by +1 for every 5 wizard levels beyond 1st (to a maximum of +4 at 15th level)."
+      },
+      {
+        "name": "Aura of Despair",
+        "level": 8,
+        "type": "Su",
+        "description": "You can emit a 30-foot aura of despair as a free action. Enemies within this aura take a -2 penalty on Will saves. You can activate this aura for a number of rounds per day equal to your wizard level. These rounds do not need to be consecutive."
+      }
+    ],
+    "bonusSlot": "Specialists gain one bonus spell slot per spell level for enchantment spells.",
+    "opposedRestriction": "If a specialist casts spells from opposed schools (Abjuration and Evocation), they must expend two spell slots of that spell level to cast the spell.",
+    "subschools": ["Charm", "Compulsion"],
+    "exampleSpells": [
+      {"name": "Charm Person", "level": 1},
+      {"name": "Hold Person", "level": 2},
+      {"name": "Suggestion", "level": 3},
+      {"name": "Charm Monster", "level": 4},
+      {"name": "Dominate Person", "level": 4},
+      {"name": "Power Word Stun", "level": 8}
+    ],
+    "source": "CRB"
+  },
+  {
+    "name": "Evocation",
+    "description": "The school of evocation harnesses magical energy to create powerful effects, primarily focused on energy damage and destruction. Evokers are the offensive specialists, commanding fire, lightning, force, and other destructive elements. These wizards deal massive damage through direct magical manipulation.",
+    "specialists": ["Wizard"],
+    "schoolPowers": [
+      {
+        "name": "Force Missile",
+        "level": 1,
+        "type": "Sp",
+        "description": "As a standard action, you can fire a missile of magical force that targets one creature within 30 feet. This missile deals 1d4 points of force damage plus 1 point for every two wizard levels you possess. This ability can be used a number of times per day equal to 3 + your Intelligence modifier."
+      },
+      {
+        "name": "Elemental Wall",
+        "level": 8,
+        "type": "Sp",
+        "description": "As a standard action, you can create a wall of elemental energy. The wall can be up to 10 feet per wizard level long and 5 feet tall. Creatures passing through the wall take 1d6 points of damage per two wizard levels (acid, cold, electricity, or fire, chosen when the wall is created). You can create this wall once per day, plus one additional time per day at 13th level and every 4 levels thereafter."
+      }
+    ],
+    "bonusSlot": "Specialists gain one bonus spell slot per spell level for evocation spells.",
+    "opposedRestriction": "If a specialist casts spells from opposed schools (Abjuration and Conjuration), they must expend two spell slots of that spell level to cast the spell.",
+    "subschools": [],
+    "exampleSpells": [
+      {"name": "Magic Missile", "level": 1},
+      {"name": "Shocking Grasp", "level": 1},
+      {"name": "Fireball", "level": 3},
+      {"name": "Lightning Bolt", "level": 3},
+      {"name": "Cone of Cold", "level": 5},
+      {"name": "Chain Lightning", "level": 6}
+    ],
+    "source": "CRB"
+  },
+  {
+    "name": "Illusion",
+    "description": "The school of illusion allows wizards to create false sensory experiences and conceal reality through magical deception. Illusionists are masters of misdirection, able to hide themselves and others or create convincing false imagery. These wizards excel at manipulation through perceived reality.",
+    "specialists": ["Wizard"],
+    "schoolPowers": [
+      {
+        "name": "Blinding Ray",
+        "level": 1,
+        "type": "Sp",
+        "description": "As a standard action, you can fire a ray of illusion magic that targets one creature within 30 feet. The target must make a Fortitude save or be blinded for 1 round per two wizard levels. This ability can be used a number of times per day equal to 3 + your Intelligence modifier."
+      },
+      {
+        "name": "Invisibility Field",
+        "level": 8,
+        "type": "Sp",
+        "description": "As a standard action, you can turn yourself or an adjacent willing creature invisible. The invisibility lasts for 1 minute per wizard level. Once the ability is used, it cannot be used again until the next day."
+      }
+    ],
+    "bonusSlot": "Specialists gain one bonus spell slot per spell level for illusion spells.",
+    "opposedRestriction": "If a specialist casts spells from opposed schools (Conjuration and Evocation), they must expend two spell slots of that spell level to cast the spell.",
+    "subschools": ["Figment", "Glamer", "Pattern", "Phantasm", "Shadow"],
+    "exampleSpells": [
+      {"name": "Silent Image", "level": 1},
+      {"name": "Invisibility", "level": 2},
+      {"name": "Displacement", "level": 3},
+      {"name": "Major Image", "level": 3},
+      {"name": "Seeming", "level": 5},
+      {"name": "Shadow Evocation", "level": 5},
+      {"name": "Mislead", "level": 6}
+    ],
+    "source": "CRB"
+  },
+  {
+    "name": "Necromancy",
+    "description": "The school of necromancy involves magic that manipulates life force, death, and undeath. Necromancers command undead armies, drain life energy from living beings, and peer into the secrets of mortality. These wizards are feared for their command over death itself.",
+    "specialists": ["Wizard"],
+    "schoolPowers": [
+      {
+        "name": "Power over Undead",
+        "level": 1,
+        "type": "Su",
+        "description": "You gain the Command Undead feat. If you already possess this feat, you instead gain Improved Command Undead as a bonus feat. Your command check DC increases by 1 for every 5 wizard levels you possess."
+      },
+      {
+        "name": "Life Sight",
+        "level": 8,
+        "type": "Su",
+        "description": "You gain blindsight with a range of 10 feet per wizard level that allows you to sense living and undead creatures. You cannot use this ability to sense creatures that are protected by protection from living or protection from undead spells."
+      }
+    ],
+    "bonusSlot": "Specialists gain one bonus spell slot per spell level for necromancy spells.",
+    "opposedRestriction": "If a specialist casts spells from opposed schools (Abjuration and Evocation), they must expend two spell slots of that spell level to cast the spell.",
+    "subschools": [],
+    "exampleSpells": [
+      {"name": "Ray of Enfeeblement", "level": 1},
+      {"name": "Chill Touch", "level": 1},
+      {"name": "Animate Dead", "level": 4},
+      {"name": "Enervation", "level": 4},
+      {"name": "Waves of Fatigue", "level": 5},
+      {"name": "Circle of Death", "level": 6},
+      {"name": "Finger of Death", "level": 7}
+    ],
+    "source": "CRB"
+  },
+  {
+    "name": "Transmutation",
+    "description": "The school of transmutation focuses on transformation and alteration of matter, energy, and form. Transmuters specialize in changing the properties of objects and creatures, enhancement magic, and polymorph effects. These wizards are masters of change and adaptation.",
+    "specialists": ["Wizard"],
+    "schoolPowers": [
+      {
+        "name": "Telekinetic Fist",
+        "level": 1,
+        "type": "Sp",
+        "description": "As a standard action, you can create a fist of magical force that targets one creature or object within 30 feet. The fist deals 1d4 points of bludgeoning damage plus 1 point for every two wizard levels you possess. You can use this ability a number of times per day equal to 3 + your Intelligence modifier."
+      },
+      {
+        "name": "Change Shape",
+        "level": 8,
+        "type": "Sp",
+        "description": "As a standard action, you can change your appearance and physical form to that of another humanoid creature. This ability functions as the polymorph spell, except you cannot gain the benefits of the assumed form. You can remain in this form for 1 round per wizard level. Once the ability is used, it cannot be used again until the next day."
+      }
+    ],
+    "bonusSlot": "Specialists gain one bonus spell slot per spell level for transmutation spells.",
+    "opposedRestriction": "If a specialist casts spells from opposed schools (Abjuration and Evocation), they must expend two spell slots of that spell level to cast the spell.",
+    "subschools": ["Polymorph"],
+    "exampleSpells": [
+      {"name": "Enlarge Person", "level": 1},
+      {"name": "Magic Weapon", "level": 1},
+      {"name": "Haste", "level": 3},
+      {"name": "Polymorph", "level": 4},
+      {"name": "Telekinesis", "level": 5},
+      {"name": "True Polymorph", "level": 9}
+    ],
+    "source": "CRB"
+  },
+  {
+    "name": "Universalist",
+    "description": "Universalist wizards choose not to specialize in any school of magic, maintaining a broad and balanced approach to arcane studies. While they lack the deep focus of specialists, universalists are flexible and unrestricted in their spellcasting. They gain unique powers focused on versatility and raw magical power.",
+    "specialists": [],
+    "schoolPowers": [
+      {
+        "name": "Hand of the Apprentice",
+        "level": 1,
+        "type": "Su",
+        "description": "As a standard action, you can use magic to lift a weapon within 5 feet per wizard level and hurl it as if you had thrown it. This ranged attack uses your Intelligence modifier instead of your Strength or Dexterity modifier. The weapon deals damage as if thrown by a creature with your Strength modifier and returns to its starting location after the attack. You can use this ability a number of times per day equal to 3 + your Intelligence modifier."
+      },
+      {
+        "name": "Metamagic Mastery",
+        "level": 8,
+        "type": "Su",
+        "description": "You gain the ability to apply a metamagic feat to a spell you are about to cast. This metamagic feat must have a level adjustment of 1 or lower, and you can do this once per day, plus one additional time per day at 13th level and every 4 levels thereafter. This does not increase the spell's casting time."
+      }
+    ],
+    "bonusSlot": "Universalists do not gain bonus spell slots.",
+    "opposedRestriction": "Universalists have no opposed schools and do not suffer spell slot restrictions.",
+    "subschools": [],
+    "exampleSpells": [
+      {"name": "Mage Hand", "level": 0},
+      {"name": "Magic Missile", "level": 1},
+      {"name": "Charm Person", "level": 1},
+      {"name": "Summon Monster I", "level": 1},
+      {"name": "Dispel Magic", "level": 3},
+      {"name": "Magic Jar", "level": 5},
+      {"name": "Limited Wish", "level": 7}
+    ],
+    "source": "CRB"
+  }
+]

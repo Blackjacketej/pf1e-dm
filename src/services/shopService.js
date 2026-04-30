@@ -12,6 +12,14 @@ import weaponsData from '../data/weapons.json';
 import gearData from '../data/gear.json';
 import magicItemsData from '../data/magicItems.json';
 import spellsData from '../data/spells.json';
+import {
+  getMerchantSkills,
+  attitudeBonus,
+  attitudeBaseDiscount,
+  refusesService,
+  biasPoolBySpecialty,
+  matchSpecialty,
+} from './merchantSkills';
 
 // ─── Dice helpers ────────────────────────────────────────────────
 function rollDie(sides) {
@@ -240,14 +248,47 @@ export function generateMerchantInventory(settlementId, merchantId, options = {}
   const rng = seededRandom(seed + hashString(merchantId));
 
   // 1. Mundane items: all items in matching categories below base value (75% available)
-  const mundanePool = allItems.filter(item =>
+  const rawMundanePool = allItems.filter(item =>
     !item.isMagic &&
     categories.some(c => item.category === c || item.subcategory === c) &&
     item.price <= baseValue &&
     item.price > 0
   );
 
-  const mundaneItems = mundanePool.filter(() => rng() < 0.75);
+  // Specialty bias: duplicate matched items so the 75% filter and later
+  // random sampling are more likely to keep them. We de-dupe at the end.
+  const specialties = merchant.specialties || [];
+  const mundanePool = biasPoolBySpecialty(rawMundanePool, specialties, 2);
+
+  // The base mundane roster: items that passed the 75% availability roll.
+  // Kept separate from guaranteed specialty items so the downstream stockMult
+  // trim can't accidentally strip every masterwork weapon out of a weapons
+  // specialist's shop.
+  const baseMundaneSeen = new Set();
+  const baseMundaneItems = [];
+  for (const item of mundanePool) {
+    if (baseMundaneSeen.has(item.name)) continue;
+    if (rng() < 0.75) {
+      baseMundaneSeen.add(item.name);
+      baseMundaneItems.push(item);
+    }
+  }
+
+  // Guarantee a small "always in stock" tier for specialty-matched items
+  // so Savah always has at least *some* masterwork weapons on hand. Cap
+  // the guarantee so an open-ended specialty string (e.g. "weapons")
+  // doesn't flood the shop with every masterwork weapon in the book.
+  const MAX_SPECIALTY_GUARANTEE = 8;
+  const guaranteedSeen = new Set(baseMundaneSeen);
+  const guaranteedMundane = [];
+  for (const item of rawMundanePool) {
+    if (guaranteedMundane.length >= MAX_SPECIALTY_GUARANTEE) break;
+    if (guaranteedSeen.has(item.name)) continue;
+    if (matchSpecialty(item, specialties)) {
+      guaranteedSeen.add(item.name);
+      guaranteedMundane.push(item);
+    }
+  }
 
   // 2. Magic items: roll for availability per settlement type
   const typeData = getSettlementType(settlement.type);
@@ -257,28 +298,41 @@ export function generateMerchantInventory(settlementId, merchantId, options = {}
     item.price <= maxShopValue
   );
 
-  const minorPool = magicPool.filter(i => i.tier === 'minor');
-  const mediumPool = magicPool.filter(i => i.tier === 'medium');
-  const majorPool = magicPool.filter(i => i.tier === 'major');
+  // Bias the magic pool by specialty too — "minor wondrous items" will
+  // double up on tier=minor wondrous entries, making Vorvashali's stall
+  // actually feel like a minor-wondrous specialist.
+  const minorPool = biasPoolBySpecialty(magicPool.filter(i => i.tier === 'minor'), specialties, 2);
+  const mediumPool = biasPoolBySpecialty(magicPool.filter(i => i.tier === 'medium'), specialties, 2);
+  const majorPool = biasPoolBySpecialty(magicPool.filter(i => i.tier === 'major'), specialties, 2);
 
   const magicBonus = (merchant.stockBonus || 0) + (shopDef.magicItemBonus || 0);
   const minorCount = typeData ? rollDiceSeeded(typeData.minorItems, rng) + Math.min(magicBonus, 3) : 0;
   const mediumCount = typeData ? rollDiceSeeded(typeData.mediumItems, rng) + Math.floor(magicBonus / 2) : 0;
   const majorCount = typeData ? rollDiceSeeded(typeData.majorItems, rng) : 0;
 
+  // Sample magic items uniquely. pickUniqueRandom keeps drawing from the
+  // biased pool, skipping names already picked, until either the target
+  // count is reached or the unique-name ceiling is hit. This avoids the
+  // old pickRandom + dedup-after pattern, which under-delivered whenever
+  // a specialty-boosted item was picked twice.
   const magicItems = [
-    ...pickRandom(minorPool, Math.min(minorCount, minorPool.length), rng),
-    ...pickRandom(mediumPool, Math.min(mediumCount, mediumPool.length), rng),
-    ...pickRandom(majorPool, Math.min(majorCount, majorPool.length), rng),
+    ...pickUniqueRandom(minorPool, minorCount, rng),
+    ...pickUniqueRandom(mediumPool, mediumCount, rng),
+    ...pickUniqueRandom(majorPool, majorCount, rng),
   ];
 
-  // 3. Stock multiplier — thin out inventory for specialized shops
+  // 3. Stock multiplier — thin out inventory for specialized shops. Apply
+  // the trim to the *base* mundane list only; specialty guarantees are
+  // appended afterward so they always survive. A weapons specialist should
+  // never lose all its specialty stock just because the shopType's
+  // stockMultiplier trimmed the pool.
   const stockMult = shopDef.stockMultiplier || 1.0;
   const stockBonus = merchant.stockBonus || 0;
-  const maxMundane = Math.max(10, Math.floor(mundaneItems.length * stockMult) + stockBonus * 3);
-  const finalMundane = mundaneItems.length > maxMundane
-    ? pickRandom(mundaneItems, maxMundane, rng)
-    : mundaneItems;
+  const maxBaseMundane = Math.max(10, Math.floor(baseMundaneItems.length * stockMult) + stockBonus * 3);
+  const trimmedBaseMundane = baseMundaneItems.length > maxBaseMundane
+    ? pickRandom(baseMundaneItems, maxBaseMundane, rng)
+    : baseMundaneItems;
+  const finalMundane = [...trimmedBaseMundane, ...guaranteedMundane];
 
   // 4. Combine and apply pricing
   const inventory = [...finalMundane, ...magicItems].map(item => ({
@@ -300,6 +354,7 @@ export function generateMerchantInventory(settlementId, merchantId, options = {}
   return {
     items: inventory,
     merchant,
+    merchantSkills: getMerchantSkills(merchant),
     settlement,
     baseValue,
     purchaseLimit: getEffectivePurchaseLimit(settlement),
@@ -307,6 +362,13 @@ export function generateMerchantInventory(settlementId, merchantId, options = {}
     magicItemCounts: { minor: minorCount, medium: mediumCount, major: majorCount },
   };
 }
+
+// Re-export the merchant helper so callers outside this module can use it
+// without reaching into ./merchantSkills directly. We export the already
+// imported binding rather than re-declaring a new binding via
+// `export { getMerchantSkills } from './merchantSkills'`, which would
+// collide with the top-of-file import under strict ES module rules.
+export { getMerchantSkills };
 
 // ─── Spellcasting services ───────────────────────────────────────
 export function getSpellcastingServices(settlementId, merchantId) {
@@ -331,14 +393,70 @@ export function getSpellcastingCost(spellLevel) {
  * - Diplomacy checks to adjust NPC attitudes use the Society modifier
  * - Bluff checks use the Corruption modifier
  * - We apply the better of the two as a settlement bonus to the haggle roll
+ *
+ * Phase 6 extensions:
+ * - `merchant` (optional): when supplied, the merchant's Sense Motive (for
+ *   Bluff) or ½ Diplomacy (for Diplomacy) raises the DC instead of using
+ *   the flat 15. This turns the haggle into a proper opposed-style check.
+ * - `attitude` (optional): the merchant's current attitude toward the
+ *   party (CRB p.94). Hostile merchants refuse to deal. Others shift the
+ *   PC's total via `attitudeBonus` and apply a baseline price delta via
+ *   `attitudeBaseDiscount` (+markup for Unfriendly, discount for
+ *   Friendly/Helpful) *before* the roll.
+ *
  * @param {number} diplomacyMod - PC's Diplomacy or Bluff modifier
  * @param {number} itemPrice - The item's shop price
  * @param {object} [settlementMods] - Settlement modifier object {corruption, society, economy, ...}
  * @param {string} [skill] - Which skill is being used: 'diplomacy' or 'bluff'
+ * @param {object} [merchant] - Merchant record (optional); see getMerchantSkills
+ * @param {string} [attitude] - Current merchant attitude ('hostile' | 'unfriendly' | 'indifferent' | 'friendly' | 'helpful')
  */
-export function resolveHaggle(diplomacyMod, itemPrice, settlementMods, skill) {
-  const dc = settlementsData.haggling.baseDC;
+export function resolveHaggle(diplomacyMod, itemPrice, settlementMods, skill, merchant, attitude) {
+  const baseDC = settlementsData.haggling.baseDC;
   const roll = rollDie(20);
+
+  // Merchant opposed skill: Bluff is opposed by Sense Motive; Diplomacy
+  // (as a haggle attitude shift) is opposed by half the merchant's own
+  // Diplomacy, rounded down. The DC floor stays at baseDC so low-skill
+  // shopkeepers don't undercut the CRB's stated DC 15.
+  let merchantOpposed = 0;
+  let merchantOpposedLabel = null;
+  if (merchant) {
+    const mSkills = getMerchantSkills(merchant);
+    if (skill === 'bluff') {
+      merchantOpposed = Math.max(0, mSkills.senseMotive || 0);
+      merchantOpposedLabel = `Sense Motive ${merchantOpposed >= 0 ? '+' : ''}${merchantOpposed}`;
+    } else {
+      merchantOpposed = Math.max(0, Math.floor((mSkills.diplomacy || 0) / 2));
+      merchantOpposedLabel = `½ Diplomacy ${merchantOpposed >= 0 ? '+' : ''}${merchantOpposed}`;
+    }
+  }
+  const dc = baseDC + merchantOpposed;
+
+  // Hostile merchants refuse to deal in good faith, regardless of roll.
+  // Return null for roll/total so UI can tell "refused" apart from "rolled
+  // a natural 1", and saved=0 (there is no negotiation at all).
+  if (attitude && refusesService(attitude)) {
+    return {
+      success: false,
+      refused: true,
+      attitude,
+      attitudeBonus: attitudeBonus(attitude),
+      attitudePriceDelta: -attitudeBaseDiscount(attitude),
+      roll: null,
+      skillMod: diplomacyMod,
+      settlementBonus: 0,
+      merchantOpposed,
+      merchantOpposedLabel,
+      total: null,
+      dc,
+      message: 'The merchant glares and waves you off. Improve their attitude first.',
+      discount: 0,
+      finalPrice: itemPrice,
+      saved: 0,
+    };
+  }
+
   // Apply the appropriate settlement modifier per PF1e rules
   // Diplomacy (adjust attitudes) → Society modifier; Bluff (deceive) → Corruption modifier
   let settlementBonus = 0;
@@ -350,39 +468,75 @@ export function resolveHaggle(diplomacyMod, itemPrice, settlementMods, skill) {
       settlementBonus = settlementMods.society || 0;
     }
   }
-  const total = roll + diplomacyMod + settlementBonus;
+
+  // Attitude bonus applies to the PC's haggle total (a Friendly merchant
+  // rounds numbers up in your favor; an Unfriendly merchant does the
+  // opposite). Hostile is already handled above.
+  const attBonus = attitude ? attitudeBonus(attitude) : 0;
+  const total = roll + diplomacyMod + settlementBonus + attBonus;
+
   const maxDiscount = settlementsData.haggling.maxDiscount;
   const perFive = settlementsData.haggling.perFiveOverDC;
 
+  // Attitude base discount is applied *before* the roll-based discount.
+  // Friendly +5% / Helpful +10% even on failure; Unfriendly −25% markup.
+  const attBaseDiscount = attitude ? attitudeBaseDiscount(attitude) : 0;
+
   if (total < dc) {
+    // Even on failure, attitude still shifts the price floor (a Helpful
+    // merchant won't suddenly gouge the party just because the PC rolled
+    // badly; an Unfriendly one won't drop below markup).
+    const failPrice = Math.max(1, Math.ceil(itemPrice * (1 - attBaseDiscount)));
     return {
       success: false,
+      attitude: attitude || null,
+      attitudeBonus: attBonus,
+      attitudePriceDelta: -attBaseDiscount,
       roll,
       skillMod: diplomacyMod,
       settlementBonus,
+      merchantOpposed,
+      merchantOpposedLabel,
       total,
       dc,
-      message: 'The merchant is offended by your offer. No deal today.',
-      discount: 0,
-      finalPrice: itemPrice,
+      message: attBaseDiscount < 0
+        ? `The merchant is cold and marks the price up ${Math.round(-attBaseDiscount * 100)}%.`
+        : attBaseDiscount > 0
+          ? `You fail to haggle further, but they still honor their ${Math.round(attBaseDiscount * 100)}% goodwill discount.`
+          : 'The merchant is offended by your offer. No deal today.',
+      discount: attBaseDiscount > 0 ? attBaseDiscount : 0,
+      finalPrice: failPrice,
+      // If attitude marked the price up, saved goes negative — clamp to 0
+      // so the UI never displays "You saved -12 gp". The markup still
+      // shows up in finalPrice (and in attitudePriceDelta), which is
+      // where the UI should be looking anyway.
+      saved: Math.max(0, itemPrice - failPrice),
     };
   }
 
   const overDC = total - dc;
-  const discount = Math.min(maxDiscount + Math.floor(overDC / 5) * perFive, 0.25);
+  // The roll-based discount stacks on top of the attitude baseline, but
+  // the combined discount is still capped at 25% (the original ceiling).
+  const rollDiscount = maxDiscount + Math.floor(overDC / 5) * perFive;
+  const discount = Math.min(Math.max(0, attBaseDiscount) + rollDiscount, 0.25);
   const finalPrice = Math.max(1, Math.ceil(itemPrice * (1 - discount)));
 
   return {
     success: true,
+    attitude: attitude || null,
+    attitudeBonus: attBonus,
+    attitudePriceDelta: -attBaseDiscount,
     roll,
     skillMod: diplomacyMod,
     settlementBonus,
+    merchantOpposed,
+    merchantOpposedLabel,
     total,
     dc,
     discount,
     message: `You negotiate a ${Math.round(discount * 100)}% discount!`,
     finalPrice,
-    saved: itemPrice - finalPrice,
+    saved: Math.max(0, itemPrice - finalPrice),
   };
 }
 
@@ -507,6 +661,31 @@ function pickRandom(arr, count, rng) {
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
   return shuffled.slice(0, count);
+}
+
+// Sample up to `count` unique-by-name items from a biased pool. A biased
+// pool contains duplicate references so matched items are more likely to
+// be drawn, but the output must de-duplicate so the same item doesn't
+// appear on the shelf three times. Unlike `pickRandom(...).filter()`, this
+// keeps drawing until it reaches the target count or exhausts the pool —
+// so a specialty boost never causes the shop to underfill.
+function pickUniqueRandom(pool, count, rng) {
+  if (!Array.isArray(pool) || pool.length === 0 || count <= 0) return [];
+  const shuffled = [...pool];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(rng() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  const seen = new Set();
+  const out = [];
+  for (const item of shuffled) {
+    if (out.length >= count) break;
+    const key = item?.name;
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    out.push(item);
+  }
+  return out;
 }
 
 export default {

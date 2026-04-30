@@ -1,0 +1,1820 @@
+[
+  {
+    "name": "Air",
+    "description": "Domain of wind, sky, and the air element. Grants mastery over aeromancy and breath.",
+    "grantedPowers": [
+      {
+        "name": "Lightning Arc",
+        "type": "Sp",
+        "description": "As a standard action, you can unleash an arc of electricity targeting any foe within 30 feet that you can see. This arc deals 1d6 points of electricity damage + 1 point for every two cleric levels beyond 1st (minimum 1d6). You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+      },
+      {
+        "name": "Electricity Resistance",
+        "type": "Su",
+        "description": "At 6th level, you gain electricity resistance 10. This resistance increases to 20 at 12th level and 30 at 18th level."
+      }
+    ],
+    "domainSpells": {
+      "1": "obscuring mist",
+      "2": "wind wall",
+      "3": "cloak of winds",
+      "4": "air walk",
+      "5": "control winds",
+      "6": "chain lightning",
+      "7": "control weather",
+      "8": "whirlwind",
+      "9": "wish"
+    },
+    "deities": ["Desna", "Gozreh"],
+    "subdomains": [
+      {
+        "name": "Cloud",
+        "replacedPower": "Lightning Arc",
+        "newPower": {
+          "name": "Fog Bank",
+          "type": "Sp",
+          "description": "As a standard action, you can create a bank of fog in a 10-foot radius that lasts for a number of rounds equal to your cleric level. This fog obscures vision as fog cloud. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+        },
+        "replacedSpells": {
+          "2": "fog cloud"
+        }
+      },
+      {
+        "name": "Wind",
+        "replacedPower": "Lightning Arc",
+        "newPower": {
+          "name": "Gust of Wind",
+          "type": "Sp",
+          "description": "As a standard action, you can create a gust of wind as per the spell gust of wind, with a caster level equal to your cleric level. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {
+          "2": "gust of wind"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Animal",
+    "description": "Domain of beasts, wildlife, and companionship. Grants empathy and dominion over animals.",
+    "grantedPowers": [
+      {
+        "name": "Animal Companion",
+        "type": "Su",
+        "description": "You gain the service of an animal companion, as a druid of your cleric level -3 would. If you did not have an animal companion, this ability functions at -3 effective druid level."
+      },
+      {
+        "name": "Speak with Animals",
+        "type": "Sp",
+        "description": "At 6th level, you can speak with animals at will."
+      }
+    ],
+    "domainSpells": {
+      "1": "magic fang",
+      "2": "summon swarm",
+      "3": "summon nature's ally III",
+      "4": "summon nature's ally IV",
+      "5": "beast shape III",
+      "6": "summon nature's ally VI",
+      "7": "summon nature's ally VII",
+      "8": "summon nature's ally VIII",
+      "9": "shapechange"
+    },
+    "deities": ["Erastil", "Gozreh"],
+    "subdomains": [
+      {
+        "name": "Feather",
+        "replacedPower": "Animal Companion",
+        "newPower": {
+          "name": "Wings of Air",
+          "type": "Su",
+          "description": "As a standard action, you can grant yourself a fly speed equal to your base land speed (average maneuverability) for a number of rounds equal to 1 + your Wisdom modifier. At 9th level, this improves to good maneuverability. At 13th level, perfect maneuverability. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {}
+      },
+      {
+        "name": "Fur",
+        "replacedPower": "Animal Companion",
+        "newPower": {
+          "name": "Feral Claws",
+          "type": "Su",
+          "description": "As a swift action, you can grow claws on your hands that function as scythes. These claws last for 1 minute. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {}
+      }
+    ]
+  },
+  {
+    "name": "Artifice",
+    "description": "Domain of craftsmanship, creation, and manufacture. Grants dominion over the made world.",
+    "grantedPowers": [
+      {
+        "name": "Artificer's Touch",
+        "type": "Sp",
+        "description": "You can touch an object and grant it a bonus as if affected by an enhancement magic spell. This bonus can be applied to a weapon, suit of armor, or shield. The bonus is +1 and lasts for a number of rounds equal to your cleric level. The bonus granted cannot exceed +5. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st. The bonus can be halved (minimum +1) and applied to two different objects."
+      },
+      {
+        "name": "Repair",
+        "type": "Sp",
+        "description": "At 6th level, you can cast mending as a swift action at will."
+      }
+    ],
+    "domainSpells": {
+      "1": "identify",
+      "2": "heat metal",
+      "3": "summon nature's ally III",
+      "4": "golem",
+      "5": "telekinesis",
+      "6": "planar binding",
+      "7": "instant summons",
+      "8": "temporal stasis",
+      "9": "wish"
+    },
+    "deities": ["Abadar", "Torag"],
+    "subdomains": [
+      {
+        "name": "Construct",
+        "replacedPower": "Artificer's Touch",
+        "newPower": {
+          "name": "Golem Touch",
+          "type": "Su",
+          "description": "As a swift action, you can touch a construct or animated object and grant it a +2 bonus to damage rolls and a +2 bonus to its AC for a number of rounds equal to your cleric level. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {
+          "4": "animate objects"
+        }
+      },
+      {
+        "name": "Toil",
+        "replacedPower": "Repair",
+        "newPower": {
+          "name": "Expanded Artificer's Touch",
+          "type": "Su",
+          "description": "This functions as the Artificer's Touch power, but the bonus can be increased to +6 and can affect a number of objects equal to your Wisdom modifier."
+        },
+        "replacedSpells": {}
+      }
+    ]
+  },
+  {
+    "name": "Chaos",
+    "description": "Domain of disorder, chance, and unpredictability. Channels the power of entropy and rebellion.",
+    "grantedPowers": [
+      {
+        "name": "Chaos Bolt",
+        "type": "Sp",
+        "description": "As a standard action, you can unleash a bolt of chaotic energy. This bolt strikes any target you can see within 30 feet and deals 1d6 damage + 1 per two cleric levels (minimum 1d6). You can choose whether this is acid, bludgeoning, cold, electricity, fire, or slashing damage each time you use the ability. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+      },
+      {
+        "name": "Chaotic Touch",
+        "type": "Sp",
+        "description": "At 6th level, as a standard action, you can touch a weapon and imbue it with chaotic energy. The weapon gains a +2 bonus and deals extra chaotic damage. This lasts for a number of rounds equal to your cleric level. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+      }
+    ],
+    "domainSpells": {
+      "1": "protection from law",
+      "2": "shatter",
+      "3": "magic circle against law",
+      "4": "chaos hammer",
+      "5": "dispel law",
+      "6": "antimagic field",
+      "7": "word of chaos",
+      "8": "clashing rocks",
+      "9": "wish"
+    },
+    "deities": ["Cayden Cailean", "Lamashtu"],
+    "subdomains": [
+      {
+        "name": "Demon",
+        "replacedPower": "Chaos Bolt",
+        "newPower": {
+          "name": "Demon Claws",
+          "type": "Su",
+          "description": "As a swift action, you can grow demonic claws on your hands. These claws are treated as chaotic evil magic weapons for the purpose of overcoming damage reduction and last for a number of rounds equal to your cleric level. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {
+          "4": "summon monster IV (chaotic creatures only)"
+        }
+      },
+      {
+        "name": "Trickery",
+        "replacedPower": "Chaotic Touch",
+        "newPower": {
+          "name": "Trickster's Touch",
+          "type": "Sp",
+          "description": "At 6th level, as a standard action, you can touch a creature and force it to make a Wisdom saving throw or be confused for 1 round. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {}
+      }
+    ]
+  },
+  {
+    "name": "Charm",
+    "description": "Domain of persuasion, allure, and fascination. Grants influence over the hearts and minds of others.",
+    "grantedPowers": [
+      {
+        "name": "Dazing Touch",
+        "type": "Sp",
+        "description": "As a standard action, you can touch a melee attack against a creature and deal 1d6 nonlethal damage + 1 per two cleric levels. In addition, the target becomes dazed for 1 round. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+      },
+      {
+        "name": "Charm Aura",
+        "type": "Su",
+        "description": "At 6th level, you emanate an aura that grants a +2 bonus on Charisma checks made within 30 feet of you. This aura lasts for a number of rounds equal to 1 + your Wisdom modifier. You can activate this aura once per day, plus one additional time per day for every four cleric levels beyond 1st."
+      }
+    ],
+    "domainSpells": {
+      "1": "charm person",
+      "2": "suggestion",
+      "3": "charm monster",
+      "4": "confusion",
+      "5": "dominate person",
+      "6": "mass suggestion",
+      "7": "insanity",
+      "8": "mass dominate",
+      "9": "wish"
+    },
+    "deities": ["Calistria", "Shelyn"],
+    "subdomains": [
+      {
+        "name": "Lust",
+        "replacedPower": "Dazing Touch",
+        "newPower": {
+          "name": "Alluring Touch",
+          "type": "Sp",
+          "description": "As a standard action, you can touch a creature and force it to make a Charisma saving throw or become fascinated with you. This effect lasts for a number of rounds equal to your cleric level. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {
+          "1": "disguise self"
+        }
+      },
+      {
+        "name": "Deception",
+        "replacedPower": "Charm Aura",
+        "newPower": {
+          "name": "Deceptive Aura",
+          "type": "Su",
+          "description": "At 6th level, you gain a +2 bonus on Bluff checks and those who attempt to sense your thoughts or determine your alignment must succeed at a caster level check against your caster level to do so."
+        },
+        "replacedSpells": {
+          "2": "invisibility"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Community",
+    "description": "Domain of society, cooperation, and unity. Strengthens bonds between people and promotes fellowship.",
+    "grantedPowers": [
+      {
+        "name": "Calming Touch",
+        "type": "Sp",
+        "description": "As a standard action, you can touch a creature and remove the fatigued and shaken conditions. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+      },
+      {
+        "name": "Community Bond",
+        "type": "Su",
+        "description": "At 6th level, as a standard action, you can bind yourself and one or more allies together. Each affected creature gains a +2 bonus on attack rolls, saves, and ability checks. This effect lasts for 1 minute. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st. You can affect a number of allies equal to your Wisdom modifier."
+      }
+    ],
+    "domainSpells": {
+      "1": "bless",
+      "2": "shield other",
+      "3": "prayer",
+      "4": "imbue with spell ability",
+      "5": "telepathic bond",
+      "6": "heroes' feast",
+      "7": "refuge",
+      "8": "teleportation circle",
+      "9": "wish"
+    },
+    "deities": ["Abadar", "Erastil", "Iomedae"],
+    "subdomains": [
+      {
+        "name": "Family",
+        "replacedPower": "Community Bond",
+        "newPower": {
+          "name": "Family Bond",
+          "type": "Su",
+          "description": "At 6th level, as a standard action, you can create a family bond with a number of allies equal to your Wisdom modifier. These allies gain the benefits of aid another on your behalf. You can designate a number of allies equal to your Wisdom modifier to gain a +2 bonus on attack rolls made to aid you or your other designated allies."
+        },
+        "replacedSpells": {}
+      },
+      {
+        "name": "Toil",
+        "replacedPower": "Calming Touch",
+        "newPower": {
+          "name": "Laborer's Strength",
+          "type": "Su",
+          "description": "As a swift action, you can touch yourself or an ally and grant that creature a +2 bonus to a single ability check or skill check. This lasts for 10 minutes. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+        },
+        "replacedSpells": {
+          "1": "magic weapon"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Darkness",
+    "description": "Domain of night, shadow, and concealment. Grants power over darkness and shadow magic.",
+    "grantedPowers": [
+      {
+        "name": "Blind-Fight",
+        "type": "Su",
+        "description": "You gain Blind-Fight as a bonus feat."
+      },
+      {
+        "name": "Shadow Aura",
+        "type": "Su",
+        "description": "At 6th level, you can activate an aura that grants all allies within 10 feet of you a 20% miss chance against ranged attacks. This aura lasts for a number of rounds equal to your cleric level. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+      }
+    ],
+    "domainSpells": {
+      "1": "faerie fire",
+      "2": "darkness",
+      "3": "shadow conjuration",
+      "4": "shadow evocation",
+      "5": "shadow play",
+      "6": "shadow evocation, greater",
+      "7": "invisibility, mass",
+      "8": "shadow conjuration, greater",
+      "9": "wish"
+    },
+    "deities": ["Lamashtu", "Norgorber", "Zon-Kuthon"],
+    "subdomains": [
+      {
+        "name": "Loss",
+        "replacedPower": "Blind-Fight",
+        "newPower": {
+          "name": "Inky Cloud",
+          "type": "Sp",
+          "description": "As a standard action, you can create a cloud of ink around yourself that grants you 50% concealment. This cloud lasts for 1 minute. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {
+          "3": "summon swarm (ravens or owls only)"
+        }
+      },
+      {
+        "name": "Night",
+        "replacedPower": "Shadow Aura",
+        "newPower": {
+          "name": "Nightvision",
+          "type": "Su",
+          "description": "At 6th level, you gain darkvision 60 feet. If you already have darkvision, the range increases by 60 feet."
+        },
+        "replacedSpells": {
+          "2": "see invisibility"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Death",
+    "description": "Domain of mortality, endings, and the transition between life and death. Grants power over death and undeath.",
+    "grantedPowers": [
+      {
+        "name": "Death's Touch",
+        "type": "Sp",
+        "description": "As a standard action, you can touch a living creature and deal 1d6 damage + 1 per two cleric levels. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+      },
+      {
+        "name": "Death Knell",
+        "type": "Su",
+        "description": "At 6th level, you can cast death knell on a creature that you reduce to 0 or fewer hit points as a swift action."
+      }
+    ],
+    "domainSpells": {
+      "1": "cause fear",
+      "2": "death knell",
+      "3": "animate dead",
+      "4": "death ward",
+      "5": "slay living",
+      "6": "create undead",
+      "7": "horrid wilting",
+      "8": "trap the soul",
+      "9": "wail of the banshee"
+    },
+    "deities": ["Pharasma", "Urgathoa", "Zon-Kuthon"],
+    "subdomains": [
+      {
+        "name": "Murder",
+        "replacedPower": "Death's Touch",
+        "newPower": {
+          "name": "Murderous Strike",
+          "type": "Su",
+          "description": "As a swift action, you can touch a weapon and grant it a +2 bonus to damage rolls against a designated creature type for 1 minute. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {
+          "3": "death ward"
+        }
+      },
+      {
+        "name": "Undead",
+        "replacedPower": "Death Knell",
+        "newPower": {
+          "name": "Undead Empathy",
+          "type": "Su",
+          "description": "At 6th level, you can communicate with undead creatures as if they were alive and friendly. You gain a +2 bonus on Charisma checks made to interact with undead."
+        },
+        "replacedSpells": {
+          "3": "gentle repose"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Destruction",
+    "description": "Domain of ruin, chaos, and annihilation. Grants power to unmake the world.",
+    "grantedPowers": [
+      {
+        "name": "Destructive Smite",
+        "type": "Sp",
+        "description": "As a standard action, you can touch a weapon and grant it a +1 bonus to damage rolls for 1 round. This bonus increases by +1 for every four cleric levels beyond 1st, to a maximum of +5 at 17th level. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+      },
+      {
+        "name": "Destructive Aura",
+        "type": "Su",
+        "description": "At 6th level, you can activate an aura that causes all melee and ranged weapons used by you and your allies within 10 feet to gain a +2 bonus to damage rolls. This aura lasts for a number of rounds equal to your cleric level. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+      }
+    ],
+    "domainSpells": {
+      "1": "cause fear",
+      "2": "shatter",
+      "3": "fireball",
+      "4": "confusion",
+      "5": "disintegrate",
+      "6": "greater dispel magic",
+      "7": "earthquake",
+      "8": "meteor swarm",
+      "9": "wish"
+    },
+    "deities": ["Gorum", "Rovagug"],
+    "subdomains": [
+      {
+        "name": "Catastrophe",
+        "replacedPower": "Destructive Aura",
+        "newPower": {
+          "name": "Trigger Disaster",
+          "type": "Su",
+          "description": "At 6th level, as a standard action, you can choose an object or structure and channel destructive energy through it. It takes 2d6 + your cleric level in damage. This ability ignores hardness and damage reduction. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {}
+      },
+      {
+        "name": "Rage",
+        "replacedPower": "Destructive Smite",
+        "newPower": {
+          "name": "Rage",
+          "type": "Su",
+          "description": "As a swift action, you can enter a rage that lasts for a number of rounds equal to 1 + your Wisdom modifier. While raging, you gain a +2 bonus to damage rolls and take -2 AC penalty. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {}
+      }
+    ]
+  },
+  {
+    "name": "Earth",
+    "description": "Domain of stone, soil, and the earth element. Grants mastery over stone and earth.",
+    "grantedPowers": [
+      {
+        "name": "Stone Fist",
+        "type": "Sp",
+        "description": "As a standard action, you can touch your fists with stone and gain a bonus to damage rolls equal to your cleric level. This effect lasts for a number of rounds equal to 1 + your Wisdom modifier. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+      },
+      {
+        "name": "Stability",
+        "type": "Su",
+        "description": "At 6th level, you gain a +4 bonus on ability checks made to resist being bull rushed or tripped when standing on the ground."
+      }
+    ],
+    "domainSpells": {
+      "1": "magic stone",
+      "2": "soften earth and stone",
+      "3": "stone shape",
+      "4": "stoneskin",
+      "5": "wall of stone",
+      "6": "move earth",
+      "7": "statue",
+      "8": "earthquake",
+      "9": "wish"
+    },
+    "deities": ["Gozreh", "Torag"],
+    "subdomains": [
+      {
+        "name": "Cave",
+        "replacedPower": "Stone Fist",
+        "newPower": {
+          "name": "Cavern of Darkness",
+          "type": "Sp",
+          "description": "As a standard action, you can create a 10-foot radius sphere of difficult terrain. This area is heavily obscured by stone and earth. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {
+          "2": "darkness"
+        }
+      },
+      {
+        "name": "Metal",
+        "replacedPower": "Stability",
+        "newPower": {
+          "name": "Metal Mastery",
+          "type": "Su",
+          "description": "At 6th level, you gain a +2 bonus on attack rolls and damage rolls with metal weapons. Metal armor you wear grants an additional +1 bonus to AC."
+        },
+        "replacedSpells": {
+          "2": "heat metal"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Evil",
+    "description": "Domain of wickedness, corruption, and malice. Channels the power of evil deities.",
+    "grantedPowers": [
+      {
+        "name": "Touch of Evil",
+        "type": "Sp",
+        "description": "As a standard action, you can touch a creature and force it to make a Wisdom saving throw or become sickened for 1 round. This counts as an evil touch for the purpose of spells like protection from evil. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+      },
+      {
+        "name": "Aura of Despair",
+        "type": "Su",
+        "description": "At 6th level, you emanate an aura of despair. All enemies within 30 feet of you take a -1 penalty on saving throws. This penalty increases to -2 at 12th level and -3 at 18th level."
+      }
+    ],
+    "domainSpells": {
+      "1": "protection from good",
+      "2": "desecrate",
+      "3": "unholy blight",
+      "4": "unholy ice",
+      "5": "unholy aura",
+      "6": "create undead",
+      "7": "destruction",
+      "8": "unholy aura, mass",
+      "9": "wish"
+    },
+    "deities": ["Asmodeus", "Lamashtu", "Norgorber"],
+    "subdomains": [
+      {
+        "name": "Nightmares",
+        "replacedPower": "Touch of Evil",
+        "newPower": {
+          "name": "Nightmare Touch",
+          "type": "Sp",
+          "description": "As a standard action, you can touch a creature and force it to make a Wisdom saving throw or become frightened for 1 round. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+        },
+        "replacedSpells": {
+          "1": "summon monster I (evil creatures only)"
+        }
+      },
+      {
+        "name": "Tyranny",
+        "replacedPower": "Aura of Despair",
+        "newPower": {
+          "name": "Tyrannical Command",
+          "type": "Su",
+          "description": "At 6th level, as a standard action, you can give a command to a creature as if you had cast command. Each creature affected must make a Will saving throw. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {}
+      }
+    ]
+  },
+  {
+    "name": "Fire",
+    "description": "Domain of flame, heat, and the fire element. Grants mastery over fire magic.",
+    "grantedPowers": [
+      {
+        "name": "Fire Bolt",
+        "type": "Sp",
+        "description": "As a standard action, you can hurl a bolt of fire at any target within 30 feet. This bolt deals 1d6 damage + 1 per two cleric levels (minimum 1d6). This is treated as fire damage. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+      },
+      {
+        "name": "Fire Resistance",
+        "type": "Su",
+        "description": "At 6th level, you gain fire resistance 10. This resistance increases to 20 at 12th level and 30 at 18th level."
+      }
+    ],
+    "domainSpells": {
+      "1": "burning hands",
+      "2": "scorching ray",
+      "3": "fireball",
+      "4": "wall of fire",
+      "5": "flame strike",
+      "6": "fire seeds",
+      "7": "delayed blast fireball",
+      "8": "incendiary cloud",
+      "9": "wish"
+    },
+    "deities": ["Sarenrae", "Gorum"],
+    "subdomains": [
+      {
+        "name": "Ash",
+        "replacedPower": "Fire Bolt",
+        "newPower": {
+          "name": "Ash Cloud",
+          "type": "Sp",
+          "description": "As a standard action, you can create an ash cloud in a 10-foot radius centered on a point you can see within 30 feet. All creatures in this area must make a Reflex saving throw or be blinded for 1 round. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {
+          "2": "pyrotechnics"
+        }
+      },
+      {
+        "name": "Smoke",
+        "replacedPower": "Fire Resistance",
+        "newPower": {
+          "name": "Smoke Aura",
+          "type": "Su",
+          "description": "At 6th level, you can activate an aura that grants you and all allies within 10 feet concealment (20% miss chance) for 1 minute. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {
+          "2": "pyrotechnics"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Glory",
+    "description": "Domain of strength, heroism, and prestige. Grants power over might and honor.",
+    "grantedPowers": [
+      {
+        "name": "Heroic Surge",
+        "type": "Sp",
+        "description": "As a standard action, you can grant a creature you can see a surge of heroic energy. The target gains a +1 bonus to attack rolls and a +1 bonus to saving throws for a number of rounds equal to 1 + your Wisdom modifier. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+      },
+      {
+        "name": "Bonus Feat",
+        "type": "Su",
+        "description": "At 6th level, you gain Weapon Focus as a bonus feat with your chosen weapon."
+      }
+    ],
+    "domainSpells": {
+      "1": "divine favor",
+      "2": "enhance ability",
+      "3": "prayer",
+      "4": "divine power",
+      "5": "divine aura",
+      "6": "heroism, greater",
+      "7": "resurrection",
+      "8": "vision",
+      "9": "wish"
+    },
+    "deities": ["Gorum", "Iomedae"],
+    "subdomains": [
+      {
+        "name": "Heroism",
+        "replacedPower": "Heroic Surge",
+        "newPower": {
+          "name": "Heroic Strike",
+          "type": "Su",
+          "description": "As a swift action, you can gain the benefits of heroism until the end of your turn. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {}
+      },
+      {
+        "name": "Martyr",
+        "replacedPower": "Bonus Feat",
+        "newPower": {
+          "name": "Sacrificial Touch",
+          "type": "Su",
+          "description": "At 6th level, as a standard action, you can transfer damage taken by an ally to yourself. You must be within 30 feet of the target. The damage cannot exceed your current hit points. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {}
+      }
+    ]
+  },
+  {
+    "name": "Good",
+    "description": "Domain of virtue, righteousness, and goodness. Channels the power of good deities.",
+    "grantedPowers": [
+      {
+        "name": "Touch of Good",
+        "type": "Sp",
+        "description": "As a standard action, you can touch a creature and imbue it with good energy. The target gains a +1 bonus to attack rolls and a +1 bonus to saving throws for a number of rounds equal to 1 + your Wisdom modifier. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+      },
+      {
+        "name": "Aura of Good",
+        "type": "Su",
+        "description": "At 6th level, you emanate an aura of good that is equivalent to a good aura with a caster level equal to your cleric level."
+      }
+    ],
+    "domainSpells": {
+      "1": "protection from evil",
+      "2": "aid",
+      "3": "magic circle against evil",
+      "4": "holy smite",
+      "5": "dispel evil",
+      "6": "banishment",
+      "7": "holy word",
+      "8": "holy aura, mass",
+      "9": "wish"
+    },
+    "deities": ["Iomedae", "Sarenrae", "Shelyn"],
+    "subdomains": [
+      {
+        "name": "Redemption",
+        "replacedPower": "Touch of Good",
+        "newPower": {
+          "name": "Redemptive Touch",
+          "type": "Sp",
+          "description": "As a standard action, you can touch a creature that has been charmed or compelled to make a new saving throw against the condition. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+        },
+        "replacedSpells": {
+          "2": "remove paralysis"
+        }
+      },
+      {
+        "name": "Mercy",
+        "replacedPower": "Aura of Good",
+        "newPower": {
+          "name": "Aura of Mercy",
+          "type": "Su",
+          "description": "At 6th level, all creatures within 30 feet of you can apply 1.5 times their normal Charisma modifier to Charisma-based saving throws."
+        },
+        "replacedSpells": {}
+      }
+    ]
+  },
+  {
+    "name": "Healing",
+    "description": "Domain of restoration, health, and medicine. Grants mastery over healing magic.",
+    "grantedPowers": [
+      {
+        "name": "Healing Burst",
+        "type": "Sp",
+        "description": "As a standard action, you can burst with healing energy that heals you and all allies within 10 feet for 1d6 + your cleric level. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+      },
+      {
+        "name": "Channel Vitality",
+        "type": "Su",
+        "description": "At 6th level, you can channel positive energy to heal wounds. You can use this ability to cast cure serious wounds once per day. At 12th level, you can cast cure critical wounds once per day instead. At 18th level, you can cast heal once per day."
+      }
+    ],
+    "domainSpells": {
+      "1": "cure light wounds",
+      "2": "cure moderate wounds",
+      "3": "cure serious wounds",
+      "4": "cure critical wounds",
+      "5": "heal",
+      "6": "heroes' feast",
+      "7": "regenerate",
+      "8": "mass heal",
+      "9": "wish"
+    },
+    "deities": ["Erastil", "Pharasma", "Sarenrae"],
+    "subdomains": [
+      {
+        "name": "Restoration",
+        "replacedPower": "Channel Vitality",
+        "newPower": {
+          "name": "Restore Life",
+          "type": "Sp",
+          "description": "At 6th level, you can cast restoration once per day at a reduced caster level."
+      },
+        "replacedSpells": {
+          "5": "restoration"
+        }
+      },
+      {
+        "name": "Medicine",
+        "replacedPower": "Healing Burst",
+        "newPower": {
+          "name": "Medicinal Touch",
+          "type": "Sp",
+          "description": "As a standard action, you can touch a creature and cure a single disease or condition affecting it. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+        },
+        "replacedSpells": {
+          "3": "remove disease"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Knowledge",
+    "description": "Domain of learning, understanding, and wisdom. Grants mastery over knowledge and lore.",
+    "grantedPowers": [
+      {
+        "name": "Lore Master",
+        "type": "Su",
+        "description": "You gain a +2 bonus on all Knowledge checks. In addition, you can make Knowledge checks untrained."
+      },
+      {
+        "name": "Identify",
+        "type": "Sp",
+        "description": "At 6th level, you can cast identify at will as a standard action."
+      }
+    ],
+    "domainSpells": {
+      "1": "identify",
+      "2": "locate object",
+      "3": "clairaudience/clairvoyance",
+      "4": "divination",
+      "5": "true seeing",
+      "6": "vision",
+      "7": "legend lore",
+      "8": "moment of prescience",
+      "9": "wish"
+    },
+    "deities": ["Abadar", "Nethys", "Irori"],
+    "subdomains": [
+      {
+        "name": "Memory",
+        "replacedPower": "Lore Master",
+        "newPower": {
+          "name": "Perfect Recall",
+          "type": "Su",
+          "description": "You can perfectly recall any information you have heard or read. You gain a +4 bonus on Knowledge checks related to information you have encountered directly."
+        },
+        "replacedSpells": {}
+      },
+      {
+        "name": "Magic",
+        "replacedPower": "Identify",
+        "newPower": {
+          "name": "Detect Magic",
+          "type": "Sp",
+          "description": "At 6th level, you can cast detect magic at will as a standard action."
+        },
+        "replacedSpells": {
+          "3": "dispel magic"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Law",
+    "description": "Domain of order, justice, and rules. Channels the power of law and discipline.",
+    "grantedPowers": [
+      {
+        "name": "Lawful Touch",
+        "type": "Sp",
+        "description": "As a standard action, you can touch a creature and imbue it with lawful energy. The target gains a +1 bonus to AC and a +1 bonus to saving throws against chaotic effects for a number of rounds equal to 1 + your Wisdom modifier. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+      },
+      {
+        "name": "Order's Wrath",
+        "type": "Sp",
+        "description": "At 6th level, you can cast order's wrath once per day as a standard action."
+      }
+    ],
+    "domainSpells": {
+      "1": "protection from chaos",
+      "2": "enthrall",
+      "3": "magic circle against chaos",
+      "4": "order's wrath",
+      "5": "dispel chaos",
+      "6": "banishment",
+      "7": "word of law",
+      "8": "lock item",
+      "9": "wish"
+    },
+    "deities": ["Abadar", "Iomedae", "Torag"],
+    "subdomains": [
+      {
+        "name": "Archon",
+        "replacedPower": "Lawful Touch",
+        "newPower": {
+          "name": "Summon Archon",
+          "type": "Sp",
+          "description": "As a standard action, you can summon a celestial creature as if you had cast summon monster I. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {
+          "1": "summon monster I (lawful creatures only)"
+        }
+      },
+      {
+        "name": "Judgment",
+        "replacedPower": "Order's Wrath",
+        "newPower": {
+          "name": "Pass Judgment",
+          "type": "Su",
+          "description": "At 6th level, as a standard action, you can declare judgment on a creature within 30 feet. That creature takes a -2 penalty on attack rolls and saving throws against you for 1 minute. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {}
+      }
+    ]
+  },
+  {
+    "name": "Liberation",
+    "description": "Domain of freedom, independence, and emancipation. Grants power over liberation and breaking bonds.",
+    "grantedPowers": [
+      {
+        "name": "Liberation",
+        "type": "Sp",
+        "description": "As a standard action, you can remove any of the following conditions: fatigued, grappled, frightened, shaken, or sickened. This ability does not cure the cause of the condition, only removes the condition itself. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+      },
+      {
+        "name": "Liberty's Blessing",
+        "type": "Su",
+        "description": "At 6th level, you gain a +2 bonus on saving throws against compulsion effects and the ability to break free from grapples as a swift action."
+      }
+    ],
+    "domainSpells": {
+      "1": "protection from law",
+      "2": "remove paralysis",
+      "3": "dispel magic",
+      "4": "dimension door",
+      "5": "break enchantment",
+      "6": "greater dispel magic",
+      "7": "freedom of movement, mass",
+      "8": "iron body",
+      "9": "wish"
+    },
+    "deities": ["Cayden Cailean", "Desna"],
+    "subdomains": [
+      {
+        "name": "Escape",
+        "replacedPower": "Liberation",
+        "newPower": {
+          "name": "Slippery",
+          "type": "Su",
+          "description": "As a standard action, you can grant yourself or an adjacent creature a +4 bonus on Escape Artist checks and the ability to squeeze through tight spaces as if one size category smaller for 1 minute. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {
+          "2": "invisibility"
+        }
+      },
+      {
+        "name": "Revolutionary",
+        "replacedPower": "Liberty's Blessing",
+        "newPower": {
+          "name": "Rebel's Strike",
+          "type": "Su",
+          "description": "At 6th level, once per round, when a creature takes an action to oppress or control another, you can use a swift action to grant an ally a free attack against that creature."
+        },
+        "replacedSpells": {}
+      }
+    ]
+  },
+  {
+    "name": "Luck",
+    "description": "Domain of fortune, chance, and probability. Grants power over luck and fate.",
+    "grantedPowers": [
+      {
+        "name": "Lucky Touch",
+        "type": "Sp",
+        "description": "As a standard action, you can touch a creature and grant it a reroll on its next attack roll, saving throw, or ability check within 1 minute. The creature must accept the new result. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+      },
+      {
+        "name": "Increased Luck",
+        "type": "Su",
+        "description": "At 6th level, you gain the ability to reroll any one saving throw, attack roll, or ability check you make once per round. You must accept the new result."
+      }
+    ],
+    "domainSpells": {
+      "1": "protection from evil",
+      "2": "aid",
+      "3": "protection from energy",
+      "4": "freedom of movement",
+      "5": "break enchantment",
+      "6": "greater dispel magic",
+      "7": "spell turning",
+      "8": "moment of prescience",
+      "9": "wish"
+    },
+    "deities": ["Desna"],
+    "subdomains": [
+      {
+        "name": "Curse",
+        "replacedPower": "Lucky Touch",
+        "newPower": {
+          "name": "Cursing Touch",
+          "type": "Sp",
+          "description": "As a standard action, you can touch a creature and curse it. The target takes a -2 penalty on one type of roll (attack, save, or check) of your choice for 1 minute. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+        },
+        "replacedSpells": {
+          "1": "bestow curse"
+        }
+      },
+      {
+        "name": "Fate",
+        "replacedPower": "Increased Luck",
+        "newPower": {
+          "name": "Fated Strike",
+          "type": "Su",
+          "description": "At 6th level, once per day, when you or an ally misses with an attack roll, you can grant them an immediate reroll against the same target."
+        },
+        "replacedSpells": {}
+      }
+    ]
+  },
+  {
+    "name": "Madness",
+    "description": "Domain of insanity, chaos of mind, and derangement. Grants power over sanity and chaos.",
+    "grantedPowers": [
+      {
+        "name": "Vision of Madness",
+        "type": "Sp",
+        "description": "As a standard action, you can cause a creature within 30 feet to make a Will saving throw or be confused for 1 round. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+      },
+      {
+        "name": "Madness Aura",
+        "type": "Su",
+        "description": "At 6th level, you can activate an aura that causes all enemies within 10 feet to take a -2 penalty on Will saving throws. This aura lasts for a number of rounds equal to your cleric level. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+      }
+    ],
+    "domainSpells": {
+      "1": "confusion, lesser",
+      "2": "touch of idiocy",
+      "3": "confusion",
+      "4": "crushing despair",
+      "5": "insanity",
+      "6": "feeblemind",
+      "7": "insanity",
+      "8": "weird",
+      "9": "wish"
+    },
+    "deities": ["Lamashtu", "Nethys"],
+    "subdomains": [
+      {
+        "name": "Insanity",
+        "replacedPower": "Vision of Madness",
+        "newPower": {
+          "name": "Madness Touch",
+          "type": "Sp",
+          "description": "As a standard action, you can touch a creature and force it to make a Will saving throw or gain confusion for 1d3 rounds. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {}
+      },
+      {
+        "name": "Nightmare",
+        "replacedPower": "Madness Aura",
+        "newPower": {
+          "name": "Nightmare Visions",
+          "type": "Su",
+          "description": "At 6th level, creatures that fail to save against your confusion effects see horrific visions and take a -2 penalty on attack rolls for 1d4 rounds after the confusion ends."
+        },
+        "replacedSpells": {}
+      }
+    ]
+  },
+  {
+    "name": "Magic",
+    "description": "Domain of sorcery, enchantment, and the arcane arts. Grants power over magic.",
+    "grantedPowers": [
+      {
+        "name": "Magic Aura",
+        "type": "Sp",
+        "description": "As a standard action, you can touch an object and cast magic aura on it, lasting for a number of rounds equal to your cleric level. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+      },
+      {
+        "name": "Spell Siphon",
+        "type": "Su",
+        "description": "At 6th level, as an immediate action, when a creature within 30 feet casts a spell, you can make a caster level check against their caster level. If you succeed, you can negate one spell slot of the same level or lower."
+      }
+    ],
+    "domainSpells": {
+      "1": "identify",
+      "2": "magic mouth",
+      "3": "dispel magic",
+      "4": "imbue with spell ability",
+      "5": "telekinesis",
+      "6": "antimagic field",
+      "7": "spell turning",
+      "8": "protection from spells",
+      "9": "wish"
+    },
+    "deities": ["Nethys"],
+    "subdomains": [
+      {
+        "name": "Arcane",
+        "replacedPower": "Magic Aura",
+        "newPower": {
+          "name": "Arcane Empowerment",
+          "type": "Su",
+          "description": "As a swift action, you can grant yourself a +2 bonus to the save DC of your spells for 1 minute. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {
+          "3": "arcane sight"
+        }
+      },
+      {
+        "name": "Divine",
+        "replacedPower": "Spell Siphon",
+        "newPower": {
+          "name": "Divine Authority",
+          "type": "Su",
+          "description": "At 6th level, your divine spells are treated as coming from a higher caster level for the purpose of overcoming spell resistance."
+        },
+        "replacedSpells": {}
+      }
+    ]
+  },
+  {
+    "name": "Nobility",
+    "description": "Domain of rulership, leadership, and authority. Grants power over authority and command.",
+    "grantedPowers": [
+      {
+        "name": "Inspiring Word",
+        "type": "Sp",
+        "description": "As a standard action, you can speak an inspiring word to a creature you can see within 30 feet. That creature gains a +1 bonus on attack rolls and ability checks for a number of rounds equal to 1 + your Wisdom modifier. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+      },
+      {
+        "name": "Leadership Aura",
+        "type": "Su",
+        "description": "At 6th level, all allies within 30 feet of you gain a +2 bonus on attack rolls and saving throws."
+      }
+    ],
+    "domainSpells": {
+      "1": "divine favor",
+      "2": "enthrall",
+      "3": "magic circle against evil",
+      "4": "imbue with spell ability",
+      "5": "telekinesis",
+      "6": "banishment",
+      "7": "repulsion",
+      "8": "demand",
+      "9": "wish"
+    },
+    "deities": ["Abadar", "Iomedae"],
+    "subdomains": [
+      {
+        "name": "Aristocracy",
+        "replacedPower": "Inspiring Word",
+        "newPower": {
+          "name": "Command",
+          "type": "Sp",
+          "description": "As a standard action, you can cast command on a creature you can see within 30 feet. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {
+          "2": "command"
+        }
+      },
+      {
+        "name": "Sovereignty",
+        "replacedPower": "Leadership Aura",
+        "newPower": {
+          "name": "Sovereign's Gaze",
+          "type": "Su",
+          "description": "At 6th level, creatures within 30 feet that can see you take a -1 penalty on saving throws against your spells and abilities."
+        },
+        "replacedSpells": {}
+      }
+    ]
+  },
+  {
+    "name": "Plant",
+    "description": "Domain of flora, growth, and harvest. Grants mastery over plant life.",
+    "grantedPowers": [
+      {
+        "name": "Plantgrowth",
+        "type": "Sp",
+        "description": "As a standard action, you can cause plants to grow and entangle creatures in a 20-foot radius. Creatures in this area must make a Reflex saving throw or be entangled for 1 round. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+      },
+      {
+        "name": "Green Sense",
+        "type": "Su",
+        "description": "At 6th level, you can sense the location and health of plants as if you could see them through leaves and branches within 1 mile."
+      }
+    ],
+    "domainSpells": {
+      "1": "entangle",
+      "2": "barkskin",
+      "3": "plant growth",
+      "4": "command plants",
+      "5": "wall of thorns",
+      "6": "liveoak",
+      "7": "animate plants",
+      "8": "control plants",
+      "9": "wish"
+    },
+    "deities": ["Erastil", "Gozreh"],
+    "subdomains": [
+      {
+        "name": "Decay",
+        "replacedPower": "Plantgrowth",
+        "newPower": {
+          "name": "Blight",
+          "type": "Sp",
+          "description": "As a standard action, you can cause a plant to wither and die. This functions as finger of death but only against plants. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {
+          "5": "blight"
+        }
+      },
+      {
+        "name": "Thorns",
+        "replacedPower": "Green Sense",
+        "newPower": {
+          "name": "Thorny Aura",
+          "type": "Su",
+          "description": "At 6th level, creatures that attack you or an adjacent ally are dealt 1d6 damage as thorns erupt from your body."
+        },
+        "replacedSpells": {}
+      }
+    ]
+  },
+  {
+    "name": "Protection",
+    "description": "Domain of safety, defense, and wards. Grants power over protection and shielding.",
+    "grantedPowers": [
+      {
+        "name": "Protective Ward",
+        "type": "Sp",
+        "description": "As a standard action, you can touch a creature and grant it a +1 bonus to AC for a number of rounds equal to 1 + your Wisdom modifier. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+      },
+      {
+        "name": "Protective Aura",
+        "type": "Su",
+        "description": "At 6th level, all allies within 10 feet of you gain a +2 bonus to AC and a +2 bonus on saving throws."
+      }
+    ],
+    "domainSpells": {
+      "1": "protection from evil",
+      "2": "shield other",
+      "3": "protection from energy",
+      "4": "divine shield",
+      "5": "spell resistance",
+      "6": "antimagic field",
+      "7": "refuge",
+      "8": "mind blank",
+      "9": "wish"
+    },
+    "deities": ["Erastil", "Iomedae", "Shelyn"],
+    "subdomains": [
+      {
+        "name": "Aegis",
+        "replacedPower": "Protective Ward",
+        "newPower": {
+          "name": "Guardian Ward",
+          "type": "Su",
+          "description": "As a standard action, you can designate one ally within 30 feet as your ward. That ally gains a +2 bonus to AC and saving throws while you can see them. You can maintain this effect on one creature at a time."
+        },
+        "replacedSpells": {}
+      },
+      {
+        "name": "Defense",
+        "replacedPower": "Protective Aura",
+        "newPower": {
+          "name": "Defensive Stance",
+          "type": "Su",
+          "description": "At 6th level, as a swift action, you can enter a defensive stance that lasts for 1 minute. While in this stance, you gain a +2 bonus to AC but take a -1 penalty on attack rolls. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {}
+      }
+    ]
+  },
+  {
+    "name": "Repose",
+    "description": "Domain of rest, death, and the peaceful grave. Grants power over death and undeath.",
+    "grantedPowers": [
+      {
+        "name": "Gentle Repose",
+        "type": "Sp",
+        "description": "As a standard action, you can touch a corpse and prevent it from decaying or being raised as undead for a number of days equal to your cleric level. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+      },
+      {
+        "name": "Deathless",
+        "type": "Su",
+        "description": "At 6th level, you gain a +4 bonus on saving throws against death effects and negative energy."
+      }
+    ],
+    "domainSpells": {
+      "1": "gentle repose",
+      "2": "deathwatch",
+      "3": "animate dead",
+      "4": "death ward",
+      "5": "slay living",
+      "6": "create undead",
+      "7": "destruction",
+      "8": "trap the soul",
+      "9": "wail of the banshee"
+    },
+    "deities": ["Pharasma"],
+    "subdomains": [
+      {
+        "name": "Ancestors",
+        "replacedPower": "Gentle Repose",
+        "newPower": {
+          "name": "Ancestral Knowledge",
+          "type": "Su",
+          "description": "As a standard action, you can ask an ancestor for guidance. You gain a +2 bonus on your next Knowledge check made within 1 minute. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {
+          "3": "speak with dead"
+        }
+      },
+      {
+        "name": "Souls",
+        "replacedPower": "Deathless",
+        "newPower": {
+          "name": "Soulbound",
+          "type": "Su",
+          "description": "At 6th level, when a creature dies within 30 feet of you, you can attempt to bind its soul. The creature makes a Will saving throw or is unable to be raised as undead unless you consent."
+        },
+        "replacedSpells": {}
+      }
+    ]
+  },
+  {
+    "name": "Rune",
+    "description": "Domain of symbols, runes, and magical marks. Grants power over rune magic.",
+    "grantedPowers": [
+      {
+        "name": "Rune Sight",
+        "type": "Su",
+        "description": "You gain the ability to see runes as if your eyes were always enhanced to see magical writing and symbols. You gain a +2 bonus on checks to decipher runes."
+      },
+      {
+        "name": "Rune Warding",
+        "type": "Sp",
+        "description": "At 6th level, as a standard action, you can create a protective rune in a 5-foot square that lasts for a number of rounds equal to your cleric level. Creatures that enter or leave the area without knowing the proper password take 1d6 damage per two cleric levels."
+      }
+    ],
+    "domainSpells": {
+      "1": "identify",
+      "2": "magic mouth",
+      "3": "glyph of warding",
+      "4": "rune of warding",
+      "5": "telekinesis",
+      "6": "symbol of fear",
+      "7": "symbol of power",
+      "8": "symbol of insanity",
+      "9": "wish"
+    },
+    "deities": ["Nethys"],
+    "subdomains": [
+      {
+        "name": "Language",
+        "replacedPower": "Rune Sight",
+        "newPower": {
+          "name": "Tongues",
+          "type": "Sp",
+          "description": "You gain the ability to speak and understand all languages as if you had cast tongues on yourself."
+        },
+        "replacedSpells": {
+          "3": "comprehend languages"
+        }
+      },
+      {
+        "name": "Wards",
+        "replacedPower": "Rune Warding",
+        "newPower": {
+          "name": "Greater Rune Warding",
+          "type": "Sp",
+          "description": "At 6th level, you can create more powerful runes that deal 2d6 damage per two cleric levels and affect multiple squares."
+        },
+        "replacedSpells": {}
+      }
+    ]
+  },
+  {
+    "name": "Scalykind",
+    "description": "Domain of reptiles, scaled creatures, and dragonkind. Grants power over reptilian beasts.",
+    "grantedPowers": [
+      {
+        "name": "Scaley Skin",
+        "type": "Su",
+        "description": "You gain a +1 natural armor bonus that increases by +1 for every five cleric levels, to a maximum of +5 at 17th level."
+      },
+      {
+        "name": "Summon Dragon",
+        "type": "Sp",
+        "description": "At 6th level, you can summon a young dragon once per day. The dragon's age category depends on your caster level and lasts for 1 minute per caster level."
+      }
+    ],
+    "domainSpells": {
+      "1": "magic fang",
+      "2": "summon swarm",
+      "3": "summon nature's ally III",
+      "4": "summon nature's ally IV",
+      "5": "beast shape III",
+      "6": "summon nature's ally VI",
+      "7": "summon nature's ally VII",
+      "8": "summon nature's ally VIII",
+      "9": "wish"
+    },
+    "deities": ["Gozreh"],
+    "subdomains": [
+      {
+        "name": "Draconic",
+        "replacedPower": "Scaley Skin",
+        "newPower": {
+          "name": "Dragon Claws",
+          "type": "Su",
+          "description": "As a swift action, you can grow draconic claws that function as magical scythes. These claws last for a number of rounds equal to your cleric level. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {}
+      },
+      {
+        "name": "Venom",
+        "replacedPower": "Summon Dragon",
+        "newPower": {
+          "name": "Venomous Touch",
+          "type": "Sp",
+          "description": "At 6th level, as a standard action, you can touch a creature and force it to make a Fortitude saving throw or take 1d6 poison damage. The creature is also sickened for 1 round. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {}
+      }
+    ]
+  },
+  {
+    "name": "Strength",
+    "description": "Domain of power, might, and physical prowess. Grants enhancement of strength.",
+    "grantedPowers": [
+      {
+        "name": "Might",
+        "type": "Sp",
+        "description": "As a standard action, you can touch a creature and grant it a +1 bonus to melee damage rolls for a number of rounds equal to 1 + your Wisdom modifier. This bonus increases by +1 for every four cleric levels beyond 1st, to a maximum of +5 at 17th level. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+      },
+      {
+        "name": "Powerful Blow",
+        "type": "Su",
+        "description": "At 6th level, once per round, you can add 1d6 to your melee damage roll. This damage increases by 1d6 for every six cleric levels beyond 6th, to a maximum of 3d6 at 18th level."
+      }
+    ],
+    "domainSpells": {
+      "1": "magic weapon",
+      "2": "strength",
+      "3": "magic weapon, greater",
+      "4": "divine power",
+      "5": "righteous might",
+      "6": "iron body",
+      "7": "giant form I",
+      "8": "giant form II",
+      "9": "wish"
+    },
+    "deities": ["Gorum", "Torag"],
+    "subdomains": [
+      {
+        "name": "Ferocity",
+        "replacedPower": "Might",
+        "newPower": {
+          "name": "Savage Blow",
+          "type": "Su",
+          "description": "As a swift action, you can add 2d6 to your next melee attack this round. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {}
+      },
+      {
+        "name": "Resolve",
+        "replacedPower": "Powerful Blow",
+        "newPower": {
+          "name": "Unbreakable Will",
+          "type": "Su",
+          "description": "At 6th level, you gain a +2 bonus on Will saving throws and cannot be paralyzed or petrified."
+        },
+        "replacedSpells": {}
+      }
+    ]
+  },
+  {
+    "name": "Sun",
+    "description": "Domain of the sun, light, and healing rays. Grants power over radiant energy.",
+    "grantedPowers": [
+      {
+        "name": "Sun Bolt",
+        "type": "Sp",
+        "description": "As a standard action, you can hurl a bolt of sunlight at any target within 30 feet. This bolt deals 1d6 damage + 1 per two cleric levels (minimum 1d6). Undead take an additional 1d6 damage. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+      },
+      {
+        "name": "Heliophage",
+        "type": "Su",
+        "description": "At 6th level, as a swift action, you can shed bright light in a 30-foot radius and dim light in a 60-foot radius for a number of rounds equal to your cleric level. This light is treated as sunlight. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+      }
+    ],
+    "domainSpells": {
+      "1": "light",
+      "2": "faerie fire",
+      "3": "daylight",
+      "4": "divine power",
+      "5": "flame strike",
+      "6": "fire seeds",
+      "7": "sunbeam",
+      "8": "sunburst",
+      "9": "wish"
+    },
+    "deities": ["Sarenrae"],
+    "subdomains": [
+      {
+        "name": "Day",
+        "replacedPower": "Sun Bolt",
+        "newPower": {
+          "name": "Daylight",
+          "type": "Sp",
+          "description": "As a standard action, you can cast daylight, centered on yourself. You can use this ability at will."
+        },
+        "replacedSpells": {
+          "3": "daylight"
+        }
+      },
+      {
+        "name": "Light",
+        "replacedPower": "Heliophage",
+        "newPower": {
+          "name": "Blinding Light",
+          "type": "Sp",
+          "description": "At 6th level, as a standard action, you can force creatures in a 30-foot cone to make a Reflex saving throw or be blinded for 1d4 rounds. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {}
+      }
+    ]
+  },
+  {
+    "name": "Travel",
+    "description": "Domain of journeys, roads, and movement. Grants power over travel and speed.",
+    "grantedPowers": [
+      {
+        "name": "Speed",
+        "type": "Sp",
+        "description": "As a swift action, you can grant yourself or an adjacent creature a +20-foot bonus to movement for a number of rounds equal to 1 + your Wisdom modifier. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+      },
+      {
+        "name": "Pathfinding",
+        "type": "Su",
+        "description": "At 6th level, you gain a +2 bonus on Survival checks and cannot be lost in nonmagical terrain."
+      }
+    ],
+    "domainSpells": {
+      "1": "expeditious retreat",
+      "2": "locate object",
+      "3": "fly",
+      "4": "dimension door",
+      "5": "teleport",
+      "6": "greater dispel magic",
+      "7": "teleport, greater",
+      "8": "phase door",
+      "9": "wish"
+    },
+    "deities": ["Cayden Cailean", "Desna"],
+    "subdomains": [
+      {
+        "name": "Trade",
+        "replacedPower": "Speed",
+        "newPower": {
+          "name": "Merchant's Luck",
+          "type": "Su",
+          "description": "As a swift action, you can gain a +2 bonus on your next Bluff, Diplomacy, or Sense Motive check made within 1 minute. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {
+          "2": "identify"
+        }
+      },
+      {
+        "name": "Portals",
+        "replacedPower": "Pathfinding",
+        "newPower": {
+          "name": "Portal Gateway",
+          "type": "Sp",
+          "description": "At 6th level, you can cast portal, creating a temporary gateway. The duration increases as your caster level increases."
+        },
+        "replacedSpells": {
+          "4": "dimension door"
+        }
+      }
+    ]
+  },
+  {
+    "name": "Trickery",
+    "description": "Domain of deception, guile, and mischief. Grants power over tricks and illusions.",
+    "grantedPowers": [
+      {
+        "name": "Copycat",
+        "type": "Sp",
+        "description": "As a standard action, you can create an illusory duplicate of yourself that lasts for a number of rounds equal to your cleric level. The duplicate is immobile and cannot attack. Creatures must make a Will saving throw to disbelieve. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+      },
+      {
+        "name": "Trickster",
+        "type": "Su",
+        "description": "At 6th level, you gain a +2 bonus on Bluff and Sleight of Hand checks."
+      }
+    ],
+    "domainSpells": {
+      "1": "disguise self",
+      "2": "invisibility",
+      "3": "nondetection",
+      "4": "confusion",
+      "5": "polymorph",
+      "6": "mislead",
+      "7": "mass invisibility",
+      "8": "polymorph, greater",
+      "9": "wish"
+    },
+    "deities": ["Calistria", "Norgorber"],
+    "subdomains": [
+      {
+        "name": "Thievery",
+        "replacedPower": "Copycat",
+        "newPower": {
+          "name": "Slippery",
+          "type": "Su",
+          "description": "As a swift action, you can gain a +4 bonus on Stealth checks and Escape Artist checks for 1 minute. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {
+          "3": "invisibility, greater"
+        }
+      },
+      {
+        "name": "Deception",
+        "replacedPower": "Trickster",
+        "newPower": {
+          "name": "Master of Deceit",
+          "type": "Su",
+          "description": "At 6th level, your Bluff and Sleight of Hand bonuses increase to +4. Additionally, creatures take a -2 penalty on Sense Motive checks against you."
+        },
+        "replacedSpells": {}
+      }
+    ]
+  },
+  {
+    "name": "War",
+    "description": "Domain of combat, strategy, and martial prowess. Grants power over warfare.",
+    "grantedPowers": [
+      {
+        "name": "Weapon Mastery",
+        "type": "Sp",
+        "description": "As a swift action, you can touch a weapon and grant it a +1 bonus to attack rolls for a number of rounds equal to 1 + your Wisdom modifier. This bonus increases by +1 for every four cleric levels beyond 1st, to a maximum of +5 at 17th level. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+      },
+      {
+        "name": "Bonus Feat",
+        "type": "Su",
+        "description": "At 1st level, you gain a bonus combat feat. At 6th level, you gain another bonus combat feat."
+      }
+    ],
+    "domainSpells": {
+      "1": "magic weapon",
+      "2": "spiritual weapon",
+      "3": "magic weapon, greater",
+      "4": "divine power",
+      "5": "weapon of the allied spirits",
+      "6": "blade barrier",
+      "7": "giant form I",
+      "8": "giant form II",
+      "9": "wish"
+    },
+    "deities": ["Gorum", "Iomedae"],
+    "subdomains": [
+      {
+        "name": "Bloodlust",
+        "replacedPower": "Weapon Mastery",
+        "newPower": {
+          "name": "Carnage",
+          "type": "Su",
+          "description": "As a swift action, you can gain a +2 bonus to damage rolls with weapons for a number of rounds equal to your Wisdom modifier. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {}
+      },
+      {
+        "name": "Tactics",
+        "replacedPower": "Bonus Feat",
+        "newPower": {
+          "name": "Tactical Strike",
+          "type": "Su",
+          "description": "At 1st level, you gain the ability to make a melee attack as a swift action once per round when an adjacent ally threatens your opponent."
+        },
+        "replacedSpells": {}
+      }
+    ]
+  },
+  {
+    "name": "Water",
+    "description": "Domain of water, oceans, and aquatic life. Grants mastery over water and the sea.",
+    "grantedPowers": [
+      {
+        "name": "Water Blast",
+        "type": "Sp",
+        "description": "As a standard action, you can hurl a blast of water at any target within 30 feet. This blast deals 1d6 damage + 1 per two cleric levels (minimum 1d6). You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+      },
+      {
+        "name": "Water Breathing",
+        "type": "Sp",
+        "description": "At 6th level, you can cast water breathing at will."
+      }
+    ],
+    "domainSpells": {
+      "1": "obstructing aura",
+      "2": "water walk",
+      "3": "water breathing",
+      "4": "control water",
+      "5": "cone of cold",
+      "6": "water shape",
+      "7": "tsunami",
+      "8": "implosion",
+      "9": "wish"
+    },
+    "deities": ["Gozreh"],
+    "subdomains": [
+      {
+        "name": "Oceans",
+        "replacedPower": "Water Blast",
+        "newPower": {
+          "name": "Tidal Wave",
+          "type": "Sp",
+          "description": "As a standard action, you can create a tidal wave in a 20-foot cone. Creatures must make a Reflex saving throw or be knocked prone and moved 10 feet. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {
+          "4": "tidal surge"
+        }
+      },
+      {
+        "name": "Streams",
+        "replacedPower": "Water Breathing",
+        "newPower": {
+          "name": "Swim",
+          "type": "Su",
+          "description": "At 6th level, you gain a swim speed equal to your land speed and gain a +8 bonus on Swim checks."
+        },
+        "replacedSpells": {}
+      }
+    ]
+  },
+  {
+    "name": "Weather",
+    "description": "Domain of storms, rain, and atmospheric conditions. Grants power over weather and storms.",
+    "grantedPowers": [
+      {
+        "name": "Storm Bolt",
+        "type": "Sp",
+        "description": "As a standard action, you can hurl a bolt of lightning or ice at any target within 30 feet. This bolt deals 1d6 damage + 1 per two cleric levels (minimum 1d6) and is either electricity or cold as you choose. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+      },
+      {
+        "name": "Storm Aura",
+        "type": "Su",
+        "description": "At 6th level, you can activate an aura that grants you and all allies within 10 feet a +1 bonus on attack rolls during storms. This aura lasts for a number of rounds equal to your cleric level. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+      }
+    ],
+    "domainSpells": {
+      "1": "obscuring mist",
+      "2": "sleet storm",
+      "3": "call lightning",
+      "4": "ice storm",
+      "5": "control winds",
+      "6": "sirocco",
+      "7": "control weather",
+      "8": "whirlwind",
+      "9": "wish"
+    },
+    "deities": ["Gozreh"],
+    "subdomains": [
+      {
+        "name": "Lightning",
+        "replacedPower": "Storm Bolt",
+        "newPower": {
+          "name": "Lightning Bolt",
+          "type": "Sp",
+          "description": "As a standard action, you can cast lightning bolt. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {
+          "3": "call lightning"
+        }
+      },
+      {
+        "name": "Snow",
+        "replacedPower": "Storm Aura",
+        "newPower": {
+          "name": "Snow Aura",
+          "type": "Su",
+          "description": "At 6th level, you can activate an aura that surrounds you with falling snow, granting you and all allies within 10 feet cold resistance 5. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {}
+      }
+    ]
+  },
+  {
+    "name": "Void",
+    "description": "Domain of emptiness, the void, and darkness beyond stars. Grants power over the void.",
+    "grantedPowers": [
+      {
+        "name": "Void Touch",
+        "type": "Sp",
+        "description": "As a standard action, you can touch a creature and deal 1d6 void damage + 1 per two cleric levels. This damage is treated as force damage for the purpose of overcoming resistance. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+      },
+      {
+        "name": "Void Resistance",
+        "type": "Su",
+        "description": "At 6th level, you gain resistance 10 to force damage. This resistance increases to 20 at 12th level and 30 at 18th level."
+      }
+    ],
+    "domainSpells": {
+      "1": "color spray",
+      "2": "darkness",
+      "3": "animate dead",
+      "4": "evard's black tentacles",
+      "5": "cone of cold",
+      "6": "create undead",
+      "7": "greater invisibility",
+      "8": "screen",
+      "9": "wish"
+    },
+    "deities": ["Nethys"],
+    "subdomains": [
+      {
+        "name": "Isolation",
+        "replacedPower": "Void Touch",
+        "newPower": {
+          "name": "Isolating Touch",
+          "type": "Sp",
+          "description": "As a standard action, you can touch a creature and force it to make a Will saving throw or be isolated from divination effects for 1 round. You can use this ability a number of times per day equal to 3 + your Wisdom modifier."
+        },
+        "replacedSpells": {}
+      },
+      {
+        "name": "Emptiness",
+        "replacedPower": "Void Resistance",
+        "newPower": {
+          "name": "Void Aura",
+          "type": "Su",
+          "description": "At 6th level, you can activate an aura that silences all sound within 10 feet of you. This aura lasts for a number of rounds equal to your cleric level. You can use this ability once per day, plus one additional time per day for every four cleric levels beyond 1st."
+        },
+        "replacedSpells": {}
+      }
+    ]
+  }
+]

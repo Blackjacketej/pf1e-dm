@@ -75,7 +75,7 @@ export default function CampaignTab({
       chapter: campaign?.currentChapter || null,
       addedDate: new Date().toISOString(),
     }]);
-    addLog(`New quest: ${quest.title}`, 'system');
+    addLog(`New quest: ${quest.title}`, 'journal');
   };
   const updateQuestStatus = (questId, status) => {
     updateQuests(quests.map(q => q.id === questId ? { ...q, status, completedDate: status !== 'active' ? new Date().toISOString() : null } : q));
@@ -156,7 +156,7 @@ export default function CampaignTab({
 
   const runEncounter = async (encounter) => {
     if (!party || party.length === 0) {
-      addLog('You need a party before running encounters! Go to the Party tab first.', 'danger');
+      addLog('You need a party before running encounters! Go to the Party tab first.', 'warning');
       return;
     }
 
@@ -177,7 +177,7 @@ export default function CampaignTab({
         if (encounter.readAloud) addLog(encounter.readAloud, 'narration');
       }
 
-      if (encounter.storyNote) addLog(`DM Note: ${encounter.storyNote}`, 'info');
+      if (encounter.storyNote) addLog(`DM Note: ${encounter.storyNote}`, 'system');
 
       setCampaign(prev => ({
         ...prev,
@@ -199,7 +199,7 @@ export default function CampaignTab({
         if (Object.keys(milestoneEffects.worldUpdates).length > 0) {
           setWorldState?.(prev => gameEvents.applyWorldUpdates(prev, milestoneEffects.worldUpdates));
         }
-        milestoneEffects.events.forEach(e => addLog(e.text, e.severity === 'success' ? 'success' : e.severity === 'loot' ? 'loot' : 'info'));
+        milestoneEffects.events.forEach(e => addLog(e.text, e.severity === 'success' ? 'success' : e.severity === 'loot' ? 'loot' : e.severity === 'danger' ? 'danger' : e.severity === 'warning' ? 'warning' : 'info'));
         // Auto-generate quests
         if (milestoneEffects.autoQuests?.length > 0 && setWorldState) {
           setWorldState(prev => ({
@@ -210,7 +210,7 @@ export default function CampaignTab({
               chapter: campaign.currentChapter,
             }))],
           }));
-          milestoneEffects.autoQuests.forEach(q => addLog(`New quest: ${q.title}`, 'system'));
+          milestoneEffects.autoQuests.forEach(q => addLog(`New quest: ${q.title}`, 'journal'));
         }
       }
 
@@ -333,7 +333,7 @@ export default function CampaignTab({
       // Log initiative
       addLog('Roll for initiative!', 'action');
       order.forEach((c, i) => {
-        addLog(`  ${i + 1}. ${c.name} (${c.init})`, 'info');
+        addLog(`  ${i + 1}. ${c.name} (${c.init})`, 'roll');
       });
 
       // Check encounter type and route to appropriate pipeline
@@ -347,7 +347,7 @@ export default function CampaignTab({
       // Log any encounter events
       if (encounterStartResult.events?.length > 0) {
         encounterStartResult.events.forEach(e => {
-          addLog(e.text, e.severity === 'success' ? 'success' : e.severity === 'warning' ? 'warning' : 'info');
+          addLog(e.text, e.severity === 'success' ? 'success' : e.severity === 'warning' ? 'warning' : e.severity === 'danger' ? 'danger' : 'info');
         });
       }
 

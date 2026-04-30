@@ -117,7 +117,21 @@
       "ref": "poor",
       "will": "poor"
     },
+    "goodSaves": [
+      "Fort"
+    ],
     "skills": 4,
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons",
+        "Martial weapons"
+      ],
+      "armor": [
+        "Light armor",
+        "Medium armor",
+        "Shields (except tower shields)"
+      ]
+    },
     "features": [
       "Fast Movement (+10ft)",
       "Rage (4+CON rounds/day)",
@@ -194,18 +208,7 @@
       "Ride",
       "Survival",
       "Swim"
-    ],
-    "proficiencies": {
-      "weapons": [
-        "Simple weapons",
-        "Martial weapons"
-      ],
-      "armor": [
-        "Light armor",
-        "Medium armor",
-        "Shields"
-      ]
-    }
+    ]
   },
   {
     "name": "Bard",
@@ -216,7 +219,26 @@
       "ref": "good",
       "will": "good"
     },
+    "goodSaves": [
+      "Ref",
+      "Will"
+    ],
     "skills": 6,
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons",
+        "Longsword",
+        "Rapier",
+        "Sap",
+        "Short sword",
+        "Shortbow",
+        "Whip"
+      ],
+      "armor": [
+        "Light armor",
+        "Shields (except tower shields)"
+      ]
+    },
     "features": [
       "Bardic Knowledge",
       "Bardic Performance",
@@ -287,8 +309,13 @@
       },
       {
         "level": 7,
-        "name": "Fast Performance",
-        "description": "Start bardic performance as move action."
+        "name": "Move Action Performance",
+        "description": "Start bardic performance as a move action instead of a standard action."
+      },
+      {
+        "level": 8,
+        "name": "Dirge of Doom",
+        "description": "Use performance to cause enemies within 30 feet to become shaken."
       },
       {
         "level": 9,
@@ -296,24 +323,39 @@
         "description": "Inspire allies with extra hit dice and bonuses."
       },
       {
+        "level": 10,
+        "name": "Jack-of-All-Trades",
+        "description": "Use any skill even if untrained. At 16th level, all skills are class skills. At 19th level, take 10 on any skill."
+      },
+      {
         "level": 12,
-        "name": "Peerless Performer",
-        "description": "Bardic performance bonuses double."
+        "name": "Soothing Performance",
+        "description": "Create an effect equivalent to mass cure serious wounds using performance."
       },
       {
         "level": 13,
-        "name": "Swift Performance",
-        "description": "Start bardic performance as swift action."
+        "name": "Swift Action Performance",
+        "description": "Start bardic performance as a swift action."
+      },
+      {
+        "level": 14,
+        "name": "Frightening Tune",
+        "description": "Use performance to cause fear in enemies within 30 feet."
       },
       {
         "level": 15,
         "name": "Inspire Heroics",
-        "description": "Inspire allies with heroic abilities."
+        "description": "Inspired creatures gain +4 morale bonus on saving throws and +4 dodge bonus to AC."
+      },
+      {
+        "level": 18,
+        "name": "Mass Suggestion",
+        "description": "Make a suggestion simultaneously to any number of fascinated creatures."
       },
       {
         "level": 20,
-        "name": "Master Performer",
-        "description": "Can maintain multiple bardic performances simultaneously."
+        "name": "Deadly Performance",
+        "description": "Use performance to cause one enemy to die of joy or sorrow (Fort save negates)."
       }
     ],
     "alignment": "Any",
@@ -337,22 +379,7 @@
       "Spellcraft",
       "Stealth",
       "Use Magic Device"
-    ],
-    "proficiencies": {
-      "weapons": [
-        "Simple weapons",
-        "Longsword",
-        "Rapier",
-        "Sap",
-        "Short sword",
-        "Shortbow",
-        "Whip"
-      ],
-      "armor": [
-        "Light armor",
-        "Shields"
-      ]
-    }
+    ]
   },
   {
     "name": "Bloodrager",
@@ -520,7 +547,23 @@
       "ref": "poor",
       "will": "good"
     },
+    "goodSaves": [
+      "Fort",
+      "Will"
+    ],
     "skills": 2,
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons",
+        "Deity's favored weapon"
+      ],
+      "armor": [
+        "Light armor",
+        "Medium armor",
+        "Heavy armor",
+        "Shields (except tower shields)"
+      ]
+    },
     "features": [
       "Aura",
       "Channel Energy",
@@ -536,26 +579,15 @@
       "Heal",
       "Knowledge (arcana)",
       "Knowledge (history)",
+      "Knowledge (nobility)",
       "Knowledge (planes)",
       "Knowledge (religion)",
       "Linguistics",
-      "Perception",
       "Profession",
       "Sense Motive",
       "Spellcraft"
     ],
     "alignment": "Must match deity's alignment",
-    "proficiencies": {
-      "weapons": [
-        "Simple weapons"
-      ],
-      "armor": [
-        "Light armor",
-        "Medium armor",
-        "Heavy armor",
-        "Shields"
-      ]
-    },
     "classFeatures": [
       {
         "level": 1,
@@ -583,19 +615,9 @@
         "description": "Can prepare unlimited 0-level spells."
       },
       {
-        "level": 2,
-        "name": "Bonus Feat",
-        "description": "Gain a bonus combat feat."
-      },
-      {
-        "level": 6,
-        "name": "Channel Energy (improved)",
-        "description": "Channel energy increases in power."
-      },
-      {
-        "level": 20,
-        "name": "Divine Presence",
-        "description": "Powerful aura grants bonuses to allies near cleric."
+        "level": 1,
+        "name": "Spontaneous Casting",
+        "description": "Convert prepared spells into cure or inflict spells spontaneously."
       }
     ]
   },
@@ -608,7 +630,33 @@
       "ref": "poor",
       "will": "good"
     },
+    "goodSaves": [
+      "Fort",
+      "Will"
+    ],
     "skills": 4,
+    "proficiencies": {
+      "weapons": [
+        "Club",
+        "Dagger",
+        "Dart",
+        "Quarterstaff",
+        "Scimitar",
+        "Scythe",
+        "Sickle",
+        "Shortspear",
+        "Sling",
+        "Spear"
+      ],
+      "armor": [
+        "Light armor (non-metal only)",
+        "Medium armor (non-metal only)",
+        "Shields (non-metal, except tower shields)"
+      ],
+      "restrictions": [
+        "Cannot wear metal armor or use metal shields"
+      ]
+    },
     "features": [
       "Nature Bond",
       "Nature Sense",
@@ -661,42 +709,42 @@
       {
         "level": 4,
         "name": "Resist Nature's Lure",
-        "description": "Save bonuses against effects from fey and plants."
+        "description": "+4 bonus on saving throws against the spell-like and supernatural abilities of fey and plant creatures."
       },
       {
-        "level": 5,
+        "level": 4,
         "name": "Wild Shape",
-        "description": "Assume the form of an animal."
-      },
-      {
-        "level": 7,
-        "name": "Wild Shape (elemental)",
-        "description": "Can wild shape into elementals."
+        "description": "Transform into a Small or Medium animal once per day. Uses increase every 2 levels."
       },
       {
         "level": 9,
         "name": "Venom Immunity",
-        "description": "Immune to poison and disease."
+        "description": "Immune to all poisons."
       },
       {
         "level": 13,
         "name": "A Thousand Faces",
-        "description": "Assume the appearance of any humanoid."
+        "description": "Change appearance at will as if using alter self."
+      },
+      {
+        "level": 15,
+        "name": "Timeless Body",
+        "description": "No longer takes ability score penalties for aging."
       },
       {
         "level": 20,
-        "name": "Master Shapeshift",
-        "description": "Gain the ability to shapeshift at will."
+        "name": "Wild Shape (at will)",
+        "description": "Can use wild shape at will."
       }
     ],
     "classSkills": [
+      "Climb",
       "Craft",
       "Fly",
       "Handle Animal",
       "Heal",
       "Knowledge (geography)",
       "Knowledge (nature)",
-      "Knowledge (planes)",
       "Perception",
       "Profession",
       "Ride",
@@ -704,25 +752,7 @@
       "Survival",
       "Swim"
     ],
-    "alignment": "Must be neutral",
-    "proficiencies": {
-      "weapons": [
-        "Club",
-        "Dagger",
-        "Dart",
-        "Quarterstaff",
-        "Scimitar",
-        "Sickle",
-        "Shortspear",
-        "Sling",
-        "Spear"
-      ],
-      "armor": [
-        "Light armor",
-        "Medium armor",
-        "Shields"
-      ]
-    }
+    "alignment": "Must be neutral"
   },
   {
     "name": "Fighter",
@@ -733,7 +763,22 @@
       "ref": "poor",
       "will": "poor"
     },
+    "goodSaves": [
+      "Fort"
+    ],
     "skills": 2,
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons",
+        "Martial weapons"
+      ],
+      "armor": [
+        "Light armor",
+        "Medium armor",
+        "Heavy armor",
+        "Shields (including tower shields)"
+      ]
+    },
     "features": [
       "Bonus Combat Feat (1st, every even level)",
       "Bravery (+1 vs fear per 4 levels)",
@@ -741,75 +786,48 @@
       "Weapon Training"
     ],
     "classSkills": [
-      "Acrobatics",
       "Climb",
       "Craft",
       "Handle Animal",
       "Intimidate",
       "Knowledge (dungeoneering)",
       "Knowledge (engineering)",
-      "Perception",
       "Profession",
       "Ride",
       "Survival",
       "Swim"
     ],
     "alignment": "Any",
-    "proficiencies": {
-      "weapons": [
-        "Simple weapons",
-        "Martial weapons"
-      ],
-      "armor": [
-        "All armor",
-        "All shields"
-      ]
-    },
     "classFeatures": [
       {
         "level": 1,
         "name": "Bonus Combat Feat",
-        "description": "Gain bonus combat feats at 1st level and every even level."
-      },
-      {
-        "level": 1,
-        "name": "Weapon Training",
-        "description": "Gain bonus with certain weapon groups."
+        "description": "Gain a bonus combat feat at 1st level and every even level thereafter."
       },
       {
         "level": 2,
         "name": "Bravery",
-        "description": "Gain save bonus vs fear effects."
+        "description": "+1 bonus on Will saves against fear. Increases by +1 every 4 levels beyond 2nd."
       },
       {
         "level": 3,
         "name": "Armor Training",
-        "description": "Reduce armor check penalty and increase speed."
+        "description": "Reduce armor check penalty by 1 and increase max Dex bonus by 1. Improves every 4 levels."
       },
       {
         "level": 5,
-        "name": "Weapon Mastery",
-        "description": "Increased critical threat range with certain weapons."
+        "name": "Weapon Training",
+        "description": "Select a weapon group and gain +1 bonus on attack and damage rolls. Additional groups at 9th, 13th, 17th."
       },
       {
-        "level": 9,
-        "name": "Indomitable",
-        "description": "Reroll a saving throw once per day."
-      },
-      {
-        "level": 13,
-        "name": "Fighter's Resolve",
-        "description": "Fight at full strength even when badly wounded."
-      },
-      {
-        "level": 17,
+        "level": 19,
         "name": "Armor Mastery",
-        "description": "Armor provides additional benefits."
+        "description": "Gain DR 5/— whenever wearing armor or using a shield."
       },
       {
         "level": 20,
-        "name": "Weapon Legend",
-        "description": "Weapons function as if they are lawful, neutral, and good."
+        "name": "Weapon Mastery",
+        "description": "Choose one weapon. Attacks auto-confirm critical hits, damage multiplier increases by 1, cannot be disarmed."
       }
     ]
   },
@@ -1012,7 +1030,53 @@
       "ref": "good",
       "will": "good"
     },
+    "goodSaves": [
+      "Fort",
+      "Ref",
+      "Will"
+    ],
     "skills": 4,
+    "proficiencies": {
+      "weapons": [
+        "Club",
+        "Light crossbow",
+        "Heavy crossbow",
+        "Dagger",
+        "Handaxe",
+        "Javelin",
+        "Kama",
+        "Nunchaku",
+        "Quarterstaff",
+        "Sai",
+        "Shortspear",
+        "Short sword",
+        "Shuriken",
+        "Siangham",
+        "Sling",
+        "Spear"
+      ],
+      "armor": [],
+      "restrictions": [
+        "Loses AC bonus, fast movement, and flurry of blows when wearing armor or using a shield"
+      ]
+    },
+    "classSkills": [
+      "Acrobatics",
+      "Climb",
+      "Craft",
+      "Escape Artist",
+      "Intimidate",
+      "Knowledge (history)",
+      "Knowledge (religion)",
+      "Perception",
+      "Perform",
+      "Profession",
+      "Ride",
+      "Sense Motive",
+      "Stealth",
+      "Swim"
+    ],
+    "alignment": "Any lawful",
     "features": [
       "Flurry of Blows",
       "Stunning Fist",
@@ -1025,117 +1089,119 @@
       {
         "level": 1,
         "name": "Bonus Feat",
-        "description": "Gain bonus feats at 1st level and every 4 levels."
+        "description": "Gain a bonus feat at 1st, 2nd, and every 4 levels thereafter (6th, 10th, 14th, 18th)."
       },
       {
         "level": 1,
         "name": "Flurry of Blows",
-        "description": "Make additional attacks with unarmed strikes or special weapons."
+        "description": "Make additional attacks as a full-attack action with unarmed strikes or monk weapons."
+      },
+      {
+        "level": 1,
+        "name": "Stunning Fist",
+        "description": "Gain Stunning Fist as a bonus feat. At 4th level and every 4 levels, add new conditions."
       },
       {
         "level": 1,
         "name": "Unarmed Strike",
-        "description": "Unarmed attacks deal increased damage."
+        "description": "Gain Improved Unarmed Strike as a bonus feat. Unarmed attacks deal increased damage (1d6 at 1st)."
       },
       {
         "level": 1,
         "name": "AC Bonus",
-        "description": "Add Wisdom modifier to AC while unarmored."
-      },
-      {
-        "level": 1,
-        "name": "Evasion",
-        "description": "Avoid damage from area effects with successful Reflex save."
-      },
-      {
-        "level": 1,
-        "name": "Ki Pool",
-        "description": "Pool of ki points to power special abilities."
+        "description": "Add Wisdom modifier to AC and CMD while unarmored. +1 bonus at 4th level and every 4 levels."
       },
       {
         "level": 2,
-        "name": "Bonus Feat",
-        "description": "Gain additional bonus feat."
+        "name": "Evasion",
+        "description": "Take no damage on successful Reflex saves against area effects."
+      },
+      {
+        "level": 3,
+        "name": "Fast Movement",
+        "description": "+10 ft. enhancement bonus to base speed. Increases by +10 ft. every 3 levels."
+      },
+      {
+        "level": 3,
+        "name": "Maneuver Training",
+        "description": "Use monk level in place of BAB when calculating CMB."
       },
       {
         "level": 3,
         "name": "Still Mind",
-        "description": "Gain save bonus against enchantment spells."
+        "description": "+2 bonus on saving throws against enchantment spells and effects."
       },
       {
         "level": 4,
-        "name": "Ki Power",
-        "description": "Spend ki to use special abilities."
+        "name": "Ki Pool",
+        "description": "Pool of ki points (1/2 monk level + Wis mod). Spend ki for extra attacks, speed, or AC."
+      },
+      {
+        "level": 4,
+        "name": "Slow Fall",
+        "description": "Reduce falling damage when within arm's reach of a wall. Distance increases every 2 levels."
+      },
+      {
+        "level": 5,
+        "name": "High Jump",
+        "description": "Add monk level to Acrobatics checks for jumping. Spend ki for +20 bonus."
       },
       {
         "level": 5,
         "name": "Purity of Body",
-        "description": "Immunity to disease."
+        "description": "Immunity to all diseases, including supernatural and magical diseases."
       },
       {
         "level": 7,
         "name": "Wholeness of Body",
-        "description": "Heal damage by spending ki."
+        "description": "Heal hit points equal to monk level by spending 2 ki points."
       },
       {
         "level": 9,
         "name": "Improved Evasion",
-        "description": "Take only half damage on failed Reflex saves."
+        "description": "Take only half damage on failed Reflex saves against area effects."
       },
       {
         "level": 11,
         "name": "Diamond Body",
-        "description": "Immunity to poisons."
+        "description": "Immunity to all poisons."
+      },
+      {
+        "level": 12,
+        "name": "Abundant Step",
+        "description": "Slip magically between spaces as if using dimension door, costing 2 ki points."
       },
       {
         "level": 13,
         "name": "Diamond Soul",
-        "description": "Spell resistance equal to 10 + monk level."
+        "description": "Gain spell resistance equal to monk level + 10."
       },
       {
         "level": 15,
         "name": "Quivering Palm",
-        "description": "Strike a fatal pressure point on a creature."
+        "description": "Set up vibrations that can be fatal. Target must make a Fortitude save or die."
       },
       {
         "level": 17,
         "name": "Timeless Body",
-        "description": "Cease aging and gain immunity to aging effects."
+        "description": "No longer takes ability score penalties for aging."
+      },
+      {
+        "level": 17,
+        "name": "Tongue of the Sun and Moon",
+        "description": "Can speak with any living creature."
       },
       {
         "level": 19,
         "name": "Empty Body",
-        "description": "Gain the benefits of invisibility and gaseous form."
+        "description": "Assume an ethereal state for 1 minute by spending 3 ki points."
       },
       {
         "level": 20,
         "name": "Perfect Self",
-        "description": "Become immune to all diseases and poisons."
+        "description": "Become a magical creature. Gain DR 10/chaotic and treated as an outsider."
       }
-    ],
-    "alignment": "Any lawful",
-    "classSkills": [
-      "Acrobatics",
-      "Climb",
-      "Craft",
-      "Escape Artist",
-      "Intimidate",
-      "Knowledge (history)",
-      "Knowledge (religion)",
-      "Perception",
-      "Profession",
-      "Ride",
-      "Sense Motive",
-      "Stealth",
-      "Swim"
-    ],
-    "proficiencies": {
-      "weapons": [
-        "Simple weapons",
-        "Shortsword"
-      ],
-      "armor": []
-    }
+    ]
   },
   {
     "name": "Oracle",
@@ -1214,7 +1280,36 @@
       "ref": "poor",
       "will": "good"
     },
+    "goodSaves": [
+      "Fort",
+      "Will"
+    ],
     "skills": 2,
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons",
+        "Martial weapons"
+      ],
+      "armor": [
+        "Light armor",
+        "Medium armor",
+        "Heavy armor",
+        "Shields (except tower shields)"
+      ]
+    },
+    "classSkills": [
+      "Craft",
+      "Diplomacy",
+      "Handle Animal",
+      "Heal",
+      "Knowledge (nobility)",
+      "Knowledge (religion)",
+      "Profession",
+      "Ride",
+      "Sense Motive",
+      "Spellcraft"
+    ],
+    "alignment": "Lawful good",
     "features": [
       "Aura of Good",
       "Detect Evil",
@@ -1228,101 +1323,84 @@
       {
         "level": 1,
         "name": "Aura of Good",
-        "description": "Emit an aura of good power."
+        "description": "Aura of good power equal to paladin level."
       },
       {
         "level": 1,
         "name": "Detect Evil",
-        "description": "At-will ability to detect evil auras."
+        "description": "At-will ability to use detect evil as the spell."
       },
       {
         "level": 1,
         "name": "Smite Evil",
-        "description": "Strike evil creatures with added bonuses."
+        "description": "Add Cha bonus to attack and paladin level to damage against evil targets. 1/day, +1 use every 3 levels."
       },
       {
-        "level": 1,
+        "level": 2,
         "name": "Divine Grace",
         "description": "Add Charisma modifier to all saving throws."
       },
       {
-        "level": 1,
+        "level": 2,
         "name": "Lay on Hands",
-        "description": "Heal allies or deal damage to undead by touch."
-      },
-      {
-        "level": 2,
-        "name": "Divine Health",
-        "description": "Immunity to disease."
-      },
-      {
-        "level": 2,
-        "name": "Mercy",
-        "description": "Remove negative conditions when using Lay on Hands."
+        "description": "Heal 1d6 per 2 paladin levels by touch. Uses: 1/2 paladin level + Cha modifier per day."
       },
       {
         "level": 3,
         "name": "Aura of Courage",
-        "description": "Grant immunity to fear to self and allies nearby."
+        "description": "Immune to fear. Allies within 10 feet gain +4 morale bonus on saves against fear."
+      },
+      {
+        "level": 3,
+        "name": "Divine Health",
+        "description": "Immune to all diseases, including supernatural and magical diseases."
+      },
+      {
+        "level": 3,
+        "name": "Mercy",
+        "description": "Remove conditions when using Lay on Hands. New mercies at 3rd and every 3 levels."
       },
       {
         "level": 4,
         "name": "Channel Positive Energy",
-        "description": "Heal with channels of positive energy."
+        "description": "Channel positive energy like a cleric, using 2 uses of lay on hands."
+      },
+      {
+        "level": 4,
+        "name": "Spellcasting",
+        "description": "Cast divine spells from the paladin spell list. Caster level equals paladin level - 3."
       },
       {
         "level": 5,
-        "name": "Holy Weapon",
-        "description": "Weapons become good aligned."
+        "name": "Divine Bond",
+        "description": "Form a divine bond with a weapon (granting enhancement bonuses) or a mount."
       },
       {
-        "level": 6,
-        "name": "Aura of Justice",
-        "description": "Share smite evil benefits with allies."
+        "level": 8,
+        "name": "Aura of Resolve",
+        "description": "Immune to charm spells and effects. Allies within 10 feet gain +4 morale bonus on saves against charm."
       },
       {
         "level": 11,
-        "name": "Aura of Righteousness",
-        "description": "Grant damage reduction to allies nearby."
+        "name": "Aura of Justice",
+        "description": "Expend 2 uses of smite evil to grant smite evil to all allies within 10 feet."
       },
       {
         "level": 14,
         "name": "Aura of Faith",
-        "description": "Grant saving throw bonus to allies."
+        "description": "Weapons are treated as good-aligned. Allies within 10 feet also overcome good DR."
       },
       {
         "level": 17,
-        "name": "Aura of Despair",
-        "description": "Enemies nearby take penalties to attacks and saves."
+        "name": "Aura of Righteousness",
+        "description": "Gain DR 5/evil and immunity to compulsion. Allies within 10 feet gain +4 on saves vs compulsion."
       },
       {
         "level": 20,
         "name": "Holy Champion",
-        "description": "Become a true holy warrior."
+        "description": "DR increases to 10/evil. Smite evil banishes evil outsiders. Channel/lay on hands heal maximum."
       }
-    ],
-    "classSkills": [
-      "Craft",
-      "Diplomacy",
-      "Handle Animal",
-      "Heal",
-      "Knowledge (religion)",
-      "Perception",
-      "Profession",
-      "Ride",
-      "Sense Motive"
-    ],
-    "alignment": "Lawful good",
-    "proficiencies": {
-      "weapons": [
-        "Simple weapons",
-        "Martial weapons"
-      ],
-      "armor": [
-        "All armor",
-        "All shields"
-      ]
-    }
+    ]
   },
   {
     "name": "Ranger",
@@ -1333,7 +1411,22 @@
       "ref": "good",
       "will": "poor"
     },
+    "goodSaves": [
+      "Fort",
+      "Ref"
+    ],
     "skills": 6,
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons",
+        "Martial weapons"
+      ],
+      "armor": [
+        "Light armor",
+        "Medium armor",
+        "Shields (except tower shields)"
+      ]
+    },
     "features": [
       "Favored Enemy",
       "Track",
@@ -1347,82 +1440,87 @@
       {
         "level": 1,
         "name": "Favored Enemy",
-        "description": "Choose enemy types to gain bonuses against."
+        "description": "+2 bonus on Bluff, Knowledge, Perception, Sense Motive, Survival, attack and damage against chosen type. Additional enemies at 5th and every 5 levels."
       },
       {
         "level": 1,
         "name": "Track",
-        "description": "Add class level to Survival checks to track."
+        "description": "Add half level (minimum 1) to Survival checks to track."
       },
       {
         "level": 1,
         "name": "Wild Empathy",
-        "description": "Improve attitude of animals."
-      },
-      {
-        "level": 1,
-        "name": "Combat Style",
-        "description": "Choose a fighting style specialization."
+        "description": "Improve attitude of animals using 1d20 + ranger level + Cha modifier."
       },
       {
         "level": 2,
-        "name": "Spellcasting",
-        "description": "Cast divine spells after 4th level."
+        "name": "Combat Style Feat",
+        "description": "Select archery or two-weapon combat. Gain bonus feats at 2nd, 6th, 10th, 14th, 18th level."
       },
       {
         "level": 3,
         "name": "Endurance",
-        "description": "Gain a bonus combat feat."
+        "description": "Gain Endurance as a bonus feat."
+      },
+      {
+        "level": 3,
+        "name": "Favored Terrain",
+        "description": "+2 bonus on initiative, Knowledge (geography), Perception, Stealth, Survival in chosen terrain. Additional terrains at 8th and every 5 levels."
       },
       {
         "level": 4,
-        "name": "Animal Companion",
-        "description": "Gain an animal companion."
+        "name": "Hunter's Bond",
+        "description": "Form a bond with companions (share favored enemy bonus) or gain an animal companion."
       },
       {
-        "level": 5,
-        "name": "Favored Terrain",
-        "description": "Gain bonuses in specific terrain."
+        "level": 4,
+        "name": "Spellcasting",
+        "description": "Cast divine spells from the ranger spell list. Caster level equals ranger level - 3."
       },
       {
         "level": 7,
         "name": "Woodland Stride",
-        "description": "Move through natural difficult terrain normally."
+        "description": "Move through natural difficult terrain at normal speed."
       },
       {
         "level": 8,
         "name": "Swift Tracker",
-        "description": "Track enemies while moving at full speed."
+        "description": "Track at normal speed without penalty, or at double speed at -10."
       },
       {
-        "level": 10,
-        "name": "Camouflage",
-        "description": "Hide in natural terrain even without cover."
-      },
-      {
-        "level": 13,
-        "name": "Improved Combat Style",
-        "description": "Combat style becomes more powerful."
-      },
-      {
-        "level": 15,
+        "level": 9,
         "name": "Evasion",
-        "description": "Avoid damage from area effects."
+        "description": "Take no damage on successful Reflex saves against area effects (light/medium/no armor only)."
+      },
+      {
+        "level": 11,
+        "name": "Quarry",
+        "description": "Denote a target as quarry. +2 insight bonus on attacks, auto-confirm criticals, take 10 on Survival to track."
+      },
+      {
+        "level": 12,
+        "name": "Camouflage",
+        "description": "Use Stealth to hide in any favored terrain, even without cover."
+      },
+      {
+        "level": 16,
+        "name": "Improved Evasion",
+        "description": "Take only half damage on failed Reflex saves against area effects."
       },
       {
         "level": 17,
         "name": "Hide in Plain Sight",
-        "description": "Remain hidden even when observed."
+        "description": "Use Stealth in any favored terrain while being observed."
       },
       {
         "level": 19,
-        "name": "Improved Evasion",
-        "description": "Take only half damage on failed Reflex saves."
+        "name": "Improved Quarry",
+        "description": "+4 insight bonus on attacks against quarry, take 20 on Survival to track, free action to select."
       },
       {
         "level": 20,
         "name": "Master Hunter",
-        "description": "Master of hunting and combat in the wild."
+        "description": "Standard action to attack favored enemy at full BAB. Target must Fort save or die."
       }
     ],
     "alignment": "Any",
@@ -1442,18 +1540,7 @@
       "Stealth",
       "Survival",
       "Swim"
-    ],
-    "proficiencies": {
-      "weapons": [
-        "Simple weapons",
-        "Martial weapons"
-      ],
-      "armor": [
-        "Light armor",
-        "Medium armor",
-        "Shields"
-      ]
-    }
+    ]
   },
   {
     "name": "Rogue",
@@ -1464,7 +1551,23 @@
       "ref": "good",
       "will": "poor"
     },
+    "goodSaves": [
+      "Ref"
+    ],
     "skills": 8,
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons",
+        "Hand crossbow",
+        "Rapier",
+        "Sap",
+        "Shortbow",
+        "Short sword"
+      ],
+      "armor": [
+        "Light armor"
+      ]
+    },
     "features": [
       "Sneak Attack (+1d6 per 2 levels)",
       "Trapfinding",
@@ -1477,67 +1580,47 @@
       {
         "level": 1,
         "name": "Sneak Attack",
-        "description": "Deal extra damage when flanking or from hiding."
+        "description": "Deal +1d6 extra damage when target is denied Dex bonus or flanked. Increases by +1d6 every 2 levels."
       },
       {
         "level": 1,
         "name": "Trapfinding",
-        "description": "Gain bonus to find and disable traps."
-      },
-      {
-        "level": 1,
-        "name": "Evasion",
-        "description": "Avoid damage from area effects with successful Reflex save."
-      },
-      {
-        "level": 1,
-        "name": "Rogue Talent",
-        "description": "Choose rogue talents to customize abilities."
+        "description": "Add 1/2 level to Perception checks to locate traps and Disable Device checks."
       },
       {
         "level": 2,
-        "name": "Cunning Action",
-        "description": "Dodge opportunity attacks."
+        "name": "Evasion",
+        "description": "Take no damage on successful Reflex saves against area effects (light/no armor only)."
+      },
+      {
+        "level": 2,
+        "name": "Rogue Talent",
+        "description": "Gain a rogue talent at 2nd level and every 2 levels thereafter."
       },
       {
         "level": 3,
         "name": "Trap Sense",
-        "description": "Gain bonuses against traps."
+        "description": "+1 bonus on Reflex saves and AC against traps. Increases by +1 every 3 levels."
       },
       {
-        "level": 5,
+        "level": 4,
         "name": "Uncanny Dodge",
-        "description": "Cannot be caught flat-footed and retain Dex bonus when invisible."
+        "description": "Cannot be caught flat-footed. Retains Dex bonus to AC even against invisible attackers."
       },
       {
-        "level": 6,
-        "name": "Rogue Talent",
-        "description": "Choose another rogue talent."
-      },
-      {
-        "level": 9,
+        "level": 8,
         "name": "Improved Uncanny Dodge",
-        "description": "Cannot be flanked unless attacker has 4+ rogue levels."
+        "description": "Cannot be flanked unless attacker has 4+ more rogue levels."
       },
       {
-        "level": 12,
-        "name": "Rogue Talent",
-        "description": "Choose another rogue talent."
-      },
-      {
-        "level": 15,
-        "name": "Rogue Talent",
-        "description": "Choose another rogue talent."
-      },
-      {
-        "level": 18,
-        "name": "Rogue Talent",
-        "description": "Choose another rogue talent."
+        "level": 10,
+        "name": "Advanced Talents",
+        "description": "Can choose from advanced rogue talents in place of normal talents."
       },
       {
         "level": 20,
-        "name": "Master Stroke",
-        "description": "Devastating sneak attack with maximum precision."
+        "name": "Master Strike",
+        "description": "When dealing sneak attack damage, target must Fort save or be put to sleep, paralyzed, or slain."
       }
     ],
     "alignment": "Any",
@@ -1551,35 +1634,19 @@
       "Disable Device",
       "Disguise",
       "Escape Artist",
-      "Heal",
       "Intimidate",
-      "Knowledge (local)",
       "Knowledge (dungeoneering)",
+      "Knowledge (local)",
       "Linguistics",
       "Perception",
       "Perform",
       "Profession",
       "Sense Motive",
       "Sleight of Hand",
-      "Spellcraft",
       "Stealth",
-      "Survival",
       "Swim",
       "Use Magic Device"
-    ],
-    "proficiencies": {
-      "weapons": [
-        "Simple weapons",
-        "Hand crossbow",
-        "Rapier",
-        "Sap",
-        "Short sword",
-        "Shortbow"
-      ],
-      "armor": [
-        "Light armor"
-      ]
-    }
+    ]
   },
   {
     "name": "Shaman",
@@ -1773,7 +1840,16 @@
       "ref": "poor",
       "will": "good"
     },
+    "goodSaves": [
+      "Will"
+    ],
     "skills": 2,
+    "proficiencies": {
+      "weapons": [
+        "Simple weapons"
+      ],
+      "armor": []
+    },
     "features": [
       "Bloodline",
       "Bloodline Arcana",
@@ -1789,18 +1865,11 @@
       "Fly",
       "Intimidate",
       "Knowledge (arcana)",
-      "Perception",
       "Profession",
       "Spellcraft",
       "Use Magic Device"
     ],
     "alignment": "Any",
-    "proficiencies": {
-      "weapons": [
-        "Simple weapons"
-      ],
-      "armor": []
-    },
     "classFeatures": [
       {
         "level": 1,
@@ -1830,27 +1899,27 @@
       {
         "level": 3,
         "name": "Bloodline Power",
-        "description": "Gain a power from your bloodline."
+        "description": "Gain a power from your bloodline. Additional bloodline spells at every odd level."
       },
       {
         "level": 7,
-        "name": "Bloodline Power",
-        "description": "Gain another bloodline power."
+        "name": "Bloodline Feat",
+        "description": "Gain a bonus feat from your bloodline's list. Additional feats at 13th and 19th."
       },
       {
-        "level": 11,
+        "level": 9,
         "name": "Bloodline Power",
-        "description": "Gain another bloodline power."
+        "description": "Gain a new bloodline power."
       },
       {
         "level": 15,
         "name": "Bloodline Power",
-        "description": "Gain another bloodline power."
+        "description": "Gain a new bloodline power."
       },
       {
         "level": 20,
-        "name": "Bloodline Ascendance",
-        "description": "Bloodline powers reach ultimate form."
+        "name": "Bloodline Power",
+        "description": "Gain your final, most powerful bloodline ability."
       }
     ]
   },
@@ -2096,7 +2165,20 @@
       "ref": "poor",
       "will": "good"
     },
+    "goodSaves": [
+      "Will"
+    ],
     "skills": 2,
+    "proficiencies": {
+      "weapons": [
+        "Club",
+        "Dagger",
+        "Heavy crossbow",
+        "Light crossbow",
+        "Quarterstaff"
+      ],
+      "armor": []
+    },
     "features": [
       "Arcane Bond",
       "Arcane School",
@@ -2110,18 +2192,10 @@
       "Fly",
       "Knowledge (all)",
       "Linguistics",
-      "Perception",
       "Profession",
       "Spellcraft"
     ],
     "alignment": "Any",
-    "proficiencies": {
-      "weapons": [
-        "Dagger",
-        "Quarterstaff"
-      ],
-      "armor": []
-    },
     "classFeatures": [
       {
         "level": 1,

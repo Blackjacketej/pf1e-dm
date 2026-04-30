@@ -7,7 +7,7 @@
     "description": "You can keep your balance while traversing narrow or treacherous surfaces. You can also dive, flip, jump, and roll to avoid attacks and overcome obstacles.",
     "check": "You can use Acrobatics to move on narrow surfaces and uneven ground without falling, move through threatened squares without provoking attacks of opportunity, and make jumps or soften falls. The base DC depends on the surface width and situation.",
     "action": "None. An Acrobatics check is made as part of another action or as a reaction to a situation.",
-    "retry": "Yes. You can attempt to balance again if you fall, can retry jumps, and may attempt to catch yourself or another falling character.",
+    "retry": "Varies. You can attempt to balance again if you fall. Jumps can normally be retried, but failing a jump check by 5 or more leaves you prone. Tumbling through threatened squares cannot be retried for the same movement.",
     "special": "If you have 3 or more ranks in Acrobatics, you gain a +3 dodge bonus to AC when fighting defensively (instead of the normal +2) and a +6 dodge bonus when taking the total defense action (instead of the normal +4). The Acrobatic feat provides an additional bonus.",
     "dcTable": [
       {
@@ -51,7 +51,6 @@
         "task": "Soften fall from any distance (DC 15)"
       }
     ],
-    "synergy": "Rank in Climb provides +2 bonus to Acrobatics",
     "classSkills": [
       "Barbarian",
       "Bard",
@@ -65,28 +64,30 @@
     "untrained": true,
     "armorPenalty": false,
     "description": "You can evaluate the monetary value of an object.",
-    "check": "A DC 20 Appraise check determines the value of a common item. Success by 5+ also identifies magic properties. You can determine the most valuable item in a treasure hoard (DC 20-30).",
+    "check": "A DC 20 Appraise check determines the value of a common item. If you succeed by 5 or more, you also determine whether the item has magic properties, although this success does not grant knowledge of the magic item's abilities (for that, use Spellcraft). If you fail the check by less than 5, you determine the price of that item to within 20% of its actual value. If you fail the check by 5 or more, the price is wildly inaccurate (GM discretion). Particularly rare or exotic items might increase the DC by 5 or more. You can also use this check to determine the most valuable item visible in a treasure hoard; the DC is generally 20 but can increase to as high as 30 for a particularly large hoard.",
     "action": "Appraising an item takes 1 standard action. Determining the most valuable object in a treasure hoard takes 1 full-round action.",
     "retry": "Additional attempts to Appraise an item reveal the same result.",
-    "special": "A spellcaster with a raven familiar gains a +3 bonus on Appraise checks.",
+    "special": "A character with the Diligent feat gets a +2 bonus on Appraise checks. A spellcaster with a raven familiar gains a +3 bonus on Appraise checks. A magnifying glass grants +2 on small or highly detailed items; a merchant's scale grants +2 on items valued by weight; these bonuses stack.",
     "dcTable": [
       {
         "dc": 20,
-        "task": "Appraise a common item"
+        "task": "Appraise a common item (or the most valuable item in a treasure hoard)"
       },
       {
-        "dc": 20,
-        "task": "Find most valuable item in small hoard"
+        "dc": 25,
+        "task": "Appraise a rare or exotic item"
       },
       {
         "dc": 30,
-        "task": "Find most valuable item in large hoard"
+        "task": "Appraise an item in a particularly large treasure hoard"
       }
     ],
     "synergy": "",
     "classSkills": [
       "Bard",
+      "Cleric",
       "Rogue",
+      "Sorcerer",
       "Wizard"
     ]
   },
@@ -127,45 +128,61 @@
     "untrained": true,
     "armorPenalty": true,
     "description": "You are skilled at scaling vertical surfaces, from smooth city walls to rocky cliffs.",
-    "check": "With a successful Climb check, you can advance up, down, or across a slope, wall, or steep incline at one-quarter your normal speed. Failing by 4 or less means no progress; failing by 5+ means you fall from your current height. DCs range from 0 (slope/knotted rope) to 30 (overhang with handholds only).",
-    "action": "Climbing is part of movement and uses part of a move action. Each move action that includes climbing requires a separate Climb check.",
-    "retry": "Yes, but failure has inherent penalty (falling). Some situations prevent taking 20.",
-    "special": "You need both hands free to climb. While climbing, you lose your Dexterity bonus to AC and can't use a shield. Creatures with climb speed get +8 racial bonus and can keep their DEX bonus. The Athletic feat provides bonuses.",
+    "check": "With a successful Climb check, you can advance up, down, or across a slope, wall, or other steep incline (or even across a ceiling, provided it has handholds) at one-quarter your normal speed. A slope is any incline under 60 degrees; a wall is 60 degrees or more. Failing by 4 or less means no progress; failing by 5 or more means you fall from your current height.",
+    "action": "Climbing is part of movement, so it's generally part of a move action (and may be combined with other movement in a move action). Each move action that includes any climbing requires a separate Climb check. Catching yourself or another falling character doesn't take an action.",
+    "retry": "Yes, but a failure by 5 or more causes you to fall. You cannot take 20 in most climbing situations (the penalty for failure precludes it).",
+    "special": "You need both hands free to climb, but you may cling to a wall with one hand while you cast a spell or take some other one-handed action. While climbing, you can't move to avoid a blow, so you lose your Dexterity bonus to AC (if any). You also can't use a shield while climbing. Anytime you take damage while climbing, make a Climb check against the DC of the slope or wall — failure means you fall. Accelerated Climbing: accept a -5 penalty to move half your speed instead of one-quarter. You can pound pitons into a wall to make handholds (1 minute per piton, 1 piton per 5 feet; the resulting wall has DC 15). You can attempt to catch yourself when falling (Climb DC = wall's DC + 20, or slope's DC + 10). You can catch a falling character within reach (requires successful melee touch attack, then Climb DC = wall's DC + 10; fallen weight must not exceed your heavy load). You can haul a character upward with a rope through sheer strength (lift double your maximum load). A creature with a climb speed gains +8 racial bonus on all Climb checks, may always take 10 even if rushed or threatened, retains its Dex bonus to AC while climbing, and cannot use the run action while climbing; its accelerated climb moves at 2x climb speed (or land speed, whichever is slower) at a single -5 check. The Athletic feat grants +2 to Climb (+4 at 10 or more ranks).",
     "dcTable": [
       {
         "dc": 0,
-        "task": "Slope too steep or knotted rope with wall"
+        "task": "A slope too steep to walk up, OR a knotted rope with a wall to brace against."
       },
       {
         "dc": 5,
-        "task": "Rope with wall or knotted rope"
+        "task": "A rope with a wall to brace against, OR a knotted rope, OR a rope affected by the rope trick spell."
       },
       {
         "dc": 10,
-        "task": "Surface with ledges (rough wall or ship rigging)"
+        "task": "A surface with ledges to hold on to and stand on (e.g., very rough wall, ship's rigging)."
       },
       {
         "dc": 15,
-        "task": "Surface with adequate handholds (rough rock or tree)"
+        "task": "Any surface with adequate handholds and footholds (natural or artificial): rough natural rock, a tree, an unknotted rope, OR pulling yourself up when dangling by your hands."
       },
       {
         "dc": 20,
-        "task": "Wall with narrow handholds (dungeon wall)"
+        "task": "An uneven surface with narrow handholds and footholds (typical dungeon wall)."
       },
       {
         "dc": 25,
-        "task": "Rough surface (natural rock or brick wall)"
+        "task": "A rough surface, such as a natural rock wall or a brick wall."
       },
       {
         "dc": 30,
-        "task": "Overhang or ceiling with handholds only"
+        "task": "An overhang or ceiling with handholds only."
+      },
+      {
+        "dc": null,
+        "task": "A perfectly smooth, flat vertical (or inverted) surface cannot be climbed."
       }
     ],
-    "synergy": "Acrobatics rank provides +2 bonus; Jump skill assists with climbing",
+    "dcModifiers": [
+      {
+        "modifier": -10,
+        "condition": "Climbing a chimney (artificial or natural) or other location where you can brace against two opposite walls."
+      },
+      {
+        "modifier": -5,
+        "condition": "Climbing a corner where you can brace against perpendicular walls."
+      },
+      {
+        "modifier": 5,
+        "condition": "Surface is slippery."
+      }
+    ],
     "classSkills": [
       "Barbarian",
       "Bard",
-      "Cleric",
       "Druid",
       "Fighter",
       "Monk",
@@ -178,42 +195,28 @@
     "ability": "INT",
     "untrained": true,
     "armorPenalty": false,
-    "description": "You are skilled in the creation of a specific group of items, such as armor or weapons. Like Knowledge, Perform, and Profession, Craft is actually a number of separate skills. Common Craft skills include alchemy, armor, baskets, books, bows, calligraphy, carpentry, cloth, clothing, glass, jewelry, leather, locks, paintings, pottery, sculptures, ships, shoes, stonemasonry, traps, and weapons.",
-    "check": "You can practice your trade and earn half your check result in gold pieces per week. You can also make items of the appropriate type. Time and cost depend on DC, check result, and item price. Raw materials cost 1/3 of item price.",
-    "action": "Craft checks are made by the day or week (not per standard/move action).",
-    "retry": "Yes, but failure by 5+ ruins half raw materials; must pay half raw material cost again.",
-    "special": "You may voluntarily add +10 to DC to craft items more quickly. Masterwork items require additional checks. Improvi sed tools impose -2 penalty; masterwork tools give +2 bonus. Gnomes get +2 bonus to one Craft skill of their choice.",
+    "description": "You are skilled in the creation of a specific group of items, such as armor or weapons. Like Knowledge, Perform, and Profession, Craft is a skill family — each Craft sub-skill has its own ranks. Common Craft skills are alchemy, armor, baskets, books, bows, calligraphy, carpentry, cloth, clothing, glass, jewelry, leather, locks, paintings, pottery, sculptures, ships, shoes, stonemasonry, traps, and weapons. Craft is focused on creating something; if nothing is created, it's probably Profession.",
+    "check": "You can practice your trade and earn half your check result in gold pieces per week. The skill's main function is making an item. DC depends on the item's complexity (Table 4-4). Steps: (1) find the item's price in silver pieces (1 gp = 10 sp); (2) find the item's DC from Table 4-4; (3) pay 1/3 of the item's price for raw materials; (4) make a weekly Craft check — on success, multiply check result × DC; that many sp is this week's progress. When cumulative progress ≥ item price in sp, the item is complete. If check × DC equals double or triple the price, you finish in half or one-third the time.",
+    "action": "Does not apply — Craft checks are made by the day or week.",
+    "retry": "Yes. If you fail by 4 or less, you make no progress this week. If you fail by 5 or more, you ruin half the raw materials and must pay half the original raw-material cost again to continue.",
+    "special": "You may voluntarily add +10 to the indicated DC to craft more quickly (progress = higher DC × check). Improvised tools impose a -2 penalty; masterwork artisan's tools give a +2 circumstance bonus; an alchemist's lab gives +2 on Craft (alchemy). Masterwork items require a SEPARATE progress track for the masterwork component (DC 20; masterwork component prices: weapon 300 gp, armor/shield 150 gp, tool varies). Repair: same DC as creation; repair cost = 1/5 item price. A successful Craft (woodworking) with ironwood makes wooden items as strong as steel. Minor creation requires a Craft check to make complex items. Gnomes get +2 on one Craft or Profession skill of their choice. A character with the Athletic feat or Skill Focus gets additional bonuses per the feat.",
     "dcTable": [
-      {
-        "dc": 5,
-        "task": "Very simple item (wooden spoon)"
-      },
-      {
-        "dc": 10,
-        "task": "Typical item (iron pot)"
-      },
-      {
-        "dc": 12,
-        "task": "Simple melee weapon"
-      },
-      {
-        "dc": 15,
-        "task": "High-quality item (bell) or martial weapon"
-      },
-      {
-        "dc": 15,
-        "task": "Craft (alchemy): Alchemist's fire"
-      },
-      {
-        "dc": 18,
-        "task": "Exotic melee weapon"
-      },
-      {
-        "dc": 20,
-        "task": "Complex or superior item (lock) or masterwork component"
-      }
+      { "dc": 5, "task": "Very simple item (wooden spoon)", "skill": "varies" },
+      { "dc": 10, "task": "Typical item (iron pot)", "skill": "varies" },
+      { "dc": 15, "task": "High-quality item (bell)", "skill": "varies" },
+      { "dc": 20, "task": "Complex or superior item (lock); also the DC for a masterwork component", "skill": "varies" },
+      { "dc": "10 + AC bonus", "task": "Armor or shield (e.g. leather +2 → DC 12; chain shirt +4 → DC 14; full plate +9 → DC 19)", "skill": "armor" },
+      { "dc": 12, "task": "Simple melee or thrown weapon", "skill": "weapons" },
+      { "dc": 15, "task": "Martial melee or thrown weapon; crossbow or bolts", "skill": "weapons" },
+      { "dc": 18, "task": "Exotic melee or thrown weapon", "skill": "weapons" },
+      { "dc": 12, "task": "Longbow, shortbow, or arrows", "skill": "bows" },
+      { "dc": 15, "task": "Composite longbow or composite shortbow", "skill": "bows" },
+      { "dc": "15 + (2 × rating)", "task": "Composite longbow or composite shortbow with high STR rating", "skill": "bows" },
+      { "dc": 15, "task": "Acid", "skill": "alchemy" },
+      { "dc": 20, "task": "Alchemist's fire, smokestick, or tindertwig", "skill": "alchemy" },
+      { "dc": 25, "task": "Antitoxin, sunrod, tanglefoot bag, or thunderstone", "skill": "alchemy" },
+      { "dc": "varies", "task": "Mechanical trap (see Chapter 13)", "skill": "traps" }
     ],
-    "synergy": "Profession and Knowledge skills can assist",
     "classSkills": [
       "Barbarian",
       "Bard",
@@ -227,6 +230,179 @@
       "Sorcerer",
       "Wizard"
     ]
+  },
+  {
+    "name": "Craft (alchemy)",
+    "ability": "INT",
+    "untrained": true,
+    "armorPenalty": false,
+    "description": "Sub-skill of Craft. Creation of alchemical items: acid, alchemist's fire, smokestick, tindertwig, antitoxin, sunrod, tanglefoot bag, thunderstone, and similar non-magical alchemical goods. An alchemist's lab grants +2 on this check.",
+    "check": "Weekly Craft check per the base Craft rules. DC 15 for acid; DC 20 for alchemist's fire, smokestick, tindertwig; DC 25 for antitoxin, sunrod, tanglefoot bag, thunderstone.",
+    "action": "Weekly (or daily variant).",
+    "retry": "Yes; fail by 5+ ruins half the raw materials.",
+    "special": "Alchemist's lab grants +2. Creating alchemical items requires this sub-skill; other Craft sub-skills cannot substitute.",
+    "dcTable": [
+      { "dc": 15, "task": "Acid" },
+      { "dc": 20, "task": "Alchemist's fire, smokestick, tindertwig" },
+      { "dc": 25, "task": "Antitoxin, sunrod, tanglefoot bag, thunderstone" }
+    ],
+    "classSkills": ["Alchemist", "Bard", "Cleric", "Druid", "Rogue", "Sorcerer", "Wizard"]
+  },
+  {
+    "name": "Craft (armor)",
+    "ability": "INT",
+    "untrained": true,
+    "armorPenalty": false,
+    "description": "Sub-skill of Craft. Creation and repair of armor and shields. DC = 10 + armor's AC bonus.",
+    "check": "Weekly Craft check. DC = 10 + armor/shield AC bonus (leather +2 → DC 12; chain shirt +4 → DC 14; breastplate +6 → DC 16; full plate +9 → DC 19; buckler +1 → DC 11; tower shield +4 → DC 14).",
+    "action": "Weekly (or daily variant).",
+    "retry": "Yes; fail by 5+ ruins half the raw materials.",
+    "special": "Masterwork component subtrack DC 20, +150 gp. Bone, hide, and other exotic materials may alter DCs (see source material).",
+    "dcTable": [
+      { "dc": "10 + AC bonus", "task": "Armor or shield (formula)" },
+      { "dc": 12, "task": "Leather armor (+2)" },
+      { "dc": 14, "task": "Chain shirt (+4)" },
+      { "dc": 16, "task": "Breastplate (+6)" },
+      { "dc": 19, "task": "Full plate (+9)" }
+    ],
+    "classSkills": ["Barbarian", "Cavalier", "Fighter", "Paladin", "Ranger"]
+  },
+  {
+    "name": "Craft (bows)",
+    "ability": "INT",
+    "untrained": true,
+    "armorPenalty": false,
+    "description": "Sub-skill of Craft. Creation of bows, crossbows, and arrows/bolts. Composite bow DC scales with STR rating.",
+    "check": "Weekly Craft check. DC 12 longbow/shortbow/arrows; DC 15 composite longbow/shortbow or crossbow; DC 15 + (2 × STR rating) for high-rated composite bows.",
+    "action": "Weekly (or daily variant).",
+    "retry": "Yes; fail by 5+ ruins half the raw materials.",
+    "special": "Elves get +2 racial bonus to create bows and arrows (racial, not a skill bonus).",
+    "dcTable": [
+      { "dc": 12, "task": "Longbow, shortbow, arrows" },
+      { "dc": 15, "task": "Composite longbow or shortbow" },
+      { "dc": "15 + (2 × rating)", "task": "Composite bow with STR rating" }
+    ],
+    "classSkills": ["Ranger", "Fighter", "Rogue"]
+  },
+  {
+    "name": "Craft (carpentry)",
+    "ability": "INT",
+    "untrained": true,
+    "armorPenalty": false,
+    "description": "Sub-skill of Craft. Creation of wooden items — furniture, doors, wagons, structural wood, wooden tools, handles.",
+    "check": "Weekly Craft check. DC 5 very simple (spoon); DC 10 typical (chair, door); DC 15 high-quality (cabinet, musical instrument); DC 20 complex (mechanical wooden apparatus).",
+    "action": "Weekly (or daily variant).",
+    "retry": "Yes; fail by 5+ ruins half the raw materials.",
+    "special": "Ironwood spell treats wooden output as strong as steel for one Craft attempt.",
+    "dcTable": [
+      { "dc": 5, "task": "Very simple (spoon, stool)" },
+      { "dc": 10, "task": "Typical (chair, door, cart wheel)" },
+      { "dc": 15, "task": "High-quality (cabinet, instrument)" },
+      { "dc": 20, "task": "Complex (waterwheel, siege weapon frame)" }
+    ],
+    "classSkills": ["Barbarian", "Druid", "Fighter", "Ranger"]
+  },
+  {
+    "name": "Craft (jewelry)",
+    "ability": "INT",
+    "untrained": true,
+    "armorPenalty": false,
+    "description": "Sub-skill of Craft. Creation of rings, amulets, brooches, and gem settings. Also used for signet rings and noble regalia.",
+    "check": "Weekly Craft check. DC 10 typical jeweled ring; DC 15 high-quality setting; DC 20 complex articulated piece.",
+    "action": "Weekly (or daily variant).",
+    "retry": "Yes; fail by 5+ ruins half the raw materials.",
+    "special": "Required sub-skill for ring blanks used in Forge Ring magic item creation.",
+    "dcTable": [
+      { "dc": 10, "task": "Typical ring or simple amulet" },
+      { "dc": 15, "task": "High-quality setting" },
+      { "dc": 20, "task": "Complex articulated piece, signet matrix" }
+    ],
+    "classSkills": ["Bard", "Rogue", "Sorcerer", "Wizard"]
+  },
+  {
+    "name": "Craft (leather)",
+    "ability": "INT",
+    "untrained": true,
+    "armorPenalty": false,
+    "description": "Sub-skill of Craft. Creation of leather goods: bags, belts, boots, scabbards, straps. Overlaps with Craft (armor) for hide/leather armor — GM decides which applies.",
+    "check": "Weekly Craft check. DC 5 simple strap; DC 10 typical belt, scabbard, boots; DC 15 high-quality saddle or backpack.",
+    "action": "Weekly (or daily variant).",
+    "retry": "Yes; fail by 5+ ruins half the raw materials.",
+    "special": "Leather armor itself uses Craft (armor); Craft (leather) covers tack and non-armor leather goods.",
+    "dcTable": [
+      { "dc": 5, "task": "Simple strap or pouch" },
+      { "dc": 10, "task": "Belt, scabbard, boots" },
+      { "dc": 15, "task": "Saddle, backpack, fine tack" }
+    ],
+    "classSkills": ["Barbarian", "Ranger", "Rogue"]
+  },
+  {
+    "name": "Craft (locks)",
+    "ability": "INT",
+    "untrained": true,
+    "armorPenalty": false,
+    "description": "Sub-skill of Craft. Creation of locks, keys, and simple mechanical security devices. Overlaps with Craft (traps) for mechanical-trap components.",
+    "check": "Weekly Craft check. DC 20 for a typical lock (CRB Table 4-4 'complex item').",
+    "action": "Weekly (or daily variant).",
+    "retry": "Yes; fail by 5+ ruins half the raw materials.",
+    "special": "A lock's Disable Device DC is independent of its Craft DC; both set at manufacture time.",
+    "dcTable": [
+      { "dc": 20, "task": "Simple lock or key" },
+      { "dc": 25, "task": "Good lock" },
+      { "dc": 30, "task": "Amazing lock" }
+    ],
+    "classSkills": ["Rogue", "Wizard"]
+  },
+  {
+    "name": "Craft (stonemasonry)",
+    "ability": "INT",
+    "untrained": true,
+    "armorPenalty": false,
+    "description": "Sub-skill of Craft. Creation of stone structures, statues, walls, and stone tools.",
+    "check": "Weekly Craft check. DC 5 simple stone block; DC 10 typical wall or step; DC 15 dressed ashlar or statue; DC 20 architectural vault or complex relief.",
+    "action": "Weekly (or daily variant).",
+    "retry": "Yes; fail by 5+ ruins half the raw materials.",
+    "special": "Dwarves get +2 racial bonus on checks related to stonework (racial).",
+    "dcTable": [
+      { "dc": 5, "task": "Rubble or simple block" },
+      { "dc": 10, "task": "Wall, step, door frame" },
+      { "dc": 15, "task": "Ashlar, statue, archway" },
+      { "dc": 20, "task": "Vault, complex relief" }
+    ],
+    "classSkills": ["Cleric", "Fighter"]
+  },
+  {
+    "name": "Craft (traps)",
+    "ability": "INT",
+    "untrained": true,
+    "armorPenalty": false,
+    "description": "Sub-skill of Craft. Creation of mechanical traps (see CRB Chapter 13 for trap DCs and costs). Distinct from Disable Device.",
+    "check": "Weekly Craft check. DC varies per trap design (CRB Chapter 13). Consult trap tables for specific DCs.",
+    "action": "Weekly (or daily variant).",
+    "retry": "Yes; fail by 5+ ruins half the raw materials.",
+    "special": "Setting and disabling constructed traps uses Disable Device, not Craft (traps).",
+    "dcTable": [
+      { "dc": "varies", "task": "Mechanical trap (see Chapter 13)" }
+    ],
+    "classSkills": ["Rogue", "Ranger"]
+  },
+  {
+    "name": "Craft (weapons)",
+    "ability": "INT",
+    "untrained": true,
+    "armorPenalty": false,
+    "description": "Sub-skill of Craft. Creation of melee and thrown weapons: swords, axes, maces, polearms, daggers, throwing weapons. Not bows (see Craft (bows)).",
+    "check": "Weekly Craft check. DC 12 simple melee/thrown weapon; DC 15 martial melee/thrown weapon or crossbow/bolts; DC 18 exotic weapon.",
+    "action": "Weekly (or daily variant).",
+    "retry": "Yes; fail by 5+ ruins half the raw materials.",
+    "special": "Masterwork component subtrack DC 20, +300 gp weapon. Weapons of cold iron, silver, or adamantine require special materials and adjusted prices per CRB.",
+    "dcTable": [
+      { "dc": 12, "task": "Simple melee or thrown weapon" },
+      { "dc": 15, "task": "Martial melee or thrown weapon; crossbow; bolts" },
+      { "dc": 18, "task": "Exotic melee or thrown weapon" },
+      { "dc": 20, "task": "Masterwork component (subtrack)" }
+    ],
+    "classSkills": ["Barbarian", "Cavalier", "Fighter", "Paladin", "Ranger"]
   },
   {
     "name": "Diplomacy",
@@ -513,8 +689,9 @@
     "synergy": "Bluff and Perception ranks provide bonuses",
     "classSkills": [
       "Barbarian",
+      "Bard",
       "Fighter",
-      "Paladin",
+      "Monk",
       "Ranger",
       "Rogue",
       "Sorcerer"
@@ -586,9 +763,10 @@
     ],
     "synergy": "Climb ranks provide +2 bonus",
     "classSkills": [
-      "Barbarian",
+      "Bard",
       "Fighter",
       "Ranger",
+      "Rogue",
       "Wizard"
     ]
   },
@@ -622,6 +800,7 @@
     ],
     "synergy": "Craft ranks provide +2 bonus",
     "classSkills": [
+      "Bard",
       "Fighter",
       "Wizard"
     ]
@@ -694,6 +873,7 @@
     "classSkills": [
       "Bard",
       "Cleric",
+      "Monk",
       "Wizard"
     ]
   },
@@ -763,6 +943,7 @@
     "synergy": "Survival ranks provide +2 bonus; Handle Animal provides +1",
     "classSkills": [
       "Barbarian",
+      "Bard",
       "Druid",
       "Ranger",
       "Wizard"
@@ -834,8 +1015,8 @@
     ],
     "synergy": "Knowledge (Arcana) provides +2 bonus",
     "classSkills": [
+      "Bard",
       "Cleric",
-      "Druid",
       "Wizard"
     ]
   },
@@ -871,6 +1052,7 @@
     "classSkills": [
       "Bard",
       "Cleric",
+      "Monk",
       "Paladin",
       "Wizard"
     ]
@@ -902,6 +1084,7 @@
     "synergy": "Knowledge (Local/Nobility) provide +1 bonuses",
     "classSkills": [
       "Bard",
+      "Cleric",
       "Rogue",
       "Wizard"
     ]
@@ -942,7 +1125,7 @@
     "classSkills": [
       "Barbarian",
       "Bard",
-      "Fighter",
+      "Druid",
       "Monk",
       "Ranger",
       "Rogue"
@@ -1017,6 +1200,7 @@
     ],
     "synergy": "Related Knowledge and Craft skills provide +1 bonuses",
     "classSkills": [
+      "Bard",
       "Cleric",
       "Druid",
       "Fighter",
@@ -1024,6 +1208,7 @@
       "Paladin",
       "Ranger",
       "Rogue",
+      "Sorcerer",
       "Wizard"
     ]
   },
@@ -1178,6 +1363,7 @@
       "Cleric",
       "Druid",
       "Paladin",
+      "Ranger",
       "Sorcerer",
       "Wizard"
     ]
@@ -1281,7 +1467,6 @@
     "synergy": "Knowledge (Local) provides +2 bonus for underwater navigation",
     "classSkills": [
       "Barbarian",
-      "Bard",
       "Druid",
       "Fighter",
       "Monk",
@@ -1324,7 +1509,8 @@
     "synergy": "Knowledge (Arcana) provides +2 bonus",
     "classSkills": [
       "Bard",
-      "Rogue"
+      "Rogue",
+      "Sorcerer"
     ]
   }
 ]

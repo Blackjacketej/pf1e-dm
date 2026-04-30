@@ -4,6 +4,10 @@
  */
 
 import { uid, mod, calcBAB, calcSave, getMaxHP } from '../utils/dice';
+import classesData from '../data/classes.json';
+
+const classesMap = {};
+classesData.forEach(c => { classesMap[c.name] = c; });
 
 /**
  * Parse Hero Lab XML export into our character format
@@ -610,7 +614,7 @@ export function exportStatBlock(character) {
   block += `Str ${abilities.STR || 10}, Dex ${abilities.DEX || 10}, Con ${abilities.CON || 10}, Int ${abilities.INT || 10}, Wis ${abilities.WIS || 10}, Cha ${abilities.CHA || 10}\n`;
 
   // Combat stats
-  const bab = Math.floor((character.level || 1) / 2);
+  const bab = calcBAB(character.class, character.level || 1, classesMap);
   const cmb = bab + mod(abilities.STR || 10);
   const cmd = 10 + bab + mod(abilities.STR || 10) + mod(abilities.DEX || 10);
   block += `Base Atk +${bab}; CMB +${cmb}; CMD ${cmd}\n`;

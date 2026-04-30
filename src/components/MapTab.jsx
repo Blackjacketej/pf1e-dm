@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react';
 import useIsMobile from '../hooks/useIsMobile';
 import overlandService from '../services/overlandService';
 import { ParchmentFrame, TerrainIcon } from './MapAssets';
@@ -7,6 +7,9 @@ import mapRegistry from '../services/mapRegistry';
 import { pixelToHex, hexCenter, TERRAIN_COLORS, HEX_TAGS, getTagInfo, parseHexValue, getAdjacentHexKeys } from './HexGridOverlay';
 import { checkForaging, checkHunting, waterCollection, getHexExplorationTime, exploreCurrentHex } from '../services/overlandService';
 import { generateDailyWeather, generateEncounter, advanceHexCrawlDay } from '../services/hexCrawlService';
+import { getVisitedPoisForMap, locationSlug } from '../services/locationTracker';
+import { findSettlementAncestor, DEFAULT_PARTY_ID } from '../services/worldTree';
+import { getHexConfig } from '../services/hexConfig';
 
 const catIcons = {
   temple: '\u2720', tavern: '\u{1F37A}', shop: '\u{1F6CD}', government: '\u{1F6E1}', craft: '\u{1F528}',
@@ -14,17 +17,11 @@ const catIcons = {
   landmark: '\u{1F6A9}', ruin: '\u{1F5FC}', dungeon: '\u{1F480}', encounter: '\u2694', camp: '\u{1F525}', city: '\u{1F3F0}'
 };
 
-/*
- * Per-map hex configuration.
- *   Sandpoint Hinterlands: 1-mile hexes across a ~25-mile local map  (~25 hexes across)
- *   Varisia region:        12-mile hexes across a ~350-mile regional map (~29 hexes across)
- *   Fallback:              2-mile hexes / 25-mile span
- */
-const HEX_CONFIG = {
-  sandpoint_hinterlands: { hexSizeMiles: 1, mapWidthMiles: 25 },
-  varisia_region:        { hexSizeMiles: 12, mapWidthMiles: 350 },
-};
-const DEFAULT_HEX_CONFIG = { hexSizeMiles: 2, mapWidthMiles: 25 };
+// Per-map hex configuration moved to src/services/hexConfig.js as part of
+// Task #84 (2026-04-19) so MapTab + GMMapPinEditor + overlandTravel share a
+// single source of truth. Call getHexConfig(mapId) below — values match the
+// prior inline copy (Sandpoint Hinterlands: 1mi/hex × 25mi, Varisia region:
+// 12mi/hex × 350mi, fallback: 2mi/hex × 25mi).
 
 const styles = {
   container: { display: 'flex', height: '100%', color: '#d4c5a9', fontFamily: 'inherit' },
@@ -52,54 +49,94 @@ const styles = {
   statRow: { display: 'flex', justifyContent: 'space-between', padding: '2px 0' },
 };
 
-export default function MapTab({ party, campaign, addLog, worldState, setWorldState, gmMode }) {
+export default function MapTab({ party, campaign, adventure = null, addLog, worldState, setWorldState, gmMode, onOpenJournalLocation = null }) {
   const isMobile = useIsMobile();
+
+  // Bug #66 (2026-04-18) — overland/hex interactions are locked when the
+  // party is physically inside a town, city, village, building, floor, or
+  // room in the world tree. Live session report: operator was in Sandpoint
+  // and could still pan+click the regional hex map (moving worldState.partyHex
+  // around) while Adventure chat state stayed in Sandpoint — a disconnect
+  // between the settlement scope and the overland scope. Rule: hex travel
+  // only works once the party has left the settlement (via "Leave Town" in
+  // AdventureTab). While inside, the map is browsable (pan/zoom/pin info)
+  // but movement + exploration + foraging/hunting/water are all blocked.
+  const settlementGate = useMemo(() => {
+    if (!adventure || !adventure.worldTree) return null;
+    const activeId = adventure.activeParty || DEFAULT_PARTY_ID;
+    const path = adventure.parties?.[activeId]?.currentPath || [];
+    const ancestor = findSettlementAncestor(adventure.worldTree, path);
+    if (!ancestor) return null;
+    return { active: true, node: ancestor, locationName: ancestor.name || 'this settlement' };
+  }, [adventure]);
+  const isGated = !!settlementGate?.active;
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [categoryFilter, setCategoryFilter] = useState('all');
-  const [partyMapPos, setPartyMapPos] = useState({ xPct: 50, yPct: 28 });
   const [showHexGrid, setShowHexGrid] = useState(true);
   const [selectedHex, setSelectedHex] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(!isMobile);
-  const [hexCrawlMode, setHexCrawlMode] = useState(false);
   const [hexTravelLog, setHexTravelLog] = useState([]);
   const [currentWeatherLocal, setCurrentWeatherLocal] = useState(null);
   const [lastEncounter, setLastEncounter] = useState(null);
+  const [visitedPoiIds, setVisitedPoiIds] = useState(new Set());
+  const mapRef = useRef(null);
 
   // Get the party hex from worldState
   const partyHex = worldState?.partyHex || null;
   const exploredHexes = useMemo(() => new Set(worldState?.exploredHexes || []), [worldState?.exploredHexes]);
   const hexExploring = worldState?.hexExploring || null;
 
-  // Move party to a hex
-  const movePartyToHex = useCallback((hexKey) => {
+  // Ref so callbacks defined before the useMemo can access hexTerrainData safely
+  const hexTerrainDataRef = useRef(null);
+
+  // Auto-initialize party hex if not set (computed after hexTerrainData is available)
+  const needsInit = useRef(!partyHex);
+
+  // Internal hex-placement helper — positions the party marker + records
+  // weather/explored state without logging a "party moves" narration. Used
+  // by the auto-init useEffect (first-mount placement) and by the gated
+  // movePartyToHex below. Silent=true skips the move narration, which is
+  // what init wants (there's no player-initiated movement to narrate).
+  const setPartyHexInternal = useCallback((hexKey, { silent = false } = {}) => {
     setWorldState(prev => {
       const newExplored = new Set(prev.exploredHexes || []);
       newExplored.add(hexKey);
-      // Also mark adjacent hexes as "seen" (visible but not explored)
       return {
         ...prev,
         partyHex: hexKey,
         exploredHexes: [...newExplored],
       };
     });
-    const hexData = hexTerrainData?.get(hexKey);
+    const hexData = hexTerrainDataRef.current?.get(hexKey);
     const terrain = hexData?.terrain || 'plains';
-    const logEntry = { time: `Day ${worldState?.currentDay || 1}`, text: `Party enters hex ${hexKey} (${terrain})`, type: 'move' };
-    setHexTravelLog(prev => [...prev, logEntry]);
-    addLog?.(`Party moves to hex ${hexKey} — ${terrain} terrain`, 'narration');
-
+    if (!silent) {
+      const logEntry = { time: `Day ${worldState?.currentDay || 1}`, text: `Party enters hex ${hexKey} (${terrain})`, type: 'move' };
+      setHexTravelLog(prev => [...prev, logEntry]);
+      addLog?.(`Party moves to hex ${hexKey} — ${terrain} terrain`, 'narration');
+    }
     // Generate weather for current day when entering new hex
-    const hexInfo = hexTerrainData?.get(hexKey);
-    const t = hexInfo?.terrain || 'plains';
-    const w = generateDailyWeather(t, worldState?.currentDay || 1);
+    const w = generateDailyWeather(terrain, worldState?.currentDay || 1);
     setCurrentWeatherLocal(w);
     setWorldState(prev => ({ ...prev, currentWeather: w }));
-  }, [setWorldState, hexTerrainData, worldState?.currentDay, addLog]);
+  }, [setWorldState, worldState?.currentDay, addLog]);
+
+  // Move party to a hex. Bug #66 — short-circuits when inside a settlement.
+  const movePartyToHex = useCallback((hexKey) => {
+    if (isGated) {
+      addLog?.(`Your party is inside ${settlementGate.locationName}. Leave town before traveling the hex map.`, 'warning');
+      return;
+    }
+    setPartyHexInternal(hexKey);
+  }, [setPartyHexInternal, addLog, isGated, settlementGate]);
 
   // Start exploring current hex
   const startExploreHex = useCallback(() => {
+    if (isGated) {
+      addLog?.(`Your party is inside ${settlementGate.locationName}. Leave town before exploring the wilderness.`, 'warning');
+      return;
+    }
     if (!partyHex) return;
-    const hexData = hexTerrainData?.get(partyHex);
+    const hexData = hexTerrainDataRef.current?.get(partyHex);
     const terrain = hexData?.terrain || 'plains';
     const speed = party.length > 0 ? overlandService.getPartySpeed(party) : 30;
     const explTime = getHexExplorationTime(terrain, speed);
@@ -112,12 +149,12 @@ export default function MapTab({ party, campaign, addLog, worldState, setWorldSt
     const logEntry = { time: `Day ${worldState?.currentDay || 1}`, text: `Begin exploring hex ${partyHex} (${terrain}) — ${explTime.adjustedDays} days needed`, type: 'explore' };
     setHexTravelLog(prev => [...prev, logEntry]);
     addLog?.(`Party begins exploring this hex. Estimated ${explTime.adjustedDays} day(s) to fully explore.`, 'narration');
-  }, [partyHex, hexTerrainData, party, setWorldState, worldState?.currentDay, addLog]);
+  }, [partyHex, party, setWorldState, worldState?.currentDay, addLog, isGated, settlementGate]);
 
   // Advance one day of exploration
   const advanceExploreDay = useCallback(() => {
     if (!hexExploring) return;
-    const hexData = hexTerrainData?.get(hexExploring);
+    const hexData = hexTerrainDataRef.current?.get(hexExploring);
     const terrain = hexData?.terrain || 'plains';
     const daysLeft = (worldState?.hexExplorationDaysLeft || 1) - 1;
     const newEntries = [];
@@ -157,61 +194,101 @@ export default function MapTab({ party, campaign, addLog, worldState, setWorldSt
         setLastEncounter(enc);
         const encEntry = { time: `Day ${newDay}`, text: enc.description, type: 'encounter' };
         setHexTravelLog(prev => [...prev, encEntry]);
-        addLog?.(enc.description, 'combat');
+        addLog?.(enc.description, 'danger');
       }
     });
 
     setHexTravelLog(prev => [...prev, ...newEntries]);
-  }, [hexExploring, hexTerrainData, worldState, setWorldState, party, addLog]);
+  }, [hexExploring, worldState, setWorldState, party, addLog]);
 
   // Forage in current hex
   const handleForage = useCallback(() => {
+    if (isGated) {
+      addLog?.(`Your party is inside ${settlementGate.locationName}. Leave town before foraging the wilds.`, 'warning');
+      return;
+    }
     if (!partyHex || party.length === 0) return;
-    const hexData = hexTerrainData?.get(partyHex);
+    const hexData = hexTerrainDataRef.current?.get(partyHex);
     const terrain = hexData?.terrain || 'plains';
     const forager = party[0]; // party leader forages
     const result = checkForaging(forager, terrain);
     const entry = { time: `Day ${worldState?.currentDay || 1}`, text: result.description, type: result.success ? 'info' : 'encounter' };
     setHexTravelLog(prev => [...prev, entry]);
-    addLog?.(result.description, result.success ? 'narration' : 'system');
-  }, [partyHex, party, hexTerrainData, worldState?.currentDay, addLog]);
+    addLog?.(result.description, result.success ? 'success' : 'danger');
+  }, [partyHex, party, worldState?.currentDay, addLog, isGated, settlementGate]);
 
   // Hunt in current hex
   const handleHunt = useCallback(() => {
+    if (isGated) {
+      addLog?.(`Your party is inside ${settlementGate.locationName}. Leave town before hunting the wilds.`, 'warning');
+      return;
+    }
     if (!partyHex || party.length === 0) return;
-    const hexData = hexTerrainData?.get(partyHex);
+    const hexData = hexTerrainDataRef.current?.get(partyHex);
     const terrain = hexData?.terrain || 'plains';
     const hunter = party[0];
     const result = checkHunting(hunter, terrain);
     const entry = { time: `Day ${worldState?.currentDay || 1}`, text: result.description, type: result.success ? 'info' : 'encounter' };
     setHexTravelLog(prev => [...prev, entry]);
-    addLog?.(result.description, result.success ? 'narration' : 'system');
-  }, [partyHex, party, hexTerrainData, worldState?.currentDay, addLog]);
+    addLog?.(result.description, result.success ? 'success' : 'danger');
+  }, [partyHex, party, worldState?.currentDay, addLog, isGated, settlementGate]);
 
   // Find water
   const handleFindWater = useCallback(() => {
+    if (isGated) {
+      addLog?.(`Your party is inside ${settlementGate.locationName}. Leave town before gathering water in the wilds.`, 'warning');
+      return;
+    }
     if (!partyHex || party.length === 0) return;
-    const hexData = hexTerrainData?.get(partyHex);
+    const hexData = hexTerrainDataRef.current?.get(partyHex);
     const terrain = hexData?.terrain || 'plains';
     const searcher = party[0];
     const result = waterCollection(searcher, terrain);
     const entry = { time: `Day ${worldState?.currentDay || 1}`, text: result.description, type: result.success ? 'info' : 'encounter' };
     setHexTravelLog(prev => [...prev, entry]);
-    addLog?.(result.description, result.success ? 'narration' : 'system');
-  }, [partyHex, party, hexTerrainData, worldState?.currentDay, addLog]);
+    addLog?.(result.description, result.success ? 'success' : 'danger');
+  }, [partyHex, party, worldState?.currentDay, addLog, isGated, settlementGate]);
 
   const locations = useMemo(() => overlandService.getLocations(), []);
   const mapSettings = useMemo(() => overlandService.getMapSettings(), []);
 
-  // Determine which map to show
+  // Determine which map to show (Journal "View on map" can override via mapFocus)
   const partyLocId = worldState?.partyPosition?.locationId;
+  const mapFocus = worldState?.mapFocus || null;
   const activeMapId = useMemo(() => {
+    if (mapFocus?.mapId) return mapFocus.mapId;
     const mapEntry = mapRegistry.getOverlandMap(partyLocId ? String(partyLocId) : 'sandpoint');
     return mapEntry?.id || 'sandpoint_hinterlands';
-  }, [partyLocId]);
+  }, [partyLocId, mapFocus?.mapId]);
 
-  // Per-map hex config
-  const hexConfig = HEX_CONFIG[activeMapId] || DEFAULT_HEX_CONFIG;
+  // Load visited POI set whenever the active map changes. Refreshes also when
+  // party position changes (which is how a new visit typically gets recorded).
+  useEffect(() => {
+    let cancelled = false;
+    getVisitedPoisForMap(activeMapId).then(set => { if (!cancelled) setVisitedPoiIds(set); });
+    return () => { cancelled = true; };
+  }, [activeMapId, partyLocId]);
+
+  // When Journal requests a focus, resolve + select that pin once.
+  const lastFocusRef = useRef(null);
+  useEffect(() => {
+    if (!mapFocus?.at || mapFocus.at === lastFocusRef.current) return;
+    lastFocusRef.current = mapFocus.at;
+    if (!mapFocus.poiId) return;
+    const pin = (mapRegistry.getMap(mapFocus.mapId)?.poi || []).find(p => p.id === mapFocus.poiId);
+    if (pin) {
+      const loc = locations.find(l => String(l.id) === pin.id || l.name === pin.label);
+      if (loc) setSelectedLocation(loc);
+      // Pan/zoom to the pin — defer so InteractiveMap has had a render with the
+      // (possibly new) mapId. Without the delay, the ref may still point at a
+      // map whose image hasn't loaded and focusPin silently no-ops.
+      setTimeout(() => { mapRef.current?.focusPin?.(pin.xPct, pin.yPct, 2.2); }, 150);
+      addLog?.(`Focusing map on ${pin.label}`, 'info');
+    }
+  }, [mapFocus, locations, addLog]);
+
+  // Per-map hex config (Task #84 — shared service).
+  const hexConfig = getHexConfig(activeMapId);
   const HEX_SIZE_MILES = hexConfig.hexSizeMiles;
   const MAP_WIDTH_MILES = hexConfig.mapWidthMiles;
 
@@ -312,7 +389,81 @@ export default function MapTab({ party, campaign, addLog, worldState, setWorldSt
     return data;
   }, [showHexGrid, mapSettings, gmHexTerrain, activeMapId]);
 
-  // Hex click — show info about the hex, or move party in hex crawl mode
+  // Keep ref in sync so callbacks defined earlier can access hexTerrainData
+  hexTerrainDataRef.current = hexTerrainData;
+
+  // Resolve which hex SHOULD contain the party's current top-level location.
+  // Centralized so auto-init AND the inside-town heal effect agree on what
+  // the "correct" hex is. Returns null when we don't have enough info to
+  // pick (no terrain data, no resolvable pin, etc.) — callers must no-op.
+  const resolveCurrentLocationHex = useCallback(() => {
+    if (!hexTerrainData || hexTerrainData.size === 0) return null;
+    const imgW = mapSettings.bounds?.width || 1200;
+    const imgH = mapSettings.bounds?.height || 900;
+    const hexSizePx = (HEX_SIZE_MILES / MAP_WIDTH_MILES) * imgW;
+
+    // Pin resolution priority:
+    //   1. Exact id match against worldState.partyPosition.locationId
+    //   2. Fuzzy 'sandpoint' match (RotRL campaign home fallback)
+    //   3. First pin of type 'town' / 'city' on the active map
+    //   4. Map center
+    const targetId = partyLocId ? String(partyLocId) : 'sandpoint';
+    let pin = mergedPins.find(p => String(p.id) === targetId);
+    if (!pin) {
+      pin = mergedPins.find(p =>
+        /sandpoint/i.test(String(p.id || '')) || /sandpoint/i.test(String(p.label || ''))
+      );
+    }
+    if (!pin) {
+      pin = mergedPins.find(p => p.type === 'town' || p.type === 'city');
+    }
+
+    let px, py;
+    if (pin && typeof pin.xPct === 'number' && typeof pin.yPct === 'number') {
+      px = (pin.xPct / 100) * imgW;
+      py = (pin.yPct / 100) * imgH;
+    } else {
+      px = imgW / 2;
+      py = imgH / 2;
+    }
+
+    return pixelToHex(px, py, hexSizePx);
+  }, [hexTerrainData, mapSettings, HEX_SIZE_MILES, MAP_WIDTH_MILES, mergedPins, partyLocId]);
+
+  // Auto-initialize party hex when map first loads and no position is set.
+  // Bug #53: the old hardcoded (500, 370) was for sandpointMap.json's LOCAL
+  // coordinate system (the Cathedral pixel), but the default active map on
+  // game boot is `sandpoint_hinterlands`, whose Sandpoint pin sits at
+  // xPct=50, yPct=28 = pixel (600, 252) on the same 1200×900 canvas. Result:
+  // the party token rendered in a hex ~150px away from the Sandpoint pin.
+  useEffect(() => {
+    if (!needsInit.current || partyHex) return;
+    const startHex = resolveCurrentLocationHex();
+    if (!startHex) return;
+    setPartyHexInternal(startHex.key, { silent: true });
+    needsInit.current = false;
+  }, [resolveCurrentLocationHex, partyHex, setPartyHexInternal]);
+
+  // 2026-04-20 — heal stale `partyHex` when gated inside a settlement.
+  // Background: the auto-init effect only runs when partyHex is null.
+  // Operators with saves from before the pixelToHex/hexCenter convention fix
+  // (or from earlier auto-init logic) have a persisted `partyHex` that
+  // doesn't correspond to the town's actual POI hex — symptom is the marker
+  // floating in a wrong hex while the breadcrumb says "Sandpoint." When the
+  // party is gated inside a settlement (locationId === a town POI), the
+  // marker should categorically be on that town's hex, so we resnap to
+  // heal the persisted value. Once the party leaves town, gating turns off
+  // and this effect stops triggering — overland movement is then the only
+  // thing that mutates partyHex.
+  useEffect(() => {
+    if (!isGated || !partyHex) return;
+    const target = resolveCurrentLocationHex();
+    if (!target) return;
+    if (target.key === partyHex) return;
+    setPartyHexInternal(target.key, { silent: true });
+  }, [isGated, partyHex, resolveCurrentLocationHex, setPartyHexInternal]);
+
+  // Hex click — show info about the hex, or move party
   const handleHexClick = useCallback((hex) => {
     const key = `${hex.col},${hex.row}`;
     setSelectedHex(key);
@@ -325,8 +476,10 @@ export default function MapTab({ party, campaign, addLog, worldState, setWorldSt
     const featStr = tags && tags.size > 0 ? ` [${[...tags].join(', ')}]` : '';
     const locNames = locs.map(l => l.name).join(', ');
 
-    // In hex crawl mode, clicking an adjacent hex moves the party
-    if (hexCrawlMode && partyHex) {
+    // Clicking an adjacent hex moves the party — unless gated inside a
+    // settlement, in which case we fall through to the info-only display
+    // below. Bug #66: no overland movement while in town.
+    if (partyHex && !isGated) {
       const [pc, pr] = partyHex.split(',').map(Number);
       const adjacent = getAdjacentHexKeys(pc, pr);
       if (adjacent.includes(key)) {
@@ -345,7 +498,7 @@ export default function MapTab({ party, campaign, addLog, worldState, setWorldSt
       : `Hex (${hex.col},${hex.row}): ${terrainStr}${featStr}`;
     addLog?.(msg, 'info');
     if (locs.length === 1) setSelectedLocation(locs[0]);
-  }, [hexTerrainData, addLog, hexCrawlMode, partyHex, movePartyToHex, setWorldState]);
+  }, [hexTerrainData, addLog, partyHex, movePartyToHex, setWorldState, isGated]);
 
   // Pin click
   const handlePinClick = useCallback((pin) => {
@@ -364,6 +517,37 @@ export default function MapTab({ party, campaign, addLog, worldState, setWorldSt
     <div style={styles.container}>
       {/* MAP AREA */}
       <div style={styles.mapArea}>
+        {/* Bug #66 — Locked-out banner when party is inside a settlement.
+            Map is still browsable; movement/exploration/gathering handlers
+            short-circuit. Operator must Leave Town from the Adventure tab
+            to re-enable overland travel. */}
+        {isGated && (
+          <div
+            style={{
+              position: 'absolute',
+              top: 8,
+              left: '50%',
+              transform: 'translateX(-50%)',
+              zIndex: 220,
+              background: 'rgba(60, 20, 20, 0.92)',
+              border: '1px solid #b85c5c',
+              borderRadius: '6px',
+              padding: '8px 14px',
+              color: '#ffd7a0',
+              fontSize: '12px',
+              fontWeight: 'bold',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.5)',
+              maxWidth: '80%',
+              textAlign: 'center',
+              pointerEvents: 'none',
+            }}
+          >
+            <span style={{ color: '#ffb060' }}>🔒 Inside {settlementGate.locationName}</span>
+            <span style={{ color: '#d4c5a9', fontWeight: 'normal', marginLeft: '8px' }}>
+              Hex travel locked — leave town to explore the wilderness.
+            </span>
+          </div>
+        )}
         {/* Mobile sidebar toggle button */}
         {isMobile && (
           <button
@@ -389,12 +573,13 @@ export default function MapTab({ party, campaign, addLog, worldState, setWorldSt
           </button>
         )}
         <InteractiveMap
+          ref={mapRef}
+          visitedPoiIds={visitedPoiIds}
+          focusedPoiId={mapFocus?.poiId || null}
           mapId={activeMapId}
           pins={mergedPins}
           regions={mapRegions}
           skipRegistryPins={true}
-          partyPosition={partyMapPos}
-          onPartyMove={setPartyMapPos}
           onPinClick={handlePinClick}
           fogEnabled={false}
           showLegend={true}
@@ -407,9 +592,9 @@ export default function MapTab({ party, campaign, addLog, worldState, setWorldSt
           mapWidthMiles={MAP_WIDTH_MILES}
           onHexClick={handleHexClick}
           highlightedHex={selectedHex}
-          partyHex={hexCrawlMode ? partyHex : null}
-          exploredHexes={hexCrawlMode ? exploredHexes : null}
-          showFogOfWar={hexCrawlMode}
+          partyHex={partyHex}
+          exploredHexes={exploredHexes}
+          showFogOfWar={true}
           exploringHex={hexExploring}
         />
 
@@ -480,29 +665,13 @@ export default function MapTab({ party, campaign, addLog, worldState, setWorldSt
           )}
         </div>
 
-        {/* Hex Crawl Controls */}
-        <div style={{ ...styles.card, borderColor: hexCrawlMode ? '#ffd700' : 'rgba(255,215,0,0.2)' }}>
+        {/* Hex Crawl Controls — always active */}
+        <div style={{ ...styles.card, borderColor: '#ffd700' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
             <span style={styles.subtitle}>Hex Crawl</span>
-            <button
-              style={{ ...styles.btn, fontSize: '10px', ...(hexCrawlMode ? styles.btnActive : {}) }}
-              onClick={() => {
-                setHexCrawlMode(!hexCrawlMode);
-                if (!hexCrawlMode && !partyHex) {
-                  // Initialize party position to center hex on first enable
-                  const imgW = mapSettings.bounds?.width || 1200;
-                  const hexSizePx = (HEX_SIZE_MILES / MAP_WIDTH_MILES) * imgW;
-                  const startHex = pixelToHex(500, 370, hexSizePx); // Sandpoint area
-                  movePartyToHex(startHex.key);
-                }
-              }}
-            >
-              {hexCrawlMode ? 'Active' : 'Off'}
-            </button>
+            <span style={{ fontSize: 10, color: '#51cf66' }}>Active</span>
           </div>
 
-          {hexCrawlMode && (
-            <>
               {partyHex && (
                 <div style={{ fontSize: '11px', marginBottom: '6px' }}>
                   <div style={styles.statRow}>
@@ -578,16 +747,46 @@ export default function MapTab({ party, campaign, addLog, worldState, setWorldSt
                   </button>
                 </div>
               ) : partyHex && (
-                <button style={{ ...styles.btn, width: '100%', marginBottom: '4px' }} onClick={startExploreHex}>
+                <button
+                  style={{
+                    ...styles.btn,
+                    width: '100%',
+                    marginBottom: '4px',
+                    opacity: isGated ? 0.45 : 1,
+                    cursor: isGated ? 'not-allowed' : 'pointer',
+                  }}
+                  onClick={startExploreHex}
+                  disabled={isGated}
+                  title={isGated ? `Leave ${settlementGate.locationName} first.` : undefined}
+                >
                   Explore This Hex
                 </button>
               )}
 
-              {/* Advance Day (without exploring) */}
+              {/* Advance Day (without exploring) — Bug #67 (2026-04-20):
+                  Day-advance is overland-scale: it rolls hex-random encounters
+                  and bumps weather on the party's current hex terrain. That's
+                  nonsense while the party is sitting in a town — a day spent
+                  in Sandpoint is not "a day of wilderness travel." Gate on
+                  `isGated` (same settlement-ancestor check as Forage/Hunt/
+                  Explore-This-Hex) so the button is visible-but-disabled
+                  with the standard "Leave <settlement> first" tooltip when
+                  the party is inside a settlement/building/floor/room. The
+                  button stays free to click once they leave town via the
+                  AdventureTab "Leave Town" flow. */}
               {!hexExploring && partyHex && (
                 <button
-                  style={{ ...styles.btn, width: '100%', marginBottom: '4px' }}
+                  style={{
+                    ...styles.btn,
+                    width: '100%',
+                    marginBottom: '4px',
+                    opacity: isGated ? 0.45 : 1,
+                    cursor: isGated ? 'not-allowed' : 'pointer',
+                  }}
+                  disabled={isGated}
+                  title={isGated ? `Leave ${settlementGate.locationName} first.` : undefined}
                   onClick={async () => {
+                    if (isGated) return;
                     const hexData = hexTerrainData?.get(partyHex);
                     const terrain = hexData?.terrain || 'plains';
                     const partyLevel = Math.max(1, ...party.map(c => c.level || 1));
@@ -602,7 +801,7 @@ export default function MapTab({ party, campaign, addLog, worldState, setWorldSt
                     if (enc.encountered) {
                       setLastEncounter(enc);
                       setHexTravelLog(prev => [...prev, { time: `Day ${newDay}`, text: enc.description, type: 'encounter' }]);
-                      addLog?.(enc.description, 'combat');
+                      addLog?.(enc.description, 'danger');
                     }
 
                     setWorldState(prev => ({ ...prev, currentDay: newDay, currentWeather: w }));
@@ -614,22 +813,51 @@ export default function MapTab({ party, campaign, addLog, worldState, setWorldSt
                 </button>
               )}
 
-              {/* Survival Actions */}
+              {/* Survival Actions — Bug #66: disabled while inside a settlement */}
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px', marginBottom: '8px' }}>
-                <button style={styles.btn} onClick={handleForage} disabled={party.length === 0}>
+                <button
+                  style={{
+                    ...styles.btn,
+                    opacity: isGated ? 0.45 : 1,
+                    cursor: isGated ? 'not-allowed' : 'pointer',
+                  }}
+                  onClick={handleForage}
+                  disabled={party.length === 0 || isGated}
+                  title={isGated ? `Leave ${settlementGate.locationName} first.` : undefined}
+                >
                   Forage
                 </button>
-                <button style={styles.btn} onClick={handleHunt} disabled={party.length === 0}>
+                <button
+                  style={{
+                    ...styles.btn,
+                    opacity: isGated ? 0.45 : 1,
+                    cursor: isGated ? 'not-allowed' : 'pointer',
+                  }}
+                  onClick={handleHunt}
+                  disabled={party.length === 0 || isGated}
+                  title={isGated ? `Leave ${settlementGate.locationName} first.` : undefined}
+                >
                   Hunt
                 </button>
-                <button style={styles.btn} onClick={handleFindWater} disabled={party.length === 0}>
+                <button
+                  style={{
+                    ...styles.btn,
+                    opacity: isGated ? 0.45 : 1,
+                    cursor: isGated ? 'not-allowed' : 'pointer',
+                  }}
+                  onClick={handleFindWater}
+                  disabled={party.length === 0 || isGated}
+                  title={isGated ? `Leave ${settlementGate.locationName} first.` : undefined}
+                >
                   Find Water
                 </button>
               </div>
 
               {/* Movement hint */}
               <div style={{ fontSize: '10px', color: '#8b949e', marginBottom: '8px' }}>
-                Click an adjacent hex on the map to move the party.
+                {isGated
+                  ? `Inside ${settlementGate.locationName}. Leave town (Adventure tab) to resume hex travel.`
+                  : 'Click an adjacent hex on the map to move the party.'}
               </div>
 
               {/* Travel Log */}
@@ -648,8 +876,6 @@ export default function MapTab({ party, campaign, addLog, worldState, setWorldSt
                   </div>
                 </div>
               )}
-            </>
-          )}
         </div>
 
         {/* Selected hex info */}
@@ -738,6 +964,20 @@ export default function MapTab({ party, campaign, addLog, worldState, setWorldSt
               <div style={{ fontSize: '10px', color: '#40c0ff', marginTop: '2px' }}>
                 Services: {selectedLocation.services.join(', ')}
               </div>
+            )}
+            {onOpenJournalLocation && (
+              <button
+                type="button"
+                onClick={() => onOpenJournalLocation(locationSlug(selectedLocation.name))}
+                style={{
+                  marginTop: 8, padding: '4px 10px', fontSize: 11, cursor: 'pointer',
+                  background: '#1a2a4a', color: '#ffd700',
+                  border: '1px solid #4a3818', borderRadius: 3,
+                }}
+                title="Open this place's journal entry"
+              >
+                📓 Open in journal
+              </button>
             )}
           </div>
         )}

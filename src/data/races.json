@@ -3,8 +3,7 @@
     "name": "Aasimar",
     "bonuses": {
       "WIS": 2,
-      "CHA": 2,
-      "CON": -2
+      "CHA": 2
     },
     "speed": 30,
     "size": "Medium",
@@ -24,8 +23,8 @@
     "name": "Catfolk",
     "bonuses": {
       "DEX": 2,
-      "WIS": 2,
-      "INT": -2
+      "CHA": 2,
+      "WIS": -2
     },
     "speed": 30,
     "size": "Medium",
@@ -64,7 +63,7 @@
   {
     "name": "Dhampir",
     "bonuses": {
-      "STR": 2,
+      "DEX": 2,
       "CHA": 2,
       "CON": -2
     },
@@ -84,7 +83,7 @@
   {
     "name": "Duergar",
     "bonuses": {
-      "STR": 2,
+      "CON": 2,
       "WIS": 2,
       "CHA": -4
     },
@@ -115,12 +114,20 @@
     "traits": [
       "Darkvision 60ft",
       "Defensive Training (+4 AC vs Giants)",
+      "Greed (+2 Appraise for precious metals/gems)",
       "Hardy (+2 vs poison/spells)",
-      "Stability (+4 CMD vs bull rush/trip)"
+      "Hatred (+1 attack vs orcs/goblinoids)",
+      "Slow and Steady (speed not reduced by armor/encumbrance)",
+      "Stability (+4 CMD vs bull rush/trip)",
+      "Stonecunning (+2 Perception to notice stonework)",
+      "Weapon Familiarity (battleaxe, heavy pick, warhammer, dwarven waraxe, dwarven urgrosh, + dwarven weapons)"
     ],
     "languages": [
       "Common",
       "Dwarven"
+    ],
+    "bonusLanguages": [
+      "Giant", "Gnome", "Goblin", "Orc", "Terran", "Undercommon"
     ]
   },
   {
@@ -133,20 +140,25 @@
     "speed": 30,
     "size": "Medium",
     "traits": [
-      "Elven Immunities",
+      "Elven Immunities (immune to sleep, +2 vs enchantment)",
+      "Elven Magic (+2 to overcome spell resistance)",
       "Keen Senses (+2 Perception)",
-      "Low-Light Vision"
+      "Low-Light Vision",
+      "Weapon Familiarity (longbow, longsword, rapier, shortbow, + elven weapons)"
     ],
     "languages": [
       "Common",
       "Elven"
+    ],
+    "bonusLanguages": [
+      "Celestial", "Draconic", "Gnoll", "Gnome", "Goblin", "Orc", "Sylvan"
     ]
   },
   {
     "name": "Fetchling",
     "bonuses": {
       "DEX": 2,
-      "INT": 2,
+      "CHA": 2,
       "WIS": -2
     },
     "speed": 30,
@@ -174,22 +186,29 @@
     "size": "Small",
     "traits": [
       "Defensive Training (+4 AC vs Giants)",
-      "Gnome Magic",
+      "Gnome Magic (+1 DC illusion spells; SLA: dancing lights, ghost sound, prestidigitation, speak with animals 1/day if CHA ≥ 11)",
+      "Hatred (+1 attack vs reptilian humanoids/goblinoids)",
+      "Illusion Resistance (+2 saves vs illusions)",
       "Keen Senses (+2 Perception)",
       "Low-Light Vision",
-      "Obsessive (+2 to one Craft/Profession)"
+      "Obsessive (+2 to one Craft/Profession)",
+      "Weapon Familiarity (gnome hooked hammer, + gnome weapons)"
     ],
     "languages": [
       "Common",
       "Gnome",
       "Sylvan"
+    ],
+    "bonusLanguages": [
+      "Draconic", "Dwarven", "Elven", "Giant", "Goblin", "Orc"
     ]
   },
   {
     "name": "Goblin",
     "bonuses": {
-      "DEX": 2,
-      "STR": -2
+      "DEX": 4,
+      "STR": -2,
+      "CHA": -2
     },
     "speed": 30,
     "size": "Small",
@@ -215,7 +234,7 @@
     "traits": [
       "Adaptability (Skill Focus)",
       "Elf Blood",
-      "Elven Immunities",
+      "Elven Immunities (immune to sleep, +2 vs enchantment)",
       "Keen Senses (+2 Perception)",
       "Low-Light Vision",
       "Multitalented (2 favored classes)"
@@ -223,6 +242,9 @@
     "languages": [
       "Common",
       "Elven"
+    ],
+    "bonusLanguages": [
+      "any"
     ]
   },
   {
@@ -236,11 +258,15 @@
       "Darkvision 60ft",
       "Intimidating (+2 Intimidate)",
       "Orc Blood",
-      "Orc Ferocity (1/day fight at 0 HP)"
+      "Orc Ferocity (1/day fight at 0 HP)",
+      "Weapon Familiarity (greataxe, falchion, + orc weapons)"
     ],
     "languages": [
       "Common",
       "Orc"
+    ],
+    "bonusLanguages": [
+      "Abyssal", "Draconic", "Giant", "Gnoll", "Goblin"
     ]
   },
   {
@@ -256,11 +282,15 @@
       "Fearless (+2 vs fear)",
       "Halfling Luck (+1 all saves)",
       "Keen Senses (+2 Perception)",
-      "Sure-Footed (+2 Acrobatics/Climb)"
+      "Sure-Footed (+2 Acrobatics/Climb)",
+      "Weapon Familiarity (sling, + halfling weapons)"
     ],
     "languages": [
       "Common",
       "Halfling"
+    ],
+    "bonusLanguages": [
+      "Dwarven", "Elven", "Gnome", "Goblin"
     ]
   },
   {
@@ -276,12 +306,16 @@
     ],
     "languages": [
       "Common"
+    ],
+    "bonusLanguages": [
+      "any"
     ]
   },
   {
     "name": "Ifrit",
     "bonuses": {
       "DEX": 2,
+      "CHA": 2,
       "WIS": -2
     },
     "speed": 30,
@@ -322,9 +356,9 @@
   {
     "name": "Kobold",
     "bonuses": {
-      "STR": -2,
-      "CON": -2,
-      "CHA": 2
+      "DEX": 2,
+      "STR": -4,
+      "CON": -2
     },
     "speed": 30,
     "size": "Small",
@@ -344,7 +378,8 @@
     "name": "Nagaji",
     "bonuses": {
       "STR": 2,
-      "CHA": -2
+      "CHA": 2,
+      "INT": -2
     },
     "speed": 30,
     "size": "Medium",
@@ -363,7 +398,7 @@
   {
     "name": "Orc",
     "bonuses": {
-      "STR": 2,
+      "STR": 4,
       "INT": -2,
       "WIS": -2,
       "CHA": -2
@@ -407,7 +442,7 @@
     "name": "Ratfolk",
     "bonuses": {
       "DEX": 2,
-      "CON": 2,
+      "INT": 2,
       "STR": -2
     },
     "speed": 20,
@@ -427,6 +462,7 @@
   {
     "name": "Svirfneblin",
     "bonuses": {
+      "STR": -2,
       "DEX": 2,
       "WIS": 2,
       "CHA": -4
@@ -512,8 +548,8 @@
   {
     "name": "Undine",
     "bonuses": {
+      "DEX": 2,
       "WIS": 2,
-      "CHA": 2,
       "STR": -2
     },
     "speed": 30,
@@ -535,7 +571,7 @@
     "bonuses": {
       "DEX": 2,
       "INT": 2,
-      "CON": -2
+      "WIS": -2
     },
     "speed": 20,
     "size": "Small",
@@ -544,7 +580,7 @@
       "Shadow Resistance (race bonus to saves)",
       "Light Sensitivity",
       "Spell-Like Ability (shadow puppet 1/day)",
-      "Weapon Familiarity"
+      "Weapon Familiarity (wayang weapons)"
     ],
     "languages": [
       "Common",

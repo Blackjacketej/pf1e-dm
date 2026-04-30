@@ -31,11 +31,13 @@ export function getEncumbranceLevel(totalWeight, str) {
 }
 
 // Encumbrance effects
-export function getEncumbranceEffects(level) {
+// PF1e CRB: Dwarves have "Slow and Steady" — their speed is never modified by armor or encumbrance
+export function getEncumbranceEffects(level, raceName) {
+  const isDwarf = raceName && (raceName === 'Dwarf' || raceName === 'Duergar');
   switch (level) {
     case 'light': return { maxDex: 99, checkPenalty: 0, speedMult: 1, runMult: 4 };
-    case 'medium': return { maxDex: 3, checkPenalty: -3, speedMult: 0.75, runMult: 4 };
-    case 'heavy': return { maxDex: 1, checkPenalty: -6, speedMult: 0.75, runMult: 3 };
+    case 'medium': return { maxDex: 3, checkPenalty: -3, speedMult: isDwarf ? 1 : 0.75, runMult: 4 };
+    case 'heavy': return { maxDex: 1, checkPenalty: -6, speedMult: isDwarf ? 1 : 0.75, runMult: 3 };
     case 'overloaded': return { maxDex: 0, checkPenalty: -6, speedMult: 0, runMult: 0 };
     default: return { maxDex: 99, checkPenalty: 0, speedMult: 1, runMult: 4 };
   }
@@ -60,7 +62,7 @@ export const EQUIPMENT_SLOTS = [
 ];
 
 // ===== AC CALCULATION =====
-export function calcFullAC(char, armorData, shieldData) {
+export function calcFullAC(char, armorData, shieldData, enemyTypes = []) {
   const dexMod = mod(char.abilities?.DEX || 10);
   const armor = armorData || { ac: 0, maxDex: 99 };
   const shield = shieldData || { ac: 0 };
@@ -76,7 +78,17 @@ export function calcFullAC(char, armorData, shieldData) {
   // Monk/similar WIS to AC
   const wisBonus = char.class === 'Monk' ? Math.max(0, mod(char.abilities?.WIS || 10)) : 0;
 
-  const total = 10 + (armor.ac || 0) + (shield.ac || 0) + effectiveDex + sizeBonus + naturalArmor + deflection + dodge + wisBonus + misc;
+  // Racial Defensive Training (e.g., Dwarf +4 dodge AC vs Giants)
+  let defensiveTrainingBonus = 0;
+  const dt = char.racialCombatBonuses?.defensiveTraining;
+  if (dt && enemyTypes.length > 0) {
+    const enemyLower = enemyTypes.map(t => t.toLowerCase());
+    if (dt.vsTypes.some(vt => enemyLower.includes(vt))) {
+      defensiveTrainingBonus = dt.acBonus;
+    }
+  }
+
+  const total = 10 + (armor.ac || 0) + (shield.ac || 0) + effectiveDex + sizeBonus + naturalArmor + deflection + dodge + wisBonus + misc + defensiveTrainingBonus;
 
   return {
     total,
@@ -90,7 +102,8 @@ export function calcFullAC(char, armorData, shieldData) {
     dodge,
     wisdom: wisBonus,
     misc,
-    touch: 10 + effectiveDex + sizeBonus + deflection + dodge + wisBonus + misc,
+    defensiveTraining: defensiveTrainingBonus,
+    touch: 10 + effectiveDex + sizeBonus + deflection + dodge + wisBonus + misc + defensiveTrainingBonus,
     flatFooted: total - effectiveDex - dodge,
   };
 }
@@ -167,18 +180,28 @@ export function getStartingGold(className) {
 }
 
 // ===== TOTAL WEIGHT =====
+// Bug #52: weight fields in the project are a mix of numbers (weapons.json,
+// some gear.json) and strings like "2 lbs." / "1 lb." (equipment.json, most
+// gear.json). Coerce to number before arithmetic or the running total ends
+// up as a string like "02 lbs." via implicit concatenation.
+function toPounds(raw) {
+  if (raw == null) return 0;
+  if (typeof raw === 'number' && Number.isFinite(raw)) return raw;
+  const m = String(raw).match(/([\d.]+)/);
+  return m ? parseFloat(m[1]) : 0;
+}
 export function calcTotalWeight(char) {
   let total = 0;
   // Equipped items
   if (char.equipped) {
     Object.values(char.equipped).forEach(item => {
-      if (item?.weight) total += item.weight;
+      total += toPounds(item?.weight);
     });
   }
   // Backpack contents
   if (char.inventory) {
     char.inventory.forEach(item => {
-      total += (item.weight || 0) * (item.quantity || 1);
+      total += toPounds(item.weight) * (item.quantity || 1);
     });
   }
   return Math.round(total * 10) / 10;

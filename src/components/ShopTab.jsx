@@ -12,6 +12,16 @@ import {
 } from '../services/tavernService';
 import advancedService from '../services/advancedService';
 import gameEvents from '../services/gameEventEngine';
+import { computeAppraiseMetadata } from '../utils/appraiseMetadata';
+import {
+  getMerchantAttitude,
+  applyMerchantAttitude,
+  attitudeBonus as attitudeBonusFor,
+  refusesService,
+} from '../services/merchantSkills';
+import { resolveIntimidateInfluence } from '../utils/rulesEngine';
+import { getCharacterSkillTotal } from '../utils/characterSkills';
+import { getEffectiveMaxHP } from '../utils/familiarEngine';
 
 const TIER_COLORS = { mundane: '#8b949e', minor: '#7b68ee', medium: '#ffa500', major: '#ff4444' };
 const TIER_LABELS = { mundane: '', minor: 'Minor Magic', medium: 'Medium Magic', major: 'Major Magic' };
@@ -55,6 +65,7 @@ export default function ShopTab({ party, setParty, addLog, combat, campaign, wor
   const [restResult, setRestResult] = useState(null);
   const [bargainMode, setBargainMode] = useState(false);
   const [bargainResult, setBargainResult] = useState(null);
+  const [intimidateResult, setIntimidateResult] = useState(null);
 
   const char = party.find(c => c.id === charId);
 
@@ -143,7 +154,7 @@ export default function ShopTab({ party, setParty, addLog, combat, campaign, wor
       if (c.id !== charId) return c;
       return { ...c, gold: (c.gold || 0) - service.cost };
     }));
-    addLog(`${merchantName} casts ${service.name} on ${char.name} for ${service.cost} gp. ${service.description}`, 'healing');
+    addLog(`${merchantName} casts ${service.name} on ${char.name} for ${service.cost} gp. ${service.description}`, 'heal');
   }, [char, charId, shopData, setParty, addLog]);
 
   const handleSell = useCallback((item, idx) => {
@@ -168,43 +179,142 @@ export default function ShopTab({ party, setParty, addLog, combat, campaign, wor
     addLog(`${char.name} sold ${item.name} to ${merchantName} for ${sellPrice} gp.`, 'loot');
   }, [char, charId, shopData, settlement, setParty, addLog]);
 
+  // Synchronous merchant attitude lookup from worldState. Returns
+  // 'indifferent' when no record exists. Computed via useMemo so the
+  // haggle/bargain/intimidate handlers see a consistent value across a
+  // single render.
+  const merchantAttitudeInfo = useMemo(() => {
+    if (!activeSettlementId || !merchantId) return null;
+    return getMerchantAttitude(worldState, activeSettlementId, merchantId);
+  }, [worldState, activeSettlementId, merchantId]);
+  const merchantAttitude = merchantAttitudeInfo?.attitude || 'indifferent';
+
   const handleHaggle = useCallback((item) => {
-    const dipVal = char?.skills?.diplomacy || 0;
-    const bluffVal = char?.skills?.bluff || 0;
+    // Pull real skill totals from skillRanks + ability mod + class bonus.
+    // Characters store ranks in skillRanks['Diplomacy'], not a 'skills'
+    // field — the old `char.skills.diplomacy` read was always 0.
+    const dipVal = getCharacterSkillTotal(char, 'Diplomacy');
+    const bluffVal = getCharacterSkillTotal(char, 'Bluff');
     const mods = settlement?.modifiers || {};
     const dipTotal = dipVal + (mods.society || 0);
     const bluffTotal = bluffVal + (mods.corruption || 0);
     const useBluff = bluffTotal > dipTotal;
     const skillMod = useBluff ? bluffVal : dipVal;
     const skillName = useBluff ? 'Bluff' : 'Diplomacy';
-    const result = resolveHaggle(skillMod, item.shopPrice || item.price, mods, useBluff ? 'bluff' : 'diplomacy');
+    // Pass the full merchant object (for opposed skill DC) and the
+    // current attitude (for ±bonus + baseline markup/discount).
+    const result = resolveHaggle(
+      skillMod,
+      item.shopPrice || item.price,
+      mods,
+      useBluff ? 'bluff' : 'diplomacy',
+      shopData?.merchant,
+      merchantAttitude,
+    );
     setHaggleResult({ ...result, item, skillName });
     const bonusParts = [`d20: ${result.roll}`, `${skillName}: ${result.skillMod >= 0 ? '+' : ''}${result.skillMod}`];
     if (result.settlementBonus !== 0) bonusParts.push(`${useBluff ? 'Corruption' : 'Society'}: ${result.settlementBonus >= 0 ? '+' : ''}${result.settlementBonus}`);
+    if (result.attitudeBonus) bonusParts.push(`${merchantAttitude}: ${result.attitudeBonus >= 0 ? '+' : ''}${result.attitudeBonus}`);
+    if (result.merchantOpposed) bonusParts.push(`${result.merchantOpposedLabel || 'opposed'}`);
     const breakdown = bonusParts.join(', ');
-    if (result.success) {
-      addLog(`${char.name} haggles (${skillName}): ${breakdown} = ${result.total} vs DC ${result.dc}. ${result.message} (${result.saved} gp saved)`, 'system');
+    if (result.refused) {
+      addLog(`${char.name} tries to haggle with ${shopData?.merchant?.npc || 'the merchant'} — they're hostile and refuse to negotiate.`, 'danger');
+    } else if (result.success) {
+      addLog(`${char.name} haggles (${skillName}): ${breakdown} = ${result.total} vs DC ${result.dc}. ${result.message} (${result.saved} gp saved)`, 'success');
     } else {
       addLog(`${char.name} haggles (${skillName}): ${breakdown} = ${result.total} vs DC ${result.dc}. ${result.message}`, 'danger');
     }
-  }, [char, settlement, addLog]);
+  }, [char, settlement, addLog, shopData, merchantAttitude]);
 
   const handleBargain = useCallback((item) => {
     if (!char || !bargainMode) return;
     const price = item.shopPrice || item.price;
-    const result = advancedService.attemptBargain(char, price, 'Diplomacy', 5);
+    // Pass the full merchant object (so attemptBargain derives ½-Diplomacy
+    // as the opposed skill) AND the current attitude (so Friendly/Helpful
+    // discounts and Unfriendly markups apply here the same way they do
+    // in Haggle). attemptBargain itself short-circuits hostile attitudes
+    // via refusesService, so there's no separate pre-check here.
+    const result = advancedService.attemptBargain(
+      char,
+      price,
+      'Diplomacy',
+      shopData?.merchant || 5,
+      merchantAttitude,
+    );
     setBargainResult({ ...result, item });
-    const breakdown = `d20: ${result.roll} + Diplomacy: ${char.skills?.diplomacy || 0} = ${result.total} vs DC ${result.dc}`;
+
+    // Refused (hostile) returns roll/total/dc as null, so format the log
+    // line differently — printing "d20: null vs DC null" would be ugly.
+    if (result.refused) {
+      const merchantName = shopData?.merchant?.npc || 'the merchant';
+      addLog(`${char.name} can't bargain with ${merchantName} — they're hostile and refuse to negotiate.`, 'danger');
+      return;
+    }
+
+    const dipTotal = getCharacterSkillTotal(char, 'Diplomacy');
+    const attPart = result.attitudeBonus ? `, ${merchantAttitude}: ${result.attitudeBonus >= 0 ? '+' : ''}${result.attitudeBonus}` : '';
+    const breakdown = `d20: ${result.roll} + Diplomacy: +${dipTotal}${attPart} = ${result.total} vs DC ${result.dc}`;
     if (result.success) {
-      addLog(`${char.name} bargains: ${breakdown}. ${result.description}`, 'system');
+      addLog(`${char.name} bargains: ${breakdown}. ${result.description}`, 'success');
     } else {
       addLog(`${char.name} bargains: ${breakdown}. ${result.description}`, 'danger');
     }
-  }, [char, bargainMode, addLog]);
+  }, [char, bargainMode, addLog, shopData, merchantAttitude]);
+
+  // Intimidate path (CRB p.99 "Change Attitude" use of Intimidate). Full
+  // minute of interaction, DC = 10 + target HD + target Wis mod. Success:
+  // merchant is *temporarily* friendly for 1d6×10 minutes — better
+  // prices right now — but afterward their attitude drops to Unfriendly
+  // (they remember being coerced). Failure: immediate shift to Unfriendly
+  // for the rest of the visit.
+  const handleIntimidate = useCallback(() => {
+    if (!char || !shopData?.merchant) return;
+    if (refusesService(merchantAttitude)) {
+      addLog(`${char.name} threatens ${shopData.merchant.npc} — they're already hostile and summon the town guard.`, 'danger');
+      return;
+    }
+    // getCharacterSkillTotal already folds in ranks + Cha mod + class
+    // skill bonus + feats. Do NOT add Cha again (that would double-count).
+    const intimidateTotal_bonus = getCharacterSkillTotal(char, 'Intimidate');
+    const d20 = 1 + Math.floor(Math.random() * 20);
+    const intimidateTotal = d20 + intimidateTotal_bonus;
+    // Approximate merchant "target" for the rules function. Non-combatant
+    // merchants are treated as 1-HD NPCs with WIS 12. Heroic NPCs
+    // (shopData.merchant.hd) override this; guard nullish fields so a
+    // merchant with `wisdom: 0` (not expected but possible) still reads
+    // as 12 rather than as ability score 0.
+    const mHd = typeof shopData.merchant.hd === 'number' ? shopData.merchant.hd : null;
+    const mLevel = typeof shopData.merchant.level === 'number' ? shopData.merchant.level : null;
+    const mWis = typeof shopData.merchant.wisdom === 'number' ? shopData.merchant.wisdom : 12;
+    const target = {
+      hd: mHd ?? mLevel ?? 1,
+      level: mLevel ?? mHd ?? 1,
+      abilities: { WIS: mWis },
+    };
+    const result = resolveIntimidateInfluence(intimidateTotal, target);
+    setIntimidateResult({ ...result, intimidateTotal });
+    const breakdown = `d20(${d20}) + Intimidate(+${intimidateTotal_bonus}) = ${intimidateTotal}`;
+    if (result.success) {
+      // Temporary friendly shift (1d6 × 10 min simulated as an in-game
+      // timer); afterward the record reverts to 'unfriendly'.
+      const durationMinutes = (1 + Math.floor(Math.random() * 6)) * 10;
+      applyMerchantAttitude(setWorldState, activeSettlementId, merchantId, 'friendly', {
+        durationMs: durationMinutes * 60 * 1000,
+        revertTo: 'unfriendly',
+        reason: `Intimidated by ${char.name} (${breakdown} vs DC ${result.dc})`,
+      });
+      addLog(`${char.name} intimidates ${shopData.merchant.npc}: ${breakdown} vs DC ${result.dc} — success. They'll cooperate for ${durationMinutes} min, but afterward they'll remember and turn unfriendly.`, 'success');
+    } else {
+      applyMerchantAttitude(setWorldState, activeSettlementId, merchantId, 'unfriendly', {
+        reason: `Failed intimidation by ${char.name} (${breakdown} vs DC ${result.dc})`,
+      });
+      addLog(`${char.name} fails to intimidate ${shopData.merchant.npc}: ${breakdown} vs DC ${result.dc}. They're now unfriendly.`, 'danger');
+    }
+  }, [char, shopData, merchantAttitude, setWorldState, activeSettlementId, merchantId, addLog]);
 
   const handleRefreshInventory = useCallback(() => {
     setInventorySeed(prev => prev + 1);
-    addLog(`A new week passes... merchants restock their wares.`, 'system');
+    addLog(`A new week passes... merchants restock their wares.`, 'narration');
   }, [addLog]);
 
   // Tavern purchases
@@ -218,7 +328,7 @@ export default function ShopTab({ party, setParty, addLog, combat, campaign, wor
       if (c.id !== charId) return c;
       return { ...c, gold: Math.round(((c.gold || 0) - price) * 100) / 100 };
     }));
-    addLog(`${char.name} purchases ${itemName} for ${formatGold(price)}. ${description || ''}`, 'system');
+    addLog(`${char.name} purchases ${itemName} for ${formatGold(price)}. ${description || ''}`, 'loot');
   }, [char, charId, setParty, addLog]);
 
   const totalWeight = (char?.inventory || []).reduce((s, i) => s + (i.weight || 0) * (i.quantity || 1), 0);
@@ -501,6 +611,12 @@ export default function ShopTab({ party, setParty, addLog, combat, campaign, wor
                 onClick={() => setBargainMode(!bargainMode)}>
                 {bargainMode ? 'Haggling Enabled' : 'Enable Haggling'}
               </button>
+              <button
+                style={{ ...sty.refreshBtn, marginLeft: '6px', borderColor: '#c44', color: '#ff6b6b' }}
+                onClick={handleIntimidate}
+                title="Intimidate the merchant (CRB p.99). Success: temporarily friendly; failure: they become unfriendly.">
+                Intimidate
+              </button>
               <button style={{ ...sty.refreshBtn, marginLeft: '6px' }} onClick={handleRefreshInventory}>Restock (New Week)</button>
               {services.length > 0 && (
                 <button style={{ ...sty.refreshBtn, marginLeft: '6px', borderColor: '#7b68ee', color: '#7b68ee' }}
@@ -515,6 +631,16 @@ export default function ShopTab({ party, setParty, addLog, combat, campaign, wor
             <span style={{ color: '#ffa500' }}>Max Item: {maxShopValue} gp</span>
             <span style={{ color: '#8b949e' }}>Buy Limit: {purchaseLimit} gp</span>
             <span style={{ color: '#7b68ee' }}>Magic: {magicItemCounts.minor}m {magicItemCounts.medium}M {magicItemCounts.major}L</span>
+            <span style={{
+              color: merchantAttitude === 'hostile' ? '#ff4444'
+                : merchantAttitude === 'unfriendly' ? '#ff8844'
+                : merchantAttitude === 'friendly' ? '#7fff00'
+                : merchantAttitude === 'helpful' ? '#ffd700'
+                : '#8b949e',
+              fontWeight: 'bold', textTransform: 'capitalize'
+            }} title={merchantAttitudeInfo?.reason || 'Merchant attitude affects haggle, markup, and service'}>
+              Attitude: {merchantAttitude}{attitudeBonusFor(merchantAttitude) !== 0 ? ` (${attitudeBonusFor(merchantAttitude) >= 0 ? '+' : ''}${attitudeBonusFor(merchantAttitude)})` : ''}
+            </span>
             <span style={{ color: '#8b949e' }}>{filtered.length} items shown</span>
           </div>
         </div>
@@ -574,18 +700,51 @@ export default function ShopTab({ party, setParty, addLog, combat, campaign, wor
               <span style={{ color: '#ffd700' }}>{char?.gold || 0} gp</span>
               <span style={{ color: '#8b949e' }}>{totalWeight.toFixed(1)} lbs</span>
             </div>
+            {intimidateResult && (
+              <div style={{ padding: '6px', marginBottom: '6px', borderRadius: '4px', fontSize: '11px',
+                backgroundColor: intimidateResult.success ? '#2a1a1a' : '#2a1a1a',
+                border: `1px solid ${intimidateResult.success ? '#c44' : '#a44'}`,
+                color: intimidateResult.success ? '#ffb86b' : '#ff6b6b' }}>
+                <div style={{ fontWeight: 'bold' }}>{intimidateResult.success ? 'Intimidation Worked' : 'Intimidation Failed'}</div>
+                <div style={{ fontSize: '10px', marginTop: '3px' }}>
+                  Intimidate {intimidateResult.intimidateTotal} vs DC {intimidateResult.dc}
+                </div>
+                {intimidateResult.success && (
+                  <div style={{ fontSize: '10px', marginTop: '2px', color: '#d4a574' }}>
+                    Merchant is temporarily friendly. After the duration they'll remember and turn unfriendly.
+                  </div>
+                )}
+                {!intimidateResult.success && (
+                  <div style={{ fontSize: '10px', marginTop: '2px', color: '#8b949e' }}>
+                    Merchant is now unfriendly — haggling will be harder.
+                  </div>
+                )}
+                <button style={{ background: 'none', border: 'none', color: '#555', cursor: 'pointer', fontSize: '10px', marginTop: '4px', paddingLeft: 0 }}
+                  onClick={() => setIntimidateResult(null)}>dismiss</button>
+              </div>
+            )}
             {bargainResult && (
               <div style={{ padding: '6px', marginBottom: '6px', borderRadius: '4px', fontSize: '11px',
-                backgroundColor: bargainResult.success ? '#1a2a1a' : '#2a1a1a',
-                border: `1px solid ${bargainResult.success ? '#4a8' : '#a44'}`,
-                color: bargainResult.success ? '#7fff00' : '#ff6b6b' }}>
-                <div style={{ fontWeight: 'bold' }}>{bargainResult.success ? 'Bargain Success!' : 'Bargain Failed'}</div>
-                <div style={{ fontSize: '10px', marginTop: '3px' }}>
-                  d20: {bargainResult.roll} + Diplomacy: {char?.skills?.diplomacy || 0} = {bargainResult.total} vs DC {bargainResult.dc}
+                backgroundColor: bargainResult.refused ? '#2a1a1a' : (bargainResult.success ? '#1a2a1a' : '#2a1a1a'),
+                border: `1px solid ${bargainResult.refused ? '#a44' : (bargainResult.success ? '#4a8' : '#a44')}`,
+                color: bargainResult.refused ? '#ff6b6b' : (bargainResult.success ? '#7fff00' : '#ff6b6b') }}>
+                <div style={{ fontWeight: 'bold' }}>
+                  {bargainResult.refused ? 'Merchant Refuses' : (bargainResult.success ? 'Bargain Success!' : 'Bargain Failed')}
                 </div>
-                <div style={{ fontSize: '10px', marginTop: '2px' }}>
-                  Discount: {bargainResult.discount} • Saved: {bargainResult.savings} gp
-                </div>
+                {!bargainResult.refused && (
+                  <div style={{ fontSize: '10px', marginTop: '3px' }}>
+                    d20: {bargainResult.roll} + Diplomacy: +{getCharacterSkillTotal(char, 'Diplomacy')} = {bargainResult.total} vs DC {bargainResult.dc}
+                  </div>
+                )}
+                {bargainResult.refused ? (
+                  <div style={{ fontSize: '10px', marginTop: '3px' }}>
+                    {bargainResult.description}
+                  </div>
+                ) : (
+                  <div style={{ fontSize: '10px', marginTop: '2px' }}>
+                    Discount: {bargainResult.discount}% • Saved: {bargainResult.savings} gp
+                  </div>
+                )}
                 {bargainResult.success && (
                   <div style={{ marginTop: '4px' }}>
                     Buy {bargainResult.item.name} for {bargainResult.newPrice} gp
@@ -608,12 +767,19 @@ export default function ShopTab({ party, setParty, addLog, combat, campaign, wor
                 backgroundColor: haggleResult.success ? '#1a2a1a' : '#2a1a1a',
                 border: `1px solid ${haggleResult.success ? '#4a8' : '#a44'}`,
                 color: haggleResult.success ? '#7fff00' : '#ff6b6b' }}>
-                <div style={{ fontWeight: 'bold' }}>{haggleResult.success ? 'Haggle Success!' : 'Haggle Failed'} ({haggleResult.skillName || 'Diplomacy'})</div>
+                <div style={{ fontWeight: 'bold' }}>
+                  {haggleResult.refused ? 'Merchant Refuses' : (haggleResult.success ? 'Haggle Success!' : 'Haggle Failed')} ({haggleResult.skillName || 'Diplomacy'})
+                </div>
                 <div>
                   d20: {haggleResult.roll} + {haggleResult.skillName || 'Skill'}: {haggleResult.skillMod || 0}
                   {haggleResult.settlementBonus !== 0 && <span> + {haggleResult.settlementBonus >= 0 ? '+' : ''}{haggleResult.settlementBonus} settlement</span>}
+                  {haggleResult.attitudeBonus !== 0 && <span> + {haggleResult.attitudeBonus >= 0 ? '+' : ''}{haggleResult.attitudeBonus} {haggleResult.attitude || 'attitude'}</span>}
                   {' '}= {haggleResult.total} vs DC {haggleResult.dc}
+                  {haggleResult.merchantOpposed ? ` (incl. ${haggleResult.merchantOpposedLabel})` : ''}
                 </div>
+                {haggleResult.message && !haggleResult.success && (
+                  <div style={{ fontSize: '10px', marginTop: '2px', opacity: 0.85 }}>{haggleResult.message}</div>
+                )}
                 {haggleResult.success && (
                   <div>
                     Buy {haggleResult.item.name} for {haggleResult.finalPrice} gp
@@ -635,18 +801,41 @@ export default function ShopTab({ party, setParty, addLog, combat, campaign, wor
               {(char?.inventory || []).length === 0 ? (
                 <div style={{ color: '#555', fontSize: '11px', textAlign: 'center', padding: '16px' }}>Empty</div>
               ) : (
-                (char?.inventory || []).map((item, idx) => (
-                  <div key={`${item.name}-${idx}`} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '4px 6px', borderBottom: '1px solid #1a1a2e', fontSize: '11px' }}>
-                    <div style={{ flex: 1, minWidth: 0 }}>
-                      <span style={{ color: '#d4c5a9' }}>{item.name}</span>
-                      {item.quantity > 1 && <span style={{ color: '#7b68ee', marginLeft: '3px' }}>x{item.quantity}</span>}
+                (char?.inventory || []).map((item, idx) => {
+                  // Appraise-derived true value + magic hint. Computed
+                  // statically (no roll noise) so the tooltip is stable
+                  // across renders. The player learns whether the merchant
+                  // is lowballing a masterwork/magical piece (CRB p.89-90:
+                  // Appraise tells you the true value, it does NOT give
+                  // you a discount).
+                  const meta = computeAppraiseMetadata(item);
+                  const trueValue = meta.actualValue || 0;
+                  const sellOffer = Math.floor((item.price || 0) / 2);
+                  const lowballed = trueValue > 0 && sellOffer > 0 && trueValue >= sellOffer * 3;
+                  let tooltip = `Sell for ${sellOffer} gp`;
+                  if (trueValue > 0) {
+                    tooltip += ` — ${char?.name || 'Your character'} estimates this is actually worth about ${trueValue.toLocaleString('en-US')} gp`;
+                  }
+                  if (meta.isMagic) {
+                    tooltip += ' (radiates magic)';
+                  }
+                  if (lowballed) {
+                    tooltip += ' — the merchant is lowballing you!';
+                  }
+                  return (
+                    <div key={`${item.name}-${idx}`} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '4px 6px', borderBottom: '1px solid #1a1a2e', fontSize: '11px' }}>
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <span style={{ color: '#d4c5a9' }}>{item.name}</span>
+                        {item.quantity > 1 && <span style={{ color: '#7b68ee', marginLeft: '3px' }}>x{item.quantity}</span>}
+                        {meta.isMagic && <span style={{ color: '#b8a0ff', marginLeft: '4px' }} title="Magical aura">✨</span>}
+                        {lowballed && <span style={{ color: '#ff6b6b', marginLeft: '4px' }} title={tooltip}>⚠</span>}
+                      </div>
+                      <button style={sty.sellBtn} onClick={() => handleSell(item, idx)} title={tooltip}>
+                        Sell
+                      </button>
                     </div>
-                    <button style={sty.sellBtn} onClick={() => handleSell(item, idx)}
-                      title={`Sell for ${Math.floor((item.price || 0) / 2)} gp`}>
-                      Sell
-                    </button>
-                  </div>
-                ))
+                  );
+                })
               )}
             </div>
           </div>
@@ -710,7 +899,7 @@ export default function ShopTab({ party, setParty, addLog, combat, campaign, wor
     if (visit.hasEvent) {
       addLog(`As you enter ${tav.name}, something catches your attention...`, 'narration');
     }
-    addLog(`${char?.name || 'The party'} enters ${tav.name}. ${visit.patronCount} patrons are here tonight.`, 'system');
+    addLog(`${char?.name || 'The party'} enters ${tav.name}. ${visit.patronCount} patrons are here tonight.`, 'narration');
   }, [taverns, activeSettlementId, settlement, inventorySeed, char, addLog]);
 
   const handleResolveEvent = useCallback(() => {
@@ -746,7 +935,7 @@ export default function ShopTab({ party, setParty, addLog, combat, campaign, wor
     }
     const result = gatherInformation(char, tav, activeSettlementId, chapter, settlement?.modifiers || {}, options);
     setGatherResult(result);
-    addLog(result.message, result.rumorsFound.length > 0 ? 'system' : 'danger');
+    addLog(result.message, result.rumorsFound.length > 0 ? 'success' : 'danger');
     result.rumorsFound.forEach(r => addLog(`Rumor: "${r.rumor}"`, 'narration'));
   }, [char, charId, selectedTavern, taverns, campaign, activeSettlementId, settlement, setParty, addLog, formatGold]);
 
@@ -770,7 +959,12 @@ export default function ShopTab({ party, setParty, addLog, combat, campaign, wor
       addLog(`${char?.name || 'You'} can't afford to wager ${stake} gp.`, 'danger');
       return;
     }
-    const method = (char.skills?.profession_gambler || 0) > (char.skills?.bluff || 0) ? 'profession_gambler' : 'bluff';
+    // Pick whichever of "Profession (gambler)" or "Bluff" gives a better
+    // total. Characters use skillRanks keyed by canonical labels; the old
+    // `char.skills?.profession_gambler` read returned undefined.
+    const professionGamblerTotal = getCharacterSkillTotal(char, 'Profession (gambler)');
+    const bluffTotal = getCharacterSkillTotal(char, 'Bluff');
+    const method = professionGamblerTotal > bluffTotal ? 'profession_gambler' : 'bluff';
     const result = gambleRound(char, stake, method);
     setGambleResult(result);
     setParty(prev => prev.map(c => c.id !== charId ? c : { ...c, gold: Math.max(0, Math.round(((c.gold || 0) + result.netGold) * 100) / 100) }));
@@ -785,8 +979,10 @@ export default function ShopTab({ party, setParty, addLog, combat, campaign, wor
     setParty(prev => prev.map(c => {
       if (c.id !== charId) return c;
       const result = calculateRest(c, roomQuality);
-      const newHP = Math.min(c.maxHP || c.currentHP, (c.currentHP || 0) + result.healing);
-      addLog(`${c.name} rests at ${tavernName} (${ROOM_LABELS[roomQuality] || roomQuality}). Heals ${result.healing} HP.${result.fatigued ? ' Poorly rested — fatigued next day.' : ''}${result.moraleBonus ? ` +${result.moraleBonus} morale bonus for ${result.moraleDuration}.` : ''}`, result.fatigued ? 'danger' : 'healing');
+      // Phase 7.6 — cap inn-rest healing at effective max (base + in-range familiar bonus)
+      const effMax = getEffectiveMaxHP(c, { worldState }) || c.currentHP;
+      const newHP = Math.min(effMax, (c.currentHP || 0) + result.healing);
+      addLog(`${c.name} rests at ${tavernName} (${ROOM_LABELS[roomQuality] || roomQuality}). Heals ${result.healing} HP.${result.fatigued ? ' Poorly rested — fatigued next day.' : ''}${result.moraleBonus ? ` +${result.moraleBonus} morale bonus for ${result.moraleDuration}.` : ''}`, result.fatigued ? 'danger' : 'heal');
       setRestResult(result);
       return { ...c, gold: Math.round(((c.gold || 0) - price) * 100) / 100, currentHP: newHP };
     }));
@@ -988,7 +1184,7 @@ export default function ShopTab({ party, setParty, addLog, combat, campaign, wor
               <div style={{ color: '#8b5cf6', fontWeight: 'bold', fontSize: '13px', marginBottom: '6px' }}>Gather Information</div>
               <div style={{ color: '#8b949e', fontSize: '10px', marginBottom: '8px' }}>
                 Spend time asking around. Diplomacy check modified by settlement Lore ({settlement?.modifiers?.lore >= 0 ? '+' : ''}{settlement?.modifiers?.lore || 0}).
-                {char?.skills?.diplomacy ? ` ${char.name}'s Diplomacy: +${char.skills.diplomacy}` : ''}
+                {char ? ` ${char.name}'s Diplomacy: +${getCharacterSkillTotal(char, 'Diplomacy')}` : ''}
               </div>
               <div style={{ display: 'flex', gap: '6px', marginBottom: '8px', flexWrap: 'wrap' }}>
                 <button style={sty.tavernBuyBtn(true)} onClick={() => handleGatherInfo({})}>Ask Around (free)</button>
@@ -1068,7 +1264,7 @@ export default function ShopTab({ party, setParty, addLog, combat, campaign, wor
               <div style={{ color: '#ffd700', fontWeight: 'bold', fontSize: '13px', marginBottom: '6px' }}>Gambling</div>
               <div style={{ color: '#8b949e', fontSize: '10px', marginBottom: '6px' }}>
                 Bluff or Profession (Gambler) vs opponents. Higher margin = bigger payout.
-                {char?.skills?.bluff ? ` Bluff: +${char.skills.bluff}` : ''}
+                {char ? ` Bluff: +${getCharacterSkillTotal(char, 'Bluff')}` : ''}
               </div>
               <div style={{ display: 'flex', gap: '6px', marginBottom: '6px', flexWrap: 'wrap' }}>
                 {[1, 5, 10, 25, 50].map(s => (
@@ -1097,7 +1293,7 @@ export default function ShopTab({ party, setParty, addLog, combat, campaign, wor
             <div style={{ marginBottom: '12px' }}>
               <div style={{ color: '#4a8', fontWeight: 'bold', fontSize: '13px', marginBottom: '6px' }}>Rest & Lodging</div>
               <div style={{ color: '#8b949e', fontSize: '10px', marginBottom: '6px' }}>
-                Room quality affects overnight healing. {char?.name}: {char?.currentHP}/{char?.maxHP} HP.
+                Room quality affects overnight healing. {char?.name}: {char?.currentHP}/{char ? getEffectiveMaxHP(char, { worldState }) : 0} HP.
               </div>
               {Object.entries(tavernVisit.rooms).map(([quality, info]) => {
                 const label = ROOM_LABELS[quality] || quality;

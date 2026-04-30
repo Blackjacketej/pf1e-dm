@@ -503,7 +503,15 @@ export function pixelToHex(px, py, hexSizePx) {
   if (dq > dr && dq > ds) rq = -rr - rs;
   else if (dr > ds) rr = -rq - rs;
   const col = rq;
-  const row = rr + Math.floor((rq + (rq & 1)) / 2);
+  // 2026-04-20 — pixelToHex was using the EVEN-Q axial→offset formula
+  // (`floor((q + (q & 1)) / 2)`), but `hexCenter` lays out hexes ODD-Q
+  // (odd cols pushed DOWN by h/2). The mismatch caused round-trip drift on
+  // every odd column: e.g. hex(7,3) rendered at the correct pixel but
+  // pixelToHex on that same pixel returned (7,4). Symptom: the party marker
+  // landing one row off from any settlement POI whose column index is odd.
+  // ODD-Q formula: row = r + (q - (q & 1)) / 2. q - (q & 1) is always even
+  // (even q minus 0, odd q minus 1), so no Math.floor is needed.
+  const row = rr + ((rq - (rq & 1)) / 2);
   return { col, row, key: `${col},${row}` };
 }
 

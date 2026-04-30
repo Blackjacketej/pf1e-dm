@@ -150,7 +150,7 @@ Write in an authoritative, encyclopedic tone matching the Pathfinder Bestiary st
       order: order.map(({ id, name }) => ({ id, name })),
       currentTurn: 0, enemies,
     });
-    addLog?.(`Custom encounter launched: ${encounterList.length} monsters`, 'system');
+    addLog?.(`Custom encounter launched: ${encounterList.length} monsters`, 'event');
     setEncounterList([]);
     // Combat panel opens automatically via setCombat
   };

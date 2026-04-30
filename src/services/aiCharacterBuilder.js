@@ -4,8 +4,11 @@
  */
 import { uid, mod, getMaxHP } from '../utils/dice';
 import { getStartingGold } from '../utils/character';
+import { validateFeatList } from '../utils/featPrereqs';
 import classesData from '../data/classes.json';
 import racesData from '../data/races.json';
+import featsData from '../data/feats.json';
+import traitsData from '../data/traits.json';
 
 const classesMap = {};
 classesData.forEach(c => { classesMap[c.name] = c; });
@@ -38,9 +41,23 @@ RULES:
 - Create a rich backstory (2-3 paragraphs) with personality traits, motivations, a key event, and a connection hook for adventuring.
 - Pick an alignment that fits the concept.
 
-GOLARION ETHNICITIES (for humans): Chelaxian (Cheliax — pale, dark hair, disciplined), Garundi (Osirion — dark skin, scholarly), Keleshite (Qadira — olive skin, traders), Kellid (Numeria — tanned, tribal warriors), Mwangi (Mwangi Expanse — dark skin, diverse cultures), Shoanti (Varisia Storval Plateau — bronze, tattooed warriors), Taldan (Taldor — fair, refined nobility), Tian (Tian Xia — East Asian, honor/martial arts), Ulfen (Linnorm Kings — fair/blond, Viking raiders), Varisian (Varisia — olive skin, nomadic storytellers), Vudrani (Vudra — brown skin, philosophical).
+GOLARION ETHNICITIES (for humans): Chelaxian (Cheliax — pale, dark hair, disciplined), Garundi (Osirion — dark skin, scholarly), Keleshite (Qadira — olive skin, traders), Kellid (Numeria — tanned, tribal warriors), Mwangi (Mwangi Expanse — dark skin, diverse cultures), Bonuwat (Shackles — dark skin, seafarers), Bekyar (Southern Mwangi — dark skin, jungle warriors), Zenj (Northern Mwangi — dark skin, tribal survivalists), Shoanti (Varisia Storval Plateau — bronze, tattooed warriors), Taldan (Taldor — fair, refined nobility), Tian (Tian Xia — East Asian, honor/martial arts), Ulfen (Linnorm Kings — fair/blond, Viking raiders), Varisian (Varisia — olive skin, nomadic storytellers), Vudrani (Vudra — brown skin, philosophical), Jadwiga (Irrisen — pale, Baba Yaga's bloodline), Varki (Crown of the World — dark, arctic hunters), Nidalese (Nidal — pale, shadow-touched), Azlanti (rare — tall, violet eyes, ancient blood).
 
-NON-HUMAN ORIGINS: Dwarves from Janderhoff/Highhelm/Kraggodan, Elves from Kyonin/Mierani Forest/Ekujae/Forlorn, Gnomes from Brastlewark/Wanderer, Half-Elves from Absalom/Varisia, Half-Orcs from Hold of Belkzen/Magnimar, Halflings from Cheliax/Andoran/Varisian Caravans.
+NON-HUMAN ORIGINS: Dwarves from Janderhoff/Highhelm/Kraggodan, Elves from Kyonin/Mierani Forest/Ekujae/Forlorn, Gnomes from Brastlewark/Wanderer, Half-Elves from Absalom/Varisia, Half-Orcs from Hold of Belkzen/Magnimar, Halflings from Cheliax/Andoran/Varisian Caravans, Aasimars from Absalom/Lastwall/Mendev, Tieflings from Cheliax/Worldwound/Nidal, Orcs from Hold of Belkzen/Urgir/Darklands, Goblins from Varisia/Isger, Kobolds from Darklands/Varisian Foothills, Catfolk from Southern Garund/Qadira, Kitsune from Tian Xia/Minkai, Tengu from Tian Xia/Absalom/Riddleport, Ratfolk from Darklands/Katapesh, Nagaji from Nagajor/Tian Xia, Changelings from Irrisen/Ustalav, Dhampirs from Ustalav/Geb/Nidal, Fetchlings from Shadow Plane/Nidal, Ifrits from Qadira/Katapesh, Oreads from Janderhoff/Five Kings Mountains, Sylphs from Varisia/Linnorm Kings, Undines from Absalom/Shackles, Duergar from Darklands/Hagegraf, Svirfneblin from Darklands/Nar-Voth, Wayangs from Shadow Plane/Tian Xia.
+
+HERITAGES/SUBRACES: Aasimar (Standard/Angelkin/Plumekith/Idyllkin/Musetouched/Emberkin), Tiefling (Standard/Pitborn/Hungerseed/Foulspawn/Spitespawn/Hellspawn), Human (Standard/Dual Talent/Heart of the Fields/Heart of the Streets/Heart of the Wilderness), Dwarf (Standard/Deep Delver/Giant Hunter/Lorekeeper), Elf (Standard/Drow-Blooded/Arctic Elf/Desert Runner/Woodlands Elf), Gnome (Standard/Pyromaniac/Fell Magic/Eternal Hope), Half-Elf (Standard/Ancestral Arms/Dual Minded/Water Child), Half-Orc (Standard/Shaman's Apprentice/Toothy/Sacred Tattoo), Halfling (Standard/Fleet of Foot/Warslinger/Underfoot), Changeling (Standard/Hulking/Green Widow/Sea Lungs/Dreamweaver), Dhampir (Standard/Jiang-Shi Born/Moroi Born/Nosferatu Born). These modify ability scores and racial traits.
+
+CHARACTER TRAITS: Each character selects 2 traits from DIFFERENT categories. Available traits by category:
+Combat: Reactionary, Armor Expert, Bullied, Courageous, Deft Dodger, Dirty Fighter, Fencer, Killer, Resilient, Anatomist.
+Magic: Magical Knack, Focused Mind, Hedge Magician, Magical Lineage, Magical Talent, Classically Schooled, Dangerously Curious, Mathematical Prodigy, Self-Taught Scholar.
+Social: Fast-Talker, Charming, Child of the Streets, Convincing Liar, Natural-Born Leader, Poverty-Stricken, Rich Parents, Suspicious, Talented.
+Faith: Birthmark, Devotee of the Green, Ease of Faith, History of Heresy, Indomitable Faith, Sacred Touch, Scholar of the Great Beyond, Undead Slayer, Veteran of Battle.
+Regional: Giant Slayer, Hagfish Hopeful, Merchant Family, Monster Hunter, Scholar of the Ancients, Student of Faith, Sandpoint Local, Sczarni Connection, Thassilonian Tattoo.
+Pick traits that fit the character concept and class. The 2 traits MUST be from different categories.
+
+DRAWBACKS (optional): A character may take one drawback to gain a 3rd trait (still from a different category). Available drawbacks:
+Attached, Avarice, Dependent, Doubt, Family Ties, Foul Brand, Haunted, Hedonistic, Loner, Meticulous, Paranoid, Power-Hungry, Provincial, Sentimental, Vain, Xenophobic, Zealous.
+If a drawback fits the character concept well, include it. Otherwise omit it (set to null). If a drawback is chosen, select 3 traits instead of 2.
 
 Respond with ONLY a JSON object (no markdown fences, no explanation) with these exact fields:
 {
@@ -48,6 +65,7 @@ Respond with ONLY a JSON object (no markdown fences, no explanation) with these 
   "race": "one of the available races",
   "class": "one of the available classes",
   "alignment": "e.g. Chaotic Good",
+  "heritage": "heritage/subrace name if applicable, or 'Standard [Race]'",
   "ethnicity": "for humans: one of the Golarion ethnicities; for others: race name",
   "origin": "homeland or settlement name from Golarion",
   "languages": ["Common", "other appropriate languages"],
@@ -66,6 +84,8 @@ Respond with ONLY a JSON object (no markdown fences, no explanation) with these 
   "backstory": "2-3 paragraph backstory that incorporates their ethnicity and homeland",
   "personality": "one-line personality summary",
   "appearance": "brief physical description reflecting their ethnicity",
+  "characterTraits": ["2 or 3 trait names from the CHARACTER TRAITS list, from different categories"],
+  "drawback": "drawback name or null (if chosen, select 3 traits instead of 2)",
   "inventory": ["gear item names"]
 }`;
 
@@ -170,6 +190,37 @@ export async function generateBackstory(char) {
   }
 }
 
+const VALID_TRAIT_NAMES = traitsData.map(t => t.name);
+
+/**
+ * Validate AI-selected character traits: must be real trait names from different categories.
+ * @param {string[]} traitNames - AI-generated trait names
+ * @param {boolean} hasDrawback - Whether a drawback was selected (allows 3 traits)
+ */
+function validateTraits(traitNames, hasDrawback = false) {
+  if (!Array.isArray(traitNames)) return [];
+  const maxTraits = hasDrawback ? 3 : 2;
+  const valid = [];
+  const usedCategories = new Set();
+  for (const name of traitNames) {
+    const trait = traitsData.find(t => t.name.toLowerCase() === (name || '').toLowerCase() && t.type !== 'drawback');
+    if (trait && !usedCategories.has(trait.type) && valid.length < maxTraits) {
+      valid.push(trait.name); // normalized name
+      usedCategories.add(trait.type);
+    }
+  }
+  return valid;
+}
+
+/**
+ * Validate AI-selected drawback: must be a real drawback name.
+ */
+function validateDrawback(drawbackName) {
+  if (!drawbackName) return '';
+  const drawback = traitsData.find(t => t.type === 'drawback' && t.name.toLowerCase() === (drawbackName || '').toLowerCase());
+  return drawback ? drawback.name : '';
+}
+
 /**
  * Convert AI-generated character data into a full game-ready character object.
  */
@@ -220,8 +271,22 @@ function buildCharacterFromAI(ai) {
     };
   });
 
+  // Validate feats against prerequisites
+  const tempCharForFeats = {
+    race,
+    class: cls,
+    level,
+    abilities,
+    skillRanks: ai.skillRanks || {},
+    feats: [],
+  };
+  const { valid: validFeats, invalid: invalidFeats } = validateFeatList(ai.feats || [], tempCharForFeats, featsData);
+  if (invalidFeats.length > 0) {
+    console.warn('AI character had invalid feats removed:', invalidFeats.map(f => `${f.name} (missing: ${f.missing.join(', ')})`));
+  }
+
   // Toughness bonus
-  const hasToughness = (ai.feats || []).some(f => f.toLowerCase() === 'toughness');
+  const hasToughness = validFeats.some(f => f.toLowerCase() === 'toughness');
   const toughnessHP = hasToughness ? Math.max(3, level) : 0;
 
   const char = {
@@ -233,7 +298,7 @@ function buildCharacterFromAI(ai) {
     level,
     xp: 0,
     abilities,
-    feats: ai.feats || [],
+    feats: validFeats,
     weapons,
     armor: ai.armorName || 'None',
     shield: ai.shieldName || 'None',
@@ -243,17 +308,20 @@ function buildCharacterFromAI(ai) {
     maxHP: maxHP + toughnessHP,
     currentHP: maxHP + toughnessHP,
     ac,
-    gold: getStartingGold(cls),
+    gold: (ai.characterTraits || []).some(t => t === 'Rich Parents') ? 900 : getStartingGold(cls),
     skillRanks: ai.skillRanks || {},
     spellsKnown: ai.spellsKnown || [],
     spellsPrepared: ai.spellsPrepared || [],
     spellSlotsUsed: {},
+    heritage: ai.heritage || '',
     ethnicity: ai.ethnicity || race,
     origin: ai.origin || '',
     languages: ai.languages || ['Common'],
     backstory: ai.backstory || '',
     personality: ai.personality || '',
     appearance: ai.appearance || '',
+    drawback: validateDrawback(ai.drawback),
+    characterTraits: validateTraits(ai.characterTraits || [], !!ai.drawback),
     notes: '',
   };
 

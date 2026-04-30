@@ -89,7 +89,7 @@ export default function SettingsTab({ party, campaign, adventure, combat, gameLo
     }));
   };
 
-  const dmPrefs = worldState?.dmPreferences || { xpTrack: 'medium', autoLevelUp: false, encumbranceTracking: false, critConfirmation: true, heroPoints: false, abilityScoreMethod: '4d6-drop-lowest', sanitySys: false, alignmentTracking: true, weatherSystem: true, lightTracking: true, trapsAndHaunts: true };
+  const dmPrefs = worldState?.dmPreferences || { xpTrack: 'medium', autoLevelUp: false, encumbranceTracking: false, critConfirmation: true, heroPoints: false, abilityScoreMethod: 'point-buy-20', sanitySys: false, alignmentTracking: true, weatherSystem: true, lightTracking: true, trapsAndHaunts: true, npcWalkAwayReactions: true };
 
   // Load saved games list
   useEffect(() => {
@@ -551,11 +551,14 @@ export default function SettingsTab({ party, campaign, adventure, combat, gameLo
           <select style={styles.select} value={dmPrefs.abilityScoreMethod}
             onChange={e => updateWorld('dmPreferences', { ...dmPrefs, abilityScoreMethod: e.target.value })}>
             <option value="4d6-drop-lowest">4d6 Drop Lowest (Standard)</option>
+            <option value="classic-3d6">Classic (3d6, Assign in Order)</option>
             <option value="standard-array">Standard Array (15, 14, 13, 12, 10, 8)</option>
-            <option value="point-buy-15">Point Buy (15 points — Low Fantasy)</option>
-            <option value="point-buy-20">Point Buy (20 points — Standard Fantasy)</option>
-            <option value="point-buy-25">Point Buy (25 points — High Fantasy)</option>
+            <option value="point-buy-10">Point Buy (10 pts — Low Fantasy)</option>
+            <option value="point-buy-15">Point Buy (15 pts — Standard Fantasy)</option>
+            <option value="point-buy-20">Point Buy (20 pts — High Fantasy)</option>
+            <option value="point-buy-25">Point Buy (25 pts — Epic Fantasy)</option>
             <option value="heroic">Heroic (2d6+6)</option>
+            <option value="dice-pool">Dice Pool (24d6)</option>
           </select>
         </div>
 
@@ -574,6 +577,8 @@ export default function SettingsTab({ party, campaign, adventure, combat, gameLo
             { key: 'weatherSystem', label: 'Dynamic Weather', desc: 'Auto-generate weather each travel day — affects visibility, movement, and combat' },
             { key: 'lightTracking', label: 'Light Source Tracking', desc: 'Track torch/lantern duration during dungeon exploration and overland travel' },
             { key: 'trapsAndHaunts', label: 'Trap & Haunt Detection', desc: 'Auto-roll Perception checks for traps and haunts when exploring dungeons (CR 3+)' },
+            { key: 'showExactHPInCombat', label: 'Show Exact Enemy HP/AC', desc: 'Reveal literal HP and AC numbers on enemy cards during combat instead of the CRB-faithful descriptor + observation-based AC range' },
+            { key: 'npcWalkAwayReactions', label: 'NPC Walk-Away Reactions', desc: 'When the party abandons a conversation (node change or next non-talk action), the ignored NPC fires a one-sentence reaction beat keyed to their disposition. Defaults on; disable to silence the reaction noise.' },
           ].map(opt => (
             <div key={opt.key} style={{
               display: 'flex', alignItems: 'center', justifyContent: 'space-between',

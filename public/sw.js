@@ -1,5 +1,5 @@
 // Service Worker for PF1e DM App — cache-first for assets, network-first for API
-const CACHE_NAME = 'pf1e-dm-v1';
+const CACHE_NAME = 'pf1e-dm-v2';
 
 // Install: pre-cache the app shell
 self.addEventListener('install', (event) => {
@@ -36,18 +36,34 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // For static assets (JS, CSS, images), cache-first
+  // For hashed production assets (e.g. /assets/index-CiGmd6QX.js), cache-first is safe
+  // For unhashed dev/source files (e.g. /src/services/foo.js), use network-first
   if (url.pathname.match(/\.(js|css|png|jpg|svg|woff2?|json)$/)) {
-    event.respondWith(
-      caches.match(event.request).then((cached) => {
-        if (cached) return cached;
-        return fetch(event.request).then((response) => {
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
-          return response;
-        });
-      })
-    );
+    const isHashedAsset = url.pathname.includes('/assets/') && url.pathname.match(/-[a-zA-Z0-9]{8,}\./);
+    if (isHashedAsset) {
+      // Cache-first: hashed filenames are immutable
+      event.respondWith(
+        caches.match(event.request).then((cached) => {
+          if (cached) return cached;
+          return fetch(event.request).then((response) => {
+            const clone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+            return response;
+          });
+        })
+      );
+    } else {
+      // Network-first: source files may change between loads
+      event.respondWith(
+        fetch(event.request)
+          .then((response) => {
+            const clone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+            return response;
+          })
+          .catch(() => caches.match(event.request))
+      );
+    }
     return;
   }
 });

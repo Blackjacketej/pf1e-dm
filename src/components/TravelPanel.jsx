@@ -143,7 +143,7 @@ export default function TravelPanel({ party, worldState, setWorldState, addLog, 
 
     // Log encounters to game log
     result.events.forEach(e => {
-      if (e.includes('Encounter')) addLog(e, 'combat');
+      if (e.includes('Encounter')) addLog(e, 'danger');
       else if (e.includes('Arrived')) addLog(e, 'narration');
     });
 
@@ -182,7 +182,7 @@ export default function TravelPanel({ party, worldState, setWorldState, addLog, 
           text: e,
           type: e.includes('Encounter') ? 'encounter' : e.includes('Arrived') ? 'arrival' : 'info',
         });
-        if (e.includes('Encounter')) addLog(e, 'combat');
+        if (e.includes('Encounter')) addLog(e, 'danger');
         else if (e.includes('Arrived')) addLog(e, 'narration');
       });
 
@@ -197,7 +197,7 @@ export default function TravelPanel({ party, worldState, setWorldState, addLog, 
       if (lostCheck.lost) {
         travelState.lost = true;
         travelState.lostDirection = lostCheck.deviation;
-        addLog(lostCheck.description, 'system');
+        addLog(lostCheck.description, 'danger');
       }
     }
 
@@ -219,7 +219,7 @@ export default function TravelPanel({ party, worldState, setWorldState, addLog, 
     setTravelState({ ...travelState });
 
     result.events.forEach(e => {
-      if (e.includes('Encounter')) addLog(e, 'combat');
+      if (e.includes('Encounter')) addLog(e, 'danger');
     });
     addLog(`The party makes camp. Day ${travelState.dayNumber} dawns.`, 'narration');
   }, [travelState, party, addLog]);

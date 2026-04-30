@@ -4038,7 +4038,7 @@
   {
     "name": "Improved Familiar",
     "prerequisites": "Ability to acquire a new familiar, compatible alignment, sufficiently high level (see below)",
-    "benefit": "When choosing a familiar, the creatures listed below are also available to you (see the Pathfinder RPG Bestiary for statistics on these creatures). You may choose a familiar with an alignment up to one step away on each alignment axis (lawful through chaotic, good through evil). Arcane Spellcaster Familiar Alignment Level Celestial hawk1 Neutral good 3rd",
+    "benefit": "When choosing a familiar, the creatures listed below are also available to you (see the Pathfinder RPG Bestiary for statistics on these creatures). You may choose a familiar with an alignment up to one step away on each alignment axis (lawful through chaotic, good through evil). Familiar choices and requirements — Celestial hawk (NG, 3rd; or any other celestial animal from the standard familiar list), Dire rat (N, 3rd), Fiendish viper (NE, 3rd; or any other fiendish animal from the standard familiar list), Elemental (Small, any type) (N, 5th), Stirge (N, 5th), Homunculus (any, 7th; the master must first create the homunculus), Imp (LE, 7th), Mephit (any type) (N, 7th), Pseudodragon (NG, 7th), Quasit (CE, 7th). Improved familiars otherwise use the rules for regular familiars, with two exceptions: if the creature's type is something other than animal, its type does not change; and improved familiars do not gain the ability to speak with other creatures of their kind (although many of them already have the ability to communicate).",
     "source": "Core Rulebook",
     "type": "General"
   },

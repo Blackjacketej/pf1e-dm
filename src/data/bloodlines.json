@@ -1,0 +1,1803 @@
+[
+  {
+    "name": "Aberrant",
+    "class": "Sorcerer",
+    "source": "CRB",
+    "classSkill": "Knowledge (any)",
+    "bonusSpells": {
+      "3": "identify",
+      "5": "detect thoughts",
+      "7": "clairvoyance",
+      "9": "arcane sight",
+      "11": "telepathy",
+      "13": "greater arcane sight",
+      "15": "vision",
+      "17": "power word stun",
+      "19": "wish"
+    },
+    "bonusFeats": [
+      "Alertness",
+      "Combat Casting",
+      "Combat Reflexes",
+      "Deceitful",
+      "Dodge",
+      "Improved Initiative",
+      "Iron Will"
+    ],
+    "bloodlineArcana": "Whenever you cast a spell with a range of personal, you can alternatively target one willing creature within 30 feet. The creature uses your caster level and relevant ability modifier for the spell.",
+    "bloodlinePowers": [
+      {
+        "name": "Acidic Ray",
+        "level": 1,
+        "type": "Su",
+        "description": "You can hurl an acidic ray at any target within 30 feet as a standard action dealing 1d6 damage at 1st level and increases by 1d6 at 5th, 9th, 13th, and 17th levels (max 5d6). Creatures hit may be sickened for 1 round."
+      },
+      {
+        "name": "Forewarned",
+        "level": 3,
+        "type": "Ex",
+        "description": "You receive a +2 bonus on initiative checks and opposed Perception checks. At 9th level, you gain true seeing for 1 round when you roll initiative."
+      },
+      {
+        "name": "Aberrant Affinity",
+        "level": 9,
+        "type": "Su",
+        "description": "You gain a +4 bonus on caster level checks to overcome spell resistance and spell DCs increase by +1."
+      },
+      {
+        "name": "Alien Resistance",
+        "level": 15,
+        "type": "Su",
+        "description": "You gain immunity to mutation, transmutation spells, and polymorph effects."
+      },
+      {
+        "name": "Aberrant Perfection",
+        "level": 20,
+        "type": "Su",
+        "description": "You become a being of pure magical power. Once per day, you can apply a +4 bonus to any single d20 roll made within 1 minute of activating this ability. Your attack rolls, ability checks, skill checks, and saving throws all increase by +4."
+      }
+    ],
+    "description": "The aberrant bloodline stems from a history of exposure to strange magic and alien forces, granting reality-bending powers and alien intuition."
+  },
+  {
+    "name": "Abyssal",
+    "class": "Sorcerer",
+    "source": "CRB",
+    "classSkill": "Knowledge (planes)",
+    "bonusSpells": {
+      "3": "protection from good",
+      "5": "scorching ray",
+      "7": "summon monster IV",
+      "9": "dimension door",
+      "11": "summon monster VI",
+      "13": "greater teleport",
+      "15": "summon monster VIII",
+      "17": "gate",
+      "19": "summon monster IX"
+    },
+    "bonusFeats": [
+      "Armor Proficiency (light)",
+      "Armor Proficiency (medium)",
+      "Bleeding Critical",
+      "Critical Focus",
+      "Improved Initiative",
+      "Power Attack",
+      "Weapon Focus"
+    ],
+    "bloodlineArcana": "Whenever you cast a bloodline spell, it is treated as an evil spell for the purpose of overcoming damage reduction. Caster level checks to overcome spell resistance gain a +1 bonus.",
+    "bloodlinePowers": [
+      {
+        "name": "Claws",
+        "level": 1,
+        "type": "Su",
+        "description": "You grow claws as a free action, dealing 1d6 damage (1d8 if you are Large). These are treated as magical weapons for the purpose of overcoming damage reduction. At 5th level, they deal an additional 1d6 fire damage."
+      },
+      {
+        "name": "Demon Resistances",
+        "level": 3,
+        "type": "Su",
+        "description": "You gain acid resistance 5, cold resistance 5, and fire resistance 5. At 9th level, these increase to 10. At 20th level, you become immune to acid, cold, and fire."
+      },
+      {
+        "name": "Abyssal Bloodline Magic",
+        "level": 9,
+        "type": "Su",
+        "description": "Any spell from your bloodline spell list that deals damage ignores 10 points of resistance to that damage type (including damage reduction)."
+      },
+      {
+        "name": "Demonic Aura",
+        "level": 15,
+        "type": "Su",
+        "description": "You gain an aura of demonic power in a 20-foot radius. Creatures in the aura take a -2 penalty to AC and saving throws. You can suppress or activate this as a free action."
+      },
+      {
+        "name": "Abyssal Ascension",
+        "level": 20,
+        "type": "Su",
+        "description": "As a swift action, you can sprout wings and gain a fly speed of 60 feet (good maneuverability) for 1 minute. Melee attacks gain a +2 bonus and deal +2d6 damage. You can use this ability once per day."
+      }
+    ],
+    "description": "The abyssal bloodline grants demoniac power and resistance, imbuing the sorcerer with infernal strength and the ability to summon demonic creatures."
+  },
+  {
+    "name": "Arcane",
+    "class": "Sorcerer",
+    "source": "CRB",
+    "classSkill": "Knowledge (arcana)",
+    "bonusSpells": {
+      "3": "magic missile",
+      "5": "mage armor",
+      "7": "dispel magic",
+      "9": "polymorph",
+      "11": "telekinesis",
+      "13": "legend lore",
+      "15": "spell turning",
+      "17": "polymorph any object",
+      "19": "wish"
+    },
+    "bonusFeats": [
+      "Alertness",
+      "Combat Casting",
+      "Dodge",
+      "Improved Counterspell",
+      "Improved Initiative",
+      "Iron Will",
+      "Spell Focus"
+    ],
+    "bloodlineArcana": "Whenever you cast a spell, if that spell allows a saving throw, you gain a bonus to your caster level equal to the number of spells of that same spell level in your bloodline spells list that you know.",
+    "bloodlinePowers": [
+      {
+        "name": "Arcane Bond",
+        "level": 1,
+        "type": "Ex",
+        "description": "You form a magical bond with an arcane implement, gaining a +1 bonus to caster level when using that implement. At 5th level, the bonus increases to +2. At 17th level, it increases to +3."
+      },
+      {
+        "name": "Cantrips",
+        "level": 3,
+        "type": "Sp",
+        "description": "You can cast any cantrip or 0-level spell as if you had access to the entire sorcerer spell list for 0-level spells, and you can cast them at will."
+      },
+      {
+        "name": "Spell Mastery",
+        "level": 9,
+        "type": "Su",
+        "description": "Once per day, you can cast one spell from your bloodline spell list without spending a spell slot, as if using a spell-like ability."
+      },
+      {
+        "name": "Arcane Apotheosis",
+        "level": 15,
+        "type": "Su",
+        "description": "You can use spell slots to cast any spell you know, regardless of whether it is on your known spells list. You can use this ability a number of times per day equal to 3 + your Charisma modifier."
+      },
+      {
+        "name": "Spell Permanency",
+        "level": 20,
+        "type": "Su",
+        "description": "Once per day, you can permanently cast one spell you know as if using the permanency spell without paying the XP cost. You can dismiss or restart this permanency at will."
+      }
+    ],
+    "description": "The arcane bloodline channels raw magical potential, granting mastery over spells and arcane theory."
+  },
+  {
+    "name": "Celestial",
+    "class": "Sorcerer",
+    "source": "CRB",
+    "classSkill": "Knowledge (planes)",
+    "bonusSpells": {
+      "3": "protection from evil",
+      "5": "cure moderate wounds",
+      "7": "summon monster IV",
+      "9": "cure serious wounds",
+      "11": "summon monster VI",
+      "13": "greater teleport",
+      "15": "summon monster VIII",
+      "17": "gate",
+      "19": "summon monster IX"
+    },
+    "bonusFeats": [
+      "Alertness",
+      "Blind-Fight",
+      "Deceitful",
+      "Dodge",
+      "Improved Initiative",
+      "Light Blindness (as weakness)",
+      "Skill Focus"
+    ],
+    "bloodlineArcana": "Whenever you cast a bloodline spell, it is treated as a good spell for the purpose of overcoming damage reduction. Caster level checks to overcome spell resistance gain a +1 bonus.",
+    "bloodlinePowers": [
+      {
+        "name": "Heavenly Fire",
+        "level": 1,
+        "type": "Su",
+        "description": "You can hurl a ray of heavenly fire at any target within 30 feet as a standard action, dealing 1d4 damage plus 1d4 additional damage at 5th, 9th, 13th, and 17th levels. This damage is good and bypasses damage reduction."
+      },
+      {
+        "name": "Celestial Bloodline Magic",
+        "level": 3,
+        "type": "Su",
+        "description": "Any spell from your bloodline spell list that deals damage is treated as good for the purpose of overcoming damage reduction."
+      },
+      {
+        "name": "Celestial Resistances",
+        "level": 9,
+        "type": "Su",
+        "description": "You gain darkvision 60 feet and resistance to acid 5 and cold 5. At 20th level, these resistances increase to 10."
+      },
+      {
+        "name": "Holy Aura",
+        "level": 15,
+        "type": "Su",
+        "description": "As a swift action, you can activate a 20-foot aura that grants a +2 deflection bonus to AC and a +2 bonus to saves against spells and abilities. Undead creatures in the aura take 1d8 damage per round."
+      },
+      {
+        "name": "Celestial Ascension",
+        "level": 20,
+        "type": "Su",
+        "description": "As a swift action, you sprout wings and gain a fly speed of 60 feet (good maneuverability) for 1 minute. Good creatures within 30 feet gain a +2 bonus to attack and damage rolls. You can use this once per day."
+      }
+    ],
+    "description": "The celestial bloodline stems from a heavenly ancestor, granting the sorcerer divine power and the ability to call forth angelic aid."
+  },
+  {
+    "name": "Destined",
+    "class": "Sorcerer",
+    "source": "CRB",
+    "classSkill": "Knowledge (any)",
+    "bonusSpells": {
+      "3": "erase",
+      "5": "protection from evil",
+      "7": "invisible rogue",
+      "9": "freedom of movement",
+      "11": "break enchantment",
+      "13": "greater restoration",
+      "15": "vision",
+      "17": "foresight",
+      "19": "wish"
+    },
+    "bonusFeats": [
+      "Alertness",
+      "Diehard",
+      "Dodge",
+      "Great Fortitude",
+      "Improved Great Fortitude",
+      "Iron Will",
+      "Lightning Reflexes"
+    ],
+    "bloodlineArcana": "Your bloodline spells are treated as having the highest-level spell slot available to you plus one level, for the purpose of caster level checks against spell resistance and calculating spell effects.",
+    "bloodlinePowers": [
+      {
+        "name": "Fortunate",
+        "level": 1,
+        "type": "Su",
+        "description": "Once per day, you can reroll any d20 made within 1 round of activating this ability. You must take the new result."
+      },
+      {
+        "name": "Illusion of Calm",
+        "level": 3,
+        "type": "Su",
+        "description": "You gain a bonus to Perception and AC equal to your Charisma modifier when you are not flat-footed. You can determine if someone is lying with a Sense Motive check at a +2 bonus."
+      },
+      {
+        "name": "Within Reach",
+        "level": 9,
+        "type": "Su",
+        "description": "You gain a +4 bonus to saves against spells and abilities that would control your actions or reduce your movement. Whenever you take damage, you can move 5 feet as a free action."
+      },
+      {
+        "name": "Destiny",
+        "level": 15,
+        "type": "Su",
+        "description": "Once per day as an immediate action, you can treat any d20 roll made by you or an ally within 30 feet as a natural 20. You can use this ability if the roll was a failure."
+      },
+      {
+        "name": "Inevitable Destiny",
+        "level": 20,
+        "type": "Su",
+        "description": "You gain the ability to see and act 1 round into the future. Once per day, you can take 1d4 rounds of actions before your enemies are able to act. This is treated as a time stop effect."
+      }
+    ],
+    "description": "The destined bloodline grants fate's favor and the ability to alter destiny, blessed with uncanny luck and prophetic power."
+  },
+  {
+    "name": "Draconic",
+    "class": "Sorcerer",
+    "source": "CRB",
+    "classSkill": "Perception",
+    "bonusSpells": {
+      "3": "magic missile",
+      "5": "scorching ray",
+      "7": "lightning bolt",
+      "9": "shout",
+      "11": "cone of cold",
+      "13": "chain lightning",
+      "15": "meteor swarm",
+      "17": "wish",
+      "19": "wish"
+    },
+    "bonusFeats": [
+      "Alertness",
+      "Armor Proficiency (light)",
+      "Armor Proficiency (medium)",
+      "Bleeding Critical",
+      "Diehard",
+      "Improved Initiative",
+      "Power Attack"
+    ],
+    "bloodlineArcana": "Whenever you cast a bloodline spell that deals damage, add your Charisma modifier to the number of damage dice rolled. This is added to the total damage, not multiplied on a critical hit.",
+    "bloodlinePowers": [
+      {
+        "name": "Draconic Bloodline Magic",
+        "level": 1,
+        "type": "Su",
+        "description": "You gain a natural weapon that deals 1d4 damage plus your Charisma modifier. At 5th level, it deals 1d6 damage. You gain a +1 bonus to AC and initiative."
+      },
+      {
+        "name": "Dragon Resistances",
+        "level": 3,
+        "type": "Su",
+        "description": "Choose one energy type. You gain resistance 5 to that type. At 9th level, the resistance increases to 10. At 20th level, you gain immunity."
+      },
+      {
+        "name": "Wings",
+        "level": 9,
+        "type": "Su",
+        "description": "You gain a fly speed of 60 feet (average maneuverability). At 20th level, the maneuverability improves to good."
+      },
+      {
+        "name": "Draconic Bloodline Power",
+        "level": 15,
+        "type": "Su",
+        "description": "Your breath weapon becomes usable twice per day and deals 1d6 damage per sorcerer level in a 30-foot cone. You gain a +2 bonus to damage rolls with your claws and wings."
+      },
+      {
+        "name": "Dragon Form",
+        "level": 20,
+        "type": "Su",
+        "description": "Once per day, you can assume the form of a dragon with a size of Medium or larger for up to 1 minute per sorcerer level. You gain all the dragon's abilities including flight, breath weapon, and claws."
+      }
+    ],
+    "description": "The draconic bloodline grants dragon ancestry, bestowing dragon-like features, resistances, and the ability to breathe elemental destruction."
+  },
+  {
+    "name": "Elemental",
+    "class": "Sorcerer",
+    "source": "CRB",
+    "classSkill": "Knowledge (planes)",
+    "bonusSpells": {
+      "3": "magic missile",
+      "5": "scorching ray",
+      "7": "lightning bolt",
+      "9": "shout",
+      "11": "cone of cold",
+      "13": "chain lightning",
+      "15": "meteor swarm",
+      "17": "wish",
+      "19": "wish"
+    },
+    "bonusFeats": [
+      "Armor Proficiency (light)",
+      "Combat Casting",
+      "Dodge",
+      "Improved Initiative",
+      "Light Blindness",
+      "Power Attack",
+      "Weapon Focus"
+    ],
+    "bloodlineArcana": "Whenever you cast a bloodline spell, you can change the elemental descriptor to match your chosen elemental type (fire, cold, electricity, or acid).",
+    "bloodlinePowers": [
+      {
+        "name": "Elemental Affinity",
+        "level": 1,
+        "type": "Su",
+        "description": "You gain affinity to one element: fire, cold, electricity, or acid. You gain resistance 5 to that element, and your unarmed strikes deal +1d4 damage of that type."
+      },
+      {
+        "name": "Elemental Ray",
+        "level": 3,
+        "type": "Su",
+        "description": "You can hurl a ray of elemental energy at any target within 30 feet, dealing 1d6 damage plus 1d6 at every 4 levels (max 5d6)."
+      },
+      {
+        "name": "Elemental Body",
+        "level": 9,
+        "type": "Su",
+        "description": "Once per day, you can transform into an elemental form of your chosen type for up to 1 minute per level. Your body becomes immune to your chosen element, and you can move through that element at your normal movement speed."
+      },
+      {
+        "name": "Elemental Aura",
+        "level": 15,
+        "type": "Su",
+        "description": "You are surrounded by an aura of your chosen element in a 20-foot radius that deals 2d6 damage per round of that type to creatures within it."
+      },
+      {
+        "name": "Elemental Ascension",
+        "level": 20,
+        "type": "Su",
+        "description": "You can permanently gain the ability to exist as an elemental. You gain immunity to your chosen element and the ability to breathe in the appropriate elemental plane."
+      }
+    ],
+    "description": "The elemental bloodline channels the raw power of earth, air, fire, or water, granting the sorcerer elemental affinity and transformation."
+  },
+  {
+    "name": "Fey",
+    "class": "Sorcerer",
+    "source": "CRB",
+    "classSkill": "Knowledge (nature)",
+    "bonusSpells": {
+      "3": "entangle",
+      "5": "hideous laughter",
+      "7": "slow",
+      "9": "entrapment",
+      "11": "charm monster",
+      "13": "greater invisibility",
+      "15": "insanity",
+      "17": "summon nature's ally VIII",
+      "19": "shapechange"
+    },
+    "bonusFeats": [
+      "Alertness",
+      "Blind-Fight",
+      "Deceitful",
+      "Dodge",
+      "Improved Initiative",
+      "Lightning Reflexes",
+      "Toughness"
+    ],
+    "bloodlineArcana": "Your bloodline spells gain a +1 bonus to the caster level and DC. You are treated as one size category smaller for the purpose of creature size bonuses to defenses against spells.",
+    "bloodlinePowers": [
+      {
+        "name": "Fairy Wings",
+        "level": 1,
+        "type": "Su",
+        "description": "You gain a fly speed of 30 feet (good maneuverability). At 9th level, your fly speed increases to 60 feet."
+      },
+      {
+        "name": "Enchanting Smile",
+        "level": 3,
+        "type": "Su",
+        "description": "Creatures within 30 feet that look at you must make a Will save or be dazzled for 1d4 rounds. You can use this ability a number of times per day equal to 3 + your Charisma modifier."
+      },
+      {
+        "name": "Fey Resilience",
+        "level": 9,
+        "type": "Su",
+        "description": "You gain DR 5/cold iron. At 20th level, the DR increases to 10/cold iron."
+      },
+      {
+        "name": "Fey Magic",
+        "level": 15,
+        "type": "Su",
+        "description": "You gain the ability to cast polymorph on yourself at will, though you can maintain only one active polymorph at a time."
+      },
+      {
+        "name": "Fey Ascension",
+        "level": 20,
+        "type": "Su",
+        "description": "You become a true fey creature. You gain immunity to enchantment effects and can cast invisibility at will."
+      }
+    ],
+    "description": "The fey bloodline grants the magic of the First World, bestowing beauty, illusions, and the charm of the fey."
+  },
+  {
+    "name": "Infernal",
+    "class": "Sorcerer",
+    "source": "CRB",
+    "classSkill": "Knowledge (planes)",
+    "bonusSpells": {
+      "3": "protection from good",
+      "5": "scorching ray",
+      "7": "summon monster IV",
+      "9": "dimension door",
+      "11": "summon monster VI",
+      "13": "greater teleport",
+      "15": "summon monster VIII",
+      "17": "gate",
+      "19": "summon monster IX"
+    },
+    "bonusFeats": [
+      "Armor Proficiency (light)",
+      "Armor Proficiency (medium)",
+      "Bleeding Critical",
+      "Critical Focus",
+      "Improved Initiative",
+      "Power Attack",
+      "Weapon Focus"
+    ],
+    "bloodlineArcana": "Whenever you cast a bloodline spell, it is treated as an evil spell for the purpose of overcoming damage reduction. Caster level checks to overcome spell resistance gain a +1 bonus.",
+    "bloodlinePowers": [
+      {
+        "name": "Infernal Bloodline Magic",
+        "level": 1,
+        "type": "Su",
+        "description": "You gain a touch attack that deals 1d6 damage plus 1d6 at 5th, 9th, 13th, and 17th levels. This damage is fire and evil aligned."
+      },
+      {
+        "name": "Infernal Resistances",
+        "level": 3,
+        "type": "Su",
+        "description": "You gain fire resistance 5 and a +1 bonus to saves against poison and disease. At 20th level, fire resistance increases to 10."
+      },
+      {
+        "name": "Hell's Power",
+        "level": 9,
+        "type": "Su",
+        "description": "Your caster level increases by 2 when casting spells that deal fire damage."
+      },
+      {
+        "name": "Infernal Aura",
+        "level": 15,
+        "type": "Su",
+        "description": "You gain an aura of infernal power in a 20-foot radius. Good creatures in the aura take a -2 penalty to AC and saves, and take 1d6 damage when they enter the aura."
+      },
+      {
+        "name": "Infernal Ascension",
+        "level": 20,
+        "type": "Su",
+        "description": "You can use this ability once per day to gain a +2 bonus to spell DCs for spells that deal fire or cold damage, immunity to fire, and the ability to cast summon monster spells without spending a spell slot for 1 minute per level."
+      }
+    ],
+    "description": "The infernal bloodline stems from a diabolical pact, granting infernal power and the ability to summon and command devils."
+  },
+  {
+    "name": "Undead",
+    "class": "Sorcerer",
+    "source": "CRB",
+    "classSkill": "Knowledge (religion)",
+    "bonusSpells": {
+      "3": "chill touch",
+      "5": "false life",
+      "7": "animate dead",
+      "9": "fear",
+      "11": "waves of fatigue",
+      "13": "finger of death",
+      "15": "clone",
+      "17": "horrid wilting",
+      "19": "wail of the banshee"
+    },
+    "bonusFeats": [
+      "Alertness",
+      "Blind-Fight",
+      "Combat Reflexes",
+      "Dodge",
+      "Improved Initiative",
+      "Iron Will",
+      "Toughness"
+    ],
+    "bloodlineArcana": "Whenever you cast a bloodline spell, you can treat all corporeal undead as willing creatures with regard to spell targeting and effects. Your caster level increases by 1 when casting spells that create undead or necromancy spells.",
+    "bloodlinePowers": [
+      {
+        "name": "Grave Touch",
+        "level": 1,
+        "type": "Su",
+        "description": "You can cause a creature you touch to become shaken for 1 round plus 1 additional round per 4 levels. Undead creatures become staggered instead."
+      },
+      {
+        "name": "Death's Gift",
+        "level": 3,
+        "type": "Su",
+        "description": "You gain channel negative energy 1d4 times per day, treating the damage as your sorcerer level for the purpose of calculating healing to undead or damage to living creatures. This uses your Charisma modifier."
+      },
+      {
+        "name": "Undead Bloodline Magic",
+        "level": 9,
+        "type": "Su",
+        "description": "You can gain the effects of nondetection against undead creatures and cannot be detected by undead divination. You gain immunity to ability damage and ability drain."
+      },
+      {
+        "name": "Incorporeal Form",
+        "level": 15,
+        "type": "Su",
+        "description": "Once per day, you can become incorporeal for 1 round per level. While incorporeal, you gain all the benefits of that condition."
+      },
+      {
+        "name": "Undead Mastery",
+        "level": 20,
+        "type": "Su",
+        "description": "You become a being of undeath and gain the undead type, becoming immune to critical hits, ability damage, and energy drain. You gain fast healing 5."
+      }
+    ],
+    "description": "The undead bloodline grants the power of death itself, bestowing necromantic abilities and the ability to command and animate the dead."
+  },
+  {
+    "name": "Aquatic",
+    "class": "Sorcerer",
+    "source": "APG",
+    "classSkill": "Swim",
+    "bonusSpells": {
+      "3": "color spray",
+      "5": "touch of the sea",
+      "7": "water breathing",
+      "9": "solid fog",
+      "11": "telekinesis",
+      "13": "fluid form",
+      "15": "waves of exhaustion",
+      "17": "tsunami",
+      "19": "wish"
+    },
+    "bonusFeats": [
+      "Alertness",
+      "Armor Proficiency (light)",
+      "Blind-Fight",
+      "Dodge",
+      "Endurance",
+      "Lightning Reflexes",
+      "Weapon Finesse"
+    ],
+    "bloodlineArcana": "You gain a swim speed equal to your land speed and can breathe water. Your caster level for spells that deal cold or water damage increases by 1.",
+    "bloodlinePowers": [
+      {
+        "name": "Aquatic Adaptation",
+        "level": 1,
+        "type": "Su",
+        "description": "You gain a swim speed equal to your land speed and can hold your breath for a number of minutes equal to your Constitution score."
+      },
+      {
+        "name": "Water Sense",
+        "level": 3,
+        "type": "Su",
+        "description": "You sense creatures and objects in water within 30 feet, even through solid barriers. This grants you blindsight 30 feet while submerged."
+      },
+      {
+        "name": "Instant Liquidity",
+        "level": 9,
+        "type": "Su",
+        "description": "You can become liquid for 1 round per level once per day, becoming immune to physical damage and able to move through any opening that water could."
+      },
+      {
+        "name": "Tidal Aura",
+        "level": 15,
+        "type": "Su",
+        "description": "You can create a 20-foot aura of water that grants allies within it a swim speed and grants enemies a -2 penalty to AC and attack rolls."
+      },
+      {
+        "name": "Aquatic Ascension",
+        "level": 20,
+        "type": "Su",
+        "description": "You can assume an aquatic form granting a swim speed of 120 feet, darkvision 60 feet, and the ability to breathe water indefinitely."
+      }
+    ],
+    "description": "The aquatic bloodline grants dominion over water and its creatures, bestowing swimming prowess and the power to breathe beneath the waves."
+  },
+  {
+    "name": "Boreal",
+    "class": "Sorcerer",
+    "source": "APG",
+    "classSkill": "Knowledge (nature)",
+    "bonusSpells": {
+      "3": "magic missile",
+      "5": "scorching ray",
+      "7": "lightning bolt",
+      "9": "shout",
+      "11": "cone of cold",
+      "13": "chain lightning",
+      "15": "freezing sphere",
+      "17": "polar ray",
+      "19": "wish"
+    },
+    "bonusFeats": [
+      "Alertness",
+      "Armor Proficiency (light)",
+      "Armor Proficiency (medium)",
+      "Blind-Fight",
+      "Dodge",
+      "Great Fortitude",
+      "Power Attack"
+    ],
+    "bloodlineArcana": "Whenever you cast a bloodline spell that deals cold damage, add your Charisma modifier to the number of dice rolled. You gain immunity to nonmagical cold.",
+    "bloodlinePowers": [
+      {
+        "name": "Frostbite",
+        "level": 1,
+        "type": "Su",
+        "description": "You can make a melee touch attack that deals 1d6 cold damage plus your Charisma modifier. At 9th level, the damage increases to 2d6."
+      },
+      {
+        "name": "Cold Resilience",
+        "level": 3,
+        "type": "Su",
+        "description": "You gain immunity to nonmagical cold and resistance 5 to magical cold. At 20th level, you gain immunity to all cold damage."
+      },
+      {
+        "name": "Blizzard",
+        "level": 9,
+        "type": "Su",
+        "description": "You can create a blizzard in a 60-foot radius, causing difficult terrain and reducing visibility. Creatures within take a -2 penalty to attack rolls."
+      },
+      {
+        "name": "Frozen Body",
+        "level": 15,
+        "type": "Su",
+        "description": "Your body becomes partially frozen. You gain DR 5/fire and can take half damage from fire damage (rounded up instead of down)."
+      },
+      {
+        "name": "Boreal Ascension",
+        "level": 20,
+        "type": "Su",
+        "description": "Once per day, you become a being of pure ice and snow, gaining immunity to cold, vulnerability to fire, and the ability to create walls of ice."
+      }
+    ],
+    "description": "The boreal bloodline channels the power of the far north, granting resistance to cold and the ability to summon blizzards and frost."
+  },
+  {
+    "name": "Deep Earth",
+    "class": "Sorcerer",
+    "source": "APG",
+    "classSkill": "Knowledge (planes)",
+    "bonusSpells": {
+      "3": "magic missile",
+      "5": "scorching ray",
+      "7": "lightning bolt",
+      "9": "shout",
+      "11": "cone of cold",
+      "13": "chain lightning",
+      "15": "earthquake",
+      "17": "meteor swarm",
+      "19": "wish"
+    },
+    "bonusFeats": [
+      "Armor Proficiency (light)",
+      "Armor Proficiency (medium)",
+      "Blind-Fight",
+      "Blind-Sense",
+      "Combat Casting",
+      "Endurance",
+      "Power Attack"
+    ],
+    "bloodlineArcana": "You gain the ability to burrow at 1/2 your movement speed through earth and stone. Whenever you cast a spell with an earth descriptor, treat your caster level as 1 higher.",
+    "bloodlinePowers": [
+      {
+        "name": "Tremor",
+        "level": 1,
+        "type": "Su",
+        "description": "You can create tremors by striking the ground, dealing 1d6 damage in a 15-foot burst and potentially knocking enemies prone."
+      },
+      {
+        "name": "Tremorsense",
+        "level": 3,
+        "type": "Su",
+        "description": "You gain blindsense 30 feet against creatures in contact with the ground."
+      },
+      {
+        "name": "Earth Glide",
+        "level": 9,
+        "type": "Su",
+        "description": "You can burrow through earth and stone as if moving through difficult terrain, leaving no trace of your passage."
+      },
+      {
+        "name": "Deepstone Fortress",
+        "level": 15,
+        "type": "Su",
+        "description": "You gain DR 10/adamantine. You can create a 20-foot cubic fortress of stone that you control."
+      },
+      {
+        "name": "Earthquake",
+        "level": 20,
+        "type": "Su",
+        "description": "Once per day, you can trigger a localized earthquake in a 60-foot radius, affecting terrain and creatures as if you had cast earthquake."
+      }
+    ],
+    "description": "The deep earth bloodline grants the power of the world below, bestowing tremorsense and the ability to shape stone and earth."
+  },
+  {
+    "name": "Dreamspun",
+    "class": "Sorcerer",
+    "source": "APG",
+    "classSkill": "Knowledge (nature)",
+    "bonusSpells": {
+      "3": "disguise self",
+      "5": "phantom steed",
+      "7": "dream",
+      "9": "break enchantment",
+      "11": "telekinesis",
+      "13": "greater restoration",
+      "15": "prismatic spray",
+      "17": "wish",
+      "19": "wish"
+    },
+    "bonusFeats": [
+      "Alertness",
+      "Deceitful",
+      "Dodge",
+      "Improved Initiative",
+      "Iron Will",
+      "Lightning Reflexes",
+      "Toughness"
+    ],
+    "bloodlineArcana": "You treat your caster level as 1 higher for the purpose of inducing sleep effects and mind-affecting spells. Your illusion spells gain a +1 bonus to DC.",
+    "bloodlinePowers": [
+      {
+        "name": "Phantasmal Killer",
+        "level": 1,
+        "type": "Su",
+        "description": "You can create an illusory copy of yourself that mimics your actions. This phantom has the same hit points as your dreams per day (number of times you sleep)."
+      },
+      {
+        "name": "Sleep Well",
+        "level": 3,
+        "type": "Su",
+        "description": "You gain the ability to cast sleep as a spell-like ability. Creatures affected are helpless instead of just unconscious."
+      },
+      {
+        "name": "Dreamform",
+        "level": 9,
+        "type": "Su",
+        "description": "You can shift into a dream-like form, becoming incorporeal and invisible until you attack. You can move through objects."
+      },
+      {
+        "name": "Dreamweaver",
+        "level": 15,
+        "type": "Su",
+        "description": "You can cast dream sending spells at will and can create a false dreamscape where you have full control."
+      },
+      {
+        "name": "Dreamwalker",
+        "level": 20,
+        "type": "Su",
+        "description": "You can project yourself into the Dreamland for 1 minute per level, becoming a powerful dream entity with spell-like abilities."
+      }
+    ],
+    "description": "The dreamspun bloodline draws power from dreams and illusion, granting the ability to manipulate perceptions and move between waking and dreaming."
+  },
+  {
+    "name": "Protean",
+    "class": "Sorcerer",
+    "source": "APG",
+    "classSkill": "Knowledge (planes)",
+    "bonusSpells": {
+      "3": "mage armor",
+      "5": "polymorph",
+      "7": "polymorph any object",
+      "9": "shapechange",
+      "11": "greater polymorph",
+      "13": "true polymorph",
+      "15": "shapechange",
+      "17": "wish",
+      "19": "wish"
+    },
+    "bonusFeats": [
+      "Alertness",
+      "Armor Proficiency (light)",
+      "Combat Reflexes",
+      "Dodge",
+      "Improved Initiative",
+      "Iron Will",
+      "Weapon Finesse"
+    ],
+    "bloodlineArcana": "You gain a bonus to AC equal to your Charisma modifier against attacks from those you have polymorphed. Your polymorph spells can affect up to two creatures instead of one.",
+    "bloodlinePowers": [
+      {
+        "name": "Protean Mutation",
+        "level": 1,
+        "type": "Su",
+        "description": "You can alter your physical form as a free action, gaining a bonus to AC or attack rolls for 1 round per level."
+      },
+      {
+        "name": "Shapechanger",
+        "level": 3,
+        "type": "Su",
+        "description": "You can assume a different physical form once per day for 1 hour, changing your appearance completely."
+      },
+      {
+        "name": "Protean Body",
+        "level": 9,
+        "type": "Su",
+        "description": "Your body becomes mutable, granting you resistance 10 to all damage types and the ability to shed physical effects."
+      },
+      {
+        "name": "Chaos Form",
+        "level": 15,
+        "type": "Su",
+        "description": "You can assume a chaos-touched form where your attacks are treated as chaotic-aligned and deal an additional 2d6 chaos damage."
+      },
+      {
+        "name": "True Protean",
+        "level": 20,
+        "type": "Su",
+        "description": "You can permanently assume any form you choose, maintaining all your abilities while gaining the physical benefits of the new form."
+      }
+    ],
+    "description": "The protean bloodline grants the power of chaos and transformation, allowing the sorcerer to shift forms and disrupt the natural order."
+  },
+  {
+    "name": "Serpentine",
+    "class": "Sorcerer",
+    "source": "APG",
+    "classSkill": "Knowledge (nature)",
+    "bonusSpells": {
+      "3": "summon monster I",
+      "5": "summon monster III",
+      "7": "summon monster IV",
+      "9": "summon monster VI",
+      "11": "summon monster VII",
+      "13": "summon monster VIII",
+      "15": "summon monster IX",
+      "17": "summon dragon",
+      "19": "wish"
+    },
+    "bonusFeats": [
+      "Alertness",
+      "Armor Proficiency (light)",
+      "Blind-Fight",
+      "Dodge",
+      "Improved Initiative",
+      "Lightning Reflexes",
+      "Power Attack"
+    ],
+    "bloodlineArcana": "Your summon spells summon serpentine creatures when possible. These creatures gain a +2 bonus to attack rolls and gain poison as a natural weapon.",
+    "bloodlinePowers": [
+      {
+        "name": "Serpent's Fangs",
+        "level": 1,
+        "type": "Su",
+        "description": "You grow two fangs as a free action that deal 1d4 damage each. They deliver poison: DC 10 + 1/2 your level + Charisma mod, causing 1d2 Con damage."
+      },
+      {
+        "name": "Snake Affinity",
+        "level": 3,
+        "type": "Su",
+        "description": "You gain a +2 bonus to Stealth and Climb checks. You can communicate with snakes and serpentine creatures telepathically."
+      },
+      {
+        "name": "Serpent Form",
+        "level": 9,
+        "type": "Su",
+        "description": "You can assume the form of a giant snake for 1 minute per level, gaining a bite attack and a poison attack."
+      },
+      {
+        "name": "Serpent's Scales",
+        "level": 15,
+        "type": "Su",
+        "description": "Your skin becomes scales granting DR 10/slashing. You gain immunity to poison and can shed your skin to escape grapples."
+      },
+      {
+        "name": "Serpent King",
+        "level": 20,
+        "type": "Su",
+        "description": "You command all serpents and can summon a great wyrm serpent once per day that obeys your commands for 1 hour."
+      }
+    ],
+    "description": "The serpentine bloodline grants affinity with snakes and reptiles, bestowing fangs, venom, and the ability to assume serpentine form."
+  },
+  {
+    "name": "Shadow",
+    "class": "Sorcerer",
+    "source": "APG",
+    "classSkill": "Stealth",
+    "bonusSpells": {
+      "3": "silent image",
+      "5": "invisibility",
+      "7": "darkness",
+      "9": "shadow step",
+      "11": "summon shadow",
+      "13": "greater invisibility",
+      "15": "shadow evocation",
+      "17": "power word stun",
+      "19": "wish"
+    },
+    "bonusFeats": [
+      "Alertness",
+      "Blind-Fight",
+      "Combat Reflexes",
+      "Dodge",
+      "Improved Initiative",
+      "Iron Will",
+      "Lightning Reflexes"
+    ],
+    "bloodlineArcana": "You gain a +2 bonus to Stealth checks and can hide even when not in darkness. Your shadows are partially real and can deal 1 point of damage per round to visible creatures."
+    ,
+    "bloodlinePowers": [
+      {
+        "name": "Shadow",
+        "level": 1,
+        "type": "Su",
+        "description": "Your shadow becomes semi-solid and can be manipulated. You gain +2 to Stealth and can move silently as if under the effects of invisibility in dim light."
+      },
+      {
+        "name": "Shadow Sustenance",
+        "level": 3,
+        "type": "Su",
+        "description": "You no longer need to sleep but must meditate for 1 hour per day. You gain darkvision 60 feet."
+      },
+      {
+        "name": "Shadow Form",
+        "level": 9,
+        "type": "Su",
+        "description": "You can assume a shadow form becoming incorporeal and invisible in dim light for 1 minute per level."
+      },
+      {
+        "name": "Shadow Armor",
+        "level": 15,
+        "type": "Su",
+        "description": "Your shadow hardens into armor granting you DR 10/light. You gain a +2 bonus to AC in dim light and darkness."
+      },
+      {
+        "name": "Shadow Lord",
+        "level": 20,
+        "type": "Su",
+        "description": "You become one with the shadows, gaining immunity to light-based attacks and the ability to summon a shadow creature as an extension of yourself."
+      }
+    ],
+    "description": "The shadow bloodline grants power over darkness and shadows, bestowing stealth, invisibility, and the ability to become one with the darkness."
+  },
+  {
+    "name": "Starsoul",
+    "class": "Sorcerer",
+    "source": "APG",
+    "classSkill": "Knowledge (arcana)",
+    "bonusSpells": {
+      "3": "color spray",
+      "5": "burning hands",
+      "7": "fireball",
+      "9": "meteor swarm",
+      "11": "magic missile",
+      "13": "greater restoration",
+      "15": "stellar explosion",
+      "17": "wish",
+      "19": "wish"
+    },
+    "bonusFeats": [
+      "Alertness",
+      "Blind-Fight",
+      "Combat Casting",
+      "Dodge",
+      "Improved Initiative",
+      "Iron Will",
+      "Toughness"
+    ],
+    "bloodlineArcana": "Your spells gain a +1 bonus to caster level and DC when cast under the stars. You gain darkvision 60 feet and treat bright light as normal light.",
+    "bloodlinePowers": [
+      {
+        "name": "Star Chart",
+        "level": 1,
+        "type": "Su",
+        "description": "You gain the ability to read the stars and gain a +2 bonus to Perception and Survival when under open sky."
+      },
+      {
+        "name": "Starlight",
+        "level": 3,
+        "type": "Su",
+        "description": "You can cast light at will as a spell-like ability. Creatures within 30 feet gain a +1 bonus to attack rolls and saves."
+      },
+      {
+        "name": "Stellar Affinity",
+        "level": 9,
+        "type": "Su",
+        "description": "You gain immunity to darkness effects and can see perfectly in all light conditions."
+      },
+      {
+        "name": "Star's Radiance",
+        "level": 15,
+        "type": "Su",
+        "description": "You gain a 20-foot radius aura of bright light that grants good creatures +2 AC and undead creatures take 2d6 damage per round."
+      },
+      {
+        "name": "Become A Star",
+        "level": 20,
+        "type": "Su",
+        "description": "Once per day, you can ascend into the sky as a sentient star for 1 minute per level, granting you immunity to physical damage and the ability to cast spells from the heavens."
+      }
+    ],
+    "description": "The starsoul bloodline grants the power of the stars and cosmos, bestowing celestial knowledge and the ability to command starlight."
+  },
+  {
+    "name": "Stormborn",
+    "class": "Sorcerer",
+    "source": "APG",
+    "classSkill": "Acrobatics",
+    "bonusSpells": {
+      "3": "magic missile",
+      "5": "scorching ray",
+      "7": "lightning bolt",
+      "9": "call lightning",
+      "11": "cone of cold",
+      "13": "chain lightning",
+      "15": "tempest",
+      "17": "meteor swarm",
+      "19": "wish"
+    },
+    "bonusFeats": [
+      "Alertness",
+      "Armor Proficiency (light)",
+      "Blind-Fight",
+      "Dodge",
+      "Improved Initiative",
+      "Lightning Reflexes",
+      "Power Attack"
+    ],
+    "bloodlineArcana": "Your spells that deal electricity damage gain a +1 bonus to caster level and add your Charisma modifier to the damage dice rolled.",
+    "bloodlinePowers": [
+      {
+        "name": "Storm Call",
+        "level": 1,
+        "type": "Su",
+        "description": "You can summon a localized storm that rains lightning bolts on enemies within 30 feet, dealing 1d6 electricity damage per round."
+      },
+      {
+        "name": "Electric Affinity",
+        "level": 3,
+        "type": "Su",
+        "description": "You gain immunity to electricity effects and your attacks deal 1d6 additional electricity damage."
+      },
+      {
+        "name": "Stormform",
+        "level": 9,
+        "type": "Su",
+        "description": "You can become a being of pure storm for 1 minute per level, gaining a fly speed of 60 feet and dealing electricity damage to creatures you pass through."
+      },
+      {
+        "name": "Thunder",
+        "level": 15,
+        "type": "Su",
+        "description": "Your attacks create thunderous shockwaves that knock enemies prone and deal an additional 2d6 damage in a 15-foot cone."
+      },
+      {
+        "name": "Stormborn Ascension",
+        "level": 20,
+        "type": "Su",
+        "description": "You become a storm lord capable of summoning a permanent thunderstorm in a 1-mile radius."
+      }
+    ],
+    "description": "The stormborn bloodline commands the fury of the sky, bestowing electrical affinity and the power to call lightning and tempests."
+  },
+  {
+    "name": "Verdant",
+    "class": "Sorcerer",
+    "source": "APG",
+    "classSkill": "Knowledge (nature)",
+    "bonusSpells": {
+      "3": "entangle",
+      "5": "summon nature's ally III",
+      "7": "summon nature's ally IV",
+      "9": "plant growth",
+      "11": "summon nature's ally VI",
+      "13": "trees stride",
+      "15": "summon nature's ally VIII",
+      "17": "shambler",
+      "19": "wish"
+    },
+    "bonusFeats": [
+      "Alertness",
+      "Blind-Fight",
+      "Combat Reflexes",
+      "Dodge",
+      "Great Fortitude",
+      "Improved Initiative",
+      "Toughness"
+    ],
+    "bloodlineArcana": "Your summon spells summon plant creatures when possible. You gain a +1 bonus to caster level when casting spells that deal electricity damage, but you take a -1 penalty to fire-based spells.",
+    "bloodlinePowers": [
+      {
+        "name": "Tangles",
+        "level": 1,
+        "type": "Su",
+        "description": "You can cast entangle at will, but can only maintain one instance at a time."
+      },
+      {
+        "name": "Canopy Benefit",
+        "level": 3,
+        "type": "Su",
+        "description": "You gain a +4 bonus on Stealth and Survival checks in wilderness with plants. Vines and plant matter can carry you at half speed."
+      },
+      {
+        "name": "Verdant Body",
+        "level": 9,
+        "type": "Su",
+        "description": "Your body becomes partially plant, gaining fast healing 5 when in sunlight and immunity to critical hits."
+      },
+      {
+        "name": "Speak with Plants",
+        "level": 15,
+        "type": "Su",
+        "description": "You can speak with and command plant creatures telepathically. Plants will not hinder your movement."
+      },
+      {
+        "name": "Verdant Lord",
+        "level": 20,
+        "type": "Su",
+        "description": "You can cause plant matter to grow explosively, transforming a 60-foot radius into dense forest that you completely control."
+      }
+    ],
+    "description": "The verdant bloodline channels the power of nature and plants, granting dominion over flora and the ability to summon plant creatures."
+  },
+  {
+    "name": "Accursed",
+    "class": "Sorcerer",
+    "source": "UM",
+    "classSkill": "Knowledge (religion)",
+    "bonusSpells": {
+      "3": "bane",
+      "5": "blindness/deafness",
+      "7": "bestow curse",
+      "9": "hex",
+      "11": "curse of venom",
+      "13": "greater restoration",
+      "15": "waves of exhaustion",
+      "17": "wail of the banshee",
+      "19": "wish"
+    },
+    "bonusFeats": [
+      "Alertness",
+      "Blind-Fight",
+      "Combat Casting",
+      "Deceitful",
+      "Dodge",
+      "Improved Initiative",
+      "Iron Will"
+    ],
+    "bloodlineArcana": "Your curse spells have their DC increased by 1. Creatures affected by your curses take a -2 penalty to saves against your spells.",
+    "bloodlinePowers": [
+      {
+        "name": "Accursed",
+        "level": 1,
+        "type": "Su",
+        "description": "You can touch a creature as a standard action to impose a curse. The creature takes a -2 penalty to all d20 rolls for 1 round per level."
+      },
+      {
+        "name": "Unlucky",
+        "level": 3,
+        "type": "Su",
+        "description": "You can curse a creature so that whenever it rolls a d20, it must roll twice and take the lower result for 1 minute per level."
+      },
+      {
+        "name": "Curse Mastery",
+        "level": 9,
+        "type": "Su",
+        "description": "You can cast bestow curse at will, but can only maintain one curse at a time. The curse's duration increases to 1 year per level."
+      },
+      {
+        "name": "Accursed Form",
+        "level": 15,
+        "type": "Su",
+        "description": "You gain DR 5/magic and creatures that hit you must make a Will save or take a -2 penalty to attack rolls for 1 minute."
+      },
+      {
+        "name": "Absolute Curse",
+        "level": 20,
+        "type": "Su",
+        "description": "Once per day, you can place a permanent curse on a creature that cannot be removed except by divine intervention."
+      }
+    ],
+    "description": "The accursed bloodline brings misfortune and curses, granting the power to afflict enemies with bad luck and magical hexes."
+  },
+  {
+    "name": "Djinni",
+    "class": "Sorcerer",
+    "source": "UM",
+    "classSkill": "Knowledge (planes)",
+    "bonusSpells": {
+      "3": "mage armor",
+      "5": "scorching ray",
+      "7": "lightning bolt",
+      "9": "polymorph any object",
+      "11": "telekinesis",
+      "13": "contingency",
+      "15": "teleport",
+      "17": "wish",
+      "19": "wish"
+    },
+    "bonusFeats": [
+      "Alertness",
+      "Armor Proficiency (light)",
+      "Combat Casting",
+      "Dodge",
+      "Improved Initiative",
+      "Iron Will",
+      "Weapon Finesse"
+    ],
+    "bloodlineArcana": "You gain a +1 bonus to caster level when casting spells from your bloodline list. Your granted bonus feat must come from a geniekind list.",
+    "bloodlinePowers": [
+      {
+        "name": "Djinni Touch",
+        "level": 1,
+        "type": "Su",
+        "description": "You can make a melee touch attack to blast a creature with wind, dealing 1d6 damage and potentially knocking it prone."
+      },
+      {
+        "name": "Air Affinity",
+        "level": 3,
+        "type": "Su",
+        "description": "You gain a +2 bonus to Acrobatics and Initiative checks. You can breathe in any environment."
+      },
+      {
+        "name": "Whirlwind",
+        "level": 9,
+        "type": "Su",
+        "description": "You can surround yourself with a whirlwind for 1 minute per level, granting you a 10-foot radius aura that deals 2d6 wind damage."
+      },
+      {
+        "name": "Maelstrom",
+        "level": 15,
+        "type": "Su",
+        "description": "You can create a 30-foot radius whirlwind that pulls creatures toward the center, knocking them prone."
+      },
+      {
+        "name": "Wish",
+        "level": 20,
+        "type": "Su",
+        "description": "Once per day, you can grant wishes as if you had cast the wish spell."
+      }
+    ],
+    "description": "The djinni bloodline grants the power of genies and air, bestowing wind control and wish-granting powers."
+  },
+  {
+    "name": "Efreeti",
+    "class": "Sorcerer",
+    "source": "UM",
+    "classSkill": "Knowledge (planes)",
+    "bonusSpells": {
+      "3": "burning hands",
+      "5": "scorching ray",
+      "7": "fireball",
+      "9": "wall of fire",
+      "11": "flame strike",
+      "13": "contingency",
+      "15": "delayed blast fireball",
+      "17": "earthquake",
+      "19": "wish"
+    },
+    "bonusFeats": [
+      "Alertness",
+      "Armor Proficiency (light)",
+      "Armor Proficiency (medium)",
+      "Combat Casting",
+      "Improved Initiative",
+      "Power Attack",
+      "Weapon Focus"
+    ],
+    "bloodlineArcana": "Your fire-based spells gain a +1 bonus to caster level and their DCs increase by 1. You gain fire resistance equal to your Charisma modifier.",
+    "bloodlinePowers": [
+      {
+        "name": "Scorching Hands",
+        "level": 1,
+        "type": "Su",
+        "description": "You can cast burning hands as a standard action, dealing 1d4 fire damage plus 1d4 per 2 levels."
+      },
+      {
+        "name": "Heat Resistance",
+        "level": 3,
+        "type": "Su",
+        "description": "You gain fire resistance 5. At 20th level, this increases to immunity to fire damage."
+      },
+      {
+        "name": "Ring of Fire",
+        "level": 9,
+        "type": "Su",
+        "description": "You surround yourself with a ring of flame dealing 3d6 fire damage to creatures that touch you or start their turn adjacent to you."
+      },
+      {
+        "name": "Inferno",
+        "level": 15,
+        "type": "Su",
+        "description": "You can cast delayed blast fireball at will, with a caster level equal to your sorcerer level."
+      },
+      {
+        "name": "Genie Lord",
+        "level": 20,
+        "type": "Su",
+        "description": "Once per day, you can transform into an efreeti for up to 1 minute per level, gaining fire immunity and all an efreeti's abilities."
+      }
+    ],
+    "description": "The efreeti bloodline channels the power of fire genies, granting intense heat control and infernal abilities."
+  },
+  {
+    "name": "Ghoul",
+    "class": "Sorcerer",
+    "source": "UM",
+    "classSkill": "Knowledge (religion)",
+    "bonusSpells": {
+      "3": "chill touch",
+      "5": "false life",
+      "7": "undead anatomy",
+      "9": "enervation",
+      "11": "waves of fatigue",
+      "13": "greater undead anatomy",
+      "15": "finger of death",
+      "17": "horrid wilting",
+      "19": "wish"
+    },
+    "bonusFeats": [
+      "Alertness",
+      "Blind-Fight",
+      "Combat Reflexes",
+      "Dodge",
+      "Improved Initiative",
+      "Iron Will",
+      "Toughness"
+    ],
+    "bloodlineArcana": "You gain a +1 bonus to caster level when casting spells against undead. Creatures killed by your spells may rise as undead under your control.",
+    "bloodlinePowers": [
+      {
+        "name": "Cannibalize",
+        "level": 1,
+        "type": "Su",
+        "description": "You can bite as an attack dealing 1d4 damage. If you deal damage to a corpse, you gain temporary hit points equal to the damage dealt."
+      },
+      {
+        "name": "Ghoulish Hunger",
+        "level": 3,
+        "type": "Su",
+        "description": "You gain fast healing 2 when you consume flesh. You no longer need to eat normal food."
+      },
+      {
+        "name": "Undead Body",
+        "level": 9,
+        "type": "Su",
+        "description": "Your body becomes partially undead, gaining immunity to disease and the ability to resist necrotic damage."
+      },
+      {
+        "name": "Ghoulish Plague",
+        "level": 15,
+        "type": "Su",
+        "description": "Creatures that take bite damage from you must make a Fortitude save or contract a disease that deals 1d6 ability damage."
+      },
+      {
+        "name": "Undead Ascension",
+        "level": 20,
+        "type": "Su",
+        "description": "You become an undead creature, gaining immunity to critical hits, ability damage, and energy drain."
+      }
+    ],
+    "description": "The ghoul bloodline grants affinity with ghouls and undead, bestowing hunger for flesh and necromantic power."
+  },
+  {
+    "name": "Maestro",
+    "class": "Sorcerer",
+    "source": "UM",
+    "classSkill": "Perform (any)",
+    "bonusSpells": {
+      "3": "hideous laughter",
+      "5": "fascinate",
+      "7": "charm monster",
+      "9": "confusion",
+      "11": "dominate person",
+      "13": "mass charm monster",
+      "15": "mass suggestion",
+      "17": "demand",
+      "19": "wish"
+    },
+    "bonusFeats": [
+      "Alertness",
+      "Deceitful",
+      "Dodge",
+      "Improved Initiative",
+      "Iron Will",
+      "Lightning Reflexes",
+      "Toughness"
+    ],
+    "bloodlineArcana": "Your enchantment spells gain a +1 bonus to caster level and DC. Your Perform checks grant a bonus to Enchantment spell DCs equal to 1/4 your Perform bonus.",
+    "bloodlinePowers": [
+      {
+        "name": "Fascinate",
+        "level": 1,
+        "type": "Su",
+        "description": "You can make a Perform check opposed by creatures within 60 feet to fascinate them as the bard ability."
+      },
+      {
+        "name": "Hypnotic Pattern",
+        "level": 3,
+        "type": "Sp",
+        "description": "You can cast hypnotic pattern at will, using your Perform modifier as the caster level."
+      },
+      {
+        "name": "Suggestion",
+        "level": 9,
+        "type": "Su",
+        "description": "You can cast suggestion at will on creatures that have heard you perform for at least 1 round."
+      },
+      {
+        "name": "Mass Suggestion",
+        "level": 15,
+        "type": "Su",
+        "description": "Your suggestion abilities now affect all creatures within 60 feet who can hear you."
+      },
+      {
+        "name": "Perfect Performance",
+        "level": 20,
+        "type": "Su",
+        "description": "Your Perform checks never fail and grant a +4 bonus to Enchantment spell DCs."
+      }
+    ],
+    "description": "The maestro bloodline channels the power of performance and music, granting enchanting abilities and charm."
+  },
+  {
+    "name": "Marid",
+    "class": "Sorcerer",
+    "source": "UM",
+    "classSkill": "Knowledge (planes)",
+    "bonusSpells": {
+      "3": "color spray",
+      "5": "touch of the sea",
+      "7": "water breathing",
+      "9": "solid fog",
+      "11": "telekinesis",
+      "13": "control weather",
+      "15": "tsunami",
+      "17": "wish",
+      "19": "wish"
+    },
+    "bonusFeats": [
+      "Alertness",
+      "Blind-Fight",
+      "Combat Casting",
+      "Dodge",
+      "Improved Initiative",
+      "Lightning Reflexes",
+      "Weapon Finesse"
+    ],
+    "bloodlineArcana": "You gain a swim speed equal to your land speed. Your water-based spells gain a +1 bonus to caster level and DCs increase by 1.",
+    "bloodlinePowers": [
+      {
+        "name": "Water Jet",
+        "level": 1,
+        "type": "Su",
+        "description": "You can hurl a jet of water at a target within 30 feet dealing 1d6 damage and knocking it prone."
+      },
+      {
+        "name": "Water Affinity",
+        "level": 3,
+        "type": "Su",
+        "description": "You gain a swim speed equal to your land speed and can breathe water. You can communicate with water elemental creatures."
+      },
+      {
+        "name": "Fluid Body",
+        "level": 9,
+        "type": "Su",
+        "description": "You can become liquid for 1 minute per level, becoming immune to physical damage."
+      },
+      {
+        "name": "Tidal Control",
+        "level": 15,
+        "type": "Su",
+        "description": "You can create a 30-foot radius aura of water that grants allies swim speeds and impedes enemies."
+      },
+      {
+        "name": "Marid Lord",
+        "level": 20,
+        "type": "Su",
+        "description": "You can control massive water currents and summon water elementals at will."
+      }
+    ],
+    "description": "The marid bloodline grants the power of water genies, bestowing control over water and the ability to summon water elementals."
+  },
+  {
+    "name": "Martyred",
+    "class": "Sorcerer",
+    "source": "UM",
+    "classSkill": "Knowledge (religion)",
+    "bonusSpells": {
+      "3": "protection from evil",
+      "5": "cure moderate wounds",
+      "7": "protection from energy",
+      "9": "divine power",
+      "11": "break enchantment",
+      "13": "greater restoration",
+      "15": "sacrifice",
+      "17": "refuge",
+      "19": "wish"
+    },
+    "bonusFeats": [
+      "Alertness",
+      "Blind-Fight",
+      "Combat Casting",
+      "Diehard",
+      "Dodge",
+      "Improved Initiative",
+      "Iron Will"
+    ],
+    "bloodlineArcana": "You gain a bonus to saves against spells and abilities equal to your Charisma modifier. Your healing spells heal an additional 1d6 damage.",
+    "bloodlinePowers": [
+      {
+        "name": "Resistant",
+        "level": 1,
+        "type": "Su",
+        "description": "You gain a +2 bonus to saves against spells and harmful effects."
+      },
+      {
+        "name": "Sanctified",
+        "level": 3,
+        "type": "Su",
+        "description": "You gain fast healing 1 and immunity to disease. At 20th level, this increases to fast healing 3."
+      },
+      {
+        "name": "Sacred Sacrifice",
+        "level": 9,
+        "type": "Su",
+        "description": "When an ally is hit by an attack within 30 feet, you can take the damage instead as an immediate action."
+      },
+      {
+        "name": "Martyr's Strength",
+        "level": 15,
+        "type": "Su",
+        "description": "Your spell DCs increase by 2 for each hit point of damage you have taken in the last round."
+      },
+      {
+        "name": "Martyrdom",
+        "level": 20,
+        "type": "Su",
+        "description": "Once per day when you are killed, you can resurrect with full hit points at the location where you died."
+      }
+    ],
+    "description": "The martyred bloodline grants the power of sacrifice and redemption, bestowing healing and the ability to protect others at great cost."
+  },
+  {
+    "name": "Rakshasa",
+    "class": "Sorcerer",
+    "source": "UM",
+    "classSkill": "Disguise",
+    "bonusSpells": {
+      "3": "disguise self",
+      "5": "invisibility",
+      "7": "charm monster",
+      "9": "polymorph",
+      "11": "true form",
+      "13": "greater restoration",
+      "15": "power word stun",
+      "17": "wish",
+      "19": "wish"
+    },
+    "bonusFeats": [
+      "Alertness",
+      "Armor Proficiency (light)",
+      "Combat Reflexes",
+      "Deceitful",
+      "Dodge",
+      "Improved Initiative",
+      "Weapon Finesse"
+    ],
+    "bloodlineArcana": "Your caster level increases by 1 when casting spells against creatures you have charmed. You gain a +1 bonus to Disguise checks.",
+    "bloodlinePowers": [
+      {
+        "name": "Rakshasa Claws",
+        "level": 1,
+        "type": "Su",
+        "description": "You gain claws that deal 1d4 damage. These are treated as magical for overcoming damage reduction."
+      },
+      {
+        "name": "Change Shape",
+        "level": 3,
+        "type": "Su",
+        "description": "You can change your form once per day as the shapechange spell for 1 hour."
+      },
+      {
+        "name": "Immunity to Magic",
+        "level": 9,
+        "type": "Su",
+        "description": "You gain spell resistance 15 + your Charisma modifier."
+      },
+      {
+        "name": "Projecting Force",
+        "level": 15,
+        "type": "Su",
+        "description": "You can project magical force as a touch attack, dealing 4d6 damage."
+      },
+      {
+        "name": "Rakshasa Lord",
+        "level": 20,
+        "type": "Su",
+        "description": "You gain all the abilities of a rakshasa including permanent invisibility and the ability to charm creatures at will."
+      }
+    ],
+    "description": "The rakshasa bloodline grants the cunning of fiendish sorcerers, bestowing disguise, shapechange, and magical immunity."
+  },
+  {
+    "name": "Shaitan",
+    "class": "Sorcerer",
+    "source": "UM",
+    "classSkill": "Knowledge (planes)",
+    "bonusSpells": {
+      "3": "burning hands",
+      "5": "scorching ray",
+      "7": "lightning bolt",
+      "9": "wall of fire",
+      "11": "telekinesis",
+      "13": "elemental body",
+      "15": "earthquake",
+      "17": "wish",
+      "19": "wish"
+    },
+    "bonusFeats": [
+      "Alertness",
+      "Armor Proficiency (light)",
+      "Armor Proficiency (medium)",
+      "Combat Casting",
+      "Improved Initiative",
+      "Power Attack",
+      "Weapon Focus"
+    ],
+    "bloodlineArcana": "Your earth-based spells gain a +1 bonus to caster level. You gain a +1 bonus to damage rolls with metal weapons.",
+    "bloodlinePowers": [
+      {
+        "name": "Metal Touch",
+        "level": 1,
+        "type": "Su",
+        "description": "You can heat metal with a touch, dealing 1d6 fire damage and potentially causing the holder to drop it."
+      },
+      {
+        "name": "Earth Affinity",
+        "level": 3,
+        "type": "Su",
+        "description": "You gain DR 5/magic and can burrow through earth at 1/2 your movement speed."
+      },
+      {
+        "name": "Magma Form",
+        "level": 9,
+        "type": "Su",
+        "description": "You can assume a magma form for 1 minute per level, becoming immune to fire and dealing fire damage with your attacks."
+      },
+      {
+        "name": "Metallic Form",
+        "level": 15,
+        "type": "Su",
+        "description": "You can become a being of pure metal for 1 minute, gaining DR 15/magic."
+      },
+      {
+        "name": "Shaitan Lord",
+        "level": 20,
+        "type": "Su",
+        "description": "You gain all the abilities of a shaitan and can control metal and earth as extensions of yourself."
+      }
+    ],
+    "description": "The shaitan bloodline channels the power of earth genies, granting control over metal and earth."
+  },
+  {
+    "name": "Unicorn",
+    "class": "Sorcerer",
+    "source": "UM",
+    "classSkill": "Heal",
+    "bonusSpells": {
+      "3": "cure moderate wounds",
+      "5": "remove disease",
+      "7": "cure serious wounds",
+      "9": "neutralize poison",
+      "11": "cure critical wounds",
+      "13": "greater restoration",
+      "15": "mass cure critical wounds",
+      "17": "true resurrection",
+      "19": "wish"
+    },
+    "bonusFeats": [
+      "Alertness",
+      "Blind-Fight",
+      "Deceitful",
+      "Dodge",
+      "Improved Initiative",
+      "Iron Will",
+      "Toughness"
+    ],
+    "bloodlineArcana": "Your healing spells heal an additional 1d6 damage. You gain a +1 bonus to saves against poison and disease.",
+    "bloodlinePowers": [
+      {
+        "name": "Horn",
+        "level": 1,
+        "type": "Su",
+        "description": "You can summon a magical horn that can be used to cure diseases and remove poisons once per day."
+      },
+      {
+        "name": "Cure Afflictions",
+        "level": 3,
+        "type": "Su",
+        "description": "You can cure disease and neutralize poison at will."
+      },
+      {
+        "name": "Unicorn Aura",
+        "level": 9,
+        "type": "Su",
+        "description": "You are surrounded by a 20-foot radius aura that grants allies fast healing 2 and immunity to disease."
+      },
+      {
+        "name": "Resurrection",
+        "level": 15,
+        "type": "Su",
+        "description": "You can cast resurrection once per day on creatures that have been dead no more than 1 day per level."
+      },
+      {
+        "name": "Unicorn Ascension",
+        "level": 20,
+        "type": "Su",
+        "description": "You become a celestial unicorn with all its healing and protective abilities."
+      }
+    ],
+    "description": "The unicorn bloodline grants the pure healing magic of celestial unicorns, bestowing cure abilities and protective auras."
+  }
+]

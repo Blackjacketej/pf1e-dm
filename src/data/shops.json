@@ -1,0 +1,79 @@
+{
+  "_schema": "Living-world shop registry. Each shop has a fixed identity, a home settlement, an NPC operator, and a list of crafter NPCs whose output stocks it.",
+  "_version": 1,
+  "shops": {
+    "sandpoint-general-store": {
+      "id": "sandpoint-general-store",
+      "name": "Sandpoint General Store",
+      "settlement": "Sandpoint",
+      "operatorNpc": "ven-vinder",
+      "shopType": "general",
+      "stockedBy": [],
+      "inventory": [],
+      "description": "A broad-spectrum general store run by Ven Vinder. Stocks everyday gear, adventuring supplies, and non-specialist items."
+    },
+    "red-dog-smithy": {
+      "id": "red-dog-smithy",
+      "name": "Red Dog Smithy",
+      "settlement": "Sandpoint",
+      "operatorNpc": "das-korvut",
+      "shopType": "smithy",
+      "stockedBy": ["das-korvut"],
+      "inventory": [],
+      "craftFacilities": ["forge"],
+      "description": "Sandpoint's forge, operated by Das Korvut. Weapons, armor, horseshoes, nails, and ironwork."
+    },
+    "sandpoint-savories": {
+      "id": "sandpoint-savories",
+      "name": "Sandpoint Savories",
+      "settlement": "Sandpoint",
+      "operatorNpc": "alma-avertin",
+      "shopType": "bakery",
+      "stockedBy": [],
+      "inventory": [],
+      "description": "A modest bakery run by Alma Avertin."
+    },
+    "sandpoint-boutique": {
+      "id": "sandpoint-boutique",
+      "name": "Sandpoint Boutique",
+      "settlement": "Sandpoint",
+      "operatorNpc": "risa-magravi",
+      "shopType": "tailor",
+      "stockedBy": [],
+      "inventory": [],
+      "description": "A small clothier carrying fine fabrics and tailored work."
+    },
+    "pillbugs-pantry": {
+      "id": "pillbugs-pantry",
+      "name": "Pillbug's Pantry",
+      "settlement": "Sandpoint",
+      "operatorNpc": "pillbug-podiker",
+      "shopType": "alchemist",
+      "stockedBy": ["pillbug-podiker"],
+      "inventory": [],
+      "craftFacilities": ["alchemy-lab"],
+      "description": "A small apothecary and alchemist run by Pillbug Podiker. Stocks tonics, tinctures, and alchemical wares."
+    },
+    "sandpoint-curios": {
+      "id": "sandpoint-curios",
+      "name": "Sandpoint Curios",
+      "settlement": "Sandpoint",
+      "operatorNpc": "vorvashali-voon",
+      "shopType": "jeweler",
+      "stockedBy": ["vorvashali-voon"],
+      "inventory": [],
+      "craftFacilities": ["artisan-workshop"],
+      "description": "A cluttered but surprisingly well-stocked jeweler/curio shop run by Vorvashali Voon."
+    },
+    "the-two-knights-brewery": {
+      "id": "the-two-knights-brewery",
+      "name": "The Two Knights Brewery",
+      "settlement": "Sandpoint",
+      "operatorNpc": "grayst-sevilla",
+      "shopType": "brewery",
+      "stockedBy": [],
+      "inventory": [],
+      "description": "A small brewery supplying Sandpoint's taverns."
+    }
+  }
+}

@@ -4,13 +4,11 @@ import { getAvailableMaps, getMap } from '../services/mapRegistry';
 import dmEngine from '../services/dmEngine';
 import overlandService from '../services/overlandService';
 import { pixelToHex, hexCenter, TERRAIN_COLORS, TERRAIN_TYPES, HEX_TAGS, TAG_CATEGORIES, getTagInfo, parseHexValue, encodeHexValue } from './HexGridOverlay';
+import { getHexConfig } from '../services/hexConfig';
 
-// Per-map hex configuration
-const HEX_CONFIG = {
-  sandpoint_hinterlands: { hexSizeMiles: 1, mapWidthMiles: 25 },
-  varisia_region:        { hexSizeMiles: 12, mapWidthMiles: 350 },
-};
-const DEFAULT_HEX_CONFIG = { hexSizeMiles: 2, mapWidthMiles: 25 };
+// Per-map hex configuration moved to src/services/hexConfig.js (Task #84,
+// 2026-04-19) so MapTab + GMMapPinEditor + overlandTravel share a single
+// source of truth. Call getHexConfig(mapId) below.
 
 const PIN_TYPES = [
   { key: 'town', label: 'Town', color: '#ffd700', icon: '\u{1F3D8}\uFE0F' },
@@ -99,14 +97,15 @@ export default function GMMapPinEditor({ worldState, setWorldState, addLog }) {
   const [editingRegion, setEditingRegion] = useState(null);
   const [redrawingRegionId, setRedrawingRegionId] = useState(null); // existing region being redrawn
   const [locatingPinId, setLocatingPinId] = useState(null); // pin currently being AI-located
+  const [pinMovePrompt, setPinMovePrompt] = useState(null); // { pinLabel, newHexKey } when party should maybe follow
 
   const mapRef = useRef(null);
 
   const availableMaps = useMemo(() => getAvailableMaps(), []);
   const currentMap = useMemo(() => getMap(selectedMapId), [selectedMapId]);
 
-  // Per-map hex config
-  const hexConfig = HEX_CONFIG[selectedMapId] || DEFAULT_HEX_CONFIG;
+  // Per-map hex config (Task #84 — shared service).
+  const hexConfig = getHexConfig(selectedMapId);
   const HEX_SIZE_MILES = hexConfig.hexSizeMiles;
   const MAP_WIDTH_MILES = hexConfig.mapWidthMiles;
 
@@ -458,12 +457,25 @@ export default function GMMapPinEditor({ worldState, setWorldState, addLog }) {
     } else {
       updateCustomPins(selectedMapId, customPinsForMap.map(p => p.id === pinId ? { ...p, xPct, yPct } : p));
     }
-  }, [selectedMapId, pinsForMap, customPinsForMap, updateCustomPins, updatePinOverride]);
+
+    // Check if the party was at this pin's old hex — show prompt to move party
+    const partyHex = worldState?.partyHex;
+    if (partyHex && pin) {
+      const mapSettings = overlandService.getMapSettings();
+      const imgW = mapSettings.bounds?.width || 1200;
+      const hexSizePx = (HEX_SIZE_MILES / MAP_WIDTH_MILES) * imgW;
+      const oldHex = pixelToHex((pin.xPct / 100) * imgW, (pin.yPct / 100) * (mapSettings.bounds?.height || 900), hexSizePx);
+      const newHex = pixelToHex((xPct / 100) * imgW, (yPct / 100) * (mapSettings.bounds?.height || 900), hexSizePx);
+      if (oldHex.key === partyHex && newHex.key !== partyHex) {
+        setPinMovePrompt({ pinLabel: pin.label, newHexKey: newHex.key });
+      }
+    }
+  }, [selectedMapId, pinsForMap, customPinsForMap, updateCustomPins, updatePinOverride, worldState?.partyHex, HEX_SIZE_MILES, MAP_WIDTH_MILES]);
 
   // AI auto-locate: ask Claude to estimate pin position on the map
   const aiLocatePin = useCallback(async (pinId) => {
     if (!dmEngine.isAIAvailable()) {
-      addLog?.('API key not set — configure in Settings to use AI locate.', 'error');
+      addLog?.('API key not set — configure in Settings to use AI locate.', 'warning');
       return;
     }
     const pin = pinsForMap.find(p => p.id === pinId);
@@ -512,7 +524,7 @@ Use your knowledge of Golarion geography and the relative positions of the other
       addLog?.(`AI positioned "${pin.label}" at (${newX}%, ${newY}%)`, 'system');
       mapRef.current?.focusPin(newX, newY);
     } catch (err) {
-      addLog?.(`AI locate failed: ${err.message}`, 'error');
+      addLog?.(`AI locate failed: ${err.message}`, 'danger');
     } finally {
       setLocatingPinId(null);
     }
@@ -521,7 +533,7 @@ Use your knowledge of Golarion geography and the relative positions of the other
   // AI auto-draw region: ask Claude to estimate polygon boundary
   const aiDrawRegion = useCallback(async (regionId) => {
     if (!dmEngine.isAIAvailable()) {
-      addLog?.('API key not set — configure in Settings to use AI draw.', 'error');
+      addLog?.('API key not set — configure in Settings to use AI draw.', 'warning');
       return;
     }
     const region = regionsForMap.find(r => r.id === regionId);
@@ -569,7 +581,7 @@ Use your knowledge of Golarion geography and the reference pins to estimate accu
       updateRegions(selectedMapId, regionsForMap.map(r => r.id === regionId ? { ...r, points } : r));
       addLog?.(`AI drew boundary for "${region.label}" (${points.length} vertices)`, 'system');
     } catch (err) {
-      addLog?.(`AI draw failed: ${err.message}`, 'error');
+      addLog?.(`AI draw failed: ${err.message}`, 'danger');
     } finally {
       setLocatingPinId(null);
     }
@@ -629,6 +641,50 @@ Use your knowledge of Golarion geography and the reference pins to estimate accu
 
   return (
     <div style={sty.container}>
+      {/* Pin-move party follow prompt */}
+      {pinMovePrompt && (
+        <div style={{
+          position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+          backgroundColor: 'rgba(0,0,0,0.7)', zIndex: 9999,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+        }}>
+          <div style={{
+            backgroundColor: '#1a1a2e', border: '2px solid #ffd700', borderRadius: 8,
+            padding: 20, maxWidth: 400, textAlign: 'center', color: '#d4c5a9',
+          }}>
+            <div style={{ color: '#ffd700', fontWeight: 'bold', fontSize: 14, marginBottom: 12 }}>
+              Move Party?
+            </div>
+            <div style={{ fontSize: 12, marginBottom: 16 }}>
+              You moved <strong style={{ color: '#ffd700' }}>{pinMovePrompt.pinLabel}</strong> to a new location.
+              The party was at this pin. Should the party move with it?
+            </div>
+            <div style={{ display: 'flex', gap: 8, justifyContent: 'center' }}>
+              <button
+                style={{ ...sty.btn(true), padding: '8px 16px' }}
+                onClick={() => {
+                  setWorldState(prev => {
+                    const newExplored = new Set(prev.exploredHexes || []);
+                    newExplored.add(pinMovePrompt.newHexKey);
+                    return { ...prev, partyHex: pinMovePrompt.newHexKey, exploredHexes: [...newExplored] };
+                  });
+                  addLog?.(`Party moved to hex ${pinMovePrompt.newHexKey} (following ${pinMovePrompt.pinLabel})`, 'narration');
+                  setPinMovePrompt(null);
+                }}
+              >
+                Yes, move party
+              </button>
+              <button
+                style={{ ...sty.btn(false), padding: '8px 16px' }}
+                onClick={() => setPinMovePrompt(null)}
+              >
+                No, stay put
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* ── Sidebar ── */}
       <div style={sty.sidebar}>
         <div>

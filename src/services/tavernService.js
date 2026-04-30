@@ -7,6 +7,7 @@
  */
 
 import settlementsData from '../data/settlements.json';
+import { getCharacterSkillTotal } from '../utils/characterSkills';
 
 // ─── Seeded PRNG (same as shopService) ─────────────────────────
 function seededRandom(seed) {
@@ -225,7 +226,7 @@ export function resolveEvent(event, char) {
   // Map mechanic to character skill/ability
   switch (event.mechanic) {
     case 'intimidate':
-      modifier = char?.skills?.intimidate || 0;
+      modifier = getCharacterSkillTotal(char, 'Intimidate');
       skillUsed = 'Intimidate';
       break;
     case 'fortitude':
@@ -233,28 +234,52 @@ export function resolveEvent(event, char) {
       skillUsed = 'Fortitude';
       break;
     case 'perception':
-      modifier = char?.skills?.perception || 0;
+      modifier = getCharacterSkillTotal(char, 'Perception');
       skillUsed = 'Perception';
       break;
     case 'strength':
       modifier = Math.floor(((char?.abilities?.STR || 10) - 10) / 2);
       skillUsed = 'Strength';
       break;
-    case 'reflex_or_craft':
+    case 'reflex_or_craft': {
+      const craftTotal = getCharacterSkillTotal(char, 'Craft');
       modifier = Math.max(
         char?.saves?.ref || Math.floor(((char?.abilities?.DEX || 10) - 10) / 2),
-        char?.skills?.craft || 0
+        craftTotal
       );
       skillUsed = 'Reflex/Craft';
       break;
-    case 'diplomacy_or_bluff':
-      modifier = Math.max(char?.skills?.diplomacy || 0, char?.skills?.bluff || 0);
-      skillUsed = modifier === (char?.skills?.bluff || 0) ? 'Bluff' : 'Diplomacy';
+    }
+    case 'diplomacy_or_bluff': {
+      const dipTotal = getCharacterSkillTotal(char, 'Diplomacy');
+      const bluffTotal = getCharacterSkillTotal(char, 'Bluff');
+      // Prefer the first-listed skill on a tie. The previous tie-break sent
+      // ties to 'Bluff', which felt arbitrary — Diplomacy is the more
+      // in-character default for the social events that use this mechanic.
+      if (bluffTotal > dipTotal) {
+        modifier = bluffTotal;
+        skillUsed = 'Bluff';
+      } else {
+        modifier = dipTotal;
+        skillUsed = 'Diplomacy';
+      }
       break;
-    case 'profession_gambler_or_bluff':
-      modifier = Math.max(char?.skills?.profession_gambler || 0, char?.skills?.bluff || 0);
-      skillUsed = modifier === (char?.skills?.bluff || 0) ? 'Bluff' : 'Profession (Gambler)';
+    }
+    case 'profession_gambler_or_bluff': {
+      const gambTotal = getCharacterSkillTotal(char, 'Profession (gambler)');
+      const bluffTotal2 = getCharacterSkillTotal(char, 'Bluff');
+      // Same tie-break rule: the named professional skill wins on a tie
+      // since the mechanic is "profession_gambler_or_bluff" — Bluff is the
+      // alternate, not the default.
+      if (bluffTotal2 > gambTotal) {
+        modifier = bluffTotal2;
+        skillUsed = 'Bluff';
+      } else {
+        modifier = gambTotal;
+        skillUsed = 'Profession (Gambler)';
+      }
       break;
+    }
     default:
       modifier = 0;
   }
@@ -363,7 +388,7 @@ export function getSafeDrinkCount(char) {
  */
 export function gatherInformation(char, tavern, settlementId, chapter, settlementMods = {}, options = {}) {
   const roll = rollDie(20);
-  let modifier = char?.skills?.diplomacy || 0;
+  let modifier = getCharacterSkillTotal(char, 'Diplomacy');
 
   // Settlement Lore modifier applies to gather info
   modifier += settlementMods.lore || 0;
@@ -455,13 +480,13 @@ export function gambleRound(char, stake, method = 'bluff') {
 
   switch (method) {
     case 'bluff':
-      modifier = char?.skills?.bluff || 0;
+      modifier = getCharacterSkillTotal(char, 'Bluff');
       break;
     case 'profession_gambler':
-      modifier = char?.skills?.profession_gambler || char?.skills?.profession || 0;
+      modifier = getCharacterSkillTotal(char, 'Profession (gambler)');
       break;
     case 'sense_motive':
-      modifier = char?.skills?.senseMotivee || char?.skills?.sense_motive || 0;
+      modifier = getCharacterSkillTotal(char, 'Sense Motive');
       break;
     default:
       modifier = 0;
