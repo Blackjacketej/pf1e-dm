@@ -31,6 +31,7 @@ claude-notes.md
 claude-priority.json
 claude-resolutions.json
 claude-attachments/
+.claude/
 _sync_probe.txt
 _tmp_*.mjs
 tmp-parse*.mjs
