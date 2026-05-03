@@ -2163,11 +2163,36 @@ export default function AdventureTab({
     // Bug #56 — party-wide compound actions are non-talk actions for any
     // ongoing conversation; fire the walk-away reaction before the new beat.
     fireWalkAwayReaction(null);
+
+    // 2026-04-20 — split-party context preservation. PartyActionBar joins
+    // per-character inputs as "Name1: action1 | Name2: action2 | ...". When
+    // 2+ characters submit at once we're in a split-party round, and the
+    // raw narrate prompt has historically caused the AI to collapse the
+    // four current sub-scenes (e.g. Ironforge at Chask's stall, Shadowblade
+    // at the cathedral wall, Archmage at the appraise table, Healer with
+    // Father Zantus) back to a single shared "festival square" scene —
+    // dropping NPCs, in-flight checks, and continuity. The recent log
+    // contains the per-character locations but the AI was defaulting to
+    // the canonical adventure.location field.
+    //
+    // Fix: prepend a system-style reminder to the action string when split
+    // is detected. The AI gets explicit instruction to honor the per-
+    // character locations established in the prior narration. Single-
+    // character submits skip the reminder so we don't waste tokens or
+    // confuse non-split scenes.
+    const splitSegments = combinedAction.split(' | ').filter(Boolean);
+    const isSplitParty = splitSegments.length >= 2;
+    const promptForAI = isSplitParty
+      ? `[SPLIT PARTY — The party is currently distributed across multiple sub-locations established in the recent narration. Read the recent log CAREFULLY before responding. Each named character below may be at a DIFFERENT location, talking to a DIFFERENT NPC, or in the middle of a DIFFERENT in-flight check (Sense Motive, Appraise, Perception, Diplomacy, etc.). Resolve EACH character's action AT THEIR CURRENT SUB-LOCATION as established in the prior scene. Continue any check that was already requested for that specific character — do not substitute a different check or skill. Do NOT regroup the party at a single shared scene unless their actions explicitly state they are walking back to each other. Maintain the NPCs, atmosphere, and continuity already established for each sub-scene.]\n\n${combinedAction}`
+      : combinedAction;
+
     traceEngine('handlePartyCompoundAction', {
       preview: combinedAction.length > 140
         ? combinedAction.slice(0, 140) + '…' : combinedAction,
       location: adventure?.location?.name || null,
       partyLen: party?.length || 0,
+      isSplitParty,
+      splitCount: splitSegments.length,
     });
     // Bug #35 — snapshot before the compound submit so Undo rolls back
     // the whole party-turn (multiple HP/log/NPC updates as one unit).
@@ -2183,7 +2208,7 @@ export default function AdventureTab({
           type: adventure.type === 'town' ? 'roleplay' : 'exploration',
         } : null,
         recentLog: (gameLog || []).slice(-15),
-      }, combinedAction);
+      }, promptForAI);
       const timeoutPromise = new Promise((_, reject) =>
         setTimeout(() => reject(new Error('Request timed out.')), 35000)
       );
